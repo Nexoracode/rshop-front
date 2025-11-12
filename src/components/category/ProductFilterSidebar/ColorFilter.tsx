@@ -11,56 +11,72 @@ type ColorFilterProps = {
   multiple?: boolean;
   /** غیرفعال کردن انتخاب */
   disabled?: boolean;
+
+  value: Array<string>;
+
+  onChange: (values: Array<string>) => void;
 };
 
 export default function ColorFilter({
   colors,
   multiple = false,
   disabled = false,
+  value,
+  onChange,
 }: ColorFilterProps) {
   // 🟢 State داخلی برای رنگ‌های انتخاب‌شده
-  const [selected, setSelected] = React.useState<number[]>([]);
 
-  const toggle = (color: number) => {
+  const toggle = (color: string) => {
     if (disabled) return;
+    let newValue = [];
     if (multiple) {
-      setSelected((prev) =>
-        prev.includes(color)
-          ? prev.filter((c) => c !== color)
-          : [...prev, color]
-      );
+      newValue = value.includes(color)
+        ? value.filter((c) => c !== color)
+        : [...value, color];
     } else {
-      setSelected((prev) => (prev.includes(color) ? [] : [color]));
+      newValue = value.includes(color) ? [] : [color];
     }
+    onChange(newValue);
   };
 
   return (
-    <div className="flex p-2 flex-wrap gap-4">
+    <div className="flex p-2 flex-wrap gap-3">
       {colors.map((color) => {
-        const active = selected.includes(color.id);
+        const active = value.includes(String(color.id));
         return (
           <button
             key={color.id}
             type="button"
             disabled={disabled}
-            onClick={() => toggle(color.id)}
-            className={cn(
-              "relative h-10 w-10 ring-offset-4 ring-muted ring-2 rounded-lg border border-gray-300 shadow-sm p-2",
-              "transition-transform duration-150 focus:outline-none",
-              active && "ring-primary",
-              disabled && "opacity-50 cursor-not-allowed"
-            )}
-            style={{ backgroundColor: color.display_color || "#ffffff" }}
+            onClick={() => toggle(String(color.id))}
+            className={"relative w-12"}
             aria-label={`انتخاب رنگ ${color.value}`}
           >
+            <span
+              className={cn(
+                "block h-12 w-12 rounded-lg border border-gray-300 shadow-sm p-1",
+                "transition-transform duration-150",
+                active && "border-primary border-2",
+                disabled && "opacity-50 cursor-not-allowed"
+              )}
+            >
+              <span
+                style={{ backgroundColor: color.display_color || "#ffffff" }}
+                className="inline-block rounded-md w-full h-full"
+              ></span>
+            </span>
             {active && (
               <span
-                className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold"
+                className="absolute h-fit inset-0 flex items-center justify-center text-white text-xl top-[20%]  font-bold"
                 style={{ textShadow: "0 0 2px black" }}
               >
                 ✓
               </span>
             )}
+
+            <span className="inline-block pt-3 text-sm font-light text-muted/70">
+              {color.value}
+            </span>
           </button>
         );
       })}

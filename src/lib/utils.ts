@@ -96,23 +96,15 @@ export function calcPrice(
   discountPercent: number
 ) {
   const base = toNum(price);
-  const amount = toNum(discountAmount);
-  let final = base;
-  let compareAt: number | undefined;
-  let percent = 0;
+  const discount = toNum(discountAmount);
+  const amount =
+    discount > 0 ? discount : Math.round((base * discountPercent) / 100);
+  let percent =
+    discountPercent > 0 ? discountPercent : Math.round((amount / base) * 100);
 
-  if (amount > 0) {
-    final = Math.max(0, base - amount);
-    compareAt = base;
-    percent = base > 0 ? Math.round((amount / base) * 100) : 0;
-  } else if (discountPercent > 0) {
-    final = Math.max(0, Math.floor(base * (1 - discountPercent / 100)));
-    compareAt = base;
-    percent = discountPercent;
-  }
+  let final = base - amount;
+  let compareAt = amount > 0 ? base : null;
 
-  // رُند به پایین برای نمایش خلاصه
-  final = Math.floor(final);
   return { final, compareAt, percent };
 }
 

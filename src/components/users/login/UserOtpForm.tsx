@@ -22,7 +22,6 @@ export default function UserOtpForm({ phone }: Props) {
   const search = useSearchParams();
 
   const backUrl = search.get("backUrl");
-  console.log({ backUrl });
   const router = useRouter();
   const handleSubmit = (values: FieldValues) => {
     const { code } = values;

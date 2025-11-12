@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import AddToCompareBtn from "./AddToCompareBtn";
 import AddToWishlistBtn from "./AddToWishlistBtn";
-import { cn, formatToman } from "@/lib/utils";
+import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Product } from "@/types/product";
@@ -22,17 +22,11 @@ export default function ProductCard(props: Product) {
     brand,
   } = props;
 
-  const discountPrice = discount_amount
-    ? Number(price) - Number(discount_amount)
-    : discount_percent
-    ? ((100 - discount_percent) / 100) * Number(price)
-    : null;
-
-  const discountPercent = discount_percent
-    ? discount_percent
-    : discountPrice
-    ? Math.round((Number(discountPrice) / Number(price)) * 100)
-    : null;
+  const { final, percent, compareAt } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent
+  );
   return (
     <Link href={`/p/rsp-${id}`}>
       <Card
@@ -49,9 +43,9 @@ export default function ProductCard(props: Product) {
         </div>
 
         {/* top right: discount */}
-        {discountPercent && (
+        {compareAt && (
           <Badge variant="danger" className="absolute left-4 top-4 z-10 ">
-            {discountPercent}%
+            {percent}%
           </Badge>
         )}
 
@@ -94,11 +88,11 @@ export default function ProductCard(props: Product) {
           {/* price */}
           <div className="flex items-center gap-2">
             <span className="text-base font-bold text-primary-600">
-              {discountPrice ? formatToman(discountPrice) : formatToman(+price)}{" "}
+              {formatToman(final)}
             </span>
-            {discountPrice && (
+            {compareAt && (
               <span className="text-xs text-gray-400 line-through">
-                {formatToman(+price)}
+                {formatToman(+compareAt)}
               </span>
             )}
           </div>

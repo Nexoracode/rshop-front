@@ -9,26 +9,35 @@ interface ToggleFilterProps {
   label?: string;
   /** اگر true باشد سوییچ غیرفعال است */
   disabled?: boolean;
+  toggleId?: string;
+
+  checked?: boolean;
+  onCheckedChange?: (check: boolean) => void;
 }
 
 export default function ToggleFilter({
   label = "فیلتر فعال",
   disabled = false,
+  checked = false,
+  toggleId = "",
+  onCheckedChange = () => {},
 }: ToggleFilterProps) {
   // 🟢 استیت داخلی روشن/خاموش
-  const [enabled, setEnabled] = React.useState<boolean>(false);
 
   return (
-    <div className="flex items-center justify-between">
-      <Label htmlFor="toggle-filter" className="font-semibold text-neutral-600">
+    <div className="flex border-b py-4 items-center justify-between">
+      <Label
+        htmlFor={`toggle-filter-${toggleId}`}
+        className="font-semibold w-full flex justify-between text-neutral-600"
+      >
         {label}
+        <Switch
+          checked={checked}
+          onCheckedChange={onCheckedChange}
+          disabled={disabled}
+          id={`toggle-filter-${toggleId}`}
+        />
       </Label>
-      <Switch
-        checked={enabled}
-        onCheckedChange={setEnabled}
-        disabled={disabled}
-        id="toggle-filter"
-      />
     </div>
   );
 }

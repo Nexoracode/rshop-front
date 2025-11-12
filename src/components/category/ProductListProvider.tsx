@@ -1,7 +1,7 @@
 "use client";
 
 import { serializeFliterQuery } from "@/lib/get-query-client";
-import { ProductFilterQuery, ProductFilters } from "@/types";
+import { BooleanFilterKey, ProductFilterQuery, ProductFilters } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
@@ -11,7 +11,13 @@ type ProductListContextType = {
   query: ProductFilterQuery | null;
   view: ListView;
   setView: (view: ListView) => void;
+  handleSetFilter: <K extends keyof ProductFilterQuery["filter"]>(
+    key: K,
+    value: ProductFilterQuery["filter"][K]
+  ) => void;
   handleSetAttributeQuery: (key: string, value: Array<string>) => void;
+  handleSetBooleanQuery: (key: BooleanFilterKey, value: boolean) => void;
+  handleClearFilters: () => void;
 };
 const ProductListContext = createContext<ProductListContextType | null>(null);
 
@@ -38,13 +44,19 @@ export default function ProductListProvider({
 
   function handleSetQuery<T = Array<number>>(key: string, value: T) {
     const newQuery = { ...query, [key]: value };
+    console.log({ newQuery });
     setQuery(newQuery as ProductFilterQuery);
     router.push(
-      `${pathName}${serializeFliterQuery(newQuery as ProductFilterQuery)}`
+      `${pathName}?query=${serializeFliterQuery(
+        newQuery as ProductFilterQuery
+      )}`
     );
   }
 
-  function handleSetFilter<T = Array<number>>(key: string, value: T) {
+  function handleSetFilter<K extends keyof ProductFilterQuery["filter"]>(
+    key: K,
+    value: ProductFilterQuery["filter"][K]
+  ) {
     handleSetQuery("filter", { ...query?.filter, [key]: value });
   }
 
@@ -53,9 +65,32 @@ export default function ProductListProvider({
     handleSetFilter("attributes", attributes);
   };
 
+  const handleSetBooleanQuery = (key: BooleanFilterKey, value: boolean) => {
+    const booleanFilters =
+      value === true
+        ? [...(query?.filter.booleanFilters ?? []), { key, value: true }]
+        : query?.filter.booleanFilters.filter((b) => b.key !== key) ?? [];
+    console.log(booleanFilters);
+    handleSetFilter("booleanFilters", booleanFilters);
+  };
+
+  const handleClearFilters = () => {
+    setQuery(null);
+    router.push(pathName);
+  };
+
   return (
     <ProductListContext.Provider
-      value={{ filters, view, setView, query, handleSetAttributeQuery }}
+      value={{
+        filters,
+        view,
+        setView,
+        query,
+        handleSetAttributeQuery,
+        handleSetFilter,
+        handleClearFilters,
+        handleSetBooleanQuery,
+      }}
     >
       {children}
     </ProductListContext.Provider>

@@ -19,7 +19,9 @@ interface PriceRangeFilterProps {
   /** غیرفعال کردن کنترل */
   disabled?: boolean;
   /** مقدار اولیه [حداقل, حداکثر] */
-  defaultValue?: Range;
+  value: Range;
+  onMinChange: (price: string) => void;
+  onMaxChange: (price: string) => void;
 }
 
 const clamp = (v: number, min: number, max: number) =>
@@ -31,13 +33,12 @@ export default function PriceRangeFilter({
   step = 1000,
   currency = "تومان",
   disabled = false,
-  defaultValue = [0, 1_000_000],
+  value,
+  onMaxChange,
+  onMinChange,
 }: PriceRangeFilterProps) {
   /** 🟢 استیت داخلی: [minValue, maxValue] */
-  const [range, setRange] = React.useState<Range>([
-    clamp(defaultValue[0], min, max),
-    clamp(defaultValue[1], min, max),
-  ]);
+  const [range, setRange] = React.useState<Range>([min, max]);
 
   const format = (n: number) => new Intl.NumberFormat("fa-IR").format(n);
   const parse = (s: string) => {
@@ -48,6 +49,8 @@ export default function PriceRangeFilter({
   const commit = (next: Range) => {
     const a = clamp(next[0], min, max);
     const b = clamp(next[1], min, max);
+    onMinChange(String(a));
+    onMaxChange(String(b));
     setRange([a, b]);
   };
 
@@ -62,13 +65,16 @@ export default function PriceRangeFilter({
   };
   const handleBlur = () => commit(range);
 
+  const handleValueChange = (v: number[]) => {
+    setRange([v[0], v[1]] as Range);
+  };
   return (
     <div className="w-full space-y-4">
       <div className="flex items-center gap-3">
         {/* ارزان‌ترین */}
         <div className="flex-1 space-y-1">
           <Label htmlFor="price-min" className="text-xs">
-            ارزان‌ترین
+            از
           </Label>
           <div className="relative">
             <Input
@@ -76,12 +82,12 @@ export default function PriceRangeFilter({
               type="text"
               inputMode="numeric"
               disabled={disabled}
-              className="pr-10 text-right font-bold !text-lg"
+              className="pl-10 text-right font-bold !text-lg"
               value={format(range[0])}
               onChange={handleMinInput}
               onBlur={handleBlur}
             />
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
               {currency}
             </span>
           </div>
@@ -89,7 +95,7 @@ export default function PriceRangeFilter({
         {/* گران‌ترین */}
         <div className="flex-1 space-y-1">
           <Label htmlFor="price-max" className="text-xs">
-            گران‌ترین
+            تا
           </Label>
           <div className="relative">
             <Input
@@ -97,12 +103,12 @@ export default function PriceRangeFilter({
               type="text"
               inputMode="numeric"
               disabled={disabled}
-              className="pr-10 text-right font-bold !text-lg"
+              className="pl-10 text-right font-bold !text-lg"
               value={format(range[1])}
               onChange={handleMaxInput}
               onBlur={handleBlur}
             />
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
               {currency}
             </span>
           </div>
@@ -113,7 +119,7 @@ export default function PriceRangeFilter({
       <div className="px-1">
         <Slider
           value={[range[0], range[1]]} // معکوس برای نمایش
-          onValueChange={(v) => setRange([v[0], v[1]] as Range)}
+          onValueChange={handleValueChange}
           onValueCommit={(v) => commit([v[0], v[1]] as Range)}
           min={min}
           max={max}
@@ -122,8 +128,8 @@ export default function PriceRangeFilter({
           className="mt-4"
         />
         <div className="flex justify-between text-xs text-muted-foreground mt-4">
-          <span>گران‌ترین</span>
           <span>ارزان‌ترین</span>
+          <span>گران‌ترین</span>
         </div>
       </div>
 

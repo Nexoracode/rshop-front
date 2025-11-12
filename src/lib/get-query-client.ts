@@ -38,6 +38,9 @@ export function serializeFliterQuery(
     filter: {
       attributes: "",
       brand: "",
+      price_max: queryObj?.filter.price_max || "",
+      price_min: queryObj?.filter.price_min || "",
+      booleanFilters: queryObj?.filter.booleanFilters || [],
     },
   };
 
@@ -52,5 +55,22 @@ export function serializeFliterQuery(
     result.filter.attributes = attributeQuery.join("|");
   }
 
-  return encodeURI(`filter[attributes]=${result.filter.attributes}`);
+  result.filter.brand = queryObj?.filter.brand?.join(",") ?? "";
+
+  const booleanFilters = result.filter.booleanFilters
+    ?.filter((i) => i.value === true)
+    .map((i) => ({ value: "1", label: `filter[${i.key}]` }));
+
+  const filterStr = [
+    { value: result.filter.attributes, label: "filter[attributes]" },
+    { value: result.filter.brand, label: "filter[brand]" },
+    { value: String(result.filter.price_min), label: "filter[price_min]" },
+    { value: String(result.filter.price_max), label: "filter[price_max]" },
+    ...booleanFilters,
+  ]
+    .filter((i) => i.value.trim().length > 0)
+    .map((i) => `${i.label}=${i.value}`)
+    .join("&");
+
+  return encodeURI(filterStr);
 }

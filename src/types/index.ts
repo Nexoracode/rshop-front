@@ -35,6 +35,16 @@ export type CategoryFilter = Pick<
   "id" | "slug" | "title" | "children"
 >;
 export type BrandFilter = Pick<Brand, "id" | "name">;
+export type BooleanFilterKey =
+  | "special_offer"
+  | "discounted"
+  | "same_day_shipping"
+  | "in_stock";
+
+export type BooleanFilter = {
+  key: BooleanFilterKey;
+  value: boolean;
+};
 export type ProductFilters = {
   attributes: Array<ProductAttribute>;
   generic: {
@@ -46,6 +56,7 @@ export type ProductFilters = {
       min: number;
       max: number;
     };
+    boolean_filter: Record<BooleanFilterKey, { type: string; label: string }>;
     categories: Array<CategoryFilter>;
     brands: Array<BrandFilter>;
   };
@@ -54,13 +65,10 @@ export type ProductFilters = {
 export type ProductFilterQuery = {
   filter: {
     attributes: Record<string, Array<string>>;
-    brand: Array<string | number>;
+    brand: Array<string>;
     price_max: string | number;
     price_min: string | number;
-    in_stock: boolean;
-    same_day_shipping: boolean;
-    discounted: boolean;
-    special_offer: boolean;
+    booleanFilters: Array<BooleanFilter>;
   };
   page: number;
   limit: number;

@@ -29,8 +29,6 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
     getProductById(id.split("-").pop() ?? "")
   );
 
-  console.log({ product });
-
   return (
     <div className="container min-h-screen my-10 space-y-20">
       <Suspense fallback={<PageLoader />}>

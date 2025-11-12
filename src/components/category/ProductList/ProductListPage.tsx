@@ -15,6 +15,7 @@ type Props = {
 
 export default function ProductListPage({ slug, query }: Props) {
   const { data } = useQuery(getProductsByCategorySlug(slug, query));
+  console.log({ data });
   return data ? (
     <ProductListProvider filters={data.filters}>
       <ProductFilterSidebar />

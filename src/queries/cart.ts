@@ -29,7 +29,6 @@ export const addCartItem = mutationOptions({
 export const updateCartItem = mutationOptions({
   mutationFn: async (body: { itemId: number; quantity: number }) => {
     const response = await apiFetch("/cards/update", { method: "PATCH", body });
-    console.log({ response });
     return response;
   },
   onSuccess: async () => {

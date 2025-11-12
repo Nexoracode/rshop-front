@@ -115,7 +115,6 @@ export function CheckBoxItem({
       />
       <Label
         className="font-medium border-b flex-1 py-4"
-        border-b
         htmlFor={`checkbox_${value}`}
       >
         {label}

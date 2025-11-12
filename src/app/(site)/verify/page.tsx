@@ -24,8 +24,6 @@ export default function PaymentVerifyPage() {
     if (Authority) mutate({ Authority, Status });
   }, [Authority, mutate, Status]);
 
-  console.log({ data });
-
   const address = {
     recipient_name: "محمد حسینی",
     city: "تهران",

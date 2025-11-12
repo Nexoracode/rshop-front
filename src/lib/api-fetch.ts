@@ -39,10 +39,10 @@ export async function apiFetch(
             )
       ).toString()
     : "";
-/*   const pathWithBase = isServer
+  const pathWithBase = isServer
     ? `${BASE_API_URL}${path}${queryString}`
-    : `/api${path}${queryString}`; */
-   const pathWithBase = `${BASE_API_URL}${path}${queryString}`;
+    : `/api${path}${queryString}`;
+  //  const pathWithBase = `${BASE_API_URL}${path}${queryString}`;
   const showErrorToast =
     showErrorToastParam && !path.endsWith("me") && !isServer;
 
@@ -55,9 +55,9 @@ export async function apiFetch(
 
       ...restOptions,
     });
-  } catch(error) {
+  } catch (error) {
     if (showErrorToast) toast.error("خطا در برقراری ارتباط با سرور");
-    console.log(error)
+    console.log(error);
     throw {
       message: "خطا در برقراری ارتباط با سرور",
       error,
