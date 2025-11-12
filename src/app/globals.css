@@ -1,0 +1,364 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* 🟣 Primary */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary: var(--primary-500);
+
+  /* 🟡 Secondary */
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary: var(--secondary-400);
+
+  /* ⚫ Neutral */
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral: var(--neutral-600);
+
+  /* ✅ Success */
+  --color-success-50: var(--success-50);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+  --color-success: var(--success-500);
+
+  /* ❌ Danger */
+  --color-danger-50: var(--danger-50);
+  --color-danger-100: var(--danger-100);
+  --color-danger-200: var(--danger-200);
+  --color-danger-300: var(--danger-300);
+  --color-danger-400: var(--danger-400);
+  --color-danger-500: var(--danger-500);
+  --color-danger-600: var(--danger-600);
+  --color-danger-700: var(--danger-700);
+  --color-danger-800: var(--danger-800);
+  --color-danger-900: var(--danger-900);
+  --color-danger: var(--danger-500);
+
+  /* ⚠️ Warning */
+  --color-warning-50: var(--warning-50);
+  --color-warning-100: var(--warning-100);
+  --color-warning-200: var(--warning-200);
+  --color-warning-300: var(--warning-300);
+  --color-warning-400: var(--warning-400);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-700: var(--warning-700);
+  --color-warning-800: var(--warning-800);
+  --color-warning-900: var(--warning-900);
+  --color-warning: var(--warning-500);
+
+  /* ℹ️ Info */
+  --color-info-50: var(--info-50);
+  --color-info-100: var(--info-100);
+  --color-info-200: var(--info-200);
+  --color-info-300: var(--info-300);
+  --color-info-400: var(--info-400);
+  --color-info-500: var(--info-500);
+  --color-info-600: var(--info-600);
+  --color-info-700: var(--info-700);
+  --color-info-800: var(--info-800);
+  --color-info-900: var(--info-900);
+  --color-info: var(--info-500);
+
+  /* Base tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+
+  --color-primary-foreground: var(--foreground-primary);
+  --color-secondry-foreground: var(--foreground-secondry);
+  --color-neutral-foreground: var(--foreground-neutral);
+  --color-success-foreground: var(--foreground-success);
+  --color-danger-foreground: var(--foreground-danger);
+  --color-info-foreground: var(--foreground-info);
+  --color-warning-foreground: var(--foreground-warning);
+  --radius-lg: var(--radius);
+}
+
+/* -------------------------------------------------
+   🌞 LIGHT THEME
+------------------------------------------------- */
+:root {
+  /* 🟣 PRIMARY (Purple) */
+  --primary-50: #f6f5f6;
+  --primary-100: #e6d8ed;
+  --primary-200: #c7a9d6;
+  --primary-300: #a47abc;
+  --primary-400: #8c57a1;
+  --primary-500: #7e4692; /* main */
+  --primary-600: #7e6d93;
+  --primary-700: #71007c; /* dark */
+  --primary-800: #5a0061;
+  --primary-900: #29002e;
+
+  /* 🟡 SECONDARY (Yellow) */
+  --secondary-50: #fff9e0;
+  --secondary-100: #fff3b3;
+  --secondary-200: #ffe97a;
+  --secondary-300: #ffe051;
+  --secondary-400: #ffcc04;
+  --secondary-500: #ffbc16;
+  --secondary-600: #d9a100;
+  --secondary-700: #b38000;
+  --secondary-800: #8c5f00;
+  --secondary-900: #5e3f00;
+
+  /* ⚫ NEUTRAL */
+  --neutral-50: #fafafa;
+  --neutral-100: #f4f4f5;
+  --neutral-200: #e4e4e7;
+  --neutral-400: #a1a1aa;
+  --neutral-600: #52525b;
+  --neutral-800: #27272a;
+  --neutral-900: #18181b;
+
+  /* ✅ SUCCESS */
+  --success-50: #ecfdf5;
+  --success-100: #d1fae5;
+  --success-200: #a7f3d0;
+  --success-300: #6ee7b7;
+  --success-400: #34d399;
+  --success-500: #16a34a;
+  --success-600: #15803d;
+  --success-700: #166534;
+  --success-800: #14532d;
+  --success-900: #064e3b;
+
+  /* ❌ DANGER */
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #dc2626;
+  --danger-600: #b91c1c;
+  --danger-700: #991b1b;
+  --danger-800: #7f1d1d;
+  --danger-900: #450a0a;
+
+  /* ⚠️ WARNING */
+  --warning-50: #fefce8;
+  --warning-100: #fef9c3;
+  --warning-200: #fef08a;
+  --warning-300: #fde047;
+  --warning-400: #facc15;
+  --warning-500: #eab308;
+  --warning-600: #ca8a04;
+  --warning-700: #a16207;
+  --warning-800: #854d0e;
+  --warning-900: #713f12;
+
+  /* ℹ️ INFO */
+  --info-50: #eff6ff;
+  --info-100: #dbeafe;
+  --info-200: #bfdbfe;
+  --info-300: #93c5fd;
+  --info-400: #60a5fa;
+  --info-500: #0284c7;
+  --info-600: #0369a1;
+  --info-700: #075985;
+  --info-800: #0c4a6e;
+  --info-900: #1e3a8a;
+
+  --foreground-primary: #ffffff;
+  --foreground-secondry: #18181b;
+  --foreground-neutral: #fafafa;
+  --foreground-success: #ffffff;
+  --foreground-danger: #ffffff;
+  --foreground-info: #ffffff;
+  --foreground-warning: var(--neutral-900);
+
+  /* 🧩 BASE */
+  --background: var(--neutral-50);
+  --foreground: var(--neutral-900);
+  --card: #fdfdfd;
+  --card-foreground: var(--neutral-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--neutral-900);
+  --border: var(--neutral-200);
+  --input: var(--neutral-100);
+  --ring: var(--primary-500);
+  --muted: var(--neutral-600);
+
+  /* ✨ TYPOGRAPHY + RADIUS */
+  --radius: 0.75rem;
+  --font-sans: var(--font-doran), "Vazirmatn", "Inter", sans-serif;
+  --font-heading: "Dana", "Poppins", sans-serif;
+  --font-body: var(--font-doran), "Vazirmatn", "Inter", sans-serif;
+}
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer utilities {
+  /* Track: مسیر پس‌زمینه */
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: 999px;
+  }
+
+  /* Thumb: خود نوار اسکرول */
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-300), var(--primary-500));
+    border-radius: 999px;
+    border: 2px solid var(--neutral-100);
+    transition: all 0.3s ease;
+  }
+
+  /* Hover: وقتی موس روش می‌ره */
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      var(--secondary-400),
+      var(--secondary-500)
+    );
+  }
+
+  /* گوشه‌ها (برای هم‌خوانی در گوشه صفحه) */
+  .scrollbar-custom::-webkit-scrollbar-corner {
+    background: var(--neutral-100);
+  }
+  /* برای Firefox */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(107, 114, 128, 0.5) transparent;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-out forwards;
+}
+.container {
+  @apply mx-auto;
+}
+
+.custom-slider {
+  @apply appearance-none w-full h-1 bg-gray-600 rounded-full cursor-pointer;
+  background: linear-gradient(
+    to right,
+    theme("colors.blue.500") var(--tw-value, 0%),
+    theme("colors.gray.600") 0%
+  );
+}
+
+/* مقدار پر شده با جاوااسکریپت کنترل نمی‌شود،
+   اما برای مرورگرهای مختلف thumb را استایل می‌دهیم */
+.custom-slider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-white rounded-full shadow 
+         hover:scale-110 transition-transform;
+}
+.custom-slider::-moz-range-thumb {
+  @apply w-4 h-4 bg-white rounded-full shadow
+         hover:scale-110 transition-transform;
+}
+
+.input {
+  @apply flex h-11 w-full rounded-lg bg-white px-3 py-2 text-sm text-foreground shadow-xs transition-colors
+         placeholder:text-gray-400
+          focus:ring-1 focus:ring-primary/10
+         disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.devtools-indicator {
+  right: 20px !important;
+  left: unset !important;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.7s ease-out forwards;
+}
+
+.tabs-indicator {
+  position: absolute;
+  block-size: 2px; /* height منطقی */
+  inline-size: var(--w, 0px); /* width منطقی */
+  inset-block-end: 0; /* bottom: 0 منطقی */
+  inset-inline-start: var(--x, 0px); /* left/right منطقی بسته به RTL/LTR */
+  background: var(--color-primary);
+  transition: inline-size 300ms ease, inset-inline-start 300ms ease;
+}

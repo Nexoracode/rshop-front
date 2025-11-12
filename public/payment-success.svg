@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+  fill="none"
+>
+  <circle cx="256" cy="256" r="200" fill="#E8F8EF" />
+  <path
+    d="M256 56a200 200 0 1 0 0 400 200 200 0 0 0 0-400Zm0 368a168 168 0 1 1 0-336 168 168 0 0 1 0 336Z"
+    fill="#10B981"
+    opacity="0.2"
+  />
+  <path
+    d="M180 260l52 52 100-100"
+    stroke="#10B981"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="256" cy="256" r="200" stroke="#10B981" stroke-width="12" opacity="0.1"/>
+</svg>

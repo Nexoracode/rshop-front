@@ -1,0 +1,46 @@
+"use client";
+
+import WishlistCard from "./WishlistCard";
+import { Button } from "@/components/ui/button";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deleteFromWishlist, getWishlistList } from "@/queries/wishlist";
+import ProductCardSkeleton from "@/components/common/Skeleton/ProductCardSkeleton";
+import { Card } from "@/components/ui/card";
+import { ListLayout } from "@/components/common/ListLayout";
+import { WishlistItem } from "@/types/product";
+
+export default function WishlistPage() {
+  const { data: wishlist = [], isFetching } = useQuery(getWishlistList);
+  const { mutate, variables, isPending } = useMutation(deleteFromWishlist);
+
+  const handleDelete = (itemId: number) => {
+    mutate({ itemId });
+  };
+  return (
+    <Card className="">
+      <div className="flex justify-between">
+        <h1 className="text-lg font-semibold">علاقه‌مندی‌های من</h1>
+        {wishlist.length > 0 && (
+          <Button variant="text" size="sm" onClick={() => {}}>
+            پاک‌سازی همه
+          </Button>
+        )}
+      </div>
+      <ListLayout<WishlistItem>
+        items={wishlist}
+        loading={isFetching}
+        skeleton={<ProductCardSkeleton count={5} />}
+        className="grid grid-cols-2 gap-3 md:grid-cols-3"
+        emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
+        renderItem={(item) => (
+          <WishlistCard
+            loading={isPending && variables.itemId === item.id}
+            onDelete={handleDelete}
+            key={item.id}
+            {...item}
+          />
+        )}
+      />
+    </Card>
+  );
+}
