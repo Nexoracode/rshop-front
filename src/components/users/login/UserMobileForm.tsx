@@ -2,7 +2,7 @@
 import TextField from "@/components/common/Form/TextField";
 import { Button } from "@/components/ui/button";
 import { useRequestOtp } from "@/queries/user";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 type Props = {
   onSendOtpSucess: (phone: string) => void;
@@ -10,16 +10,27 @@ type Props = {
 
 export default function UserMobileForm({ onSendOtpSucess }: Props) {
   const form = useForm();
+
+  const phone = form.watch("phone", "");
+
   const { handleSendOtp, isPending } = useRequestOtp({
     handleSuccess: (variables) => onSendOtpSucess(variables.identifier),
   });
-  const handleSubmit = (values: FieldValues) => {
-    handleSendOtp({ phone: values.phone });
-  };
+  const handleSubmit = useCallback(
+    (values: FieldValues) => {
+      handleSendOtp({ phone: values.phone });
+    },
+    [handleSendOtp]
+  );
+  useEffect(() => {
+    if (phone.length === 11) {
+      form.handleSubmit(handleSubmit)();
+    }
+  }, [phone, form, handleSubmit]);
   return (
     <div>
       <FormProvider {...form}>
-        <form className="space-y-10" onSubmit={form.handleSubmit(handleSubmit)}>
+        <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
           <h2 className="text-lg font-semibold">ورود | ثبت نام</h2>
 
           <div className="space-y-6">

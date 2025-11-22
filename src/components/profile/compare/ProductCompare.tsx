@@ -4,7 +4,6 @@ import Image from "next/image";
 import { cn, formatToman } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Toggle } from "@/components/ui/toggle";
 import { Trash2, X } from "lucide-react";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import ProductRating from "@/components/modules/product/ProductRating";
@@ -22,7 +21,7 @@ export default function ProductCompare({
   onRemove,
   onAddProduct,
 }: Props) {
-  const [showOnlyDifferences, setShowOnlyDifferences] = useState(false);
+  const [showOnlyDifferences] = useState(false);
 
   // ---- Merge all attribute keys (attributes + variant attributes) ----
   const attributeKeys = useMemo(() => {
@@ -52,34 +51,18 @@ export default function ProductCompare({
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 py-8">
       {/* Controls */}
-      <div className="flex items-center gap-3 justify-between">
-        {onAddProduct && (
-          <AddCompareDialog category_slug={items[0]?.product.category.slug} />
-        )}
-        <Toggle
-          pressed={showOnlyDifferences}
-          onPressedChange={setShowOnlyDifferences}
-          className="text-sm"
-        >
-          فقط تفاوت‌ها
-        </Toggle>
-      </div>
 
       {/* Desktop Table Layout */}
       <div className="hidden md:block border rounded-xl overflow-hidden bg-background">
         {/* Sticky Header */}
         <div ref={headerRef} className="overflow-x-auto border-b">
-          <div
-            className="min-w-max grid"
-            style={{
-              gridTemplateColumns: `200px repeat(${items.length}, 1fr)`,
-            }}
-          >
+          <div className="min-w-max grid grid-cols-5">
             <div className="p-3 font-medium text-sm text-muted-foreground">
               ویژگی
             </div>
+
             {items.map(({ product }) => (
               <div
                 key={product.id}
@@ -114,6 +97,14 @@ export default function ProductCompare({
                 )}
               </div>
             ))}
+
+            {onAddProduct && items.length < 4 && (
+              <div className="flex justify-center items-center">
+                <AddCompareDialog
+                  category_slug={items[0]?.product.category.slug}
+                />
+              </div>
+            )}
           </div>
         </div>
 

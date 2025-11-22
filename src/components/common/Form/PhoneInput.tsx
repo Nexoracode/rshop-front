@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 interface PhoneInputProps {
-  label?: string;
-  required?: boolean;
   defaultValue?: string;
   onChange?: (value: string, isValid: boolean) => void;
   className?: string;
@@ -19,32 +17,31 @@ export default function PhoneInput({
   onChange,
   className,
 }: PhoneInputProps) {
-  const [raw, setRaw] = React.useState<string>(defaultValue.replace(/\D/g, ""));
-
-  // 📌 ولیدیشن: شماره ایران (10 یا 11 رقم)
-  const isValid = React.useMemo(() => {
-    if (/^09\d{9}$/.test(raw)) return true; // با صفر
-    if (/^9\d{9}$/.test(raw)) return true; // بدون صفر
-    return false;
-  }, [raw]);
-
-  React.useEffect(() => {
-    onChange?.(raw, isValid);
-  }, [raw, isValid, onChange]);
-
-  // 📌 گروه‌بندی شماره
-  const formatDisplay = (val: string) => {
-    // شماره ایران الگو: 4-2-2-3
-    const digits = val.replace(/\D/g, "").slice(0, 11);
-    if (!digits) return "";
-    const match = digits.match(/^(\d{0,4})(\d{0,2})(\d{0,2})(\d{0,3})$/);
-    if (!match) return digits;
-    return [match[1], match[2], match[3], match[4]].filter(Boolean).join(" ");
-  };
+  const [raw, setRaw] = React.useState(
+    defaultValue.replace(/\D/g, "").slice(0, 11)
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const digits = e.target.value.replace(/\D/g, "");
-    if (digits.length <= 11) setRaw(digits);
+    const digits = e.target.value.replace(/\D/g, "").slice(0, 11);
+
+    const isValid = /^09\d{9}$/.test(digits);
+
+    const phone =
+      digits.startsWith("0") || digits.length === 0 ? digits : `0${digits}`;
+    setRaw(phone);
+
+    if (phone.length === 11) onChange?.(phone, isValid);
+  };
+
+  const formatDisplay = (val: string) => {
+    const d = val.replace(/\D/g, "");
+
+    if (!d) return "";
+    return d
+      .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})(\d{0,3})$/, (m, a, b, c, d) =>
+        [a, b, c, d].filter(Boolean).join(" ")
+      )
+      .trim();
   };
 
   return (
@@ -52,14 +49,14 @@ export default function PhoneInput({
       <Input
         dir="ltr"
         inputMode="numeric"
-        placeholder="0912 33 44 344 :مثال"
+        placeholder="0912 34 56 789"
         value={formatDisplay(raw)}
         onChange={handleChange}
         className={cn(
-          "text-right tracking-widest input",
-          error || !isValid
-            ? "border-rose-500 focus-visible:ring-rose-500"
-            : null
+          "text-center font-semibold tracking-widest input",
+          error
+            ? "!border-rose-500  focus:border-rose-500 focus-visible:ring-rose-500"
+            : ""
         )}
       />
     </div>

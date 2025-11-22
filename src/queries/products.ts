@@ -46,6 +46,28 @@ export const getProductsByCategorySlug = (slug: string, query?: string) =>
     },
     enabled: !!slug,
   });
+export const getProductsInfinit = (
+  slug: string,
+  query: string,
+  sortBy: string,
+  page: string
+) =>
+  infiniteQueryOptions<
+    PaginateData<Product> & {
+      filters: ProductFilters;
+    }
+  >({
+    queryKey: ["get-products-by-category-slug", slug, query, sortBy],
+    queryFn: ({ pageParam = 1 }) => {
+      return apiFetch(
+        `/catalog/${slug}?${query}&page=${page || pageParam}&sortBy=${sortBy}`
+      );
+    },
+    enabled: !!slug,
+    getNextPageParam: ({ meta }) =>
+      meta.current_page === meta.total_pages ? null : meta.current_page + 1,
+    initialPageParam: 1,
+  });
 export const getProductById = (product_id: string) =>
   queryOptions({
     queryKey: ["get-product-by-id", product_id],
@@ -53,14 +75,14 @@ export const getProductById = (product_id: string) =>
       return await apiFetch(`/product/site/${product_id}`);
     },
   });
-export const getProductReviews = (product_id: number) =>
+export const getProductReviews = (product_id: number, page: number | null) =>
   infiniteQueryOptions<
     PaginateData<Review, { averege_rating: number; count: number }>
   >({
-    queryKey: ["get_reviews_by_product_id", product_id],
+    queryKey: ["get_reviews_by_product_id", product_id, page],
     queryFn: async ({ pageParam }) => {
       return await apiFetch(`/profile/reviews/products/${product_id}`, {
-        params: { page: pageParam as string },
+        params: { page: page || (pageParam as string), limit: 2 },
       });
     },
     getNextPageParam: ({ meta }) => meta.current_page + 1,

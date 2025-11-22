@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import {
   User,
   Heart,
-  LogOut,
   MapPin,
   ShoppingBag,
   MessageSquare,
@@ -15,7 +14,7 @@ import {
   EyeIcon,
   ChevronLeft,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import LogoutButton from "../modules/user/LogoutButton";
 
 const items = [
   { label: "پروفایل من", href: "/profile", icon: User },
@@ -53,16 +52,10 @@ export function ProfileSidebar() {
           </Link>
         );
       })}
-      <Button
-        startIcon={<LogOut className="w-4 h-4" />}
-        color="danger"
-        size={"sm"}
-        variant={"text"}
-        className="px-0 py-11 md:px-2 md:py-3 justify-start"
-        fullWidth
-      >
-        خروج از حساب
-      </Button>
+
+      <div className="mt-6">
+        <LogoutButton />
+      </div>
     </aside>
   );
 }

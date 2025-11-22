@@ -1,15 +1,9 @@
 "use client";
+import BaseDialog from "@/components/common/BaseDialog";
 import { ListLayout } from "@/components/common/ListLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
@@ -49,38 +43,41 @@ export default function AddCompareDialog({ category_slug }: Props) {
   };
   return (
     <div>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+      <BaseDialog
+        title="انتخاب کالا برای مقایسه"
+        open={open}
+        width="3xl"
+        hiddenFooter
+        onOpenChange={setOpen}
+        trigger={
           <Button variant="outline" size="sm">
             افزودن محصول
           </Button>
-        </DialogTrigger>
-        <DialogContent className="w-full max-w-xl">
-          <DialogHeader>
-            <DialogTitle>انتخاب کالا برای مقایسه</DialogTitle>
-          </DialogHeader>
+        }
+        content={
+          <div className="space-y-5">
+            <SearchInput
+              onSearchChange={setSearch}
+              placeholder="جستجو در محصولات..."
+              className="mb-4"
+            />
 
-          <SearchInput
-            onSearchChange={setSearch}
-            placeholder="جستجو در محصولات..."
-            className="mb-4"
-          />
-
-          <ListLayout<Product>
-            items={productList?.data ?? []}
-            loading={isPending}
-            skeleton={<Skeletons count={4} />}
-            renderItem={(item) => (
-              <ProductItem
-                {...item}
-                onSelect={() => handleSelectProduct(item.id)}
-                loading={addPending && variables?.productId === item.id}
-              />
-            )}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-1"
-          />
-        </DialogContent>
-      </Dialog>
+            <ListLayout<Product>
+              items={productList?.data ?? []}
+              loading={isPending}
+              skeleton={<Skeletons count={4} />}
+              renderItem={(item) => (
+                <ProductItem
+                  {...item}
+                  onSelect={() => handleSelectProduct(item.id)}
+                  loading={addPending && variables?.productId === item.id}
+                />
+              )}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-1"
+            />
+          </div>
+        }
+      />
     </div>
   );
 }

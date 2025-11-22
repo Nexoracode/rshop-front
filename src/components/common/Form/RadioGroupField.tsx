@@ -29,7 +29,7 @@ export default function RadioGroupField({
         value={value}
         dir="rtl"
         onValueChange={onChange}
-        className="grid grid-cols-3 gap-2 pt-5"
+        className="flex flex-wrap gap-2 pt-5"
       >
         {options?.map((op) => (
           <div key={op.value} className="flex items-center space-x-2">

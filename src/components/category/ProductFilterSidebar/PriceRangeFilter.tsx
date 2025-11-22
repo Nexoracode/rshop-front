@@ -33,7 +33,6 @@ export default function PriceRangeFilter({
   step = 1000,
   currency = "تومان",
   disabled = false,
-  value,
   onMaxChange,
   onMinChange,
 }: PriceRangeFilterProps) {

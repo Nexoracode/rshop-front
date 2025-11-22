@@ -1,18 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Edit2Icon } from "lucide-react";
 import { useCheckout } from "@/queries/orders";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import TextField from "../common/Form/TextField";
+import BaseDialog from "../common/BaseDialog";
 
 export default function OrderNote() {
   const {
@@ -32,6 +25,25 @@ export default function OrderNote() {
     handleSetOrderMeta({ note: trimedNote });
     setOpen(false);
   };
+
+  const formContent = (
+    <FormProvider {...form}>
+      <form>
+        <p className="text-primary font-semibold text-sm mb-4">
+          این توضیح برای فروشنده ارسال می‌شود.
+        </p>
+        <TextField
+          rows={8}
+          label="توضیجات"
+          type="textarea"
+          autoFocus
+          required
+          className="resize-none bg-muted/10 border border-muted/30 focus-visible:border-0"
+          name="note"
+        />
+      </form>
+    </FormProvider>
+  );
   return (
     <div>
       {note.length ? (
@@ -44,8 +56,18 @@ export default function OrderNote() {
           ></div>
         </div>
       ) : null}
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+
+      <BaseDialog
+        content={formContent}
+        actionLabel="ثبت توضیحات"
+        onClick={form.handleSubmit(handleSubmit)}
+        cancellButton
+        open={open}
+        onOpenChange={setOpen}
+        title={
+          note.length ? "ویرایش توضیحات" : "ثبت توضیحات برای سفارش (اختیاری)"
+        }
+        trigger={
           <Button
             variant={"text-nohover"}
             size={"sm"}
@@ -57,39 +79,8 @@ export default function OrderNote() {
               ? "ویرایش توضیحات"
               : "ثبت توضیحات برای سفارش (اختیاری)"}
           </Button>
-        </DialogTrigger>
-        <DialogContent className="w-full max-w-lg">
-          <DialogHeader>
-            <DialogTitle>ثبت توضیحات برای سفارش (اختیاری)</DialogTitle>
-          </DialogHeader>
-          <FormProvider {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)}>
-              <p className="text-primary font-semibold text-sm mb-4">
-                این توضیح برای فروشنده ارسال می‌شود.
-              </p>
-              <TextField
-                rows={8}
-                label="توضیجات"
-                type="textarea"
-                autoFocus
-                required
-                className="resize-none bg-muted/10 border border-muted/30 focus-visible:border-0"
-                name="note"
-              />
-              <div className="flex gap-4">
-                <DialogClose asChild>
-                  <Button fullWidth variant={"outline"}>
-                    انصراف
-                  </Button>
-                </DialogClose>
-                <Button fullWidth onClick={handleSubmit} type="submit">
-                  ثبت توضیحات
-                </Button>
-              </div>
-            </form>
-          </FormProvider>
-        </DialogContent>
-      </Dialog>
+        }
+      />
     </div>
   );
 }

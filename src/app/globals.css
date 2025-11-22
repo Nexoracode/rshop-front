@@ -255,6 +255,34 @@
   align-items: center;
 }
 
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-out-left {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+}
+
+@utility animate-slide-in-left {
+  animation: slide-in-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@utility animate-slide-out-left {
+  animation: slide-out-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 @layer utilities {
   /* Track: مسیر پس‌زمینه */
   .scrollbar-custom::-webkit-scrollbar-track {
@@ -293,6 +321,17 @@
     width: 10px;
     height: 10px;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 .animate-fadeIn {
@@ -325,7 +364,7 @@
 .input {
   @apply flex h-11 w-full rounded-lg bg-white px-3 py-2 text-sm text-foreground shadow-xs transition-colors
          placeholder:text-gray-400
-          focus:ring-1 focus:ring-primary/10
+          ring-1 ring-neutral/40 focus:ring-primary/20
          disabled:cursor-not-allowed disabled:opacity-50;
 }
 

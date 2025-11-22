@@ -15,7 +15,7 @@ export default function PageLoader() {
             src={"/rshop_logo_h.png"}
             alt=""
           />
-          <LoaderDots className="text-primary-400" size={9} />
+          <LoaderDots className="text-primary-400" size={7} />
         </CardContent>
       </Card>
     </div>

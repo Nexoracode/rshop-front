@@ -25,6 +25,8 @@ export const addWishlistList = mutationOptions({
 });
 export const getWishlistList = queryOptions({
   queryKey: ["get-user-wishlist-list"],
+  staleTime: Infinity,
+  refetchOnWindowFocus: false,
   queryFn: async (): Promise<Array<WishlistItem>> => {
     return await apiFetch("/profile/wishlist", { showErrorToast: false });
   },

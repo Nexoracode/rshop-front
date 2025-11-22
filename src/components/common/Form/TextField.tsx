@@ -41,6 +41,12 @@ export default function TextField({
       control={control}
       rules={{
         ...rules,
+        validate:
+          type === "phone"
+            ? (value) =>
+                /^09\d{9}$/.test(value) ||
+                "شماره موبایل وارد شده صحیح نمی باشد."
+            : undefined,
         required: required
           ? `ورود مقدار ${label ?? "این فیلد"} الزامی است`
           : undefined,

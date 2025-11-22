@@ -1,13 +1,8 @@
 import React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { Blog } from "@/types";
 import BlogCard from "../common/BlogCard";
+import SectionTitle from "../common/SectionTitle";
 
 const blogItem: Blog = {
   date: "2025-05-05 12:00",
@@ -23,19 +18,18 @@ const blogItem: Blog = {
 export default function BlogSection() {
   return (
     <section className="py-6">
-      <div className="container relative">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          آخرین مطالب آموزشی
-        </h2>
+      <div className="container space-y-2 relative">
+        <SectionTitle title="آخرین مطالب آموزشی" link="/blog" />
         <div className="w-full">
           <Carousel className="">
-            <CarouselNext className="-top-8 right-[0] md:left-[60px] md:right-[unset] w-[100px] hover:bg-[unset]" />
-            <CarouselPrevious className="-top-8 w-6 right-[100px] md:right-[unset] md:left-0  hover:bg-[unset]" />
+            {/*      <CarouselNext className="left-12 -top-8 right-[unset]" />
+            <CarouselPrevious className="left-0 -top-8" /> */}
             <CarouselContent>
               {[...Array(10).keys()].map((key) => (
                 <CarouselItem
                   key={key}
-                  className="basis-1 min-[360px]:basis-1/2 md:basis-1/3 lg:basis-[23%]"
+                  //      className="basis-[90%] min-[360px]:basis-[75%] min-[600px]:basis-[35%] lg:basis-[38%] xl:basis-[22%]"
+                  className="basis-[90%] min-[340px]:basis-[20rem]"
                 >
                   <BlogCard {...blogItem} />
                 </CarouselItem>

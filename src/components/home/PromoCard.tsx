@@ -32,14 +32,16 @@ export default function PromoCard({
             className="object-fill size-36  hover:scale-105 transition-transform"
           />
         </div>
-        <div className="absolute top-3 right-3 left-3">
+        <div className="absolute w-full p-2 h-full flex flex-col top-0 right-0">
           {tag && (
             <div className="text-destructive text-xs font-bold">{tag}</div>
           )}
-          <h3 className="mt-1 font-extrabold text-lg text-slate-900">
+          <h3 className="mt-1 flex-1 font-semibold text-sm md:text-lg text-slate-900">
             {title}
           </h3>
-          {desc && <p className="text-slate-700 text-sm mt-1">{desc}</p>}
+          {desc && (
+            <p className="text-primary text-xs md:text-sm mt-1">{desc}</p>
+          )}
         </div>
       </div>
     </Link>

@@ -26,6 +26,13 @@ export type ProductAttributeGroup = {
   display_order: number;
   attributes: Array<ProductAttribute>;
 };
+
+export type ProductHelper = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
 export type Product = {
   id: number;
   name: string;
@@ -59,6 +66,7 @@ export type Product = {
   count: number;
   average_rating: number;
   items: Array<Review>;
+  helper: ProductHelper | null;
 };
 
 export type ProductSearchResult = Pick<

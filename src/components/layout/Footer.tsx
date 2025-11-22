@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer
-      className={"border-t bg-neutral-600 text-background mt-24 pb-16 md:pb-0"}
+      className={"border-t shadow-2xl text-foreground mt-24 pb-16 md:pb-0"}
     >
       <div className={"container mx-auto px-4 py-8"}>
         {/* ========== ردیف اول: لوگو راست / بازگشت به بالا چپ ========== */}
@@ -45,15 +45,15 @@ export default function Footer() {
           </div>
 
           <Button
-            type="button"
+            variant={"outline"}
             size="sm"
-            color="primary"
+            color="neutral"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="inline-flex items-center gap-2"
             aria-label="بازگشت به بالا"
+            endIcon={<ChevronUp className="h-4 w-4" />}
           >
-            <ChevronUp className="h-4 w-4" />
-            بالا
+            <span className="hidden sm:inline-block">بازگشت به بالا</span>
           </Button>
         </div>
 
@@ -64,33 +64,47 @@ export default function Footer() {
           {/* ستون 1: ارتباط با ما + شبکه‌های اجتماعی پایین */}
           <div className="min-w-0 space-y-4">
             <p className="text-sm font-semibold">ارتباط با ما</p>
-
             <div className="space-y-5 text-sm">
               {contact.phone && (
                 <a
                   href={`tel:${contact.phone.replace(/\s+/g, "")}`}
-                  className="flex items-center gap-2 text-neutral-100 hover:text-white break-words"
+                  className="flex items-center gap-2  break-words"
                 >
                   <Phone className="h-4 w-4" />
-                  <span>تلفن ثابت: {contact.phone}</span>
+                  <span>
+                    تلفن ثابت:{" "}
+                    <span dir="ltr" className="inline-block ">
+                      {contact.phone}
+                    </span>
+                  </span>
                 </a>
               )}
               {contact.mobile && (
                 <a
                   href={`tel:${contact.mobile.replace(/\s+/g, "")}`}
-                  className="flex items-center gap-2 text-neutral-100 hover:text-white break-words"
+                  className="flex items-center gap-2  hover:text-primary break-words"
                 >
                   <PhoneCall className="h-4 w-4" />
-                  <span>همراه: {contact.mobile}</span>
+                  <span>
+                    همراه:{" "}
+                    <span dir="ltr" className="inline-block ">
+                      {contact.mobile}
+                    </span>{" "}
+                  </span>
                 </a>
               )}
               {contact.email && (
                 <a
                   href={`mailto:${contact.email}`}
-                  className="flex items-center gap-2 text-neutral-100 hover:text-white break-all"
+                  className="flex items-center gap-2  hover:text-primary break-all"
                 >
                   <Mail className="h-4 w-4" />
-                  <span>ایمیل: {contact.email}</span>
+                  <span>
+                    ایمیل:{" "}
+                    <span dir="ltr" className="inline-block ">
+                      {contact.email}
+                    </span>
+                  </span>
                 </a>
               )}
               {contact.eitaa && (
@@ -98,10 +112,15 @@ export default function Footer() {
                   href={`https://eitaa.com/s/Arshop`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-neutral-100 hover:text-white break-all"
+                  className="flex items-center gap-2  hover:text-primary break-all"
                 >
                   <Send className="h-4 w-4" />
-                  <span>پشتیبانی ایتا: {contact.eitaa}</span>
+                  <span>
+                    پشتیبانی ایتا:{" "}
+                    <span dir="ltr" className="inline-block ">
+                      {contact.eitaa}
+                    </span>
+                  </span>
                 </a>
               )}
             </div>
@@ -113,9 +132,9 @@ export default function Footer() {
                   key={s.name}
                   href={s.href}
                   aria-label={s.name}
-                  className="inline-flex  items-center justify-center rounded-md border w-10 h-10  text-white hover:text-neutral-100 transition "
+                  className="inline-flex text-muted/50 items-center justify-center w-10 h-10  hover:text-primary transition "
                 >
-                  <Icon />
+                  <Icon className="size-8" />
                 </Link>
               ))}
             </div>
@@ -131,7 +150,7 @@ export default function Footer() {
 
         {/* ========== ردیف پایین: کپی‌رایت راست / ای‌نماد + سامان‌دهی چپ ========== */}
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-xs text-background">
+          <p className="text-xs">
             {`© ${year} آکادمی روحبخش. تمامی حقوق محفوظ است.`}
           </p>
 
@@ -153,12 +172,12 @@ function FooterColumn({ title, links }: FooterColumn) {
   return (
     <nav aria-label={title} className="space-y-5">
       <p className="text-sm font-semibold">{title}</p>
-      <ul className="space-y-4 text-sm text-muted-foreground">
+      <ul className="space-y-4 text-sm text-muted">
         {links.map((l) => (
           <li key={l.href}>
             <Link
               href={l.href}
-              className="transition block text-white hover:text-neutral-50 hover:underline"
+              className="transition block  hover:text-primary"
             >
               {l.label}
             </Link>

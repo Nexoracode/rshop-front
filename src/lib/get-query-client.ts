@@ -65,12 +65,11 @@ export function serializeFliterQuery(
     { value: result.filter.attributes, label: "filter[attributes]" },
     { value: result.filter.brand, label: "filter[brand]" },
     { value: String(result.filter.price_min), label: "filter[price_min]" },
-    { value: String(result.filter.price_max), label: "filter[price_max]" },
     ...booleanFilters,
   ]
-    .filter((i) => i.value.trim().length > 0)
+    .filter((i) => i.value !== "undefined" && i.value.trim().length > 0)
     .map((i) => `${i.label}=${i.value}`)
     .join("&");
 
-  return encodeURI(filterStr);
+  return filterStr === "" ? "" : encodeURI(`query=${filterStr}`);
 }

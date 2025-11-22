@@ -8,6 +8,7 @@ import Responsive from "@/components/common/Responsive";
 import ProductAttributes from "@/components/Product/ProductAttributes";
 import ProductDescription from "@/components/Product/ProductDescription";
 import ProductGallery from "@/components/Product/ProductGallery";
+import ProductHelper from "@/components/Product/ProductHelper";
 import ProductInfo from "@/components/Product/ProductInfo";
 import ProductPageProvider from "@/components/Product/ProductProvider";
 import ProductReviews from "@/components/Product/ProductReviews";
@@ -30,7 +31,7 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
   );
 
   return (
-    <div className="container min-h-screen my-10 space-y-20">
+    <div className="container min-h-screen my-10 space-y-5">
       <Suspense fallback={<PageLoader />}>
         <div className="flex flex-col md:flex-row w-full justify-between relative">
           <ProductPageProvider product={product}>
@@ -70,9 +71,16 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
           </ProductPageProvider>
         </div>
 
-        <ProductTabs />
+        <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
         <Separator />
         <ProductDescription description={product.description} />
+
+        {product.helper && (
+          <>
+            <Separator />
+            <ProductHelper {...product.helper} />
+          </>
+        )}
 
         <Separator />
         <ProductAttributes attributes={product.specifications} />

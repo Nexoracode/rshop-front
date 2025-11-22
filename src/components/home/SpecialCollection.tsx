@@ -1,5 +1,7 @@
 import { products } from "@/__MOCK__/catalog";
 import React from "react";
+import SpecialProductCart from "../common/ProductCard/SpecialProductCart";
+import SectionTitle from "../common/SectionTitle";
 import {
   Carousel,
   CarouselContent,
@@ -7,32 +9,35 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import SpecialProductCart from "../common/ProductCard/SpecialProductCart";
+import { chunkArray } from "@/lib/utils";
 
 export default function SpecialCollection() {
+  const groupedProducts = chunkArray(
+    products
+      .filter((i) => i.discount_amount || i.discount_percent)
+      .slice(0, 16),
+    2
+  );
   return (
     <section className="py-6">
-      <div className="container relative">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">محصولات ویژه</h2>
+      <div className="container space-y-2 relative">
+        <SectionTitle title="محصولات تخفیف دار" link="/collection" />
         <Carousel>
-          <CarouselNext className="absolute rounded-full -top-8 right-[unset] left-[70px] hover:bg-[unset]" />
-
-          <CarouselPrevious className="absolute rounded-full -top-8 right-[unset] left-0 hover:bg-[unset]" />
+          <CarouselNext />
+          <CarouselPrevious />
           <CarouselContent>
-            {products
-              .filter((i) => i.discount_amount || i.discount_percent)
-              .slice(0, 16)
-              .map((product) => (
-                <CarouselItem
-                  key={product.id}
-                  className="md:basis-1/3 lg:basis-1/3"
-                >
-                  <SpecialProductCart {...product} />
-                </CarouselItem>
-              ))}
+            {groupedProducts.map((group) => (
+              <CarouselItem
+                className="basis-[20rem] sm:basis-[50%] lg:basis-[33.3333%] xl:basis-[25%] space-y-2"
+                key={group[0].id}
+              >
+                {group.map((product) => (
+                  <SpecialProductCart key={product.id} {...product} />
+                ))}
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
-        {/* کارت محصول نمونه */}
       </div>
     </section>
   );

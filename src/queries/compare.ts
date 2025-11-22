@@ -22,6 +22,8 @@ export const addToCompareList = mutationOptions({
 });
 export const getCompareList = queryOptions({
   queryKey: ["get-user-compare-list"],
+  staleTime: Infinity,
+  refetchOnWindowFocus: false,
   queryFn: async (): Promise<Array<CompareListItem>> => {
     return await apiFetch("/profile/compare", { showErrorToast: false });
   },

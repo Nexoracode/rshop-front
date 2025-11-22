@@ -8,21 +8,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import SectionTitle from "../common/SectionTitle";
 
 export default function FeaturedCollection() {
   return (
     <section className="py-6">
-      <div className="container relative">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">محصولات ویژه</h2>
+      <div className="container space-y-1 relative">
+        <SectionTitle title="محصولات ویژه" link="/collection" />
         <Carousel>
-          <CarouselNext className="absolute rounded-full -top-8 right-[unset] left-[70px] hover:bg-[unset]" />
-          <CarouselPrevious className="absolute rounded-full -top-8 right-[unset] left-0 hover:bg-[unset]" />
-
+          <CarouselNext />
+          <CarouselPrevious />
           <CarouselContent>
             {products.slice(0, 16).map((product) => (
               <CarouselItem
                 key={product.id}
-                className="basis-1 min-[360px]:basis-1/2 md:basis-1/4 lg:basis-1/6"
+                className="basis-[14rem] sm:basis-[16rem]"
               >
                 <ProductCard {...product} />
               </CarouselItem>

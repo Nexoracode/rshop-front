@@ -6,6 +6,8 @@ import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
 import { cn } from "@/lib/utils";
 import React, { PropsWithChildren } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function ProfileLayout({ children }: PropsWithChildren) {
   return (
     <div className="md:pt-28 pt-10 pb-20">

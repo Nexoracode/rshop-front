@@ -2,17 +2,13 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import AddToCompareBtn from "./AddToCompareBtn";
-import AddToWishlistBtn from "./AddToWishlistBtn";
-import { formatToman } from "@/lib/utils";
-import CountdownTimer from "@/components/modules/product/CountdownTimer";
+import { calcPrice, formatToman } from "@/lib/utils";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Product } from "@/types/product";
+import { Badge } from "@/components/ui/badge";
 
 export default function SpecialProductCart(props: Product) {
   const {
-    id,
     name,
     price,
     discount_amount,
@@ -22,11 +18,11 @@ export default function SpecialProductCart(props: Product) {
     brand,
   } = props;
 
-  const discountPrice = discount_amount
-    ? Number(price) - Number(discount_amount)
-    : discount_percent
-    ? (Number(price) * Number(discount_percent)) / 100
-    : null;
+  const { final, percent, compareAt } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent
+  );
 
   return (
     <Card
@@ -34,38 +30,34 @@ export default function SpecialProductCart(props: Product) {
       dir="rtl"
     >
       <div className="flex items-start">
-        <div className="relative aspect-[1/1] flex-2/5 overflow-hidden">
-          <Image
-            src={media_pinned?.url || "/mock/image_1.jpg"}
-            alt={name}
-            fill
-            className="object-cover opacity-100 group-hover:opacity-0 transition-opacity duration-700"
-          />
-          {medias?.[1] && (
+        <div className="flex-1/3 space-y-2">
+          <div className="relative aspect-[1/1]  overflow-hidden">
             <Image
-              src={medias[1]?.url || "/mock/image_1.jpg"}
+              src={media_pinned?.url || "/mock/image_1.jpg"}
               alt={name}
               fill
-              className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              className="object-cover rounded-md border p-1 opacity-100 group-hover:opacity-0 transition-opacity duration-700"
             />
-          )}
-          <div className="absolute z-20  gap-y-0.5 flex flex-col right-0 top-1">
-            <div className="flex translate-x-12 ease-in-out duration-500 group-hover:translate-x-0 transition-transform flex-col gap-y-0.5">
-              <AddToWishlistBtn id={id} />
-              <AddToCompareBtn productId={id} />
-            </div>
+            {medias?.[1] && (
+              <Image
+                src={medias[1]?.url || "/mock/image_1.jpg"}
+                alt={name}
+                fill
+                className="object-cover rounded-md border p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              />
+            )}
           </div>
         </div>
 
-        <div className="flex-3/5 gap-y-4 flex flex-col justify-between p-3">
+        <div className="flex-3/4 gap-y-3 flex flex-col justify-between px-3">
           <div>
             {brand ? (
-              <p className="text-xs text-destructive">{brand.name}</p>
+              <p className="text-xs text-muted/80">{brand.name}</p>
             ) : null}
 
             <Link
               href={"/product/1"}
-              className="line-clamp-1 text-lg text-foreground  font-semibold"
+              className="line-clamp-1 text-sm text-foreground  font-semibold"
             >
               {name}
             </Link>
@@ -80,21 +72,23 @@ export default function SpecialProductCart(props: Product) {
 
           {/* price */}
           <div className="flex items-center gap-2">
-            <span className="text-base font-bold text-primary-600">
-              {discountPrice ? formatToman(discountPrice) : formatToman(+price)}{" "}
+            <span className="text-sm  font-bold text-primary-600">
+              {formatToman(final)}{" "}
             </span>
-            {discountPrice && (
+            {compareAt && (
               <span className="text-xs text-gray-400 line-through">
-                {price.toLocaleString()} تومان
+                {formatToman(compareAt)}
               </span>
             )}
           </div>
 
-          <CountdownTimer targetDate="2025-09-10T23:59:59" />
+          {/* <CountdownTimer showIcon={false} targetDate="2025-12-10T23:59:59" /> */}
 
-          <Link href={`/products/${props.id}`}>
-            <Button className="rounded-full">مشاهده محصول</Button>
-          </Link>
+          {compareAt && (
+            <Badge variant={"danger"} className="absolute top-2 left-2 ">
+              {percent}%
+            </Badge>
+          )}
         </div>
       </div>
     </Card>

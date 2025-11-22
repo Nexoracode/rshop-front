@@ -24,8 +24,8 @@ import LogoutButton from "../../../modules/user/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 
 const menuItems = [
-  { label: "سفارش ها", Icon: ShoppingBag, href: "/orders" },
-  { label: "آدرس ها", Icon: MapIcon, href: "reviews" },
+  { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
+  { label: "آدرس ها", Icon: MapIcon, href: "addresses" },
   { label: "علاقه مندی ها", Icon: Heart, href: "wishlist" },
   { label: "دیدگاه ها", Icon: MessageCircle, href: "reviews" },
 ];

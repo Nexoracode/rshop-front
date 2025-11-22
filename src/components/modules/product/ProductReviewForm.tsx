@@ -38,7 +38,7 @@ export default function ProductReviewForm({
   return isSuccess || updateSuccess ? (
     <SubmitSuccess />
   ) : (
-    <>
+    <div className="h-full flex flex-col">
       <p>به این محصول چه امتیازی می دهید</p>
       <div className="flex items-center justify-start">
         <Image
@@ -52,17 +52,18 @@ export default function ProductReviewForm({
         <p className="ps-3 text-muted-foreground">{product_name}</p>
       </div>
 
-      <div className="space-y-6 flex flex-col items-center">
+      <div className="space-y-6 flex-1 items-center">
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="w-full space-y-4"
+            className="w-full h-full justify-between flex flex-col space-y-4"
           >
             <RatingField name="rating" />
 
-            <div className="w-full">
+            <div className="w-full flex-1">
               <TextField type="textarea" required multiple name="comment" />
             </div>
+
             <Button
               type="submit"
               isLoading={isPending || updatePending}
@@ -73,7 +74,7 @@ export default function ProductReviewForm({
           </form>
         </FormProvider>
       </div>
-    </>
+    </div>
   );
 }
 

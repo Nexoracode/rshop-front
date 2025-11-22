@@ -3,16 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-type TabKey = "description" | "specifications" | "reviews" | "help";
+type TabKey = "description" | "specifications" | "reviews" | "helper";
 
 const tabs: { key: TabKey; label: string }[] = [
   { key: "description", label: "توضیحات" },
   { key: "specifications", label: "ویژگی‌ها" },
   { key: "reviews", label: "دیدگاه‌ها" },
-  { key: "help", label: "پرسش و پاسخ" },
+  { key: "helper", label: "راهنمای سایز" },
 ];
 
-export default function ProductTabs() {
+export default function ProductTabs({
+  activeTabs: activeTabsProp,
+}: {
+  activeTabs: Partial<Record<TabKey, boolean>>;
+}) {
   const [active, setActive] = useState<TabKey>("description");
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -60,24 +64,34 @@ export default function ProductTabs() {
     bar.style.setProperty("--w", `${w}px`);
   }, [active]);
 
+  const activeTabs: Record<TabKey, boolean> = {
+    description: true,
+    reviews: true,
+    specifications: true,
+    helper: false,
+    ...activeTabsProp,
+  };
+
   return (
     <div className="sticky top-[64px] z-40 bg-background border-b rtl">
       <div ref={barRef} className="relative flex">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            data-tab={tab.key}
-            onClick={() => handleScrollTo(tab.key)}
-            className={cn(
-              "py-3 px-4 text-sm transition-colors",
-              active === tab.key
-                ? "text-primary font-medium"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            {tab.label}
-          </button>
-        ))}
+        {tabs
+          .filter((tab) => activeTabs[tab.key])
+          .map((tab) => (
+            <button
+              key={tab.key}
+              data-tab={tab.key}
+              onClick={() => handleScrollTo(tab.key)}
+              className={cn(
+                "py-3 px-4 text-sm transition-colors",
+                active === tab.key
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
 
         {/* 🔥 خط انیمیشنی زیر تب */}
         <div className="tabs-indicator" />

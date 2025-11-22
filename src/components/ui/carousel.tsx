@@ -173,13 +173,13 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="overflow-hidden relative"
       data-slot="carousel-content"
     >
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-mr-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-mr-2 md:-mr-4" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -198,7 +198,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pr-4" : "pt-4",
+        orientation === "horizontal" ? "pr-2 lg:pr-4" : "pt-4",
         className
       )}
       {...props}
@@ -210,7 +210,7 @@ function CarouselPrevious({
   className,
   variant = "text",
   size = "lg",
-  color,
+  color = "neutral",
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
@@ -222,9 +222,9 @@ function CarouselPrevious({
       size={size}
       color={color}
       className={cn(
-        "absolute size-12 rounded-full",
+        "absolute disabled:hidden size-12 z-10 text-4xl rounded-full hidden md:flex bg-white hover:bg-white border text-neutral-500",
         orientation === "horizontal"
-          ? "top-1/2 -left-14 -translate-y-1/2"
+          ? "top-1/2 right-2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -232,7 +232,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronLeft />
+      <ChevronRight className="size-8" strokeWidth={1} />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -254,9 +254,9 @@ function CarouselNext({
       size={size}
       color={color}
       className={cn(
-        "absolute size-12 text-4xl rounded-full",
+        "absolute z-10 disabled:hidden size-12 text-4xl rounded-full hidden md:flex bg-white hover:bg-white border text-neutral-500",
         orientation === "horizontal"
-          ? "top-1/2 -right-14 -translate-y-1/2"
+          ? "left-2 top-1/2  -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -264,7 +264,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ChevronRight />
+      <ChevronLeft className="size-8" strokeWidth={1} />
       <span className="sr-only">Next slide</span>
     </Button>
   );

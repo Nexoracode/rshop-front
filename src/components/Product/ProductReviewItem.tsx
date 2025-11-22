@@ -16,17 +16,19 @@ export default function ProductReviewItem({ review }: Props) {
           <span className="bg-amber-800/30 flex items-center justify-center rounded-full size-10">
             {user.first_name?.charAt(0) ?? "آ"}
           </span>
-
-          <p className="ps-2 font-semibold text-foreground">
-            {user.first_name || "کاربر سایت"} {user.last_name}
-          </p>
+          <div className="ps-2">
+            <p className="text-sm text-foreground">
+              {user.first_name || "کاربر سایت"} {user.last_name}
+            </p>
+            <span className="text-xs text-muted/79">
+              {toPersainDate(created_at)}
+            </span>
+          </div>
         </div>
-        <span>{toPersainDate(created_at)}</span>
+        <ProductRating className="size-4" rating={rating} />
       </div>
 
-      <ProductRating rating={rating} />
-
-      <p className="text-muted-foreground text-sm leading-6">{comment}</p>
+      <p className="text-muted  text-sm leading-6 p-3">{comment}</p>
     </div>
   );
 }

@@ -2,29 +2,31 @@ export const PRODUCT_PLACEHOLDER = "/product-placeholder.webp";
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export const MAX_PAGE_INFINIT_LOAD = 10;
+
 export const sortItems = [
   {
     label: "جدیدترین",
-    key: "new",
+    value: "newest",
   },
   {
     label: "ارزان ترین",
-    key: "sd",
+    value: "cheapest",
   },
   {
     label: "پرفروش ترین",
-    key: "ss",
+    value: "bestselling",
   },
   {
     label: "محبوب ترین",
-    key: "ws",
+    value: "popular",
   },
   {
     label: "گران ترین",
-    key: "qw",
+    value: "expensive",
   },
   {
     label: "پربازدیدترین",
-    key: "vw",
+    value: "visited",
   },
 ];

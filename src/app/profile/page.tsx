@@ -7,6 +7,8 @@ import MostBuyProducts from "@/components/profile/dashboard/MostBuyProducts";
 import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
 import { Card } from "@/components/ui/card";
 
+export const dynamic = "force-dynamic";
+
 export default function ProfileDashboardPage() {
   const stats = {
     pendingPayment: 1,

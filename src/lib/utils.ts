@@ -99,11 +99,11 @@ export function calcPrice(
   const discount = toNum(discountAmount);
   const amount =
     discount > 0 ? discount : Math.round((base * discountPercent) / 100);
-  let percent =
+  const percent =
     discountPercent > 0 ? discountPercent : Math.round((amount / base) * 100);
 
-  let final = base - amount;
-  let compareAt = amount > 0 ? base : null;
+  const final = base - amount;
+  const compareAt = amount > 0 ? base : null;
 
   return { final, compareAt, percent };
 }
@@ -123,4 +123,10 @@ export function toPersainDateTime(date: string): string {
     hour: "2-digit",
     minute: "2-digit",
   }).format(new Date(date));
+}
+
+export function chunkArray<T>(arr: T[], size: number): T[][] {
+  return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+    arr.slice(i * size, i * size + size)
+  );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import SectionTitle from "../common/SectionTitle";
 
 type Props = {
   description: string;
@@ -7,10 +8,10 @@ type Props = {
 export default function ProductDescription({ description }: Props) {
   return (
     <section id="description">
-      <h4 className="text-primary text-3xl font-semibold mb-1">توضیحات</h4>
+      <SectionTitle title="توضیحات" />
       <article
         dangerouslySetInnerHTML={{ __html: description }}
-        className="leading-8 text-accent-foreground"
+        className="leading-8 text-muted text-sm"
       ></article>
     </section>
   );

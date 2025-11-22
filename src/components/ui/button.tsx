@@ -184,7 +184,7 @@ const buttonVariants = cva(
 );
 
 export type ButtonProps = {
-  href?: string;
+  href?: React.ComponentProps<typeof Link>["href"];
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   isLoading?: boolean;

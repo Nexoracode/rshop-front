@@ -52,7 +52,7 @@ export default function CreateOrderBtn() {
       <Button
         isLoading={isPending}
         onClick={handleCreateOrder}
-        className="w-full mt-4"
+        className="w-full md:mt-4"
       >
         پرداخت و تکمیل سفارش
       </Button>

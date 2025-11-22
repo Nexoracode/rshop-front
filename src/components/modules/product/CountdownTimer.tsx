@@ -65,12 +65,12 @@ export default function CountdownTimer({
   }, [target, onExpire]);
 
   return (
-    <div className="flex  items-center gap-2 text-sm font-medium text-red-600">
+    <div className="flex w-full  items-center gap-2 text-sm font-medium text-red-600">
       {showIcon && <Clock className="text-red-600" />}
       {timeLeft.expired ? (
         <span className="text-gray-500">تمام شد</span>
       ) : (
-        <div className="flex flex-row-reverse gap-1 text-xs sm:text-sm">
+        <div className="flex w-full flex-row-reverse gap-2 text-xs sm:text-sm">
           <TimeBox label="روز" value={timeLeft.days} />
           <TimeBox label="ساعت" value={timeLeft.hours} />
           <TimeBox label="دقیقه" value={timeLeft.minutes} />
@@ -82,8 +82,8 @@ export default function CountdownTimer({
 }
 
 const TimeBox = ({ value, label }: { value: string; label: string }) => (
-  <div className="flex flex-col items-center  justify-center px-1">
-    <span className="text-base flex justify-center items-center border-2 font-bold bg-red-600 text-muted rounded-full h-8 w-8">
+  <div className="flex flex-col items-center  justify-center">
+    <span className="text-sm flex justify-center items-center border border-danger text-danger rounded-full h-6 w-6">
       {value}
     </span>
     <span className="text-[10px] text-gray-500">{label}</span>

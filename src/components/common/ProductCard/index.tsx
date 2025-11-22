@@ -3,8 +3,6 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import AddToCompareBtn from "./AddToCompareBtn";
-import AddToWishlistBtn from "./AddToWishlistBtn";
 import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
@@ -30,17 +28,17 @@ export default function ProductCard(props: Product) {
   return (
     <Link href={`/p/rsp-${id}`}>
       <Card
-        className="group relative overflow-hidden border !p-2 shadow-sm transition hover:shadow-md"
+        className="group gap-2 md:gap-3 relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
       >
         {/* top left: wishlist */}
-        <div className="absolute z-20  gap-y-0.5 flex flex-col right-1 top-1">
+        {/*  <div className="absolute z-20  gap-y-0.5 flex flex-col right-1 top-1">
           <div className="flex translate-x-12 group-hover:translate-x-0 transition-transform duration-500 ease-out flex-col gap-y-0.5">
             <AddToWishlistBtn id={id} />
 
             <AddToCompareBtn productId={id} />
           </div>
-        </div>
+        </div> */}
 
         {/* top right: discount */}
         {compareAt && (
@@ -71,6 +69,18 @@ export default function ProductCard(props: Product) {
           )}
         </div>
 
+        {/* <div>
+          {variants
+            .map((variant) =>
+              variant.attributes.find((attribute) => attribute.type === "color")
+            )
+            .filter((a) => a !== null)
+            .map((a) => a?.values)
+            .flat()
+            .map((value) => value?.display_color)
+            .reduce((a, c) => (a.includes[c] ? a : [...a, c]), [])}
+        </div> */}
+
         {/* content */}
         <div className="mt-2 space-y-1 px-1 pb-2">
           {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
@@ -86,7 +96,7 @@ export default function ProductCard(props: Product) {
         </div> */}
 
           {/* price */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-center gap-2">
             <span className="text-base font-bold text-primary-600">
               {formatToman(final)}
             </span>

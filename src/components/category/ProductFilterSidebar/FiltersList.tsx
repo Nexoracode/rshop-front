@@ -1,11 +1,11 @@
+"use client";
 import React from "react";
 import TreeItem from "./TreeSection";
 import { Button } from "@/components/ui/button";
 import PriceRangeFilter from "./PriceRangeFilter";
 import ColorFilter from "./ColorFilter";
 import ToggleFilter from "./ToggleFilter";
-import { useProductList } from "../ProductListProvider";
-import { BooleanFilter } from "@/types";
+import { useProductFilter } from "./ProductFilterProvider";
 
 export default function FiltersList() {
   const {
@@ -18,7 +18,7 @@ export default function FiltersList() {
     handleSetFilter,
     handleClearFilters,
     handleSetBooleanQuery,
-  } = useProductList();
+  } = useProductFilter();
   return (
     <section>
       <div className="flex items-center justify-between">

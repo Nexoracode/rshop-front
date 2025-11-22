@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
   Carousel,
@@ -11,6 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import { Button } from "../ui/button";
+import { ChevronLeft } from "lucide-react";
 
 type Slide = {
   img: string;
@@ -42,10 +43,10 @@ export default function HeroSlider({
                     alt={s.title}
                     fill
                     sizes="(min-width:1024px) 66vw, 100vw"
-                    className="object-cover"
+                    className="object-cover blur-xs"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent" />
-                  <div className="absolute top-6 right-6 left-6 sm:top-10 sm:right-10 sm:left-auto sm:w-[70%]">
+                  <div className="absolute right-0 top-0 w-full h-full flex flex-col justify-between p-2">
                     {s.overline && (
                       <div className="text-primary font-medium mb-2">
                         {s.overline}
@@ -55,14 +56,21 @@ export default function HeroSlider({
                       {s.title}
                     </h2>
                     {s.text && (
-                      <p className="mt-2 text-slate-800/90 bg-white/70 backdrop-blur rounded-xl inline-block px-3 py-1">
+                      <p className="mt-2 text-slate-800/90 bg-white/30 backdrop-blur rounded-xl inline-block px-3 py-1">
                         {s.text}
                       </p>
                     )}
                     {s.cta && (
-                      <Link href={s.cta.href} className="btn mt-4 inline-flex">
-                        {s.cta.label}
-                      </Link>
+                      <div className="flex justify-end">
+                        <Button
+                          href={s.cta.href}
+                          variant={"fill"}
+                          rounded={"full"}
+                          endIcon={<ChevronLeft />}
+                        >
+                          {s.cta.label}
+                        </Button>
+                      </div>
                     )}
                   </div>
                 </Aspect>

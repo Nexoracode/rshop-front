@@ -70,10 +70,9 @@ export type ProductFilterQuery = {
     price_min: string | number;
     booleanFilters: Array<BooleanFilter>;
   };
-  page: number;
-  limit: number;
-  sortBy: string;
-  order: string;
+  page: number | null;
+  limit: number | null;
+  sort: string | null;
   search: string;
 };
 

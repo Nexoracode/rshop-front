@@ -5,8 +5,11 @@ import { ArrowDownWideNarrow } from "lucide-react";
 import React from "react";
 import ProductSortSheet from "./ProductSortSheet";
 import Responsive from "@/components/common/Responsive";
+import { useSearchParams } from "next/navigation";
 
 export default function ProductSort() {
+  const sortBy = useSearchParams().get("sortBy");
+
   return (
     <React.Fragment>
       <Responsive visible="desktop">
@@ -18,10 +21,13 @@ export default function ProductSort() {
           {sortItems.map((item) => (
             <Button
               size={"sm"}
-              color="neutral"
+              color={sortBy === item.value ? "primary" : "neutral"}
               variant={"text-nohover"}
-              key={item.key}
-              className="text-neutral-500 px-2"
+              href={{
+                query: { sortBy: item.value },
+              }}
+              key={item.label}
+              className={"px-2"}
             >
               {item.label}
             </Button>

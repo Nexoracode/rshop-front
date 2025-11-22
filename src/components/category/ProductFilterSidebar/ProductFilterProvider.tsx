@@ -5,23 +5,37 @@ import { BooleanFilterKey, ProductFilterQuery, ProductFilters } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
-type ListView = "list" | "grid";
+const initialQuery: ProductFilterQuery = {
+  filter: {
+    attributes: {},
+    brand: [],
+    price_max: "",
+    price_min: "",
+    booleanFilters: [],
+  },
+  page: null,
+  limit: null,
+  sort: null,
+  search: "",
+};
 type ProductListContextType = {
   filters: ProductFilters;
   query: ProductFilterQuery | null;
-  view: ListView;
-  setView: (view: ListView) => void;
   handleSetFilter: <K extends keyof ProductFilterQuery["filter"]>(
     key: K,
     value: ProductFilterQuery["filter"][K]
   ) => void;
   handleSetAttributeQuery: (key: string, value: Array<string>) => void;
+  handleSetQuery: <K extends keyof ProductFilterQuery>(
+    key: K,
+    value: ProductFilterQuery[K]
+  ) => void;
   handleSetBooleanQuery: (key: BooleanFilterKey, value: boolean) => void;
   handleClearFilters: () => void;
 };
 const ProductListContext = createContext<ProductListContextType | null>(null);
 
-export const useProductList = () => {
+export const useProductFilter = () => {
   const ctx = useContext(ProductListContext);
 
   if (!ctx)
@@ -33,23 +47,22 @@ type ProductListProviderProps = {
   filters: ProductFilters;
 };
 
-export default function ProductListProvider({
+export default function ProductFilterProvider({
   filters,
   children,
 }: PropsWithChildren<ProductListProviderProps>) {
-  const [view, setView] = useState<ListView>("grid");
-  const [query, setQuery] = useState<ProductFilterQuery | null>(null);
+  const [query, setQuery] = useState<ProductFilterQuery>(initialQuery);
   const router = useRouter();
   const pathName = usePathname();
 
-  function handleSetQuery<T = Array<number>>(key: string, value: T) {
+  function handleSetQuery<K extends keyof ProductFilterQuery>(
+    key: K,
+    value: ProductFilterQuery[K]
+  ) {
     const newQuery = { ...query, [key]: value };
-    console.log({ newQuery });
     setQuery(newQuery as ProductFilterQuery);
     router.push(
-      `${pathName}?query=${serializeFliterQuery(
-        newQuery as ProductFilterQuery
-      )}`
+      `${pathName}?${serializeFliterQuery(newQuery as ProductFilterQuery)}`
     );
   }
 
@@ -70,12 +83,11 @@ export default function ProductListProvider({
       value === true
         ? [...(query?.filter.booleanFilters ?? []), { key, value: true }]
         : query?.filter.booleanFilters.filter((b) => b.key !== key) ?? [];
-    console.log(booleanFilters);
     handleSetFilter("booleanFilters", booleanFilters);
   };
 
   const handleClearFilters = () => {
-    setQuery(null);
+    setQuery(initialQuery);
     router.push(pathName);
   };
 
@@ -83,13 +95,12 @@ export default function ProductListProvider({
     <ProductListContext.Provider
       value={{
         filters,
-        view,
-        setView,
         query,
         handleSetAttributeQuery,
         handleSetFilter,
         handleClearFilters,
         handleSetBooleanQuery,
+        handleSetQuery,
       }}
     >
       {children}

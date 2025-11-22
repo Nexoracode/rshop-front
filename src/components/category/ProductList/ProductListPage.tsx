@@ -1,29 +1,61 @@
 "use client";
 import React from "react";
 import ProductListHeader from "./ProductListHeader";
-import ProductListProvider from "../ProductListProvider";
-import { useQuery } from "@tanstack/react-query";
-import { getProductsByCategorySlug } from "@/queries/products";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { getProductsInfinit } from "@/queries/products";
 import CollectionSkelton from "../CollectionSkelton";
 import ProductFilterSidebar from "../ProductFilterSidebar";
 import ProductList from "./ProductList";
+import Pagination from "@/components/common/Pagination";
+import { MAX_PAGE_INFINIT_LOAD } from "@/data/assets";
 
 type Props = {
   slug: string;
   query: string;
+  page: string;
+  sortBy: string;
 };
 
-export default function ProductListPage({ slug, query }: Props) {
-  const { data } = useQuery(getProductsByCategorySlug(slug, query));
-  console.log({ data });
+export default function ProductListPage({
+  slug,
+  query = "",
+  page,
+  sortBy,
+}: Props) {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery(getProductsInfinit(slug, query ?? "", sortBy, page));
+  const lastPage = data?.pages.at(-1);
+
+  const handleScroll = () => {
+    if (!page && Number(lastPage?.meta.current_page) < MAX_PAGE_INFINIT_LOAD)
+      fetchNextPage();
+  };
   return data ? (
-    <ProductListProvider filters={data.filters}>
-      <ProductFilterSidebar />
+    <>
+      <ProductFilterSidebar filters={data.pages[0].filters} />
       <div className="space-y-3 flex-1">
-        <ProductListHeader />
-        <ProductList products={data.data} />
+        <ProductListHeader
+          filters={data.pages[0].filters}
+          total_items={data.pages[0].meta.total_items}
+        />
+
+        <ProductList
+          pages={data.pages}
+          onScroll={handleScroll}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+
+        {page ||
+        (Number(lastPage?.meta.current_page) >= MAX_PAGE_INFINIT_LOAD &&
+          Number(lastPage?.meta.total_pages) > 0) ? (
+          <Pagination
+            page={+page || Number(lastPage?.meta.current_page)}
+            totalPages={lastPage?.meta.total_pages ?? 0}
+          />
+        ) : null}
       </div>
-    </ProductListProvider>
+    </>
   ) : (
     <CollectionSkelton />
   );

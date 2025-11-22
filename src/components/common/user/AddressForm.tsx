@@ -1,23 +1,12 @@
 "use client";
 import React, { useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
-import { regions } from "@/data/regions";
-import SelectField from "../Form/SelectField";
-import TextField from "../Form/TextField";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import RadioGroupField from "../Form/RadioGroupField";
 import { useMutation } from "@tanstack/react-query";
 import { addUserAddress, updateUserAddress } from "@/queries/address";
-import ButtonLoading from "../ButtonLoading";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { UserAddress } from "@/types/user";
+import BaseDialog from "../BaseDialog";
+import AddressFormFields from "./AddressFormFields";
 
 type Props = {
   address: UserAddress | null;
@@ -115,133 +104,29 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
     }
   }, [isSuccess, updateSuccess, onOpenChange, form]);
 
-  const province = form.watch("province");
-  const is_self = form.watch("is_self");
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full max-w-xl">
-        <FormProvider {...form}>
-          <DialogHeader>
-            <DialogTitle>افزودن آدرس</DialogTitle>
-          </DialogHeader>
-          <div className="">
-            <form className="space-y-10">
-              <div className="grid grid-cols-2 gap-4">
-                {activeStep === 0 ? (
-                  <>
-                    <SelectField
-                      label="استان"
-                      name="province"
-                      required
-                      options={regions.map((i) => ({
-                        label: i.province,
-                        value: i.province,
-                      }))}
-                    />
-                    <SelectField
-                      label="شهر"
-                      name="city"
-                      required
-                      options={
-                        regions
-                          .find((i) => i.province === province)
-                          ?.cities.map((i) => ({
-                            label: i,
-                            value: i,
-                          })) ?? []
-                      }
-                    />
-                    <div className="col-span-2">
-                      <TextField required name="address_line" label="آدرس" />
-                    </div>
-                    <TextField required name="plaque" label="پلاک" />
-                    <TextField name="unit" label="واحد" />
-                    <div className="col-span-2">
-                      <TextField
-                        required
-                        name="postal_code"
-                        type="number"
-                        maxLength={10}
-                        label="کد پستی"
-                      />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="col-span-2">
-                      <TextField
-                        required
-                        name="address_name"
-                        label="نام آدرس"
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      <RadioGroupField
-                        name="is_self"
-                        defaultValue="true"
-                        options={[
-                          { label: "تحویل به خودم", value: "true" },
-                          { label: "تحویل به شخص دیگر", value: "false" },
-                        ]}
-                        label="سفارش‌های این آدرس را چه کسی تحویل می‌گیرد؟"
-                      />
-                    </div>
-                    {is_self && is_self === "false" && (
-                      <>
-                        <TextField
-                          required
-                          name="recipient_name"
-                          label="نام و نام خانوادگی"
-                        />
-                        <TextField
-                          required
-                          name="recipient_phone"
-                          label="شماره همرا"
-                        />
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
+    <>
+      <BaseDialog
+        title={address ? "ویرایش آدرس" : "افزودن آدرس"}
+        content={
+          <FormProvider {...form}>
+            <form>
+              <AddressFormFields activeStep={activeStep} />
             </form>
-          </div>
-        </FormProvider>
-        <DialogFooter>
-          <div className="flex w-full gap-3">
-            {activeStep === 0 ? (
-              <Button
-                onClick={handleNextStep}
-                type="button"
-                size={"lg"}
-                className="flex-1"
-              >
-                تایید و ادامه
-              </Button>
-            ) : (
-              <>
-                <Button
-                  size={"lg"}
-                  type="button"
-                  className="flex-1"
-                  variant="outline"
-                  onClick={() => setActiveStep(0)}
-                >
-                  مرحله قبل
-                </Button>
-                <ButtonLoading
-                  loading={isPending || updatePending}
-                  type="button"
-                  onClick={form.handleSubmit(handleSubmit)}
-                  className="flex-1"
-                  size={"lg"}
-                >
-                  ثبت آدرس
-                </ButtonLoading>
-              </>
-            )}
-          </div>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+          </FormProvider>
+        }
+        onClick={() =>
+          activeStep === 0
+            ? handleNextStep()
+            : form.handleSubmit(handleSubmit)()
+        }
+        open={open}
+        onOpenChange={onOpenChange}
+        onCancell={() => (activeStep === 1 ? setActiveStep(0) : null)}
+        cancellButton={activeStep === 1}
+        actionLabel={activeStep === 0 ? "تایید و ادامه" : "ثبت آدرس"}
+        loading={isPending || updatePending}
+      />
+    </>
   );
 }

@@ -8,21 +8,16 @@ import {
 } from "../ui/carousel";
 import { products } from "@/__MOCK__/catalog";
 import ProductCard from "../common/ProductCard";
-import { ArrowRight, ChevronLeftIcon } from "lucide-react";
+import SectionTitle from "../common/SectionTitle";
 
 export default function RelatedProducts() {
   return (
     <div>
-      <h4 className="text-primary text-3xl font-semibold mb-1">
-        محصولات مشابه
-      </h4>
+      <SectionTitle title="محصولات مشابه" />
       <Carousel>
-        <CarouselNext className="absolute rounded-full -top-8 right-[unset] left-[70px] hover:bg-[unset]">
-          <ChevronLeftIcon />
-        </CarouselNext>
-        <CarouselPrevious className="absolute rounded-full -top-8 right-[unset] left-3 hover:bg-[unset]">
-          <ArrowRight />
-        </CarouselPrevious>
+        <CarouselNext />
+        <CarouselPrevious />
+
         <CarouselContent>
           {products.slice(8, 20).map((product) => (
             <CarouselItem

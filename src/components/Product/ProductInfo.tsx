@@ -46,16 +46,20 @@ export default function ProductInfo(props: Product) {
         </div>
 
         <Separator />
-        <div className="flex gap-2">
-          <span className="flex gap-1 text-xs items-center">
-            <Star fill="orange" strokeWidth={0} className="size-5" />
-            {3.5}
-            <span className="text-muted/40">(امتیاز {12} خریدار)</span>
-          </span>
-          <Badge variant={"neutral"}>
-            {12} دیدگاه <ChevronLeftIcon />
-          </Badge>
-        </div>
+        {product.count > 0 ? (
+          <div className="flex gap-2">
+            <span className="flex gap-1 text-xs items-center">
+              <Star fill="orange" strokeWidth={0} className="size-5" />
+              {product.average_rating}
+              <span className="text-muted/40">
+                (امتیاز {product.count} خریدار)
+              </span>
+            </span>
+            <Badge variant={"neutral"}>
+              {product.count} دیدگاه <ChevronLeftIcon />
+            </Badge>
+          </div>
+        ) : null}
 
         <div className="space-y-3">
           {specifications

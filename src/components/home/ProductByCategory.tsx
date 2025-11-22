@@ -1,18 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { categories, products } from "@/__MOCK__/catalog";
 import ProductCard from "../common/ProductCard";
 import { Card } from "../ui/card";
 import Image from "next/image";
-import { ChevronLeftIcon, ChevronRight } from "lucide-react";
 import { Category } from "@/types/product";
+import SectionTitle from "../common/SectionTitle";
 
 export default function ProductByCategory() {
   const [category, setCategory] = useState<Category | null>(null);
@@ -20,10 +14,11 @@ export default function ProductByCategory() {
   const select = category ?? categories[0];
   return (
     <section className="py-6">
-      <div className="container relative">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          محبوب ترین محصولات
-        </h2>
+      <div className="container space-y-2 relative">
+        <SectionTitle
+          title="خرید بر اساس دسته بندی"
+          link={`/collection/${category?.slug}`}
+        />
 
         <div className="flex flex-col md:flex-row">
           <Card
@@ -53,12 +48,6 @@ export default function ProductByCategory() {
           </Card>
           <div className="w-full mt-7 md:mt-0 md:w-[calc(100%-240px)]">
             <Carousel className="md:px-4">
-              <CarouselNext className="absolute rounded-full -top-36 md:-top-8 right-[unset] left-[70px] hover:bg-[unset]">
-                <ChevronLeftIcon />
-              </CarouselNext>
-              <CarouselPrevious className="absolute rounded-full -top-36 md:-top-8 right-[unset] left-0 hover:bg-[unset]">
-                <ChevronRight />
-              </CarouselPrevious>
               <CarouselContent>
                 {products
                   .filter((i) =>
@@ -72,7 +61,7 @@ export default function ProductByCategory() {
                   .map((product) => (
                     <CarouselItem
                       key={product.id}
-                      className="basis-1 min-[360px]:basis-1/2 md:basis-1/3 lg:basis-1/5"
+                      className="basis-[14rem] sm:basis-[16rem]"
                     >
                       <ProductCard {...product} />
                     </CarouselItem>
