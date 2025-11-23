@@ -50,7 +50,7 @@ export default function DashboardOverview({ stats }: Props) {
             </Button>
           }
         />
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 mt-4">
+        <div className="grid grid-cols-3 gap-4 mt-4">
           <OrderStatCard
             icon={<ShoppingBag className="w-10 h-10 text-info" />}
             label="در حال انجام"
@@ -94,7 +94,7 @@ function OrderStatCard({
     >
       {Icon}
       <p className="text-sm flex-1 text-muted-foreground">{label}</p>
-      <p className="md:text-xl text-base flex items-center justify-center leading-0 font-semibold lg:relative absolute -top-1 -left-1 lg:left-auto lg:top-auto bg-neutral-200 text-primary rounded-full w-6 h-6 lg:h-10 lg:w-10">
+      <p className="md:text-xl text-base flex items-center justify-center leading-0 font-semibold lg:relative absolute -top-1 -left-1 lg:left-auto lg:top-auto bg-neutral-200 text-primary rounded-full w-6 h-6 lg:h-8 lg:w-8">
         {value}
       </p>
       {action}

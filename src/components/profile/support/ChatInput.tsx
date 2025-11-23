@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { SendHorizonal } from "lucide-react";
+import { LucideSend, SendHorizonal, SendIcon, SendToBack } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { replyToSupportTicket } from "@/queries/support";
@@ -42,8 +42,9 @@ export default function ChatInput({ supportId }: Props) {
         onClick={handleSend}
         variant={"outline"}
         color="primary"
+        className="w-9 h-9"
       >
-        <SendHorizonal className="w-7 h-7 rotate-180" />
+        <LucideSend className="w-7 h-7 -rotate-90" />
       </Button>
     </div>
   );

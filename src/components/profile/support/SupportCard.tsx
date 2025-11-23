@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import { ticketStatus } from "@/data/tickets";
 import { toPersainDateTime } from "@/lib/utils";
 import { Ticket } from "@/types/user";
 import { ChevronLeft } from "lucide-react";
@@ -30,7 +31,7 @@ export default function SupportCard({
 
         <div className="flex-1 flex justify-between">
           <div>
-            <p className="text-sm font-medium mb-3">{subject}</p>
+            <p className="text-sm line-clamp-1 font-medium mb-3">{subject}</p>
             <p className="text-muted/50 text-xs">
               {toPersainDateTime(created_at)}
             </p>
@@ -40,9 +41,9 @@ export default function SupportCard({
 
         <Badge
           className="absolute bottom-2 left-2 w-20"
-          variant={status === "open" ? "success" : "danger"}
+          variant={ticketStatus[status].color}
         >
-          {status === "open" ? "باز" : "بسته شده"}
+          {ticketStatus[status].label}
         </Badge>
       </Card>
     </Link>

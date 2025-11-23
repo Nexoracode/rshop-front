@@ -1,129 +1,178 @@
 "use client";
+import PageLoader from "@/components/common/PageLoader";
+import { statusLabel } from "@/data/order";
+import { formatToman, toPersainDate } from "@/lib/utils";
+import { getOrderDetails } from "@/queries/orders";
+import { useQuery } from "@tanstack/react-query";
+import { PageNotFoundError } from "next/dist/shared/lib/utils";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import React from "react";
 
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+export default function Invoice() {
+  const handlePrint = () => window.print();
 
-export default function InvoicePage() {
-  const order = {
-    id: 7845,
-    date: "۲۶ مهر ۱۴۰۴",
-    total: 1240000,
-    payment: "زرین‌پال",
-    status: "پرداخت‌شده",
-  };
+  const { order_id } = useParams();
 
-  const shipping = {
-    recipient: "محمدحسین خادم‌المهدی",
-    phone: "09121234567",
-    address: "تهران، خیابان ولی‌عصر، کوچه ۱۲، پلاک ۴",
-    postal_code: "1234567890",
-  };
+  const { data, isPending } = useQuery(getOrderDetails(Number(order_id)));
 
-  const items = [
-    {
-      id: 1,
-      name: "کتاب نهج‌البلاغه ترجمه دشتی",
-      quantity: 1,
-      price: 320000,
-      image: "/images/products/book.jpg",
-    },
-    {
-      id: 2,
-      name: "مجموعه فرهنگی سیره علوی",
-      quantity: 1,
-      price: 920000,
-      image: "/images/products/series.jpg",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans p-8 max-w-3xl mx-auto">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-xl font-semibold">فاکتور فروش</h1>
-          <p className="text-sm text-gray-500 mt-1">شماره سفارش: {order.id}</p>
-          <p className="text-sm text-gray-500">تاریخ: {order.date}</p>
-        </div>
-
-        <Image
-          src="/images/logo.png"
-          alt="لوگو"
-          width={100}
-          height={100}
-          className="object-contain"
-        />
-      </div>
-
-      <Separator className="mb-6" />
-
-      {/* اطلاعات گیرنده */}
-      <div className="mb-6">
-        <h2 className="text-lg font-medium mb-2">اطلاعات ارسال</h2>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          <p>گیرنده: {shipping.recipient}</p>
-          <p>شماره تماس: {shipping.phone}</p>
-          <p>آدرس: {shipping.address}</p>
-          <p>کد پستی: {shipping.postal_code}</p>
+  return isPending ? (
+    <PageLoader />
+  ) : !data ? (
+    <div>NOT FOUND</div>
+  ) : (
+    <div className="space-y-4">
+      <div className="print:hidden mt-10 w-[29.7cm] mx-auto p-4 flex justify-between items-center border-b-3 text-center">
+        <div className="font-semibold text-lg">صورت حساب فروش الکترونیکی</div>
+        <div className="flex justify-between">
+          <button
+            onClick={handlePrint}
+            className="bg-black text-white px-5 py-2 rounded hover:bg-neutral-800 transition"
+          >
+            چاپ
+          </button>
         </div>
       </div>
+      <div className="w-full flex justify-center bg-neutral-100 print:bg-white">
+        <div className="w-[29.7cm] min-h-[21cm] bg-white p-10 print:p-6 text-[11pt] leading-[1.7] shadow print:shadow-none border border-neutral-300 rounded">
+          {/* Header */}
+          <div className="mb-8 pb-4 border-b border-neutral-300">
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-[18pt] font-bold">فاکتور فروش</h1>
+                <div className="text-neutral-500 text-[10pt]">
+                  صورت حساب الکترونیکی
+                </div>
+              </div>
+              <div className="text-right text-[10pt] space-y-1">
+                <div>
+                  <span className="font-bold">شماره فاکتور:</span> 123456
+                </div>
+                <div>
+                  <span className="font-bold">تاریخ:</span> 1403/08/25
+                </div>
+                <div>
+                  <span className="font-bold">پیگیری:</span> 987654321
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* اطلاعات پرداخت */}
-      <div className="mb-6">
-        <h2 className="text-lg font-medium mb-2">اطلاعات پرداخت</h2>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          <p>روش پرداخت: {order.payment}</p>
-          <p>وضعیت: {order.status}</p>
-          <p className="col-span-2 font-medium text-primary">
-            مبلغ کل: {order.total.toLocaleString("fa-IR")} تومان
-          </p>
+          {/* Seller / Buyer */}
+          <div className="mb-8 p-4 rounded border border-neutral-200 bg-neutral-50">
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <div className="font-bold text-[11pt] mb-1 text-neutral-700">
+                  فروشنده
+                </div>
+                <div className="text-[10pt] text-neutral-700">
+                  فروشگاه آرشاپ
+                  <br />
+                  شناسه ملی: 1234567890
+                  <br />
+                  آدرس: تهران...
+                  <br />
+                  تلفن: 021-12345678
+                </div>
+              </div>
+
+              <div>
+                <div className="font-bold text-[11pt] mb-1 text-neutral-700">
+                  خریدار
+                </div>
+                <div className="text-[10pt] text-neutral-700">
+                  {`${data.user.first_name} ${data.user.last_name}`}
+                  <br />
+                  کد ملی: {data.user.phone}
+                  <br />
+                  آدرس:{" "}
+                  {`${data.address.province}، ${data.address.city}، ${data.address.address_line}، پلاک ${data.address.plaque}، واحد ${data.address.unit}`}
+                  <br />
+                  تلفن: {data.user.phone}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Order info */}
+          <div className="mb-8 p-4 rounded border border-neutral-200 bg-neutral-50">
+            <div className="font-bold text-[11pt] mb-2 text-neutral-700">
+              مشخصات سفارش
+            </div>
+            <div className="grid grid-cols-2 text-[10pt] text-neutral-700 gap-y-1">
+              <div>روش پرداخت: {""}</div>
+              <div>وضعیت پرداخت: {statusLabel[data.status]}</div>
+              <div>شماره پیگیری: {data.payment_gateway_ref}</div>
+              <div>تاریخ پرداخت: {toPersainDate(data.updated_at)}</div>
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="mb-8">
+            <div className="font-bold text-[11pt] mb-2 text-neutral-700">
+              لیست اقلام
+            </div>
+            <table className="w-full border-collapse text-[10pt]">
+              <thead>
+                <tr className="border-b border-neutral-300 bg-neutral-100">
+                  <th className="text-right p-2 font-medium">شرح</th>
+                  <th className="p-2 font-medium">تعداد</th>
+                  <th className="p-2 font-medium">قیمت واحد</th>
+                  <th className="p-2 font-medium">تخفیف</th>
+                  <th className="p-2 font-medium">جمع کل</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.items.map((item) => (
+                  <tr key={item.id} className="border-b border-neutral-200">
+                    <td className="p-2 text-right">
+                      {item.product.name}
+                      {item.variant ? "(" + item.variant.name + ")" : ""}
+                    </td>
+                    <td className="p-2 text-center">{item.quantity}</td>
+                    <td className="p-2 text-center">
+                      {formatToman(+item.unit_price, false)}
+                    </td>
+                    <td className="p-2 text-center">
+                      {formatToman(+item.discount, false)}
+                    </td>
+                    <td className="p-2 text-center font-medium">
+                      {formatToman(+item.line_total)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Totals */}
+          <div className="mb-8 p-4 rounded border border-neutral-200 bg-neutral-50 w-64 ml-auto space-y-1 text-[10pt]">
+            <div className="flex justify-between">
+              <span>جمع کالاها</span>
+              <span>{formatToman(+data.subtotal)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>تخفیف</span>
+              <span>{formatToman(+data.discount_total)}</span>
+            </div>
+            <div className="flex justify-between font-bold text-[11pt] border-t pt-2">
+              <span>قابل پرداخت</span>
+              <span>{formatToman(+data.total)}</span>
+            </div>
+          </div>
+
+          {/* Signature */}
+          <div className="flex justify-between text-[10pt]">
+            <div className="w-48 h-20 border border-neutral-300 rounded flex items-center justify-center">
+              مهر و امضای فروشنده
+            </div>
+            <div className="w-48 h-20 border border-neutral-300 rounded flex items-center justify-center">
+              مهر و امضای خریدار
+            </div>
+          </div>
+
+          {/* Print */}
         </div>
-      </div>
-
-      <Separator className="mb-6" />
-
-      {/* اقلام سفارش */}
-      <div>
-        <h2 className="text-lg font-medium mb-3">اقلام سفارش</h2>
-        <table className="w-full border-collapse text-sm">
-          <thead className="bg-gray-100 border-y">
-            <tr>
-              <th className="py-2 text-right pr-2">کالا</th>
-              <th className="py-2">تعداد</th>
-              <th className="py-2">قیمت واحد</th>
-              <th className="py-2">قیمت کل</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id} className="border-b last:border-0">
-                <td className="py-3 pr-2 flex items-center gap-3">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={50}
-                    height={50}
-                    className="rounded-md border"
-                  />
-                  <span>{item.name}</span>
-                </td>
-                <td className="text-center">{item.quantity}</td>
-                <td className="text-center">
-                  {item.price.toLocaleString("fa-IR")}
-                </td>
-                <td className="text-center font-medium">
-                  {(item.price * item.quantity).toLocaleString("fa-IR")}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Footer */}
-      <div className="mt-10 text-center text-sm text-gray-500">
-        <p>فروشگاه آرشاپ</p>
-        <p>www.arshop.ir</p>
       </div>
     </div>
   );

@@ -93,7 +93,7 @@ export default function BaseDialog({
         </DialogHeader>
         <div className="flex-1 p-3">{content}</div>
         {!hiddenFooter && (
-          <DialogFooter className="flex h-fit flex-row">
+          <DialogFooter className="flex h-fit p-3 flex-row">
             {footer || (
               <>
                 {cancellButton && (

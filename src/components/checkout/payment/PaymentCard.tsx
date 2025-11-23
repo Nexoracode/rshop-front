@@ -1,16 +1,15 @@
 "use client";
 
 import { formatToman } from "@/lib/utils";
-import CreateOrderBtn from "./CreateOrderBtn";
-import { Card } from "../ui/card";
-import CartSummeryInfo from "./CartSummeryProducts";
-import CartSummeryProducts from "./CartSummeryInfo";
-import Responsive from "../common/Responsive";
+
 import { useMutationState, useQuery } from "@tanstack/react-query";
 import { getCart } from "@/queries/cart";
-import CheckPromotion from "./CheckPromotion";
+import { Card } from "@/components/ui/card";
+import Responsive from "@/components/common/Responsive";
+import CartSummeryInfo from "../CartSummeryInfo";
+import CreatePaymentBtn from "./CreatePaymentBtn";
 
-export default function CartSummary() {
+export default function PaymentCard() {
   const { data } = useQuery(getCart);
   const couponData = useMutationState({
     filters: { mutationKey: ["discount-code"], status: "success" },
@@ -23,12 +22,10 @@ export default function CartSummary() {
       <div className="md:space-y-3 space-y-1">
         <Responsive visible="desktop">
           <CartSummeryInfo />
-
-          <CartSummeryProducts />
         </Responsive>
         <div className="flex justify-between gap-2 items-center">
           <div className="flex flex-1">
-            <CreateOrderBtn />
+            <CreatePaymentBtn />
           </div>
           <Responsive visible="mobile">
             <div className="flex md:hidden items-end flex-col  justify-between">
@@ -40,8 +37,6 @@ export default function CartSummary() {
           </Responsive>
         </div>
       </div>
-
-      <CheckPromotion />
     </Card>
   );
 }

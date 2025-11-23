@@ -19,42 +19,48 @@ export default function RecentViewedCard({
   );
   return (
     <Link href={`/p/rsp-${id}`} className="">
-      <Card className="group gap-4 relative overflow-hidden !p-3 hover:shadow-md transition-all">
+      <Card className="group gap-4 flex flex-row sm:flex-col relative overflow-hidden !p-3 hover:shadow-md transition-all">
         {/* تصویر */}
-        <div className="aspect-square rounded-md overflow-hidden bg-muted flex items-center justify-center">
+        <div className="aspect-square rounded-md overflow-hidden bg-muted/5 flex items-center justify-center">
           <Image
             src={image}
             alt={name}
             width={300}
             height={300}
-            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            className="object-cover size-24 sm:size-fit transition-transform duration-300 group-hover:scale-105"
           />
         </div>
 
-        {/* جزئیات */}
-        <div className="space-y-4">
-          <p className="text-sm font-medium line-clamp-1">{name}</p>
-          <div className="flex items-center justify-between">
-            <div>
-              {percent > 0 && <Badge variant={"danger"}>{percent}%</Badge>}
-            </div>
-            <div className="flex flex-col items-end">
-              <p className="text-sm font-semibold text-muted">
-                {formatToman(final)}
-              </p>
-              {compareAt && (
-                <p className="text-muted/60 text-xs line-through">
-                  {formatToman(compareAt)}
+        <div className="flex-1 flex flex-col justify-between space-y-2">
+          {/* جزئیات */}
+          <div className="space-y-1">
+            <p className="text-sm font-medium line-clamp-1">{name}</p>
+            <div className="flex items-center justify-between">
+              <div className="flex md:flex-col gap-1 items-end">
+                <p className="text-sm font-semibold text-muted">
+                  {formatToman(final)}
                 </p>
-              )}
+                {compareAt && (
+                  <p className="text-muted/60 text-xs line-through">
+                    {formatToman(compareAt)}
+                  </p>
+                )}
+              </div>
+              <div>
+                {percent > 0 && <Badge variant={"danger"}>{percent}%</Badge>}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* اکشن‌ها */}
-        <Button startIcon={<ShoppingCart className="w-4 h-4 ml-1" />} size="md">
-          افزودن به سبد
-        </Button>
+          {/* اکشن‌ها */}
+          <Button
+            startIcon={<ShoppingCart className="w-4 h-4 ml-1" />}
+            size="sm"
+            fullWidth
+          >
+            افزودن به سبد
+          </Button>
+        </div>
       </Card>
     </Link>
   );

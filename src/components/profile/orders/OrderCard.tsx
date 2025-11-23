@@ -14,7 +14,7 @@ import { Order } from "@/types/order";
 export function OrderCard({ order }: { order: Order }) {
   return (
     <Link href={`/profile/orders/${order.id}`}>
-      <Card className="p-4 flex flex-col gap-4 hover:shadow-md transition-all">
+      <Card className="flex flex-col gap-4 hover:shadow-md transition-all">
         <div className="flex justify-between items-center">
           <Badge variant={statusColor[order.status]}>
             {statusLabel[order.status]}
@@ -23,8 +23,8 @@ export function OrderCard({ order }: { order: Order }) {
           <ChevronLeftIcon className="size-6" />
         </div>
 
-        <div className="flex">
-          <p className="text-sm text-muted/50">
+        <div className="flex flex-nowrap text-nowrap">
+          <p className="text-xs md:text-sm text-muted/50">
             {toPersainDate(order.created_at)}
           </p>
 
@@ -32,16 +32,16 @@ export function OrderCard({ order }: { order: Order }) {
             .
           </p>
           <div className="flex items-center">
-            <p className="text-sm text-muted/60">شماره سفارش: </p>
-            <p className="text-sm pr-1">{order.id}</p>
+            <p className="text-xs md:text-sm text-muted/60">شماره سفارش: </p>
+            <p className="text-xs md:text-sm pr-1">{order.id}</p>
           </div>
 
           <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
             .
           </p>
           <div className="text-right flex items-center">
-            <p className="text-sm text-muted/60">مبلغ کل: </p>
-            <p className="font-semibold text-primary pr-1">
+            <p className="text-xs md:text-sm text-muted/60">مبلغ کل: </p>
+            <p className="font-semibold text-sm md:text-[1rem] text-primary pr-1">
               {formatToman(+order.total)}
             </p>
           </div>
@@ -60,17 +60,24 @@ export function OrderCard({ order }: { order: Order }) {
             />
           ))}
         </div>
-        <Separator />
+        {order.status === "preparing" ||
+          (order.status === "delivered" && (
+            <>
+              <Separator />
 
-        <div className="flex justify-end">
-          <Button
-            startIcon={<NotepadTextDashed className="size-6" />}
-            variant="text"
-            size={"sm"}
-          >
-            مشاهده فاکتور
-          </Button>
-        </div>
+              <div className="flex justify-end">
+                <Button
+                  startIcon={<NotepadTextDashed className="size-6" />}
+                  variant="text"
+                  size={"sm"}
+                  href={`/invoice/${order.id}`}
+                  target="_blank"
+                >
+                  مشاهده فاکتور
+                </Button>
+              </div>
+            </>
+          ))}
       </Card>
     </Link>
   );

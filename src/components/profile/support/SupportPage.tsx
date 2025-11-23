@@ -33,11 +33,10 @@ export default function SupportPage() {
 
   return (
     <Card className=" overflow-hidden">
-      <div className="flex flex-col h-[calc(100vh-12rem)] w-full mx-auto border rounded-lg overflow-hidden">
+      <div className="flex flex-col h-[calc(100vh-10rem)] md:h-[calc(100vh-12rem)] w-full mx-auto border rounded-lg overflow-h-hidden">
         {/* Header */}
         <div className="flex items-center justify-between p-3 border-b bg-background">
           <div className="flex items-center gap-3">
-            <BackButton />
             <Image
               src={
                 ticket?.product
@@ -71,7 +70,7 @@ export default function SupportPage() {
         <Separator />
 
         {/* Chat messages */}
-        <ScrollArea ref={scrollRef} className="flex-1 p-4">
+        <ScrollArea ref={scrollRef} className="flex-1 overflow-y-auto p-4">
           {ticket?.messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} product={ticket.product} />
           ))}
@@ -79,7 +78,9 @@ export default function SupportPage() {
 
         {/* Input */}
         {ticket?.status === "closed" ? null : (
-          <ChatInput supportId={ticket?.id || 0} />
+          <div>
+            <ChatInput supportId={ticket?.id || 0} />
+          </div>
         )}
       </div>
     </Card>

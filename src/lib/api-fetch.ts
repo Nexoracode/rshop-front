@@ -7,7 +7,10 @@ import { toast } from "sonner";
 export async function apiFetch(
   path: string,
   options?: Omit<RequestInit, "body"> & {
-    body?: Record<string, string | number | null | boolean>;
+    body?: Record<
+      string,
+      string | number | null | boolean | object | Array<unknown>
+    >;
     params?:
       | string
       | string[][]

@@ -17,7 +17,7 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
       <Responsive visible="mobile">
         <ProfileHeader />
       </Responsive>
-      <div className="max-w-[68rem] mx-auto py-6 px-2 md:px-0 flex gap-6">
+      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6">
         <Responsive visible="desktop">
           <ProfileSidebar />
         </Responsive>

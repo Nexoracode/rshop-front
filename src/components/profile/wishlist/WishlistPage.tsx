@@ -30,7 +30,7 @@ export default function WishlistPage() {
         items={wishlist}
         loading={isFetching}
         skeleton={<ProductCardSkeleton count={5} />}
-        className="grid grid-cols-2 gap-3 md:grid-cols-3"
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
         renderItem={(item) => (
           <WishlistCard

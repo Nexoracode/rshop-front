@@ -1,6 +1,7 @@
 // src/data/ticket-topics.ts
 
-import { TicketTopic } from "@/types/user";
+import { Color } from "@/types";
+import { TicketStatus, TicketTopic } from "@/types/user";
 
 export const ticketTopics: Array<TicketTopic> = [
   {
@@ -138,3 +139,21 @@ export const ticketTopics: Array<TicketTopic> = [
     ],
   },
 ];
+
+export const ticketStatus: Record<
+  TicketStatus,
+  { label: string; color: Color }
+> = {
+  answered: {
+    color: "success",
+    label: "پاسخ داده شده",
+  },
+  closed: {
+    color: "danger",
+    label: "بسته شده",
+  },
+  waiting: {
+    color: "warning",
+    label: "در انتظار بررسی",
+  },
+};

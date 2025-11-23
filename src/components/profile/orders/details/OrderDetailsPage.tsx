@@ -20,16 +20,19 @@ export default function OrderDetailsPage() {
     <PageLoader />
   ) : (
     <div className="space-y-4">
-      <Card className="md:p-6 p-4 gap-4 ">
+      <Card className="gap-4 ">
         <div className="flex items-center justify-between">
           <h1 className="text-lg font-semibold">جزئیات سفارش</h1>
-          <Link
-            href={`/invoice/${"22"}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            مشاهده فاکتور
-          </Link>
+          {(orderData.status === "delivered" ||
+            orderData.status === "preparing") && (
+            <Link
+              href={`/invoice/${"22"}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              مشاهده فاکتور
+            </Link>
+          )}
         </div>
 
         <OrderInfoSection order={orderData} />

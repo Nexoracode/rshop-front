@@ -23,7 +23,7 @@ export default function RecentViewedPage() {
       </div>
 
       <ListLayout<RecentView>
-        className="grid grid-cols-2 gap-2"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"
         items={data ?? []}
         renderItem={(item) => <RecentViewedCard {...item} />}
         skeleton={<Skeletons count={4} />}

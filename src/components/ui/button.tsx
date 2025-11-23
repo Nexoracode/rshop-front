@@ -185,6 +185,7 @@ const buttonVariants = cva(
 
 export type ButtonProps = {
   href?: React.ComponentProps<typeof Link>["href"];
+  target?: React.ComponentProps<typeof Link>["target"];
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   isLoading?: boolean;
@@ -204,6 +205,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       endIcon,
       isLoading = false,
       href,
+      target,
       children,
       ...props
     },
@@ -241,6 +243,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {...(props as React.ComponentProps<typeof Link>)}
           href={href}
           className={classes}
+          target={target}
         >
           {content}
         </Link>

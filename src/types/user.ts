@@ -66,13 +66,15 @@ export type TicketProduct = {
   price: string;
   image: string;
 };
+
+export type TicketStatus = "closed" | "waiting" | "answered";
 export type Ticket = {
   id: 1;
   user_id: 1;
   product_id: number | null;
   product: TicketProduct | null;
   subject: string;
-  status: "open" | "closed";
+  status: TicketStatus;
   created_at: string;
   updated_at: string;
   messages: Array<TicketMessage>;

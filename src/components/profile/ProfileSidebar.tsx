@@ -31,7 +31,7 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-card rounded-xl md:border md:border-border md:w-[16rem] md:shadow-sm md:p-4 md:space-y-2">
+    <aside className="bg-card sticky top-20 h-fit rounded-xl md:border md:border-border md:w-[16rem] md:shadow-sm md:p-4 md:space-y-2">
       {items.map((item) => {
         const active = pathname === item.href;
         const Icon = item.icon;

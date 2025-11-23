@@ -13,7 +13,7 @@ export default function BackButton({ onClick, link, ...props }: Props) {
   const handleClick = () => {
     if (typeof onClick === "function") return onClick();
 
-    if (link) return router.push(link);
+    if (link) return link === "-1" ? router.back() : router.push(link);
 
     router.back();
   };
