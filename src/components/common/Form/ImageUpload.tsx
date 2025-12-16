@@ -5,9 +5,9 @@ import { UploadCloud } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
 
-type Props = { onChange: (file: File | null) => void };
+type Props = { onChange: (file: File | null) => void; value: string | null };
 
-export default function ImageUpload({}: Props) {
+export default function ImageUpload({ onChange }: Props) {
   const [file, setFile] = React.useState<File | null>(null);
   const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ export default function ImageUpload({}: Props) {
         return;
       }
       setFile(f);
+      onChange(f);
     }
   };
 
@@ -36,6 +37,7 @@ export default function ImageUpload({}: Props) {
       return;
     }
     setFile(f);
+    onChange(f);
   };
 
   return (

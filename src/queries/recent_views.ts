@@ -7,6 +7,7 @@ export const addRecentView = mutationOptions({
     await apiFetch("/profile/recent-views", {
       method: "POST",
       body: { product_id },
+      showErrorToast: false,
     }),
 });
 export const recentViewList = queryOptions({

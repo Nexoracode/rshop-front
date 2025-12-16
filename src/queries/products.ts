@@ -1,6 +1,7 @@
 import { apiFetch } from "@/lib/api-fetch";
 import { PaginateData, ProductFilters } from "@/types";
 import { Brand, Category, Product, ProductSearchResult } from "@/types/product";
+import { SeoInfo } from "@/types/seo";
 import { Review } from "@/types/user";
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
@@ -68,10 +69,27 @@ export const getProductsInfinit = (
       meta.current_page === meta.total_pages ? null : meta.current_page + 1,
     initialPageParam: 1,
   });
+export const getCategorySeoDataBySlug = (slug: string) =>
+  queryOptions({
+    queryKey: ["get-category-seodata-by-slug", slug],
+    queryFn: async (): Promise<SeoInfo> => {
+      return apiFetch(`/category/site/seo/${slug}`);
+    },
+  });
+export const getCategoryBySlug = (slug: string) =>
+  queryOptions({
+    queryKey: ["get-category-by-slug", slug],
+    queryFn: async (): Promise<{
+      category: Category;
+      parents: Array<Category>;
+    }> => {
+      return apiFetch(`/category/site/with-parents/slug/${slug}`);
+    },
+  });
 export const getProductById = (product_id: string) =>
   queryOptions({
     queryKey: ["get-product-by-id", product_id],
-    queryFn: async (): Promise<Product> => {
+    queryFn: async (): Promise<{ product: Product; seo: SeoInfo }> => {
       return await apiFetch(`/product/site/${product_id}`);
     },
   });

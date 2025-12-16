@@ -11,6 +11,7 @@ export type Category = {
   id: number;
   title: string;
   slug: string;
+  description: string | null;
   discount: string; // if you want it as number use `number`
   level: number;
   children?: Category[];

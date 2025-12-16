@@ -1,0 +1,78 @@
+import { Brand, Category } from "./product";
+
+export type HeroSlider = {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string;
+  is_dark: boolean;
+  backgroundColor: string;
+  button_text: string;
+  button_link: string;
+};
+
+export type SideBannersPosition =
+  | "top_right"
+  | "top_left"
+  | "bottom_right"
+  | "bottom_left";
+export type SideBanners = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image_url: string;
+  link: string;
+  background_color: string;
+  position: SideBannersPosition;
+  badge_text: string;
+  badge_color: string;
+};
+
+export type HomeCategory = {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
+};
+
+export type HomeSectionProduct = {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  discount_price: number;
+  discount_percentage: number;
+  stock: number;
+  is_available: boolean;
+  image: string;
+  category: Category;
+  brand: Brand;
+};
+
+export type SectionType =
+  | "featured"
+  | "special_products"
+  | "most_popular"
+  | "category_based";
+
+export type DisplayStyle = "carousel" | "grid" | "list";
+
+export type HomeSection = {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  section_type: SectionType;
+  display_style: DisplayStyle;
+  sort_order: number;
+  show_view_all_button: boolean;
+  view_all_link: string;
+  category: HomeCategory;
+  products: Array<HomeSectionProduct>;
+};
+export type HomeSectionsData = {
+  hero_sliders: Array<HeroSlider>;
+  side_banners: Array<SideBanners>;
+  categories: Array<HomeCategory>;
+  sections: Array<HomeSection>;
+};

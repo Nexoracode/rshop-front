@@ -8,8 +8,8 @@ import { MapPinPlusIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getUserAddress } from "@/queries/address";
 import AddressForm from "../../common/user/AddressForm";
-import { useCheckout } from "@/queries/orders";
 import PrimaryAddressCard from "./PrimaryAddressCard";
+import useCheckout from "@/hooks/useCheckout";
 
 export default function AddressSelector() {
   const { data } = useQuery(getUserAddress);

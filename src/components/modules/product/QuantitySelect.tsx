@@ -53,7 +53,7 @@ export default function QuantitySelect({
           variant={"text-nohover"}
           className="px-2"
           size={"sm"}
-          onClick={() => onChange?.(qty! > 1 ? qty! - 1 : 1)}
+          onClick={() => onChange?.(qty! > 1 ? qty! - 1 : 0)}
           aria-label="کاهش تعداد"
         >
           {qty === 1 ? <Trash2Icon size={18} /> : <Minus size={18} />}

@@ -1,7 +1,6 @@
 import React from "react";
 import DiscountField from "./DiscountForm";
 import { Card } from "../ui/card";
-import PaymentMethodSelector from "./PaymentMethod";
 import AddressSelector from "./AddressSelector";
 import CartSummary from "./CartSummery";
 import OrderNote from "./OrderNote";
@@ -10,6 +9,7 @@ import CartSummeryInfo from "./CartSummeryProducts";
 import CartSummeryProducts from "./CartSummeryInfo";
 import SectionTitle from "../common/SectionTitle";
 import QueryClientWrapper from "../layout/QueryClientWrapper";
+import { PackageSelector } from "./PackageSelector";
 
 export default function CheckoutForm() {
   return (
@@ -24,8 +24,9 @@ export default function CheckoutForm() {
 
             <Card className="p-3 bg-transparent">
               <DiscountField />
-
-              <PaymentMethodSelector />
+            </Card>
+            <Card className="p-3 bg-transparent">
+              <PackageSelector />
             </Card>
 
             <Card className="p-3 bg-transparent">

@@ -22,7 +22,7 @@ export default function RelatedProducts() {
           {products.slice(8, 20).map((product) => (
             <CarouselItem
               key={product.id}
-              className="min-[20rem]:basis-1/2 md:basis-1/4 lg:basis-1/6"
+              className="basis-[14rem] sm:basis-[16rem]"
             >
               <ProductCard {...product} />
             </CarouselItem>

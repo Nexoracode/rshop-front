@@ -8,12 +8,11 @@ import CartSummeryProducts from "./CartSummeryInfo";
 import Responsive from "../common/Responsive";
 import { useMutationState, useQuery } from "@tanstack/react-query";
 import { getCart } from "@/queries/cart";
-import CheckPromotion from "./CheckPromotion";
 
 export default function CartSummary() {
   const { data } = useQuery(getCart);
   const couponData = useMutationState({
-    filters: { mutationKey: ["discount-code"], status: "success" },
+    filters: { mutationKey: ["check-promotion"], status: "success" },
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     select: (mu) => mu.state.data as any,
@@ -40,8 +39,6 @@ export default function CartSummary() {
           </Responsive>
         </div>
       </div>
-
-      <CheckPromotion />
     </Card>
   );
 }

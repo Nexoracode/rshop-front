@@ -31,7 +31,7 @@ export default function ProductListPage({
       fetchNextPage();
   };
   return data ? (
-    <>
+    <div className="flex flex-col md:flex-row gap-14 justify-between pt-3">
       <ProductFilterSidebar filters={data.pages[0].filters} />
       <div className="space-y-3 flex-1">
         <ProductListHeader
@@ -55,7 +55,7 @@ export default function ProductListPage({
           />
         ) : null}
       </div>
-    </>
+    </div>
   ) : (
     <CollectionSkelton />
   );

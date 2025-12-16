@@ -12,24 +12,17 @@ import {
 } from "../ui/carousel";
 import { Button } from "../ui/button";
 import { ChevronLeft } from "lucide-react";
-
-type Slide = {
-  img: string;
-  overline?: string;
-  title: string;
-  text?: string;
-  cta?: { label: string; href: string };
-};
+import { HeroSlider as HeroSliderType } from "@/types/home";
 
 export default function HeroSlider({
   slides,
 }: {
-  slides: Slide[];
+  slides: Array<HeroSliderType>;
   autoplayMs?: number;
 }) {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-slate-100">
-      <Carousel>
+      <Carousel opts={{ dragFree: false }}>
         <CarouselNext className="absolute rounded-full -top-8 right-[unset] left-[70px] hover:bg-[unset]" />
 
         <CarouselPrevious className="absolute rounded-full -top-8 right-[unset] left-0 hover:bg-[unset]" />
@@ -39,38 +32,44 @@ export default function HeroSlider({
               <div className="min-w-full relative">
                 <Aspect className="rounded-2xl">
                   <Image
-                    src={s.img}
+                    src={s.image_url}
                     alt={s.title}
                     fill
                     sizes="(min-width:1024px) 66vw, 100vw"
-                    className="object-cover blur-xs"
+                    className="object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent" />
-                  <div className="absolute right-0 top-0 w-full h-full flex flex-col justify-between p-2">
-                    {s.overline && (
-                      <div className="text-primary font-medium mb-2">
-                        {s.overline}
-                      </div>
-                    )}
-                    <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 drop-shadow">
+                  <div className="absolute left-0 top-0 w-full h-full z-20 bg-black/20" />
+                  <div className="absolute right-0 top-0 z-30 w-full h-full flex flex-col justify-center gap-4 p-2 md:p-5">
+                    <h2
+                      className={cn(
+                        "text-2xl sm:text-4xl text-shadow-blue-400 font-extrabold drop-shadow text-white"
+                        //   s.is_dark ? "text-white" : "text-black"
+                      )}
+                    >
                       {s.title}
                     </h2>
-                    {s.text && (
-                      <p className="mt-2 text-slate-800/90 bg-white/30 backdrop-blur rounded-xl inline-block px-3 py-1">
-                        {s.text}
+                    {s.description && (
+                      <p
+                        className={cn(
+                          "mt-2  px-3 py-1 text-white"
+                          /*             s.is_dark
+                            ? "text-white/60 bg-muted/30"
+                            : "text-slate-800/90 bg-white/30" */
+                        )}
+                      >
+                        {s.description}
                       </p>
                     )}
-                    {s.cta && (
-                      <div className="flex justify-end">
-                        <Button
-                          href={s.cta.href}
-                          variant={"fill"}
-                          rounded={"full"}
-                          endIcon={<ChevronLeft />}
-                        >
-                          {s.cta.label}
-                        </Button>
-                      </div>
+                    {s.button_link && (
+                      <Button
+                        href={s.button_link}
+                        variant={"fill"}
+                        rounded={"full"}
+                        endIcon={<ChevronLeft />}
+                        className="w-fit"
+                      >
+                        {s.button_text}
+                      </Button>
                     )}
                   </div>
                 </Aspect>
@@ -80,26 +79,6 @@ export default function HeroSlider({
         </CarouselContent>
         <CarouselDots className="absolute bottom-3 right-0 left-0" />
       </Carousel>
-      {/* اسلایدها */}
-      {/*      <div
-        className="flex transition-transform duration-500"
-        style={{ transform: `translateX(${i * 100}%)` }}
-      ></div> */}
-
-      {/* دات‌ها */}
-      {/*   <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            aria-label={`اسلاید ${idx + 1}`}
-            onClick={() => goto(idx)}
-            className={cn(
-              "h-2 w-2 rounded-full transition",
-              i === idx ? "bg-slate-900" : "bg-white/70 hover:bg-white"
-            )}
-          />
-        ))}
-      </div> */}
     </div>
   );
 }

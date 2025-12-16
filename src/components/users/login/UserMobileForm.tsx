@@ -23,7 +23,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
     [handleSendOtp]
   );
   useEffect(() => {
-    if (phone.length === 11) {
+    if (phone.length === 11 && !form.formState.isSubmitted) {
       form.handleSubmit(handleSubmit)();
     }
   }, [phone, form, handleSubmit]);

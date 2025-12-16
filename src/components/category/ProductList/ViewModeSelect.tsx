@@ -6,7 +6,7 @@ import { Grid2X2, List } from "lucide-react";
 import React from "react";
 
 export default function ViewModeSelect() {
-  const { setViewMode, viewMode } = useViewMode();
+  const { viewMode } = useViewMode();
   return (
     <div className="ml-1 gap-1 flex overflow-hidden">
       <Button
@@ -16,7 +16,7 @@ export default function ViewModeSelect() {
         )}
         size="icon"
         color="neutral"
-        onClick={() => setViewMode("grid")}
+        //    onClick={() => setViewMode("grid")}
       >
         <Grid2X2 size={24} />
       </Button>
@@ -27,7 +27,7 @@ export default function ViewModeSelect() {
         )}
         color={"neutral"}
         size="icon"
-        onClick={() => setViewMode("list")}
+        //       onClick={() => setViewMode("list")}
       >
         <List size={24} />
       </Button>

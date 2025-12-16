@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils";
-import { useCheckout } from "@/queries/orders";
 import { UserAddress } from "@/types/user";
 import { Edit2, MapPin } from "lucide-react";
 import React from "react";

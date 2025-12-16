@@ -22,7 +22,7 @@ export default function UserOtpForm({ phone }: Props) {
 
   const search = useSearchParams();
 
-  const backUrl = search.get("backUrl");
+  const backUrl = search.get("backUrl") ?? "/";
   const router = useRouter();
 
   const code = form.watch("code", "");
@@ -45,7 +45,7 @@ export default function UserOtpForm({ phone }: Props) {
   useEffect(() => {
     if (isSuccess) {
       toast.success("ورود به حساب کاربری انجام شد.");
-      router.push(`/${backUrl}`);
+      router.push(`${backUrl}`);
     }
   }, [isSuccess, backUrl, router]);
   return (

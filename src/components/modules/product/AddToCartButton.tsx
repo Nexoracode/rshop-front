@@ -7,13 +7,17 @@ import { useSearchParams } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { addCartItem, getCart, updateCartItem } from "@/queries/cart";
 import { Product } from "@/types/product";
+import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 type Props = {
   product: Product;
 };
 
 export default function AddToCartButton({ product }: Props) {
+  const [open, setOpen] = React.useState(false);
   const searchParams = useSearchParams();
+  const { user } = useCurrentUser();
   const variant_id = searchParams.get("variant_id");
   const selectedVariant = variant_id
     ? product.variants.find((i) => i.id === Number(variant_id))
@@ -31,6 +35,7 @@ export default function AddToCartButton({ product }: Props) {
   );
 
   const handleAddToCart = () => {
+    if (!user) return setOpen(true);
     addToCart({
       productId: product.id,
       variantId: selectedVariant?.id ?? null,
@@ -49,6 +54,7 @@ export default function AddToCartButton({ product }: Props) {
   const productStock = selectedVariant ? selectedVariant.stock : product.stock;
   return (
     <div className="flex flex-col  gap-2">
+      <LoginRequiredDialog usage="cart" open={open} onOpenChange={setOpen} />
       {!inCartItem ? (
         productStock > 0 ? (
           <Button

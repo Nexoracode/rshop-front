@@ -5,7 +5,7 @@ import BlogCard from "../common/BlogCard";
 import SectionTitle from "../common/SectionTitle";
 
 const blogItem: Blog = {
-  date: "2025-05-05 12:00",
+  date: "2025-05-05",
   id: 22,
   image: "/mock/image_19.jpg",
   slug: "/blog/eeeeee",

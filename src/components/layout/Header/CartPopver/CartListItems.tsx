@@ -7,9 +7,16 @@ import CartItem from "./CartItem";
 
 export default function CartListItems() {
   const { data: cart } = useCart();
-  const { mutate: deleteItem, variables } = useMutation(deleteCartItem);
-  const { mutate: updateItem, variables: updateVars } =
-    useMutation(updateCartItem);
+  const {
+    mutate: deleteItem,
+    variables,
+    isPending: deletePending,
+  } = useMutation(deleteCartItem);
+  const {
+    mutate: updateItem,
+    variables: updateVars,
+    isPending: updatePending,
+  } = useMutation(updateCartItem);
   const handleQtyChange = (qty: number, itemId: number) => {
     if (qty === 0) deleteItem({ itemId });
     else updateItem({ itemId, quantity: qty });
@@ -23,7 +30,8 @@ export default function CartListItems() {
           {...item}
           onChange={(qty) => handleQtyChange(qty, item.id)}
           loading={
-            variables?.itemId === item.id || updateVars?.itemId === item.id
+            (deletePending && variables?.itemId === item.id) ||
+            (updatePending && updateVars?.itemId === item.id)
           }
         />
       ))}

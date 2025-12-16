@@ -155,9 +155,9 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-3">
-            <Image src={"/enamad.png"} width={120} height={120} alt="" />
+            <Image src={"/enamad.png"} width={80} height={80} alt="" />
 
-            <Image src={"/saman.webp"} width={120} height={120} alt="" />
+            <Image src={"/saman.webp"} width={80} height={80} alt="" />
             {/* جای سامان‌دهی */}
           </div>
         </div>

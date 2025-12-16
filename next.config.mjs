@@ -1,3 +1,4 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
     return [
@@ -12,6 +13,14 @@ const nextConfig = {
       },
     ];
   },
+
+  /*   eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreDuringBuilds: true,
+  }, */
+
   images: {
     remotePatterns: [
       {
@@ -25,6 +34,9 @@ const nextConfig = {
   },
   devIndicators: {
     position: "bottom-right",
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
   },
 };
 

@@ -39,7 +39,10 @@ export default function OrderDetailsPage() {
 
         <div className="grid md:grid-cols-2 gap-4">
           <OrderShippingSection address={orderData.address} />
-          <OrderPaymentSection payment={orderData.payment} />
+          <OrderPaymentSection
+            order_id={orderData.id}
+            payment={orderData.payment}
+          />
         </div>
       </Card>
 

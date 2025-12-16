@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Edit2Icon } from "lucide-react";
-import { useCheckout } from "@/queries/orders";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import TextField from "../common/Form/TextField";
 import BaseDialog from "../common/BaseDialog";
+import useCheckout from "@/hooks/useCheckout";
 
 export default function OrderNote() {
   const {

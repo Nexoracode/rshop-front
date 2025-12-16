@@ -2,7 +2,6 @@
 
 import React from "react";
 import ProductSort from "./ProductSort";
-import ViewModeSelect from "./ViewModeSelect";
 import Responsive from "@/components/common/Responsive";
 import ProductFilters from "./ProductFilters";
 import ProductFilterProvider from "../ProductFilterSidebar/ProductFilterProvider";
@@ -26,9 +25,6 @@ export default function ProductListHeader({
           </ProductFilterProvider>
         </Responsive>
       </div>
-      <Responsive visible="mobile">
-        <ViewModeSelect />
-      </Responsive>
 
       <p className="text-sm text-muted">
         {total_items.toLocaleString("fa-IR")} کالا

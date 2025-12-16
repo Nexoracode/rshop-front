@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { LucideSend, SendHorizonal, SendIcon, SendToBack } from "lucide-react";
+import { LucideSend } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { replyToSupportTicket } from "@/queries/support";

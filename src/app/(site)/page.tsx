@@ -1,31 +1,20 @@
-import BannerSection from "@/components/home/BannerSection";
-import BlogSection from "@/components/home/BlogSection";
-import BrandsSection from "@/components/home/BrandsSection";
-import FeaturedCollection from "@/components/home/FeaturedCollection";
-import ProductByCategory from "@/components/home/ProductByCategory";
-import ServiceSection from "@/components/home/ServiceSection";
-import SpecialCollection from "@/components/home/SpecialCollection";
-import TopCategoriesSection from "@/components/home/TopCategories";
+import HomePage from "@/components/home/HomePage";
+import { getQueryClient } from "@/lib/get-query-client";
+import { getHomeSections } from "@/queries/home";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+
+const queryClient = getQueryClient();
+
+queryClient.prefetchQuery(getHomeSections);
 
 export default function Home() {
   return (
     <main>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <HomePage />
+      </HydrationBoundary>
+
       {/* سکشن قهرمان / بنرها */}
-      <BannerSection />
-
-      <ServiceSection />
-
-      <TopCategoriesSection />
-
-      <FeaturedCollection />
-
-      <SpecialCollection />
-
-      <ProductByCategory />
-
-      <BrandsSection />
-
-      <BlogSection />
     </main>
   );
 }

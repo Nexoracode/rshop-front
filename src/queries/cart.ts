@@ -19,7 +19,11 @@ export const addCartItem = mutationOptions({
     variantId: number | null;
     quantity: number;
   }) => {
-    return await apiFetch("/cards/add", { method: "POST", body });
+    return await apiFetch("/cards/add", {
+      method: "POST",
+      body,
+      showErrorToast: false,
+    });
   },
   onSuccess: async () => {
     await queryClient.invalidateQueries({ queryKey: ["get-cart"] });

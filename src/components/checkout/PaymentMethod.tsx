@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { CreditCard, Banknote } from "lucide-react";
 import { PaymentMethod as Method } from "@/types";
-import { useCheckout } from "@/queries/orders";
+import useCheckout from "@/hooks/useCheckout";
 
 interface PaymentMethod {
   id: Method;

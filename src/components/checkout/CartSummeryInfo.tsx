@@ -1,17 +1,13 @@
 "use client";
+import useCheckout from "@/hooks/useCheckout";
 import { formatToman } from "@/lib/utils";
 import { getCart } from "@/queries/cart";
-import { useMutationState, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 export default function CartSummeryInfo() {
   const { data } = useQuery(getCart);
-  const couponData = useMutationState({
-    filters: { mutationKey: ["discount-code"], status: "success" },
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    select: (mu) => mu.state.data as any,
-  })[0];
+  const { orderMeta } = useCheckout();
   return (
     <div className="space-y-2 border-t pt-4">
       <div className="flex justify-between text-muted-foreground">
@@ -20,22 +16,19 @@ export default function CartSummeryInfo() {
           {formatToman(data?.subtotal ?? 0)}
         </span>
       </div>
-
       <div className="flex justify-between text-muted-foreground">
         <span>مقدار تخفیف</span>
         <span className="text-danger-600">
           {" "}
           -{" "}
-          {formatToman(
-            (data?.discount_total ?? 0) + (couponData?.discount ?? 0)
-          )}
+          {formatToman((data?.discount_total ?? 0) + orderMeta.discount_amount)}
         </span>
       </div>
 
       <div className=" flex  justify-between text-base font-bold pt-2 border-t border-border">
         <span>مبلغ قابل پرداخت</span>
         <span className="text-primary">
-          {formatToman(couponData ? couponData.payable : data?.total)}
+          {formatToman((data?.total ?? 0) - orderMeta.discount_amount)}
         </span>
       </div>
     </div>

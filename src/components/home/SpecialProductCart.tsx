@@ -2,27 +2,15 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { calcPrice, formatToman } from "@/lib/utils";
+import { formatToman } from "@/lib/utils";
 import Link from "next/link";
-import { Product } from "@/types/product";
 import { Badge } from "@/components/ui/badge";
+import { HomeSectionProduct } from "@/types/home";
+import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 
-export default function SpecialProductCart(props: Product) {
-  const {
-    name,
-    price,
-    discount_amount,
-    discount_percent,
-    media_pinned,
-    medias,
-    brand,
-  } = props;
-
-  const { final, percent, compareAt } = calcPrice(
-    price,
-    discount_amount,
-    discount_percent
-  );
+export default function SpecialProductCart(props: HomeSectionProduct) {
+  const { name, price, brand, discount_percentage, discount_price, image } =
+    props;
 
   return (
     <Card
@@ -33,19 +21,11 @@ export default function SpecialProductCart(props: Product) {
         <div className="flex-1/3 space-y-2">
           <div className="relative aspect-[1/1]  overflow-hidden">
             <Image
-              src={media_pinned?.url || "/mock/image_1.jpg"}
+              src={image || PRODUCT_PLACEHOLDER}
               alt={name}
               fill
               className="object-cover rounded-md border p-1 opacity-100 group-hover:opacity-0 transition-opacity duration-700"
             />
-            {medias?.[1] && (
-              <Image
-                src={medias[1]?.url || "/mock/image_1.jpg"}
-                alt={name}
-                fill
-                className="object-cover rounded-md border p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-              />
-            )}
           </div>
         </div>
 
@@ -73,20 +53,20 @@ export default function SpecialProductCart(props: Product) {
           {/* price */}
           <div className="flex items-center gap-2">
             <span className="text-sm  font-bold text-primary-600">
-              {formatToman(final)}{" "}
+              {formatToman(discount_percentage ? discount_price : price)}{" "}
             </span>
-            {compareAt && (
+            {discount_percentage && (
               <span className="text-xs text-gray-400 line-through">
-                {formatToman(compareAt)}
+                {formatToman(price)}
               </span>
             )}
           </div>
 
           {/* <CountdownTimer showIcon={false} targetDate="2025-12-10T23:59:59" /> */}
 
-          {compareAt && (
+          {discount_percentage && (
             <Badge variant={"danger"} className="absolute top-2 left-2 ">
-              {percent}%
+              {discount_percentage}%
             </Badge>
           )}
         </div>

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import AddToCompareBtn from "./AddToCompareBtn";
 import AddToWishlistBtn from "./AddToWishlistBtn";
-import { cn, formatToman } from "@/lib/utils";
+import { calcPrice, cn, formatToman } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Product } from "@/types/product";
 
@@ -20,20 +20,15 @@ export default function ProductRow(props: Product) {
     brand,
   } = props;
 
-  const discountPrice = discount_amount
-    ? Number(price) - Number(discount_amount)
-    : discount_percent
-    ? (Number(price) * Number(discount_percent)) / 100
-    : null;
+  const { compareAt, final, percent } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent
+  );
 
-  const discountPercent = discount_percent
-    ? discount_percent
-    : discountPrice
-    ? Math.round((Number(discountPrice) / Number(price)) * 100)
-    : null;
   return (
     <Card
-      className="group flex flex-row relative overflow-hidden border p-2 shadow-sm transition hover:shadow-md"
+      className="group rounded-sm flex flex-row relative overflow-hidden border bg-transparent"
       dir="rtl"
     >
       {/* top left: wishlist */}
@@ -45,9 +40,9 @@ export default function ProductRow(props: Product) {
       </div>
 
       {/* top right: discount */}
-      {discountPercent && (
+      {compareAt && (
         <Badge variant="danger" className="absolute left-2 top-2 z-10 ">
-          {discountPercent}%
+          {percent}%
         </Badge>
       )}
 
@@ -89,11 +84,11 @@ export default function ProductRow(props: Product) {
         {/* price */}
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-primary-600">
-            {discountPrice ? formatToman(discountPrice) : formatToman(+price)}{" "}
+            {formatToman(final)}{" "}
           </span>
-          {discountPrice && (
+          {compareAt && (
             <span className="text-xs text-gray-400 line-through">
-              {formatToman(+price)}
+              {formatToman(+compareAt)}
             </span>
           )}
         </div>

@@ -5,23 +5,36 @@ import AddToWishlistBtn from "@/components/common/ProductCard/AddToWishlistBtn";
 import MobileShareBtn from "@/components/common/ProductCard/MobileShareBtn";
 import SharLinkBtn from "@/components/common/ProductCard/SharLinkBtn";
 import Responsive from "@/components/common/Responsive";
+import ProductReviewsSkeleton from "@/components/common/Skeleton/ProductReviewsSkeleton";
+import RelatedProductsSkeleton from "@/components/common/Skeleton/RelatedProductsSkeleton";
 import ProductAttributes from "@/components/Product/ProductAttributes";
 import ProductDescription from "@/components/Product/ProductDescription";
 import ProductGallery from "@/components/Product/ProductGallery";
 import ProductHelper from "@/components/Product/ProductHelper";
 import ProductInfo from "@/components/Product/ProductInfo";
 import ProductPageProvider from "@/components/Product/ProductProvider";
-import ProductReviews from "@/components/Product/ProductReviews";
+import ProductSchema from "@/components/Product/ProductSchema";
 import ProductTabs from "@/components/Product/ProductTabs";
-import RelatedProducts from "@/components/Product/RelatedProducts";
 import { Separator } from "@/components/ui/separator";
-import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import { PRODUCT_PLACEHOLDER, SHOP_NAME, SHOP_URL } from "@/data/assets";
 import { getQueryClient } from "@/lib/get-query-client";
+import { calcPrice } from "@/lib/utils";
 import { getProductById } from "@/queries/products";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 import { Suspense } from "react";
 
-export default async function ProductPage(props: PageProps<"/p/[id]">) {
+const ProductReviews = dynamic(
+  () => import("@/components/Product/ProductReviews")
+);
+
+const RelatedProducts = dynamic(
+  () => import("@/components/Product/RelatedProducts")
+);
+
+async function getProduct(props: PageProps<"/p/[id]">) {
   const { id } = await props.params;
 
   const queryClient = getQueryClient();
@@ -30,9 +43,73 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
     getProductById(id.split("-").pop() ?? "")
   );
 
+  return product;
+}
+
+export const revalidate = 300;
+
+export async function generateMetadata(
+  props: PageProps<"/p/[id]">
+): Promise<Metadata> {
+  const { product, seo } = await getProduct(props);
+
+  if (!product) {
+    return {
+      title: "محصول یافت نشد",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const url = `${SHOP_URL}/p/rsp-${product.id}`;
+
+  const { final } = calcPrice(
+    product.price,
+    product.discount_amount,
+    product.discount_percent
+  );
+
+  return {
+    title: `${seo.title || product.name} | ${SHOP_NAME}`,
+    description: seo.description || `${product.description.slice(0, 155)}...`,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${product.name} - ${final} تومان`,
+      description: seo.description || `${product.description.slice(0, 155)}...`,
+      url,
+      images: product.medias.map((img) => ({
+        url: img.url,
+        alt: product.name,
+      })),
+      type: "website",
+      locale: "fa_IR",
+      siteName: SHOP_NAME,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} - ${final} تومان`,
+      images: product.media_pinned?.url,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    other: {
+      "theme-color": "#000000",
+    },
+  };
+}
+
+export default async function ProductPage(props: PageProps<"/p/[id]">) {
+  const { product } = await getProduct(props);
+
+  if (!product) notFound();
+
   return (
     <div className="container min-h-screen my-10 space-y-5">
       <Suspense fallback={<PageLoader />}>
+        <ProductSchema {...product} />
         <div className="flex flex-col md:flex-row w-full justify-between relative">
           <ProductPageProvider product={product}>
             <ProductGallery
@@ -84,16 +161,21 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
 
         <Separator />
         <ProductAttributes attributes={product.specifications} />
+      </Suspense>
 
-        <Separator />
+      <Separator />
+
+      <Suspense fallback={<ProductReviewsSkeleton />}>
         <ProductReviews
           product_id={product.id}
           product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
           product_name={product.name}
         />
+      </Suspense>
 
-        <Separator />
+      <Separator />
 
+      <Suspense fallback={<RelatedProductsSkeleton />}>
         <RelatedProducts />
       </Suspense>
     </div>

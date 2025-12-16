@@ -3,10 +3,12 @@
 import { BASE_API_URL } from "@/data/assets";
 import { isServer } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { toFormData } from "./utils";
 
 export async function apiFetch(
   path: string,
   options?: Omit<RequestInit, "body"> & {
+    hasFile?: boolean;
     body?: Record<
       string,
       string | number | null | boolean | object | Array<unknown>
@@ -23,6 +25,7 @@ export async function apiFetch(
   const {
     body,
     params,
+    hasFile,
     showErrorToast: showErrorToastParam = true,
     ...restOptions
   } = options || {};
@@ -52,9 +55,13 @@ export async function apiFetch(
   let res: Response;
   try {
     res = await fetch(pathWithBase, {
-      headers: { "Content-Type": "application/json" },
+      headers: hasFile ? {} : { "Content-Type": "application/json" },
       credentials: "include",
-      body: body ? JSON.stringify(body) : undefined,
+      body: body
+        ? hasFile
+          ? toFormData(body)
+          : JSON.stringify(body)
+        : undefined,
 
       ...restOptions,
     });

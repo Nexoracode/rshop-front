@@ -3,10 +3,10 @@ import { DialogClose } from "../../ui/dialog";
 import { Button } from "../../ui/button";
 import { ChevronLeft, MapPinPlus } from "lucide-react";
 import AddressForm from "../../common/user/AddressForm";
-import { useCheckout } from "@/queries/orders";
 import { UserAddress } from "@/types/user";
 import BaseDialog from "../../common/BaseDialog";
 import UserAddressCard from "./UserAddressCard";
+import useCheckout from "@/hooks/useCheckout";
 
 type Props = {
   addresses: Array<UserAddress>;

@@ -103,6 +103,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-muted: var(--muted);
+  --color-muted-light: var(--muted-light);
 
   --color-primary-foreground: var(--foreground-primary);
   --color-secondry-foreground: var(--foreground-secondry);
@@ -218,6 +219,7 @@
   --input: var(--neutral-100);
   --ring: var(--primary-500);
   --muted: var(--neutral-600);
+  --muted-light: var(--neutral-400);
 
   /* ✨ TYPOGRAPHY + RADIUS */
   --radius: 0.75rem;

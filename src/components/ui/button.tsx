@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import LoaderDots from "../common/LoaderDots";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   // Base
   "inline-flex relative items-center justify-center font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap gap-2 select-none",
   {

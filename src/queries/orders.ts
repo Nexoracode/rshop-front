@@ -1,25 +1,10 @@
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { apiFetch } from "@/lib/api-fetch";
 import { getQueryClient } from "@/lib/get-query-client";
-import { PaymentMethod } from "@/types";
-import { Order } from "@/types/order";
-import { UserAddress } from "@/types/user";
-import {
-  mutationOptions,
-  queryOptions,
-  useMutation,
-  useQuery,
-} from "@tanstack/react-query";
-import { getCart } from "./cart";
+import { GiftWrapping, Order, OrderMeta, ShopCardInfo } from "@/types/order";
+import { mutationOptions, queryOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
 
-type OrderMeta = {
-  address: UserAddress | null;
-  payment_method: PaymentMethod;
-  note: string;
-  code: string;
-};
 export const couponApply = mutationOptions<
   { discount: number; payable: number; coupon_code: string },
   { error: string; message: string },
@@ -39,15 +24,17 @@ export const getOrderMeta = queryOptions({
   queryFn: (): OrderMeta =>
     queryClient.getQueryData(["order-meta"]) ?? {
       address: null,
-      code: "",
+      promotion_code: "",
       note: "",
       payment_method: "zarinpal",
+      discount_amount: 0,
     },
   initialData: {
     address: null,
-    code: "",
+    promotion_code: "",
     note: "",
     payment_method: "zarinpal",
+    discount_amount: 0,
   },
 });
 export const setOrderMeta = mutationOptions({
@@ -61,6 +48,9 @@ export const createOrder = mutationOptions({
     code?: string;
     note?: string;
     addressId: number;
+    is_gift?: boolean;
+    gift_message?: string;
+    gift_wrapping_id?: number;
   }) => await apiFetch("/orders/from-card", { method: "POST", body }),
 });
 
@@ -79,9 +69,12 @@ export const getOrderDetails = (orderId: number) =>
       return await apiFetch(`/orders/${orderId}`);
     },
     enabled: Boolean(orderId),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
 export const checkPromotion = mutationOptions({
+  mutationKey: ["check-promotion"],
   mutationFn: async (body: {
     code: string;
     userId?: number;
@@ -95,46 +88,56 @@ export const checkPromotion = mutationOptions({
       quantity: number;
       unitPrice: number;
     }>;
-  }) => await apiFetch("/promotions/check", { method: "POST", body }),
+  }): Promise<{ discount: number }> =>
+    await apiFetch("/promotions/check", { method: "POST", body }),
 });
-export function useCheckout() {
-  const { mutate } = useMutation(setOrderMeta);
-  const { data: orderMeta } = useQuery(getOrderMeta);
 
-  const handleSetOrderMeta = (meta: Partial<OrderMeta>) => {
-    mutate({
-      ...orderMeta,
-      ...meta,
-    });
-  };
+export const getGiftWrappings = queryOptions({
+  queryKey: ["get-gift-wrappings"],
+  queryFn: async (): Promise<Array<GiftWrapping>> => {
+    return await apiFetch("/gift-wrappings/active");
+  },
+});
 
-  return {
-    orderMeta,
-    handleSetOrderMeta,
-  };
-}
+export const getShopCardInfo = queryOptions({
+  queryKey: ["shop-card-info"],
+  queryFn: async (): Promise<{
+    card_number: string;
+    card_holder: string;
+    bank_name: string;
+    iban: string;
+  }> => {
+    return await apiFetch("/card-to-card/shop-card-info");
+  },
+});
 
-export function useCheckPromotion() {
-  const { mutate, isPending } = useMutation(checkPromotion);
-  const currentUser = useCurrentUser();
-  const { data } = useQuery(getCart);
-  const handleCheck = (code = "") => {
-    mutate({
-      code,
-      userId: currentUser.user?.id || 0,
-      items:
-        data?.items.map((item) => ({
-          categoryId: item.product.category_id,
-          productId: item.product.id,
-          quantity: item.quantity,
-          unitPrice: Number(item.unit_price),
-          variantId: item.variant?.id ?? 0,
-        })) ?? [],
-      subtotal: data?.subtotal || 0,
-      shippingCost: 0,
-      isFirstOrder: true,
-    });
-  };
-
-  return { handleCheck, isPending };
-}
+export const createCardToCardPayment = mutationOptions({
+  mutationKey: ["create_card_to_card_payment"],
+  mutationFn: async (body: {
+    order_id: number;
+  }): Promise<{
+    payment_id: number;
+    order_id: number;
+    amount: number;
+    status: string;
+    shop_card_info: ShopCardInfo;
+  }> => await apiFetch("/card-to-card/initiate", { method: "POST", body }),
+});
+export const uploadReceipImage = mutationOptions({
+  mutationFn: async ({
+    payment_id,
+    ...body
+  }: {
+    files?: [string];
+    payment_id: number;
+    sender_card_number?: string;
+    tracking_code?: string;
+    deposit_date?: string;
+    has_receipt_image: boolean;
+  }) =>
+    await apiFetch(`/card-to-card/${payment_id}/upload-receipt`, {
+      hasFile: true,
+      method: "POST",
+      body,
+    }),
+});

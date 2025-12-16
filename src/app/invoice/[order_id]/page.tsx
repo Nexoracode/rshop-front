@@ -4,8 +4,6 @@ import { statusLabel } from "@/data/order";
 import { formatToman, toPersainDate } from "@/lib/utils";
 import { getOrderDetails } from "@/queries/orders";
 import { useQuery } from "@tanstack/react-query";
-import { PageNotFoundError } from "next/dist/shared/lib/utils";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
 

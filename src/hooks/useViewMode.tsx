@@ -10,10 +10,12 @@ export function useViewMode() {
   const searchParams = useSearchParams();
   const isMobile = useIsMobile();
 
-  const modeFromUrl = (searchParams.get("view") as ViewMode) || "grid";
+  const defaultMode = isMobile ? "list" : "grid";
+
+  const modeFromUrl = (searchParams.get("view") as ViewMode) || defaultMode;
 
   const viewMode: ViewMode =
-    modeFromUrl === "list" && !isMobile ? "grid" : modeFromUrl;
+    modeFromUrl === "grid" && !isMobile ? "grid" : modeFromUrl;
 
   const setViewMode = (mode: ViewMode) => {
     const params = new URLSearchParams(searchParams.toString());

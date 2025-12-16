@@ -11,7 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getSupportTicket } from "@/queries/support";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Card } from "@/components/ui/card";
-import BackButton from "@/components/common/BackButton";
 import CloseTicketButton from "./CloseTicketButton";
 import { Badge } from "@/components/ui/badge";
 

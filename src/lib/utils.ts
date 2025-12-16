@@ -113,7 +113,7 @@ export function toPersainDate(date: string): string {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(date));
+  }).format(new Date(Date.parse(date)));
 }
 export function toPersainDateTime(date: string): string {
   return Intl.DateTimeFormat("fa-IR-u-ca-persian", {
@@ -129,4 +129,63 @@ export function chunkArray<T>(arr: T[], size: number): T[][] {
   return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
     arr.slice(i * size, i * size + size)
   );
+}
+
+export function toFormData(
+  data: Record<
+    string,
+    string | number | null | boolean | object | Array<unknown>
+  >,
+  formData: FormData = new FormData(),
+  parentKey?: string
+): FormData {
+  if (data === null || data === undefined) return formData;
+
+  Object.entries(data).forEach(([key, value]) => {
+    const fieldKey = parentKey ? `${parentKey}[${key}]` : key;
+
+    if (value === null || value === undefined) return;
+
+    // File یا Blob
+    if (value instanceof File || value instanceof Blob) {
+      formData.append(fieldKey, value);
+      return;
+    }
+
+    // Date
+    if (value instanceof Date) {
+      formData.append(fieldKey, value.toISOString());
+      return;
+    }
+
+    // Array (نسخه صحیح)
+    if (Array.isArray(value)) {
+      value.forEach((item) => {
+        // اگر آیتم فایل یا مقدار ساده است
+        if (
+          item instanceof File ||
+          item instanceof Blob ||
+          typeof item !== "object"
+        ) {
+          formData.append(`${fieldKey}`, item);
+        } else {
+          // آبجکت داخل آرایه
+          toFormData(item, formData, `${fieldKey}[]`);
+        }
+      });
+      return;
+    }
+
+    // Object
+    if (typeof value === "object") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toFormData(value as Record<string, any>, formData, fieldKey);
+      return;
+    }
+
+    // primitive
+    formData.append(fieldKey, String(value));
+  });
+
+  return formData;
 }

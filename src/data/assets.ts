@@ -1,5 +1,9 @@
 export const PRODUCT_PLACEHOLDER = "/product-placeholder.webp";
 
+export const SHOP_NAME = "فروشگاه آرشاپ";
+
+export const SHOP_URL = "https://rshop.roohbakhshac.ir";
+
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const MAX_PAGE_INFINIT_LOAD = 10;

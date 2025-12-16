@@ -1,69 +1,75 @@
 "use client";
-import { createOrder, useCheckout } from "@/queries/orders";
 import { createPayment } from "@/queries/payment";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 
 import { PaymentMethod } from "@/types";
 import { Button } from "@/components/ui/button";
-import CardToCardPaymentModal from "../CardToCardPaymentModal";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import LoaderDots from "@/components/common/LoaderDots";
+import useCheckout from "@/hooks/useCheckout";
+import { createCardToCardPayment } from "@/queries/orders";
+import CardToCardPayment from "@/components/modules/checkout/CardToCardPayment";
 
-export default function CreatePaymentBtn() {
+export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   const [openModal, setOpenModal] = useState<PaymentMethod | null>(null);
   const {
-    orderMeta: { address, code, note, payment_method },
+    orderMeta: { payment_method },
   } = useCheckout();
-  const {
-    mutate: createOrderHandle,
-    isPending,
-    isSuccess,
-    data: orderData,
-  } = useMutation(createOrder);
+
   const {
     mutate: createPaymentHandle,
-    isPending: paymentPending,
-    isSuccess: paymentSuccess,
+    isPending,
+    isSuccess,
     data: paymentData,
   } = useMutation(createPayment);
-  const handleCreateOrder = () => {
-    createOrderHandle({ code, addressId: address?.id || 0, note });
-  };
+
+  const {
+    mutate: createCardPaymentHandle,
+    isPending: cardPaymentPending,
+    isSuccess: cardPaymentSuccess,
+    data: cardPaymentData,
+  } = useMutation(createCardToCardPayment);
 
   useEffect(() => {
-    if (isSuccess && orderData) {
-      if (payment_method === "cartToCart") return setOpenModal("cartToCart");
+    if (isSuccess) location.href = paymentData.payment_url;
+  }, [isSuccess, paymentData]);
 
-      if (payment_method === "zarinpal") {
-        setOpenModal("zarinpal");
-        createPaymentHandle({
-          order_id: orderData?.id,
-          callback: "http://localhost:3000/verify",
-        });
-      }
+  useEffect(() => {
+    if (cardPaymentSuccess) setOpenModal("cartToCart");
+  }, [cardPaymentSuccess, cardPaymentData]);
+
+  const handlePayment = () => {
+    if (payment_method === "cartToCart") {
+      createCardPaymentHandle({ order_id: order_id });
     }
-  }, [isSuccess, createPaymentHandle, setOpenModal, orderData, payment_method]);
 
-  useEffect(() => {
-    if (paymentSuccess) location.href = paymentData.payment_url;
-  }, [paymentSuccess, paymentData]);
+    if (payment_method === "zarinpal") {
+      setOpenModal("zarinpal");
+      createPaymentHandle({
+        order_id: order_id,
+        callback: `${window.location.origin}/verify`,
+      });
+    }
+  };
   return (
     <>
       <Button
-        isLoading={isPending}
-        onClick={handleCreateOrder}
+        isLoading={isPending || cardPaymentPending}
+        onClick={handlePayment}
         className="w-full md:mt-4"
       >
-        پرداخت و تکمیل سفارش
+        پرداخت
       </Button>
 
-      <CardToCardPaymentModal
-        onClose={() => setOpenModal(null)}
-        cardNumber="6037998156570581"
-        open={openModal === "cartToCart"}
-      />
-      <Dialog open={paymentPending}>
+      {cardPaymentData ? (
+        <CardToCardPayment
+          {...cardPaymentData}
+          onClose={() => setOpenModal(null)}
+          open={openModal === "cartToCart"}
+        />
+      ) : null}
+      <Dialog open={isPending}>
         <DialogContent showCloseButton={false} className="w-full max-w-sm">
           <div className="w-full py-6 space-y-16 flex flex-col justify-center">
             <p className="text-2xl text-primary text-center">
