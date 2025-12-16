@@ -20,21 +20,223 @@ export default function PaymentVerifyPage() {
 
   const { mutate, isPending, data } = useMutation(verifyPayment);
 
+  /* const data: {
+    order: Order;
+    payment: Payment;
+    message: string;
+    status: string;
+    success: boolean;
+  } = {
+    success: true,
+    message: "پرداخت با موفقیت انجام شد.",
+    ref_id: 14981301,
+    invoice_date: "2025-12-16T10:07:48.621Z",
+    order: {
+      id: 3,
+      address_id: 1,
+      status: "preparing",
+      subtotal: "500000",
+      discount_total: "50000",
+      total: "530000",
+      payment_gateway_ref: null,
+      promotion_discount_amount: "0.00",
+      promotion_details: [],
+      shipping_cost: "80000.00",
+      promotion_code: null,
+      gift_wrapping_id: null,
+      gift_wrapping_cost: "0",
+      gift_message: null,
+      is_gift: false,
+      manual_discount_type: null,
+      manual_discount_value: 0,
+      manual_discount_applied: 0,
+      is_manual: false,
+      note: "",
+      created_at: "2025-12-16T10:07:38.316Z",
+      updated_at: "2025-12-16T10:07:48.000Z",
+      user: {
+        id: 1,
+        first_name: null,
+        last_name: null,
+        phone: "09356867218",
+        is_phone_verified: true,
+        email: null,
+        is_active: true,
+        last_login_at: null,
+        avatar_url: null,
+        media_id: null,
+        created_at: "2025-12-16T04:50:19.134Z",
+        updated_at: "2025-12-16T06:41:37.000Z",
+      },
+      address: {
+        id: 1,
+        city: "باجگیران",
+        province: "خراسان رضوی",
+        plaque: "1",
+        unit: "1",
+        address_line: "dfsdfsdf",
+        address_name: "منزل",
+        recipient_name: "null null",
+        recipient_phone: "09356867218",
+        is_self: true,
+        postal_code: "2131231231",
+        is_primary: true,
+        user_id: 1,
+        created_at: "2025-12-16T06:46:20.337Z",
+        updated_at: "2025-12-16T06:46:20.337Z",
+      },
+      items: [
+        {
+          id: 6,
+          order_id: 3,
+          product_id: 1,
+          variant_id: null,
+          quantity: 1,
+          unit_price: "500000",
+          discount: "50000",
+          line_total: "450000",
+          product: {
+            id: 1,
+            name: "قرآنکریم رقعی مخصوص حفظ",
+            price: "500000",
+            stock: 20,
+            is_same_day_shipping: false,
+            requires_preparation: false,
+            preparation_days: null,
+            is_limited_stock: false,
+            discount_amount: 0,
+            discount_percent: 10,
+            is_featured: true,
+            weight: 20,
+            weight_unit: "گرم",
+            description: "<p>sdfdfsdfsf</p>",
+            is_visible: true,
+            order_limit: 0,
+            category_id: 3,
+            sku: "rsp258",
+            media_pinned_id: 9,
+            helper_id: null,
+            brand_id: 3,
+            created_at: "2025-12-16T06:44:15.529Z",
+            is_active: true,
+            updated_at: "2025-12-16T06:45:16.000Z",
+            media_pinned: {
+              id: 9,
+              url: "https://dl.poshtybanman.ir/Rshop/product/file-1765867438459-342.webp",
+              type: "image",
+              alt_text: null,
+              product_id: 1,
+              category_id: null,
+              user_id: null,
+              created_at: "2025-12-16T06:43:59.321Z",
+            },
+            medias: [
+              {
+                id: 9,
+                url: "https://dl.poshtybanman.ir/Rshop/product/file-1765867438459-342.webp",
+                type: "image",
+                alt_text: null,
+                product_id: 1,
+                category_id: null,
+                user_id: null,
+                created_at: "2025-12-16T06:43:59.321Z",
+              },
+            ],
+          },
+          variant: null,
+        },
+      ],
+      gift_wrapping: null,
+    },
+    payment: {
+      id: 4,
+      order_id: 3,
+      amount: "530000.00",
+      authority: "S000000000000000000000000000000pg2yn",
+      ref_id: 14981301,
+      status: "success",
+      message: "پرداخت با موفقیت تایید شد.",
+      gateway: "zarinpal",
+      payment_method: "online",
+      receipt_image_id: null,
+      card_to_card_status: null,
+      sender_card_number: null,
+      tracking_code: null,
+      deposit_date: null,
+      admin_note: null,
+      reviewed_by_id: null,
+      reviewed_at: null,
+      created_at: "2025-12-16T10:07:41.544Z",
+      updated_at: "2025-12-16T10:07:48.000Z",
+      order: {
+        id: 3,
+        address_id: 1,
+        status: "payment_confirmation_pending",
+        subtotal: "500000",
+        discount_total: "50000",
+        total: "530000",
+        payment_gateway_ref: null,
+        promotion_discount_amount: "0.00",
+        promotion_details: [],
+        shipping_cost: "80000.00",
+        promotion_code: null,
+        gift_wrapping_id: null,
+        gift_wrapping_cost: "0",
+        gift_message: null,
+        is_gift: false,
+        manual_discount_type: null,
+        manual_discount_value: 0,
+        manual_discount_applied: 0,
+        is_manual: false,
+        note: "",
+        created_at: "2025-12-16T10:07:38.316Z",
+        updated_at: "2025-12-16T10:07:41.000Z",
+        address: {
+          id: 1,
+          city: "باجگیران",
+          province: "خراسان رضوی",
+          plaque: "1",
+          unit: "1",
+          address_line: "dfsdfsdf",
+          address_name: "منزل",
+          recipient_name: "null null",
+          recipient_phone: "09356867218",
+          is_self: true,
+          postal_code: "2131231231",
+          is_primary: true,
+          user_id: 1,
+          created_at: "2025-12-16T06:46:20.337Z",
+          updated_at: "2025-12-16T06:46:20.337Z",
+        },
+        gift_wrapping: null,
+      },
+      user: {
+        id: 1,
+        first_name: null,
+        last_name: null,
+        phone: "09356867218",
+        is_phone_verified: true,
+        email: null,
+        is_active: true,
+        last_login_at: null,
+        avatar_url: null,
+        media_id: null,
+        created_at: "2025-12-16T04:50:19.134Z",
+        updated_at: "2025-12-16T06:41:37.000Z",
+      },
+      receipt_image: null,
+    },
+  }; */
+
   useEffect(() => {
     if (Authority) mutate({ Authority, Status });
   }, [Authority, mutate, Status]);
 
-  const address = {
-    recipient_name: "محمد حسینی",
-    city: "تهران",
-    address_line: "خیابان آزادی، خیابان حبیب‌اله، پلاک 24، واحد 2",
-  };
+  console.log({ data });
 
-  const paymentInfo = {
-    gateway: "زرین‌پال",
-    method: "پرداخت اینترنتی",
-    card_mask: "6037-****-****-4321",
-  };
+  const orderAddress = data?.order.address;
+
+  const orderPayment = data?.payment;
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
@@ -103,8 +305,8 @@ export default function PaymentVerifyPage() {
                         <p className="text-gray-900 dark:text-gray-100 text-sm">
                           {item.product.name}
                         </p>
-                        <div className="flex gap-1">
-                          {item.variant?.attributes?.map((i) => (
+                        {/* <div className="flex gap-1">
+                          {item.variant?.map((i) => (
                             <p key={i.id} className="text-sm">
                               <span className="text-muted font-light">
                                 {i.attribute.name}
@@ -115,7 +317,7 @@ export default function PaymentVerifyPage() {
                               </span>
                             </p>
                           ))}
-                        </div>
+                        </div> */}
                         <p className="text-gray-500 text-xs">
                           {item.line_total} تومان
                         </p>
@@ -131,10 +333,13 @@ export default function PaymentVerifyPage() {
                   آدرس ارسال
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100 text-sm">
-                  {address.recipient_name}
+                  {orderAddress?.is_self
+                    ? "خودم"
+                    : `${orderAddress?.recipient_name}`}
                 </p>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  {address.address_line}, {address.city}
+                  {orderAddress?.address_line} {orderAddress?.plaque},{" "}
+                  {orderAddress?.city} , {orderAddress?.province}
                 </p>
               </div>
 
@@ -144,11 +349,11 @@ export default function PaymentVerifyPage() {
                   اطلاعات پرداخت
                 </h3>
                 <p className="text-gray-900 dark:text-gray-100 text-sm">
-                  {paymentInfo.gateway}
+                  {orderPayment?.gateway}
                 </p>
-                <p className="text-gray-500 text-xs">{paymentInfo.method}</p>
+                <p className="text-gray-500 text-xs">{orderPayment?.amount}</p>
                 <p className="text-gray-500 text-xs mt-1">
-                  {paymentInfo.card_mask}
+                  {orderPayment?.authority}
                 </p>
               </div>
             </div>

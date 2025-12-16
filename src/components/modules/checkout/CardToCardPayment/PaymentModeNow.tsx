@@ -8,9 +8,11 @@ import ImageUploadField from "@/components/common/Form/ImageUploadField";
 export default function PaymentModeNow({
   payment_id,
   onSuccess,
+  onClose,
 }: {
   payment_id: number;
   onSuccess: () => void;
+  onClose: () => void;
 }) {
   const form = useForm();
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
@@ -35,6 +37,7 @@ export default function PaymentModeNow({
 
       <PaymentModalFooter
         onClick={form.handleSubmit(handleSubmit)}
+        onClose={onClose}
         isLoading={isPending}
         disabled={isPending}
       />

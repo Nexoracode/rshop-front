@@ -50,6 +50,7 @@ export type Product = {
   weight_unit: string;
   description: string;
   is_visible: boolean;
+  has_variants: boolean;
   order_limit: number;
   category_id: number;
   media_pinned_id: number;

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +10,7 @@ import { Product } from "@/types/product";
 export default function ProductCard(props: Product) {
   const {
     name,
+    stock,
     price,
     discount_amount,
     discount_percent,
@@ -18,31 +18,66 @@ export default function ProductCard(props: Product) {
     medias,
     id,
     brand,
+    variants,
+    has_variants,
   } = props;
 
-  const { final, percent, compareAt } = calcPrice(
-    price,
-    discount_amount,
-    discount_percent
-  );
+  /* const mapVaraintAttributes = (): Array<any> => {
+    const result: Array<any> = [];
+
+    const attributes = variants[0].attributes.map((attr) => ({
+      id: attr.id,
+      type: attr.type,
+    }));
+
+    const values = attributes.map(attr=>{
+       return variants.map(varaint=>varaint.attributes.find())
+    })
+
+    return result;
+  }; */
+
+  const getPriceParams = (): {
+    priceParams: [number, number, number];
+    stock: number;
+  } | null => {
+    if (!has_variants && stock > 0)
+      return {
+        priceParams: [+price, +discount_amount, discount_percent],
+        stock,
+      };
+
+    const varaintHasStock = variants.find((varaint) => varaint.stock > 0);
+
+    if (varaintHasStock)
+      return {
+        priceParams: [
+          varaintHasStock.price,
+          varaintHasStock.discount_amount,
+          varaintHasStock.discount_percent,
+        ],
+        stock: varaintHasStock.stock,
+      };
+
+    return null;
+  };
+
+  const inStock = getPriceParams();
+  //const inStock = null;
+
+  const {
+    final = 0,
+    percent = 0,
+    compareAt = null,
+  } = inStock ? calcPrice(...inStock.priceParams) : {};
   return (
     <Link href={`/p/rsp-${id}`}>
       <Card
         className="group gap-2 md:gap-3 relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
       >
-        {/* top left: wishlist */}
-        {/*  <div className="absolute z-20  gap-y-0.5 flex flex-col right-1 top-1">
-          <div className="flex translate-x-12 group-hover:translate-x-0 transition-transform duration-500 ease-out flex-col gap-y-0.5">
-            <AddToWishlistBtn id={id} />
-
-            <AddToCompareBtn productId={id} />
-          </div>
-        </div> */}
-
-        {/* top right: discount */}
         {compareAt && (
-          <Badge variant="danger" className="absolute left-4 top-4 z-10 ">
+          <Badge variant="danger" className="absolute left-2 top-2 z-10 ">
             {percent}%
           </Badge>
         )}
@@ -69,17 +104,7 @@ export default function ProductCard(props: Product) {
           )}
         </div>
 
-        {/* <div>
-          {variants
-            .map((variant) =>
-              variant.attributes.find((attribute) => attribute.type === "color")
-            )
-            .filter((a) => a !== null)
-            .map((a) => a?.values)
-            .flat()
-            .map((value) => value?.display_color)
-            .reduce((a, c) => (a.includes[c] ? a : [...a, c]), [])}
-        </div> */}
+        {/*  {has_variants && <div>{mapVaraintAttributes().map()}</div>} */}
 
         {/* content */}
         <div className="mt-2 space-y-1 px-1 pb-2">
@@ -97,12 +122,20 @@ export default function ProductCard(props: Product) {
 
           {/* price */}
           <div className="flex flex-col sm:flex-row items-center gap-2">
-            <span className="text-base font-bold text-primary-600">
-              {formatToman(final)}
-            </span>
-            {compareAt && (
-              <span className="text-xs text-gray-400 line-through">
-                {formatToman(+compareAt)}
+            {inStock ? (
+              <>
+                <span className="text-base font-bold text-primary-600">
+                  {formatToman(final)}
+                </span>
+                {compareAt && (
+                  <span className="text-xs text-gray-400 line-through">
+                    {formatToman(+compareAt)}
+                  </span>
+                )}
+              </>
+            ) : (
+              <span className="block text-right mt-2 font-semibold  text-muted-light w-full">
+                ناموجود
               </span>
             )}
           </div>

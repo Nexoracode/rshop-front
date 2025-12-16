@@ -23,6 +23,7 @@ export default function CardToCardPayment({
   payment_id,
   order_id,
   amount,
+  onClose,
   later = false,
 }: Props) {
   const [mode, setMode] = React.useState<PaymentMode>("now");
@@ -33,15 +34,29 @@ export default function CardToCardPayment({
   };
 
   const modeAction: Record<PaymentMode, React.ReactNode> = {
-    now: <PaymentModeNow onSuccess={handleSuccess} payment_id={payment_id} />,
-    later: <PaymentModeLater />,
-    info: <PaymentModeInfo onSuccess={handleSuccess} payment_id={payment_id} />,
+    now: (
+      <PaymentModeNow
+        onClose={onClose}
+        onSuccess={handleSuccess}
+        payment_id={payment_id}
+      />
+    ),
+    later: <PaymentModeLater onClose={onClose} onSuccess={handleSuccess} />,
+    info: (
+      <PaymentModeInfo
+        onClose={onClose}
+        onSuccess={handleSuccess}
+        payment_id={payment_id}
+      />
+    ),
   };
 
   return (
     <BaseDialog
       open={open}
-      onOpenChange={() => {}}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
       title="پرداخت کارت‌به‌کارت"
       hiddenFooter
       content={

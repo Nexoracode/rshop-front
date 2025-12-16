@@ -19,9 +19,11 @@ type PaymentFormValues = {
 export function PaymentModeInfo({
   payment_id,
   onSuccess,
+  onClose,
 }: {
   payment_id: number;
   onSuccess: () => void;
+  onClose: () => void;
 }) {
   const form = useForm<PaymentFormValues>();
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
@@ -63,6 +65,7 @@ export function PaymentModeInfo({
       </div>
       <PaymentModalFooter
         onClick={form.handleSubmit(handleSubmit)}
+        onClose={onClose}
         isLoading={isPending}
         disabled={isPending}
       />
