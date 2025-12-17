@@ -3,10 +3,11 @@ import { getMe } from "@/queries/user";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useCurrentUser() {
-  const { data, isLoading } = useQuery({ ...getMe });
+  const { data, isLoading, isPending } = useQuery({ ...getMe });
 
   return {
     user: data || null,
     isLoading,
+    isPending,
   };
 }

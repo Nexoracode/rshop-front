@@ -1,3 +1,4 @@
+import AuthWarpper from "@/components/common/AuthWarpper";
 import Responsive from "@/components/common/Responsive";
 import Header from "@/components/layout/Header";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
@@ -26,7 +27,7 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
             "rounded-xl flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]"
           )}
         >
-          {children}
+          <AuthWarpper>{children}</AuthWarpper>
         </main>
       </div>
       <MobileBottomNav />
