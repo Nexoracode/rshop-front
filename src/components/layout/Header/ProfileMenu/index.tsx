@@ -25,7 +25,7 @@ import UserMenuItem from "./UserMenuItem";
 
 const menuItems = [
   { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
-  { label: "آدرس ها", Icon: MapIcon, href: "addresses" },
+  { label: "آدرس ها", Icon: MapIcon, href: "address" },
   { label: "علاقه مندی ها", Icon: Heart, href: "wishlist" },
   { label: "دیدگاه ها", Icon: MessageCircle, href: "reviews" },
 ];
