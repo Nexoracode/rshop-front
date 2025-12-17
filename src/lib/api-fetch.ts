@@ -45,10 +45,10 @@ export async function apiFetch(
             )
       ).toString()
     : "";
-  const pathWithBase = isServer
+  /* const pathWithBase = isServer
     ? `${BASE_API_URL}${path}${queryString}`
-    : `/api${path}${queryString}`;
-  //  const pathWithBase = `${BASE_API_URL}${path}${queryString}`;
+    : `/api${path}${queryString}`; */
+  const pathWithBase = `${BASE_API_URL}${path}${queryString}`;
   const showErrorToast =
     showErrorToastParam && !path.endsWith("me") && !isServer;
 
