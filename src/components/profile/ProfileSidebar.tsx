@@ -14,7 +14,7 @@ import {
   EyeIcon,
   ChevronLeft,
 } from "lucide-react";
-import LogoutButton from "../modules/user/LogoutButton";
+import LogoutButton from "./LogoutButton";
 
 const items = [
   { label: "پروفایل من", href: "/profile", icon: User },

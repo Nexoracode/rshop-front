@@ -2,7 +2,7 @@ import React from "react";
 import { DialogClose } from "../../ui/dialog";
 import { Button } from "../../ui/button";
 import { ChevronLeft, MapPinPlus } from "lucide-react";
-import AddressForm from "../../common/user/AddressForm";
+import AddressForm from "../../users/AddressForm";
 import { UserAddress } from "@/types/user";
 import BaseDialog from "../../common/BaseDialog";
 import UserAddressCard from "./UserAddressCard";

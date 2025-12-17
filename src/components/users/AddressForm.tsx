@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addUserAddress, updateUserAddress } from "@/queries/address";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { UserAddress } from "@/types/user";
-import BaseDialog from "../BaseDialog";
+import BaseDialog from "../common/BaseDialog";
 import AddressFormFields from "./AddressFormFields";
 
 type Props = {

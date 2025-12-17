@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2, X } from "lucide-react";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import ProductRating from "@/components/modules/product/ProductRating";
 import AddCompareDialog from "./AddCompareDialog";
 import { CompareListItem } from "@/types/product";
+import ProductRating from "@/components/Product/ProductRating";
 
 type Props = {
   items: Array<CompareListItem>;

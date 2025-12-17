@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import ProductCard from "@/components/common/ProductCard";
+import ProductCard from "@/components/Product/ProductCard";
 import { Product } from "@/types/product";
 
 type Props = {

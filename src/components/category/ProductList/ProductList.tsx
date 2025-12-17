@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
-import ProductRow from "@/components/common/ProductCard/ProductRow";
+import ProductRow from "@/components/Product/ProductCard/ProductRow";
 import { PaginateData } from "@/types";
 import { Product } from "@/types/product";
-import ProductCard from "@/components/common/ProductCard";
+import ProductCard from "@/components/Product/ProductCard";
 import ProductCardSkeleton from "@/components/common/Skeleton/ProductCardSkeleton";
 import { useInView } from "react-intersection-observer";
 import { useViewMode } from "@/hooks/useViewMode";

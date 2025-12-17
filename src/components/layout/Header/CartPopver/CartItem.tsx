@@ -1,5 +1,5 @@
 "use client";
-import QuantitySelect from "@/components/modules/product/QuantitySelect";
+import QuantitySelect from "@/components/Product/QuantitySelect";
 import { PopoverClose } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
@@ -30,7 +30,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
         <div className="text-base font-medium line-clamp-1">
           {item.product.name}
         </div>
-        {/*  {item.variant ? (npm
+        {/*  {item.variant ? (
               <div>
                 {item.variant.attributes.map((attr) => (
                   <p key={attr.id}>

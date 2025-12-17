@@ -1,4 +1,5 @@
 "use client";
+import ProductReviewForm from "@/components/Product/ProductReviewForm";
 import {
   Dialog,
   DialogContent,
@@ -6,7 +7,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import ProductReviewForm from "@/components/modules/product/ProductReviewForm";
 import { Review } from "@/types/user";
 
 type Props = {

@@ -20,7 +20,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import LogoutButton from "../../../modules/user/LogoutButton";
+import LogoutButton from "../../../profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 
 const menuItems = [

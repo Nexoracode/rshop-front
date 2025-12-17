@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
 import { formatToman } from "@/lib/utils";
-import SubmitReviewBtn from "@/components/modules/product/SubmitReviewBtn";
-import ProductRating from "@/components/modules/product/ProductRating";
 import { Badge } from "@/components/ui/badge";
 import { OrderItem } from "@/types/order";
+import SubmitReviewBtn from "@/components/Product/SubmitReviewBtn";
+import ProductRating from "@/components/Product/ProductRating";
 
 type Props = {
   item: OrderItem;

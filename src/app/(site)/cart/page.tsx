@@ -1,4 +1,4 @@
-import CartItemsList from "@/components/modules/cart/CartItemsList";
+import CartItemsList from "@/components/cart/CartItemsList";
 import React from "react";
 
 export default function CartPage() {

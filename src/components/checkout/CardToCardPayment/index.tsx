@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import BaseDialog from "../../../common/BaseDialog";
+import BaseDialog from "../../common/BaseDialog";
 import { PaymentMode } from "./types";
 import PaymentModeNow from "./PaymentModeNow";
 import PaymentModeLater from "./PaymentModeLater";

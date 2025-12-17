@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import SelectField from "../Form/SelectField";
+import SelectField from "../common/Form/SelectField";
 import { regions } from "@/data/regions";
-import TextField from "../Form/TextField";
-import RadioGroupField from "../Form/RadioGroupField";
+import TextField from "../common/Form/TextField";
+import RadioGroupField from "../common/Form/RadioGroupField";
 import { useFormContext } from "react-hook-form";
 
 type Props = {

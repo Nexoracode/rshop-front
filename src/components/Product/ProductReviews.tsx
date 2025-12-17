@@ -1,7 +1,5 @@
 "use client";
-import SubmitReviewBtn from "../modules/product/SubmitReviewBtn";
 import ProductReviewItem from "./ProductReviewItem";
-import ProductRating from "../modules/product/ProductRating";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProductReviews } from "@/queries/products";
 import React, { useState } from "react";
@@ -12,6 +10,8 @@ import { Skeletons } from "../ui/skeleton";
 import { Button } from "../ui/button";
 import { ChevronDown } from "lucide-react";
 import Pagination from "../common/Pagination";
+import ProductRating from "./ProductRating";
+import SubmitReviewBtn from "./SubmitReviewBtn";
 
 type Props = {
   product_id: number;

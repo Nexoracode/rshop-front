@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Pencil, Trash2, Check, X } from "lucide-react";
-import ProductRating from "@/components/modules/product/ProductRating";
 import { toPersainDate } from "@/lib/utils";
 import { Menu } from "@/components/common/Menu";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Review } from "@/types/user";
+import ProductRating from "@/components/Product/ProductRating";
 
 type Props = {
   onEdit: (reviewId: number) => void;

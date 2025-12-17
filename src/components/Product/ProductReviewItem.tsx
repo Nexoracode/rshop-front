@@ -1,7 +1,7 @@
 import React from "react";
-import ProductRating from "../modules/product/ProductRating";
 import { toPersainDate } from "@/lib/utils";
 import { Review } from "@/types/user";
+import ProductRating from "./ProductRating";
 
 type Props = {
   review: Review;

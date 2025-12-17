@@ -12,7 +12,7 @@ import {
   updateUserAddress,
 } from "@/queries/address";
 import AddressList from "./AddressList";
-import AddressForm from "@/components/common/user/AddressForm";
+import AddressForm from "@/components/users/AddressForm";
 import { Card } from "@/components/ui/card";
 import { UserAddress } from "@/types/user";
 

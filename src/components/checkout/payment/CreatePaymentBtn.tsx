@@ -9,7 +9,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import LoaderDots from "@/components/common/LoaderDots";
 import useCheckout from "@/hooks/useCheckout";
 import { createCardToCardPayment } from "@/queries/orders";
-import CardToCardPayment from "@/components/modules/checkout/CardToCardPayment";
+import CardToCardPayment from "@/components/checkout/CardToCardPayment";
 
 export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   const [openModal, setOpenModal] = useState<PaymentMethod | null>(null);

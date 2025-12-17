@@ -1,5 +1,5 @@
 "use client";
-import CardToCardPayment from "@/components/modules/checkout/CardToCardPayment";
+import CardToCardPayment from "@/components/checkout/CardToCardPayment";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 

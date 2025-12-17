@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import { products } from "@/__MOCK__/catalog";
-import ProductCard from "../common/ProductCard";
+import ProductCard from "./ProductCard";
 import SectionTitle from "../common/SectionTitle";
 
 export default function RelatedProducts() {

@@ -1,7 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import VariantSelect from "../modules/product/VariantSelect";
-import AddToCartButton from "../modules/product/AddToCartButton";
 import ProductPriceInfo from "./ProductPriceInfo";
 import { Card } from "../ui/card";
 import Responsive from "../common/Responsive";
@@ -9,6 +7,8 @@ import CreateSupportButton from "./CreateSupportButton";
 import { ChevronLeftIcon, Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { Product } from "@/types/product";
+import VariantSelect from "./VariantSelect";
+import AddToCartButton from "./AddToCartButton copy";
 
 export default function ProductInfo(props: Product) {
   const { attribute_nodes, specifications, ...product } = props;
