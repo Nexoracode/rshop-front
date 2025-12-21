@@ -1,6 +1,6 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Category } from "@/types/product";
-import { MoveLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -15,7 +15,7 @@ export default function ActiveCategoryContent(activeCategory: Category) {
               className="mb-2 inline-block text-sm font-semibold text-gray-800 border-r-4 pr-2 border-r-rose-500 hover:text-rose-500 hover:bg-transparent"
             >
               {sub.title}
-              <MoveLeft size={10} className="inline-block mr-1" />
+              <ChevronLeft size={10} className="inline-block mr-1" />
             </Link>
           </DropdownMenuItem>
           <ul className="text-sm text-gray-600">

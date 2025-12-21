@@ -11,7 +11,7 @@ export default function ProductDescription({ description }: Props) {
       <SectionTitle title="توضیحات" />
       <article
         dangerouslySetInnerHTML={{ __html: description }}
-        className="leading-8 text-muted text-sm"
+        className="leading-8 content text-muted text-sm"
       ></article>
     </section>
   );

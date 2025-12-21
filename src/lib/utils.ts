@@ -108,6 +108,16 @@ export function calcPrice(
   return { final, compareAt, percent };
 }
 
+export function getTimeString(date: string): string {
+  return Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Tehran",
+  }).format(new Date(Date.parse(date)));
+}
+
 export function toPersainDate(date: string): string {
   return Intl.DateTimeFormat("fa-IR-u-ca-persian", {
     day: "numeric",

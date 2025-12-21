@@ -16,23 +16,25 @@ export default function ProductAttributes({ attributes }: Props) {
         .map((attrGroup) => (
           <div
             key={attrGroup.id}
-            className="flex flex-col md:flex-row justify-between"
+            className="flex flex-col mt-12 items-start md:flex-row justify-between"
           >
-            <p className="w-[200px] py-5">{attrGroup.name}</p>
+            <p className="w-[200px] pt-2 text-muted text-sm font-semibold">
+              {attrGroup.name}
+            </p>
 
-            <div className="flex-1">
+            <div className="flex-1 w-full">
               {attrGroup.attributes
                 .sort((a, b) => a.display_order - b.display_order)
                 .map((item) => (
                   <div
                     key={item.id}
-                    className="flex  border-muted/30 items-stretch"
+                    className="flex md:pt-2 w-full first:pt-0 border-muted/30 items-stretch"
                   >
-                    <span className="text-muted/60 border-b md:border-b-0 border-l text-xs md:text-sm bg-muted/10 md:bg-transparent md:border-l-0  w-24 md:w-40 p-2">
+                    <span className="text-muted/60 border-b md:border-b-0 border-l text-xs md:text-sm bg-muted/10 md:bg-transparent md:border-l-0  w-32 md:w-40 p-2">
                       {item.name}
                     </span>
 
-                    <div className="flex-1 border-b ps-2">
+                    <div className="flex-1 pb-2 border-b ps-2">
                       {item.values
                         .sort((a, b) => a.display_order - b.display_order)
                         .map((v) => (

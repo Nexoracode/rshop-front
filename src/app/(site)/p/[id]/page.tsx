@@ -25,6 +25,7 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import { Suspense } from "react";
+import ProductSummeryCard from "@/components/Product/ProductSummeryCard";
 
 const ProductReviews = dynamic(
   () => import("@/components/Product/ProductReviews")
@@ -108,10 +109,10 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
 
   return (
     <div className="container min-h-screen my-10 space-y-5">
-      <Suspense fallback={<PageLoader />}>
-        <ProductSchema {...product} />
-        <div className="flex flex-col md:flex-row w-full justify-between relative">
-          <ProductPageProvider product={product}>
+      <ProductPageProvider product={product}>
+        <Suspense fallback={<PageLoader />}>
+          <ProductSchema {...product} />
+          <div className="flex flex-col md:flex-row w-full justify-between relative">
             <ProductGallery
               media_pinned={product.media_pinned}
               images={product.medias}
@@ -145,39 +146,41 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
                 <MobileShareBtn />
               </Responsive>
             </div>
-          </ProductPageProvider>
+          </div>
+        </Suspense>
+
+        <div className="flex gap-4 justify-between">
+          <div className="">
+            <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
+            <Separator />
+            <ProductDescription description={product.description} />
+            {product.helper && (
+              <>
+                <Separator />
+                <ProductHelper {...product.helper} />
+              </>
+            )}
+            <Separator />
+            <ProductAttributes attributes={product.specifications} />
+            <Separator />
+            <Suspense fallback={<ProductReviewsSkeleton />}>
+              <ProductReviews
+                product_id={product.id}
+                product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+                product_name={product.name}
+              />
+            </Suspense>
+          </div>
+
+          <ProductSummeryCard {...product} />
         </div>
 
-        <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
         <Separator />
-        <ProductDescription description={product.description} />
 
-        {product.helper && (
-          <>
-            <Separator />
-            <ProductHelper {...product.helper} />
-          </>
-        )}
-
-        <Separator />
-        <ProductAttributes attributes={product.specifications} />
-      </Suspense>
-
-      <Separator />
-
-      <Suspense fallback={<ProductReviewsSkeleton />}>
-        <ProductReviews
-          product_id={product.id}
-          product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-          product_name={product.name}
-        />
-      </Suspense>
-
-      <Separator />
-
-      <Suspense fallback={<RelatedProductsSkeleton />}>
-        <RelatedProducts />
-      </Suspense>
+        <Suspense fallback={<RelatedProductsSkeleton />}>
+          <RelatedProducts />
+        </Suspense>
+      </ProductPageProvider>
     </div>
   );
 }

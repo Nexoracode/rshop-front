@@ -4,21 +4,24 @@ import { useMutation } from "@tanstack/react-query";
 import { uploadReceipImage } from "@/queries/orders";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import ImageUploadField from "@/components/common/Form/ImageUploadField";
+import { Media } from "@/types";
 
 export default function PaymentModeNow({
   payment_id,
   onSuccess,
   onClose,
+  receipt_image,
 }: {
   payment_id: number;
   onSuccess: () => void;
   onClose: () => void;
+  receipt_image: Media | null;
 }) {
-  const form = useForm();
+  console.log({ receipt_image });
+  const form = useForm({ values: { file: receipt_image?.url } });
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
   const handleSubmit = (values: FieldValues) => {
     const { file } = values;
-    console.log({ file });
     mutateAsync(
       { has_receipt_image: true, files: [file], payment_id },
       { onSuccess }

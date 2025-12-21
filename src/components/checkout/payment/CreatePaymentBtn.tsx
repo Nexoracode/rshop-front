@@ -3,13 +3,13 @@ import { createPayment } from "@/queries/payment";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 
-import { PaymentMethod } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import LoaderDots from "@/components/common/LoaderDots";
 import useCheckout from "@/hooks/useCheckout";
 import { createCardToCardPayment } from "@/queries/orders";
 import CardToCardPayment from "@/components/checkout/CardToCardPayment";
+import { PaymentMethod } from "@/types/order";
 
 export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   const [openModal, setOpenModal] = useState<PaymentMethod | null>(null);
@@ -36,16 +36,16 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   }, [isSuccess, paymentData]);
 
   useEffect(() => {
-    if (cardPaymentSuccess) setOpenModal("cartToCart");
+    if (cardPaymentSuccess) setOpenModal("card_to_card");
   }, [cardPaymentSuccess, cardPaymentData]);
 
   const handlePayment = () => {
-    if (payment_method === "cartToCart") {
+    if (payment_method === "card_to_card") {
       createCardPaymentHandle({ order_id: order_id });
     }
 
-    if (payment_method === "zarinpal") {
-      setOpenModal("zarinpal");
+    if (payment_method === "online") {
+      setOpenModal("online");
       createPaymentHandle({
         order_id: order_id,
         callback: `${window.location.origin}/verify`,
@@ -66,7 +66,7 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
         <CardToCardPayment
           {...cardPaymentData}
           onClose={() => setOpenModal(null)}
-          open={openModal === "cartToCart"}
+          open={openModal === "card_to_card"}
         />
       ) : null}
       <Dialog open={isPending}>

@@ -5,10 +5,10 @@ import { Card } from "../ui/card";
 import Responsive from "../common/Responsive";
 import CreateSupportButton from "./CreateSupportButton";
 import { ChevronLeftIcon, Star } from "lucide-react";
-import { Button } from "../ui/button";
 import { Product } from "@/types/product";
 import VariantSelect from "./VariantSelect";
-import AddToCartButton from "./AddToCartButton copy";
+import AddToCartButton from "./AddToCartButton";
+import ImportantAttributes from "./ImportantAttributes";
 
 export default function ProductInfo(props: Product) {
   const { attribute_nodes, specifications, ...product } = props;
@@ -61,32 +61,11 @@ export default function ProductInfo(props: Product) {
           </div>
         ) : null}
 
-        <div className="space-y-3">
-          {specifications
-            .flatMap((i) => i.attributes.filter((a) => a.is_important))
-            .map((attr) => (
-              <div key={attr.id} className="flex items-center">
-                <p className="text-xs text-neutral-500 font-light">
-                  {" "}
-                  {attr.name}:
-                </p>
-
-                <p className="text-sm    pr-2">
-                  {attr.values.map((i) => i.value).join(", ")}
-                </p>
-              </div>
-            ))}
-          <Button
-            variant={"text-nohover"}
-            color="info"
-            className="p-0"
-            size={"sm"}
-            endIcon={<ChevronLeftIcon className="size-4" />}
-          >
-            مشاهده همه ویژگی ها
-          </Button>
-        </div>
-        <Separator />
+        <ImportantAttributes
+          specifications={specifications.flatMap((i) =>
+            i.attributes.filter((a) => a.is_important)
+          )}
+        />
 
         {attribute_nodes.map((attrGroup) =>
           attrGroup.attributes.map((attr) => (

@@ -22,21 +22,6 @@ export default function ProductCard(props: Product) {
     has_variants,
   } = props;
 
-  /* const mapVaraintAttributes = (): Array<any> => {
-    const result: Array<any> = [];
-
-    const attributes = variants[0].attributes.map((attr) => ({
-      id: attr.id,
-      type: attr.type,
-    }));
-
-    const values = attributes.map(attr=>{
-       return variants.map(varaint=>varaint.attributes.find())
-    })
-
-    return result;
-  }; */
-
   const getPriceParams = (): {
     priceParams: [number, number, number];
     stock: number;

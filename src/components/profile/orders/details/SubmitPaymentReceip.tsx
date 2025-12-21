@@ -1,12 +1,14 @@
 "use client";
 import CardToCardPayment from "@/components/checkout/CardToCardPayment";
 import { Button } from "@/components/ui/button";
+import { CardToCardPaymentInfo } from "@/types/order";
 import React, { useState } from "react";
 
 type Props = {
   order_id: number;
   payment_id: number;
   amount: number;
+  paymentInfo: CardToCardPaymentInfo;
 };
 
 export default function SubmitPaymentReceip(props: Props) {
@@ -20,6 +22,7 @@ export default function SubmitPaymentReceip(props: Props) {
       <CardToCardPayment
         open={open}
         onClose={() => setOpen(false)}
+        later
         {...props}
       />
     </div>

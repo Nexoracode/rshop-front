@@ -26,14 +26,14 @@ export const getOrderMeta = queryOptions({
       address: null,
       promotion_code: "",
       note: "",
-      payment_method: "zarinpal",
+      payment_method: "online",
       discount_amount: 0,
     },
   initialData: {
     address: null,
     promotion_code: "",
     note: "",
-    payment_method: "zarinpal",
+    payment_method: "online",
     discount_amount: 0,
   },
 });
@@ -136,7 +136,7 @@ export const uploadReceipImage = mutationOptions({
     has_receipt_image: boolean;
   }) =>
     await apiFetch(`/card-to-card/${payment_id}/upload-receipt`, {
-      hasFile: true,
+      hasFile: Boolean(body.files),
       method: "POST",
       body,
     }),

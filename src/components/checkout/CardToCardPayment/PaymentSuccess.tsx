@@ -27,7 +27,7 @@ export default function PaymentSuccess({ order_id, later }: Props) {
           <Button
             variant={"outline"}
             fullWidth
-            href={`/profile/order/${order_id}`}
+            href={`/profile/orders/${order_id}`}
           >
             فهمیدم
           </Button>

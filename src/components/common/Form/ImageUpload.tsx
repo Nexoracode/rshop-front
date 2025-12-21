@@ -4,11 +4,14 @@ import { Input } from "@/components/ui/input";
 import { UploadCloud } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
+import Image from "../Image";
+import Link from "next/link";
 
 type Props = { onChange: (file: File | null) => void; value: string | null };
 
-export default function ImageUpload({ onChange }: Props) {
-  const [file, setFile] = React.useState<File | null>(null);
+export default function ImageUpload({ onChange, value }: Props) {
+  const [file, setFile] = React.useState<File | string | null>(() => value);
+
   const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
@@ -41,7 +44,7 @@ export default function ImageUpload({ onChange }: Props) {
   };
 
   return (
-    <div>
+    <div className="flex justify-between gap-2 items-stretch">
       <label
         htmlFor="receipt"
         onDrop={onDrop}
@@ -56,12 +59,27 @@ export default function ImageUpload({ onChange }: Props) {
         <div className="text-xs text-muted-foreground">
           فرمت‌های مجاز: JPG, PNG, WebP, PDF — حداکثر 10MB
         </div>
-        {file && (
-          <div className="mt-2 text-xs font-medium px-2 py-1 rounded bg-muted">
+        {file && file instanceof File && (
+          <div className="mt-2 text-xs font-medium px-2 py-1 rounded bg-muted-light">
             {file.name} ({Math.ceil(file.size / 1024)} KB)
           </div>
         )}
       </label>
+      {file && (
+        <div className="relative cursor-pointer rounded-2xl border border-dashed bg-muted-light/10  aspect-square w-[10rem]">
+          <Link
+            target="_blank"
+            href={file instanceof File ? URL.createObjectURL(file) : file}
+          >
+            <Image
+              alt=""
+              fill
+              className="object-center object-contain p-4"
+              src={file instanceof File ? URL.createObjectURL(file) : file}
+            />
+          </Link>
+        </div>
+      )}
       <Input
         id="receipt"
         type="file"

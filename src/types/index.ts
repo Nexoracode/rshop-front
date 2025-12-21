@@ -41,6 +41,11 @@ export type BooleanFilterKey =
   | "same_day_shipping"
   | "in_stock";
 
+export type Translate<T extends string | number | symbol, S = unknown> = Record<
+  T,
+  { label: string } & S
+>;
+
 export type BooleanFilter = {
   key: BooleanFilterKey;
   value: boolean;
@@ -76,7 +81,6 @@ export type ProductFilterQuery = {
   search: string;
 };
 
-export type PaymentMethod = "zarinpal" | "cartToCart";
 export type Media = {
   id: number;
   url: string;

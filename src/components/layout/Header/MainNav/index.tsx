@@ -63,46 +63,51 @@ export default function MainNav() {
               <ChevronDown size={20} />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="min-w-6xl p-2">
+          <DropdownMenuContent align="start" className="min-w-6xl">
             <div
               dir="rtl"
               className="relative w-full max-w-6xl mx-auto font-sans z-50"
             >
               <div className="flex  overflow-hidden  divide-x divide-gray-200">
                 {/* دسته‌های اصلی */}
-                <div className="w-1/4 bg-gray-100">
+                <div className="w-[13rem] max-h-[30rem] overflow-auto scrollbar-custom  bg-gray-100">
                   {categories.map((cat) => (
                     <button
+                      dir="rtl"
                       key={cat.id}
                       onMouseEnter={() => setActiveId(cat.id)}
-                      className={`w-full px-5 py-3 flex items-center justify-between text-right text-sm hover:bg-gray-200 transition ${
-                        activeId === cat.id ? "bg-white font-bold" : ""
+                      className={`w-full px-2 py-4 flex items-center justify-between text-right text-sm hover:bg-gray-200 transition ${
+                        activeId === cat.id
+                          ? "bg-white font-bold text-danger-500"
+                          : ""
                       }`}
                     >
                       {cat.title}
-                      <ChevronLeftIcon className="text-xs text-gray-400" />
+                      <ChevronLeftIcon className="size-4 text-gray-400" />
                     </button>
                   ))}
                 </div>
 
                 {/* زیر دسته‌ها */}
-                <div className="w-3/4 grid grid-cols-3 [grid-auto-rows:fit-content(100%)] gap-6 p-6">
-                  {activeCategory && (
-                    <div className="col-span-3">
-                      <DropdownMenuItem asChild>
-                        <Link
-                          href={`/collection/${activeCategory.slug}`}
-                          className="block mb-4 text-sm text-blue-500 font-semibold  pb-2"
-                        >
-                          مشاهده همه محصولات {activeCategory.title}
-                          <ChevronLeft className="inline-block mr-1" />
-                        </Link>
-                      </DropdownMenuItem>
-                    </div>
-                  )}
-                  {activeCategory && (
-                    <ActiveCategoryContent {...activeCategory} />
-                  )}
+                <div className="flex-1  max-h-[30rem] overflow-auto scrollbar-custom ">
+                  <div className="grid grid-cols-3 [grid-auto-rows:fit-content(100%)] gap-6 p-4">
+                    {activeCategory && (
+                      <div dir="rtl" className="col-span-3">
+                        <DropdownMenuItem className="" asChild>
+                          <Link
+                            href={`/collection/${activeCategory.slug}`}
+                            className="block mb-4 text-sm text-blue-500 font-semibold  pb-2"
+                          >
+                            مشاهده همه محصولات {activeCategory.title}
+                            <ChevronLeft className="inline-block mr-1" />
+                          </Link>
+                        </DropdownMenuItem>
+                      </div>
+                    )}
+                    {activeCategory && (
+                      <ActiveCategoryContent {...activeCategory} />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

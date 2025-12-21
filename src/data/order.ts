@@ -1,5 +1,12 @@
 import { Badge } from "@/components/ui/badge";
-import { Order } from "@/types/order";
+import { Color, Translate } from "@/types";
+import {
+  CardToCardPaymentStatus,
+  Order,
+  PaymentGateway,
+  PaymentMethod,
+  PaymentStatus,
+} from "@/types/order";
 import { ComponentProps } from "react";
 
 export const statusLabel: Record<Order["status"], string> = {
@@ -31,4 +38,93 @@ export const statusColor: Record<
   preparing: "neutral",
   not_delivered: "danger",
   payment_failed: "danger-outline",
+};
+
+export const PaymentMethodFa: Translate<PaymentMethod> = {
+  online: {
+    label: "پرداخت انلاین",
+  },
+  card_to_card: {
+    label: "کارت به کارت",
+  },
+  wallet: {
+    label: "کیف پول",
+  },
+  cheque: {
+    label: "چک",
+  },
+  credit: {
+    label: "اعتباری",
+  },
+  cash: {
+    label: "نقدی",
+  },
+  bank_transfer: {
+    label: "حواله بانکی",
+  },
+};
+
+export const PaymentGatewayFa: Translate<PaymentGateway> = {
+  melat: {
+    label: "ملت",
+  },
+  meli: {
+    label: "ملی",
+  },
+  zarinpal: {
+    label: "زرین پال",
+  },
+};
+
+export const PaymentStatusFa: Translate<PaymentStatus, { color: Color }> = {
+  cancelled: {
+    label: "لغو پرداخت",
+    color: "danger",
+  },
+  faild: {
+    label: "پرداخت ناموفق",
+    color: "danger",
+  },
+  in_progress: {
+    label: "ورود به درگاه",
+    color: "neutral",
+  },
+  pending: {
+    label: "در انتظار پرداخت",
+    color: "neutral",
+  },
+  refunded: {
+    label: "بازگشت وجه",
+    color: "warning",
+  },
+  success: {
+    label: "پرداخت موفق",
+    color: "success",
+  },
+  verified: {
+    label: "تایید شده",
+    color: "success",
+  },
+};
+
+export const CardToCardPaymentStatusFa: Translate<
+  CardToCardPaymentStatus,
+  { color: Color }
+> = {
+  approved: {
+    label: "پرداخت تایید شده",
+    color: "success",
+  },
+  pending: {
+    label: "در انتظار پرداخت",
+    color: "neutral",
+  },
+  rejected: {
+    label: "پرداخت رد شده",
+    color: "danger",
+  },
+  uploaded: {
+    label: "در انتظار تایید",
+    color: "warning",
+  },
 };

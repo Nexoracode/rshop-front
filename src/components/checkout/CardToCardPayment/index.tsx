@@ -8,6 +8,7 @@ import SelectPaymentMode from "./SelectPaymentStatus";
 import ShopCardInfo from "./ShopCartInfo";
 import { PaymentModeInfo } from "./PaymentModeInfo";
 import PaymentSuccess from "./PaymentSuccess";
+import { CardToCardPaymentInfo } from "@/types/order";
 
 type Props = {
   open: boolean;
@@ -16,6 +17,7 @@ type Props = {
   order_id: number;
   amount: number;
   later?: boolean;
+  paymentInfo?: CardToCardPaymentInfo | null;
 };
 
 export default function CardToCardPayment({
@@ -25,8 +27,11 @@ export default function CardToCardPayment({
   amount,
   onClose,
   later = false,
+  paymentInfo = null,
 }: Props) {
-  const [mode, setMode] = React.useState<PaymentMode>("now");
+  const [mode, setMode] = React.useState<PaymentMode>(() =>
+    paymentInfo?.sender_card_number ? "info" : "now"
+  );
   const [success, setSuccess] = React.useState(false);
 
   const handleSuccess = () => {
@@ -39,6 +44,7 @@ export default function CardToCardPayment({
         onClose={onClose}
         onSuccess={handleSuccess}
         payment_id={payment_id}
+        receipt_image={paymentInfo?.receipt_image ?? null}
       />
     ),
     later: <PaymentModeLater onClose={onClose} onSuccess={handleSuccess} />,
@@ -47,6 +53,7 @@ export default function CardToCardPayment({
         onClose={onClose}
         onSuccess={handleSuccess}
         payment_id={payment_id}
+        values={paymentInfo}
       />
     ),
   };

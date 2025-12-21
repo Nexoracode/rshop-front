@@ -20,7 +20,7 @@ export default function ProductPriceInfo({
 
   const productStock = variant ? variant.stock : stock;
   return (
-    <div className="mt-2 flex items-end w-full flex-col md:gap-3">
+    <div className="mt-2 flex items-end md:w-full flex-col md:gap-3">
       {productStock === 0 ? (
         <p className="text-center pt-6 w-full text-danger-300 font-medium">
           این محصول فعلا موجود نیست

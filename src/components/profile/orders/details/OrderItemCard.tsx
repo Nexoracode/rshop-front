@@ -14,7 +14,9 @@ type Props = {
   item: OrderItem;
 };
 
-export default function OrderItemCard({ item: { product, ...item } }: Props) {
+export default function OrderItemCard({
+  item: { product, variant, ...item },
+}: Props) {
   return (
     <Card className="p-4  hover:shadow-md transition-all">
       <div className="flex items-start">
@@ -33,6 +35,19 @@ export default function OrderItemCard({ item: { product, ...item } }: Props) {
         </div>
         <div className="flex-1 pr-3">
           <p className="font-medium text-neutral-700">{product.name}</p>
+          {variant && (
+            <div>
+              {variant.attributes.map((attr) => (
+                <span
+                  key={attr.name}
+                  className="text-xs text-muted-light inline-block px-2 first:pr-0 border-l-2 last:border-l-0"
+                >
+                  {attr.name}:{" "}
+                  <span className="text-muted font-semibold">{attr.value}</span>
+                </span>
+              ))}
+            </div>
+          )}
           <p className="font-semibold text-primary mt-1">
             {formatToman(+product.price || 450000)}
           </p>

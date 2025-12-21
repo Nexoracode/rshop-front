@@ -16,9 +16,9 @@ export default function OrderDetailsPage() {
     getOrderDetails(Number(order_id))
   );
 
-  return isPending || !orderData ? (
+  return isPending ? (
     <PageLoader />
-  ) : (
+  ) : orderData ? (
     <div className="space-y-4">
       <Card className="gap-4 ">
         <div className="flex items-center justify-between">
@@ -55,5 +55,7 @@ export default function OrderDetailsPage() {
         </div>
       </Card>
     </div>
+  ) : (
+    <p>سفارش یافت نشد</p>
   );
 }

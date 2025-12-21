@@ -1,5 +1,5 @@
 import { UserAddress } from "@/types/user";
-import { Home, User } from "lucide-react";
+import { Home, PhoneIcon } from "lucide-react";
 import React from "react";
 import UserAddressDialog from "./UserAddressDialog";
 
@@ -42,12 +42,14 @@ export default function PrimaryAddressCard({
       </div>
 
       <div className="flex items-center gap-2 text-xs text-muted-foreground pr-7">
-        <User className="h-3.5 w-3.5 text-muted-foreground" />
-        {primaryAddress?.recipient_name} — {primaryAddress?.recipient_phone}
-        {primaryAddress?.is_self && (
+        <PhoneIcon className="h-3.5 w-3.5 text-muted-foreground" />{" "}
+        {primaryAddress?.recipient_phone}
+        {primaryAddress?.is_self ? (
           <span className="text-[10px] bg-muted/40 px-1.5 py-0.5 rounded">
             خودم
           </span>
+        ) : (
+          primaryAddress?.recipient_name
         )}
       </div>
     </div>

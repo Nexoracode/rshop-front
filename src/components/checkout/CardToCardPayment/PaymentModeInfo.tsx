@@ -8,24 +8,30 @@ import { useMutation } from "@tanstack/react-query";
 import { uploadReceipImage } from "@/queries/orders";
 import TextField from "@/components/common/Form/TextField";
 import PaymentModalFooter from "./PaymentModalFooter";
-
-type PaymentFormValues = {
-  paymentDate: string;
-  paymentTime: string;
-  cardNumber: string;
-  trackingCode: string;
-};
+import { CardToCardPaymentInfo } from "@/types/order";
+import { getTimeString } from "@/lib/utils";
 
 export function PaymentModeInfo({
   payment_id,
   onSuccess,
   onClose,
+  values,
 }: {
   payment_id: number;
   onSuccess: () => void;
   onClose: () => void;
+  values: CardToCardPaymentInfo | null;
 }) {
-  const form = useForm<PaymentFormValues>();
+  const form = useForm({
+    values: values
+      ? {
+          tracking_code: values.tracking_code,
+          sender_card_number: values.sender_card_number,
+          deposit_date: values.deposit_date,
+          deposit_time: getTimeString(values.deposit_date),
+        }
+      : {},
+  });
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
   const handleSubmit = (values: FieldValues) => {
     const { deposit_date, deposit_time, sender_card_number, tracking_code } =
@@ -43,6 +49,8 @@ export function PaymentModeInfo({
       }
     );
   };
+
+  console.log({ values: form.getValues() });
   return (
     <div>
       <div className="border p-2 space-y-4 rounded-xl">

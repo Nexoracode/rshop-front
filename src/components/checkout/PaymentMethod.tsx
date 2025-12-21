@@ -4,8 +4,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { CreditCard, Banknote } from "lucide-react";
-import { PaymentMethod as Method } from "@/types";
 import useCheckout from "@/hooks/useCheckout";
+import { PaymentMethod as Method } from "@/types/order";
 
 interface PaymentMethod {
   id: Method;
@@ -23,13 +23,13 @@ interface PaymentMethodSelectorProps {
 
 const methods: PaymentMethod[] = [
   {
-    id: "zarinpal",
+    id: "online",
     label: "پرداخت آنلاین (زرین‌پال)",
     description: "پرداخت امن از طریق درگاه زرین‌پال با تمام کارت‌های عضو شتاب",
     icon: CreditCard,
   },
   {
-    id: "cartToCart",
+    id: "card_to_card",
     label: "کارت به کارت",
     description: "انتقال وجه به شماره کارت شرکت و ثبت فیش واریزی",
     icon: Banknote,

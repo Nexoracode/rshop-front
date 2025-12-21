@@ -296,17 +296,8 @@
   .scrollbar-custom::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--primary-300), var(--primary-500));
     border-radius: 999px;
-    border: 2px solid var(--neutral-100);
+    border: 2px solid var(--neutral-500);
     transition: all 0.3s ease;
-  }
-
-  /* Hover: وقتی موس روش می‌ره */
-  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-      180deg,
-      var(--secondary-400),
-      var(--secondary-500)
-    );
   }
 
   /* گوشه‌ها (برای هم‌خوانی در گوشه صفحه) */
@@ -315,8 +306,13 @@
   }
   /* برای Firefox */
   .scrollbar-custom {
+    direction: ltr;
+    text-align: right;
     scrollbar-width: thin;
-    scrollbar-color: rgba(107, 114, 128, 0.5) transparent;
+    scrollbar-color: rgba(107, 114, 128, 0.5) var(--neutral-500);
+  }
+  .scrollbar-custom > * {
+    direction: rtl;
   }
 
   .scrollbar-custom::-webkit-scrollbar {
@@ -364,7 +360,7 @@
 }
 
 .input {
-  @apply flex h-11 w-full rounded-lg bg-white px-3 py-2 text-sm text-foreground shadow-xs transition-colors
+  @apply flex h-11 w-full rounded-lg bg-neutral-100 px-3 py-2 text-sm text-foreground shadow-xs transition-colors
          placeholder:text-gray-400
           ring-1 ring-neutral/40 focus:ring-primary/20
          disabled:cursor-not-allowed disabled:opacity-50;
@@ -402,4 +398,56 @@
   inset-inline-start: var(--x, 0px); /* left/right منطقی بسته به RTL/LTR */
   background: var(--color-primary);
   transition: inline-size 300ms ease, inset-inline-start 300ms ease;
+}
+
+.content h1 {
+  @apply mt-10 mb-4 text-3xl font-bold tracking-tight;
+}
+
+.content h2 {
+  @apply mt-8 mb-3 text-2xl font-semibold tracking-tight;
+}
+
+.content h3 {
+  @apply mt-6 mb-2 text-xl font-semibold;
+}
+
+.content h4 {
+  @apply mt-5 mb-2 text-lg font-semibold;
+}
+
+.content ul {
+  @apply my-4 ml-6 list-disc;
+}
+
+.content ol {
+  @apply my-4 ml-6 list-decimal;
+}
+
+.content li {
+  @apply my-2;
+}
+
+.content a {
+  @apply text-blue-600 underline underline-offset-4 hover:text-blue-700;
+}
+
+.content blockquote {
+  @apply my-6 border-l-4 border-gray-300 pl-4 italic text-gray-600;
+}
+
+.content code {
+  @apply rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm;
+}
+
+.content pre {
+  @apply my-6 overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100;
+}
+
+.content pre code {
+  @apply bg-transparent p-0 text-gray-100;
+}
+
+.content img {
+  @apply my-6 rounded-lg;
 }

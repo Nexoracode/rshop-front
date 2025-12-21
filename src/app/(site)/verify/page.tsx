@@ -363,7 +363,9 @@ export default function PaymentVerifyPage() {
               {data.success ? (
                 <>
                   <Button
-                    onClick={() => router.push("/orders")}
+                    onClick={() =>
+                      router.push(`/profile/orders/${data.order.id}`)
+                    }
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white"
                   >
                     مشاهده سفارش

@@ -40,23 +40,28 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
               </div>
             ) : null} */}
         <div className="flex gap-1">
-          {item.variant?.attributes.map((i) => (
-            <>
-              <p className="text-sm" key={i.id}>
-                <span className="font-light text-muted">
-                  {i.attribute.name}
-                </span>{" "}
-                :{" "}
-                <span className="font-semibold text-neutral-900">
-                  {i.value.value}
-                </span>
-              </p>
-              <Separator orientation="vertical" />
-            </>
-          ))}
+          {item.variant?.attributes
+            .sort(
+              (a, b) => a.attribute.display_order - b.attribute.display_order
+            )
+            .map((i) => (
+              <>
+                <p className="text-sm" key={i.id}>
+                  <span className="font-light text-muted">
+                    {i.attribute.name}
+                  </span>{" "}
+                  :{" "}
+                  <span className="font-semibold text-neutral-900">
+                    {i.value.value}
+                  </span>
+                </p>
+                <Separator orientation="vertical" />
+              </>
+            ))}
         </div>
         <div className="text-sm">
-          {item.quantity} × {item.unit_price.toLocaleString()} تومان
+          {item.quantity} ×{" "}
+          {(+item.unit_price - +item.discount).toLocaleString()} تومان
         </div>
       </div>
       <QuantitySelect

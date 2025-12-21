@@ -73,7 +73,7 @@ export default function ProductTabs({
   };
 
   return (
-    <div className="sticky top-[64px] z-40 bg-background border-b rtl">
+    <div className="sticky top-[64px] z-30 bg-background border-b rtl">
       <div ref={barRef} className="relative flex">
         {tabs
           .filter((tab) => activeTabs[tab.key])

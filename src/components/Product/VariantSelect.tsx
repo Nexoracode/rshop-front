@@ -24,6 +24,7 @@ export default function VariantSelect({ attribute }: Props) {
     () => variant?.attributes.find((a) => a.id === id),
     [variant, id]
   );
+
   return (
     <div className="space-y-3">
       <Label className="text-base font-semibold">
@@ -42,9 +43,9 @@ export default function VariantSelect({ attribute }: Props) {
                 <Label
                   htmlFor={`color-${value.id}`}
                   className={cn(
-                    "relative  rounded-full p-1 cursor-pointer border inline-flex items-center gap-2 data-[state=checked]:ring-2 data-[state=checked]:ring-ring data-[state=checked]:ring-offset-2",
-                    currentAttributeValue?.id === value.id &&
-                      "border-2 border-primary"
+                    "relative  rounded-full p-0.5 cursor-pointer border-1 inline-flex items-center gap-2 data-[state=checked]:ring-2 data-[state=checked]:ring-ring data-[state=checked]:ring-offset-2",
+                    currentAttributeValue?.values.id === value.id &&
+                      "ring-2 ring-primary"
                   )}
                 >
                   <RadioGroupItem
@@ -53,7 +54,7 @@ export default function VariantSelect({ attribute }: Props) {
                     className="sr-only"
                   />
                   <span
-                    className="inline-block h-7 w-7 rounded-full border"
+                    className="inline-block h-8 w-8 rounded-full border"
                     style={{ backgroundColor: value.display_color ?? "#fff" }}
                     aria-hidden
                   />
@@ -77,7 +78,7 @@ export default function VariantSelect({ attribute }: Props) {
               className={cn(
                 "h-9 min-w-[3rem] rounded-md px-3 cursor-pointer border inline-flex items-center justify-center text-sm data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-transparent",
                 currentAttributeValue?.values.id === value.id &&
-                  "border-2 border-primary"
+                  "border-2 border-primary "
               )}
             >
               <RadioGroupItem

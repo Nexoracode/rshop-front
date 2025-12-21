@@ -1,5 +1,5 @@
-import { Media, PaymentMethod } from ".";
-import { ProductCartVariant } from "./product";
+import { Media } from ".";
+import { ProductVariant } from "./product";
 import { User, UserAddress } from "./user";
 
 export type OrderProduct = {
@@ -18,7 +18,9 @@ export type OrderItem = {
   discount: string;
   line_total: string;
   product: OrderProduct;
-  variant: ProductCartVariant;
+  variant: {
+    attributes: Array<{ name: string; value: string; display_color: number }>;
+  } & Omit<ProductVariant, "attributes">;
 };
 
 export type StatusOrder =
@@ -34,17 +36,55 @@ export type StatusOrder =
   | "refunded"
   | "payment_failed";
 
+export type PaymentStatus =
+  | "pending"
+  | "in_progress"
+  | "success"
+  | "faild"
+  | "cancelled"
+  | "verified"
+  | "refunded";
+export type CardToCardPaymentStatus =
+  | "pending"
+  | "uploaded"
+  | "approved"
+  | "rejected";
+
+export type PaymentMethod =
+  | "online"
+  | "cash"
+  | "card_to_card"
+  | "cheque"
+  | "bank_transfer"
+  | "credit"
+  | "wallet";
+export type PaymentGateway = "zarinpal" | "melat" | "meli";
+
+export type CardToCardPaymentInfo = {
+  receipt_image: Media | null;
+  card_to_card_status: CardToCardPaymentStatus;
+  receipt_image_id: number | null;
+  tracking_code: string;
+  deposit_date: string;
+  sender_card_number: string;
+};
+
 export type Payment = {
   id: number;
+  order_id: number;
   amount: string;
   authority: string;
-  ref_id: string;
-  status: string;
+  ref_id: string | null;
+  status: PaymentStatus;
   message: string;
-  gateway: string;
-  receipt_image: Media;
+  gateway: PaymentGateway;
+  payment_method: PaymentMethod;
+  admin_note: string | null;
+  reviewed_by_id: number | null;
+  reviewed_at: string | null;
   created_at: string;
-};
+  updated_at: string;
+} & CardToCardPaymentInfo;
 
 export type Order = {
   id: number;

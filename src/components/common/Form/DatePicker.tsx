@@ -37,7 +37,7 @@ export default function DateField({ name, required, label }: DatePickerProps) {
         >
           <DatePicker
             value={new Date(value ? Date.parse(value) : Date.now())}
-            onChange={(date) => onChange(date.toDateString())}
+            onChange={(date) => onChange(date.toISOString().slice(0, 10))}
           />
         </FieldContainer>
       )}
@@ -52,27 +52,40 @@ export function DatePicker({
   value?: Date;
   onChange?: (date: Date) => void;
 }) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleSelect = (date: Date) => {
+    onChange?.(date);
+    setOpen(false);
+  };
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          fullWidth
-          size={"md"}
-          endIcon={<CalendarIcon />}
-          data-empty={!value}
-          className="justify-between input"
-        >
-          {value ? (
-            toPersainDate(value.toDateString())
-          ) : (
-            <span>یک تاریخ را انتخاب کنید</span>
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar required mode="single" selected={value} onSelect={onChange} />
-      </PopoverContent>
-    </Popover>
+    <>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            fullWidth
+            size={"md"}
+            endIcon={<CalendarIcon />}
+            type="button"
+            className="justify-between input"
+          >
+            {value ? (
+              toPersainDate(value.toDateString())
+            ) : (
+              <span>یک تاریخ را انتخاب کنید</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0">
+          <Calendar
+            required
+            mode="single"
+            selected={value}
+            onSelect={handleSelect}
+          />
+        </PopoverContent>
+      </Popover>
+    </>
   );
 }
