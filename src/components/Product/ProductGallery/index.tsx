@@ -35,7 +35,7 @@ export default function ProductGallery({
     a.id === media_pinned?.id ? -1 : b.id === media_pinned?.id ? 1 : 0
   );
   return (
-    <div className="space-y-3 mx-auto w-full  md:max-w-lg">
+    <div className="space-y-3 mx-auto w-full">
       <Carousel className="mx-auto" opts={{ active: isMobile }}>
         <CarouselContent>
           {sortedImages

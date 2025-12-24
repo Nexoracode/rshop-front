@@ -1,9 +1,9 @@
 "use client";
 import { calcPrice, formatToman } from "@/lib/utils";
 import React from "react";
-import { Badge } from "../ui/badge";
-import { useProductPage } from "./ProductProvider";
 import { Product } from "@/types/product";
+import { useProductPage } from "../ProductProvider";
+import { Badge } from "@/components/ui/badge";
 
 export default function ProductPriceInfo({
   stock,

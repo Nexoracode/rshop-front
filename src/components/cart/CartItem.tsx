@@ -2,7 +2,7 @@ import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { formatToman } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
-import QuantitySelect from "../Product/QuantitySelect";
+import QuantitySelect from "../Product/AddToCart/QuantitySelect";
 import { UserCartItem } from "@/types/cart";
 
 export default function CartItem({

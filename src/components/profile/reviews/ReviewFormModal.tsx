@@ -1,5 +1,5 @@
 "use client";
-import ProductReviewForm from "@/components/Product/ProductReviewForm";
+import ProductReviewForm from "@/components/Product/ProductReviews/ProductReviewForm";
 import {
   Dialog,
   DialogContent,

@@ -8,13 +8,12 @@ import Responsive from "@/components/common/Responsive";
 import ProductReviewsSkeleton from "@/components/common/Skeleton/ProductReviewsSkeleton";
 import RelatedProductsSkeleton from "@/components/common/Skeleton/RelatedProductsSkeleton";
 import ProductAttributes from "@/components/Product/ProductAttributes";
-import ProductDescription from "@/components/Product/ProductDescription";
+import ProductDescription from "@/components/Product/ProductTabs/ProductDescription";
 import ProductGallery from "@/components/Product/ProductGallery";
-import ProductHelper from "@/components/Product/ProductHelper";
-import ProductInfo from "@/components/Product/ProductInfo";
+import ProductHelper from "@/components/Product/ProductTabs/ProductHelper";
 import ProductPageProvider from "@/components/Product/ProductProvider";
 import ProductSchema from "@/components/Product/ProductSchema";
-import ProductTabs from "@/components/Product/ProductTabs";
+import ProductTabs from "@/components/Product/ProductTabs/ProductTabs";
 import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER, SHOP_NAME, SHOP_URL } from "@/data/assets";
 import { getQueryClient } from "@/lib/get-query-client";
@@ -26,6 +25,9 @@ import { notFound } from "next/navigation";
 
 import { Suspense } from "react";
 import ProductSummeryCard from "@/components/Product/ProductSummeryCard";
+import ProductFeaturedBanner from "@/components/Product/ProductFeaturedBanner";
+import ProductInfoDialog from "@/components/Product/ProductInfo/ProductInfoDialog";
+import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
 
 const ProductReviews = dynamic(
   () => import("@/components/Product/ProductReviews")
@@ -113,47 +115,53 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
         <Suspense fallback={<PageLoader />}>
           <ProductSchema {...product} />
           <div className="flex flex-col md:flex-row w-full justify-between relative">
-            <ProductGallery
-              media_pinned={product.media_pinned}
-              images={product.medias}
-            />
+            <div className="w-full space-y-2 flex-1 md:max-w-lg">
+              <ProductFeaturedBanner />
+              <div className="relative">
+                <ProductGallery
+                  media_pinned={product.media_pinned}
+                  images={product.medias}
+                />
+                <div className="absolute top-1 right-2 flex flex-col gap-3">
+                  <DesktopTooltip
+                    contentProps={{ side: "left" }}
+                    content="اظافه به علاقه مندی ها"
+                  >
+                    <AddToWishlistBtn id={product.id} />
+                  </DesktopTooltip>
+                  <DesktopTooltip
+                    contentProps={{ side: "left" }}
+                    content="اظافه به لیست مقایسه"
+                  >
+                    <AddToCompareBtn productId={product.id} />
+                  </DesktopTooltip>
+                  <Responsive visible="desktop">
+                    <DesktopTooltip
+                      contentProps={{ side: "left" }}
+                      content="اشتراک گذاری"
+                    >
+                      <SharLinkBtn />
+                    </DesktopTooltip>
+                  </Responsive>
+
+                  <Responsive visible="mobile">
+                    <MobileShareBtn />
+                  </Responsive>
+                </div>
+              </div>
+            </div>
 
             <ProductInfo {...product} />
-
-            <div className="absolute top-1 right-2 flex flex-col gap-3">
-              <DesktopTooltip
-                contentProps={{ side: "left" }}
-                content="اظافه به علاقه مندی ها"
-              >
-                <AddToWishlistBtn id={product.id} />
-              </DesktopTooltip>
-              <DesktopTooltip
-                contentProps={{ side: "left" }}
-                content="اظافه به لیست مقایسه"
-              >
-                <AddToCompareBtn productId={product.id} />
-              </DesktopTooltip>
-              <Responsive visible="desktop">
-                <DesktopTooltip
-                  contentProps={{ side: "left" }}
-                  content="اشتراک گذاری"
-                >
-                  <SharLinkBtn />
-                </DesktopTooltip>
-              </Responsive>
-
-              <Responsive visible="mobile">
-                <MobileShareBtn />
-              </Responsive>
-            </div>
           </div>
         </Suspense>
 
-        <div className="flex gap-4 justify-between">
+        <ProductInfoDialog {...product} />
+
+        <div className="flex relative gap-4 justify-between">
           <div className="">
             <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
             <Separator />
-            <ProductDescription description={product.description} />
+            <ProductDescription showMore description={product.description} />
             {product.helper && (
               <>
                 <Separator />

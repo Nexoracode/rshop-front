@@ -8,7 +8,7 @@ import { Trash2, X } from "lucide-react";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import AddCompareDialog from "./AddCompareDialog";
 import { CompareListItem } from "@/types/product";
-import ProductRating from "@/components/Product/ProductRating";
+import ProductRating from "@/components/Product/ProductReviews/ProductRating";
 
 type Props = {
   items: Array<CompareListItem>;

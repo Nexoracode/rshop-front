@@ -8,11 +8,11 @@ import { addCartItem, getCart, updateCartItem } from "@/queries/cart";
 import { Product } from "@/types/product";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { useProductPage } from "./ProductProvider";
+import { useProductPage } from "../ProductProvider";
 import LimitedStock from "./LimitedStock";
-import ProductShipping from "./ProductShipping";
 import { toast } from "sonner";
-import CartAddedToastContent from "./CartAddedToastContent";
+import CartAddedToastContent from "../CartAddedToastContent";
+import ProductShipping from "./ProductShipping";
 
 type Props = {
   product: Product;

@@ -8,7 +8,7 @@ import { Menu } from "@/components/common/Menu";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Review } from "@/types/user";
-import ProductRating from "@/components/Product/ProductRating";
+import ProductRating from "@/components/Product/ProductReviews/ProductRating";
 
 type Props = {
   onEdit: (reviewId: number) => void;

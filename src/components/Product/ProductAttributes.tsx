@@ -8,7 +8,7 @@ type Props = {
 
 export default function ProductAttributes({ attributes }: Props) {
   return (
-    <section id="specifications">
+    <section className="py-5" id="specifications">
       <SectionTitle title="مشخصات" />
 
       {attributes

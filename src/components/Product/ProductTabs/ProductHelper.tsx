@@ -2,9 +2,9 @@
 import { ProductHelper as ProductHelperType } from "@/types/product";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Search, X } from "lucide-react";
-import SectionTitle from "../common/SectionTitle";
+import SectionTitle from "../../common/SectionTitle";
 
 export default function ProductHelper({
   description,

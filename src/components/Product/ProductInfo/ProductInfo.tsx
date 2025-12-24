@@ -1,21 +1,21 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import ProductPriceInfo from "./ProductPriceInfo";
-import { Card } from "../ui/card";
-import Responsive from "../common/Responsive";
-import CreateSupportButton from "./CreateSupportButton";
 import { ChevronLeftIcon, Star } from "lucide-react";
 import { Product } from "@/types/product";
-import VariantSelect from "./VariantSelect";
-import AddToCartButton from "./AddToCartButton";
 import ImportantAttributes from "./ImportantAttributes";
+import VariantSelect from "../VariantSelect";
+import { Card } from "@/components/ui/card";
+import ProductPriceInfo from "./ProductPriceInfo";
+import AddToCartButton from "../AddToCart/AddToCartButton";
+import Responsive from "@/components/common/Responsive";
+import CreateSupportButton from "../CreateSupportButton";
 
 export default function ProductInfo(props: Product) {
   const { attribute_nodes, specifications, ...product } = props;
   return (
     <div className="space-y-5 flex-1 flex flex-col md:flex-row">
       {/* title + brand + category */}
-      <div className="flex-1 space-y-6 px-4">
+      <div className="flex-1 space-y-6 px-2 md:px-4">
         <div className="space-y-2">
           <h2 className="text-xl md:text-2xl font-bold">{product.name}</h2>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
@@ -26,20 +26,6 @@ export default function ProductInfo(props: Product) {
                 <span>دسته: {product.category.title}</span>
               </>
             )}
-            {product.is_same_day_shipping && (
-              <>
-                <span className="text-muted-foreground/40">•</span>
-                <Badge variant="secondary" className="rounded-full">
-                  ارسال امروز
-                </Badge>
-              </>
-            )}
-            {product.requires_preparation && product.preparation_days ? (
-              <>
-                <span className="text-muted-foreground/40">•</span>
-                <span>آماده‌سازی: {product.preparation_days} روز</span>
-              </>
-            ) : null}
           </div>
 
           {/* prices */}

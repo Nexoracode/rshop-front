@@ -8,7 +8,7 @@ import { formatToman } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { OrderItem } from "@/types/order";
 import SubmitReviewBtn from "@/components/Product/SubmitReviewBtn";
-import ProductRating from "@/components/Product/ProductRating";
+import ProductRating from "@/components/Product/ProductReviews/ProductRating";
 
 type Props = {
   item: OrderItem;

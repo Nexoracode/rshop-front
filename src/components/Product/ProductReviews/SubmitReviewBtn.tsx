@@ -3,10 +3,10 @@
 import { Button } from "@/components/ui/button";
 
 import React from "react";
-import SubmitReviewForm from "./ProductReviewForm";
 import BaseDialog from "@/components/common/BaseDialog";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
+import ProductReviewForm from "./ProductReviewForm";
 
 type Props = {
   product_id: number;
@@ -31,7 +31,7 @@ export default function SubmitReviewBtn({ Trigger, ...props }: Props) {
               </Button>
             )
           }
-          content={<SubmitReviewForm {...props} />}
+          content={<ProductReviewForm {...props} />}
         />
       ) : (
         <>

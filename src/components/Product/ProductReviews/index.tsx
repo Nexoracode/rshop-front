@@ -3,13 +3,13 @@ import ProductReviewItem from "./ProductReviewItem";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProductReviews } from "@/queries/products";
 import React, { useState } from "react";
-import SectionTitle from "../common/SectionTitle";
-import { ListLayout } from "../common/ListLayout";
+import SectionTitle from "../../common/SectionTitle";
+import { ListLayout } from "../../common/ListLayout";
 import { Review } from "@/types/user";
-import { Skeletons } from "../ui/skeleton";
-import { Button } from "../ui/button";
+import { Skeletons } from "../../ui/skeleton";
+import { Button } from "../../ui/button";
 import { ChevronDown } from "lucide-react";
-import Pagination from "../common/Pagination";
+import Pagination from "../../common/Pagination";
 import ProductRating from "./ProductRating";
 import SubmitReviewBtn from "./SubmitReviewBtn";
 
@@ -31,7 +31,7 @@ export default function ProductReviews({ ...props }: Props) {
     page !== null || Number(currentPageMeta?.current_page) > 1;
 
   return (
-    <section id="reviews" className="space-y-8">
+    <section id="reviews" className="space-y-8 py-5">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">
         <div className="space-y-5">

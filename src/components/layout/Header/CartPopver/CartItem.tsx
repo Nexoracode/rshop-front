@@ -1,5 +1,5 @@
 "use client";
-import QuantitySelect from "@/components/Product/QuantitySelect";
+import QuantitySelect from "@/components/Product/AddToCart/QuantitySelect";
 import { PopoverClose } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
