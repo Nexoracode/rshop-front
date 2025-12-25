@@ -11,9 +11,10 @@ function Drawer({
       data-slot="drawer"
       {...props}
       direction="bottom"
-      snapPoints={[0.5, 1]}
-      activeSnapPoint={0.5}
-      modal={false}
+      activeSnapPoint={0.6}
+      snapPoints={[0.6, 1]}
+      /* 
+      modal={false} */
     />
   );
 }
@@ -40,7 +41,7 @@ function DrawerOverlay({
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 !opacity-100",
         className
       )}
       {...props}
@@ -87,29 +88,31 @@ function DrawerContent({
         data-slot="drawer-content"
         className={cn(
           "group/drawer-content fixed inset-x-0 bottom-0 z-50 flex flex-col",
-          "bg-background rounded-t-2xl border-t h-[100dvh]",
+          "bg-background rounded-t-2xl border-t max-h-[100dvh]",
           className
         )}
         {...props}
       >
         {/* Handle */}
-        <div className="mx-auto mt-2 h-1.5 w-10 rounded-full bg-muted" />
+        <div className="mx-auto mt-2 h-1.5 w-10 rounded-full bg-muted-light" />
 
         {/* Header با دکمه Close */}
-        <div className="relative flex items-center justify-center px-4 pb-2 pt-[calc(env(safe-area-inset-top)+12px)]">
+        <div className="relative border-b flex items-center justify-center px-4 pb-2 pt-[calc(env(safe-area-inset-top)+12px)]">
           {title && (
-            <h3 className="text-sm font-semibold text-center">{title}</h3>
+            <h3 className="text-sm font-semibold text-right">{title}</h3>
           )}
           <button
             onClick={onClose}
-            className="absolute right-4 top-[calc(env(safe-area-inset-top)+8px)] text-muted-foreground hover:text-foreground"
+            className="absolute left-4 top-[calc(env(safe-area-inset-top)+8px)] text-muted-foreground hover:text-foreground"
           >
             ✕
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto">{children}</div>
+        <div className="flex-1 min-h-0 overflow-y-auto px-4 pb-3">
+          {children}
+        </div>
       </DrawerPrimitive.Content>
     </DrawerPortal>
   );

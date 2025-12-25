@@ -13,10 +13,12 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
+  DrawerOverlay,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type TabKey = "description" | "specifications" | "reviews" | "helper";
 
@@ -38,12 +40,24 @@ export default function ProductInfoDialog({
         onClose={() => setOpenDialog(false)}
         title="معرفی و مشخصات مصول"
       >
-        <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
+        <div className="relative">
+          <Tabs defaultValue="description">
+            <TabsList className="sticky w-full top-0">
+              {tabs.map((tab) => (
+                <TabsTrigger value={tab.key} key={tab.key}>
+                  {tab.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            <TabsContent value="description">
+              <ProductDescription description={description} />
+            </TabsContent>
+            <TabsContent value="specifications">
+              <ProductAttributes attributes={specifications} />
+            </TabsContent>
+          </Tabs>
+        </div>
       </DrawerContent>
     </Drawer>
   );
