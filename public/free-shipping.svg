@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 32 32"
+     width="50"
+     height="50"
+     class="delivery-icon">
+
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#FFCC04"/>
+    </linearGradient>
+
+    <linearGradient id="cabinGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#FFCC04"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .body {
+      fill: none;
+      stroke: url(#bodyGradient);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .cabin {
+      fill: none;
+      stroke: url(#cabinGradient);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .motion {
+      fill: none;
+      stroke: #FFCC04;
+      stroke-width: 2;
+      stroke-linecap: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .wheel {
+      fill: none;
+      stroke: #4C1D95;
+      stroke-width: 2;
+      transition: stroke 0.25s ease;
+    }
+
+    /* Hover */
+    .delivery-icon:hover .motion {
+      stroke: #F59E0B;
+    }
+
+    .delivery-icon:hover .wheel {
+      stroke: #1E1B4B;
+    }
+  </style>
+
+  <!-- Body -->
+  <polyline points="2,9 19,9 19,24 10,24" class="body"/>
+
+  <!-- Cabin -->
+  <polyline points="19,24 19,13 25,13 29,18 29,24 26,24" class="cabin"/>
+
+  <!-- Motion lines (restored) -->
+  <line x1="4" y1="13" x2="13" y2="13" class="motion"/>
+  <line x1="2" y1="17" x2="11" y2="17" class="motion"/>
+
+  <!-- Wheels -->
+  <circle cx="8" cy="24" r="2" class="wheel"/>
+  <circle cx="24" cy="24" r="2" class="wheel"/>
+
+</svg>

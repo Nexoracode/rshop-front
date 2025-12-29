@@ -12,17 +12,19 @@ import UserMenu from "./UserMenu";
 import MainNav from "./MainNav";
 import HeaderCategoryPageTitle from "./HeaderCategoryPageTitle";
 import { cn } from "@/lib/utils";
+import AdsBanner from "./AdsBanner";
 
 export default function Header() {
   const pathName = usePathname();
   const isMobile = useIsMobile();
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
-  const isMobileCategoryPage = isMobile && pathName.startsWith("/collection/");
+  const isMobileCategoryPage = isMobile && pathName.startsWith("/category/");
   const displayBackBtn = isMobileProductPage || isMobileCategoryPage;
   return (
     <header className="fixed bg-white   top-0 z-50 w-full border-b shadow backdrop-blur">
       {/* <Topbar /> */}
       {/* Main header */}
+      <AdsBanner />
       <div className="relative">
         <div className="container px-2 bg-white relative z-20 flex text-foreground items-center justify-between py-3 gap-3">
           {displayBackBtn && <BackButton />}

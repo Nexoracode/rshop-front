@@ -6,30 +6,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { mockBrands } from "@/__MOCK__/catalog";
 import Image from "next/image";
 import { Card } from "../ui/card";
+import { Brand } from "@/types/product";
 
-export default function BrandsSection() {
+export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
   return (
     <section className="py-14">
       <div className="container relative">
         <Card className="py-12">
           <Carousel>
+            <CarouselNext />
+            <CarouselPrevious />
             <CarouselContent>
-              <CarouselNext />
-              <CarouselPrevious />
-              {mockBrands.slice(0, 16).map((brand) => (
-                <CarouselItem
-                  key={brand.id}
-                  className="basis-1/2 md:basis-1/4 lg:basis-1/6"
-                >
-                  <div className="w-full h-[130px] relative">
+              {brands.map((brand) => (
+                <CarouselItem key={brand.id} className="basis-[14rem]">
+                  <div className="w-[7rem] h-[7rem] bg-muted-light/30 p-2 rounded-full overflow-hidden relative">
                     <Image
                       fill
                       src={brand.logo}
                       alt={brand.name}
-                      className="object-contain"
+                      className="object-contain object-center"
                     />
                   </div>
                 </CarouselItem>

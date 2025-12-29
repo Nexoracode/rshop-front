@@ -12,24 +12,29 @@ import {
 import { EmptyCard } from "@/components/common/EmptyCart";
 import CartListItems from "./CartListItems";
 import CartSummery from "./CartSummery";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CartPopover() {
-  const { data: cart } = useCart();
+  const { data: cart, isPending } = useCart();
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          className="relative group flex items-center"
-          aria-label="سبد خرید"
-        >
-          <ShoppingCart size={24} className="text-foreground" />
-          <span className="font-light pr-1 text-sm">
-            <span className="bg-white text-primary p-1 rounded-full inline-block leading-2 min-w-7">
-              {cart?.total_quantity ?? 0}
-            </span>{" "}
-            <br /> {formatPriceCompactFa(cart?.total ?? 0)}
-          </span>
-        </button>
+        {isPending ? (
+          <Skeleton className="h-8 w-16" />
+        ) : (
+          <button
+            className="relative group flex items-center"
+            aria-label="سبد خرید"
+          >
+            <ShoppingCart size={24} className="text-foreground" />
+            <span className="font-light pr-1 text-sm">
+              <span className="bg-white text-primary p-1 rounded-full inline-block leading-2 min-w-7">
+                {cart?.total_quantity ?? 0}
+              </span>{" "}
+              <br /> {formatPriceCompactFa(cart?.total ?? 0)}
+            </span>
+          </button>
+        )}
       </PopoverTrigger>
 
       <PopoverContent align="end" className="!w-md">

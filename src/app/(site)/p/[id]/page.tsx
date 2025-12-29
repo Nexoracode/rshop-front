@@ -105,9 +105,11 @@ export async function generateMetadata(
 }
 
 export default async function ProductPage(props: PageProps<"/p/[id]">) {
-  const { product } = await getProduct(props);
+  const data = await getProduct(props);
 
-  if (!product) notFound();
+  if (!data) notFound();
+
+  const product = data.product;
 
   return (
     <div className="container min-h-screen my-10 space-y-5">
@@ -158,7 +160,7 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
         <ProductInfoDialog {...product} />
 
         <div className="flex relative gap-4 justify-between">
-          <div className="">
+          <div className="flex-1">
             <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
             <Separator />
             <ProductDescription showMore description={product.description} />

@@ -2,15 +2,21 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { formatToman } from "@/lib/utils";
+import { calcPrice, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { HomeSectionProduct } from "@/types/home";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 
 export default function SpecialProductCart(props: HomeSectionProduct) {
-  const { name, price, brand, discount_percentage, discount_price, image } =
+  const { name, price, brand, discount_percent, discount_amount, image } =
     props;
+
+  const { compareAt, final, percent } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent
+  );
 
   return (
     <Card
@@ -53,20 +59,20 @@ export default function SpecialProductCart(props: HomeSectionProduct) {
           {/* price */}
           <div className="flex items-center gap-2">
             <span className="text-sm  font-bold text-primary-600">
-              {formatToman(discount_percentage ? discount_price : price)}{" "}
+              {formatToman(final)}{" "}
             </span>
-            {discount_percentage && (
+            {compareAt && (
               <span className="text-xs text-gray-400 line-through">
-                {formatToman(price)}
+                {formatToman(compareAt)}
               </span>
             )}
           </div>
 
           {/* <CountdownTimer showIcon={false} targetDate="2025-12-10T23:59:59" /> */}
 
-          {discount_percentage && (
+          {compareAt && (
             <Badge variant={"danger"} className="absolute top-2 left-2 ">
-              {discount_percentage}%
+              {percent}%
             </Badge>
           )}
         </div>

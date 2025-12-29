@@ -21,28 +21,29 @@ export default function HeroSlider({
   autoplayMs?: number;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-slate-100">
-      <Carousel opts={{ dragFree: false }}>
-        <CarouselNext className="absolute rounded-full -top-8 right-[unset] left-[70px] hover:bg-[unset]" />
+    <div className="relative h-full overflow-hidden rounded-2xl bg-slate-100">
+      <Carousel className="h-full" opts={{ dragFree: false }}>
+        <CarouselNext />
 
-        <CarouselPrevious className="absolute rounded-full -top-8 right-[unset] left-0 hover:bg-[unset]" />
-        <CarouselContent>
+        <CarouselPrevious />
+        <CarouselContent className="aspect-auto h-full">
           {slides.map((s, idx) => (
             <CarouselItem key={idx}>
-              <div className="min-w-full relative">
-                <Aspect className="rounded-2xl">
+              <div className="min-w-full h-full relative">
+                <Aspect className="rounded-2xl h-full">
                   <Image
                     src={s.image_url}
                     alt={s.title}
                     fill
                     sizes="(min-width:1024px) 66vw, 100vw"
-                    className="object-cover object-center"
+                    className="object-f object-center"
+                    priority
                   />
                   <div className="absolute left-0 top-0 w-full h-full z-20 bg-black/20" />
-                  <div className="absolute right-0 top-0 z-30 w-full h-full flex flex-col justify-center gap-4 p-2 md:p-5">
+                  <div className="absolute right-0 top-0 bottom-0 z-30 w-full h-full flex flex-col justify-center gap-4 p-2 md:p-5">
                     <h2
                       className={cn(
-                        "text-2xl sm:text-4xl text-shadow-blue-400 font-extrabold drop-shadow text-white"
+                        "text-2xl sm:text-6xl text-shadow-blue-400 font-extrabold drop-shadow text-white"
                         //   s.is_dark ? "text-white" : "text-black"
                       )}
                     >
@@ -93,12 +94,5 @@ function Aspect({
   ratio?: number;
   className?: string;
 }) {
-  return (
-    <div
-      className={cn("relative w-full", className)}
-      style={{ paddingBottom: `${100 / ratio}%` }}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn("relative w-full", className)}>{children}</div>;
 }

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 32 32"
+     width="60"
+     height="60"
+     class="audio-icon">
+
+  <defs>
+    <!-- Gradient برای خطوط اصلی -->
+    <linearGradient id="audioGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#FFCC04"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .stroke-main {
+      fill: none;
+      stroke: url(#audioGradient);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    /* Hover state */
+    .audio-icon:hover .stroke-main {
+      stroke: #FFCC04;
+    }
+  </style>
+
+  <!-- مسیرها -->
+  <path d="M5,17.4v-3.5C5,7.9,9.9,3,16,3s11,4.9,11,10.9l0,3.5" class="stroke-main"/>
+  <path d="M27,15v3.4C27,24.3,22.1,29,16,29l0-2l3,0" class="stroke-main"/>
+  <path d="M9,22v-8c-2.2,0-4,1.8-4,4S6.8,22,9,22z" class="stroke-main"/>
+  <path d="M23,14v8c2.2,0,4-1.8,4-4S25.2,14,23,14z" class="stroke-main"/>
+</svg>

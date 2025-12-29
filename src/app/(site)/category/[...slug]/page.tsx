@@ -20,7 +20,7 @@ export const revalidate = 300;
 export async function generateMetadata({
   params,
   searchParams,
-}: PageProps<"/collection/[...slug]">): Promise<Metadata> {
+}: PageProps<"/category/[...slug]">): Promise<Metadata> {
   const queryClient = getQueryClient();
   const { slug } = await params;
   const categorySlug = slug.pop() ?? "";
@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   const currentPage = Number(page as string);
 
-  const baseUrl = `${SHOP_URL}/collection/${slug.join("/")}`;
+  const baseUrl = `${SHOP_URL}/category/${slug.join("/")}`;
   const currentUrl =
     currentPage > 1 ? `${baseUrl}?page=${currentPage}` : baseUrl;
 
@@ -61,7 +61,7 @@ export async function generateMetadata({
   };
 }
 export default async function CategoryPage(
-  props: PageProps<"/collection/[...slug]">
+  props: PageProps<"/category/[...slug]">
 ) {
   const { slug } = await props.params;
   const { query, sortBy, page } = await props.searchParams;
@@ -79,7 +79,7 @@ export default async function CategoryPage(
   const breadcrumbItems = [
     ...category.parents.map((c) => ({
       label: c.title,
-      href: `/collection/${categoryParents
+      href: `/category/${categoryParents
         .filter((p) => p.level > c.level)
         .map((p) => p.slug)
         .join("/")}`,

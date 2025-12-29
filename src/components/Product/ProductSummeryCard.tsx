@@ -16,7 +16,7 @@ export default function ProductSummeryCard(product: Product) {
 
   console.log({ variant });
   return (
-    <Card className="hidden space-y-4 md:block min-w-[300px] sticky top-[5rem] flex-1 h-fit">
+    <Card className="hidden space-y-4 md:block w-[300px] sticky top-[5rem] h-fit">
       <div className="flex items-center">
         <Image
           src={media_pinned?.url || PRODUCT_PLACEHOLDER}

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 32 32"
+     width="50"
+     height="50"
+     class="gift-icon">
+
+  <defs>
+    <!-- Gradient برای جعبه -->
+    <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#FFCC04"/>
+    </linearGradient>
+
+    <!-- Gradient برای روبان -->
+    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#FFCC04"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .box {
+      fill: none;
+      stroke: url(#boxGradient);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .ribbon {
+      fill: none;
+      stroke: url(#ribbonGradient);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    /* Hover state */
+    .gift-icon:hover .box {
+      stroke: #FFCC04;
+    }
+
+    .gift-icon:hover .ribbon {
+      stroke: #F59E0B;
+    }
+  </style>
+
+  <!-- جعبه -->
+  <path d="M4 14 L4 30 28 30 28 14" class="box"/>
+  <path d="M16 9 L16 30" class="box"/>
+
+  <!-- روبان -->
+  <path d="M2 9 L2 14 30 14 30 9 Z" class="ribbon"/>
+  <path d="M16 9 C 16 9 14 0 8 3 2 6 16 9 16 9 16 9 18 0 24 3 30 6 16 9 16 9" class="ribbon"/>
+</svg>

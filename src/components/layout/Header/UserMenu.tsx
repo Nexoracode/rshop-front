@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import CartPopover from "./CartPopver";
 import LinkWithChip from "@/components/common/LinkWithChip";
 import { usePathname } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UserMenu() {
   const pathName = usePathname();
@@ -15,17 +16,20 @@ export default function UserMenu() {
   const isComparePage = pathName.startsWith("/compare");
   const isCartPage =
     pathName.startsWith("/cart") || pathName.startsWith("/checkout");
-  const { data } = useQuery(getCompareList);
+  const { data, isPending } = useQuery(getCompareList);
   return (
     <div className="hidden md:flex items-center gap-4">
-      {!isComparePage && (
-        <LinkWithChip
-          Icon={<ArrowLeftRightIcon strokeWidth={2} size={22} />}
-          href="/compare"
-          label="مقایسه"
-          count={data?.length ?? 0}
-        />
-      )}
+      {!isComparePage &&
+        (isPending ? (
+          <Skeleton className="size-8" />
+        ) : (
+          <LinkWithChip
+            Icon={<ArrowLeftRightIcon strokeWidth={2} size={22} />}
+            href="/compare"
+            label="مقایسه"
+            count={data?.length ?? 0}
+          />
+        ))}
       {!isProfilePage && <ProfileButton />}
 
       {!isCartPage && (

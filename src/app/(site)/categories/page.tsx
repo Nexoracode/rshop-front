@@ -57,7 +57,7 @@ export default function CategoriesPage() {
           className="px-0"
           variant={"text-nohover"}
           endIcon={<ChevronLeft className="size-4" />}
-          href={`/collection/${selectedCategory?.slug}`}
+          href={`/category/${selectedCategory?.slug}`}
         >
           همه محصولات {selectedCategory?.title}
         </Button>
@@ -78,7 +78,7 @@ export default function CategoriesPage() {
                     className="px-0"
                     variant={"text-nohover"}
                     endIcon={<ChevronLeft className="size-4" />}
-                    href={`/collection/${selectedCategory.slug}/${item.slug}`}
+                    href={`/category/${selectedCategory.slug}/${item.slug}`}
                   >
                     همه محصولات دسته {item.title}
                   </Button>
@@ -90,7 +90,7 @@ export default function CategoriesPage() {
                       fullWidth
                       endIcon={<ChevronLeft className="size-4" />}
                       className="border-b rounded-none flex justify-between !py-6 last:border-b-0"
-                      href={`/collection/${selectedCategory.slug}/${item.slug}/${subItem.slug}`}
+                      href={`/category/${selectedCategory.slug}/${item.slug}/${subItem.slug}`}
                     >
                       {subItem.title}
                     </Button>

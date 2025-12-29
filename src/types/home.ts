@@ -40,8 +40,8 @@ export type HomeSectionProduct = {
   name: string;
   slug: string;
   price: number;
-  discount_price: number;
-  discount_percentage: number;
+  discount_amount: number;
+  discount_percent: number;
   stock: number;
   is_available: boolean;
   image: string;
@@ -75,4 +75,24 @@ export type HomeSectionsData = {
   side_banners: Array<SideBanners>;
   categories: Array<HomeCategory>;
   sections: Array<HomeSection>;
+  brands: Array<Brand>;
+};
+
+export type PromoBanner = {
+  id: number;
+  title: string;
+  image_url: string;
+  link: string;
+  link_text: string;
+  background_color: string;
+  text_color: string;
+  is_active: boolean;
+  is_closable: boolean;
+  priority: number;
+  start_date: string;
+  end_date: string;
+  display_duration: number;
+  description: string;
+  created_at: string;
+  updated_at: string;
 };

@@ -22,6 +22,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import LogoutButton from "../../../profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const menuItems = [
   { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
@@ -31,9 +32,11 @@ const menuItems = [
 ];
 
 export default function ProfileMenu() {
-  const { data: user } = useQuery(getMe);
+  const { data: user, isPending } = useQuery(getMe);
   const path = usePathname();
-  return user ? (
+  return isPending ? (
+    <Skeleton className="h-8 w-10" />
+  ) : user ? (
     <>
       <Popover>
         <PopoverTrigger asChild>

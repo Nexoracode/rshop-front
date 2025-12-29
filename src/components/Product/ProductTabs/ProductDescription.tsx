@@ -1,7 +1,5 @@
 import React from "react";
 import SectionTitle from "../../common/SectionTitle";
-import { Button } from "../../ui/button";
-import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import DisplayFurtherDescription from "./DisplayFurtherDescription";
 

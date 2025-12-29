@@ -3,14 +3,20 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { cn, formatToman } from "@/lib/utils";
+import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { HomeSectionProduct } from "@/types/home";
 
 export default function HomeProductCard(props: HomeSectionProduct) {
-  const { name, price, discount_percentage, discount_price, id, image, brand } =
+  const { name, price, discount_percent, discount_amount, id, image, brand } =
     props;
+
+  const { compareAt, final, percent } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent
+  );
 
   return (
     <Link href={`/p/rsp-${id}`}>
@@ -19,9 +25,9 @@ export default function HomeProductCard(props: HomeSectionProduct) {
         dir="rtl"
       >
         {/* top right: discount */}
-        {discount_percentage && (
+        {compareAt && (
           <Badge variant="danger" className="absolute left-4 top-4 z-10 ">
-            {discount_percentage}%
+            {percent}%
           </Badge>
         )}
 
@@ -64,11 +70,11 @@ export default function HomeProductCard(props: HomeSectionProduct) {
           {/* price */}
           <div className="flex flex-col sm:flex-row items-center gap-2">
             <span className="text-base font-bold text-primary-600">
-              {formatToman(discount_percentage ? discount_price : price)}
+              {formatToman(final)}
             </span>
-            {discount_percentage && (
+            {compareAt && (
               <span className="text-xs text-gray-400 line-through">
-                {formatToman(+price)}
+                {formatToman(compareAt)}
               </span>
             )}
           </div>

@@ -22,7 +22,7 @@ export default function ProductByCategory({
       <div className="container space-y-2 relative">
         <SectionTitle
           title="خرید بر اساس دسته بندی"
-          link={`/collection/${selectedSection.category?.slug}`}
+          link={`/category/${selectedSection.category?.slug}`}
         />
 
         <div className="flex flex-col md:flex-row">

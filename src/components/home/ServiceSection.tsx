@@ -5,27 +5,27 @@ import React from "react";
 
 const services = [
   {
-    icon: "https://demo-digitic2.myshopify.com/cdn/shop/files/ser-01.svg?v=1721646955",
+    icon: "/free-shipping.svg",
     title: "ارسال رایگان",
     subtitle: "برای سفارش‌های بالای ۱۰۰ هزار تومان",
   },
   {
-    icon: "https://demo-digitic2.myshopify.com/cdn/shop/files/ser-02.svg?v=1721646954",
+    icon: "/gift.svg",
     title: "پیشنهاد شگفت‌انگیز روزانه",
     subtitle: "تا ۲۵٪ تخفیف ویژه",
   },
   {
-    icon: "https://demo-digitic2.myshopify.com/cdn/shop/files/ser-03.svg?v=1721646955",
+    icon: "/support.svg",
     title: "پشتیبانی ۲۴ ساعته",
     subtitle: "با مشاور خرید تماس بگیرید",
   },
   {
-    icon: "https://demo-digitic2.myshopify.com/cdn/shop/files/ser-04.svg?v=1721646955",
+    icon: "/guranti.svg",
     title: "قیمت‌های اقتصادی",
     subtitle: "خرید مستقیم از کارخانه",
   },
   {
-    icon: "https://demo-digitic2.myshopify.com/cdn/shop/files/ser-05.svg?v=1721646954",
+    icon: "/credit.svg",
     title: "پرداخت امن",
     subtitle: "پرداخت‌های کاملاً محافظت‌شده",
   },

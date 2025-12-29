@@ -1,42 +1,69 @@
 import { HomeCategory } from "@/types/home";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "../common/Image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
+import { chunkArray } from "@/lib/utils";
+import { Card } from "../ui/card";
 
 type Props = {
   categories: Array<HomeCategory>;
 };
+
 export default function TopCategoriesSection({ categories }: Props) {
+  const chunckedCategories = chunkArray(categories, 4);
   return (
     <section className="container py-8">
-      <div className="grid grid-cols-2  p-4 rounded-lg border px-4 shadow-sm hover:shadow-md transition sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 bg-white">
-        {categories.map((cat, i) => (
-          <Link
-            key={cat.id}
-            href={`/collection/${cat.slug}`}
-            className={`flex flex-col-reverse md:flex-row items-center p-5 md:border-l md:border-b justify-between overflow-hidden ${
-              i + 1 > 4 && "md:border-b-0"
-            } ${(i + 1) % 4 === 0 ? "md:border-l-0" : ""}`}
-          >
-            <div className="flex flex-col items-start gap-1">
-              <h3 className="text-sm md:text-lg text-center mt-2 font-semibold text-gray-800">
-                {cat.name}
-              </h3>
-              <span className="text-sm hidden md:inline-block text-gray-500 hover:underline">
-                مشاهده همه
-              </span>
-            </div>
-            <div className="relative">
-              <Image
-                src={cat.image || "/category.png"}
-                alt={cat.name}
-                width={65}
-                height={65}
-                className="object-fill border p-0.5 rounded-full"
-              />
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Card>
+        <div>
+          <h2 className="text-center font-semibold text-base md:text-lg">
+            خرید بر اساس دسته بندی
+          </h2>
+        </div>
+        <Carousel>
+          <CarouselNext />
+          <CarouselPrevious />
+          <CarouselContent>
+            {chunckedCategories.map((group) => (
+              <CarouselItem className="basis-[30rem]" key={group[0].id}>
+                <div className="grid grid-cols-2">
+                  {group.map((category, i) => (
+                    <CategoryItem i={i} key={category.id} {...category} />
+                  ))}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </Card>
     </section>
+  );
+}
+
+function CategoryItem({ i, ...cat }: HomeCategory & { i: number }) {
+  return (
+    <Link
+      href={`/category/${cat.slug}`}
+      className={`flex flex-col-reverse  items-center p-5 justify-between overflow-hidden`}
+    >
+      <div className="flex flex-col items-start gap-1">
+        <h3 className="text-sm md:text-base text-center mt-2 font-semibold text-gray-800">
+          {cat.name}
+        </h3>
+      </div>
+      <div className="relative w-[6rem] h-[6rem]">
+        <Image
+          src={cat.image || "/category.png"}
+          alt={cat.name}
+          fill
+          className="object-fill border p-0.5 rounded-full"
+        />
+      </div>
+    </Link>
   );
 }

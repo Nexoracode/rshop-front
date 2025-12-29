@@ -2,31 +2,18 @@
 import React from "react";
 import { useProductPage } from "../ProductProvider";
 import { Product } from "@/types/product";
-
-import { ResponsiveModal } from "@/components/common/ResponsiveModal";
 import ProductAttributes from "../ProductAttributes";
 import ProductDescription from "../ProductTabs/ProductDescription";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-type TabKey = "description" | "specifications" | "reviews" | "helper";
+type TabKey = "desc" | "spec" | "rev" | "he";
 
 const tabs: { key: TabKey; label: string }[] = [
-  { key: "description", label: "توضیحات" },
-  { key: "specifications", label: "ویژگی‌ها" },
-  { key: "reviews", label: "دیدگاه‌ها" },
-  { key: "helper", label: "راهنمای سایز" },
+  { key: "desc", label: "توضیحات" },
+  { key: "spec", label: "ویژگی‌ها" },
+  { key: "rev", label: "دیدگاه‌ها" },
+  { key: "he", label: "راهنمای سایز" },
 ];
 
 export default function ProductInfoDialog({
@@ -52,6 +39,8 @@ export default function ProductInfoDialog({
 
             <TabsContent value="description">
               <ProductDescription description={description} />
+
+              <p className="text-lg font-semibold py-6">اینجا آخر محتوا است</p>
             </TabsContent>
             <TabsContent value="specifications">
               <ProductAttributes attributes={specifications} />

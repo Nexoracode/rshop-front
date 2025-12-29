@@ -11,7 +11,7 @@ export default function ActiveCategoryContent(activeCategory: Category) {
         <div key={sub.id}>
           <DropdownMenuItem className="hover:bg-transparent py-1" asChild>
             <Link
-              href={`/collection/${activeCategory.slug}/${sub.slug}`}
+              href={`/category/${activeCategory.slug}/${sub.slug}`}
               className="mb-2 inline-block text-sm font-semibold text-gray-800 border-r-4 pr-2 border-r-rose-500 hover:text-rose-500 hover:bg-transparent"
             >
               {sub.title}
@@ -26,7 +26,7 @@ export default function ActiveCategoryContent(activeCategory: Category) {
                   asChild
                 >
                   <Link
-                    href={`/collection/${activeCategory.slug}/${sub.slug}/${child.slug}`}
+                    href={`/category/${activeCategory.slug}/${sub.slug}/${child.slug}`}
                     className="hover:text-rose-500 hover:bg-transparent transition"
                   >
                     {child.title}

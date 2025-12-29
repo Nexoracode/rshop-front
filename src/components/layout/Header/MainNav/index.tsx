@@ -95,7 +95,7 @@ export default function MainNav() {
                       <div dir="rtl" className="col-span-3">
                         <DropdownMenuItem className="" asChild>
                           <Link
-                            href={`/collection/${activeCategory.slug}`}
+                            href={`/category/${activeCategory.slug}`}
                             className="block mb-4 text-sm text-blue-500 font-semibold  pb-2"
                           >
                             مشاهده همه محصولات {activeCategory.title}

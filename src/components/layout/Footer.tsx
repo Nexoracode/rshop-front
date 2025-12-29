@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ChevronUp, Phone, PhoneCall, Mail, Send } from "lucide-react";
 import { brand, contact, linkColumns } from "@/data/footer";
+import ServiceSection from "../home/ServiceSection";
 
 type FooterLink = { label: string; href: string };
 type FooterColumn = { title: string; links: FooterLink[] };
@@ -56,6 +57,10 @@ export default function Footer() {
             <span className="hidden sm:inline-block">بازگشت به بالا</span>
           </Button>
         </div>
+
+        <Separator className="mt-5 mb-8" />
+
+        <ServiceSection />
 
         <Separator className="mt-5 mb-8" />
 

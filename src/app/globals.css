@@ -38,7 +38,7 @@
   --color-neutral-600: var(--neutral-600);
   --color-neutral-800: var(--neutral-800);
   --color-neutral-900: var(--neutral-900);
-  --color-neutral: var(--neutral-200);
+  --color-neutral: var(--neutral-400);
 
   /* ✅ Success */
   --color-success-50: var(--success-50);
@@ -249,6 +249,29 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes softFloat {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-soft-loop {
+  animation: softFloat 3s ease-in-out infinite;
+}
+
+.pause-on-hover:hover * {
+  animation-play-state: paused !important;
 }
 
 @utility content-center {
