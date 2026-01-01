@@ -8,3 +8,4 @@ export const getCategoreis = queryOptions({
     return await apiFetch("/category/site");
   },
 });
+//rdit
