@@ -13,7 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function PaymentCard({ order_id }: { order_id: number }) {
   const { data } = useQuery(getOrderDetails(Number(order_id)));
   return (
-    <Card className="p-3  fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] md:bg-transparent z-50 md:z-[unset] rounded-none md:rounded-lg">
+    <Card className="p-3  fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] md:bg-transparent z-50 md:z-[unset] rounded-none">
       <div className="md:space-y-3 space-y-1">
         <Responsive visible="desktop">
           {data ? (

@@ -35,7 +35,7 @@ export default function AddToWishlistBtn({ id }: Props) {
         open={open}
       />
       <Button
-        className="hover:bg-secondary px-1"
+        className="hover:bg-secondary text-black px-1"
         variant="text"
         color="neutral"
         size="sm"

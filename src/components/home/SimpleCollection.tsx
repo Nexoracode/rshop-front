@@ -11,7 +11,6 @@ import HomeProductCard from "./HomeProductCard";
 import SectionTitle from "../common/SectionTitle";
 
 export default function SimpleCollection({
-  title,
   products,
   display_style,
   show_view_all_button,

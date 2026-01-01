@@ -199,3 +199,27 @@ export function toFormData(
 
   return formData;
 }
+
+export function formatDurationFa(totalSeconds: number) {
+  if (totalSeconds <= 0) return "0 دقیقه";
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  const parts = [];
+
+  if (hours > 0) parts.push(`${hours} ساعت`);
+  if (minutes > 0) parts.push(`${minutes} دقیقه`);
+
+  return parts.join(" و ");
+}
+
+export function getRemainingSeconds(createdAt: string, expireMinutes: number) {
+  const createdTime = new Date(createdAt).getTime();
+  const now = Date.now();
+
+  const expireAt = createdTime + expireMinutes * 60 * 1000;
+  const remainingMs = expireAt - now;
+
+  return Math.max(0, Math.floor(remainingMs / 1000));
+}

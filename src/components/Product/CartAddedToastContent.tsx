@@ -18,7 +18,7 @@ export default function CartAddedToastContent({
   productName,
 }: Props) {
   return (
-    <Card className="flex p-3 gap-2 flex-col justify-between ">
+    <Card className="flex bg-card p-3 gap-2 flex-col justify-between ">
       <div className="flex text-success font-semibold items-center">
         <Check />
         <p>محصول به سبد خرید اظافه شد.</p>
@@ -49,6 +49,7 @@ export default function CartAddedToastContent({
         </Button>
         <Button
           size={"sm"}
+          href={"/cart"}
           className="px-0 gap-1 text-sm font-semibold"
           variant={"text-nohover"}
           endIcon={<ChevronLeft className="size-4" />}

@@ -45,7 +45,7 @@ export default function TopCategoriesSection({ categories }: Props) {
   );
 }
 
-function CategoryItem({ i, ...cat }: HomeCategory & { i: number }) {
+function CategoryItem({ ...cat }: HomeCategory & { i: number }) {
   return (
     <Link
       href={`/category/${cat.slug}`}

@@ -56,9 +56,9 @@ export default function ProductCard(props: Product) {
     compareAt = null,
   } = inStock ? calcPrice(...inStock.priceParams) : {};
   return (
-    <Link href={`/p/rsp-${id}`}>
+    <Link className="h-full block" href={`/p/rsp-${id}`}>
       <Card
-        className="group gap-2 md:gap-3 relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
+        className="group gap-2 md:gap-3 relative  border !p-1 shadow-sm transition hover:shadow-md"
         dir="rtl"
       >
         {compareAt && (
@@ -68,7 +68,7 @@ export default function ProductCard(props: Product) {
         )}
 
         {/* image */}
-        <div className="relative rounded-xl aspect-[1/1] w-full overflow-hidden">
+        <div className="relative rounded-sm aspect-[1/1] w-full overflow-hidden">
           <Image
             src={media_pinned?.url || PRODUCT_PLACEHOLDER}
             alt={name}

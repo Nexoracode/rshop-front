@@ -1,6 +1,12 @@
 import { apiFetch } from "@/lib/api-fetch";
 import { PaginateData, ProductFilters } from "@/types";
-import { Brand, Category, Product, ProductSearchResult } from "@/types/product";
+import {
+  Brand,
+  Category,
+  Collection,
+  Product,
+  ProductSearchResult,
+} from "@/types/product";
 import { SeoInfo } from "@/types/seo";
 import { Review } from "@/types/user";
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
@@ -119,4 +125,21 @@ export const searchTerm = (term: string) =>
       return await apiFetch(`/catalog`, { params: { term } });
     },
     enabled: !!term,
+  });
+export const getCollection = (slug: string) =>
+  queryOptions({
+    queryKey: ["get-collection-data", slug],
+    queryFn: async (): Promise<Collection> => {
+      return await apiFetch(`/collections/${slug}`);
+    },
+    enabled: !!slug,
+  });
+
+export const getSimilarProducts = (productId: number) =>
+  queryOptions({
+    queryKey: ["get-similar-products", productId],
+    queryFn: async (): Promise<Array<Product>> => {
+      return await apiFetch(`/product/${productId}/similar`);
+    },
+    enabled: !!productId,
   });

@@ -8,7 +8,6 @@ import { Separator } from "@/components/ui/separator";
 import CartPopover from "./CartPopver";
 import LinkWithChip from "@/components/common/LinkWithChip";
 import { usePathname } from "next/navigation";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UserMenu() {
   const pathName = usePathname();
@@ -20,9 +19,7 @@ export default function UserMenu() {
   return (
     <div className="hidden md:flex items-center gap-4">
       {!isComparePage &&
-        (isPending ? (
-          <Skeleton className="size-8" />
-        ) : (
+        (isPending ? null : (
           <LinkWithChip
             Icon={<ArrowLeftRightIcon strokeWidth={2} size={22} />}
             href="/compare"

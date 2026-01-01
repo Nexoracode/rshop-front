@@ -20,7 +20,7 @@ export default function SharLinkBtn() {
         <Button
           variant="text"
           color="neutral"
-          className="hover:bg-secondary px-1"
+          className="hover:bg-secondary text-black px-1"
           size="sm"
           rounded={"full"}
         >

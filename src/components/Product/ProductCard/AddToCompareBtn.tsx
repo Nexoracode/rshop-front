@@ -26,7 +26,7 @@ export default function AddToCompareBtn({ productId }: { productId: number }) {
     <React.Fragment>
       <LoginRequiredDialog onOpenChange={setOpen} open={open} usage="compare" />
       <Button
-        className="hover:bg-secondary px-1"
+        className="hover:bg-secondary text-black px-1"
         rounded={"full"}
         variant="text"
         color="neutral"

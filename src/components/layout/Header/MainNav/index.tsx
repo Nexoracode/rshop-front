@@ -42,7 +42,7 @@ export default function MainNav() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const activeCategory = categories.find((cat) => cat.id === activeId);
+  const activeCategory = categories?.find((cat) => cat.id === activeId);
   return (
     <nav
       className={cn(

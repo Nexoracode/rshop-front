@@ -17,6 +17,20 @@ export default function QuantitySelect({
   onChange,
   loading,
 }: Props) {
+  const handleIncrease = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onChange?.(qty === maxQty ? qty! : qty! + 1);
+  };
+  const handleDecrease = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onChange?.(qty! > 1 ? qty! - 1 : 0);
+  };
   return (
     <div className="flex gap-2 items-center">
       <div className="inline-flex shadow items-center rounded-lg border bg-background">
@@ -25,14 +39,14 @@ export default function QuantitySelect({
           variant={"text-nohover"}
           size={"sm"}
           className="px-2"
-          onClick={() => onChange?.(qty === maxQty ? qty! : qty! + 1)}
+          onClick={handleIncrease}
           aria-label="افزایش تعداد"
         >
           <Plus size={18} />
         </Button>
         {loading ? (
           <span>
-            <LoaderDots size={3} />
+            <LoaderDots count={3} size={3} />
           </span>
         ) : (
           <input
@@ -53,7 +67,7 @@ export default function QuantitySelect({
           variant={"text-nohover"}
           className="px-2"
           size={"sm"}
-          onClick={() => onChange?.(qty! > 1 ? qty! - 1 : 0)}
+          onClick={handleDecrease}
           aria-label="کاهش تعداد"
         >
           {qty === 1 ? <Trash2Icon size={18} /> : <Minus size={18} />}

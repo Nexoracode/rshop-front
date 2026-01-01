@@ -176,3 +176,28 @@ export type CompareListItem = {
   added_at: string;
   product: CompareListItemProduct;
 };
+
+export interface CollectionProduct {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  discount_percent: number;
+  discount_amount: number;
+  stock: number;
+  is_featured: boolean;
+  image: string;
+  category: Category | null;
+  brand: Brand | null;
+}
+
+export type Collection = {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  start_date: string; // ISO Date
+  end_date: string; // ISO Date
+  products: Array<CollectionProduct>;
+};

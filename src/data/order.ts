@@ -12,6 +12,7 @@ import { ComponentProps } from "react";
 export const statusLabel: Record<Order["status"], string> = {
   shipping: "در حال انجام",
   delivered: "ارسال شده",
+  start_order: "ایجاد سفارش",
   refunded: "لغو شده",
   expired: "لغو سیستمی",
   rejected: "مرجوع‌شده",
@@ -29,6 +30,7 @@ export const statusColor: Record<
 > = {
   shipping: "secondary",
   delivered: "success",
+  start_order: "info",
   refunded: "danger",
   expired: "warning",
   rejected: "danger-outline",

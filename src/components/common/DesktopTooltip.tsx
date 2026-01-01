@@ -8,18 +8,25 @@ type Props = {
   contentProps?: ComponentProps<typeof TooltipContent>;
 };
 
-export default function DesktopTooltip({
-  content,
-  children,
-  contentProps,
-}: PropsWithChildren<Props>) {
+export const DesktopTooltip = React.forwardRef<
+  HTMLDivElement,
+  PropsWithChildren<Props>
+>(function DesktopTooltip({ content, children, contentProps }, ref) {
   const isMobile = useIsMobile();
-  return isMobile ? (
-    children
-  ) : (
+
+  if (isMobile) {
+    return <>{children}</>;
+  }
+
+  return (
     <Tooltip>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent {...contentProps}>{content}</TooltipContent>
+
+      <TooltipContent ref={ref} {...contentProps}>
+        {content}
+      </TooltipContent>
     </Tooltip>
   );
-}
+});
+
+export default DesktopTooltip;

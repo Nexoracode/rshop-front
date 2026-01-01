@@ -13,6 +13,7 @@ import {
 import { Button } from "../ui/button";
 import { ChevronLeft } from "lucide-react";
 import { HeroSlider as HeroSliderType } from "@/types/home";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function HeroSlider({
   slides,
@@ -21,16 +22,20 @@ export default function HeroSlider({
   autoplayMs?: number;
 }) {
   return (
-    <div className="relative h-full overflow-hidden rounded-2xl bg-slate-100">
-      <Carousel className="h-full" opts={{ dragFree: false }}>
-        <CarouselNext />
+    <div className="relative h-full overflow-hidden  bg-slate-100">
+      <Carousel
+        className="h-full"
+        opts={{ dragFree: false, loop: true }}
+        plugins={[Autoplay({ playOnInit: true, delay: 5000 })]}
+      >
+        <CarouselNext className="bottom-0 right-[5rem] top-[unset]" />
 
-        <CarouselPrevious />
+        <CarouselPrevious className="bottom-0 top-[unset]" />
         <CarouselContent className="aspect-auto h-full">
           {slides.map((s, idx) => (
             <CarouselItem key={idx}>
               <div className="min-w-full h-full relative">
-                <Aspect className="rounded-2xl h-full">
+                <Aspect className=" h-full">
                   <Image
                     src={s.image_url}
                     alt={s.title}
@@ -87,7 +92,6 @@ export default function HeroSlider({
 /** نسبت تصویر واکنش‌گرا */
 function Aspect({
   children,
-  ratio = 16 / 9,
   className,
 }: {
   children: React.ReactNode;

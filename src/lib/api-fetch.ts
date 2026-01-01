@@ -84,9 +84,14 @@ export async function apiFetch(
   }
 
   if (!res.ok) {
-    console.log({ data });
     if (showErrorToast)
       toast.error(data.message ?? "خطا در برقراری ارتباط با سرور");
+
+    if (res.status === 500)
+      throw {
+        message: "خطا در برقراری ارتباط با سرور",
+        statusCode: 500,
+      };
     return response(data, showErrorToast);
   }
 

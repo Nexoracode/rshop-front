@@ -22,7 +22,7 @@ export default function PaymentPage() {
       {isPending ? (
         <PageLoader />
       ) : data ? (
-        data.status !== "awaiting_payment" ? (
+        data.status !== "awaiting_payment" && data.status !== "start_order" ? (
           <OrderNotPayable status={data.status} orderId={data.id} />
         ) : (
           <>

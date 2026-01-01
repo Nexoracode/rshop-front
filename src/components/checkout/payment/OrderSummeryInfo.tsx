@@ -7,7 +7,7 @@ type Props = {
   total: number;
   subtotal: number;
   discount_total: number;
-  gift_wrapping_cost: number;
+  gift_wrapping_cost: number | null;
   shipping_cost: number;
 };
 

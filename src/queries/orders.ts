@@ -1,6 +1,12 @@
 import { apiFetch } from "@/lib/api-fetch";
 import { getQueryClient } from "@/lib/get-query-client";
-import { GiftWrapping, Order, OrderMeta, ShopCardInfo } from "@/types/order";
+import {
+  GiftWrapping,
+  Order,
+  OrderMeta,
+  ProfileOrderStatus,
+  ShopCardInfo,
+} from "@/types/order";
 import { mutationOptions, queryOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
@@ -54,19 +60,36 @@ export const createOrder = mutationOptions({
   }) => await apiFetch("/orders/from-card", { method: "POST", body }),
 });
 
-export const getOrders = queryOptions({
-  queryKey: ["get-orders"],
-  queryFn: async (): Promise<Array<Order>> => {
-    return await apiFetch("/orders/all/me", { method: "POST" });
+export const getDetailedProfile = queryOptions({
+  queryKey: ["get-detailed-profile"],
+  queryFn: async (): Promise<{
+    order_summary: {
+      processing: number;
+      shipping: number;
+      completed: number;
+      returned: number;
+      cancelled: number;
+      total: 1;
+    };
+  }> => {
+    return await apiFetch(`/profile/detailed`);
   },
 });
+export const getOrders = (
+  orderStatus: ProfileOrderStatus | "awaiting-payment"
+) =>
+  queryOptions({
+    queryKey: ["get-profile-orders", orderStatus],
+    queryFn: async (): Promise<Array<Order>> => {
+      return await apiFetch(`/profile/orders/${orderStatus}`);
+    },
+  });
 
 export const getOrderDetails = (orderId: number) =>
   queryOptions({
     queryKey: ["get-order-details", orderId],
-    queryFn: async ({ queryKey }): Promise<Order> => {
-      const [, orderId] = queryKey;
-      return await apiFetch(`/orders/${orderId}`);
+    queryFn: async (): Promise<Order> => {
+      return await apiFetch(`/orders/${orderId}/me`);
     },
     enabled: Boolean(orderId),
     refetchOnMount: false,

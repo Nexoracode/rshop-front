@@ -1,5 +1,6 @@
 import { Brand, Category } from "./product";
 
+export type LayoutType = "side_by_side" | "stacked";
 export type HeroSlider = {
   id: number;
   title: string;
@@ -71,6 +72,7 @@ export type HomeSection = {
   products: Array<HomeSectionProduct>;
 };
 export type HomeSectionsData = {
+  layout_type: LayoutType;
   hero_sliders: Array<HeroSlider>;
   side_banners: Array<SideBanners>;
   categories: Array<HomeCategory>;

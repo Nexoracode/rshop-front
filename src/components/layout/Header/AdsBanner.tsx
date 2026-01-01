@@ -4,17 +4,21 @@ import { getPromoBanners } from "@/queries/home";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 export default function AdsBanner() {
   const { data, isFetching } = useQuery(getPromoBanners);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const banners = data
-    ? [...data]
-        .filter((b) => b.is_active)
-        .sort((a, b) => b.priority - a.priority)
-    : [];
+  const banners = useMemo(
+    () =>
+      data
+        ? [...data]
+            .filter((b) => b.is_active)
+            .sort((a, b) => b.priority - a.priority)
+        : [],
+    [data]
+  );
 
   useEffect(() => {
     if (banners.length === 0) return;

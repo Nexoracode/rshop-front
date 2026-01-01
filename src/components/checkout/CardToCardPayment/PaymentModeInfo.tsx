@@ -28,7 +28,7 @@ export function PaymentModeInfo({
           tracking_code: values.tracking_code,
           sender_card_number: values.sender_card_number,
           deposit_date: values.deposit_date,
-          deposit_time: getTimeString(values.deposit_date),
+          deposit_time: getTimeString(values.deposit_date ?? ""),
         }
       : {},
   });

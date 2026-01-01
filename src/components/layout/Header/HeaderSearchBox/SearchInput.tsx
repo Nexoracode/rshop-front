@@ -21,15 +21,15 @@ const SearchInput = React.forwardRef<HTMLDivElement, Props>(
             setSearch(e.target.value);
           }}
           onBlur={(e) => !!debouncedSearch && e.target.focus()}
-          className="rounded-sm bg-background text-black pe-10"
+          className="rounded-sm bg-muted-light/20 py-5 border-none focus-visible:ring-0 text-black ps-11"
         />
-        <button className="absolute  text-primary px-4  top-0 bottom-0 -left-1 rounded-l-sm rounded-r-0">
-          <Search />
+        <button className="absolute  text-muted px-4  top-0 bottom-0 -right-1 rounded-l-sm rounded-r-0">
+          <Search className="size-5" />
         </button>
         {debouncedSearch ? (
           <button
             onClick={() => setSearch("")}
-            className="absolute  text-danger-500 px-5  top-0 bottom-0 left-5"
+            className="absolute  text-danger-500 px-5  top-0 bottom-0 left-0"
           >
             <XIcon strokeWidth={3} size={18} />
           </button>

@@ -1,6 +1,5 @@
 "use client";
 import QuantitySelect from "@/components/Product/AddToCart/QuantitySelect";
-import { PopoverClose } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { UserCartItem } from "@/types/cart";
@@ -15,17 +14,15 @@ type Props = UserCartItem & {
 export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
     <div className="flex items-center gap-3 border-b last:border-b-0 py-2">
-      <PopoverClose asChild>
-        <Link href={`/p/rsp-${item.id}`}>
-          <Image
-            src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-            width={160}
-            height={160}
-            alt=""
-            className="size-16 rounded-md bg-muted"
-          />
-        </Link>
-      </PopoverClose>
+      <Link href={`/p/rsp-${item.id}`}>
+        <Image
+          src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+          width={160}
+          height={160}
+          alt=""
+          className="size-16 rounded-md bg-muted"
+        />
+      </Link>
       <div className="flex-1">
         <div className="text-base font-medium line-clamp-1">
           {item.product.name}

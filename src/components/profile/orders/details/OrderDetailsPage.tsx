@@ -9,20 +9,31 @@ import { useQuery } from "@tanstack/react-query";
 import { getOrderDetails } from "@/queries/orders";
 import PageLoader from "@/components/common/PageLoader";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export default function OrderDetailsPage() {
   const { order_id } = useParams<{ order_id: string }>();
   const { data: orderData, isPending } = useQuery(
     getOrderDetails(Number(order_id))
   );
-
   return isPending ? (
     <PageLoader />
   ) : orderData ? (
     <div className="space-y-4">
       <Card className="gap-4 ">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg font-semibold">جزئیات سفارش</h1>
+          <div className="flex">
+            <Button
+              variant={"text-nohover"}
+              color="neutral"
+              size={"sm"}
+              href={`/profile/orders`}
+            >
+              <ArrowRight />
+            </Button>
+            <h1 className="text-lg font-semibold">جزئیات سفارش</h1>
+          </div>
           {(orderData.status === "delivered" ||
             orderData.status === "preparing") && (
             <Link
@@ -39,10 +50,12 @@ export default function OrderDetailsPage() {
 
         <div className="grid md:grid-cols-2 gap-4">
           <OrderShippingSection address={orderData.address} />
-          <OrderPaymentSection
-            order_id={orderData.id}
-            payment={orderData.payment}
-          />
+          {orderData.payment && (
+            <OrderPaymentSection
+              order_id={orderData.id}
+              payment={orderData.payment}
+            />
+          )}
         </div>
       </Card>
 

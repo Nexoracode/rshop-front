@@ -26,7 +26,7 @@ export default function ProductResultItem({
           height={70}
           src={image ?? PRODUCT_PLACEHOLDER}
           alt=""
-          className="border rounded-md p-1 bg-background/30"
+          className="border size-[4rem] rounded-md p-1 bg-background/30"
         />
         <div className="flex-1 flex flex-col justify-evenly">
           <div className="text-sm leading-6 font-medium">{name}</div>

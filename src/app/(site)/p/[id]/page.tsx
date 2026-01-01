@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER, SHOP_NAME, SHOP_URL } from "@/data/assets";
 import { getQueryClient } from "@/lib/get-query-client";
 import { calcPrice } from "@/lib/utils";
-import { getProductById } from "@/queries/products";
+import { getCategoryBySlug, getProductById } from "@/queries/products";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
@@ -28,6 +28,7 @@ import ProductSummeryCard from "@/components/Product/ProductSummeryCard";
 import ProductFeaturedBanner from "@/components/Product/ProductFeaturedBanner";
 import ProductInfoDialog from "@/components/Product/ProductInfo/ProductInfoDialog";
 import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
+import Breadcrumb from "@/components/common/Breadcrumb";
 
 const ProductReviews = dynamic(
   () => import("@/components/Product/ProductReviews")
@@ -47,6 +48,15 @@ async function getProduct(props: PageProps<"/p/[id]">) {
   );
 
   return product;
+}
+async function getProductCategroy(categorySlug: string) {
+  const queryClient = getQueryClient();
+
+  const category = await queryClient.fetchQuery(
+    getCategoryBySlug(categorySlug)
+  );
+
+  return category;
 }
 
 export const revalidate = 300;
@@ -108,23 +118,32 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
   const data = await getProduct(props);
 
   if (!data) notFound();
+  const category = await getProductCategroy(data.product.category?.slug ?? "");
 
+  const categoryParents = category.parents.sort((a, b) => a.level - b.level);
+
+  console.log({ categoryParents });
+
+  const breadcrumbItems = [...category.parents, category.category].map((c) => ({
+    label: c.title,
+    href: `/category/${categoryParents
+      .filter((p) => p.level > c.level)
+      .map((p) => p.slug)
+      .join("/")}`,
+  }));
   const product = data.product;
 
   return (
     <div className="container min-h-screen my-10 space-y-5">
+      <Breadcrumb items={breadcrumbItems} />
       <ProductPageProvider product={product}>
         <Suspense fallback={<PageLoader />}>
           <ProductSchema {...product} />
           <div className="flex flex-col md:flex-row w-full justify-between relative">
             <div className="w-full space-y-2 flex-1 md:max-w-lg">
               <ProductFeaturedBanner />
-              <div className="relative">
-                <ProductGallery
-                  media_pinned={product.media_pinned}
-                  images={product.medias}
-                />
-                <div className="absolute top-1 right-2 flex flex-col gap-3">
+              <div className="relative flex">
+                <div className="flex flex-col gap-3">
                   <DesktopTooltip
                     contentProps={{ side: "left" }}
                     content="اظافه به علاقه مندی ها"
@@ -150,11 +169,21 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
                     <MobileShareBtn />
                   </Responsive>
                 </div>
+                <ProductGallery
+                  media_pinned={product.media_pinned}
+                  images={product.medias}
+                />
               </div>
             </div>
 
             <ProductInfo {...product} />
           </div>
+        </Suspense>
+
+        <Separator />
+
+        <Suspense fallback={<RelatedProductsSkeleton />}>
+          <RelatedProducts productId={product.id} />
         </Suspense>
 
         <ProductInfoDialog {...product} />
@@ -184,12 +213,6 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
 
           <ProductSummeryCard {...product} />
         </div>
-
-        <Separator />
-
-        <Suspense fallback={<RelatedProductsSkeleton />}>
-          <RelatedProducts />
-        </Suspense>
       </ProductPageProvider>
     </div>
   );

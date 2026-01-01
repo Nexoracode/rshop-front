@@ -11,10 +11,10 @@ import {
   ChevronDown,
   ChevronLeft,
   Heart,
+  LogInIcon,
   MapIcon,
   MessageCircle,
   ShoppingBag,
-  User,
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
@@ -35,7 +35,7 @@ export default function ProfileMenu() {
   const { data: user, isPending } = useQuery(getMe);
   const path = usePathname();
   return isPending ? (
-    <Skeleton className="h-8 w-10" />
+    <Skeleton className="h-8 w-33" />
   ) : user ? (
     <>
       <Popover>
@@ -78,14 +78,15 @@ export default function ProfileMenu() {
       </Popover>
     </>
   ) : (
-    <Link
+    <Button
       href={{ pathname: "/users/login", query: { backUrl: path } }}
-      className="flex group items-center"
+      variant={"outline"}
+      color="neutral"
+      className="text-black border-muted-light"
       aria-label="ورود"
+      startIcon={<LogInIcon className="-scale-x-100" />}
     >
-      <span className="inline-block">
-        <User strokeWidth={2} size={24} />
-      </span>
-    </Link>
+      <span className="inline-block text-sm">ورود | ثبت نام</span>
+    </Button>
   );
 }

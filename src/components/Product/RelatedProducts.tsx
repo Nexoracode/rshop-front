@@ -6,23 +6,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { products } from "@/__MOCK__/catalog";
 import ProductCard from "./ProductCard";
 import SectionTitle from "../common/SectionTitle";
+import { getQueryClient } from "@/lib/get-query-client";
+import { getSimilarProducts } from "@/queries/products";
 
-export default function RelatedProducts() {
+export default async function RelatedProducts({
+  productId,
+}: {
+  productId: number;
+}) {
+  const queryClient = getQueryClient();
+
+  const data = await queryClient.fetchQuery(getSimilarProducts(productId));
   return (
-    <div>
+    <div className="space-y-3">
       <SectionTitle title="محصولات مشابه" />
       <Carousel>
         <CarouselNext />
         <CarouselPrevious />
 
         <CarouselContent>
-          {products.slice(8, 20).map((product) => (
+          {data.map((product) => (
             <CarouselItem
               key={product.id}
-              className="basis-[14rem] sm:basis-[16rem]"
+              className="basis-[14rem] sm:basis-[16rem] h-[350px]"
             >
               <ProductCard {...product} />
             </CarouselItem>

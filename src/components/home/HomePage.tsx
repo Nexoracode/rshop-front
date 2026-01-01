@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import BannerSection from "./BannerSection";
-import ServiceSection from "./ServiceSection";
 import TopCategoriesSection from "./TopCategories";
 import FeaturedCollection from "./FeaturedCollection";
 import SpecialCollection from "./SpecialCollection";
@@ -28,6 +27,7 @@ export default function HomePage() {
       <BannerSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}
+        layoutType={data.layout_type}
       />
 
       {/*  <ServiceSection /> */}

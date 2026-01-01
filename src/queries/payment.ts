@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { Order, Payment } from "@/types/order";
+import { Payment, VerifyOrder } from "@/types/order";
 import { mutationOptions } from "@tanstack/react-query";
 
 export const createPayment = mutationOptions({
@@ -12,10 +12,13 @@ export const verifyPayment = mutationOptions({
     Authority: string;
     Status: string;
   }): Promise<{
-    order: Order;
+    order: VerifyOrder;
     payment: Payment;
     message: string;
     status: string;
     success: boolean;
+    ref_id: string;
+    invoice_date: string;
+    code: number;
   }> => apiFetch("/payment/verify", { method: "POST", params: body }),
 });

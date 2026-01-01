@@ -1,54 +1,50 @@
 "use client";
 
-import { formatPriceCompactFa } from "@/lib/utils";
-
 import { ShoppingCart } from "lucide-react";
 import useCart from "@/hooks/useCart";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { EmptyCard } from "@/components/common/EmptyCart";
+
 import CartListItems from "./CartListItems";
 import CartSummery from "./CartSummery";
 import { Skeleton } from "@/components/ui/skeleton";
+import React, { useState } from "react";
+import LinkWithChip from "@/components/common/LinkWithChip";
 
 export default function CartPopover() {
   const { data: cart, isPending } = useCart();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    if (cart?.total_quantity) setOpen(true);
+  };
   return (
-    <Popover>
-      <PopoverTrigger asChild>
+    <React.Fragment>
+      <div
+        className="relative"
+        //   onMouseOut={() => setOpen(false)}
+        onClick={() => setOpen(false)}
+        onMouseEnter={handleOpen}
+        onMouseLeave={() => setOpen(false)}
+      >
         {isPending ? (
           <Skeleton className="h-8 w-16" />
         ) : (
-          <button
-            className="relative group flex items-center"
-            aria-label="سبد خرید"
-          >
-            <ShoppingCart size={24} className="text-foreground" />
-            <span className="font-light pr-1 text-sm">
-              <span className="bg-white text-primary p-1 rounded-full inline-block leading-2 min-w-7">
-                {cart?.total_quantity ?? 0}
-              </span>{" "}
-              <br /> {formatPriceCompactFa(cart?.total ?? 0)}
-            </span>
-          </button>
+          <LinkWithChip
+            href="/cart"
+            Icon={<ShoppingCart size={24} className="text-foreground" />}
+            count={cart?.total_quantity ?? 0}
+            label="سبد خرید"
+          />
         )}
-      </PopoverTrigger>
-
-      <PopoverContent align="end" className="!w-md">
-        <div className="space-y-3 relative">
-          {cart?.items_count === 0 ? (
-            <EmptyCard />
-          ) : (
-            <>
-              <CartListItems />
-              <CartSummery />
-            </>
-          )}
-        </div>
-      </PopoverContent>
-    </Popover>
+        {open && (
+          <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around absolute">
+            <div className="text-muted-light font-semibold">
+              {cart?.total_quantity} کالا
+            </div>
+            <CartListItems />
+            <CartSummery />
+          </div>
+        )}
+      </div>
+    </React.Fragment>
   );
 }

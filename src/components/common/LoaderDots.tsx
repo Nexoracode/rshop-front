@@ -4,23 +4,31 @@ import * as React from "react";
 type LoaderDotsProps = {
   size?: number | string;
   color?: string;
+  count?: number;
   gap?: number;
-  duration?: number; // single dot cycle in seconds
+  duration?: number;
   className?: string;
   label?: string;
 };
 
 export default function LoaderDots({
-  size = 6,
+  size = 2, // ⬅️ کوچکتر
   color = "currentColor",
-  gap = 6,
-  duration = 0.9,
+  gap = 6, // فاصله متعادل‌تر
+  duration = 1.2,
+  count = 5,
   className,
   label = "Loading…",
 }: LoaderDotsProps) {
-  const d = typeof size === "number" ? size : parseFloat(size as string);
-  const w = d * 3 + gap * 2;
-  const h = d * 3; // enough vertical room for bounce
+  const d = typeof size === "number" ? size : parseFloat(size);
+  const w = d * count + gap * (count - 1);
+  const h = d * 3;
+
+  const bounce = d * 0.7; // ⬅️ دامنه حرکت کمتر
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <svg
@@ -32,27 +40,35 @@ export default function LoaderDots({
       className={className}
     >
       <title>{label}</title>
-      {[0, 1, 2].map((i) => {
+
+      {Array.from({ length: count }).map((_, i) => {
         const cx = i * (d + gap) + d / 2;
+        const delay = (duration / count) * i;
+
         return (
           <circle key={i} cx={cx} cy={h / 2} r={d / 2} fill={color}>
-            <animate
-              attributeName="cy"
-              values={`${h / 2};${h / 2 - d};${h / 2}`}
-              dur={`${duration}s`}
-              begin={`${(duration / 3) * i}s`}
-              repeatCount="indefinite"
-              keyTimes="0;0.5;1"
-              calcMode="spline"
-              keySplines=".25 .1 .25 1;.25 .1 .25 1"
-            />
-            <animate
-              attributeName="opacity"
-              values="1;.6;1"
-              dur={`${duration}s`}
-              begin={`${(duration / 3) * i}s`}
-              repeatCount="indefinite"
-            />
+            {!prefersReducedMotion && (
+              <>
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0 0; 0 -${bounce}; 0 0`}
+                  dur={`${duration}s`}
+                  begin={`${delay}s`}
+                  repeatCount="indefinite"
+                  keyTimes="0;0.5;1"
+                  calcMode="spline"
+                  keySplines=".25 .1 .25 1;.25 .1 .25 1"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="1;.5;1"
+                  dur={`${duration}s`}
+                  begin={`${delay}s`}
+                  repeatCount="indefinite"
+                />
+              </>
+            )}
           </circle>
         );
       })}

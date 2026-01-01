@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button } from "../ui/button";
-import { ArrowLeft, ShoppingBasket } from "lucide-react";
+import { ShoppingBasket } from "lucide-react";
 
 export function EmptyCard() {
   return (
@@ -11,7 +11,7 @@ export function EmptyCard() {
 
       <p className="text-muted">برای مشاهده محصولات بیشتر به صفحه زیر بروید</p>
 
-      <Button href={"/"} fullWidth endIcon={<ArrowLeft />}>
+      <Button href={"/"} variant={"text"} fullWidth>
         رفتن به فروشگاه
       </Button>
     </div>

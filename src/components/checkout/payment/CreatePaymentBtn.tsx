@@ -4,12 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import LoaderDots from "@/components/common/LoaderDots";
+
 import useCheckout from "@/hooks/useCheckout";
 import { createCardToCardPayment } from "@/queries/orders";
 import CardToCardPayment from "@/components/checkout/CardToCardPayment";
 import { PaymentMethod } from "@/types/order";
+import TransferToGate from "./TransferToGate";
 
 export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   const [openModal, setOpenModal] = useState<PaymentMethod | null>(null);
@@ -69,21 +69,8 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
           open={openModal === "card_to_card"}
         />
       ) : null}
-      <Dialog open={isPending}>
-        <DialogContent showCloseButton={false} className="w-full max-w-sm">
-          <div className="w-full py-6 space-y-16 flex flex-col justify-center">
-            <p className="text-2xl text-primary text-center">
-              در حال انتقال به درگاه
-            </p>
 
-            <LoaderDots
-              size={14}
-              color="text-primary"
-              className="inline-block w-auto"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
+      <TransferToGate open={isSuccess} />
     </>
   );
 }

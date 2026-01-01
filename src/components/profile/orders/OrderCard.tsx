@@ -78,6 +78,22 @@ export function OrderCard({ order }: { order: Order }) {
               </div>
             </>
           ))}
+        {order.status === "awaiting_payment" && (
+          <>
+            <Separator />
+
+            <div className="flex justify-end">
+              <Button
+                variant="fill"
+                size={"md"}
+                className="w-full md:w-[8rem]"
+                href={`/checkout/payment/${order.id}`}
+              >
+                پرداخت
+              </Button>
+            </div>
+          </>
+        )}
       </Card>
     </Link>
   );

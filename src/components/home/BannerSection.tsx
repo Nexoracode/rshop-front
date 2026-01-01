@@ -1,15 +1,18 @@
 "use client";
 import {
   HeroSlider as HeroSliderType,
+  LayoutType,
   SideBanners,
   SideBannersPosition,
 } from "@/types/home";
 import HeroSlider from "./HeroSlider";
 import PromoCard from "./PromoCard";
+import { cn } from "@/lib/utils";
 
 type Props = {
   heroSliders: Array<HeroSliderType>;
   sideBanners: Array<SideBanners>;
+  layoutType: LayoutType;
 };
 
 const bannersOrder: Array<{ position: SideBannersPosition; order: number }> = [
@@ -31,8 +34,11 @@ const bannersOrder: Array<{ position: SideBannersPosition; order: number }> = [
   },
 ];
 
-export default function BannerSection({ heroSliders, sideBanners }: Props) {
-  console.log({ sideBanners });
+export default function BannerSection({
+  heroSliders,
+  sideBanners,
+  layoutType,
+}: Props) {
   const ordredSideBanners = bannersOrder.map((order) => {
     const banner = sideBanners.find((sb) => sb.position === order.position);
 
@@ -43,14 +49,32 @@ export default function BannerSection({ heroSliders, sideBanners }: Props) {
 
   return (
     <section className="py-14 bg-white">
-      <div className="container min-h-[25rem] grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-4",
+          layoutType === "side_by_side" ? "container md:grid-cols-2" : ""
+        )}
+      >
         {/* اسلایدشو بزرگ - دو ستون */}
-        <div className="">
+        <div
+          className={cn(
+            layoutType === "side_by_side"
+              ? "rounded-xl overflow-hidden"
+              : "h-[25rem]"
+          )}
+        >
           <HeroSlider slides={heroSliders} autoplayMs={6000} />
         </div>
 
         {/* چهار بنر کوچک - یک ستون در موبایل، دو*دو در دسکتاپ */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+        <div
+          className={cn(
+            " grid grid-cols-2 gap-4",
+            layoutType === "side_by_side"
+              ? "sm:grid-cols-2"
+              : "container md:grid-cols-4"
+          )}
+        >
           {ordredSideBanners}
         </div>
       </div>

@@ -1,6 +1,6 @@
 export type User = {
   id: number;
-  avatar_url: string;
+  avatar_url: string | null;
   first_name: string | null;
   last_name: string | null;
   phone: string;

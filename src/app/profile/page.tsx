@@ -10,17 +10,10 @@ import { Card } from "@/components/ui/card";
 export const dynamic = "force-dynamic";
 
 export default function ProfileDashboardPage() {
-  const stats = {
-    pendingPayment: 1,
-    ongoing: 3,
-    completed: 12,
-    returned: 2,
-  };
-
   return (
     <div className="space-y-4">
       <Card>
-        <DashboardOverview stats={stats} />
+        <DashboardOverview />
       </Card>
       <Responsive visible="mobile">
         <Card>

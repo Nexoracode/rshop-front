@@ -1,9 +1,12 @@
+"use client";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { formatToman } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 import QuantitySelect from "../Product/AddToCart/QuantitySelect";
 import { UserCartItem } from "@/types/cart";
+import { useMutation } from "@tanstack/react-query";
+import { deleteCartItem, updateCartItem } from "@/queries/cart";
 
 export default function CartItem({
   id,
@@ -12,6 +15,14 @@ export default function CartItem({
   quantity,
   unit_price,
 }: UserCartItem) {
+  const { mutate: deleteItem, isPending: deletePending } =
+    useMutation(deleteCartItem);
+  const { mutate: updateItem, isPending: updatePending } =
+    useMutation(updateCartItem);
+  const handleQtyChange = (qty: number) => {
+    if (qty === 0) deleteItem({ itemId: id });
+    else updateItem({ itemId: id, quantity: qty });
+  };
   return (
     <div
       key={id}
@@ -37,8 +48,9 @@ export default function CartItem({
         <div className="flex w-full items-center">
           <QuantitySelect
             maxQty={product.stock}
-            onChange={() => {}}
+            onChange={handleQtyChange}
             qty={quantity}
+            loading={deletePending || updatePending}
           />
           <div className="text-sm font-semibold ps-3">
             {formatToman(quantity * +unit_price)}

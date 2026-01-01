@@ -7,33 +7,22 @@ import { useQuery } from "@tanstack/react-query";
 import { getOrders } from "@/queries/orders";
 import { ListLayout } from "@/components/common/ListLayout";
 import { Skeletons } from "@/components/ui/skeleton";
-import { Order, StatusOrder } from "@/types/order";
+import { Order, ProfileOrderStatus } from "@/types/order";
 
-const orderStatus: Record<
-  string,
-  { label: string; status: Array<StatusOrder> }
-> = {
-  cancell: {
+const orderStatus: Record<ProfileOrderStatus, { label: string }> = {
+  cancelled: {
     label: "لغو شده",
-    status: ["expired", "not_delivered", "payment_failed"],
   },
-  reject: { label: "مرجوع شده", status: ["refunded", "rejected"] },
-  deliver: { label: "تحویل شده", status: ["delivered"] },
-  current: {
+  returned: { label: "مرجوع شده" },
+  completed: { label: "ارسال شده" },
+  processing: {
     label: "جاری",
-    status: [
-      "awaiting_payment",
-      "preparing",
-      "shipping",
-      "payment_confirmation_pending",
-      "awaiting_payment",
-    ],
   },
 };
 export default function OrdersPage() {
-  const [status, setStatus] = useState<string>("current");
+  const [status, setStatus] = useState<ProfileOrderStatus>("processing");
 
-  const { data, isFetching } = useQuery(getOrders);
+  const { data, isFetching } = useQuery(getOrders(status));
 
   return (
     <div className="space-y-6">
@@ -47,11 +36,7 @@ export default function OrdersPage() {
       <OrdersTabs tabs={orderStatus} value={status} onChange={setStatus} />
 
       <ListLayout<Order>
-        items={
-          data?.filter((item) =>
-            orderStatus[status].status.includes(item.status)
-          ) ?? []
-        }
+        items={data ?? []}
         renderItem={(order) => <OrderCard order={order} />}
         skeleton={<Skeletons className="h-24" count={3} />}
         loading={isFetching}

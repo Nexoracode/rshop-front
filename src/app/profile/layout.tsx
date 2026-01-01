@@ -1,5 +1,6 @@
 import Responsive from "@/components/common/Responsive";
 import Header from "@/components/layout/Header";
+import BannerPadding from "@/components/layout/Header/BannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
@@ -11,6 +12,7 @@ export const dynamic = "force-dynamic";
 export default function ProfileLayout({ children }: PropsWithChildren) {
   return (
     <div className="md:pt-28 pt-10 pb-20">
+      <BannerPadding />
       <Responsive visible="desktop">
         <Header />
       </Responsive>

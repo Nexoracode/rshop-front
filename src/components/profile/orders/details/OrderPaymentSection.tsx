@@ -33,12 +33,14 @@ export function OrderPaymentSection({
             وضعیت پرداخت:{" "}
             <Badge
               variant={
-                payment.payment_method === "card_to_card"
+                payment.payment_method === "card_to_card" &&
+                payment.card_to_card_status
                   ? CardToCardPaymentStatusFa[payment.card_to_card_status].color
                   : PaymentStatusFa[payment.status].color
               }
             >
-              {payment.payment_method === "card_to_card"
+              {payment.payment_method === "card_to_card" &&
+              payment.card_to_card_status
                 ? CardToCardPaymentStatusFa[payment.card_to_card_status].label
                 : PaymentStatusFa[payment.status].label}
             </Badge>

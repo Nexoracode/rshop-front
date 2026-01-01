@@ -8,15 +8,23 @@ import AddToCartButton from "./AddToCart/AddToCartButton";
 import { Separator } from "../ui/separator";
 import { useProductPage } from "./ProductProvider";
 import ProductPriceInfo from "./ProductInfo/ProductPriceInfo";
+import usePromotionPadding from "@/hooks/usePromotionPadding";
+import { cn } from "@/lib/utils";
+import VariantValues from "./VariantValues";
 
 export default function ProductSummeryCard(product: Product) {
   const { media_pinned, name } = product;
+  const { bannerExists } = usePromotionPadding();
 
   const { variant } = useProductPage();
 
-  console.log({ variant });
   return (
-    <Card className="hidden space-y-4 md:block w-[300px] sticky top-[5rem] h-fit">
+    <Card
+      className={cn(
+        "hidden space-y-4 md:block w-[300px] sticky top-[5rem] h-fit",
+        bannerExists && "top-[10rem]"
+      )}
+    >
       <div className="flex items-center">
         <Image
           src={media_pinned?.url || PRODUCT_PLACEHOLDER}
@@ -30,19 +38,7 @@ export default function ProductSummeryCard(product: Product) {
             {name}
           </p>
 
-          <div className="flex items-center">
-            {variant?.attributes.map((i) => (
-              <>
-                <p className="text-xs" key={i.id}>
-                  <span className="font-light text-muted">{i.name}</span> :{" "}
-                  <span className="font-semibold text-neutral-900">
-                    {i.values.value}
-                  </span>
-                </p>
-                <Separator orientation="vertical" />
-              </>
-            ))}
-          </div>
+          {variant && <VariantValues variant={variant} />}
         </div>
       </div>
       <Separator />
