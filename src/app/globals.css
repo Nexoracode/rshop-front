@@ -209,7 +209,7 @@
   --foreground-warning: var(--neutral-900);
 
   /* 🧩 BASE */
-  --background: var(--neutral-50);
+  --background: #ffffff;
   --foreground: var(--neutral-900);
   --card: #fdfdfd;
   --card-foreground: var(--neutral-900);

@@ -21,7 +21,7 @@ export default function HomeProductCard(props: HomeSectionProduct) {
   return (
     <Link href={`/p/rsp-${id}`}>
       <Card
-        className="group gap-2 md:gap-3 relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
+        className="group gap-2 md:gap-3 bg-background relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
       >
         {/* top right: discount */}

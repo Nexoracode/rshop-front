@@ -8,9 +8,19 @@ import { Badge } from "@/components/ui/badge";
 import { HomeSectionProduct } from "@/types/home";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 
-export default function SpecialProductCart(props: HomeSectionProduct) {
-  const { name, price, brand, discount_percent, discount_amount, image } =
-    props;
+export default function SpecialProductCart(
+  props: HomeSectionProduct & { num?: number }
+) {
+  const {
+    name,
+    price,
+    brand,
+    discount_percent,
+    discount_amount,
+    image,
+    num,
+    id,
+  } = props;
 
   const { compareAt, final, percent } = calcPrice(
     price,
@@ -19,64 +29,70 @@ export default function SpecialProductCart(props: HomeSectionProduct) {
   );
 
   return (
-    <Card
-      className="group relative overflow-hidden border !p-2 shadow-sm transition hover:shadow-md"
-      dir="rtl"
-    >
-      <div className="flex items-start">
-        <div className="flex-1/3 space-y-2">
-          <div className="relative aspect-[1/1]  overflow-hidden">
-            <Image
-              src={image || PRODUCT_PLACEHOLDER}
-              alt={name}
-              fill
-              className="object-cover rounded-md border p-1 opacity-100 group-hover:opacity-0 transition-opacity duration-700"
-            />
-          </div>
-        </div>
-
-        <div className="flex-3/4 gap-y-3 flex flex-col justify-between px-3">
-          <div>
-            {brand ? (
-              <p className="text-xs text-muted/80">{brand.name}</p>
-            ) : null}
-
-            <Link
-              href={"/product/1"}
-              className="line-clamp-1 text-sm text-foreground  font-semibold"
-            >
-              {name}
-            </Link>
+    <Link href={`/p/rsp-${id}`}>
+      <Card
+        className="group relative overflow-hidden border-0 rounded-none bg-background !p-2"
+        dir="rtl"
+      >
+        <div className="flex items-stretch">
+          <div className="flex-1/3 space-y-2">
+            <div className="relative aspect-[1/1]  overflow-hidden">
+              <Image
+                src={image || PRODUCT_PLACEHOLDER}
+                alt={name}
+                fill
+                className="object-cover rounded-md border p-1"
+              />
+            </div>
           </div>
 
-          {/* rating */}
-          {/* <div className="flex items-center gap-1 text-yellow-500">
+          <div className="flex flex-3/4 ">
+            {num && (
+              <div className="text-info-400 text-2xl font-semibold flex items-center pr-3">
+                {num}
+              </div>
+            )}
+            <div className="gap-y-3 border-b flex-1 flex flex-col justify-center px-3">
+              <div>
+                {brand ? (
+                  <p className="text-xs text-muted/80">{brand.name}</p>
+                ) : null}
+
+                <h4 className="line-clamp-2 text-sm text-foreground  font-semibold">
+                  {name}
+                </h4>
+              </div>
+
+              {/* rating */}
+              {/* <div className="flex items-center gap-1 text-yellow-500">
           {[...Array(5)].map((_, i) =>
             i < rating ? <FaStar key={i} /> : <FaRegStar key={i} />
           )}
         </div> */}
 
-          {/* price */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm  font-bold text-primary-600">
-              {formatToman(final)}{" "}
-            </span>
-            {compareAt && (
-              <span className="text-xs text-gray-400 line-through">
-                {formatToman(compareAt)}
-              </span>
-            )}
+              {/* price */}
+              <div className="flex items-center gap-2">
+                <span className="text-sm  font-bold text-primary-600">
+                  {formatToman(final)}{" "}
+                </span>
+                {compareAt && (
+                  <span className="text-xs text-gray-400 line-through">
+                    {formatToman(compareAt)}
+                  </span>
+                )}
+              </div>
+
+              {/* <CountdownTimer showIcon={false} targetDate="2025-12-10T23:59:59" /> */}
+
+              {compareAt && (
+                <Badge variant={"danger"} className="absolute top-2 left-2 ">
+                  {percent}%
+                </Badge>
+              )}
+            </div>
           </div>
-
-          {/* <CountdownTimer showIcon={false} targetDate="2025-12-10T23:59:59" /> */}
-
-          {compareAt && (
-            <Badge variant={"danger"} className="absolute top-2 left-2 ">
-              {percent}%
-            </Badge>
-          )}
         </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 }

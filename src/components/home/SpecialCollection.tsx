@@ -7,9 +7,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { chunkArray } from "@/lib/utils";
+import { chunkArray, cn } from "@/lib/utils";
 import SpecialProductCart from "./SpecialProductCart";
 import { HomeSection } from "@/types/home";
+import HomeProductCard from "./HomeProductCard";
 
 export default function SpecialCollection({
   products,
@@ -18,10 +19,11 @@ export default function SpecialCollection({
   show_view_all_button,
   view_all_link,
 }: HomeSection) {
-  const chunckedProducts = chunkArray(products, 2);
+  const ProductCard =
+    display_style === "list" ? SpecialProductCart : HomeProductCard;
   return (
     <section className="py-6">
-      <div className="container space-y-2 relative">
+      <div className="container border rounded-lg space-y-2 p-2 relative">
         <SectionTitle
           title={title}
           link={show_view_all_button ? view_all_link : undefined}
@@ -31,22 +33,29 @@ export default function SpecialCollection({
             <CarouselNext />
             <CarouselPrevious />
             <CarouselContent>
-              {chunckedProducts.map((group) => (
-                <CarouselItem
-                  className="basis-[20rem] sm:basis-[50%] lg:basis-[33.3333%] xl:basis-[25%] space-y-2"
-                  key={group[0].id}
-                >
-                  {group.map((product) => (
-                    <SpecialProductCart key={product.id} {...product} />
-                  ))}
+              {products.map((product) => (
+                <CarouselItem className="basis-[16rem]" key={product.id}>
+                  <HomeProductCard key={product.id} {...product} />
                 </CarouselItem>
               ))}
             </CarouselContent>
           </Carousel>
         ) : (
-          <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {products.map((product) => (
-              <SpecialProductCart key={product.id} {...product} />
+          <div className="flex flex-wrap flex-1 gap-2">
+            {products.map((product, index) => (
+              <div
+                className={cn(
+                  display_style === "grid"
+                    ? "basis-[16rem]"
+                    : "xl:basis-[calc(25%-8px)]"
+                )}
+                key={product.id}
+              >
+                <ProductCard
+                  {...product}
+                  {...(display_style === "list" ? { num: index + 1 } : {})}
+                />
+              </div>
             ))}
           </div>
         )}

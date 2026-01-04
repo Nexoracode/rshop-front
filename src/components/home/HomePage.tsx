@@ -17,9 +17,19 @@ export default function HomePage() {
   const categoryBasedSections = data?.sections
     .filter((i) => i.section_type === "category_based")
     .sort((a, b) => a.sort_order - b.sort_order);
-  const noneCtegoryBasedSections = data?.sections
-    .filter((i) => i.section_type !== "category_based")
+
+  const featuredSections = data?.sections.find(
+    (s) => s.section_type === "featured"
+  );
+
+  const mostPopular = data.sections.find(
+    (s) => s.section_type === "most_popular"
+  );
+
+  const specialProducts = data.sections
+    .filter((s) => s.section_type === "special_products")
     .sort((a, b) => a.sort_order - b.sort_order);
+
   return isFetching ? (
     <PageLoader />
   ) : (
@@ -31,24 +41,19 @@ export default function HomePage() {
       />
 
       {/*  <ServiceSection /> */}
+      {featuredSections && <FeaturedCollection {...featuredSections} />}
 
       <TopCategoriesSection categories={data.categories} />
 
-      {noneCtegoryBasedSections.map((section) => {
-        if (section.section_type === "featured")
-          return <FeaturedCollection key={section.id} {...section} />;
-        if (section.section_type === "most_popular")
-          return <SimpleCollection key={section.id} {...section} />;
-
-        if (section.section_type === "special_products")
-          return <SpecialCollection key={section.id} {...section} />;
-
-        return null;
-      })}
+      {mostPopular && <SimpleCollection {...mostPopular} />}
 
       {categoryBasedSections.length > 0 && (
         <ProductByCategory sections={categoryBasedSections} />
       )}
+
+      {specialProducts.map((section) => (
+        <SpecialCollection key={section.id} {...section} />
+      ))}
 
       <BrandsSection brands={data.brands} />
 
