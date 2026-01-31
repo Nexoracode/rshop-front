@@ -9,12 +9,12 @@ queryClient.prefetchQuery(getHomeSections);
 
 export default function Home() {
   return (
-    <main>
+    <>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <HomePage />
       </HydrationBoundary>
 
       {/* سکشن قهرمان / بنرها */}
-    </main>
+    </>
   );
 }

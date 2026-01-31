@@ -5,9 +5,10 @@ export default function useScrollToSection() {
     const el = document.getElementById(key);
     if (!el) return;
 
-    window.scrollTo({
-      top: el.offsetTop - 90, // اگر هدر داری این مقدار مناسب است
+    el.scrollIntoView({
       behavior: "smooth",
+      block: "center",
+      inline: "center",
     });
   };
   return { handleScrollTo };

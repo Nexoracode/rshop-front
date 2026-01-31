@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { DialogClose, DialogFooter } from "@/components/ui/dialog";
 import { addProductReview, updateReview } from "@/queries/reviews";
-import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2 } from "lucide-react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
@@ -82,19 +81,18 @@ function SubmitSuccess() {
   return (
     <>
       {/* Animated Icon */}
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-2">
         <CheckCircle2 className="w-16 h-16 text-green-500 animate-pop-in" />
       </div>
 
-      <DialogHeader>
-        <DialogTitle className="text-lg font-semibold">
-          دیدگاه شما با موفقیت ثبت شد ✅
-        </DialogTitle>
-      </DialogHeader>
+      <p className="text-center text-lg font-semibold mb-4">
+        دیدگاه شما با موفقیت ثبت شد
+      </p>
 
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        دیدگاه شما پس از بررسی و تأیید تیم پشتیبانی نمایش داده خواهد شد. از
-        همراهی شما سپاسگزاریم 🌱
+      <p className="text-sm py-2 text-center  text-muted-foreground leading-8">
+        دیدگاه شما پس از بررسی و تأیید تیم پشتیبانی نمایش داده خواهد شد.
+        <br />
+        از همراهی شما سپاسگزاریم
       </p>
 
       <DialogFooter className="flex flex-col gap-3 sm:flex-row sm:justify-center pt-2">

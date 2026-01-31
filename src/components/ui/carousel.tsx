@@ -179,7 +179,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-mr-2 md:-mr-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-mr-1" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -198,7 +198,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pr-2 lg:pr-4" : "pt-4",
+        orientation === "horizontal" ? "pr-1" : "pt-4",
         className
       )}
       {...props}

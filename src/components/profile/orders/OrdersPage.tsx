@@ -37,7 +37,7 @@ export default function OrdersPage() {
 
       <ListLayout<Order>
         items={data ?? []}
-        renderItem={(order) => <OrderCard order={order} />}
+        renderItem={(order) => <OrderCard key={order.id} order={order} />}
         skeleton={<Skeletons className="h-24" count={3} />}
         loading={isFetching}
         className="flex flex-col gap-2"

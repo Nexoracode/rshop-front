@@ -5,7 +5,6 @@ import { Trash2, MapPin, PinIcon, Edit } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { Menu, MenuItem } from "@/components/common/Menu";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { UserAddress } from "@/types/user";
 
 type Props = {
@@ -17,11 +16,10 @@ type Props = {
 
 export default function AddressCard(props: Props) {
   const { address, onEdit, onDelete, onSetPrimary } = props;
-  const { user } = useCurrentUser();
   return (
     <Card
       className={cn(
-        "!p-4 relative bg-transparent hover:shadow-md transition-all border-muted",
+        "!p-4 relative bg-transparent hover:shadow-md transition-all border-muted-light",
         address.is_primary && "border-primary-300 shadow-primary-foreground"
       )}
     >
@@ -46,7 +44,7 @@ export default function AddressCard(props: Props) {
           <p>
             گیرنده:{" "}
             {address.is_self
-              ? `${user?.first_name ?? "-"} ${user?.last_name ?? "-"}`
+              ? "خودم"
               : `${address.recipient_name} - ${address.recipient_phone}`}
           </p>
         </div>
@@ -79,50 +77,6 @@ export default function AddressCard(props: Props) {
           },
         ]}
       />
-
-      {/* <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            className="absolute left-2 top-2"
-            size={"sm"}
-            variant={"text-nohover"}
-            color="neutral"
-          >
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <Button
-            variant="text"
-            size="sm"
-            onClick={() => onEdit(address)}
-            startIcon={}
-            fullWidth
-            className="text-blue-600"
-          >
-            
-          </Button>
-          <Button
-            variant="text"
-            size="sm"
-            onClick={() => onEdit(address)}
-            className="text-blue-600"
-            fullWidth
-            startIcon={<Pencil />}
-          >
-            
-          </Button>
-
-          <Button
-            variant="text"
-            size="sm"
-            onClick={() => onDelete(address)}
-            fullWidth
-            startIcon={<Trash2 />}
-          >
-            
-          </Button>
-        </PopoverContent>
-      </Popover> */}
     </Card>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import BaseDialog from "../../common/BaseDialog";
 import { PaymentMode } from "./types";
 import PaymentModeNow from "./PaymentModeNow";
 import PaymentModeLater from "./PaymentModeLater";
@@ -9,6 +8,7 @@ import ShopCardInfo from "./ShopCartInfo";
 import { PaymentModeInfo } from "./PaymentModeInfo";
 import PaymentSuccess from "./PaymentSuccess";
 import { CardToCardPaymentInfo } from "@/types/order";
+import PaymentExpireAlert from "./PaymentExpireAlert";
 
 type Props = {
   open: boolean;
@@ -17,17 +17,18 @@ type Props = {
   order_id: number;
   amount: number;
   later?: boolean;
+  date: string;
   paymentInfo?: CardToCardPaymentInfo | null;
 };
 
 export default function CardToCardPayment({
-  open,
   payment_id,
   order_id,
   amount,
   onClose,
   later = false,
   paymentInfo = null,
+  date,
 }: Props) {
   const [mode, setMode] = React.useState<PaymentMode>(() =>
     paymentInfo?.sender_card_number ? "info" : "now"
@@ -47,7 +48,13 @@ export default function CardToCardPayment({
         receipt_image={paymentInfo?.receipt_image ?? null}
       />
     ),
-    later: <PaymentModeLater onClose={onClose} onSuccess={handleSuccess} />,
+    later: (
+      <PaymentModeLater
+        order_id={order_id}
+        onClose={onClose}
+        onSuccess={handleSuccess}
+      />
+    ),
     info: (
       <PaymentModeInfo
         onClose={onClose}
@@ -58,38 +65,34 @@ export default function CardToCardPayment({
     ),
   };
 
+  if (success)
+    return (
+      <PaymentSuccess
+        date={date}
+        paymentMode={mode}
+        later={later}
+        order_id={order_id}
+      />
+    );
+
   return (
-    <BaseDialog
-      open={open}
-      onOpenChange={(open) => {
-        if (!open) onClose();
-      }}
-      title="پرداخت کارت‌به‌کارت"
-      hiddenFooter
-      content={
-        success ? (
-          <PaymentSuccess later={later} order_id={order_id} />
-        ) : (
-          <div className="space-y-3">
-            <div className="text-sm text-center">
-              پس از واریز وجه، نسبت به{" "}
-              <span className="font-semibold">بارگذاری رسید پرداختی</span> و
-              تکمیل سفارش اقدام کنید.
-              {order_id ? (
-                <span className="block mt-1">
-                  کد سفارش:{" "}
-                  <span className="font-mono font-medium">{order_id}</span>
-                </span>
-              ) : null}
-            </div>
-            <ShopCardInfo amount={Number(amount)} />
+    <div className="space-y-3">
+      <div>
+        <h3 className="text-lg font-semibold">پرداخت کارت به کارت</h3>
+        <p className="text-xs md:text-sm text-muted mt-4">
+          لطفا مبلغ سفارش را با اطلاعات زیر به حساب فروشگاه واریز کنید و تصویر
+          رسید آن را بارگذاری کنید.
+        </p>
+      </div>
+      <PaymentExpireAlert date={date} />
+      <div className="md:flex space-y-4 gap-4">
+        <div className="flex-1 space-y-4">
+          <ShopCardInfo amount={Number(amount)} />
+          <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
+        </div>
 
-            <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
-
-            {modeAction[mode]}
-          </div>
-        )
-      }
-    />
+        <div className="flex-1">{modeAction[mode]}</div>
+      </div>
+    </div>
   );
 }

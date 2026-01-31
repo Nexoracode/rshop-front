@@ -19,8 +19,11 @@ import { UserAddress } from "@/types/user";
 export default function AddressListPage() {
   const { data: addresses, isFetching } = useQuery(getUserAddress);
   const { mutate, isPending: deletePending } = useMutation(deleteUserAddress);
-  const { mutate: setPrimary, isPending: setPrimaryPending } =
-    useMutation(updateUserAddress);
+  const {
+    mutate: setPrimary,
+    isPending: setPrimaryPending,
+    variables,
+  } = useMutation(updateUserAddress);
 
   const [openForm, setOpenForm] = useState<{
     action: "edit" | "add" | "delete";
@@ -55,6 +58,7 @@ export default function AddressListPage() {
         onDelete={(address) => setOpenForm({ action: "delete", address })}
         onEdit={(address) => setOpenForm({ action: "edit", address })}
         onSetPrimary={handleSetPrimary}
+        setPrimary={!!variables?.id}
       />
 
       {openForm && (

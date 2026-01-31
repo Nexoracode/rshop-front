@@ -20,7 +20,7 @@ export default function CollectionProductCart(props: CollectionProduct) {
 
   return (
     <Card
-      className="group relative overflow-hidden border !p-2 shadow-sm transition hover:shadow-md"
+      className="group relative overflow-hidden border !p-1 shadow-sm transition hover:shadow-md"
       dir="rtl"
     >
       <Link href={`/p/rsp-${id}`}>
@@ -30,7 +30,8 @@ export default function CollectionProductCart(props: CollectionProduct) {
               src={image || PRODUCT_PLACEHOLDER}
               alt={name}
               fill
-              className="object-cover rounded-md border p-1"
+              sizes="150px"
+              className="object-cover rounded-md"
             />
           </div>
 
@@ -40,12 +41,9 @@ export default function CollectionProductCart(props: CollectionProduct) {
                 <p className="text-xs text-muted/80">{brand.name}</p>
               ) : null}
 
-              <Link
-                href={"/product/1"}
-                className="line-clamp-1 text-sm text-foreground  font-semibold"
-              >
+              <p className="line-clamp-1 text-sm text-foreground  font-semibold">
                 {name}
-              </Link>
+              </p>
             </div>
 
             {/* rating */}

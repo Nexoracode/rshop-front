@@ -12,7 +12,7 @@ import ProductResultList from "./ProductResultList";
 import CategoryResultList from "./CategoryResultList";
 import BrandResultList from "./BrandResultList";
 import SearchPrompt from "./SearchPrompt";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function MobileSearchBox({
@@ -26,16 +26,21 @@ export default function MobileSearchBox({
 
   const pathName = usePathname();
 
-  useEffect(() => {
+  const handleClose = useCallback(() => {
     if (debouncedSearch && open) {
       setOpen(false);
       setSearch("");
     }
-  }, [pathName, debouncedSearch, open, setSearch]);
+  }, [debouncedSearch, open, setSearch]);
+
+  useEffect(() => {
+    handleClose();
+  }, [pathName, setSearch, handleClose]);
 
   const onOpenChange = (op: boolean) => {
     if (!op) {
       setSearch("");
+      setOpen(false);
     }
   };
 

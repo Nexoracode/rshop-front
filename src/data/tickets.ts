@@ -152,6 +152,10 @@ export const ticketStatus: Record<
     color: "danger",
     label: "بسته شده",
   },
+  open: {
+    color: "warning",
+    label: "در انتظار بررسی",
+  },
   waiting: {
     color: "warning",
     label: "در انتظار بررسی",

@@ -28,7 +28,7 @@
   --color-secondary-700: var(--secondary-700);
   --color-secondary-800: var(--secondary-800);
   --color-secondary-900: var(--secondary-900);
-  --color-secondary: var(--secondary-400);
+  --color-secondary: var(--secondary-700);
 
   /* ⚫ Neutral */
   --color-neutral-50: var(--neutral-50);
@@ -120,16 +120,16 @@
 ------------------------------------------------- */
 :root {
   /* 🟣 PRIMARY (Purple) */
-  --primary-50: #f6f5f6;
-  --primary-100: #e6d8ed;
-  --primary-200: #c7a9d6;
-  --primary-300: #a47abc;
-  --primary-400: #8c57a1;
-  --primary-500: #7e4692; /* main */
-  --primary-600: #7e6d93;
-  --primary-700: #71007c; /* dark */
-  --primary-800: #5a0061;
-  --primary-900: #29002e;
+  --primary-50: #e6f4f3;
+  --primary-100: #bfe5e3;
+  --primary-200: #95d4d1;
+  --primary-300: #6bc3bf;
+  --primary-400: #4bb5b0;
+  --primary-500: #009d98; /* main */
+  --primary-600: #005f5c;
+  --primary-700: #00524f;
+  --primary-800: #004543;
+  --primary-900: #003331;
 
   /* 🟡 SECONDARY (Yellow) */
   --secondary-50: #fff9e0;
@@ -274,6 +274,10 @@
   animation-play-state: paused !important;
 }
 
+@utility container-home {
+  @apply w-full max-w-7xl mx-auto;
+}
+
 @utility content-center {
   display: flex;
   justify-content: center;
@@ -308,10 +312,13 @@
   animation: slide-out-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+@utility shadow-around {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 @layer utilities {
-  .shadow-around {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
   /* Track: مسیر پس‌زمینه */
   .scrollbar-custom::-webkit-scrollbar-track {
     background: var(--neutral-100);
@@ -386,9 +393,8 @@
 }
 
 .input {
-  @apply flex h-11 w-full rounded-lg bg-neutral-100 px-3 py-2 text-sm text-foreground shadow-xs transition-colors
+  @apply flex h-11 w-full rounded-lg bg-background px-3 py-2 text-sm text-foreground shadow-xs transition-colors
          placeholder:text-gray-400
-          ring-1 ring-neutral/40 focus:ring-primary/20
          disabled:cursor-not-allowed disabled:opacity-50;
 }
 
@@ -423,7 +429,9 @@
   inset-block-end: 0; /* bottom: 0 منطقی */
   inset-inline-start: var(--x, 0px); /* left/right منطقی بسته به RTL/LTR */
   background: var(--color-primary);
-  transition: inline-size 300ms ease, inset-inline-start 300ms ease;
+  transition:
+    inline-size 300ms ease,
+    inset-inline-start 300ms ease;
 }
 
 .content h1 {

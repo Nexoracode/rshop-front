@@ -17,7 +17,6 @@ export default function PaymentModeNow({
   onClose: () => void;
   receipt_image: Media | null;
 }) {
-  console.log({ receipt_image });
   const form = useForm({ values: { file: receipt_image?.url } });
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
   const handleSubmit = (values: FieldValues) => {
@@ -28,7 +27,7 @@ export default function PaymentModeNow({
     );
   };
   return (
-    <div className="space-y-3 border rounded-lg p-2">
+    <div className="space-y-3 flex flex-col justify-between border h-full rounded-lg p-2">
       <h3 className="font-semibold">بارگزاری رسید پرداخت</h3>
 
       {/* Dropzone-like uploader */}

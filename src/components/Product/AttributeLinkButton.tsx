@@ -11,12 +11,12 @@ export default function AttributeLinkButton() {
       <Separator className="flex-1" />
       <div
         role="button"
-        className="flex font-semibold cursor-pointer gap-4 justify-between border bg-background border-muted-light/20 w-[calc(33.333%-)] rounded-md p-3"
+        className="flex cursor-pointer gap-4 justify-between border bg-background border-muted-light/20 w-[calc(33.333%-)] rounded-md p-3"
         onClick={() => handleScrollTo("specifications")}
       >
         <p className="text-sm text-muted "> مشاهده همه ویژگی ها</p>
 
-        <ChevronLeftIcon strokeWidth={3} className="size-4" />
+        <ChevronLeftIcon strokeWidth={2} className="size-4" />
       </div>
       <Separator className="flex-1" />
     </div>

@@ -11,6 +11,7 @@ import ProductPriceInfo from "./ProductInfo/ProductPriceInfo";
 import usePromotionPadding from "@/hooks/usePromotionPadding";
 import { cn } from "@/lib/utils";
 import VariantValues from "./VariantValues";
+import { ShoppingBagIcon, StoreIcon, ZapIcon } from "lucide-react";
 
 export default function ProductSummeryCard(product: Product) {
   const { media_pinned, name } = product;
@@ -22,7 +23,7 @@ export default function ProductSummeryCard(product: Product) {
     <Card
       className={cn(
         "hidden space-y-4 md:block w-[300px] sticky top-[5rem] h-fit",
-        bannerExists && "top-[10rem]"
+        bannerExists && "top-[10rem]",
       )}
     >
       <div className="flex items-center">
@@ -48,6 +49,22 @@ export default function ProductSummeryCard(product: Product) {
       <Separator />
 
       <AddToCartButton product={product} />
+
+      <div>
+        <div className="flex items-center text-sm  text-primary py-1 gap-2">
+          <StoreIcon className="text-primary size-5" />
+          آرشاب
+        </div>
+        <div className="flex items-center text-muted-light text-xs py-1 gap-2">
+          <ShoppingBagIcon className="text-black size-4" />
+          موجود در انبار آرشاب
+        </div>
+
+        <div className="flex items-center text-muted-light text-xs py-1 gap-2">
+          <ZapIcon className="text-secondary size-4" />
+          ارسال در سریع ترین زمان
+        </div>
+      </div>
     </Card>
   );
 }

@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function VariantValues({ variant }: Props) {
-  console.log({ variant });
   return (
     <div className="flex gap-1 items-center">
       {variant?.attributes.map((i, index) => (
@@ -14,8 +13,8 @@ export default function VariantValues({ variant }: Props) {
           <p className="text-xs flex items-center" key={i.id}>
             {i.type === "color" && (
               <span
-                className="inline-block me-1 w-5 h-5 rounded-full border"
-                style={{ backgroundColor: i.values.value || "#fff" }}
+                className="inline-block me-1 w-3 h-3 rounded-full border"
+                style={{ backgroundColor: i.values.display_color || "#fff" }}
               ></span>
             )}
             <span className="font-semibold text-neutral-900">

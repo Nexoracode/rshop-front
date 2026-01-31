@@ -17,8 +17,8 @@ const blogItem: Blog = {
 
 export default function BlogSection() {
   return (
-    <section className="py-6">
-      <div className="container space-y-2 relative">
+    <section>
+      <div className="relative container-home">
         <SectionTitle title="آخرین مطالب آموزشی" link="/blog" />
         <div className="w-full">
           <Carousel className="">

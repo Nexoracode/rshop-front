@@ -6,6 +6,7 @@ import PriceRangeFilter from "./PriceRangeFilter";
 import ColorFilter from "./ColorFilter";
 import ToggleFilter from "./ToggleFilter";
 import { useProductFilter } from "./ProductFilterProvider";
+import FilterByCategory from "./FilterByCategory";
 
 export default function FiltersList() {
   const {
@@ -22,7 +23,7 @@ export default function FiltersList() {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <h3 className="text-lg text-primary font-semibold">فیلترها</h3>
+        <h3 className="text-lg font-semibold">فیلترها</h3>
 
         <Button
           onClick={handleClearFilters}
@@ -34,16 +35,23 @@ export default function FiltersList() {
           حذف فیلترها
         </Button>
       </div>
-      <TreeItem
-        items={brands.map((i) => ({
-          label: i.name,
-          value: i.id,
-        }))}
-        search
-        label="برند"
-        value={query?.filter.brand}
-        onChange={(v) => handleSetFilter("brand", v)}
-      />
+
+      <TreeItem label="دسته بندی">
+        <FilterByCategory />
+      </TreeItem>
+
+      {brands && (
+        <TreeItem
+          items={brands.map((i) => ({
+            label: i.name,
+            value: i.id,
+          }))}
+          search
+          label="برند"
+          value={query?.filter.brand}
+          onChange={(v) => handleSetFilter("brand", v)}
+        />
+      )}
 
       <TreeItem label="قیمت">
         <PriceRangeFilter
@@ -61,41 +69,42 @@ export default function FiltersList() {
         (key) => (
           <ToggleFilter
             checked={Boolean(
-              query?.filter.booleanFilters?.find((i) => i.key === key)
+              query?.filter.booleanFilters?.find((i) => i.key === key),
             )}
             onCheckedChange={(check) => handleSetBooleanQuery(key, check)}
             key={key}
             toggleId={key}
             label={boolean_filter[key]["label"]}
           />
-        )
+        ),
       )}
 
-      {attributes.map((attr) => {
-        if (attr.type === "color")
-          return (
-            <TreeItem key={attr.id} label={attr.name}>
-              <ColorFilter
-                value={query?.filter.attributes[attr.id] || []}
-                onChange={(colors) =>
-                  handleSetAttributeQuery(String(attr.id), colors)
-                }
-                colors={attr.values}
-                multiple
-              />
-            </TreeItem>
-          );
+      {attributes &&
+        attributes.map((attr) => {
+          if (attr.type === "color")
+            return (
+              <TreeItem key={attr.id} label={attr.name}>
+                <ColorFilter
+                  value={query?.filter.attributes[attr.id] || []}
+                  onChange={(colors) =>
+                    handleSetAttributeQuery(String(attr.id), colors)
+                  }
+                  colors={attr.values}
+                  multiple
+                />
+              </TreeItem>
+            );
 
-        return (
-          <TreeItem
-            key={attr.id}
-            label={attr.name}
-            items={attr.values.map((i) => ({ label: i.value, value: i.id }))}
-            value={query?.filter?.attributes?.[attr.id]}
-            onChange={(v) => handleSetAttributeQuery(String(attr.id), v)}
-          />
-        );
-      })}
+          return (
+            <TreeItem
+              key={attr.id}
+              label={attr.name}
+              items={attr.values.map((i) => ({ label: i.value, value: i.id }))}
+              value={query?.filter?.attributes?.[attr.id]}
+              onChange={(v) => handleSetAttributeQuery(String(attr.id), v)}
+            />
+          );
+        })}
     </section>
   );
 }

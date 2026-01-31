@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { Card } from "../ui/card";
 import Image from "next/image";
 import SectionTitle from "../common/SectionTitle";
 import { HomeSection } from "@/types/home";
 import HomeProductCard from "./HomeProductCard";
+import ProductCarousel from "../common/ProductCarousel";
 
 export default function ProductByCategory({
   sections,
@@ -18,11 +18,11 @@ export default function ProductByCategory({
     sections.find((i) => i.id === selectedId) ?? sections[0];
 
   return (
-    <section className="py-6">
-      <div className="container space-y-2 relative">
+    <section>
+      <div className="container-home relative">
         <SectionTitle
           title="خرید بر اساس دسته بندی"
-          link={`/category/${selectedSection.category?.slug}`}
+          link={`/products/${selectedSection.category?.slug}`}
         />
 
         <div className="flex flex-col md:flex-row">
@@ -36,34 +36,26 @@ export default function ProductByCategory({
                   key={id}
                   role="button"
                   onClick={() => setSelectedId(id)}
-                  className="flex w-[200px] md:w-full flex-1 items-center gap-2 p-2 cursor-pointer hover:bg-neutral-100 transition-colors"
+                  className="flex min-w-fit md:w-full flex-1 items-center gap-1 p-1 cursor-pointer hover:bg-neutral-100 transition-colors"
                 >
                   <Image
                     src={category.image || "/category.png"}
                     width={48}
                     height={48}
                     alt={category.name}
-                    className="rounded-xl border border-muted/10 p-0.5"
+                    className="rounded-xl w-12 h-12 flex-1 md:flex-0  border border-muted/10 p-0.5"
                   />
 
-                  <span>{category.name}</span>
+                  <span className="text-sm">{category.name}</span>
                 </div>
               ))}
             </div>
           </Card>
           <div className="w-full mt-7 md:mt-0 md:w-[calc(100%-240px)]">
-            <Carousel className="md:px-4">
-              <CarouselContent>
-                {selectedSection.products.map((product) => (
-                  <CarouselItem
-                    key={product.id}
-                    className="basis-[14rem] sm:basis-[16rem]"
-                  >
-                    <HomeProductCard {...product} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+            <ProductCarousel
+              items={selectedSection.products}
+              renderItem={HomeProductCard}
+            />
           </div>
         </div>
       </div>

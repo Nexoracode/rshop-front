@@ -5,7 +5,7 @@ import BaseDialog from "./BaseDialog";
 import { usePathname } from "next/navigation";
 
 type MessageKeys = "title" | "description";
-type Usage = "cart" | "review" | "wishlist" | "compare";
+type Usage = "cart" | "review" | "wishlist" | "compare" | "support";
 const usageMessages: Record<Usage, Record<MessageKeys, string>> = {
   cart: {
     title: "برای افزودن محصول به سبد خرید،",
@@ -29,6 +29,11 @@ const usageMessages: Record<Usage, Record<MessageKeys, string>> = {
     title: "برای افزودن به علاقه‌مندی‌ها،",
     description:
       "برای ذخیره این محصول در لیست علاقه‌مندی‌ها، ابتدا وارد حساب کاربری خود شوید.\nبا ورود، می‌توانید محصولات دلخواهتان را ذخیره و بعداً به‌راحتی به آن‌ها دسترسی داشته باشید.",
+  },
+  support: {
+    title: "برای گفتگو با فروشنده",
+    description:
+      "جهت طرح سوال در مورد محصول و کسب اطلاعات بیشتر ، ابتدا وارد حساب کاربری خود شوید.",
   },
 };
 

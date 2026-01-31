@@ -25,9 +25,7 @@ export default function CheckoutForm() {
             <Card className="p-3 bg-transparent">
               <DiscountField />
             </Card>
-            <Card className="p-3 bg-transparent">
-              <PackageSelector />
-            </Card>
+            <PackageSelector />
 
             <Card className="p-3 bg-transparent">
               <OrderNote />

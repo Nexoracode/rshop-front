@@ -17,7 +17,7 @@ export default function CartSummeryInfo() {
         </span>
       </div>
       <div className="flex justify-between text-muted-foreground">
-        <span>مقدار تخفیف</span>
+        <span className="text-sm">مقدار تخفیف</span>
         <span className="text-danger-600">
           {" "}
           -{" "}
@@ -26,7 +26,7 @@ export default function CartSummeryInfo() {
       </div>
 
       <div className=" flex  justify-between text-base font-bold pt-2 border-t border-border">
-        <span>مبلغ قابل پرداخت</span>
+        <span className="text-sm">مبلغ قابل پرداخت</span>
         <span className="text-primary">
           {formatToman((data?.total ?? 0) - orderMeta.discount_amount)}
         </span>

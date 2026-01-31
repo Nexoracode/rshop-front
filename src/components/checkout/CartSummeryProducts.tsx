@@ -15,7 +15,7 @@ export default function CartSummeryProducts() {
         <Skeleton />
       ) : (
         data?.items.map((item) => (
-          <div key={item.id} className="flex items-center justify-between py-3">
+          <div key={item.id} className="flex items-center justify-between">
             <div className="flex items-stretch gap-3 flex-1">
               <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border bg-muted">
                 <Image

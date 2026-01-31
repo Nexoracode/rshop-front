@@ -23,8 +23,10 @@ export default function CountdownTimer({
       {timeLeft.expired ? (
         <span className="text-gray-500">تمام شد</span>
       ) : (
-        <div className="flex w-full flex-row-reverse gap-0.5 text-xs sm:text-sm">
-          <TimeBox label="روز" value={timeLeft.days} color={color} /> :
+        <div className="flex w-full text-danger items-center flex-row-reverse gap-0.5 text-xs sm:text-sm">
+          {+timeLeft.days > 0 && (
+            <TimeBox label="روز" value={timeLeft.days} color={color} />
+          )}
           <TimeBox label="ساعت" value={timeLeft.hours} color={color} /> :
           <TimeBox label="دقیقه" value={timeLeft.minutes} color={color} /> :
           <TimeBox label="ثانیه" value={timeLeft.seconds} color={color} />
@@ -46,7 +48,7 @@ const TimeBox = ({
     <span
       className={cn(
         "text-sm flex justify-center items-center text-danger rounded-full h-6 w-6",
-        color === "white" && "bg-white rounded-md h-8 w-8"
+        color === "white" && "bg-white rounded-md h-6 w-6 md:w-8 md:h-8",
       )}
     >
       {value}

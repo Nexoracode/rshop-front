@@ -13,8 +13,8 @@ export default function FilterByCategory() {
     },
   } = useProductFilter();
   const pathName = usePathname();
-  const getTree = (cat: CategoryFilter, slug = "/collection") => {
-    if (!cat.children?.length) {
+  const getTree = (cat: CategoryFilter, slug = "/products", level = 0) => {
+    if (!cat.children?.length && level !== 0) {
       return (
         <Link
           className="block py-1 text-sm hover:text-primary text-neutral-600 font-light"
@@ -31,7 +31,7 @@ export default function FilterByCategory() {
         slug={`${slug}/${cat.slug}`}
         label={cat.title}
       >
-        {cat.children.map((subCat) => (
+        {cat.children?.map((subCat) => (
           <div className="px-2" key={subCat.id}>
             {getTree(subCat, `${slug}/${cat.slug}`)}
           </div>
@@ -40,14 +40,10 @@ export default function FilterByCategory() {
     );
   };
   return (
-    <section className="space-y-4">
-      <h3 className="text-lg text-primary font-semibold">بر اساس دسته بندی</h3>
-
-      <div>
-        {categories.map((cat) => (
-          <React.Fragment key={cat.id}>{getTree(cat)}</React.Fragment>
-        ))}
-      </div>
-    </section>
+    <div className="max-h-[20rem] pe-2 overflow-y-auto scrollbar-custom">
+      {categories.map((cat) => (
+        <React.Fragment key={cat.id}>{getTree(cat)}</React.Fragment>
+      ))}
+    </div>
   );
 }

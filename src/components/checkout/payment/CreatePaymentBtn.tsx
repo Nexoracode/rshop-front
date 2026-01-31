@@ -1,18 +1,17 @@
 "use client";
 import { createPayment } from "@/queries/payment";
 import { useMutation } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 
 import useCheckout from "@/hooks/useCheckout";
 import { createCardToCardPayment } from "@/queries/orders";
-import CardToCardPayment from "@/components/checkout/CardToCardPayment";
-import { PaymentMethod } from "@/types/order";
 import TransferToGate from "./TransferToGate";
+import { useRouter } from "next/navigation";
 
 export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
-  const [openModal, setOpenModal] = useState<PaymentMethod | null>(null);
+  const router = useRouter();
   const {
     orderMeta: { payment_method },
   } = useCheckout();
@@ -28,7 +27,6 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
     mutate: createCardPaymentHandle,
     isPending: cardPaymentPending,
     isSuccess: cardPaymentSuccess,
-    data: cardPaymentData,
   } = useMutation(createCardToCardPayment);
 
   useEffect(() => {
@@ -36,8 +34,9 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   }, [isSuccess, paymentData]);
 
   useEffect(() => {
-    if (cardPaymentSuccess) setOpenModal("card_to_card");
-  }, [cardPaymentSuccess, cardPaymentData]);
+    if (cardPaymentSuccess)
+      router.push(`/checkout/payment/${order_id}/card_to_card`);
+  }, [cardPaymentSuccess, router, order_id]);
 
   const handlePayment = () => {
     if (payment_method === "card_to_card") {
@@ -45,7 +44,6 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
     }
 
     if (payment_method === "online") {
-      setOpenModal("online");
       createPaymentHandle({
         order_id: order_id,
         callback: `${window.location.origin}/verify`,
@@ -61,14 +59,6 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
       >
         پرداخت
       </Button>
-
-      {cardPaymentData ? (
-        <CardToCardPayment
-          {...cardPaymentData}
-          onClose={() => setOpenModal(null)}
-          open={openModal === "card_to_card"}
-        />
-      ) : null}
 
       <TransferToGate open={isSuccess} />
     </>

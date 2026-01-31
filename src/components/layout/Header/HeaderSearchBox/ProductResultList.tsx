@@ -13,7 +13,7 @@ const ProductResultList = React.forwardRef<HTMLUListElement, Props>(
       <ul
         ref={ref}
         style={{ direction: "rtl" }}
-        className="md:max-h-96 scrollbar-custom gap-y-3 md:gap-y-5 flex-wrap  overflow-auto py-2"
+        className="md:max-h-96 flex scrollbar-custom gap-y-3 md:gap-y-3 flex-wrap  overflow-auto py-2"
       >
         {isPending ? (
           <ProductSkeleton count={4} />

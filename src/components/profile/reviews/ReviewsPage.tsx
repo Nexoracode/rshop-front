@@ -19,24 +19,26 @@ export default function ReviewsPage() {
     useQuery(getPendingReviews);
   const [tab, setTab] = useState("pending");
   const [openForm, setOpenForm] = useState<"edit" | "delete" | "new" | null>(
-    null
+    null,
   );
 
   const [selected, setSelected] = useState<Review>();
   const [product, setProduct] = useState<Review["product"]>();
 
   return (
-    <Card>
-      <h1 className="text-lg font-semibold">دیدگاه‌های من</h1>
+    <Card className="!p-0">
+      <h1 className="text-lg p-4 font-semibold">دیدگاه‌های من</h1>
 
-      <Tabs dir="rtl" value={tab} onValueChange={setTab} className="w-full">
-        <TabsList className="grid grid-cols-2 w-full max-w-md">
-          <TabsTrigger value="pending">در انتظار دیدگاه</TabsTrigger>
-          <TabsTrigger value="my-reviews">دیدگاه‌های من</TabsTrigger>
+      <Tabs dir="rtl" value={tab} onValueChange={setTab} className="w-full p-0">
+        <TabsList className="w-full justify-start  pb-0">
+          <div className="max-w-md flex-1 w-full h-full">
+            <TabsTrigger value="pending">در انتظار دیدگاه</TabsTrigger>
+            <TabsTrigger value="my-reviews">دیدگاه‌های من</TabsTrigger>
+          </div>
         </TabsList>
 
         {/* تب در انتظار دیدگاه */}
-        <TabsContent value="pending" className="space-y-3 mt-4">
+        <TabsContent value="pending" className="space-y-3 !p-0 mt-4">
           <ListLayout<Review["product"]>
             items={pendingReviews ?? []}
             loading={pendingFetching}
@@ -56,7 +58,7 @@ export default function ReviewsPage() {
         </TabsContent>
 
         {/* تب دیدگاه‌های من */}
-        <TabsContent value="my-reviews" className="space-y-3 mt-4">
+        <TabsContent value="my-reviews" className="space-y-3 p-0 mt-4">
           <ListLayout<Review>
             items={data ?? []}
             loading={isFetching}

@@ -41,9 +41,9 @@ export default function SupportCard({
 
         <Badge
           className="absolute bottom-2 left-2 w-20"
-          variant={ticketStatus[status].color}
+          variant={ticketStatus[status]?.color}
         >
-          {ticketStatus[status].label}
+          {ticketStatus[status]?.label}
         </Badge>
       </Card>
     </Link>

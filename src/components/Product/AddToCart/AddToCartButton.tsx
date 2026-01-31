@@ -20,9 +20,11 @@ type Props = {
 
 export default function AddToCartButton({ product }: Props) {
   const [open, setOpen] = React.useState(false);
-  const { user } = useCurrentUser();
 
   const { variant } = useProductPage();
+
+  const { user } = useCurrentUser();
+
   const { isPending, mutateAsync: addToCart } = useMutation(addCartItem);
 
   const { mutate: updateCart } = useMutation(updateCartItem);
@@ -30,7 +32,7 @@ export default function AddToCartButton({ product }: Props) {
   const { data: cart } = useQuery(getCart);
 
   const inCartItem = cart?.items.find((i) =>
-    variant ? variant.id === i.variant?.id : i.product.id === product.id
+    variant ? variant.id === i.variant?.id : i.product.id === product.id,
   );
 
   const handleAddToCart = () => {
@@ -51,9 +53,9 @@ export default function AddToCartButton({ product }: Props) {
                 t={t}
               />
             ),
-            { dismissible: false }
+            { dismissible: false },
           ),
-      }
+      },
     );
   };
 
@@ -65,7 +67,12 @@ export default function AddToCartButton({ product }: Props) {
     });
   };
 
-  const productStock = variant ? variant.stock : product.stock;
+  let productStock = 9999;
+
+  if (!product.is_limited_stock) {
+    productStock = variant ? variant.stock : product.stock;
+  }
+
   return (
     <div className="flex flex-col  gap-2">
       <LoginRequiredDialog usage="cart" open={open} onOpenChange={setOpen} />
@@ -92,7 +99,7 @@ export default function AddToCartButton({ product }: Props) {
         <div className="flex gap-3">
           <QuantitySelect
             qty={inCartItem.quantity}
-            maxQty={productStock}
+            maxQty={product.order_limit || productStock}
             onChange={handleUpdateItemCart}
           />
           <div className="flex flex-col justify-between">

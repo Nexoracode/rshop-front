@@ -69,6 +69,7 @@ export default function AddCompareDialog({ category_slug }: Props) {
               renderItem={(item) => (
                 <ProductItem
                   {...item}
+                  key={item.id}
                   onSelect={() => handleSelectProduct(item.id)}
                   loading={addPending && variables?.productId === item.id}
                 />

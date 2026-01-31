@@ -50,27 +50,24 @@ export function PaymentModeInfo({
     );
   };
 
-  console.log({ values: form.getValues() });
   return (
-    <div>
-      <div className="border p-2 space-y-4 rounded-xl">
-        <h3 className="font-semibold">ثبت اطلاعات پرداخت</h3>
-        <FormProvider {...form}>
-          <form>
+    <div className="border flex flex-col justify-between h-full p-2  rounded-xl">
+      <h3 className="font-semibold">ثبت اطلاعات پرداخت</h3>
+      <FormProvider {...form}>
+        <form>
+          <div className="flex gap-2">
             <DateField required label="تاریخ پرداخت" name="deposit_date" />
-
             <TimeField required label="زمان واریز" name="deposit_time" />
+          </div>
+          <MaskedCardField
+            required
+            label="شماره کارت مبدا"
+            name="sender_card_number"
+          />
 
-            <MaskedCardField
-              required
-              label="شماره کارت مبدا"
-              name="sender_card_number"
-            />
-
-            <TextField required label="کد پیگیری" name="tracking_code" />
-          </form>
-        </FormProvider>
-      </div>
+          <TextField required label="کد پیگیری" name="tracking_code" />
+        </form>
+      </FormProvider>
       <PaymentModalFooter
         onClick={form.handleSubmit(handleSubmit)}
         onClose={onClose}

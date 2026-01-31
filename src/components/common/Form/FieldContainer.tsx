@@ -14,7 +14,7 @@ export default function FieldContainer({
   return (
     <div className="relative w-full pb-5">
       {label ? (
-        <Label className="mb-4 ps-2 gap-0">
+        <Label className="mb-1 text-xs text-muted ps-1">
           {label}
           {required ? <span className="text-rose-500">{"*"}</span> : null}
         </Label>

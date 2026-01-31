@@ -26,7 +26,19 @@ type Props = {
   onClick?: () => void;
   onCancell?: () => void;
   loading?: boolean;
-  width?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
+  width?:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl"
+    | "full";
   hiddenFooter?: boolean;
   hiddenHeader?: boolean;
   footer?: React.ReactNode;
@@ -58,7 +70,7 @@ export default function BaseDialog({
       <DialogContent
         showCloseButton={!isMobile}
         className={cn(
-          `mx-auto p-0  w-full md:max-h-[80vh] overflow-auto scrollbar-custom ${maxWidth}`,
+          `mx-auto p-0  w-full overflow-hidden md:max-h-[85vh] ${maxWidth}`,
           isMobile &&
             "translate-y-0 top-[unset] bottom-0 data-[state=closed]:animate-slide-out-left  data-[state=open]:animate-slide-in-left h-full rounded-none",
           className
@@ -91,7 +103,9 @@ export default function BaseDialog({
             </DialogClose>
           ) : null}
         </DialogHeader>
-        <div className="flex-1 p-3">{content}</div>
+        <div className="flex-1  overflow-auto scrollbar-custom  p-3">
+          {content}
+        </div>
         {!hiddenFooter && (
           <DialogFooter className="flex h-fit p-3 flex-row">
             {footer || (

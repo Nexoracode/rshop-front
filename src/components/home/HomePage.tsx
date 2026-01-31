@@ -33,7 +33,7 @@ export default function HomePage() {
   return isFetching ? (
     <PageLoader />
   ) : (
-    <div>
+    <div className="space-y-4 md:space-y-24">
       <BannerSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}

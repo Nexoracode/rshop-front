@@ -12,7 +12,7 @@ export default function HeaderCategoryPageTitle() {
   const { data } = useQuery(getCategoryBySlug(categorySlug));
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 text-sm font-semibold">
       <p>{data?.category.title}</p>
     </div>
   );

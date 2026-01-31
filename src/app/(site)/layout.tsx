@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <div className="md:pt-28 pt-10">
       <Header />
-      <main className="px-2 md:px-0 min-h-screen">
+      <main className="px-2 md:px-0 min-h-[100dvh]">
         <BannerPadding />
         {children}
       </main>

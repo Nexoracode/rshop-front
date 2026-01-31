@@ -19,6 +19,8 @@ export default async function RelatedProducts({
   const queryClient = getQueryClient();
 
   const data = await queryClient.fetchQuery(getSimilarProducts(productId));
+
+  if (data.length === 0) return null;
   return (
     <div className="space-y-3">
       <SectionTitle title="محصولات مشابه" />
@@ -30,9 +32,11 @@ export default async function RelatedProducts({
           {data.map((product) => (
             <CarouselItem
               key={product.id}
-              className="basis-[14rem] sm:basis-[16rem] h-[350px]"
+              className="basis-[12rem] sm:basis-[14rem]"
             >
-              <ProductCard {...product} />
+              <div className="bg-card h-full overflow-hidden border rounded-lg">
+                <ProductCard {...product} />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

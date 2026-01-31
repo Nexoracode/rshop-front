@@ -4,6 +4,7 @@ import { Review } from "./user";
 export type Brand = {
   id: number;
   name: string;
+  slug: string;
   logo: string; // URL
 };
 
@@ -45,7 +46,7 @@ export type Product = {
   is_limited_stock: boolean;
   discount_amount: string; // could be number
   discount_percent: number;
-  is_featured: boolean;
+  is_feautered: boolean;
   weight: string; // or number
   weight_unit: string;
   description: string;

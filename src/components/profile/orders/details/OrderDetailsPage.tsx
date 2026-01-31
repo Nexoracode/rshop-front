@@ -54,6 +54,7 @@ export default function OrderDetailsPage() {
             <OrderPaymentSection
               order_id={orderData.id}
               payment={orderData.payment}
+              date={orderData.created_at}
             />
           )}
         </div>

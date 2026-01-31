@@ -9,8 +9,6 @@ export function OrderDiscountSection({
 }: {
   promotions: Array<Promotion>;
 }) {
-  // دیتای فیک موقت
-
   return (
     <Card className="p-4 space-y-3" dir="rtl">
       <h3 className="font-semibold text-lg">تخفیف‌های استفاده‌شده</h3>
@@ -18,7 +16,7 @@ export function OrderDiscountSection({
       <div className="space-y-2">
         {promotions.map((d) => (
           <div
-            key={d.id}
+            key={d.promotion_id}
             className="border rounded-md p-3 flex justify-between items-center text-sm"
           >
             <div>

@@ -1,5 +1,6 @@
 import { formatToman } from "@/lib/utils";
 import React from "react";
+import { TomanIcon } from "./Icons/TomanIcon";
 
 type Props = {
   price: number;
@@ -8,8 +9,8 @@ type Props = {
 
 export default function PriceBox({ className, price }: Props) {
   return (
-    <span className={className}>
-      {formatToman(price, false)} <span className="text-xs">تومان</span>
+    <span className={`${className}`}>
+      {formatToman(price, false)} <TomanIcon width={22} height={22} />
     </span>
   );
 }

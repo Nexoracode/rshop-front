@@ -70,7 +70,7 @@ export const buttonVariants = cva(
       {
         variant: "fill",
         color: "neutral",
-        class: "bg-neutral text-foreground hover:bg-neutral/90",
+        class: "bg-neutral-300 text-foreground hover:bg-neutral/90",
       },
       {
         variant: "fill",
@@ -180,7 +180,7 @@ export const buttonVariants = cva(
       rounded: "md",
       fullWidth: false,
     },
-  }
+  },
 );
 
 export type ButtonProps = {
@@ -209,10 +209,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const classes = cn(
-      buttonVariants({ variant, color, size, rounded, fullWidth, className })
+      buttonVariants({ variant, color, size, rounded, fullWidth, className }),
     );
 
     const content = (
@@ -220,7 +220,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <>
             <span className="opacity-20">{children}</span>
-            <LoaderDots className="mx-auto absolute left-0 right-0 text-center inline-block size-8" />
+            <LoaderDots
+              size={5}
+              className="mx-auto absolute left-0 right-0 text-center inline-block"
+            />
           </>
         ) : (
           <>
@@ -255,7 +258,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {content}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

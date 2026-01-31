@@ -14,9 +14,11 @@ import { Badge } from "@/components/ui/badge";
 export function OrderPaymentSection({
   payment,
   order_id,
+  date,
 }: {
   payment: Payment;
   order_id: number;
+  date: string;
 }) {
   return (
     <Card className="justify-between">
@@ -53,6 +55,7 @@ export function OrderPaymentSection({
 
       {payment.payment_method === "card_to_card" && (
         <SubmitPaymentReceip
+          date={date}
           amount={Number(payment.amount)}
           order_id={order_id}
           payment_id={payment.id}

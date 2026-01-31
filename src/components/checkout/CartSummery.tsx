@@ -3,11 +3,12 @@
 import { formatToman } from "@/lib/utils";
 import CreateOrderBtn from "./CreateOrderBtn";
 import { Card } from "../ui/card";
-import CartSummeryInfo from "./CartSummeryProducts";
-import CartSummeryProducts from "./CartSummeryInfo";
+
 import Responsive from "../common/Responsive";
 import { useMutationState, useQuery } from "@tanstack/react-query";
 import { getCart } from "@/queries/cart";
+import CartSummeryInfo from "./CartSummeryInfo";
+import CartSummeryProducts from "./CartSummeryProducts";
 
 export default function CartSummary() {
   const { data } = useQuery(getCart);
@@ -21,9 +22,8 @@ export default function CartSummary() {
     <Card className="p-3  fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] md:bg-transparent z-50 md:z-[unset] rounded-none md:rounded-lg">
       <div className="md:space-y-3 space-y-1">
         <Responsive visible="desktop">
-          <CartSummeryInfo />
-
           <CartSummeryProducts />
+          <CartSummeryInfo />
         </Responsive>
         <div className="flex justify-between gap-2 items-center">
           <div className="flex flex-1">

@@ -25,7 +25,13 @@ export default function AddTicketForm({ onBack, category }: Props) {
   } = useMutation(createSupportTicket);
   const form = useForm();
   const handleSubmit = ({ subject, content }: FieldValues) => {
-    mutate({ subject, content });
+    const subjectLabel =
+      category.items.find((item) => item.value === subject)?.label ??
+      category.category;
+    mutate({
+      subject: subjectLabel,
+      content,
+    });
   };
 
   return isSuccess && ticket ? (

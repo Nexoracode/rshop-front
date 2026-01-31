@@ -12,9 +12,14 @@ export default function ProductShipping({
   requires_preparation,
   preparation_days,
 }: Props) {
+  console.log({
+    is_same_day_shipping,
+    requires_preparation,
+    preparation_days,
+  });
   return is_same_day_shipping || requires_preparation ? (
-    <div className="flex items-center gap-1 text-primary font-semibold text-xs">
-      <Truck strokeWidth={0} fill="var(--color-primary)" className="size-4" />
+    <div className="flex items-center gap-1 text-secondary text-xs">
+      <Truck className="size-4" />
       <span>{is_same_day_shipping ? "ارسال امروز" : null}</span>
       <span>
         {requires_preparation

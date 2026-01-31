@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { HomeSectionProduct } from "@/types/home";
+import Image from "../common/Image";
 
 export default function HomeProductCard(props: HomeSectionProduct) {
   const { name, price, discount_percent, discount_amount, id, image, brand } =
@@ -19,64 +19,41 @@ export default function HomeProductCard(props: HomeSectionProduct) {
   );
 
   return (
-    <Link href={`/p/rsp-${id}`}>
+    <Link className="block h-full" href={`/p/rsp-${id}`}>
       <Card
-        className="group gap-2 md:gap-3 bg-background relative overflow-hidden border !p-1 md:!p-2 shadow-sm transition hover:shadow-md"
+        className="group h-full gap-2 md:gap-3 bg-background relative overflow-hidden border !p-1 md:p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
       >
-        {/* top right: discount */}
-        {compareAt && (
-          <Badge variant="danger" className="absolute left-4 top-4 z-10 ">
-            {percent}%
-          </Badge>
-        )}
-
         {/* image */}
         <div className="relative rounded-xl aspect-[1/1] w-full overflow-hidden">
           <Image
             src={image || PRODUCT_PLACEHOLDER}
             alt={name}
             fill
-            className={cn("object-cover opacity-100 ")}
+            className={cn("object-cover")}
           />
         </div>
 
-        {/* <div>
-          {variants
-            .map((variant) =>
-              variant.attributes.find((attribute) => attribute.type === "color")
-            )
-            .filter((a) => a !== null)
-            .map((a) => a?.values)
-            .flat()
-            .map((value) => value?.display_color)
-            .reduce((a, c) => (a.includes[c] ? a : [...a, c]), [])}
-        </div> */}
-
         {/* content */}
-        <div className="mt-2 space-y-1 px-1 pb-2">
+        <div className="mt-2 flex-1 justify-between flex flex-col px-1 pb-2">
           {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
-          <h3 className="line-clamp-1 text-sm font-medium text-gray-800">
+          <h3 className="line-clamp-2 text-sm font-semibold text-gray-800">
             {name}
           </h3>
 
-          {/* rating */}
-          {/* <div className="flex items-center gap-1 text-yellow-500">
-          {[...Array(5)].map((_, i) =>
-            i < rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-          )}
-        </div> */}
-
           {/* price */}
-          <div className="flex flex-col sm:flex-row items-center gap-2">
-            <span className="text-base font-bold text-primary-600">
-              {formatToman(final)}
-            </span>
+          <div className="flex flex-col items-center gap-2">
             {compareAt && (
-              <span className="text-xs text-gray-400 line-through">
-                {formatToman(compareAt)}
-              </span>
+              <div className="flex gap-3">
+                <Badge className="px-1 leading-0" variant="danger">
+                  {percent}%
+                </Badge>
+                <span className="text-xs text-gray-400 line-through">
+                  {formatToman(compareAt)}
+                </span>
+              </div>
             )}
+            <span className="text-base font-bold">{formatToman(final)}</span>
           </div>
         </div>
       </Card>

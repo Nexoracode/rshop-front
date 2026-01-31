@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Minus, Plus } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import SelectableFilter from "./SelectableFilter";
@@ -52,17 +52,20 @@ export default function TreeItem({
               {label}
             </span>
           )}
-          {open ? (
-            <Minus width={22} height={22} />
-          ) : (
-            <Plus width={22} height={22} />
-          )}
+          <ChevronLeft
+            className={cn(
+              open ? "rotate-90" : "-rotate-90",
+              "transition-transform"
+            )}
+            width={22}
+            height={22}
+          />
         </button>
       </div>
 
       <div
         className={cn(
-          "scale-y-0 h-0 origin-top overflow-hidden transition-all",
+          "scale-y-0 h-0 origin-top overflow-y-auto scrollbar-custom max-h-[20rem] transition-all",
           open && "scale-y-100 h-auto mt-3"
         )}
       >

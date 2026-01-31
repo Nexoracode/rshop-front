@@ -1,7 +1,7 @@
 "use client";
 import Image from "@/components/common/Image";
 import LoaderDots from "@/components/common/LoaderDots";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import React from "react";
 
 type Props = {
@@ -12,6 +12,7 @@ export default function TransferToGate({ open }: Props) {
   return (
     <Dialog open={open}>
       <DialogContent showCloseButton={false} className="w-full max-w-sm">
+        <DialogTitle className="hidden"></DialogTitle>
         <div className="w-full py-6 space-y-5 flex flex-col items-center justify-center">
           <Image
             priority
@@ -25,7 +26,7 @@ export default function TransferToGate({ open }: Props) {
           </p>
 
           <LoaderDots
-            size={14}
+            size={10}
             className="inline-block text-primary-500 w-auto"
           />
         </div>

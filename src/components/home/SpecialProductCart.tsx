@@ -31,7 +31,7 @@ export default function SpecialProductCart(
   return (
     <Link href={`/p/rsp-${id}`}>
       <Card
-        className="group relative overflow-hidden border-0 rounded-none bg-background !p-2"
+        className="group container-home relative overflow-hidden border-0 rounded-none bg-background !p-2"
         dir="rtl"
       >
         <div className="flex items-stretch">

@@ -15,9 +15,8 @@ export default function ImportantAttributes({ specifications }: Props) {
   const { setOpenDialog } = useProductPage();
   return (
     <div className="space-y-4">
+      <p className="text-sm md:text-base font-semibold">ویژگی ها</p>
       <div className="flex justify-between items-center md:hidden py-7">
-        <p className="text-sm font-semibold text-muted">مشخصات کالا</p>
-
         <Button
           variant={"text-nohover"}
           color="neutral"
@@ -34,11 +33,14 @@ export default function ImportantAttributes({ specifications }: Props) {
           {specifications.map((attr) => (
             <div
               key={attr.id}
-              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-muted-light/20 min-w-fit md:min-w-[calc(33.333%)] rounded-md p-2"
+              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-muted-light/10 min-w-fit md:min-w-[calc(33.333%)] rounded-md p-2"
             >
-              <p className="text-xs text-muted font-light"> {attr.name}:</p>
+              <p className="text-xs text-muted-light font-light">
+                {" "}
+                {attr.name}:
+              </p>
 
-              <p className="text-xs md:text-sm text-foreground font-semibold">
+              <p className="text-xs md:text-sm">
                 {attr.values.map((i) => i.value).join(", ")}
               </p>
             </div>

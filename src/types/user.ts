@@ -23,7 +23,7 @@ export type UserAddress = {
   address_name: string;
   recipient_name: string;
   recipient_phone: string;
-  is_self: true;
+  is_self: boolean;
 };
 
 export type Review = {
@@ -32,7 +32,7 @@ export type Review = {
   user_id: number;
   rating: number;
   comment: string;
-  is_approved: boolean;
+  is_approved: boolean | null;
   created_at: string;
   updated_at: string;
   product: {
@@ -67,7 +67,7 @@ export type TicketProduct = {
   image: string;
 };
 
-export type TicketStatus = "closed" | "waiting" | "answered";
+export type TicketStatus = "closed" | "waiting" | "open" | "answered";
 export type Ticket = {
   id: 1;
   user_id: 1;

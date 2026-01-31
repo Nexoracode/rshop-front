@@ -1,4 +1,3 @@
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import React from "react";
 import { PaymentMode } from "./types";
@@ -34,7 +33,6 @@ export default function SelectPaymentMode({ mode, setMode, later }: Props) {
   const selectItems = !later ? itemWithLater : items;
   return (
     <div className="space-y-3">
-      <Label className="text-base">وضعیت پرداخت</Label>
       <RadioGroup
         defaultValue="now"
         value={mode}
@@ -45,7 +43,7 @@ export default function SelectPaymentMode({ mode, setMode, later }: Props) {
           <label
             key={item.value}
             dir="rtl"
-            className="flex items-center gap-2 rounded-xl border p-2 cursor-pointer"
+            className="flex items-center gap-2 rounded-lg border p-2 cursor-pointer"
           >
             <RadioGroupItem value={item.value} id="mode-now" />
             <div className="leading-tight">

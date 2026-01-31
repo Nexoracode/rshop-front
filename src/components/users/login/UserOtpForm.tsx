@@ -15,7 +15,7 @@ type Props = {
 
 export default function UserOtpForm({ phone }: Props) {
   const form = useForm();
-  const { mutate, isPending, isSuccess } = useMutation(verifyOtp);
+  const { mutateAsync, isPending } = useMutation(verifyOtp);
   const { handleSendOtp, isSuccess: resendSuccess } = useRequestOtp({
     handleSuccess: () => {},
   });
@@ -30,24 +30,27 @@ export default function UserOtpForm({ phone }: Props) {
   const handleSubmit = useCallback(
     (values: FieldValues) => {
       const { code } = values;
-      mutate({
-        code,
-        identifier: phone,
-      });
+      mutateAsync(
+        {
+          code,
+          identifier: phone,
+        },
+        {
+          onSuccess(data) {
+            console.log({ data });
+            toast.success("ورود به حساب کاربری انجام شد.");
+            router.push(`${backUrl}`);
+          },
+        },
+      );
     },
-    [mutate, phone]
+    [mutateAsync, phone, backUrl, router],
   );
 
   useEffect(() => {
     if (code.length === 6) handleSubmit({ code });
   }, [code, handleSubmit]);
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("ورود به حساب کاربری انجام شد.");
-      router.push(`${backUrl}`);
-    }
-  }, [isSuccess, backUrl, router]);
   return (
     <div>
       <FormProvider {...form}>

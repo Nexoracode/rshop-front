@@ -56,7 +56,6 @@ export default function SupportPage() {
                 >{`#${ticket?.id}`}</span>
               </p>
               <p className="font-semibold text-sm">{ticket?.subject}</p>
-              <p className="text-xs text-green-600">آنلاین</p>
             </div>
           </div>
           {ticket?.status === "closed" ? (

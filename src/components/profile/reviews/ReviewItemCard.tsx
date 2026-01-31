@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Card } from "@/components/ui/card";
 import { Pencil, Trash2, Check, X } from "lucide-react";
 import { toPersainDate } from "@/lib/utils";
 import { Menu } from "@/components/common/Menu";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Review } from "@/types/user";
 import ProductRating from "@/components/Product/ProductReviews/ProductRating";
+import Link from "next/link";
 
 type Props = {
   onEdit: (reviewId: number) => void;
@@ -21,40 +20,47 @@ export default function ReviewItemCard({
   created_at,
   comment,
   id,
+  is_approved,
   onEdit,
   onDelete,
 }: Props) {
   return (
-    <Card className="!p-4">
-      <div className="flex items-center">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={64}
-          height={64}
-          className="rounded-md border object-cover"
-        />
+    <div className="space-y-2 border-b p-3 last:border-b-0">
+      <div className="flex items-stretch">
+        <Link href={`/p/rsp-${product.id}`}>
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={64}
+            height={64}
+            className="rounded-md border object-cover"
+          />
+        </Link>
         <div className="flex-1 pr-3">
-          <p className="font-medium">{product.name}</p>
+          <p className="font-medium text-sm">{product.name}</p>
+          <div className="text-sm text-muted">{toPersainDate(created_at)}</div>
         </div>
         <div>
-          <div className="text-xs text-muted">{toPersainDate(created_at)}</div>
-          <Badge variant={"success"}>
-            <Check /> تایید شده
-          </Badge>
-          <Badge variant={"neutral"}>
-            <Check /> در حال بررسی
-          </Badge>
-          <Badge variant={"danger"}>
-            <X /> رد شده
-          </Badge>
+          {is_approved === true && (
+            <Badge variant={"success"}>
+              <Check /> تایید شده
+            </Badge>
+          )}
+          {is_approved === null && (
+            <Badge variant={"neutral"}>
+              <Check /> در حال بررسی
+            </Badge>
+          )}
+          {is_approved === false && (
+            <Badge variant={"danger"}>
+              <X /> رد شده
+            </Badge>
+          )}
         </div>
       </div>
       <ProductRating rating={rating} />
 
-      <Separator className="my-4" />
-
-      <p className="text-sm leading-relaxed">{comment}</p>
+      <p className="text-sm leading-relaxed border-t pt-2">{comment}</p>
 
       <Menu
         className="absolute top-2 left-2"
@@ -68,6 +74,6 @@ export default function ReviewItemCard({
           },
         ]}
       />
-    </Card>
+    </div>
   );
 }

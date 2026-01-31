@@ -1,9 +1,7 @@
 "use client";
 
-import { products } from "@/__MOCK__/catalog";
 import Responsive from "@/components/common/Responsive";
 import DashboardOverview from "@/components/profile/dashboard/DashboardOverview";
-import MostBuyProducts from "@/components/profile/dashboard/MostBuyProducts";
 import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
 import { Card } from "@/components/ui/card";
 
@@ -20,9 +18,9 @@ export default function ProfileDashboardPage() {
           <ProfileSidebar />
         </Card>
       </Responsive>
-      <Card className="">
+      {/*  <Card className="">
         <MostBuyProducts products={products.slice(7)} />
-      </Card>
+      </Card> */}
     </div>
   );
 }

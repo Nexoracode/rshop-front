@@ -18,7 +18,7 @@ export default function Header() {
   const pathName = usePathname();
   const isMobile = useIsMobile();
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
-  const isMobileCategoryPage = isMobile && pathName.startsWith("/category/");
+  const isMobileCategoryPage = isMobile && pathName.startsWith("/products/");
   const displayBackBtn = isMobileProductPage || isMobileCategoryPage;
   return (
     <header className="fixed bg-white   top-0 z-50 w-full border-b shadow backdrop-blur">
@@ -37,7 +37,7 @@ export default function Header() {
               <Image
                 fill
                 sizes="80px"
-                className="size-20"
+                className="size-16"
                 alt="فروشگاه آکادمی روح بخش"
                 src={"/rshop_logo_h.png"}
               />
@@ -47,13 +47,13 @@ export default function Header() {
           {isMobileCategoryPage && <HeaderCategoryPageTitle />}
 
           {/* جستجو */}
-          <div className="hidden flex-1 max-w-xl md:block">
+          <div className="hidden ps-4 flex-1 md:block">
             <HeaderSearchBox />
           </div>
           <div
             className={cn(
-              "md:hidden flex items-center justify-end ",
-              !displayBackBtn && "w-[calc(100%-90px)]"
+              "md:hidden flex flex-1 items-center justify-end ",
+              !displayBackBtn && "w-[calc(100%-90px)]",
             )}
           >
             <MobileSearchBox

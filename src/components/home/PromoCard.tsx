@@ -15,18 +15,18 @@ export default function PromoCard({
     <Link
       href={link}
       style={{ backgroundColor: background_color || "#fafafa" }}
-      className="relative block aspect-[3/2]  overflow-hidden rounded-2xl"
+      className="relative block md:aspect-[4/3] aspect-[5/4] overflow-hidden rounded-lg"
     >
       <div className="relative w-full h-full">
-        <div className="absolute z-20 w-[200px]  aspect-square top-[50%] -translate-y-[50%]  overflow-hidden left-0 -translate-x-[30%]">
+        <div className="absolute z-20 w-[60%]   aspect-square top-[50%] -translate-y-[50%]  overflow-hidden left-0 -translate-x-[30%]">
           <Image
             src={image_url}
             alt={title}
             fill
-            className="object-contain  hover:scale-120 transition-transform"
+            className="object-contain hover:scale-120 transition-transform"
           />
         </div>
-        <div className="absolute w-full p-2 h-full justify-center gap-[10%] flex flex-col top-0 right-0">
+        <div className="absolute w-full p-2 h-full justify-evenly flex flex-col top-0 right-0">
           {badge_text && (
             <div
               style={{ backgroundColor: badge_color || "#ededed" }}
@@ -39,7 +39,7 @@ export default function PromoCard({
             {title}
           </h3>
           {subtitle && (
-            <p className="text-primary max-w-1/2 text-xs md:text-sm mt-1">
+            <p className="text-primary max-w-2/3 md:max-w-1/2 text-xs md:text-sm mt-1">
               {subtitle}
             </p>
           )}

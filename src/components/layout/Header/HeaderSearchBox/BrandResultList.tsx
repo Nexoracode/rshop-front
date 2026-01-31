@@ -14,7 +14,7 @@ const BrandResultList = React.forwardRef<HTMLDivElement, Props>(
           <Link
             className="inline-block hover:text-secondary text-sm  bg-neutral-100 rounded-full p-1 px-2"
             key={c.id}
-            href={`/brands/${c.id}`}
+            href={`/brand/${c.slug}`}
           >
             {c.name}
           </Link>

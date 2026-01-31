@@ -9,14 +9,14 @@ import { useEffect, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getCategoreis } from "@/queries/categoreis";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronLeft, ChevronLeftIcon, List } from "lucide-react";
+import { ChevronLeft, ChevronLeftIcon, Menu } from "lucide-react";
 import ActiveCategoryContent from "./ActiveCategoryContent";
 
 const navLinks = [
   { href: "/", label: "خانه" },
   { href: "/products", label: "فروشگاه" },
-  { href: "/special", label: "ویژه‌ها" },
-  { href: "/blog", label: "بلاگ" },
+  { href: "/products?query=filter%5Bspecial_offer%5D=1", label: "ویژه‌ها" },
+  /* { href: "/blog", label: "بلاگ" }, */
   { href: "/contact", label: "تماس با ما" },
 ];
 
@@ -49,18 +49,18 @@ export default function MainNav() {
         "hidden absolute  transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
         hideBottom
           ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
-          : "translate-y-0 opacity-100 h-12"
+          : "translate-y-0 opacity-100 h-12",
       )}
     >
       <div className="container flex items-center gap-6 py-3 text-sm font-medium">
         <DropdownMenu dir="rtl">
           <DropdownMenuTrigger asChild>
-            <div className="gap-2 flex border-l justify-between w-[200px] pl-3 cursor-pointer">
-              <span className="flex items-center">
-                <List size={20} className="ml-1" /> دسته‌بندی‌ها
+            <div className="gap-2 flex border-l border-l-black/40 justify-between pl-5 cursor-pointer">
+              <span className="flex font-medium  items-center">
+                <Menu size={20} className="ml-1" /> دسته‌بندی‌ کالاها
               </span>
 
-              <ChevronDown size={20} />
+              {/*   <ChevronDown size={20} /> */}
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="min-w-6xl">
@@ -95,7 +95,7 @@ export default function MainNav() {
                       <div dir="rtl" className="col-span-3">
                         <DropdownMenuItem className="" asChild>
                           <Link
-                            href={`/category/${activeCategory.slug}`}
+                            href={`/products/${activeCategory.slug}`}
                             className="block mb-4 text-sm text-blue-500 font-semibold  pb-2"
                           >
                             مشاهده همه محصولات {activeCategory.title}
@@ -115,7 +115,11 @@ export default function MainNav() {
         </DropdownMenu>
 
         {navLinks.map((l) => (
-          <Link key={l.href} href={l.href} className="text- hover:text-primary">
+          <Link
+            key={l.href}
+            href={l.href}
+            className="text-muted hover:text-primary"
+          >
             {l.label}
           </Link>
         ))}

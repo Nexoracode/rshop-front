@@ -9,6 +9,8 @@ import ProductPriceInfo from "./ProductPriceInfo";
 import AddToCartButton from "../AddToCart/AddToCartButton";
 import Responsive from "@/components/common/Responsive";
 import CreateSupportButton from "../CreateSupportButton";
+import Link from "next/link";
+import ShipingMethods from "../AddToCart/ShipingMethods";
 
 export default function ProductInfo(props: Product) {
   const { attribute_nodes, specifications, ...product } = props;
@@ -17,16 +19,21 @@ export default function ProductInfo(props: Product) {
       {/* title + brand + category */}
       <div className="flex-1 space-y-6 px-2 md:px-4">
         <div className="space-y-2">
-          <h2 className="text-xl md:text-2xl font-bold">{product.name}</h2>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            {product.brand?.name && <span>برند: {product.brand.name}</span>}
+          <div className="flex text-primary-300 flex-wrap items-center gap-2 text-sm text-muted-foreground">
+            {product.brand?.name && (
+              <Link href={`/brand/${product.brand.slug}`}>
+                {product.brand.name}
+              </Link>
+            )}
             {product.category?.title && (
               <>
-                <span className="text-muted-foreground/40">•</span>
-                <span>دسته: {product.category.title}</span>
+                <Link href={`/products/${product.category.slug}`}>
+                  / {product.category.title}
+                </Link>
               </>
             )}
           </div>
+          <h2 className="md:text-lg">{product.name}</h2>
 
           {/* prices */}
         </div>
@@ -45,29 +52,42 @@ export default function ProductInfo(props: Product) {
               {product.count} دیدگاه <ChevronLeftIcon />
             </Badge>
           </div>
-        ) : null}
-
-        <ImportantAttributes
-          specifications={specifications.flatMap((i) =>
-            i.attributes.filter((a) => a.is_important)
-          )}
-        />
+        ) : (
+          <p className="text-sm text-muted-light">
+            هنوز دیدگاهی برای این محصول ثبت نشده است
+          </p>
+        )}
 
         {attribute_nodes.map((attrGroup) =>
           attrGroup.attributes.map((attr) => (
             <VariantSelect attribute={attr} key={attr.id} />
-          ))
+          )),
         )}
+
+        <ImportantAttributes
+          specifications={specifications.flatMap((i) =>
+            i.attributes.filter((a) => a.is_important),
+          )}
+        />
       </div>
 
-      <Card className="!p-3 flex flex-row-reverse rounded-none shadow-2xl z-40 md:relative md:rounded-xl md:shadow md:flex-col fixed bottom-0 right-0 left-0 w-screen items-center md:items-stretch justify-between md:justify-around md:w-xs h-fit">
+      <Card className="!p-3 flex gap-4 flex-row-reverse rounded-none shadow-2xl z-40 md:relative md:rounded-xl md:shadow md:flex-col fixed bottom-0 right-0 left-0 w-screen items-center md:items-stretch justify-between md:justify-around md:w-xs h-fit">
+        <Responsive visible="desktop">
+          <div>
+            <div className="text-muted-light text-sm">فروشنده</div>
+            <div className="font-medium mt-2 text-primary text-3xl">آرشاپ</div>
+          </div>
+          <Separator className="hidden md:inline-block" />
+        </Responsive>
+
         <ProductPriceInfo {...props} />
         {/* Quantity */}
         <AddToCartButton product={props} />
 
-        <Separator className="hidden md:inline-block" />
-
         <Responsive visible="desktop">
+          <Separator className="hidden md:inline-block" />
+          <ShipingMethods />
+          <Separator className="hidden md:inline-block" />
           <CreateSupportButton {...props} />
         </Responsive>
       </Card>

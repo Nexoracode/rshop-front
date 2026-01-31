@@ -24,6 +24,7 @@ export default function AddTicketButton() {
           ثبت درخواست
         </Button>
       }
+      hiddenFooter
     />
   );
 }

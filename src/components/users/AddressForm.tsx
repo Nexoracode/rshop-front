@@ -28,16 +28,18 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
     isSuccess: updateSuccess,
   } = useMutation(updateUserAddress);
   const form = useForm({
-    values: address || {
-      city: "",
-      province: "",
-      plaque: "",
-      unit: "",
-      address_line: "",
-      postal_code: "",
-      address_name: "",
-      is_self: "true",
-    },
+    values: address
+      ? { ...address, is_self: String(address.is_self) }
+      : {
+          city: "",
+          province: "",
+          plaque: "",
+          unit: "",
+          address_line: "",
+          postal_code: "",
+          address_name: "",
+          is_self: "true",
+        },
     shouldUnregister: false,
   });
 
@@ -76,7 +78,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         recipient_phone,
         unit,
         is_primary,
-        is_self,
+        is_self: is_self === "true",
       });
     } else {
       addAddress({
@@ -92,7 +94,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         recipient_phone: is_self ? user?.phone : recipient_phone,
         unit,
         is_primary,
-        is_self,
+        is_self: is_self === "true",
       });
     }
   };

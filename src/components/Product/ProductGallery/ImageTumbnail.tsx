@@ -15,7 +15,7 @@ export default function ImageTumbnail({
       role="button"
       onClick={onClick}
       className={cn(
-        "relative h-18 w-24 md:h-24 md:w-24 flex-1 max-w-18 md:max-w-24 cursor-pointer overflow-hidden rounded-sm bg-white transition"
+        "relative border  h-18 w-18 md:h-22 md:w-22 flex-1 max-w-18 md:max-w-22 cursor-pointer overflow-hidden rounded-sm bg-white transition",
       )}
     >
       {type === "image" ? (

@@ -33,8 +33,8 @@ const services = [
 
 export default function ServiceSection() {
   return (
-    <section dir="rtl" className="mt-8 w-full">
-      <div className="container mx-auto flex flex-wrap justify-between gap-y-4">
+    <section>
+      <div className="container-home flex flex-wrap justify-between gap-y-4">
         {services.map((service, idx) => (
           <div
             key={idx}

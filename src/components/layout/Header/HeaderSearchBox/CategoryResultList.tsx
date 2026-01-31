@@ -14,7 +14,7 @@ const CategoryResultList = React.forwardRef<HTMLDivElement, Props>(
           <Link
             key={c.id}
             className="inline-block hover:text-secondary text-sm  bg-neutral-100 rounded-full p-1 px-2"
-            href={`/category/${c.slug}`}
+            href={`/products/${c.slug}`}
           >
             {c.title}
           </Link>

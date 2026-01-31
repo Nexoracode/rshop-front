@@ -9,7 +9,7 @@ import React from "react";
 export default function ShopCardInfo({ amount }: { amount: number }) {
   const { data } = useQuery(getShopCardInfo);
   return (
-    <div className="rounded-2xl border bg-card/50 p-4 grid gap-3">
+    <div className="rounded-lg border bg-card/50 p-4 grid gap-3">
       {data?.card_number && (
         <CardInfoItem
           label="شماره کارت"

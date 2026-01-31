@@ -24,7 +24,7 @@ export default function LoaderDots({
   const w = d * count + gap * (count - 1);
   const h = d * 3;
 
-  const bounce = d * 0.7; // ⬅️ دامنه حرکت کمتر
+  const bounce = d * 0.1; // ⬅️ دامنه حرکت کمتر
 
   const prefersReducedMotion =
     typeof window !== "undefined" &&

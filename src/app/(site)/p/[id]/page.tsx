@@ -115,23 +115,22 @@ export async function generateMetadata(
 }
 
 export default async function ProductPage(props: PageProps<"/p/[id]">) {
-  const data = await getProduct(props);
+  const { product } = await getProduct(props);
 
-  if (!data) notFound();
-  const category = await getProductCategroy(data.product.category?.slug ?? "");
+  console.log({ product });
+
+  if (!product) notFound();
+  const category = await getProductCategroy(product.category?.slug ?? "");
 
   const categoryParents = category.parents.sort((a, b) => a.level - b.level);
 
-  console.log({ categoryParents });
-
   const breadcrumbItems = [...category.parents, category.category].map((c) => ({
     label: c.title,
-    href: `/category/${categoryParents
+    href: `/products/${categoryParents
       .filter((p) => p.level > c.level)
       .map((p) => p.slug)
       .join("/")}`,
   }));
-  const product = data.product;
 
   return (
     <div className="container min-h-screen my-10 space-y-5">

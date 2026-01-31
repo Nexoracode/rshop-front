@@ -1,20 +1,26 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { ChevronLeft, MessageCircleMore } from "lucide-react";
+import { ChevronLeft, MessageCircleQuestionMark } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { createProductSupportTicket } from "@/queries/support";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/product";
+import { LoginRequiredDialog } from "../common/LoginRequiredDialog";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function CreateSupportButton({ id, name }: Product) {
+  const [open, setOpen] = useState(false);
+
+  const { user } = useCurrentUser();
   const { mutateAsync, isSuccess, isPending } = useMutation(
-    createProductSupportTicket
+    createProductSupportTicket,
   );
 
   const router = useRouter();
 
   const handleClick = () => {
+    if (!user) return setOpen(true);
     mutateAsync(
       {
         productId: id,
@@ -25,23 +31,27 @@ export default function CreateSupportButton({ id, name }: Product) {
         onSuccess(data) {
           router.push(`/profile/support/${data.id}`);
         },
-      }
+      },
     );
   };
 
   return (
     <React.Fragment>
+      <LoginRequiredDialog open={open} onOpenChange={setOpen} usage="support" />
       <Button
         variant={"outline"}
         onClick={handleClick}
         disabled={isPending || isSuccess}
-        className="justify-between hidden md:flex px-0 border-0 hover:bg-transparent py-4"
+        className="justify-between font-normal text-muted text-sm hidden md:flex px-0 border-0 hover:bg-transparent py-4"
         color="neutral"
         size={"md"}
-        endIcon={<ChevronLeft size={24} className="text-primary" />}
+        endIcon={<ChevronLeft size={24} />}
         isLoading={isPending}
       >
-        <MessageCircleMore className="text-primary inline-block ml-2" />
+        <MessageCircleQuestionMark
+          strokeWidth={2}
+          className="inline-block size-5 text-primary ml-2"
+        />
         گفتگو با فروشنده
       </Button>
     </React.Fragment>

@@ -1,7 +1,8 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ClosedCaption, Search } from "lucide-react";
+import { ClosedCaption, Search, X } from "lucide-react";
 import React, { useState } from "react";
 export type TreeItemType = {
   label: string;
@@ -40,6 +41,12 @@ export default function SelectableFilter({
           placeholder={`جستجوی ${label} ...`}
         />
       ) : null}
+
+      <SelectedItems
+        onDelete={(item) => handleChange(false, item)}
+        items={items.filter((i) => value.includes(String(i.value)))}
+      />
+
       {items
         ?.filter((i) => i.label.match(searchTerm))
         .map((item) => (
@@ -92,8 +99,8 @@ const SearchInput = ({
   setSearchTerm: (s: string) => void;
 }) => {
   return (
-    <div className="relative p-1 md:p-2 border px-10 rounded-md">
-      <Search fontSize={24} className="absolute right-2" />
+    <div className="relative border ps-8 py-1.5 rounded-md">
+      <Search className="absolute size-5 text-muted right-2" />
       <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -111,3 +118,25 @@ const SearchInput = ({
     </div>
   );
 };
+
+function SelectedItems({
+  items,
+  onDelete,
+}: {
+  items: Array<TreeItemType>;
+  onDelete: (item: TreeItemType) => void;
+}) {
+  return (
+    <div className="flex gap-0.5 my-2">
+      {items.map((i) => (
+        <Badge key={i.value} variant={"neutral"}>
+          {i.label}
+
+          <button onClick={() => onDelete(i)}>
+            <X className="size-3" />
+          </button>
+        </Badge>
+      ))}
+    </div>
+  );
+}

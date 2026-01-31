@@ -14,6 +14,7 @@ import {
 type ProductContextType = {
   product: Product;
   variant: ProductVariant | null;
+  variantLoading: boolean;
   openDialog: boolean;
   setOpenDialog: (openDialog: boolean) => void;
   selectAttributeVariant: (attributeId: number, valueId: number) => void;
@@ -37,6 +38,7 @@ export default function ProductPageProvider({
 }: PropsWithChildren<ProductProviderProps>) {
   const [variant, setVariant] = useState<ProductVariant | null>(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [variantLoading, setVariantLoading] = useState(true);
   const { mutate } = useMutation(addRecentView);
 
   useEffect(() => {
@@ -47,6 +49,7 @@ export default function ProductPageProvider({
   const variantId = params.get("variant_id");
 
   useEffect(() => {
+    setVariantLoading(false);
     if (!variantId) return setVariant(product.variants[0]);
     const selectedVariant = product.variants.find(
       (i) => i.id === Number(variantId)
@@ -86,6 +89,7 @@ export default function ProductPageProvider({
         selectAttributeVariant,
         openDialog,
         setOpenDialog,
+        variantLoading,
       }}
     >
       {children}

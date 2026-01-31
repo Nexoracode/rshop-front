@@ -32,7 +32,7 @@ export default function ProductGallery({
   const [active, setActive] = React.useState<number | null>(null);
   const isMobile = useIsMobile();
   const sortedImages = [...images].sort((a, b) =>
-    a.id === media_pinned?.id ? -1 : b.id === media_pinned?.id ? 1 : 0
+    a.id === media_pinned?.id ? -1 : b.id === media_pinned?.id ? 1 : 0,
   );
   return (
     <div className="space-y-3 mx-auto w-full">
@@ -49,7 +49,7 @@ export default function ProductGallery({
                       alt={img.alt_text ?? ""}
                       fill
                       sizes="(max-width:768px) 100%, 30rem"
-                      className="object-contain"
+                      className="object-contain max-w-md"
                       priority={i === 0}
                     />
                   ) : (
@@ -62,7 +62,7 @@ export default function ProductGallery({
         <CarouselDots className="absolute md:hidden left-2 bottom-1 bg-black/20 p-1 z-50 rounded-full" />
       </Carousel>
 
-      <div className="md:flex hidden justify-start gap-3">
+      <div className="md:flex hidden justify-start gap-1">
         {sortedImages
           .filter((i) => i.type === "image")
           .slice(0, 4)
@@ -81,14 +81,14 @@ export default function ProductGallery({
               setActive(6);
             }}
             className={cn(
-              "relative cursor-pointer h-24 w-24 overflow-hidden rounded-md border transition"
+              "relative cursor-pointer h-24 w-24 overflow-hidden rounded-md border transition",
             )}
           >
             <Image
               src={media_pinned?.url ?? PRODUCT_PLACEHOLDER}
               alt={`thumbnail`}
               fill
-              className="object-contain blur-xs"
+              className="object-contain max-w-xl blur-xs"
             />
 
             <div className="absolute blur-in-lg w-full h-full" />

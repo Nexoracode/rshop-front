@@ -4,6 +4,7 @@ import {
   Brand,
   Category,
   Collection,
+  CollectionProduct,
   Product,
   ProductSearchResult,
 } from "@/types/product";
@@ -75,6 +76,31 @@ export const getProductsInfinit = (
       meta.current_page === meta.total_pages ? null : meta.current_page + 1,
     initialPageParam: 1,
   });
+export const getProductsByBrandSlugInfinit = (
+  slug: string,
+  query: string,
+  sortBy: string,
+  page: string
+) =>
+  infiniteQueryOptions<
+    PaginateData<Product> & {
+      filters: ProductFilters;
+      brand: Brand;
+    }
+  >({
+    queryKey: ["get-products-by-brand-slug", slug, query, sortBy],
+    queryFn: ({ pageParam = 1 }) => {
+      return apiFetch(
+        `/catalog/brand/${slug}?${query}&page=${
+          page || pageParam
+        }&sortBy=${sortBy}`
+      );
+    },
+    enabled: !!slug,
+    getNextPageParam: ({ meta }) =>
+      meta.current_page === meta.total_pages ? null : meta.current_page + 1,
+    initialPageParam: 1,
+  });
 export const getCategorySeoDataBySlug = (slug: string) =>
   queryOptions({
     queryKey: ["get-category-seodata-by-slug", slug],
@@ -122,15 +148,23 @@ export const searchTerm = (term: string) =>
       brands: Array<Brand>;
       categories: Array<Category>;
     }> => {
-      return await apiFetch(`/catalog`, { params: { term } });
+      return await apiFetch(`/catalog/search`, { params: { term } });
     },
     enabled: !!term,
   });
-export const getCollection = (slug: string) =>
+export const getCollectionDetails = (slug: string) =>
   queryOptions({
-    queryKey: ["get-collection-data", slug],
+    queryKey: ["get-collection-details", slug],
     queryFn: async (): Promise<Collection> => {
-      return await apiFetch(`/collections/${slug}`);
+      return await apiFetch(`/home/collection/${slug}?slug=${slug}`);
+    },
+    enabled: !!slug,
+  });
+export const getCollectionProducts = (slug: string) =>
+  queryOptions({
+    queryKey: ["get-collection-products", slug],
+    queryFn: async (): Promise<{ products: Array<CollectionProduct> }> => {
+      return await apiFetch(`/home/collection/${slug}/products?slug=${slug}`);
     },
     enabled: !!slug,
   });

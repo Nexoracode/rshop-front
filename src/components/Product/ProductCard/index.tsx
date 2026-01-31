@@ -6,6 +6,7 @@ import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Product } from "@/types/product";
+import PriceBox from "@/components/common/PriceBox";
 
 export default function ProductCard(props: Product) {
   const {
@@ -20,6 +21,7 @@ export default function ProductCard(props: Product) {
     brand,
     variants,
     has_variants,
+    is_feautered,
   } = props;
 
   const getPriceParams = (): {
@@ -56,15 +58,15 @@ export default function ProductCard(props: Product) {
     compareAt = null,
   } = inStock ? calcPrice(...inStock.priceParams) : {};
   return (
-    <Link className="h-full block" href={`/p/rsp-${id}`}>
+    <Link className="block" href={`/p/rsp-${id}`}>
       <Card
-        className="group gap-2 md:gap-3 relative  border !p-1 shadow-sm transition hover:shadow-md"
+        className="group !p-2  gap-2 md:gap-3 relative h-full border-none rounded-none shadow-none"
         dir="rtl"
       >
-        {compareAt && (
-          <Badge variant="danger" className="absolute left-2 top-2 z-10 ">
-            {percent}%
-          </Badge>
+        {is_feautered && (
+          <span className="absolute top-2 z-10 text-danger text-sm font-bold">
+            فروش ویژه
+          </span>
         )}
 
         {/* image */}
@@ -76,7 +78,7 @@ export default function ProductCard(props: Product) {
             className={cn(
               "object-cover opacity-100 ",
               medias.length > 1 &&
-                "group-hover:opacity-0 transition-opacity duration-700"
+                "group-hover:opacity-0 transition-opacity duration-700",
             )}
           />
           {medias?.[1] && (
@@ -106,18 +108,19 @@ export default function ProductCard(props: Product) {
         </div> */}
 
           {/* price */}
-          <div className="flex flex-col sm:flex-row items-center gap-2">
+          <div className="flex mt-3 flex-col sm:flex-row items-center gap-2">
             {inStock ? (
-              <>
-                <span className="text-base font-bold text-primary-600">
-                  {formatToman(final)}
-                </span>
-                {compareAt && (
-                  <span className="text-xs text-gray-400 line-through">
-                    {formatToman(+compareAt)}
-                  </span>
-                )}
-              </>
+              <div className="flex items-start w-full justify-between">
+                {compareAt && <Badge variant="danger">{percent}%</Badge>}
+                <div className="flex flex-col">
+                  <PriceBox price={final} className="text-base font-bold" />
+                  {compareAt && (
+                    <span className="text-sm text-gray-400 line-through">
+                      {formatToman(+compareAt)}
+                    </span>
+                  )}
+                </div>
+              </div>
             ) : (
               <span className="block text-right mt-2 font-semibold  text-muted-light w-full">
                 ناموجود

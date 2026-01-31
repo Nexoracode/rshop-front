@@ -57,9 +57,9 @@ export default function SelectField<T extends FieldValues>({
         isDisabled={disabled}
         placeholder={placeholder}
         className={cn(
-          "input w-full !p-0 ",
+          "input border border-muted-light w-full !p-0 ",
           className,
-          error && "border border-rose-500 focus-visible:ring-rose-500"
+          error && "border-rose-500 focus-visible:ring-rose-500"
         )}
         classNames={{
           input: () => "w-full p-0",

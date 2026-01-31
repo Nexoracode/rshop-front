@@ -20,9 +20,10 @@ export function middleware(request: NextRequest) {
   if (!isProtected) return NextResponse.next();
 
   // کوکی توکن
-  const token =
+  /*   const token =
     request.cookies.get("refresh_token")?.value ||
-    request.headers.get("access_token")?.split(" ")[1];
+    request.headers.get("access_token")?.split(" ")[1]; */
+  const token = request.cookies.get("access_token");
 
   // اگر توکن نبود → redirect به login
   if (!token) {

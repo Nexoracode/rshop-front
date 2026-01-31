@@ -145,6 +145,19 @@ export const createCardToCardPayment = mutationOptions({
     status: string;
     shop_card_info: ShopCardInfo;
   }> => await apiFetch("/card-to-card/initiate", { method: "POST", body }),
+
+  onSuccess: async (data) => {
+    await queryClient.invalidateQueries({
+      queryKey: ["get-order-details", data.order_id],
+    });
+  },
+});
+export const cardTocardPaymentLater = mutationOptions({
+  mutationFn: async (body: { order_id: number }): Promise<Order> =>
+    await apiFetch(`/orders/${body.order_id}/awaiting`, {
+      method: "POST",
+      body,
+    }),
 });
 export const uploadReceipImage = mutationOptions({
   mutationFn: async ({

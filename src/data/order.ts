@@ -10,7 +10,7 @@ import {
 import { ComponentProps } from "react";
 
 export const statusLabel: Record<Order["status"], string> = {
-  shipping: "در حال انجام",
+  shipping: "در حال ارسال",
   delivered: "ارسال شده",
   start_order: "ایجاد سفارش",
   refunded: "لغو شده",

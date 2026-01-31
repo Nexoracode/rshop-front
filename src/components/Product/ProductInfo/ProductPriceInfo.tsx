@@ -4,21 +4,30 @@ import React from "react";
 import { Product } from "@/types/product";
 import { useProductPage } from "../ProductProvider";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import PriceBox from "@/components/common/PriceBox";
 
 export default function ProductPriceInfo({
   stock,
   price,
   discount_amount,
   discount_percent,
+  is_limited_stock,
 }: Product) {
-  const { variant } = useProductPage();
+  const { variant, variantLoading } = useProductPage();
+
+  if (variantLoading) return <Skeleton className="h-9" />;
 
   const calcPriceParams: Parameters<typeof calcPrice> = variant
     ? [variant.price, variant.discount_amount, variant.discount_percent]
     : [price, discount_amount, discount_percent];
   const { compareAt, final, percent } = calcPrice(...calcPriceParams);
 
-  const productStock = variant ? variant.stock : stock;
+  let productStock = 9999;
+
+  if (!is_limited_stock) {
+    productStock = variant ? variant.stock : stock;
+  }
   return (
     <div className="mt-2 flex items-end md:w-full flex-col md:gap-3">
       {productStock === 0 ? (
@@ -27,8 +36,8 @@ export default function ProductPriceInfo({
         </p>
       ) : (
         <>
-          <div className="text-xl font-extrabold text-primary">
-            {formatToman(final)}
+          <div className="">
+            <PriceBox className="text-xl font-bold text-black" price={final} />
           </div>
           {compareAt && compareAt > final ? (
             <div className="flex gap-1 flex-row-reverse md:justify-between">

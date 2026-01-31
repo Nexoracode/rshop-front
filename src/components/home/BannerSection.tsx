@@ -44,23 +44,28 @@ export default function BannerSection({
 
     if (banner) return <PromoCard key={order.position} {...banner} />;
 
-    return <div key={order.position} className="border border-dotted"></div>;
+    return (
+      <div
+        key={order.position}
+        className="border border-dotted rounded-lg"
+      ></div>
+    );
   });
 
   return (
     <section className="py-14 bg-white">
       <div
         className={cn(
-          "grid grid-cols-1 gap-4",
-          layoutType === "side_by_side" ? "container md:grid-cols-2" : ""
+          "grid grid-cols-1 gap-2",
+          layoutType === "side_by_side" ? "container-home md:grid-cols-2" : "",
         )}
       >
         {/* اسلایدشو بزرگ - دو ستون */}
         <div
           className={cn(
             layoutType === "side_by_side"
-              ? "rounded-xl overflow-hidden"
-              : "h-[25rem]"
+              ? "rounded-xl min-h-[12rem] overflow-hidden"
+              : "h-[25rem]",
           )}
         >
           <HeroSlider slides={heroSliders} autoplayMs={6000} />
@@ -69,10 +74,10 @@ export default function BannerSection({
         {/* چهار بنر کوچک - یک ستون در موبایل، دو*دو در دسکتاپ */}
         <div
           className={cn(
-            " grid grid-cols-2 gap-4",
+            " grid grid-cols-2 gap-1 md:gap-2",
             layoutType === "side_by_side"
               ? "sm:grid-cols-2"
-              : "container md:grid-cols-4"
+              : "container md:grid-cols-4",
           )}
         >
           {ordredSideBanners}

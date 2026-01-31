@@ -1,5 +1,6 @@
 "use client";
 import CardToCardPayment from "@/components/checkout/CardToCardPayment";
+import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
 import { CardToCardPaymentInfo } from "@/types/order";
 import React, { useState } from "react";
@@ -9,21 +10,32 @@ type Props = {
   payment_id: number;
   amount: number;
   paymentInfo: CardToCardPaymentInfo;
+  date: string;
 };
 
 export default function SubmitPaymentReceip(props: Props) {
   const [open, setOpen] = useState(false);
   return (
     <div className="flex justify-end">
-      <Button variant={"outline"} size={"sm"} onClick={() => setOpen(true)}>
-        ثبت رسید پرداخت
-      </Button>
-
-      <CardToCardPayment
+      <BaseDialog
+        trigger={
+          <Button variant={"outline"} size={"sm"}>
+            ثبت رسید پرداخت
+          </Button>
+        }
+        width="4xl"
         open={open}
-        onClose={() => setOpen(false)}
-        later
-        {...props}
+        hiddenFooter
+        onOpenChange={setOpen}
+        title="ثبت رسید پرداخت"
+        content={
+          <CardToCardPayment
+            open={open}
+            onClose={() => setOpen(false)}
+            later
+            {...props}
+          />
+        }
       />
     </div>
   );

@@ -21,8 +21,9 @@ export default function HeaderSearchBox() {
   const handleClose = () => {
     setSearch("");
   };
+
   return (
-    <div className="relative w-full">
+    <div className="relative max-w-xl w-full">
       <Popover
         open={!!debouncedSearch}
         onOpenChange={(open) => {

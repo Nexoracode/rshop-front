@@ -19,7 +19,7 @@ export default function SupportList() {
       </div>
       <ListLayout<Ticket>
         items={tickets || []}
-        renderItem={(ticket) => <TicketCard {...ticket} />}
+        renderItem={(ticket) => <TicketCard key={ticket.id} {...ticket} />}
         skeleton={<Skeletons count={3} className="h-12" />}
         className="flex flex-col space-y-2"
         loading={isPending}

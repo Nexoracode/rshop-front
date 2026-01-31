@@ -42,14 +42,14 @@ export default function AdsBanner() {
   if (banners.length === 0) return null;
 
   return (
-    <div className="w-full relative h-[4rem] overflow-hidden">
+    <div className="w-full relative h-[2rem] object-center  md:h-[4rem] overflow-hidden">
       {banners.map((banner, index) => {
         const isActive = index === currentIndex;
 
         return (
           <div
             key={banner.id}
-            className={`absolute inset-0 transition-all duration-500 ease-out
+            className={`absolute w-full inset-0 transition-all duration-500 ease-out
               ${
                 isActive
                   ? "opacity-100 translate-y-0"
@@ -64,7 +64,7 @@ export default function AdsBanner() {
                   src={banner.image_url}
                   fill
                   alt={banner.title}
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
               </Link>
             ) : (

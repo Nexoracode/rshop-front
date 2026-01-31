@@ -57,6 +57,8 @@ export default function RecentViewedCard({
             startIcon={<ShoppingCart className="w-4 h-4 ml-1" />}
             size="sm"
             fullWidth
+            href={`/p/rsp-${id}`}
+            variant={"outline"}
           >
             افزودن به سبد
           </Button>
