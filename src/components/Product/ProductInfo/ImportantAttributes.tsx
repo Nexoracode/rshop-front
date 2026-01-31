@@ -35,10 +35,7 @@ export default function ImportantAttributes({ specifications }: Props) {
               key={attr.id}
               className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-muted-light/10 min-w-fit md:min-w-[calc(33.333%)] rounded-md p-2"
             >
-              <p className="text-xs text-muted-light font-light">
-                {" "}
-                {attr.name}:
-              </p>
+              <p className="text-xs text-muted font-light"> {attr.name}:</p>
 
               <p className="text-xs md:text-sm">
                 {attr.values.map((i) => i.value).join(", ")}

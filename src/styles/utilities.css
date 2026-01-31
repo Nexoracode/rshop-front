@@ -1,0 +1,15 @@
+@utility container-home {
+  @apply w-full max-w-7xl mx-auto;
+}
+
+@utility content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@utility shadow-around {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}

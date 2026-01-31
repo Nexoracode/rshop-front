@@ -58,7 +58,7 @@ export default function Footer() {
           </Button>
         </div>
 
-        <Separator className="mt-5 mb-8" />
+        <Separator className="my-4" />
 
         <ServiceSection />
 

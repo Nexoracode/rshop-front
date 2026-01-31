@@ -1,7 +1,13 @@
 "use client";
 import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Truck, TruckElectric } from "lucide-react";
+import {
+  ChevronLeft,
+  Package2Icon,
+  Truck,
+  TruckElectric,
+  TruckIcon,
+} from "lucide-react";
 import React, { useState } from "react";
 
 export default function ShipingMethods() {
@@ -12,15 +18,21 @@ export default function ShipingMethods() {
         open={open}
         onOpenChange={setOpen}
         trigger={
-          <button
-            onClick={() => setOpen(true)}
-            className="flex w-full justify-between items-center"
-          >
-            <TruckElectric className="text-primary" />
-            <span className="text-sm inline-block  text-right flex-1 ps-1 text-muted">
-              روش های ارسال
+          <button onClick={() => setOpen(true)} className="w-full">
+            <span className="w-full flex justify-between items-center">
+              <Package2Icon className="text-primary" />
+              <span className="text-sm inline-block  text-right flex-1 ps-1 text-muted">
+                روش های ارسال
+              </span>
+              <ChevronLeft className="text-muted-light size-6" />
             </span>
-            <ChevronLeft className="text-muted-light size-6" />
+
+            <span className="flex gap-2 relative pt-4 ps-4 items-center text-xs text-muted-light font-light">
+              <span className="absolute right-0.5 top-1.5 bg-gradient-to-b to-primary-100 from-white h-3 w-0.5"></span>
+              <span className="absolute w-1.5 h-1.5 top-5 right-0 bg-primary rounded-full"></span>
+              <TruckIcon className="size-4 text-danger" />
+              توسط آرشاپ
+            </span>
           </button>
         }
         title="روش ها و هزینه های ارسال"

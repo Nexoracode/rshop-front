@@ -38,7 +38,7 @@ export default function ServiceSection() {
         {services.map((service, idx) => (
           <div
             key={idx}
-            className="flex last:justify-center last:w-full md:last:w-[20%] w-[50%] md:w-[20%] md:min-w-[200px] items-center gap-1.5 md:gap-3 p-1 md:p-4 "
+            className="flex last:justify-center last:w-full md:last:w-[20%] w-[50%] md:w-[20%] md:min-w-[200px] items-center gap-1 md:gap-3 p-1 md:p-2 "
           >
             <Image
               width={28}
@@ -51,7 +51,7 @@ export default function ServiceSection() {
               <h3 className="text-sm md:text-base font-semibold text-foreground">
                 {service.title}
               </h3>
-              <p className="text-xs md:text-sm text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 {service.subtitle}
               </p>
             </div>

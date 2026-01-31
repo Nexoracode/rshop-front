@@ -1,0 +1,51 @@
+.content h1 {
+  @apply mt-6 mb-3 text-2xl font-bold tracking-tight md:mt-10 md:mb-4 md:text-3xl;
+}
+
+.content h2 {
+  @apply mt-5 mb-2 text-xl font-semibold tracking-tight md:mt-8 md:mb-3 md:text-2xl;
+}
+
+.content h3 {
+  @apply mt-4 mb-2 text-lg font-semibold md:mt-6 md:text-xl;
+}
+
+.content h4 {
+  @apply mt-4 mb-1 text-base font-semibold md:mt-5 md:text-lg;
+}
+
+.content ul {
+  @apply my-3 ml-5 list-disc md:my-4 md:ml-6;
+}
+
+.content ol {
+  @apply my-3 ml-5 list-decimal md:my-4 md:ml-6;
+}
+
+.content li {
+  @apply my-1.5 md:my-2;
+}
+
+.content a {
+  @apply text-blue-600 underline underline-offset-4 hover:text-blue-700;
+}
+
+.content blockquote {
+  @apply my-4 border-l-4 border-gray-300 pl-3 italic text-gray-600 md:my-6 md:pl-4;
+}
+
+.content code {
+  @apply rounded bg-gray-100 px-1 py-0.5 font-mono text-xs md:px-1.5 md:text-sm;
+}
+
+.content pre {
+  @apply my-4 overflow-x-auto rounded-lg bg-gray-900 p-3 text-xs text-gray-100 md:my-6 md:p-4 md:text-sm;
+}
+
+.content pre code {
+  @apply bg-transparent p-0 text-gray-100;
+}
+
+.content img {
+  @apply my-4 rounded-lg md:my-6;
+}
