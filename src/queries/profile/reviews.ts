@@ -4,25 +4,7 @@ import { Review } from "@/types/user";
 import { mutationOptions, queryOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
-export const addProductReview = mutationOptions({
-  mutationFn: async (body: {
-    productId: number;
-    rating: number;
-    comment: string;
-  }) =>
-    await apiFetch("/profile/reviews", {
-      method: "POST",
-      body,
-    }),
-  onSuccess: () => {
-    queryClient.invalidateQueries({
-      queryKey: ["get-user-reviews"],
-    });
-    queryClient.invalidateQueries({
-      queryKey: ["get-pending-reviews"],
-    });
-  },
-});
+
 export const getMyReviews = queryOptions({
   queryKey: ["get-user-reviews"],
   queryFn: async (): Promise<Array<Review>> => {
@@ -54,6 +36,7 @@ export const updateReview = mutationOptions({
     });
   },
 });
+
 export const deleteReview = mutationOptions({
   mutationFn: async ({ id }: { id: number }) =>
     await apiFetch(`/profile/reviews/${id}`, { method: "DELETE" }),

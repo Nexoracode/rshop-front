@@ -6,7 +6,7 @@ import { Card } from "../ui/card";
 
 import Responsive from "../common/Responsive";
 import { useMutationState, useQuery } from "@tanstack/react-query";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import CartSummeryInfo from "./CartSummeryInfo";
 import CartSummeryProducts from "./CartSummeryProducts";
 

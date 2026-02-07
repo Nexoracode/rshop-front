@@ -4,7 +4,7 @@ import { Eye } from "lucide-react";
 import RecentViewedCard from "./RecentViewdCard";
 import { Card } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { recentViewList } from "@/queries/recent_views";
+import { recentViewList } from "@/queries/profile/recent_views";
 import { ListLayout } from "@/components/common/ListLayout";
 import { RecentView } from "@/types/user";
 import { Skeletons } from "@/components/ui/skeleton";

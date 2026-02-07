@@ -1,20 +1,18 @@
 import { getQueryClient } from "@/lib/get-query-client";
 import React, { Suspense } from "react";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import {
-  getCategoryBySlug,
-  getCategorySeoDataBySlug,
-  getProductsInfinit,
-} from "@/queries/products";
+
 import { Metadata } from "next";
 import { SHOP_NAME, SHOP_URL } from "@/data/assets";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import CollectionSkelton from "@/components/category/CollectionSkelton";
-import ProductListPage from "@/components/category/ProductList/ProductListPage";
 import CategoryDescription from "@/components/category/CategoryDescription";
-import ProductListWrapper from "@/components/domain/product-list/ProductListWrapper";
 import { notFound } from "next/navigation";
+import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
+import {
+  getCategoryBySlug,
+  getCategorySeoDataBySlug,
+} from "@/queries/products/category";
 
 export const revalidate = 300;
 
@@ -101,14 +99,6 @@ export default async function CategoryPage(
 
   const queryStr = `${query}`;
 
-  const products = await queryClient.prefetchInfiniteQuery(
-    getProductsInfinit(
-      categorySlug,
-      queryStr,
-      sortBy as string,
-      page as string,
-    ),
-  );
   return (
     <div className="container space-y-1  py-3">
       <Breadcrumb items={breadcrumbItems} />
@@ -118,7 +108,9 @@ export default async function CategoryPage(
         </h1>
       </div>
 
-      <ProductListWrapper categorySlug={category.category.slug} />
+      <Suspense fallback={<CollectionSkelton />}>
+        <ProductListContainer type="category" slug={categorySlug} />
+      </Suspense>
 
       <Separator />
       {category?.category.description && (

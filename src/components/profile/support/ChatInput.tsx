@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { LucideSend } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { replyToSupportTicket } from "@/queries/support";
+import { replyToSupportTicket } from "@/queries/profile/support";
 
 type Props = {
   supportId: number;

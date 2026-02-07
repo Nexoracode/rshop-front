@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useCurrentUser from "./useCurrentUser";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import { checkPromotion } from "@/queries/orders";
 
 export default function useCheckPromotion() {
@@ -24,7 +24,7 @@ export default function useCheckPromotion() {
         shippingCost: 0,
         isFirstOrder: true,
       },
-      { ...opts }
+      { ...opts },
     );
   };
 

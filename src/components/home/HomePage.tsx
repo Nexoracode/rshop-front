@@ -7,7 +7,7 @@ import SpecialCollection from "./SpecialCollection";
 import ProductByCategory from "./ProductByCategory";
 import BrandsSection from "./BrandsSection";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getHomeSections } from "@/queries/home";
+import { getHomeSections } from "@/queries/home/home";
 import PageLoader from "../common/PageLoader";
 import SimpleCollection from "./SimpleCollection";
 
@@ -19,11 +19,11 @@ export default function HomePage() {
     .sort((a, b) => a.sort_order - b.sort_order);
 
   const featuredSections = data?.sections.find(
-    (s) => s.section_type === "featured"
+    (s) => s.section_type === "featured",
   );
 
   const mostPopular = data.sections.find(
-    (s) => s.section_type === "most_popular"
+    (s) => s.section_type === "most_popular",
   );
 
   const specialProducts = data.sections

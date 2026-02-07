@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { formatToman } from "@/lib/utils";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 

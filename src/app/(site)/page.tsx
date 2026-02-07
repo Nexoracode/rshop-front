@@ -1,6 +1,6 @@
 import HomePage from "@/components/home/HomePage";
 import { getQueryClient } from "@/lib/get-query-client";
-import { getHomeSections } from "@/queries/home";
+import { getHomeSections } from "@/queries/home/home";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();

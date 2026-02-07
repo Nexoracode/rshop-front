@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft, MessageCircleQuestionMark } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { createProductSupportTicket } from "@/queries/support";
+import { createProductSupportTicket } from "@/queries/profile/support";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/product";
 import { LoginRequiredDialog } from "../common/LoginRequiredDialog";

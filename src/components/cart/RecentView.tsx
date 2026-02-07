@@ -1,5 +1,5 @@
 "use client";
-import { recentViewList } from "@/queries/recent_views";
+import { recentViewList } from "@/queries/profile/recent_views";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import {

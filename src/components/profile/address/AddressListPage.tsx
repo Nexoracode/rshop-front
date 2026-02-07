@@ -10,7 +10,7 @@ import {
   deleteUserAddress,
   getUserAddress,
   updateUserAddress,
-} from "@/queries/address";
+} from "@/queries/profile/address";
 import AddressList from "./AddressList";
 import AddressForm from "@/components/users/AddressForm";
 import { Card } from "@/components/ui/card";

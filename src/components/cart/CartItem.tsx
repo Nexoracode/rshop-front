@@ -6,7 +6,7 @@ import React from "react";
 import QuantitySelect from "../Product/AddToCart/QuantitySelect";
 import { UserCartItem } from "@/types/cart";
 import { useMutation } from "@tanstack/react-query";
-import { deleteCartItem, updateCartItem } from "@/queries/cart";
+import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 
 export default function CartItem({
   id,

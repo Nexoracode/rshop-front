@@ -7,7 +7,7 @@ import ReviewItemCard from "./ReviewItemCard";
 import ReviewFormModal from "./ReviewFormModal";
 import ReviewDeleteModal from "./ReviewDeleteModal";
 import { useQuery } from "@tanstack/react-query";
-import { getMyReviews, getPendingReviews } from "@/queries/reviews";
+import { getMyReviews, getPendingReviews } from "@/queries/profile/reviews";
 import { Skeletons } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { ListLayout } from "@/components/common/ListLayout";

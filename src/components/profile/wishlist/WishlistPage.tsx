@@ -3,7 +3,10 @@
 import WishlistCard from "./WishlistCard";
 import { Button } from "@/components/ui/button";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { deleteFromWishlist, getWishlistList } from "@/queries/wishlist";
+import {
+  deleteFromWishlist,
+  getWishlistList,
+} from "@/queries/profile/wishlist/wishlist";
 import ProductCardSkeleton from "@/components/common/Skeleton/ProductCardSkeleton";
 import { Card } from "@/components/ui/card";
 import { ListLayout } from "@/components/common/ListLayout";

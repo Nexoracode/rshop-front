@@ -1,6 +1,13 @@
 import { Media } from ".";
 import { Review } from "./user";
 
+export type SortItem =
+  | "newest"
+  | "cheapest"
+  | "bestselling"
+  | "popular"
+  | "expensive"
+  | "visited";
 export type Brand = {
   id: number;
   name: string;

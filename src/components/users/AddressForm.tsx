@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { addUserAddress, updateUserAddress } from "@/queries/address";
+import { addUserAddress, updateUserAddress } from "@/queries/profile/address";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { UserAddress } from "@/types/user";
 import BaseDialog from "../common/BaseDialog";

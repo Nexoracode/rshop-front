@@ -1,5 +1,5 @@
 "use client";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import CartItem from "./CartItem";

@@ -4,7 +4,7 @@ import SelectField from "@/components/common/Form/SelectField";
 import TextField from "@/components/common/Form/TextField";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { createSupportTicket } from "@/queries/support";
+import { createSupportTicket } from "@/queries/profile/support";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
