@@ -15,7 +15,7 @@ export default function ProductsSection({ orderItems }: Props) {
     <Card>
       <div className="flex gap-2">
         <BoxesIcon className="text-primary" />
-        <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">
+        <h3 className="font-semibold text-gray-800  mb-2">
           محصولات خریداری شده
         </h3>
       </div>
@@ -33,9 +33,7 @@ export default function ProductsSection({ orderItems }: Props) {
               className="rounded-md object-cover"
             />
             <div className="flex flex-col justify-evenly">
-              <p className="text-gray-900 dark:text-gray-100 text-sm">
-                {product.name}
-              </p>
+              <p className="text-gray-900  text-sm">{product.name}</p>
               {variant && <VariantValues variant={variant} />}
               <p className="text-gray-500 text-xs">تعداد {item.quantity}</p>
               <p className="text-gray-500 text-xs">{item.line_total} تومان</p>

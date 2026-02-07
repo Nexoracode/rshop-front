@@ -13,19 +13,26 @@ import { Separator } from "@/components/ui/separator";
 import CollectionSkelton from "@/components/category/CollectionSkelton";
 import ProductListPage from "@/components/category/ProductList/ProductListPage";
 import CategoryDescription from "@/components/category/CategoryDescription";
+import ProductListWrapper from "@/components/domain/product-list/ProductListWrapper";
+import { notFound } from "next/navigation";
 
 export const revalidate = 300;
 
 export async function generateMetadata({
   params,
   searchParams,
-}: PageProps<"/products/[[...slug]]">): Promise<Metadata> {
+}: PageProps<"/products/[...slug]">): Promise<Metadata> {
   const queryClient = getQueryClient();
   const { slug } = await params;
   const categorySlug = slug?.pop() ?? "";
-  const category = categorySlug
-    ? await queryClient.fetchQuery(getCategorySeoDataBySlug(categorySlug))
-    : null;
+  const category = await queryClient.fetchQuery(
+    getCategorySeoDataBySlug(categorySlug),
+  );
+
+  if (!category)
+    return {
+      title: "دسته بندی یافت نشد",
+    };
 
   const { page = "1" } = await searchParams;
 
@@ -59,7 +66,7 @@ export async function generateMetadata({
   };
 }
 export default async function CategoryPage(
-  props: PageProps<"/products/[[...slug]]">
+  props: PageProps<"/products/[...slug]">,
 ) {
   const { slug } = await props.params;
   const { query, sortBy, page } = await props.searchParams;
@@ -67,9 +74,11 @@ export default async function CategoryPage(
 
   const queryClient = getQueryClient();
 
-  const category = categorySlug
-    ? await queryClient.fetchQuery(getCategoryBySlug(categorySlug))
-    : null;
+  const category = await queryClient.fetchQuery(
+    getCategoryBySlug(categorySlug),
+  );
+
+  if (!category) return notFound();
 
   const categoryParents =
     category?.parents.sort((a, b) => a.level - b.level) ?? [];
@@ -92,8 +101,13 @@ export default async function CategoryPage(
 
   const queryStr = `${query}`;
 
-  await queryClient.prefetchInfiniteQuery(
-    getProductsInfinit(categorySlug, queryStr, sortBy as string, page as string)
+  const products = await queryClient.prefetchInfiniteQuery(
+    getProductsInfinit(
+      categorySlug,
+      queryStr,
+      sortBy as string,
+      page as string,
+    ),
   );
   return (
     <div className="container space-y-1  py-3">
@@ -103,16 +117,8 @@ export default async function CategoryPage(
           {category ? category.category.title : "محصولات"}
         </h1>
       </div>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <Suspense fallback={<CollectionSkelton />}>
-          <ProductListPage
-            slug={categorySlug}
-            query={queryStr}
-            page={page as string}
-            sortBy={sortBy as string}
-          />
-        </Suspense>
-      </HydrationBoundary>
+
+      <ProductListWrapper categorySlug={category.category.slug} />
 
       <Separator />
       {category?.category.description && (

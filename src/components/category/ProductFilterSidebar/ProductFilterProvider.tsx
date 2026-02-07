@@ -23,12 +23,12 @@ type ProductListContextType = {
   query: ProductFilterQuery | null;
   handleSetFilter: <K extends keyof ProductFilterQuery["filter"]>(
     key: K,
-    value: ProductFilterQuery["filter"][K]
+    value: ProductFilterQuery["filter"][K],
   ) => void;
   handleSetAttributeQuery: (key: string, value: Array<string>) => void;
   handleSetQuery: <K extends keyof ProductFilterQuery>(
     key: K,
-    value: ProductFilterQuery[K]
+    value: ProductFilterQuery[K],
   ) => void;
   handleSetBooleanQuery: (key: BooleanFilterKey, value: boolean) => void;
   handleClearFilters: () => void;
@@ -57,18 +57,18 @@ export default function ProductFilterProvider({
 
   function handleSetQuery<K extends keyof ProductFilterQuery>(
     key: K,
-    value: ProductFilterQuery[K]
+    value: ProductFilterQuery[K],
   ) {
     const newQuery = { ...query, [key]: value };
     setQuery(newQuery as ProductFilterQuery);
     router.push(
-      `${pathName}?${serializeFliterQuery(newQuery as ProductFilterQuery)}`
+      `${pathName}?${serializeFliterQuery(newQuery as ProductFilterQuery)}`,
     );
   }
 
   function handleSetFilter<K extends keyof ProductFilterQuery["filter"]>(
     key: K,
-    value: ProductFilterQuery["filter"][K]
+    value: ProductFilterQuery["filter"][K],
   ) {
     handleSetQuery("filter", { ...query?.filter, [key]: value });
   }
@@ -82,7 +82,7 @@ export default function ProductFilterProvider({
     const booleanFilters =
       value === true
         ? [...(query?.filter.booleanFilters ?? []), { key, value: true }]
-        : query?.filter.booleanFilters.filter((b) => b.key !== key) ?? [];
+        : (query?.filter.booleanFilters.filter((b) => b.key !== key) ?? []);
     handleSetFilter("booleanFilters", booleanFilters);
   };
 

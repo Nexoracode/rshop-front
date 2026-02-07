@@ -14,7 +14,7 @@ type Props = {
 
 export default function PaymentFailed({ order, payment }: Props) {
   return (
-    <div className="relative min-h-screen px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+    <div className="relative min-h-screen px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 ">
       <div className="max-w-3xl pt-12 space-y-4 mx-auto">
         <Card>
           <div className="space-y-3 flex items-start">

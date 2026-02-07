@@ -30,7 +30,7 @@ export default function PaymentVerifyPage() {
           onSuccess(data) {
             if (data.code === 101) router.push(`/`);
           },
-        }
+        },
       );
   }, [Authority, mutateAsync, Status, router]);
 
@@ -40,7 +40,7 @@ export default function PaymentVerifyPage() {
     return <PaymentFailed order={data.order} payment={data.payment} />;
 
   return (
-    <div className="relative flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+    <div className="relative flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
       <>
         <div className="w-full max-w-lg space-y-6">
           <div className="flex flex-col items-center justify-center gap-3">
