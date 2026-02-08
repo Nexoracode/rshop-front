@@ -32,7 +32,7 @@ export default function ProductListContent({
   const isMobile = useIsMobile();
   const { ref, inView } = useInView({
     threshold: 0.1,
-    rootMargin: "300px 0",
+    rootMargin: "300px",
   });
 
   useEffect(() => {

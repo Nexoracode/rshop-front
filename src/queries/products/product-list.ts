@@ -34,14 +34,17 @@ export const getProductsListInfinit = ({
       filters: ProductFilters;
     }
   >({
-    queryKey: ["get-products-list-infinite", slug, query, sortBy, type],
+    queryKey: ["get-products-list-infinite", slug, query, sortBy, type, page],
     queryFn: ({ pageParam = 1 }) => {
       const url = type === "brand" ? `/brand/${slug}` : `/${slug}`;
 
-      console.log({ url });
-      return apiFetch(
-        `/catalog${url}?${query}&page=${page || pageParam}&sortBy=${sortBy}`,
-      );
+      const queryParams = new URLSearchParams();
+      if (query) queryParams.append("query", query);
+      if (sortBy) queryParams.append("sortBy", sortBy);
+      if (pageParam) queryParams.append("page", pageParam.toString());
+      if (page || pageParam) queryParams.append("page", page ?? pageParam);
+      const queryStr = queryParams.toString();
+      return apiFetch(`/catalog${url}?${queryStr}`);
     },
     getNextPageParam: ({ meta }) =>
       meta.current_page === meta.total_pages ? null : meta.current_page + 1,
