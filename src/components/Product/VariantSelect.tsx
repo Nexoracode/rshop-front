@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import { ProductAttribute } from "@/types/product";
 
 import React, { useMemo } from "react";
@@ -22,7 +22,7 @@ export default function VariantSelect({ attribute }: Props) {
 
   const currentAttributeValue = useMemo(
     () => variant?.attributes.find((a) => a.id === id),
-    [variant, id]
+    [variant, id],
   );
 
   return (
@@ -45,7 +45,7 @@ export default function VariantSelect({ attribute }: Props) {
                   className={cn(
                     "relative  rounded-full p-0.5 cursor-pointer border-1 inline-flex items-center gap-2 data-[state=checked]:ring-2 data-[state=checked]:ring-ring data-[state=checked]:ring-offset-2",
                     currentAttributeValue?.values.id === value.id &&
-                      "ring-2 ring-primary"
+                      "ring-2 ring-primary",
                   )}
                 >
                   <RadioGroupItem
@@ -78,7 +78,7 @@ export default function VariantSelect({ attribute }: Props) {
               className={cn(
                 "h-9 min-w-[3rem] rounded-md px-3 cursor-pointer border inline-flex items-center justify-center text-sm data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-transparent",
                 currentAttributeValue?.values.id === value.id &&
-                  "border-2 border-primary "
+                  "border-2 border-primary ",
               )}
             >
               <RadioGroupItem

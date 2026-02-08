@@ -2,11 +2,13 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Product } from "@/types/product";
 import PriceBox from "@/components/common/PriceBox";
+import useProductPrice from "@/hooks/product/useProductPrice";
+import { formatToman } from "@/lib/utils/price";
+import { cn } from "@/lib/utils/classnames";
 
 export default function ProductCard(props: Product) {
   const {
@@ -24,39 +26,15 @@ export default function ProductCard(props: Product) {
     is_feautered,
   } = props;
 
-  const getPriceParams = (): {
-    priceParams: [number, number, number];
-    stock: number;
-  } | null => {
-    if (!has_variants && stock > 0)
-      return {
-        priceParams: [+price, +discount_amount, discount_percent],
-        stock,
-      };
+  const { compareAt, final, inStock, percent } = useProductPrice({
+    discount_amount,
+    discount_percent,
+    has_variants,
+    price,
+    stock,
+    variants,
+  });
 
-    const varaintHasStock = variants.find((varaint) => varaint.stock > 0);
-
-    if (varaintHasStock)
-      return {
-        priceParams: [
-          varaintHasStock.price,
-          varaintHasStock.discount_amount,
-          varaintHasStock.discount_percent,
-        ],
-        stock: varaintHasStock.stock,
-      };
-
-    return null;
-  };
-
-  const inStock = getPriceParams();
-  //const inStock = null;
-
-  const {
-    final = 0,
-    percent = 0,
-    compareAt = null,
-  } = inStock ? calcPrice(...inStock.priceParams) : {};
   return (
     <Link className="block" href={`/p/rsp-${id}`}>
       <Card

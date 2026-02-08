@@ -1,6 +1,6 @@
+import { getQueryClient } from "@/lib/utils/query-client";
 import CollectionProductCart from "./CollectionProductCard";
-import { getQueryClient } from "@/lib/get-query-client";
-import { getCollectionProducts } from "@/queries/products";
+import { getCollectionProducts } from "@/queries/products/collection";
 
 export default async function CollectionGrid({ slug }: { slug: string }) {
   const queryClient = getQueryClient();

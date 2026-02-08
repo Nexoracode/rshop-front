@@ -1,5 +1,6 @@
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { calcPrice, formatToman } from "@/lib/utils";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
 import { ProductSearchResult } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export default function ProductResultItem({
   const { compareAt, final } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
   return (
     <li className="w-full md:w-[50%] odd:pl-1 even:pr-1">

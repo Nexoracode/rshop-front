@@ -1,3 +1,4 @@
+"use client";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { getProductsListInfinit } from "@/queries/products/product-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -6,13 +7,25 @@ import SidebarFilters from "./Filters/SidebarFilters";
 import MobileFilterSheet from "./MobileFilters/MobileFilterSheet";
 import { cn } from "@/lib/utils/classnames";
 import ProductListContent from "./ProductListContent";
+import ProductToolbar from "./Toolbar/ProductToolbar";
+import CollectionSkelton from "@/components/category/CollectionSkelton";
+import { SortItem } from "@/types/product";
 
 type Props = {
   type: "all" | "category" | "brand";
   slug?: string;
+  query?: string;
+  page?: string;
+  sortBy: SortItem;
 };
 
-export default function ProductListContainer({ type, slug }: Props) {
+export default function ProductListContainer({
+  type,
+  slug,
+  query,
+  page,
+  sortBy,
+}: Props) {
   const {
     data,
     isLoading,
@@ -20,46 +33,52 @@ export default function ProductListContainer({ type, slug }: Props) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(getProductsListInfinit({ type, slug }));
-  const isMobile = useIsMobile();
-
-  const products = useMemo(
-    () => data?.pages.flatMap((page) => page.data) ?? [],
-    [data],
+  } = useInfiniteQuery(
+    getProductsListInfinit({ type, slug, query, page, sortBy }),
   );
 
+  const isMobile = useIsMobile();
+  console.log({ type, slug, query, page, sortBy });
+
+  console.log({ data });
+
+  if (isLoading || !data) return <CollectionSkelton />;
+
+  const products = data?.pages.flatMap((page) => page.data) ?? [];
+
   const currentPage = data?.pages.length ?? 1;
-  const total;
+  const totalPages = data?.pages[0]?.meta.total_pages ?? 1;
+  const totalCount = data?.pages[0]?.meta.total_items ?? 0;
+  const filters = data?.pages[0].filters;
   return (
     <div
-      className={cn(
-        "grid gap-6 md:gap-8",
-        isMobile ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-12",
-      )}
+      className={cn("flex gap-6 md:gap-8", isMobile ? "flex-col" : "flex-row")}
     >
       {/* فیلترها فقط در دسکتاپ */}
       {isMobile ? (
-        <MobileFilterSheet />
+        <MobileFilterSheet filters={filters} />
       ) : (
         <aside
-          className="hidden lg:col-span-3 xl:col-span-3 lg:block"
+          className="hidden w-[18rem] lg:block"
           style={{ position: "sticky", top: "6rem", alignSelf: "start" }}
         >
-          <SidebarFilters />
+          <SidebarFilters filters={filters} />
         </aside>
       )}
 
       {/* محتوای اصلی */}
-      <div className={cn(isMobile ? "w-full" : "lg:col-span-9 xl:col-span-9")}>
+      <div className={cn(isMobile ? "w-full" : " space-y-6 flex-1")}>
+        <ProductToolbar total_items={totalCount} />
         <ProductListContent
           products={products}
           fetchNextPage={fetchNextPage}
           isError={isError}
           isLoading={isLoading}
           isFetchingNextPage={isFetchingNextPage}
-          currentPage={}
+          currentPage={currentPage}
           hasNextPage={hasNextPage}
-          totalCount={}
+          totalCount={totalCount}
+          totalPages={totalPages}
         />
       </div>
     </div>

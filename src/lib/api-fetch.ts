@@ -3,7 +3,7 @@
 import { BASE_API_URL } from "@/data/assets";
 import { isServer } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { toFormData } from "./utils";
+import { toFormData } from "./utils/form-data";
 
 type ApiFetchOptions = Omit<RequestInit, "body"> & {
   hasFile?: boolean;
@@ -37,13 +37,13 @@ export async function apiFetch(path: string, options?: ApiFetchOptions) {
         params instanceof URLSearchParams
           ? params
           : Array.isArray(params)
-          ? params
-          : Object.fromEntries(
-              Object.entries(params).map(([key, value]) => [
-                key,
-                value == null ? "" : String(value),
-              ])
-            )
+            ? params
+            : Object.fromEntries(
+                Object.entries(params).map(([key, value]) => [
+                  key,
+                  value == null ? "" : String(value),
+                ]),
+              ),
       ).toString()
     : "";
 

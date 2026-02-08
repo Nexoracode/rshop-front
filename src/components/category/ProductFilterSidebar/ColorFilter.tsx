@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils"; // اگر cn ندارید از clsx یا classnames استفاده کنید.
 import { ProductAttributeValue } from "@/types/product";
+import { cn } from "@/lib/utils/classnames";
 
 type ColorFilterProps = {
   /** آرایه‌ای از رنگ‌ها (hex یا نام معتبر CSS) */
@@ -57,7 +57,7 @@ export default function ColorFilter({
                 "block h-12 w-12 rounded-lg border border-gray-300 shadow-sm p-1",
                 "transition-transform duration-150",
                 active && "border-primary border-2",
-                disabled && "opacity-50 cursor-not-allowed"
+                disabled && "opacity-50 cursor-not-allowed",
               )}
             >
               <span

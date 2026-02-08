@@ -1,5 +1,5 @@
 "use client";
-import { getCategoryBySlug } from "@/queries/products";
+import { getCategoryBySlug } from "@/queries/products/category";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";

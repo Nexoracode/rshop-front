@@ -1,5 +1,5 @@
 import { SheetClose } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import { CategoryFilter } from "@/types";
 import { ChevronDown, ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function CategoryFiltersList({ categories }: Props) {
         <SheetClose asChild>
           <Link
             className={cn(
-              "flex items-center font-semibold gap-2 text-xs hover:text-primary text-neutral-600"
+              "flex items-center font-semibold gap-2 text-xs hover:text-primary text-neutral-600",
             )}
             href={`${slug}/${cat.slug}`}
           >

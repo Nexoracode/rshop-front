@@ -36,12 +36,13 @@ export const getProductsListInfinit = ({
   >({
     queryKey: ["get-products-list-infinite", slug, query, sortBy, type],
     queryFn: ({ pageParam = 1 }) => {
-      const url = type === "category" ? `${slug}` : `brand/${slug}`;
+      const url = type === "brand" ? `/brand/${slug}` : `/${slug}`;
+
+      console.log({ url });
       return apiFetch(
-        `/catalog/${slug}?${query}&page=${page || pageParam}&sortBy=${sortBy}`,
+        `/catalog${url}?${query}&page=${page || pageParam}&sortBy=${sortBy}`,
       );
     },
-    enabled: !!slug,
     getNextPageParam: ({ meta }) =>
       meta.current_page === meta.total_pages ? null : meta.current_page + 1,
     initialPageParam: 1,

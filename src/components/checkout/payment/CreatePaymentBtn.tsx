@@ -1,14 +1,14 @@
 "use client";
-import { createPayment } from "@/queries/payment";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 
 import useCheckout from "@/hooks/useCheckout";
-import { createCardToCardPayment } from "@/queries/orders";
 import TransferToGate from "./TransferToGate";
 import { useRouter } from "next/navigation";
+import { createPayment } from "@/queries/checkout/payment/payment";
+import { createCardToCardPayment } from "@/queries/checkout/payment/card-to-card";
 
 export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   const router = useRouter();

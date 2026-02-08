@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 import { PaginateData } from "@/types";
 import { Review } from "@/types/user";
 import { infiniteQueryOptions, mutationOptions } from "@tanstack/react-query";

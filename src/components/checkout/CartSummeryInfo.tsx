@@ -1,6 +1,6 @@
 "use client";
 import useCheckout from "@/hooks/useCheckout";
-import { formatToman } from "@/lib/utils";
+import { formatToman } from "@/lib/utils/price";
 import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";

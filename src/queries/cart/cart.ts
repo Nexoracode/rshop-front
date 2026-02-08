@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 import { UserCart } from "@/types/cart";
 import { mutationOptions, queryOptions } from "@tanstack/react-query";
 

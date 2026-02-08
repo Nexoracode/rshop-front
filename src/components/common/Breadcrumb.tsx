@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { ChevronLeft, Home } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { SHOP_NAME } from "@/data/assets";
+import { cn } from "@/lib/utils/classnames";
 
 export type BreadcrumbItem = {
   label: string;

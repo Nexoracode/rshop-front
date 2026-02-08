@@ -3,10 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ShoppingBag, CheckCircle, Undo2, ChevronLeft } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import { getDetailedProfile } from "@/queries/orders";
 import { Skeletons } from "@/components/ui/skeleton";
+import { getDetailedProfile } from "@/queries/profile/order";
+import { cn } from "@/lib/utils/classnames";
 
 export default function DashboardOverview() {
   const { data, isFetching } = useQuery(getDetailedProfile);
@@ -28,17 +28,6 @@ export default function DashboardOverview() {
           </Button>
         </div>
 
-        {/* <OrderStatCard
-          icon={<Wallet className="w-5 h-5 text-primary" />}
-          label="در انتظار پرداخت"
-          value={stats.pendingPayment}
-          highlight
-          action={
-            <Button variant={"text"} size="sm">
-              پرداخت
-            </Button>
-          }
-        /> */}
         <div className="grid grid-cols-3 gap-4 mt-4">
           {isFetching ? (
             <Skeletons className="h-14" count={3} />
@@ -84,7 +73,7 @@ function OrderStatCard({
     <Card
       className={cn(
         "p-3 md:p-4 flex items-center lg:flex-row relative justify-between gap-2 bg-transparent border border-border transition-all",
-        highlight && "flex-row justify-start"
+        highlight && "flex-row justify-start",
       )}
     >
       {Icon}

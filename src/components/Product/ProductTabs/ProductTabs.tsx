@@ -1,7 +1,7 @@
 "use client";
 
+import { cn } from "@/lib/utils/classnames";
 import { useState, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
 
 type TabKey = "description" | "specifications" | "reviews" | "helper";
 
@@ -86,7 +86,7 @@ export default function ProductTabs({
                 "py-3 px-4 text-sm transition-colors",
                 active === tab.key
                   ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {tab.label}

@@ -1,4 +1,3 @@
-import { getQueryClient } from "@/lib/get-query-client";
 import React, { Suspense } from "react";
 
 import { Metadata } from "next";
@@ -13,6 +12,8 @@ import {
   getCategoryBySlug,
   getCategorySeoDataBySlug,
 } from "@/queries/products/category";
+import { getQueryClient } from "@/lib/utils/query-client";
+import { SortItem } from "@/types/product";
 
 export const revalidate = 300;
 
@@ -67,7 +68,7 @@ export default async function CategoryPage(
   props: PageProps<"/products/[...slug]">,
 ) {
   const { slug } = await props.params;
-  const { query, sortBy, page } = await props.searchParams;
+  const { query, sortBy, page = "1" } = await props.searchParams;
   const categorySlug = slug?.pop() ?? "";
 
   const queryClient = getQueryClient();
@@ -109,7 +110,13 @@ export default async function CategoryPage(
       </div>
 
       <Suspense fallback={<CollectionSkelton />}>
-        <ProductListContainer type="category" slug={categorySlug} />
+        <ProductListContainer
+          query={queryStr}
+          page={`${page}`}
+          sortBy={`${sortBy}` as SortItem}
+          type="category"
+          slug={categorySlug}
+        />
       </Suspense>
 
       <Separator />

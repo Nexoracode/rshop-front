@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { CreditCard, Banknote } from "lucide-react";
 import useCheckout from "@/hooks/useCheckout";
 import { PaymentMethod as Method } from "@/types/order";
+import { cn } from "@/lib/utils/classnames";
 
 interface PaymentMethod {
   id: Method;
@@ -66,19 +66,19 @@ export default function PaymentMethodSelector({
                 "w-full rounded-xl border p-4 text-right transition-all flex items-center gap-3 hover:shadow-sm",
                 isSelected
                   ? "border-primary bg-primary/5 ring-1 ring-primary"
-                  : "border-border hover:bg-muted/20"
+                  : "border-border hover:bg-muted/20",
               )}
             >
               <div
                 className={cn(
                   "flex h-10 w-10 items-center justify-center rounded-lg border shrink-0",
-                  isSelected ? "border-primary bg-primary/10" : "border-muted"
+                  isSelected ? "border-primary bg-primary/10" : "border-muted",
                 )}
               >
                 <Icon
                   className={cn(
                     "h-5 w-5",
-                    isSelected ? "text-primary" : "text-muted-foreground"
+                    isSelected ? "text-primary" : "text-muted-foreground",
                   )}
                 />
               </div>
@@ -87,7 +87,7 @@ export default function PaymentMethodSelector({
                 <span
                   className={cn(
                     "text-sm font-semibold",
-                    isSelected ? "text-primary" : ""
+                    isSelected ? "text-primary" : "",
                   )}
                 >
                   {m.label}
@@ -105,7 +105,7 @@ export default function PaymentMethodSelector({
                   "ml-auto h-4 w-4 rounded-full border-2",
                   isSelected
                     ? "border-primary bg-primary"
-                    : "border-muted-foreground/30"
+                    : "border-muted-foreground/30",
                 )}
               />
             </button>

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { editProfile } from "@/queries/user";
+import { editProfile } from "@/queries/profile/profile";
 
 export default function ProfileInfoPage() {
   const user = useCurrentUser();

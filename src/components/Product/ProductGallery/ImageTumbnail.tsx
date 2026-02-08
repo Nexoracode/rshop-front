@@ -1,4 +1,5 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
+
 import { Media } from "@/types";
 import { Youtube } from "lucide-react";
 import Image from "next/image";

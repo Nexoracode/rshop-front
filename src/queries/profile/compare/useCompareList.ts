@@ -5,7 +5,6 @@ import {
   getCompareList,
 } from "./compare";
 import { toast } from "sonner";
-import { useEffect } from "react";
 
 export const useCompareList = ({ productId }: { productId: number }) => {
   const { data } = useQuery(getCompareList);

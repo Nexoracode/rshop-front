@@ -16,7 +16,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Color } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 export type MenuItem = {
   label: string;

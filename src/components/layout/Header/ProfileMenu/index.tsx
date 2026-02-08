@@ -5,7 +5,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { getMe } from "@/queries/user";
 import { useQuery } from "@tanstack/react-query";
 import {
   ChevronDown,
@@ -23,6 +22,7 @@ import React from "react";
 import LogoutButton from "../../../profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getMe } from "@/queries/auth/auth";
 
 const menuItems = [
   { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },

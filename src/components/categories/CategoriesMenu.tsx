@@ -11,7 +11,7 @@ import {
 import { ChevronLeft } from "lucide-react";
 import { Category } from "@/types/product";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   categories: Array<Category>;
@@ -32,7 +32,7 @@ export default function CategoriesMenu({ categories }: Props) {
               role="button"
               className={cn(
                 "flex border-b border-l bg-neutral-100 p-2 gap-1 flex-col items-center",
-                selectedCategory?.id === cat.id && "bg-white border-0"
+                selectedCategory?.id === cat.id && "bg-white border-0",
               )}
               key={cat.id}
               onClick={() => setSelectedId(cat.id)}

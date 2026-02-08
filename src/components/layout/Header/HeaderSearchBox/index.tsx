@@ -7,12 +7,12 @@ import {
 } from "@/components/ui/popover";
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
-import { searchTerm } from "@/queries/products";
 import { Separator } from "@/components/ui/separator";
 import SearchInput from "./SearchInput";
 import ProductResultList from "./ProductResultList";
 import CategoryResultList from "./CategoryResultList";
 import BrandResultList from "./BrandResultList";
+import { searchTerm } from "@/queries/products/search";
 
 export default function HeaderSearchBox() {
   const { search, setSearch, debouncedSearch } = useDebounceSearch();

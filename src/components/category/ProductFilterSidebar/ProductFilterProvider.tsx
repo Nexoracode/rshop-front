@@ -1,6 +1,6 @@
 "use client";
 
-import { serializeFliterQuery } from "@/lib/get-query-client";
+import { serializeFilterQuery } from "@/lib/utils/serialize-filter";
 import { BooleanFilterKey, ProductFilterQuery, ProductFilters } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
@@ -62,7 +62,7 @@ export default function ProductFilterProvider({
     const newQuery = { ...query, [key]: value };
     setQuery(newQuery as ProductFilterQuery);
     router.push(
-      `${pathName}?${serializeFliterQuery(newQuery as ProductFilterQuery)}`,
+      `${pathName}?${serializeFilterQuery(newQuery as ProductFilterQuery)}`,
     );
   }
 

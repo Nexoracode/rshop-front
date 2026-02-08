@@ -9,9 +9,9 @@ import { Separator } from "../ui/separator";
 import { useProductPage } from "./ProductProvider";
 import ProductPriceInfo from "./ProductInfo/ProductPriceInfo";
 import usePromotionPadding from "@/hooks/usePromotionPadding";
-import { cn } from "@/lib/utils";
 import VariantValues from "./VariantValues";
 import { ShoppingBagIcon, StoreIcon, ZapIcon } from "lucide-react";
+import { cn } from "@/lib/utils/classnames";
 
 export default function ProductSummeryCard(product: Product) {
   const { media_pinned, name } = product;

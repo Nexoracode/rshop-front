@@ -8,9 +8,9 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import FieldContainer from "./FieldContainer";
 import Select from "react-select";
+import { cn } from "@/lib/utils/classnames";
 
 interface Option {
   label: string;
@@ -59,7 +59,7 @@ export default function SelectField<T extends FieldValues>({
         className={cn(
           "input border border-muted-light w-full !p-0 ",
           className,
-          error && "border-rose-500 focus-visible:ring-rose-500"
+          error && "border-rose-500 focus-visible:ring-rose-500",
         )}
         classNames={{
           input: () => "w-full p-0",

@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 import { WishlistItem } from "@/types/product";
 import {
   mutationOptions,

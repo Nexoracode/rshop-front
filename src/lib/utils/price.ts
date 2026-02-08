@@ -1,31 +1,71 @@
-export const toNum = (v: string | number | null | undefined): number => {
-  if (v === null || v === undefined) return 0;
-  if (typeof v === "number") return v;
-  const cleaned = String(v).replace(/[^\d.-]/g, "");
-  const num = Number(cleaned);
-  return Number.isFinite(num) ? num : 0;
-};
+const faDigits = "۰۱۲۳۴۵۶۷۸۹";
 
-export function calcPrice(
-  price: string | number,
-  discountAmount: string | number,
-  discountPercent: number,
+function toFaDigits(input: string): string {
+  return input.replace(/\d/g, (d) => faDigits[+d]).replace(/\./g, "٫");
+}
+
+function trimZeros(s: string): string {
+  return s.replace(/\.0+$/, "").replace(/(\.\d*[1-9])0+$/, "$1");
+}
+
+function toFixedFloor(v: number, decimals: number): string {
+  if (decimals <= 0) return Math.floor(v).toString();
+  const p = Math.pow(10, decimals);
+  return (Math.floor((v + Number.EPSILON) * p) / p).toString();
+}
+
+export function formatPriceCompactFa(
+  amount: number,
+  opts: {
+    currency?: string;
+    usePersianDigits?: boolean;
+    thousandDecimals?: number;
+    millionDecimals?: number;
+    billionDecimals?: number;
+    trimTrailingZeros?: boolean;
+  } = {},
 ) {
-  const base = toNum(price);
-  const discount = toNum(discountAmount);
+  const {
+    currency = "تومان",
+    usePersianDigits = true,
+    thousandDecimals = 0,
+    millionDecimals = 1,
+    billionDecimals = 1,
+    trimTrailingZeros: shouldTrim = true,
+  } = opts;
 
-  const amount =
-    discount > 0 ? discount : Math.round((base * discountPercent) / 100);
+  if (!Number.isFinite(amount)) return "";
 
-  const percent =
-    discountPercent > 0
-      ? discountPercent
-      : base > 0
-        ? Math.round((amount / base) * 100)
-        : 0;
+  const sign = amount < 0 ? "-" : "";
+  const n = Math.abs(amount);
 
-  const final = base - amount;
-  const compareAt = amount > 0 ? base : null;
+  let numStr = "";
+  let unit = "";
 
-  return { final, compareAt, percent };
+  if (n < 1_000) {
+    numStr = Math.floor(n).toString();
+  } else if (n < 1_000_000) {
+    const v = n / 1_000;
+    numStr = toFixedFloor(v, thousandDecimals);
+    unit = " هزار";
+  } else if (n < 1_000_000_000) {
+    const v = n / 1_000_000;
+    numStr = toFixedFloor(v, millionDecimals);
+    unit = " میلیون";
+  } else {
+    const v = n / 1_000_000_000;
+    numStr = toFixedFloor(v, billionDecimals);
+    unit = " میلیارد";
+  }
+
+  if (shouldTrim) numStr = trimZeros(numStr);
+
+  let out = `${sign}${numStr}${unit} ${currency}`.trim();
+  if (usePersianDigits) out = toFaDigits(out);
+
+  return out;
+}
+
+export function formatToman(n: number, showSign = true): string {
+  return `${Math.floor(n).toLocaleString("fa-IR")}${showSign ? " تومان" : ""}`;
 }

@@ -6,16 +6,16 @@ import { OrderShippingSection } from "./OrderShippingSection";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getOrderDetails } from "@/queries/orders";
 import PageLoader from "@/components/common/PageLoader";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { getOrderDetails } from "@/queries/profile/order";
 
 export default function OrderDetailsPage() {
   const { order_id } = useParams<{ order_id: string }>();
   const { data: orderData, isPending } = useQuery(
-    getOrderDetails(Number(order_id))
+    getOrderDetails(Number(order_id)),
   );
   return isPending ? (
     <PageLoader />

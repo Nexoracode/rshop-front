@@ -1,7 +1,7 @@
 import React from "react";
 import SectionTitle from "../../common/SectionTitle";
-import { cn } from "@/lib/utils";
 import DisplayFurtherDescription from "./DisplayFurtherDescription";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   description: string;
@@ -19,7 +19,7 @@ export default function ProductDescription({
         dangerouslySetInnerHTML={{ __html: description }}
         className={cn(
           "!leading-8 content text-muted text-sm",
-          showMore && "line-clamp-4 md:line-clamp-none "
+          showMore && "line-clamp-4 md:line-clamp-none ",
         )}
       ></article>
 

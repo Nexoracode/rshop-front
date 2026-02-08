@@ -16,9 +16,6 @@ import ProductSchema from "@/components/Product/ProductSchema";
 import ProductTabs from "@/components/Product/ProductTabs/ProductTabs";
 import { Separator } from "@/components/ui/separator";
 import { PRODUCT_PLACEHOLDER, SHOP_NAME, SHOP_URL } from "@/data/assets";
-import { getQueryClient } from "@/lib/get-query-client";
-import { calcPrice } from "@/lib/utils";
-import { getCategoryBySlug, getProductById } from "@/queries/products";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
@@ -29,13 +26,17 @@ import ProductFeaturedBanner from "@/components/Product/ProductFeaturedBanner";
 import ProductInfoDialog from "@/components/Product/ProductInfo/ProductInfoDialog";
 import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
 import Breadcrumb from "@/components/common/Breadcrumb";
+import { getQueryClient } from "@/lib/utils/query-client";
+import { getProductById } from "@/queries/products/product-details";
+import { getCategoryBySlug } from "@/queries/products/category";
+import { calcPrice } from "@/lib/utils/number";
 
 const ProductReviews = dynamic(
-  () => import("@/components/Product/ProductReviews")
+  () => import("@/components/Product/ProductReviews"),
 );
 
 const RelatedProducts = dynamic(
-  () => import("@/components/Product/RelatedProducts")
+  () => import("@/components/Product/RelatedProducts"),
 );
 
 async function getProduct(props: PageProps<"/p/[id]">) {
@@ -44,7 +45,7 @@ async function getProduct(props: PageProps<"/p/[id]">) {
   const queryClient = getQueryClient();
 
   const product = await queryClient.fetchQuery(
-    getProductById(id.split("-").pop() ?? "")
+    getProductById(id.split("-").pop() ?? ""),
   );
 
   return product;
@@ -53,7 +54,7 @@ async function getProductCategroy(categorySlug: string) {
   const queryClient = getQueryClient();
 
   const category = await queryClient.fetchQuery(
-    getCategoryBySlug(categorySlug)
+    getCategoryBySlug(categorySlug),
   );
 
   return category;
@@ -62,7 +63,7 @@ async function getProductCategroy(categorySlug: string) {
 export const revalidate = 300;
 
 export async function generateMetadata(
-  props: PageProps<"/p/[id]">
+  props: PageProps<"/p/[id]">,
 ): Promise<Metadata> {
   const { product, seo } = await getProduct(props);
 
@@ -78,7 +79,7 @@ export async function generateMetadata(
   const { final } = calcPrice(
     product.price,
     product.discount_amount,
-    product.discount_percent
+    product.discount_percent,
   );
 
   return {

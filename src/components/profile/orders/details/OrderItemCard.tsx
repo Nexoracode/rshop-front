@@ -4,11 +4,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
-import { formatToman } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { OrderItem } from "@/types/order";
 import ProductRating from "@/components/Product/ProductReviews/ProductRating";
 import SubmitReviewBtn from "@/components/Product/ProductReviews/SubmitReviewBtn";
+import { formatToman } from "@/lib/utils/price";
 
 type Props = {
   item: OrderItem;

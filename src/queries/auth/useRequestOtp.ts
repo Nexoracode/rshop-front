@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import { requestOtp } from "./auth";
-import { useEffect } from "react";
 
 export const useRequestOtp = ({
   handleSuccess,

@@ -1,6 +1,13 @@
+"use client";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Product } from "@/types/product";
-import React from "react";
+import React, { useEffect } from "react";
+import ProductList from "./ProductDisplay/ProductList";
+import ProductGrid from "./ProductDisplay/ProductGrid";
+import LoadMoreTrigger from "./LoadMoreTrigger";
+import { useInView } from "react-intersection-observer";
+import { MAX_PAGE_INFINIT_LOAD } from "@/data/assets";
+import Pagination from "@/components/common/Pagination";
 
 type Props = {
   isLoading: boolean;
@@ -10,11 +17,32 @@ type Props = {
   isFetchingNextPage: boolean;
   currentPage: number;
   totalCount: number;
+  totalPages: number;
   fetchNextPage: () => void;
 };
 
-export default function ProductListContent({}: Props) {
+export default function ProductListContent({
+  products,
+  hasNextPage,
+  currentPage,
+  isFetchingNextPage,
+  fetchNextPage,
+  totalPages,
+}: Props) {
   const isMobile = useIsMobile();
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    rootMargin: "300px 0",
+  });
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]);
+
+  const shouldShowPagination =
+    hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
   return (
     <div className="space-y-10">
       {/* نمایش محصولات */}
@@ -27,7 +55,7 @@ export default function ProductListContent({}: Props) {
       {/* تریگر برای لود بیشتر (infinite scroll) */}
       {hasNextPage && currentPage < 10 && (
         <LoadMoreTrigger
-          ref={triggerRef}
+          ref={ref}
           isFetching={isFetchingNextPage}
           message="در حال بارگذاری محصولات بیشتر..."
         />
@@ -36,21 +64,7 @@ export default function ProductListContent({}: Props) {
       {/* fallback به pagination معمولی بعد از ۱۰ صفحه */}
       {shouldShowPagination && (
         <div className="mt-12 flex justify-center">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={(newPage: number) => {
-              // اینجا می‌توانید searchParams را بروز کنید و صفحه را رفرش کنید
-              // یا اگر از router استفاده می‌کنید:
-              // const params = new URLSearchParams(searchParams);
-              // params.set('page', newPage.toString());
-              // router.push(`?${params.toString()}`);
-              console.log(`رفتن به صفحه ${newPage}`);
-              // در عمل: window.location.search = `?page=${newPage}` یا استفاده از router
-            }}
-            showFirstLast={true}
-            showEllipsis={true}
-          />
+          <Pagination page={currentPage} totalPages={totalPages} />
         </div>
       )}
     </div>

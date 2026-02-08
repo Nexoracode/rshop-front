@@ -2,8 +2,8 @@ import React from "react";
 
 import Image from "next/image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { formatToman } from "@/lib/utils";
 import { OrderItem } from "@/types/order";
+import { formatToman } from "@/lib/utils/price";
 
 export default function OrderItems({ items }: { items: Array<OrderItem> }) {
   return (

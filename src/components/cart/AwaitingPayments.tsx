@@ -1,5 +1,4 @@
 "use client";
-import { getOrders } from "@/queries/orders";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Card } from "../ui/card";
@@ -8,6 +7,7 @@ import AwatingPaymentCard from "./AwatingPaymentCard";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { AlertCircle, ChevronLeft } from "lucide-react";
+import { getOrders } from "@/queries/profile/order";
 
 export default function AwaitingPayments() {
   const { data, isFetching } = useQuery(getOrders("awaiting-payment"));

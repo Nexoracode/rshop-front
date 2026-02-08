@@ -8,8 +8,8 @@ import {
 } from "../ui/carousel";
 import ProductCard from "./ProductCard";
 import SectionTitle from "../common/SectionTitle";
-import { getQueryClient } from "@/lib/get-query-client";
-import { getSimilarProducts } from "@/queries/products";
+import { getQueryClient } from "@/lib/utils/query-client";
+import { getSimilarProducts } from "@/queries/products/product-details";
 
 export default async function RelatedProducts({
   productId,

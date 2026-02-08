@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +13,7 @@ import { Button } from "../ui/button";
 import { ChevronLeft } from "lucide-react";
 import { HeroSlider as HeroSliderType } from "@/types/home";
 import Autoplay from "embla-carousel-autoplay";
+import { cn } from "@/lib/utils/classnames";
 
 export default function HeroSlider({
   slides,
@@ -48,7 +48,7 @@ export default function HeroSlider({
                   <div className="absolute right-0 top-0 bottom-0 z-30 w-full h-full flex flex-col justify-center gap-4 p-2 md:p-5">
                     <h2
                       className={cn(
-                        "text-2xl sm:text-6xl text-shadow-blue-400 font-extrabold drop-shadow text-white"
+                        "text-2xl sm:text-6xl text-shadow-blue-400 font-extrabold drop-shadow text-white",
                         //   s.is_dark ? "text-white" : "text-black"
                       )}
                     >
@@ -57,7 +57,7 @@ export default function HeroSlider({
                     {s.description && (
                       <p
                         className={cn(
-                          "mt-2  px-3 py-1 text-white"
+                          "mt-2  px-3 py-1 text-white",
                           /*             s.is_dark
                             ? "text-white/60 bg-muted/30"
                             : "text-slate-800/90 bg-white/30" */

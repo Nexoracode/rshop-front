@@ -7,7 +7,7 @@ import {
 } from "@/types/home";
 import HeroSlider from "./HeroSlider";
 import PromoCard from "./PromoCard";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   heroSliders: Array<HeroSliderType>;

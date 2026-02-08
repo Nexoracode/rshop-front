@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import useCheckout from "@/hooks/useCheckout";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import { UserAddress } from "@/types/user";
 import { Edit2, MapPin } from "lucide-react";
 import React from "react";
@@ -9,7 +9,7 @@ import React from "react";
 type Props = UserAddress & { onEdit: () => void; onClick: () => void };
 const UserAddressCard = React.forwardRef<HTMLDivElement, Props>(function Card(
   { onEdit, onClick, ...address },
-  ref
+  ref,
 ) {
   const { orderMeta } = useCheckout();
   return (
@@ -20,7 +20,7 @@ const UserAddressCard = React.forwardRef<HTMLDivElement, Props>(function Card(
         "p-2 border cursor-pointer rounded-lg relative text-right text-muted hover:bg-accent/50 transition",
         address.id === orderMeta.address?.id
           ? "border-primary bg-primary/5"
-          : "border-border"
+          : "border-border",
       )}
       onClick={onClick}
     >

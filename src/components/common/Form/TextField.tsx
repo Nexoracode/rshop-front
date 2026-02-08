@@ -8,10 +8,10 @@ import {
 } from "react-hook-form";
 import PhoneInput from "./PhoneInput";
 import OtpInput from "./OtpInput";
-import { cn } from "@/lib/utils";
 import FieldContainer from "./FieldContainer";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/Textarea";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   label?: string;
@@ -95,7 +95,7 @@ export default function TextField({
                 }
                 className={cn(
                   "text-right tracking-widest input",
-                  error && "border-rose-500 focus-visible:ring-rose-500"
+                  error && "border-rose-500 focus-visible:ring-rose-500",
                 )}
                 {...props}
               />
@@ -117,7 +117,7 @@ export default function TextField({
                 className={cn(
                   "text-right text-wrap max-w-full resize-none input !h-[unset]",
                   error && "border-rose-500 focus-visible:ring-rose-500",
-                  props.className
+                  props.className,
                 )}
               />
             </FieldContainer>
@@ -135,7 +135,7 @@ export default function TextField({
               onChange={(e) => onChange(e.target.value)}
               className={cn(
                 "text-right tracking-widest input",
-                error && "border-rose-500 focus-visible:ring-rose-500"
+                error && "border-rose-500 focus-visible:ring-rose-500",
               )}
               {...props}
             />

@@ -1,12 +1,9 @@
-import {
-  formatDurationFa,
-  formatToman,
-  getRemainingSeconds,
-} from "@/lib/utils";
 import { Order } from "@/types/order";
 import { AlertCircle } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
+import { formatToman } from "@/lib/utils/price";
+import { formatDurationFa, getRemainingSeconds } from "@/lib/utils/date-time";
 
 export default function AwatingPaymentCard({ id, updated_at, total }: Order) {
   return (

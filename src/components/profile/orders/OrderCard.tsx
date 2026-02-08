@@ -2,7 +2,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { formatToman, toPersainDate } from "@/lib/utils";
 import Image from "next/image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import Link from "next/link";
@@ -10,6 +9,8 @@ import { ChevronLeftIcon, NotepadTextDashed } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { statusColor, statusLabel } from "@/data/order";
 import { Order } from "@/types/order";
+import { toPersianDate } from "@/lib/utils/date-time";
+import { formatToman } from "@/lib/utils/price";
 
 export function OrderCard({ order }: { order: Order }) {
   return (
@@ -25,7 +26,7 @@ export function OrderCard({ order }: { order: Order }) {
 
         <div className="flex flex-nowrap text-nowrap">
           <p className="text-xs md:text-sm text-muted/50">
-            {toPersainDate(order.created_at)}
+            {toPersianDate(order.created_at)}
           </p>
 
           <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils"; // اگر util ندارید می‌توانید از clsx استفاده کنید
 import {
   Expand,
   GitCompareArrows,
@@ -12,6 +11,7 @@ import {
   VideoIcon,
   VolumeOff,
 } from "lucide-react";
+import { cn } from "@/lib/utils/classnames";
 
 interface AdvancedMediaPlayerProps {
   src: string;
@@ -108,7 +108,7 @@ export default function AdvancedMediaPlayer({
       dir="ltr"
       className={cn(
         "relative w-full group aspect-[4/3] max-w-4xl mx-auto rounded-lg bg-black shadow-lg overflow-hidden",
-        className
+        className,
       )}
     >
       {/* ویدیو */}

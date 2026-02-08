@@ -2,11 +2,13 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { HomeSectionProduct } from "@/types/home";
 import Image from "../common/Image";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
+import { cn } from "@/lib/utils/classnames";
 
 export default function HomeProductCard(props: HomeSectionProduct) {
   const { name, price, discount_percent, discount_amount, id, image, brand } =
@@ -15,7 +17,7 @@ export default function HomeProductCard(props: HomeSectionProduct) {
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
 
   return (

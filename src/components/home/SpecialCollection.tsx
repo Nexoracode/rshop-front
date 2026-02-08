@@ -1,11 +1,11 @@
 import React from "react";
 import SectionTitle from "../common/SectionTitle";
 
-import { cn } from "@/lib/utils";
 import SpecialProductCart from "./SpecialProductCart";
 import { HomeSection } from "@/types/home";
 import HomeProductCard from "./HomeProductCard";
 import ProductCarousel from "../common/ProductCarousel";
+import { cn } from "@/lib/utils/classnames";
 
 export default function SpecialCollection({
   products,
@@ -32,7 +32,7 @@ export default function SpecialCollection({
                 className={cn(
                   display_style === "grid"
                     ? "basis-[calc(50%-4px)] sm:basis-[calc(33.33%-8px)] lg:basis-[calc(20%-8px)] xl:basis-[calc(16.66%-8px)]"
-                    : "basis-[100%] xl:basis-[calc(25%-8px)]"
+                    : "basis-[100%] xl:basis-[calc(25%-8px)]",
                 )}
                 key={product.id}
               >

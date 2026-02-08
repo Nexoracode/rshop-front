@@ -2,10 +2,10 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { Shuffle } from "lucide-react";
-import { useCompareList } from "@/queries/profile/compare/compare";
 import { useRouter } from "next/navigation";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
+import { useCompareList } from "@/queries/profile/compare/useCompareList";
 
 export default function AddToCompareBtn({ productId }: { productId: number }) {
   const { addToCampare, disable, inCompareList } = useCompareList({

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { LogOutIcon } from "lucide-react";
 
 import { useMutation } from "@tanstack/react-query";
-import { userLogout } from "@/queries/user";
 import { Button } from "@/components/ui/button";
 import BaseDialog from "@/components/common/BaseDialog";
+import { userLogout } from "@/queries/auth/auth";
 
 export default function LogoutButton() {
   const [open, setOpen] = useState(false);

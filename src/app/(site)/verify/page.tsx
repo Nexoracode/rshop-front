@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { verifyPayment } from "@/queries/payment";
 import PageLoader from "@/components/common/PageLoader";
 import { useEffect } from "react";
 
@@ -12,6 +11,7 @@ import PaymentFailed from "@/components/verify/PaymentFailed";
 import OrderSummerySection from "@/components/verify/OrderSummerySection";
 import ProductsSection from "@/components/verify/ProductsSection";
 import AddressSection from "@/components/verify/AddressSection";
+import { verifyPayment } from "@/queries/checkout/payment/verify";
 
 export default function PaymentVerifyPage() {
   const params = useSearchParams();

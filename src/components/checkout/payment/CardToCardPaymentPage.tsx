@@ -1,16 +1,16 @@
 "use client";
 import { Card } from "@/components/ui/card";
-import { getOrderDetails } from "@/queries/orders";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";
 import CardToCardPayment from "../CardToCardPayment";
+import { getOrderDetails } from "@/queries/profile/order";
 
 export default function CardToCardPaymentPage() {
   const { order_id } = useParams();
 
   const { data: order, isPending } = useQuery(
-    getOrderDetails(Number(order_id))
+    getOrderDetails(Number(order_id)),
   );
 
   if (isPending) return <div>Loading...</div>;

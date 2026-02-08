@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils"; // اگر util ندارید می‌توانید حذفش کنید
 import { Star } from "lucide-react";
 import { useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils/classnames";
 
 interface RatingFieldProps {
   max?: number; // تعداد ستاره‌ها (پیش‌فرض 5)

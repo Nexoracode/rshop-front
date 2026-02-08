@@ -4,7 +4,7 @@ import React from "react";
 import PaymentModalFooter from "./PaymentModalFooter";
 import { Separator } from "@/components/ui/separator";
 import { useMutation } from "@tanstack/react-query";
-import { cardTocardPaymentLater } from "@/queries/orders";
+import { cardTocardPaymentLater } from "@/queries/checkout/payment/card-to-card";
 
 export default function PaymentModeLater({
   onClose,

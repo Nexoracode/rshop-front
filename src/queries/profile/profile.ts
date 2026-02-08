@@ -1,7 +1,7 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 import { User } from "@/types/user";
-import { mutationOptions, useMutation } from "@tanstack/react-query";
+import { mutationOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
 

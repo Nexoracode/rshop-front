@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 import { CompareListItem } from "@/types/product";
 import {
   mutationOptions,
@@ -7,8 +7,6 @@ import {
   useMutation,
   useQuery,
 } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { toast } from "sonner";
 
 const queryClient = getQueryClient();
 export const addToCompareList = mutationOptions({

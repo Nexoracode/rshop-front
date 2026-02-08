@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { chunkArray } from "@/lib/utils";
+import { chunkArray } from "@/lib/utils/array";
 
 type Props = {
   categories: Array<HomeCategory>;

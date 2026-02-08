@@ -1,18 +1,42 @@
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import useProductPrice from "@/hooks/product/useProductPrice";
 import { cn } from "@/lib/utils/classnames";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import PriceBox from "./PriceBox";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
   product: Product;
 };
 
 export default function ProductGridItem({ product }: Props) {
-  const { is_feautered, media_pinned, medias, name, brand } = product;
+  const {
+    is_feautered,
+    media_pinned,
+    medias,
+    name,
+    brand,
+    id,
+    discount_amount,
+    discount_percent,
+    has_variants,
+    price,
+    stock,
+    variants,
+  } = product;
+  const { final, compareAt, percent, inStock } = useProductPrice({
+    discount_amount,
+    discount_percent,
+    has_variants,
+    price,
+    stock,
+    variants,
+  });
   return (
-    <Link className="block" href={`/p/rsp-${id}`}>
+    <Link className="block p-2" href={`/p/rsp-${id}`}>
       {is_feautered && (
         <span className="absolute top-2 z-10 text-danger text-sm font-bold">
           فروش ویژه
@@ -40,24 +64,12 @@ export default function ProductGridItem({ product }: Props) {
           />
         )}
       </div>
-
-      {/*  {has_variants && <div>{mapVaraintAttributes().map()}</div>} */}
-
-      {/* content */}
       <div className="mt-2 space-y-1 px-1 pb-2">
         {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
         <h3 className="line-clamp-1 text-sm font-medium text-gray-800">
           {name}
         </h3>
 
-        {/* rating */}
-        {/* <div className="flex items-center gap-1 text-yellow-500">
-          {[...Array(5)].map((_, i) =>
-            i < rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-          )}
-        </div> */}
-
-        {/* price */}
         <div className="flex mt-3 flex-col sm:flex-row items-center gap-2">
           {inStock ? (
             <div className="flex items-start w-full justify-between">
@@ -65,9 +77,10 @@ export default function ProductGridItem({ product }: Props) {
               <div className="flex flex-col">
                 <PriceBox price={final} className="text-base font-bold" />
                 {compareAt && (
-                  <span className="text-sm text-gray-400 line-through">
-                    {formatToman(+compareAt)}
-                  </span>
+                  <PriceBox
+                    price={compareAt}
+                    className="text-xs text-gray-400"
+                  />
                 )}
               </div>
             </div>

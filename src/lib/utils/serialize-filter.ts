@@ -28,10 +28,10 @@ export function serializeFilterQuery(
 
   // price range
   const priceParts: string[] = [];
-  if (typeof filter.price_min === "number" && filter.price_min > 0) {
+  if (filter.price_min !== "") {
     priceParts.push(`filter[price_min]=${filter.price_min}`);
   }
-  if (typeof filter.price_max === "number" && filter.price_max > 0) {
+  if (filter.price_max !== "") {
     priceParts.push(`filter[price_max]=${filter.price_max}`);
   }
 
