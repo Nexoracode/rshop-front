@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import BannerSection from "./BannerSection";
 import TopCategoriesSection from "./TopCategories";
@@ -6,31 +5,32 @@ import FeaturedCollection from "./FeaturedCollection";
 import SpecialCollection from "./SpecialCollection";
 import ProductByCategory from "./ProductByCategory";
 import BrandsSection from "./BrandsSection";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { getHomeSections } from "@/queries/home";
 import PageLoader from "../common/PageLoader";
 import SimpleCollection from "./SimpleCollection";
+import { getQueryClient } from "@/lib/get-query-client";
 
-export default function HomePage() {
-  const { data, isFetching } = useSuspenseQuery(getHomeSections);
+export default async function HomePage() {
+  const queryClient = getQueryClient();
+  const data = await queryClient.fetchQuery(getHomeSections);
 
   const categoryBasedSections = data?.sections
     .filter((i) => i.section_type === "category_based")
     .sort((a, b) => a.sort_order - b.sort_order);
 
   const featuredSections = data?.sections.find(
-    (s) => s.section_type === "featured"
+    (s) => s.section_type === "featured",
   );
 
   const mostPopular = data.sections.find(
-    (s) => s.section_type === "most_popular"
+    (s) => s.section_type === "most_popular",
   );
 
   const specialProducts = data.sections
     .filter((s) => s.section_type === "special_products")
     .sort((a, b) => a.sort_order - b.sort_order);
 
-  return isFetching ? (
+  return !data ? (
     <PageLoader />
   ) : (
     <div className="space-y-4 md:space-y-24">
