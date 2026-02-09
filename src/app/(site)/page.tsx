@@ -1,18 +1,15 @@
+import PageLoader from "@/components/common/PageLoader";
 import HomePage from "@/components/home/HomePage";
-import { getQueryClient } from "@/lib/utils/query-client";
-import { getHomeSections } from "@/queries/home/home";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { Suspense } from "react";
 
-const queryClient = getQueryClient();
-
-queryClient.prefetchQuery(getHomeSections);
+export const revalidate = 300;
 
 export default function Home() {
   return (
     <>
-      <HydrationBoundary state={dehydrate(queryClient)}>
+      <Suspense fallback={<PageLoader />}>
         <HomePage />
-      </HydrationBoundary>
+      </Suspense>
 
       {/* سکشن قهرمان / بنرها */}
     </>

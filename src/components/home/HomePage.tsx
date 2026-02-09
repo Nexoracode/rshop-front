@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import BannerSection from "./BannerSection";
 import TopCategoriesSection from "./TopCategories";
@@ -6,13 +5,14 @@ import FeaturedCollection from "./FeaturedCollection";
 import SpecialCollection from "./SpecialCollection";
 import ProductByCategory from "./ProductByCategory";
 import BrandsSection from "./BrandsSection";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { getHomeSections } from "@/queries/home/home";
 import PageLoader from "../common/PageLoader";
 import SimpleCollection from "./SimpleCollection";
+import { getQueryClient } from "@/lib/utils/query-client";
 
-export default function HomePage() {
-  const { data, isFetching } = useSuspenseQuery(getHomeSections);
+export default async function HomePage() {
+  const queryClient = getQueryClient();
+  const data = await queryClient.fetchQuery(getHomeSections);
 
   const categoryBasedSections = data?.sections
     .filter((i) => i.section_type === "category_based")
@@ -30,7 +30,7 @@ export default function HomePage() {
     .filter((s) => s.section_type === "special_products")
     .sort((a, b) => a.sort_order - b.sort_order);
 
-  return isFetching ? (
+  return !data ? (
     <PageLoader />
   ) : (
     <div className="space-y-4 md:space-y-24">
