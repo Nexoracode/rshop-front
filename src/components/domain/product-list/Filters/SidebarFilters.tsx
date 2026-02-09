@@ -1,82 +1,33 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BooleanFilterKey, ProductFilterQuery, ProductFilters } from "@/types";
-import React, { useState } from "react";
+import React, { memo } from "react";
 import Collapsible from "./Collapsible";
 import FilterCategories from "./FilterCategories";
 import FilterPriceRange from "./FilterPriceRange";
 import FilterSwitches from "./FilterSwitches";
 import FilterColor from "./FilterColors";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { serializeQuery } from "@/lib/utils/serialize-general";
-import { serializeFilterQuery } from "@/lib/utils/serialize-filter";
+import { ProductFilters } from "@/types";
+import useFilters from "../hooks/useFilters";
 
 type Props = {
   filters: ProductFilters;
 };
 
-const initialQuery = {
-  filter: {
-    attributes: {},
-    brand: [],
-    price_max: "",
-    price_min: "",
-    booleanFilters: [],
-  },
-  page: null,
-  limit: null,
-  sort: null,
-  search: "",
-};
-export default function SidebarFilters({
+function SidebarFiltersComponent({
   filters: {
     attributes,
     generic: { boolean_filter, brands, categories, price_range, special_offer },
   },
 }: Props) {
-  const [query, setQuery] = useState<ProductFilterQuery>(initialQuery);
+  const {
+    handleClearFilters,
+    handleSetAttributeQuery,
+    handleSetBooleanQuery,
+    handleSetFilter,
+    query,
+  } = useFilters();
 
-  const router = useRouter();
-  const pathName = usePathname();
-
-  function handleSetQuery<K extends keyof ProductFilterQuery>(
-    key: K,
-    value: ProductFilterQuery[K],
-  ) {
-    const newQuery = { ...query, [key]: value };
-    console.log({ newQuery });
-    setQuery(newQuery as ProductFilterQuery);
-    router.push(
-      `${pathName}?${serializeFilterQuery(newQuery as ProductFilterQuery)}`,
-    );
-  }
-
-  function handleSetFilter<K extends keyof ProductFilterQuery["filter"]>(
-    key: K,
-    value: ProductFilterQuery["filter"][K],
-  ) {
-    console.log({ key, value });
-    handleSetQuery("filter", { ...query?.filter, [key]: value });
-  }
-
-  const handleSetAttributeQuery = (key: string, value: Array<string>) => {
-    const attributes = { ...query?.filter.attributes, [key]: value };
-    handleSetFilter("attributes", attributes);
-  };
-
-  const handleSetBooleanQuery = (key: BooleanFilterKey, value: boolean) => {
-    const booleanFilters =
-      value === true
-        ? [...(query?.filter.booleanFilters ?? []), { key, value: true }]
-        : (query?.filter.booleanFilters.filter((b) => b.key !== key) ?? []);
-    handleSetFilter("booleanFilters", booleanFilters);
-  };
-
-  const handleClearFilters = () => {
-    setQuery(initialQuery);
-    router.replace(pathName);
-  };
   return (
     <Card>
       <section>
@@ -170,3 +121,7 @@ export default function SidebarFilters({
     </Card>
   );
 }
+
+const SidebarFilters = memo(SidebarFiltersComponent);
+
+export default SidebarFilters;

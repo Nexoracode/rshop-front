@@ -1,7 +1,9 @@
 import BrandProductListPage from "@/components/brand/BrandProductListPage";
 import CollectionSkelton from "@/components/category/CollectionSkelton";
 import Breadcrumb from "@/components/common/Breadcrumb";
+import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
 import { getQueryClient } from "@/lib/utils/query-client";
+import { queryParamToString } from "@/lib/utils/serialize-general";
 import { getBrandBySlug } from "@/queries/products/brand";
 import { SortItem } from "@/types/product";
 import { notFound } from "next/navigation";
@@ -31,11 +33,12 @@ export default async function BrandPage({
         </h1>
       </div>
       <Suspense fallback={<CollectionSkelton />}>
-        <BrandProductListPage
+        <ProductListContainer
+          query={queryParamToString(query)}
+          page={queryParamToString(page)}
+          sortBy={queryParamToString(sortBy)}
           slug={slug}
-          query={query as string}
-          page={page as string}
-          sortBy={sortBy as SortItem}
+          type="brand"
         />
       </Suspense>
     </div>

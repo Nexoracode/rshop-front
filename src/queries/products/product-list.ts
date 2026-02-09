@@ -17,7 +17,7 @@ export const getProductsByCategorySlug = (slug: string, query?: string) =>
   });
 
 export const getProductsListInfinit = ({
-  page = "1",
+  page,
   query,
   slug,
   sortBy = "newest",
@@ -25,7 +25,7 @@ export const getProductsListInfinit = ({
 }: {
   slug?: string;
   query?: string;
-  sortBy?: SortItem;
+  sortBy?: string;
   page?: string;
   type: "all" | "category" | "brand";
 }) =>
@@ -41,8 +41,12 @@ export const getProductsListInfinit = ({
       const queryParams = new URLSearchParams();
       if (query) queryParams.append("query", query);
       if (sortBy) queryParams.append("sortBy", sortBy);
-      if (pageParam) queryParams.append("page", pageParam.toString());
-      if (page || pageParam) queryParams.append("page", page ?? pageParam);
+      if (pageParam) {
+        queryParams.append("page", pageParam.toString());
+      } else if (page) {
+        queryParams.append("page", page);
+      }
+
       const queryStr = queryParams.toString();
       return apiFetch(`/catalog${url}?${queryStr}`);
     },

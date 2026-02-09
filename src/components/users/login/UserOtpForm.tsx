@@ -4,10 +4,11 @@ import React, { useCallback, useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import ResendCodeCounter from "./ResendCodeCounter";
 import { useMutation } from "@tanstack/react-query";
-import { useRequestOtp, verifyOtp } from "@/queries/user";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useRequestOtp } from "@/queries/auth/useRequestOtp";
+import { verifyOtp } from "@/queries/auth/auth";
 
 type Props = {
   phone: string;
@@ -37,7 +38,6 @@ export default function UserOtpForm({ phone }: Props) {
         },
         {
           onSuccess(data) {
-            console.log({ data });
             toast.success("ورود به حساب کاربری انجام شد.");
             router.push(`${backUrl}`);
           },

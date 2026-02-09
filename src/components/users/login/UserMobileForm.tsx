@@ -1,7 +1,7 @@
 "use client";
 import TextField from "@/components/common/Form/TextField";
 import { Button } from "@/components/ui/button";
-import { useRequestOtp } from "@/queries/user";
+import { useRequestOtp } from "@/queries/auth/useRequestOtp";
 import React, { useCallback, useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 type Props = {
@@ -20,7 +20,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
     (values: FieldValues) => {
       handleSendOtp({ phone: values.phone });
     },
-    [handleSendOtp]
+    [handleSendOtp],
   );
   useEffect(() => {
     if (phone.length === 11 && !form.formState.isSubmitted) {

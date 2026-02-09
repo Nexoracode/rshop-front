@@ -13,13 +13,16 @@ type Props = {
   items?: Array<FilterOptionType>;
   content?: React.ReactNode;
   attrId?: number;
+  value?: Array<string>;
+  onChange?: (value: Array<string>) => void;
 };
 
 export default function FilterItem({
   label,
   items,
   content,
-  attrId = 0,
+  value = [],
+  onChange = () => {},
 }: Props) {
   const [open, setOpen] = useState(false);
   return (
@@ -53,8 +56,8 @@ export default function FilterItem({
                 label={label}
                 search={items.length > 10}
                 //    value={query?.filter?.attributes?.[attrId] ?? []}
-                value={[]}
-                onChange={() => {}}
+                value={value}
+                onChange={onChange}
               />
             )}
           </div>

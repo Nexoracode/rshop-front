@@ -17,7 +17,6 @@ export default function CardToCardPaymentPage() {
 
   if (!order) return <div>Order not found</div>;
 
-  console.log({ order });
   return (
     <Card className="max-w-5xl mx-auto">
       <CardToCardPayment

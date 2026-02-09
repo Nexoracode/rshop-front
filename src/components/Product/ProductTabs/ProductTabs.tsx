@@ -9,7 +9,6 @@ const tabs: { key: TabKey; label: string }[] = [
   { key: "description", label: "توضیحات" },
   { key: "specifications", label: "ویژگی‌ها" },
   { key: "reviews", label: "دیدگاه‌ها" },
-  { key: "helper", label: "راهنمای سایز" },
 ];
 
 export default function ProductTabs({

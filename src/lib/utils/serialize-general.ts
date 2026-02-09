@@ -25,3 +25,9 @@ export function serializeQuery(obj: Record<string, any>, prefix = ""): string {
 
   return parts.join("&");
 }
+
+export function queryParamToString(param: string | string[] | undefined) {
+  if (Array.isArray(param)) return param.pop()?.toString();
+
+  return typeof param === "string" ? param : "";
+}

@@ -14,6 +14,7 @@ import {
 } from "@/queries/products/category";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { SortItem } from "@/types/product";
+import { queryParamToString } from "@/lib/utils/serialize-general";
 
 export const revalidate = 300;
 
@@ -111,9 +112,9 @@ export default async function CategoryPage(
 
       <Suspense fallback={<CollectionSkelton />}>
         <ProductListContainer
-          query={queryStr}
-          page={`${page}`}
-          sortBy={`${sortBy}` as SortItem}
+          query={queryParamToString(query)}
+          page={queryParamToString(page)}
+          sortBy={queryParamToString(sortBy)}
           type="category"
           slug={categorySlug}
         />

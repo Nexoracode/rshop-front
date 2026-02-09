@@ -16,7 +16,7 @@ type Props = {
   slug?: string;
   query?: string;
   page?: string;
-  sortBy: SortItem;
+  sortBy?: string;
 };
 
 export default function ProductListContainer({
@@ -38,9 +38,6 @@ export default function ProductListContainer({
   );
 
   const isMobile = useIsMobile();
-  console.log({ type, slug, query, page, sortBy });
-
-  console.log({ data });
 
   if (isLoading || !data) return <CollectionSkelton />;
 
@@ -50,13 +47,14 @@ export default function ProductListContainer({
   const totalPages = data?.pages[0]?.meta.total_pages ?? 1;
   const totalCount = data?.pages[0]?.meta.total_items ?? 0;
   const filters = data?.pages[0].filters;
+
   return (
     <div
       className={cn("flex gap-6 md:gap-8", isMobile ? "flex-col" : "flex-row")}
     >
       {/* فیلترها فقط در دسکتاپ */}
       {isMobile ? (
-        <MobileFilterSheet filters={filters} />
+        <MobileFilterSheet totalCount={totalCount} filters={filters} />
       ) : (
         <aside
           className="hidden w-[18rem] lg:block"

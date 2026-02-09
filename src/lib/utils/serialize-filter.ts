@@ -47,3 +47,67 @@ export function serializeFilterQuery(
   const queryString = allParts.join("&");
   return `query=${encodeURIComponent(queryString)}`;
 }
+
+export const parseQueryParams = (query: string) => {
+  const queryParts = query.split("&");
+  const filter: ProductFilterQuery["filter"] = {
+    attributes: {},
+    brand: [],
+    price_max: "",
+    price_min: "",
+    booleanFilters: [],
+  };
+
+  queryParts.forEach((part) => {
+    const [key, value] = part.split("=");
+    if (key.startsWith("filter[attributes]")) {
+      const attrs = value.split("|");
+      attrs.forEach((attr) => {
+        const [attrKey, attrValues] = attr.split(":");
+        if (attrKey && attrValues) {
+          filter.attributes[attrKey] = attrValues.split(",");
+        }
+      });
+    }
+
+    if (key === "filter[brand]") {
+      filter.brand = value.split(",");
+    }
+
+    if (key === "filter[price_min]") {
+      filter.price_min = value;
+    }
+    if (key === "filter[price_max]") {
+      filter.price_min = value;
+    }
+    if (key === "filter[price_min]") {
+      filter.price_min = value;
+    }
+    if (key === "filter[special_offer]") {
+      filter.booleanFilters.push({
+        key: "special_offer",
+        value: Boolean(Number(value)),
+      });
+    }
+    if (key === "filter[discounted]") {
+      filter.booleanFilters.push({
+        key: "discounted",
+        value: Boolean(Number(value)),
+      });
+    }
+    if (key === "filter[in_stock]") {
+      filter.booleanFilters.push({
+        key: "in_stock",
+        value: Boolean(Number(value)),
+      });
+    }
+    if (key === "filter[same_day_shipping]") {
+      filter.booleanFilters.push({
+        key: "same_day_shipping",
+        value: Boolean(Number(value)),
+      });
+    }
+  });
+
+  return { filter };
+};

@@ -7,6 +7,7 @@ import CollectionSkelton from "@/components/category/CollectionSkelton";
 import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
 
 import { SortItem } from "@/types/product";
+import { queryParamToString } from "@/lib/utils/serialize-general";
 
 export const revalidate = 300;
 
@@ -46,8 +47,6 @@ export async function generateMetadata({
 export default async function ShopPage(props: PageProps<"/products">) {
   const { query, sortBy, page = "1" } = await props.searchParams;
 
-  const queryStr = `${query}`;
-
   return (
     <div className="container space-y-1  py-3">
       <Breadcrumb items={[{ label: "محصولات" }]} />
@@ -57,9 +56,9 @@ export default async function ShopPage(props: PageProps<"/products">) {
 
       <Suspense fallback={<CollectionSkelton />}>
         <ProductListContainer
-          query={queryStr}
-          page={`${page}`}
-          sortBy={`${sortBy}` as SortItem}
+          query={queryParamToString(query)}
+          page={queryParamToString(page)}
+          sortBy={queryParamToString(sortBy)}
           slug=""
           type="all"
         />

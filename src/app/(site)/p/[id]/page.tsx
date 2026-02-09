@@ -118,8 +118,6 @@ export async function generateMetadata(
 export default async function ProductPage(props: PageProps<"/p/[id]">) {
   const { product } = await getProduct(props);
 
-  console.log({ product });
-
   if (!product) notFound();
   const category = await getProductCategroy(product.category?.slug ?? "");
 
@@ -193,12 +191,6 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
             <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
             <Separator />
             <ProductDescription showMore description={product.description} />
-            {product.helper && (
-              <>
-                <Separator />
-                <ProductHelper {...product.helper} />
-              </>
-            )}
             <Separator />
             <ProductAttributes attributes={product.specifications} />
             <Separator />
