@@ -78,11 +78,9 @@ export const parseQueryParams = (query: string) => {
       filter.price_min = value;
     }
     if (key === "filter[price_max]") {
-      filter.price_min = value;
+      filter.price_max = value;
     }
-    if (key === "filter[price_min]") {
-      filter.price_min = value;
-    }
+
     if (key === "filter[special_offer]") {
       filter.booleanFilters.push({
         key: "special_offer",

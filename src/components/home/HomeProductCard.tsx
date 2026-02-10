@@ -21,7 +21,7 @@ export default function HomeProductCard(props: HomeSectionProduct) {
   );
 
   return (
-    <Link className="block h-full" href={`/p/rsp-${id}`}>
+    <Link target="_blank" className="block h-full" href={`/p/rsp-${id}`}>
       <Card
         className="group h-full gap-2 md:gap-3 bg-background relative overflow-hidden border !p-1 md:p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
@@ -32,7 +32,7 @@ export default function HomeProductCard(props: HomeSectionProduct) {
             src={image || PRODUCT_PLACEHOLDER}
             alt={name}
             fill
-            className={cn("object-cover")}
+            className={cn("object-contain")}
           />
         </div>
 

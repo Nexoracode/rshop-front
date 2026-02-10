@@ -26,7 +26,8 @@ export default function ProductReviews({ ...props }: Props) {
 
   const currentPageMeta = data?.pages[data.pages.length - 1].meta;
   const isLastPage =
-    currentPageMeta?.current_page === currentPageMeta?.total_pages;
+    currentPageMeta?.current_page === currentPageMeta?.total_pages ||
+    currentPageMeta?.total_pages === 0;
   const displayPagination =
     page !== null || Number(currentPageMeta?.current_page) > 1;
 

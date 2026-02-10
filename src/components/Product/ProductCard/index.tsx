@@ -36,7 +36,7 @@ export default function ProductCard(props: Product) {
   });
 
   return (
-    <Link className="block" href={`/p/rsp-${id}`}>
+    <Link className="block" target="_blank" href={`/p/rsp-${id}`}>
       <Card
         className="group !p-2  gap-2 md:gap-3 relative h-full border-none rounded-none shadow-none"
         dir="rtl"
@@ -54,7 +54,7 @@ export default function ProductCard(props: Product) {
             alt={name}
             fill
             className={cn(
-              "object-cover opacity-100 ",
+              "object-contain opacity-100 ",
               medias.length > 1 &&
                 "group-hover:opacity-0 transition-opacity duration-700",
             )}
@@ -64,7 +64,7 @@ export default function ProductCard(props: Product) {
               src={medias[1]?.url || PRODUCT_PLACEHOLDER}
               alt={name}
               fill
-              className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              className="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-700"
             />
           )}
         </div>

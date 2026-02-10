@@ -50,7 +50,7 @@ export default function ProductGallery({
                       alt={img.alt_text ?? ""}
                       fill
                       sizes="(max-width:768px) 100%, 30rem"
-                      className="object-contain max-w-md"
+                      className="object-contain"
                       priority={i === 0}
                     />
                   ) : (

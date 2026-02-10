@@ -36,7 +36,7 @@ export default function ProductGridItem({ product }: Props) {
     variants,
   });
   return (
-    <Link className="block p-2" href={`/p/rsp-${id}`}>
+    <Link target="_blank" className="block p-2" href={`/p/rsp-${id}`}>
       {is_feautered && (
         <span className="absolute top-2 z-10 text-danger text-sm font-bold">
           فروش ویژه

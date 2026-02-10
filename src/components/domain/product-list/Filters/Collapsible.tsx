@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import SelectableFilter from "./SelectableFilter";
-import { ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon, DotIcon, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils/classnames";
+import { Badge } from "@/components/ui/badge";
 
 type TreeItemType = {
   label: string;
@@ -18,6 +19,8 @@ type Props = {
   value?: Array<string>;
   defaultOpen?: boolean;
   onChange?: (value: Array<string>) => void;
+  isSet?: boolean;
+  text?: string;
 };
 
 export default function Collapsible({
@@ -25,10 +28,12 @@ export default function Collapsible({
   children,
   slug,
   search,
-  items,
+  items = [],
   value = [],
   onChange = () => {},
   defaultOpen = false,
+  isSet = false,
+  text = "",
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -50,6 +55,9 @@ export default function Collapsible({
           {slug ? null : (
             <span className="font-semibold  inline-block flex-1 text-right">
               {label}
+              {value.length > 0 || isSet ? (
+                <DotIcon className="inline-block" />
+              ) : null}
             </span>
           )}
           <ChevronLeftIcon
@@ -62,11 +70,18 @@ export default function Collapsible({
           />
         </button>
       </div>
+      <div className="text-xs text-muted-light">{isSet && text}</div>
+      {value.length > 0 && (
+        <SelectedItems
+          onChange={onChange}
+          items={items.filter((i) => value.includes(String(i.value)))}
+        />
+      )}
 
       <div
         className={cn(
           "scale-y-0 h-0 origin-top overflow-y-auto scrollbar-custom max-h-[20rem] transition-all",
-          open && "scale-y-100 h-auto mt-3",
+          open && "scale-y-100 py-2 h-auto mt-3",
         )}
       >
         {children}
@@ -80,6 +95,34 @@ export default function Collapsible({
           />
         )}
       </div>
+    </div>
+  );
+}
+
+function SelectedItems({
+  items,
+  onChange,
+}: {
+  items: Array<TreeItemType>;
+  onChange: (value: Array<string>) => void;
+}) {
+  const handleDelete = (item: TreeItemType) => {
+    const newItems = items
+      .filter((i) => i.value !== item.value)
+      .map((i) => String(i.value));
+    onChange(newItems);
+  };
+  return (
+    <div className="flex flex-wrap gap-0.5 my-2">
+      {items.map((i) => (
+        <Badge key={i.value} variant={"neutral"}>
+          {i.label}
+
+          <button onClick={() => handleDelete(i)}>
+            <X className="size-3" />
+          </button>
+        </Badge>
+      ))}
     </div>
   );
 }

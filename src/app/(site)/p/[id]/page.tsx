@@ -25,11 +25,11 @@ import ProductSummeryCard from "@/components/Product/ProductSummeryCard";
 import ProductFeaturedBanner from "@/components/Product/ProductFeaturedBanner";
 import ProductInfoDialog from "@/components/Product/ProductInfo/ProductInfoDialog";
 import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
-import Breadcrumb from "@/components/common/Breadcrumb";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { getProductById } from "@/queries/products/product-details";
 import { getCategoryBySlug } from "@/queries/products/category";
 import { calcPrice } from "@/lib/utils/number";
+import ProductBreadcrump from "@/components/Product/ProductBreadcrump";
 
 const ProductReviews = dynamic(
   () => import("@/components/Product/ProductReviews"),
@@ -121,25 +121,15 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
   if (!product) notFound();
   const category = await getProductCategroy(product.category?.slug ?? "");
 
-  const categoryParents = category.parents.sort((a, b) => a.level - b.level);
-
-  const breadcrumbItems = [...category.parents, category.category].map((c) => ({
-    label: c.title,
-    href: `/products/${categoryParents
-      .filter((p) => p.level > c.level)
-      .map((p) => p.slug)
-      .join("/")}`,
-  }));
-
   return (
     <div className="container min-h-screen my-10 space-y-5">
-      <Breadcrumb items={breadcrumbItems} />
+      <ProductBreadcrump {...category} />
       <ProductPageProvider product={product}>
         <Suspense fallback={<PageLoader />}>
           <ProductSchema {...product} />
           <div className="flex flex-col md:flex-row w-full justify-between relative">
             <div className="w-full space-y-2 flex-1 md:max-w-lg">
-              <ProductFeaturedBanner />
+              {product.is_feautered && <ProductFeaturedBanner />}
               <div className="relative flex">
                 <div className="flex flex-col gap-3">
                   <DesktopTooltip
@@ -187,7 +177,7 @@ export default async function ProductPage(props: PageProps<"/p/[id]">) {
         <ProductInfoDialog {...product} />
 
         <div className="flex relative gap-4 justify-between">
-          <div className="flex-1">
+          <div className="flex-1 relative [&>section]:min-h-[30rem] ">
             <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
             <Separator />
             <ProductDescription showMore description={product.description} />

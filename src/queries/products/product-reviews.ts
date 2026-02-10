@@ -13,7 +13,7 @@ export const getProductReviews = (product_id: number, page: number | null) =>
     queryKey: ["get_reviews_by_product_id", product_id, page],
     queryFn: async ({ pageParam }) => {
       return await apiFetch(`/profile/reviews/products/${product_id}`, {
-        params: { page: page || (pageParam as string), limit: 2 },
+        params: { page: page || (pageParam as string) },
       });
     },
     getNextPageParam: ({ meta }) => meta.current_page + 1,

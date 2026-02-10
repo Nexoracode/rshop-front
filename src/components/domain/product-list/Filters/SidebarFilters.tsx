@@ -9,6 +9,7 @@ import FilterSwitches from "./FilterSwitches";
 import FilterColor from "./FilterColors";
 import { ProductFilters } from "@/types";
 import useFilters from "../hooks/useFilters";
+import { formatToman } from "@/lib/utils/price";
 
 type Props = {
   filters: ProductFilters;
@@ -62,9 +63,13 @@ function SidebarFiltersComponent({
           />
         )}
 
-        <Collapsible label="قیمت">
+        <Collapsible
+          isSet={!!query.filter.price_max || !!query.filter.price_min}
+          text={`از ${formatToman(+query.filter.price_min || price_range.min)} تا ${formatToman(+query.filter.price_max || price_range.max)}`}
+          label="محدوده قیمت"
+        >
           <FilterPriceRange
-            min={0}
+            min={price_range.min}
             max={price_range.max}
             value={[
               Number(query?.filter.price_min) || 0,

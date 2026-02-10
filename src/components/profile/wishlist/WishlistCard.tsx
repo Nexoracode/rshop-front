@@ -4,10 +4,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ShoppingCart, Trash2 } from "lucide-react";
-import { calcPrice, formatToman } from "@/lib/utils";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Badge } from "@/components/ui/badge";
 import { WishlistItem } from "@/types/product";
+import { formatToman } from "@/lib/utils/price";
+import { calcPrice } from "@/lib/utils/number";
 
 type Props = {
   onDelete: (id: number) => void;
@@ -25,7 +26,7 @@ export default function WishlistCard({
   const { final, compareAt, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
   return (
     <Card className="group flex-row sm:flex-col relative overflow-hidden !p-2 hover:shadow-md transition-all">
@@ -74,6 +75,7 @@ export default function WishlistCard({
             startIcon={<ShoppingCart className="mr-2 sm:mr-0" />}
             className="flex-1"
             href={`/p/rsp-${id}`}
+            target="_blank"
           >
             <span className="hidden sm:inline-block">افزودن به سبد</span>
           </Button>

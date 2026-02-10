@@ -24,7 +24,12 @@ export default function ProductHelper({
       content={
         <section className="space-y-4" id="helper">
           <div className="relative  w-full aspect-square">
-            <Image src={image} className="p-2 border rounded-lg" fill alt="" />
+            <Image
+              src={image}
+              className="p-2 object-contain border rounded-lg"
+              fill
+              alt=""
+            />
           </div>
 
           <p className="text-muted text-sm leading-6">{description}</p>

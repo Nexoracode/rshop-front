@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { Pencil, Trash2, Check, X } from "lucide-react";
-import { toPersainDate } from "@/lib/utils";
 import { Menu } from "@/components/common/Menu";
 import { Badge } from "@/components/ui/badge";
 import { Review } from "@/types/user";
 import ProductRating from "@/components/Product/ProductReviews/ProductRating";
 import Link from "next/link";
+import { toPersianDate } from "@/lib/utils/date-time";
 
 type Props = {
   onEdit: (reviewId: number) => void;
@@ -27,7 +27,7 @@ export default function ReviewItemCard({
   return (
     <div className="space-y-2 border-b p-3 last:border-b-0">
       <div className="flex items-stretch">
-        <Link href={`/p/rsp-${product.id}`}>
+        <Link target="_blank" href={`/p/rsp-${product.id}`}>
           <Image
             src={product.image}
             alt={product.name}
@@ -38,7 +38,7 @@ export default function ReviewItemCard({
         </Link>
         <div className="flex-1 pr-3">
           <p className="font-medium text-sm">{product.name}</p>
-          <div className="text-sm text-muted">{toPersainDate(created_at)}</div>
+          <div className="text-sm text-muted">{toPersianDate(created_at)}</div>
         </div>
         <div>
           {is_approved === true && (

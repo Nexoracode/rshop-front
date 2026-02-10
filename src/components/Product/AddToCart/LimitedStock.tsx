@@ -13,7 +13,7 @@ export default function LimitedStock({ stock, is_limited_stock }: Props) {
       className="flex items-center text-danger text-xs font-semibold"
     >
       <Flame className="size-5" fill="var(--color-danger)" strokeWidth={0} />
-      <span className="pr-1">{`تنها ${stock} در انبار باقی مانده`}</span>
+      <span className="pr-1">{`تنها ${stock} عدد در انبار باقی مانده`}</span>
     </div>
   );
 }

@@ -35,9 +35,10 @@ export default function FilterPriceRange({
   disabled = false,
   onMaxChange,
   onMinChange,
+  value,
 }: PriceRangeFilterProps) {
   /** 🟢 استیت داخلی: [minValue, maxValue] */
-  const [range, setRange] = React.useState<Range>([min, max]);
+  const [range, setRange] = React.useState<Range>(value);
 
   const format = (n: number) => new Intl.NumberFormat("fa-IR").format(n);
   const parse = (s: string) => {
@@ -48,8 +49,13 @@ export default function FilterPriceRange({
   const commit = (next: Range) => {
     const a = clamp(next[0], min, max);
     const b = clamp(next[1], min, max);
-    onMinChange(String(a));
-    onMaxChange(String(b));
+    if (a !== value[0]) {
+      onMinChange(String(a));
+    }
+
+    if (b !== value[1]) {
+      onMaxChange(String(b));
+    }
     setRange([a, b]);
   };
 
@@ -134,7 +140,7 @@ export default function FilterPriceRange({
 
       {/* نمایش مقدار انتخابی نهایی */}
       <p className="text-sm text-muted-foreground mt-2">
-        بازهٔ انتخابی: از {format(range[0])} تا {format(range[1])} {currency}
+        از {format(range[0])} تا {format(range[1])} {currency}
       </p>
     </div>
   );

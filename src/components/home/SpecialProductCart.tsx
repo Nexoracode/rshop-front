@@ -30,7 +30,7 @@ export default function SpecialProductCart(
   );
 
   return (
-    <Link href={`/p/rsp-${id}`}>
+    <Link target="_blank" href={`/p/rsp-${id}`}>
       <Card
         className="group container-home relative overflow-hidden border-0 rounded-none bg-background !p-2"
         dir="rtl"

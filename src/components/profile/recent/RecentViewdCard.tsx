@@ -19,7 +19,7 @@ export default function RecentViewedCard({
     discount_percent,
   );
   return (
-    <Link href={`/p/rsp-${id}`} className="">
+    <Link target="_blank" href={`/p/rsp-${id}`} className="">
       <Card className="group gap-4 flex flex-row sm:flex-col relative overflow-hidden !p-3 hover:shadow-md transition-all">
         {/* تصویر */}
         <div className="aspect-square rounded-md overflow-hidden bg-muted/5 flex items-center justify-center">

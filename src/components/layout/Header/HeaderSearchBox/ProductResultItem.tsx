@@ -21,7 +21,11 @@ export default function ProductResultItem({
   );
   return (
     <li className="w-full md:w-[50%] odd:pl-1 even:pr-1">
-      <Link href={`/p/rsp-${id}`} className="flex gap-2 items-stretch">
+      <Link
+        target="_blank"
+        href={`/p/rsp-${id}`}
+        className="flex gap-2 items-stretch"
+      >
         <Image
           width={70}
           height={70}

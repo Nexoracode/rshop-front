@@ -1,5 +1,4 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { ClosedCaption, Search, X } from "lucide-react";
@@ -41,11 +40,6 @@ export default function SelectableFilter({
           placeholder={`جستجوی ${label} ...`}
         />
       ) : null}
-
-      <SelectedItems
-        onDelete={(item) => handleChange(false, item)}
-        items={items.filter((i) => value.includes(String(i.value)))}
-      />
 
       {items
         ?.filter((i) => i.label.match(searchTerm))
@@ -118,25 +112,3 @@ const SearchInput = ({
     </div>
   );
 };
-
-function SelectedItems({
-  items,
-  onDelete,
-}: {
-  items: Array<TreeItemType>;
-  onDelete: (item: TreeItemType) => void;
-}) {
-  return (
-    <div className="flex gap-0.5 my-2">
-      {items.map((i) => (
-        <Badge key={i.value} variant={"neutral"}>
-          {i.label}
-
-          <button onClick={() => onDelete(i)}>
-            <X className="size-3" />
-          </button>
-        </Badge>
-      ))}
-    </div>
-  );
-}
