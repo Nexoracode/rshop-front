@@ -14,7 +14,7 @@ type Props = UserCartItem & {
 export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
     <div className="flex items-center gap-3 border-b last:border-b-0 py-2">
-      <Link href={`/p/rsp-${item.id}`}>
+      <Link target="_blank" href={`/p/rsp-${item.id}`}>
         <Image
           src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
           width={160}
@@ -39,7 +39,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
         <div className="flex gap-1">
           {item.variant?.attributes
             .sort(
-              (a, b) => a.attribute.display_order - b.attribute.display_order
+              (a, b) => a.attribute.display_order - b.attribute.display_order,
             )
             .map((i) => (
               <>

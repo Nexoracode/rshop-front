@@ -1,10 +1,10 @@
 "use client";
-import { createOrder } from "@/queries/orders";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import useCheckout from "@/hooks/useCheckout";
+import { createOrder } from "@/queries/checkout/order";
 
 export default function CreateOrderBtn() {
   const {

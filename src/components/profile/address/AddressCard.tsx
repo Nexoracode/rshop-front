@@ -2,10 +2,10 @@
 
 import { Card } from "@/components/ui/card";
 import { Trash2, MapPin, PinIcon, Edit } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 import { Menu, MenuItem } from "@/components/common/Menu";
 import { UserAddress } from "@/types/user";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   address: UserAddress;
@@ -20,7 +20,7 @@ export default function AddressCard(props: Props) {
     <Card
       className={cn(
         "!p-4 relative bg-transparent hover:shadow-md transition-all border-muted-light",
-        address.is_primary && "border-primary-300 shadow-primary-foreground"
+        address.is_primary && "border-primary-300 shadow-primary-foreground",
       )}
     >
       {address.is_primary && (

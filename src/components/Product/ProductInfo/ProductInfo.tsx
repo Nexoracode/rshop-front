@@ -11,9 +11,10 @@ import Responsive from "@/components/common/Responsive";
 import CreateSupportButton from "../CreateSupportButton";
 import Link from "next/link";
 import ShipingMethods from "../AddToCart/ShipingMethods";
+import ProductHelper from "../ProductTabs/ProductHelper";
 
 export default function ProductInfo(props: Product) {
-  const { attribute_nodes, specifications, ...product } = props;
+  const { attribute_nodes, specifications, helper, ...product } = props;
   return (
     <div className="space-y-5 flex-1 flex flex-col md:flex-row">
       {/* title + brand + category */}
@@ -69,6 +70,8 @@ export default function ProductInfo(props: Product) {
             i.attributes.filter((a) => a.is_important),
           )}
         />
+
+        {helper && <ProductHelper {...helper} />}
       </div>
 
       <Card className="!p-3 flex gap-4 flex-row-reverse rounded-none shadow-2xl z-40 md:relative md:rounded-xl md:shadow md:flex-col fixed bottom-0 right-0 left-0 w-screen items-center md:items-stretch justify-between md:justify-around md:w-xs h-fit">

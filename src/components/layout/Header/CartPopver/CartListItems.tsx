@@ -1,7 +1,7 @@
 "use client";
 
 import useCart from "@/hooks/useCart";
-import { deleteCartItem, updateCartItem } from "@/queries/cart";
+import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 import { useMutation } from "@tanstack/react-query";
 import CartItem from "./CartItem";
 

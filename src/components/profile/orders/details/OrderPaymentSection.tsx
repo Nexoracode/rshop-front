@@ -3,13 +3,13 @@
 import { Card } from "@/components/ui/card";
 import { Payment } from "@/types/order";
 import SubmitPaymentReceip from "./SubmitPaymentReceip";
-import { toPersainDateTime } from "@/lib/utils";
 import {
   CardToCardPaymentStatusFa,
   PaymentMethodFa,
   PaymentStatusFa,
 } from "@/data/order";
 import { Badge } from "@/components/ui/badge";
+import { toPersianDateTime } from "@/lib/utils/date-time";
 
 export function OrderPaymentSection({
   payment,
@@ -48,7 +48,7 @@ export function OrderPaymentSection({
             </Badge>
           </p>
           <p className="text-sm">
-            تاریخ پرداخت: <span>{toPersainDateTime(payment.created_at)}</span>
+            تاریخ پرداخت: <span>{toPersianDateTime(payment.created_at)}</span>
           </p>
         </div>
       )}

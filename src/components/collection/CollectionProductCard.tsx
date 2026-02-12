@@ -2,11 +2,13 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { calcPrice, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { CollectionProduct } from "@/types/product";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
+import PriceBox from "../shared/product/PriceBox";
 
 export default function CollectionProductCart(props: CollectionProduct) {
   const { name, price, brand, discount_percent, discount_amount, image, id } =
@@ -15,7 +17,7 @@ export default function CollectionProductCart(props: CollectionProduct) {
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
 
   return (
@@ -23,7 +25,7 @@ export default function CollectionProductCart(props: CollectionProduct) {
       className="group relative overflow-hidden border !p-1 shadow-sm transition hover:shadow-md"
       dir="rtl"
     >
-      <Link href={`/p/rsp-${id}`}>
+      <Link target="_blank" href={`/p/rsp-${id}`}>
         <div className="flex space-y-2 flex-col items-start">
           <div className="relative w-full aspect-[1/1]  overflow-hidden">
             <Image
@@ -55,13 +57,16 @@ export default function CollectionProductCart(props: CollectionProduct) {
 
             {/* price */}
             <div className="flex items-center gap-2">
-              <span className="text-sm  font-bold text-primary-600">
-                {formatToman(final)}{" "}
-              </span>
+              <PriceBox
+                price={final}
+                className="text-sm  font-bold text-primary-600"
+              />
+
               {compareAt && (
-                <span className="text-xs text-gray-400 line-through">
-                  {formatToman(compareAt)}
-                </span>
+                <PriceBox
+                  price={compareAt}
+                  className="text-xs text-gray-400 line-through"
+                />
               )}
             </div>
 

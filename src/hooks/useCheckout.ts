@@ -1,4 +1,4 @@
-import { getOrderMeta, setOrderMeta } from "@/queries/orders";
+import { getOrderMeta, setOrderMeta } from "@/queries/checkout/order-meta";
 import { OrderMeta } from "@/types/order";
 import { useMutation, useQuery } from "@tanstack/react-query";
 

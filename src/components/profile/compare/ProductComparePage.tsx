@@ -1,5 +1,8 @@
 "use client";
-import { deleteFromCompareList, getCompareList } from "@/queries/compare";
+import {
+  deleteFromCompareList,
+  getCompareList,
+} from "@/queries/profile/compare/compare";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import ProductCompare from "./ProductCompare";

@@ -2,7 +2,6 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 
 import {
   Dialog,
@@ -26,6 +25,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { cn } from "@/lib/utils/classnames";
 
 interface ResponsiveModalProps {
   /** کنترل باز و بسته بودن مودال از بیرون */
@@ -113,7 +113,7 @@ export function ResponsiveModal({
                 className={cn(
                   "flex-1 sm:flex-none",
                   "bg-primary text-primary-foreground hover:bg-primary/90",
-                  "rounded-md px-4 py-2 text-sm font-medium"
+                  "rounded-md px-4 py-2 text-sm font-medium",
                 )}
               >
                 {actionText}

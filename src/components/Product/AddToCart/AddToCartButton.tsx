@@ -4,7 +4,7 @@ import React from "react";
 import QuantitySelect from "./QuantitySelect";
 import Link from "next/link";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addCartItem, getCart, updateCartItem } from "@/queries/cart";
+import { addCartItem, getCart, updateCartItem } from "@/queries/cart/cart";
 import { Product } from "@/types/product";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
 import useCurrentUser from "@/hooks/useCurrentUser";

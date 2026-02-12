@@ -2,10 +2,10 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { Heart } from "lucide-react";
-import { useWishlist } from "@/queries/wishlist";
 import Link from "next/link";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
+import { useWishlist } from "@/queries/profile/wishlist/useWishlist";
 type Props = {
   id: number;
 };

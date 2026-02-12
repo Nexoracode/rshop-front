@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import Link from "next/link";
 import { ComponentProps, ReactNode } from "react";
 
@@ -20,7 +20,7 @@ export default function LinkWithChip({
     <Link
       className={cn(
         "relative w-6 h-6 flex items-center justify-center text-foreground",
-        className
+        className,
       )}
       href={href}
       {...props}

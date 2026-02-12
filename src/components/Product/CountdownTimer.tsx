@@ -1,7 +1,7 @@
 "use client";
 
 import useCountDown from "@/hooks/useCountDown";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import React from "react";
 
 interface CountdownTimerProps {

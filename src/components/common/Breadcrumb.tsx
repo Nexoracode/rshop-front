@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { ChevronLeft, Home } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { SHOP_NAME } from "@/data/assets";
+import { cn } from "@/lib/utils/classnames";
 
 export type BreadcrumbItem = {
   label: string;
@@ -13,6 +13,7 @@ export type BreadcrumbItem = {
 type Props = {
   items: BreadcrumbItem[];
   className?: string;
+  lastIsLink?: boolean;
 };
 
 const HOME_ITEM: BreadcrumbItem = {
@@ -20,7 +21,7 @@ const HOME_ITEM: BreadcrumbItem = {
   href: "/",
 };
 
-export default function Breadcrumb({ items, className }: Props) {
+export default function Breadcrumb({ items, className, lastIsLink }: Props) {
   // اگر Home قبلاً داده نشده بود، اضافه کن
   const hasHome = items.some((i) => i.href === "/");
   const finalItems = hasHome ? items : [HOME_ITEM, ...items];
@@ -34,7 +35,7 @@ export default function Breadcrumb({ items, className }: Props) {
           const isLast = index === finalItems.length - 1;
           return (
             <div key={index} className="flex items-center">
-              {!isLast ? (
+              {!isLast || lastIsLink ? (
                 <Link
                   href={item.href ?? "#"}
                   className="flex items-center gap-1 hover:text-foreground transition-colors"

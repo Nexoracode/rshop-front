@@ -4,10 +4,10 @@ import * as React from "react";
 import FieldContainer from "../common/Form/FieldContainer";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
 import { CheckCircle2, XCircle, Loader2, Tag } from "lucide-react";
 import useCheckPromotion from "@/hooks/useCheckPromotion";
 import useCheckout from "@/hooks/useCheckout";
+import { cn } from "@/lib/utils/classnames";
 
 export default function DiscountForm() {
   const { handleCheck } = useCheckPromotion();
@@ -76,7 +76,7 @@ export default function DiscountForm() {
               status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&
-                "border-rose-500 focus-visible:ring-rose-500"
+                "border-rose-500 focus-visible:ring-rose-500",
             )}
           />
 
@@ -102,8 +102,8 @@ export default function DiscountForm() {
               status === "valid"
                 ? "text-green-600 dark:text-green-400"
                 : status === "invalid"
-                ? "text-rose-600 dark:text-rose-400"
-                : "text-muted-foreground"
+                  ? "text-rose-600 dark:text-rose-400"
+                  : "text-muted-foreground",
             )}
           >
             {message}

@@ -1,11 +1,12 @@
 "use client";
-import { calcPrice, formatToman } from "@/lib/utils";
 import React from "react";
 import { Product } from "@/types/product";
 import { useProductPage } from "../ProductProvider";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import PriceBox from "@/components/common/PriceBox";
+import { formatToman } from "@/lib/utils/price";
+import { calcPrice } from "@/lib/utils/number";
 
 export default function ProductPriceInfo({
   stock,

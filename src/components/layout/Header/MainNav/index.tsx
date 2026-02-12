@@ -7,10 +7,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getCategoreis } from "@/queries/categoreis";
-import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronLeftIcon, Menu } from "lucide-react";
 import ActiveCategoryContent from "./ActiveCategoryContent";
+import { getCategoreis } from "@/queries/products/category";
+import { cn } from "@/lib/utils/classnames";
 
 const navLinks = [
   { href: "/", label: "خانه" },

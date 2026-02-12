@@ -1,5 +1,5 @@
 "use client";
-import { addRecentView } from "@/queries/recent_views";
+import { addRecentView } from "@/queries/profile/recent_views";
 import { Product, ProductVariant } from "@/types/product";
 import { useMutation } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -52,7 +52,7 @@ export default function ProductPageProvider({
     setVariantLoading(false);
     if (!variantId) return setVariant(product.variants[0]);
     const selectedVariant = product.variants.find(
-      (i) => i.id === Number(variantId)
+      (i) => i.id === Number(variantId),
     );
 
     if (!selectedVariant) return setVariant(product.variants[0]);
@@ -72,8 +72,8 @@ export default function ProductPageProvider({
     selectVaraintValues[attributeId] = valueId;
     const selectedVariant = product.variants.find((variant) =>
       variant.attributes.every(
-        (attr) => attr.values.id === selectVaraintValues[attr.id]
-      )
+        (attr) => attr.values.id === selectVaraintValues[attr.id],
+      ),
     );
     if (selectedVariant) setVariant(selectedVariant);
 

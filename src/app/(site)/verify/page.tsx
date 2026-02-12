@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { verifyPayment } from "@/queries/payment";
 import PageLoader from "@/components/common/PageLoader";
 import { useEffect } from "react";
 
@@ -12,6 +11,7 @@ import PaymentFailed from "@/components/verify/PaymentFailed";
 import OrderSummerySection from "@/components/verify/OrderSummerySection";
 import ProductsSection from "@/components/verify/ProductsSection";
 import AddressSection from "@/components/verify/AddressSection";
+import { verifyPayment } from "@/queries/checkout/payment/verify";
 
 export default function PaymentVerifyPage() {
   const params = useSearchParams();
@@ -30,7 +30,7 @@ export default function PaymentVerifyPage() {
           onSuccess(data) {
             if (data.code === 101) router.push(`/`);
           },
-        }
+        },
       );
   }, [Authority, mutateAsync, Status, router]);
 
@@ -40,7 +40,7 @@ export default function PaymentVerifyPage() {
     return <PaymentFailed order={data.order} payment={data.payment} />;
 
   return (
-    <div className="relative flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+    <div className="relative flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
       <>
         <div className="w-full max-w-lg space-y-6">
           <div className="flex flex-col items-center justify-center gap-3">

@@ -11,8 +11,8 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   open?: boolean;
@@ -73,7 +73,7 @@ export default function BaseDialog({
           `mx-auto p-0  w-full overflow-hidden md:max-h-[85vh] ${maxWidth}`,
           isMobile &&
             "translate-y-0 top-[unset] bottom-0 data-[state=closed]:animate-slide-out-left  data-[state=open]:animate-slide-in-left h-full rounded-none",
-          className
+          className,
         )}
       >
         <DialogHeader className="flex p-3 sticky z-50 top-0 left-0 right-0 bg-card flex-row items-center justify-between">

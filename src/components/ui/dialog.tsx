@@ -4,7 +4,7 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 function Dialog({
   ...props
@@ -39,7 +39,7 @@ function DialogOverlay({
       data-slot="dialog-overlay"
       className={cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
-        className
+        className,
       )}
       {...props}
     />
@@ -61,7 +61,7 @@ function DialogContent({
         data-slot="dialog-content"
         className={cn(
           "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 flex flex-col  translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-3 shadow-lg duration-200",
-          className
+          className,
         )}
         {...props}
       >
@@ -86,7 +86,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="dialog-header"
       className={cn(
         "flex flex-col h-fit gap-2 border-b pb-3 sm:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -99,7 +99,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="dialog-footer"
       className={cn(
         "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
-        className
+        className,
       )}
       {...props}
     />

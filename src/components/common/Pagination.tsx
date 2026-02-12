@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -61,7 +61,7 @@ export default function Pagination({
       dir="rtl"
       className={cn(
         "flex items-center justify-between border-t pt-2 gap-1 mt-6 select-none flex-wrap",
-        className
+        className,
       )}
     >
       {/* Previous Button */}
@@ -92,12 +92,12 @@ export default function Pagination({
               onClick={() => handleSelectPage(Number(p))}
               className={cn(
                 "px-3 w-8 h-8 text-sm",
-                p === page && "bg-primary text-white"
+                p === page && "bg-primary text-white",
               )}
             >
               {p}
             </Button>
-          )
+          ),
         )}
       </div>
 

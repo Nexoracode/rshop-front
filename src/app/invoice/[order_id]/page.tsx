@@ -1,8 +1,9 @@
 "use client";
 import PageLoader from "@/components/common/PageLoader";
 import { statusLabel } from "@/data/order";
-import { formatToman, toPersainDate } from "@/lib/utils";
-import { getOrderDetails } from "@/queries/orders";
+import { toPersianDate } from "@/lib/utils/date-time";
+import { formatToman } from "@/lib/utils/price";
+import { getOrderDetails } from "@/queries/profile/order";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";
@@ -101,7 +102,7 @@ export default function Invoice() {
               <div>روش پرداخت: {""}</div>
               <div>وضعیت پرداخت: {statusLabel[data.status]}</div>
               <div>شماره پیگیری: {data.payment_gateway_ref}</div>
-              <div>تاریخ پرداخت: {toPersainDate(data.updated_at)}</div>
+              <div>تاریخ پرداخت: {toPersianDate(data.updated_at)}</div>
             </div>
           </div>
 

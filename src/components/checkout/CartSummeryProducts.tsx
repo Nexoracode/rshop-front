@@ -2,10 +2,10 @@
 import React from "react";
 import { Skeleton } from "../ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import Image from "next/image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { formatToman } from "@/lib/utils";
+import { formatToman } from "@/lib/utils/price";
 
 export default function CartSummeryProducts() {
   const { data, isFetching } = useQuery(getCart);

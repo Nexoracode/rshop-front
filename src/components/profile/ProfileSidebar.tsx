@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
+
 import {
   User,
   Heart,
@@ -43,7 +44,7 @@ export function ProfileSidebar() {
               "flex border-b md:border-0 items-center gap-3 md:rounded-lg md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
               active
                 ? "md:bg-primary/10 md:text-primary"
-                : "hover:bg-muted/30 text-muted-foreground"
+                : "hover:bg-muted/30 text-muted-foreground",
             )}
           >
             <Icon className="w-5 h-5" />

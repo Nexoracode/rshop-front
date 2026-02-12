@@ -1,6 +1,6 @@
 "use client";
 import { ListLayout } from "@/components/common/ListLayout";
-import { getSupportTickets } from "@/queries/support";
+import { getSupportTickets } from "@/queries/profile/support";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import TicketCard from "./SupportCard";

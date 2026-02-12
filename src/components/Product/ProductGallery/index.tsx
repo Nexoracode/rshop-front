@@ -1,7 +1,8 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
+
 import { Media } from "@/types";
 import {
   Carousel,
@@ -49,7 +50,7 @@ export default function ProductGallery({
                       alt={img.alt_text ?? ""}
                       fill
                       sizes="(max-width:768px) 100%, 30rem"
-                      className="object-contain max-w-md"
+                      className="object-contain"
                       priority={i === 0}
                     />
                   ) : (

@@ -10,9 +10,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { toPersainDate } from "@/lib/utils";
 import { Controller, useFormContext } from "react-hook-form";
 import FieldContainer from "./FieldContainer";
+import { toPersianDate } from "@/lib/utils/date-time";
 
 type DatePickerProps = {
   name: string;
@@ -71,7 +71,7 @@ export function DatePicker({
             className="justify-between input"
           >
             {value ? (
-              toPersainDate(value.toDateString())
+              toPersianDate(value.toDateString())
             ) : (
               <span>یک تاریخ را انتخاب کنید</span>
             )}

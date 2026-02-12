@@ -3,7 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { statusColor, statusLabel } from "@/data/order";
-import { formatToman, toPersainDate } from "@/lib/utils";
+import { toPersianDate } from "@/lib/utils/date-time";
+import { formatToman } from "@/lib/utils/price";
 import { Order } from "@/types/order";
 
 export function OrderInfoSection({ order }: { order: Order }) {
@@ -27,7 +28,7 @@ export function OrderInfoSection({ order }: { order: Order }) {
         <p className="text-sm text-muted-foreground">
           تاریخ ثبت:{" "}
           <span className="font-semibold">
-            {toPersainDate(order.created_at)}
+            {toPersianDate(order.created_at)}
           </span>
         </p>
       </div>

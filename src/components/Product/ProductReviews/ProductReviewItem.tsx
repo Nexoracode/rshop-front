@@ -1,7 +1,7 @@
 import React from "react";
-import { toPersainDate } from "@/lib/utils";
 import { Review } from "@/types/user";
 import ProductRating from "./ProductRating";
+import { toPersianDate } from "@/lib/utils/date-time";
 
 type Props = {
   review: Review;
@@ -21,7 +21,7 @@ export default function ProductReviewItem({ review }: Props) {
               {user.first_name || "کاربر سایت"} {user.last_name}
             </p>
             <span className="text-xs text-muted/79">
-              {toPersainDate(created_at)}
+              {toPersianDate(created_at)}
             </span>
           </div>
         </div>

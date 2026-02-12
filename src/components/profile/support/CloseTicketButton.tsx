@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { closeSupportTicket } from "@/queries/support";
+import { closeSupportTicket } from "@/queries/profile/support";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 

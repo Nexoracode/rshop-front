@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ArrowLeftRightIcon } from "lucide-react";
-import { getCompareList } from "@/queries/compare";
+import { getCompareList } from "@/queries/profile/compare/compare";
 import { useQuery } from "@tanstack/react-query";
 import ProfileButton from "./ProfileMenu";
 import { Separator } from "@/components/ui/separator";

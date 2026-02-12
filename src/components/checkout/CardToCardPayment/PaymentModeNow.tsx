@@ -1,10 +1,10 @@
 import React from "react";
 import PaymentModalFooter from "./PaymentModalFooter";
 import { useMutation } from "@tanstack/react-query";
-import { uploadReceipImage } from "@/queries/orders";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import ImageUploadField from "@/components/common/Form/ImageUploadField";
 import { Media } from "@/types";
+import { uploadReceipImage } from "@/queries/checkout/payment/card-to-card";
 
 export default function PaymentModeNow({
   payment_id,
@@ -23,7 +23,7 @@ export default function PaymentModeNow({
     const { file } = values;
     mutateAsync(
       { has_receipt_image: true, files: [file], payment_id },
-      { onSuccess }
+      { onSuccess },
     );
   };
   return (

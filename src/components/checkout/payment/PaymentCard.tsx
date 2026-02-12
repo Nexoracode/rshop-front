@@ -1,14 +1,13 @@
 "use client";
 
-import { formatToman } from "@/lib/utils";
-
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import Responsive from "@/components/common/Responsive";
 import CreatePaymentBtn from "./CreatePaymentBtn";
-import { getOrderDetails } from "@/queries/orders";
 import OrderSummeryInfo from "./OrderSummeryInfo";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getOrderDetails } from "@/queries/profile/order";
+import { formatToman } from "@/lib/utils/price";
 
 export default function PaymentCard({ order_id }: { order_id: number }) {
   const { data } = useQuery(getOrderDetails(Number(order_id)));

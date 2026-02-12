@@ -1,7 +1,8 @@
 "use client";
 
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { cn } from "@/lib/utils/classnames";
 import { useState, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
 
 type TabKey = "description" | "specifications" | "reviews" | "helper";
 
@@ -9,7 +10,6 @@ const tabs: { key: TabKey; label: string }[] = [
   { key: "description", label: "توضیحات" },
   { key: "specifications", label: "ویژگی‌ها" },
   { key: "reviews", label: "دیدگاه‌ها" },
-  { key: "helper", label: "راهنمای سایز" },
 ];
 
 export default function ProductTabs({
@@ -19,6 +19,7 @@ export default function ProductTabs({
 }) {
   const [active, setActive] = useState<TabKey>("description");
   const barRef = useRef<HTMLDivElement>(null);
+  const scrollDirection = useScrollDirection();
 
   const handleScrollTo = (key: TabKey) => {
     const el = document.getElementById(key);
@@ -73,7 +74,12 @@ export default function ProductTabs({
   };
 
   return (
-    <div className="sticky top-[64px] z-30 bg-background border-b rtl">
+    <div
+      className={cn(
+        "sticky z-30 bg-background border-b rtl",
+        scrollDirection === "down" ? "top-[4rem]" : "top-[7rem]",
+      )}
+    >
       <div ref={barRef} className="relative flex">
         {tabs
           .filter((tab) => activeTabs[tab.key])
@@ -86,7 +92,7 @@ export default function ProductTabs({
                 "py-3 px-4 text-sm transition-colors",
                 active === tab.key
                   ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {tab.label}

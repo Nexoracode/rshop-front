@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 interface PhoneInputProps {
   defaultValue?: string;
@@ -18,7 +18,7 @@ export default function PhoneInput({
   className,
 }: PhoneInputProps) {
   const [raw, setRaw] = React.useState(
-    defaultValue.replace(/\D/g, "").slice(0, 11)
+    defaultValue.replace(/\D/g, "").slice(0, 11),
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export default function PhoneInput({
     if (!d) return "";
     return d
       .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})(\d{0,3})$/, (m, a, b, c, d) =>
-        [a, b, c, d].filter(Boolean).join(" ")
+        [a, b, c, d].filter(Boolean).join(" "),
       )
       .trim();
   };
@@ -56,7 +56,7 @@ export default function PhoneInput({
           "text-center font-semibold tracking-widest input",
           error
             ? "!border-rose-500  focus:border-rose-500 focus-visible:ring-rose-500"
-            : ""
+            : "",
         )}
       />
     </div>

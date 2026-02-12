@@ -1,7 +1,7 @@
 // components/ui/list-layout.tsx
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 import EmptyState from "./EmptyState";
 
 export function ListLayout<T>({

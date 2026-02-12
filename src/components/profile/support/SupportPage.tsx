@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getSupportTicket } from "@/queries/support";
+import { getSupportTicket } from "@/queries/profile/support";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Card } from "@/components/ui/card";
 import CloseTicketButton from "./CloseTicketButton";
@@ -18,7 +18,7 @@ export default function SupportPage() {
   const { support_id = null } = useParams();
 
   const { data: ticket } = useQuery(
-    getSupportTicket(support_id as string | null)
+    getSupportTicket(support_id as string | null),
   );
 
   const scrollRef = useRef<HTMLDivElement>(null);

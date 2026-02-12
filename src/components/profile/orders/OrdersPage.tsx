@@ -4,10 +4,10 @@ import { useState } from "react";
 import { OrdersTabs } from "./OrdersTabs";
 import { OrderCard } from "./OrderCard";
 import { useQuery } from "@tanstack/react-query";
-import { getOrders } from "@/queries/orders";
 import { ListLayout } from "@/components/common/ListLayout";
 import { Skeletons } from "@/components/ui/skeleton";
 import { Order, ProfileOrderStatus } from "@/types/order";
+import { getOrders } from "@/queries/profile/order";
 
 const orderStatus: Record<ProfileOrderStatus, { label: string }> = {
   cancelled: {

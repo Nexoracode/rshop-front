@@ -1,15 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { MapPinPlusIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getUserAddress } from "@/queries/address";
+import { getUserAddress } from "@/queries/profile/address";
 import AddressForm from "../../users/AddressForm";
 import PrimaryAddressCard from "./PrimaryAddressCard";
 import useCheckout from "@/hooks/useCheckout";
+import { cn } from "@/lib/utils/classnames";
 
 export default function AddressSelector() {
   const { data } = useQuery(getUserAddress);

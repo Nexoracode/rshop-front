@@ -5,11 +5,11 @@ import DateField from "@/components/common/Form/DatePicker";
 import TimeField from "@/components/common/Form/TimeInput";
 import MaskedCardField from "@/components/common/Form/MaskedCardField";
 import { useMutation } from "@tanstack/react-query";
-import { uploadReceipImage } from "@/queries/orders";
 import TextField from "@/components/common/Form/TextField";
 import PaymentModalFooter from "./PaymentModalFooter";
 import { CardToCardPaymentInfo } from "@/types/order";
-import { getTimeString } from "@/lib/utils";
+import { getTimeString } from "@/lib/utils/date-time";
+import { uploadReceipImage } from "@/queries/checkout/payment/card-to-card";
 
 export function PaymentModeInfo({
   payment_id,
@@ -46,7 +46,7 @@ export function PaymentModeInfo({
       },
       {
         onSuccess,
-      }
+      },
     );
   };
 

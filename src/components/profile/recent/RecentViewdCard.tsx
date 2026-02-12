@@ -6,8 +6,9 @@ import { Card } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
 import { RecentView } from "@/types/user";
 import Link from "next/link";
-import { calcPrice, formatToman } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
 
 export default function RecentViewedCard({
   product: { discount_amount, discount_percent, id, image, price, name },
@@ -15,10 +16,10 @@ export default function RecentViewedCard({
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
   return (
-    <Link href={`/p/rsp-${id}`} className="">
+    <Link target="_blank" href={`/p/rsp-${id}`} className="">
       <Card className="group gap-4 flex flex-row sm:flex-col relative overflow-hidden !p-3 hover:shadow-md transition-all">
         {/* تصویر */}
         <div className="aspect-square rounded-md overflow-hidden bg-muted/5 flex items-center justify-center">

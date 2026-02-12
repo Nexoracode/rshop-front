@@ -1,6 +1,6 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getPromoBanners } from "@/queries/home";
+import { getPromoBanners } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,7 @@ export default function AdsBanner() {
             .filter((b) => b.is_active)
             .sort((a, b) => b.priority - a.priority)
         : [],
-    [data]
+    [data],
   );
 
   useEffect(() => {

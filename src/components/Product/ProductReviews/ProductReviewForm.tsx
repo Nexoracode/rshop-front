@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { DialogClose, DialogFooter } from "@/components/ui/dialog";
-import { addProductReview, updateReview } from "@/queries/reviews";
 import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2 } from "lucide-react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
@@ -9,6 +8,8 @@ import TextField from "@/components/common/Form/TextField";
 import Image from "next/image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Review } from "@/types/user";
+import { addProductReview } from "@/queries/products/product-reviews";
+import { updateReview } from "@/queries/profile/reviews";
 
 type Props = {
   product_id: number;

@@ -2,11 +2,9 @@
 import { ArrowRight, Search } from "lucide-react";
 import { Sheet, SheetClose, SheetContent, SheetTitle } from "../../../ui/sheet";
 import { Button } from "../../../ui/button";
-import { cn } from "@/lib/utils";
 
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
-import { searchTerm } from "@/queries/products";
 import SearchInput from "./SearchInput";
 import ProductResultList from "./ProductResultList";
 import CategoryResultList from "./CategoryResultList";
@@ -14,6 +12,8 @@ import BrandResultList from "./BrandResultList";
 import SearchPrompt from "./SearchPrompt";
 import React, { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { searchTerm } from "@/queries/products/search";
+import { cn } from "@/lib/utils/classnames";
 
 export default function MobileSearchBox({
   isMobileProductPage,
@@ -58,7 +58,7 @@ export default function MobileSearchBox({
         <button
           className={cn(
             "text-primary absolute left-0  top-[50%] -translate-y-[50%]",
-            !isMobileProductPage && "px-4 -left-1"
+            !isMobileProductPage && "px-4 -left-1",
           )}
         >
           <Search />

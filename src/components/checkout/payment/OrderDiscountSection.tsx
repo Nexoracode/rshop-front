@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { formatToman } from "@/lib/utils";
+import { formatToman } from "@/lib/utils/price";
 import { Promotion } from "@/types/order";
 
 export function OrderDiscountSection({

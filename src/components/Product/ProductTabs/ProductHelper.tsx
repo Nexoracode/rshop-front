@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Button } from "../../ui/button";
 import { Search, X } from "lucide-react";
 import SectionTitle from "../../common/SectionTitle";
+import BaseDialog from "@/components/common/BaseDialog";
 
 export default function ProductHelper({
   description,
@@ -12,43 +13,28 @@ export default function ProductHelper({
   image,
 }: ProductHelperType) {
   return (
-    <section className="space-y-4" id="helper">
-      <SectionTitle title={title} />
-      <HelperImage src={image} />
-
-      <p className="text-muted text-sm leading-6">{description}</p>
-    </section>
-  );
-}
-
-function HelperImage({ src }: { src: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <React.Fragment>
-      <div className="relative w-full max-w-lg aspect-square">
-        <Image src={src} fill alt="" />
-
-        <Button variant={"text-nohover"} onClick={() => setOpen(true)}>
-          <Search />
+    <BaseDialog
+      title={title}
+      width="2xl"
+      trigger={
+        <Button className="px-0" variant={"text-nohover"}>
+          راهنمای سایز
         </Button>
-      </div>
-      {open && (
-        <div className="fixed w-screen flex justify-center items-center z-50 h-screen bg-black/30 top-0 right-0">
-          <div className="relative mx-auto flex justify-center items-center w-full max-w-xl aspect-square">
-            <Button
-              variant={"text-nohover"}
-              size={"sm"}
-              color="danger"
-              rounded={"full"}
-              className="absolute bg-neutral-200 hover:bg-neutral-300 top-2 left-2 z-20"
-              onClick={() => setOpen(false)}
-            >
-              <X />
-            </Button>
-            <Image src={src} fill alt="" />
+      }
+      content={
+        <section className="space-y-4" id="helper">
+          <div className="relative  w-full aspect-square">
+            <Image
+              src={image}
+              className="p-2 object-contain border rounded-lg"
+              fill
+              alt=""
+            />
           </div>
-        </div>
-      )}
-    </React.Fragment>
+
+          <p className="text-muted text-sm leading-6">{description}</p>
+        </section>
+      }
+    />
   );
 }

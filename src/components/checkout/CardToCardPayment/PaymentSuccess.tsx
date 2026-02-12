@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import React from "react";
 import { PaymentMode } from "./types";
-import { toPersainDateTime } from "@/lib/utils";
+import { toPersianDateTime } from "@/lib/utils/date-time";
 
 type Props = {
   order_id: number;
@@ -30,8 +30,8 @@ export default function PaymentSuccess({
 
           <div className="text-center text-muted leading-8">
             شما تا{" "}
-            {toPersainDateTime(
-              new Date(Date.parse(date) + 3600 * 1000 * 4).toISOString()
+            {toPersianDateTime(
+              new Date(Date.parse(date) + 3600 * 1000 * 4).toISOString(),
             )}{" "}
             جهت بارگزاری رسید پرداخت فرصت دارید
             <br />

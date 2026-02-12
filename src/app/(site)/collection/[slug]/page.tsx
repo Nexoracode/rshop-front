@@ -1,8 +1,8 @@
 import CollectionGrid from "@/components/collection/CollectionGrid";
 import CollectionHero from "@/components/collection/CollectionHero";
 import ProductCardSkeleton from "@/components/common/Skeleton/ProductCardSkeleton";
-import { getQueryClient } from "@/lib/get-query-client";
-import { getCollectionDetails } from "@/queries/products";
+import { getQueryClient } from "@/lib/utils/query-client";
+import { getCollectionDetails } from "@/queries/products/collection";
 import React, { Suspense } from "react";
 
 export default async function CollectionPage({

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 interface OtpSingleInputProps {
   error?: string;
@@ -40,7 +40,7 @@ export default function OtpInput({
       className={cn(
         "input tracking-[0.6em] text-center text-lg font-bold",
         error && "border-rose-500 focus-visible:ring-rose-500",
-        className
+        className,
       )}
       placeholder={Array(length).fill("•").join(" ")} // مثلا "• • • • • •"
     />

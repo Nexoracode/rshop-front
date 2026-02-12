@@ -2,11 +2,13 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Product } from "@/types/product";
 import PriceBox from "@/components/common/PriceBox";
+import useProductPrice from "@/hooks/product/useProductPrice";
+import { formatToman } from "@/lib/utils/price";
+import { cn } from "@/lib/utils/classnames";
 
 export default function ProductCard(props: Product) {
   const {
@@ -24,41 +26,17 @@ export default function ProductCard(props: Product) {
     is_feautered,
   } = props;
 
-  const getPriceParams = (): {
-    priceParams: [number, number, number];
-    stock: number;
-  } | null => {
-    if (!has_variants && stock > 0)
-      return {
-        priceParams: [+price, +discount_amount, discount_percent],
-        stock,
-      };
+  const { compareAt, final, inStock, percent } = useProductPrice({
+    discount_amount,
+    discount_percent,
+    has_variants,
+    price,
+    stock,
+    variants,
+  });
 
-    const varaintHasStock = variants.find((varaint) => varaint.stock > 0);
-
-    if (varaintHasStock)
-      return {
-        priceParams: [
-          varaintHasStock.price,
-          varaintHasStock.discount_amount,
-          varaintHasStock.discount_percent,
-        ],
-        stock: varaintHasStock.stock,
-      };
-
-    return null;
-  };
-
-  const inStock = getPriceParams();
-  //const inStock = null;
-
-  const {
-    final = 0,
-    percent = 0,
-    compareAt = null,
-  } = inStock ? calcPrice(...inStock.priceParams) : {};
   return (
-    <Link className="block" href={`/p/rsp-${id}`}>
+    <Link className="block" target="_blank" href={`/p/rsp-${id}`}>
       <Card
         className="group !p-2  gap-2 md:gap-3 relative h-full border-none rounded-none shadow-none"
         dir="rtl"
@@ -76,7 +54,7 @@ export default function ProductCard(props: Product) {
             alt={name}
             fill
             className={cn(
-              "object-cover opacity-100 ",
+              "object-contain opacity-100 ",
               medias.length > 1 &&
                 "group-hover:opacity-0 transition-opacity duration-700",
             )}
@@ -86,7 +64,7 @@ export default function ProductCard(props: Product) {
               src={medias[1]?.url || PRODUCT_PLACEHOLDER}
               alt={name}
               fill
-              className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              className="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-700"
             />
           )}
         </div>

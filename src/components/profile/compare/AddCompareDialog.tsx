@@ -7,9 +7,11 @@ import { Card } from "@/components/ui/card";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
-import { calcPrice, cn, formatToman } from "@/lib/utils";
-import { addToCompareList } from "@/queries/compare";
-import { getProductsByCategorySlug } from "@/queries/products";
+import { cn } from "@/lib/utils/classnames";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
+import { getProductsByCategorySlug } from "@/queries/products/product-list";
+import { addToCompareList } from "@/queries/profile/compare/compare";
 import { Product } from "@/types/product";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Search, Star, X } from "lucide-react";
@@ -23,7 +25,7 @@ export default function AddCompareDialog({ category_slug }: Props) {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   const { data: productList, isPending } = useQuery(
-    getProductsByCategorySlug(category_slug, `search=${search}`)
+    getProductsByCategorySlug(category_slug, `search=${search}`),
   );
   const {
     mutate,
@@ -38,7 +40,7 @@ export default function AddCompareDialog({ category_slug }: Props) {
         onSuccess: () => {
           setOpen(false);
         },
-      }
+      },
     );
   };
   return (
@@ -91,7 +93,7 @@ function ProductItem({
   const { compareAt, final, percent } = calcPrice(
     item.price,
     item.discount_amount,
-    item.discount_percent
+    item.discount_percent,
   );
   return loading ? (
     <Skeleton className="" />
@@ -156,7 +158,7 @@ function SearchInput({
         onChange={(e) => setSearch(e.target.value)}
         className={cn(
           "flex h-10 focus:outline-0 focus:ring-0 !mb-0 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm  placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-          className
+          className,
         )}
         {...props}
       />

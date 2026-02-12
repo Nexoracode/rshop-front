@@ -1,6 +1,6 @@
-import { formatToman } from "@/lib/utils";
 import React from "react";
 import { TomanIcon } from "./Icons/TomanIcon";
+import { formatToman } from "@/lib/utils/price";
 
 type Props = {
   price: number;

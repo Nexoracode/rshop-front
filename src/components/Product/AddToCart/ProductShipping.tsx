@@ -12,11 +12,6 @@ export default function ProductShipping({
   requires_preparation,
   preparation_days,
 }: Props) {
-  console.log({
-    is_same_day_shipping,
-    requires_preparation,
-    preparation_days,
-  });
   return is_same_day_shipping || requires_preparation ? (
     <div className="flex items-center gap-1 text-secondary text-xs">
       <Truck className="size-4" />

@@ -1,7 +1,7 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getDetailedProfile } from "@/queries/orders";
+import { getDetailedProfile } from "@/queries/profile/order";
 import { ProfileOrderStatus } from "@/types/order";
 import { useQuery } from "@tanstack/react-query";
 

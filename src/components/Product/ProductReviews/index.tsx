@@ -1,7 +1,6 @@
 "use client";
 import ProductReviewItem from "./ProductReviewItem";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getProductReviews } from "@/queries/products";
 import React, { useState } from "react";
 import SectionTitle from "../../common/SectionTitle";
 import { ListLayout } from "../../common/ListLayout";
@@ -12,6 +11,7 @@ import { ChevronDown } from "lucide-react";
 import Pagination from "../../common/Pagination";
 import ProductRating from "./ProductRating";
 import SubmitReviewBtn from "./SubmitReviewBtn";
+import { getProductReviews } from "@/queries/products/product-reviews";
 
 type Props = {
   product_id: number;
@@ -26,7 +26,8 @@ export default function ProductReviews({ ...props }: Props) {
 
   const currentPageMeta = data?.pages[data.pages.length - 1].meta;
   const isLastPage =
-    currentPageMeta?.current_page === currentPageMeta?.total_pages;
+    currentPageMeta?.current_page === currentPageMeta?.total_pages ||
+    currentPageMeta?.total_pages === 0;
   const displayPagination =
     page !== null || Number(currentPageMeta?.current_page) > 1;
 

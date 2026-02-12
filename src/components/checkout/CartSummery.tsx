@@ -1,14 +1,14 @@
 "use client";
 
-import { formatToman } from "@/lib/utils";
 import CreateOrderBtn from "./CreateOrderBtn";
 import { Card } from "../ui/card";
 
 import Responsive from "../common/Responsive";
 import { useMutationState, useQuery } from "@tanstack/react-query";
-import { getCart } from "@/queries/cart";
+import { getCart } from "@/queries/cart/cart";
 import CartSummeryInfo from "./CartSummeryInfo";
 import CartSummeryProducts from "./CartSummeryProducts";
+import { formatToman } from "@/lib/utils/price";
 
 export default function CartSummary() {
   const { data } = useQuery(getCart);

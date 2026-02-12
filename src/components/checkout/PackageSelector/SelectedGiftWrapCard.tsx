@@ -1,10 +1,10 @@
 import Image from "next/image";
 import useCheckout from "@/hooks/useCheckout";
-import { getGiftWrappings } from "@/queries/orders";
 import { useQuery } from "@tanstack/react-query";
-import { formatToman } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Edit2Icon, Trash2Icon } from "lucide-react";
+import { getGiftWrappings } from "@/queries/checkout/order-meta";
+import { formatToman } from "@/lib/utils/price";
 
 export function SelectedGiftWrapCard({ onEdit }: { onEdit: () => void }) {
   const {

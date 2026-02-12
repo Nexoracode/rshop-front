@@ -3,8 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
 import LoaderDots from "../common/LoaderDots";
+import { cn } from "@/lib/utils/classnames";
 
 export const buttonVariants = cva(
   // Base

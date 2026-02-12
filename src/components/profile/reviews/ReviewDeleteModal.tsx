@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { deleteReview } from "@/queries/reviews";
+import { deleteReview } from "@/queries/profile/reviews";
 
 type Props = {
   open: boolean;
@@ -26,7 +26,7 @@ export default function ReviewDeleteModal({ open, onClose, id }: Props) {
         onSuccess: () => {
           onClose();
         },
-      }
+      },
     );
   };
   return (

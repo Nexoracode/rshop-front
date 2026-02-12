@@ -2,14 +2,15 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { calcPrice, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { HomeSectionProduct } from "@/types/home";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import { formatToman } from "@/lib/utils/price";
+import { calcPrice } from "@/lib/utils/number";
 
 export default function SpecialProductCart(
-  props: HomeSectionProduct & { num?: number }
+  props: HomeSectionProduct & { num?: number },
 ) {
   const {
     name,
@@ -25,11 +26,11 @@ export default function SpecialProductCart(
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
 
   return (
-    <Link href={`/p/rsp-${id}`}>
+    <Link target="_blank" href={`/p/rsp-${id}`}>
       <Card
         className="group container-home relative overflow-hidden border-0 rounded-none bg-background !p-2"
         dir="rtl"
@@ -62,13 +63,6 @@ export default function SpecialProductCart(
                   {name}
                 </h4>
               </div>
-
-              {/* rating */}
-              {/* <div className="flex items-center gap-1 text-yellow-500">
-          {[...Array(5)].map((_, i) =>
-            i < rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-          )}
-        </div> */}
 
               {/* price */}
               <div className="flex items-center gap-2">

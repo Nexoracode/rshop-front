@@ -5,10 +5,10 @@ import FeaturedCollection from "./FeaturedCollection";
 import SpecialCollection from "./SpecialCollection";
 import ProductByCategory from "./ProductByCategory";
 import BrandsSection from "./BrandsSection";
-import { getHomeSections } from "@/queries/home";
+import { getHomeSections } from "@/queries/home/home";
 import PageLoader from "../common/PageLoader";
 import SimpleCollection from "./SimpleCollection";
-import { getQueryClient } from "@/lib/get-query-client";
+import { getQueryClient } from "@/lib/utils/query-client";
 
 export default async function HomePage() {
   const queryClient = getQueryClient();

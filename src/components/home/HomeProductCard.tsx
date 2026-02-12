@@ -2,11 +2,13 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { calcPrice, cn, formatToman } from "@/lib/utils";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { HomeSectionProduct } from "@/types/home";
 import Image from "../common/Image";
+import { calcPrice } from "@/lib/utils/number";
+import { formatToman } from "@/lib/utils/price";
+import { cn } from "@/lib/utils/classnames";
 
 export default function HomeProductCard(props: HomeSectionProduct) {
   const { name, price, discount_percent, discount_amount, id, image, brand } =
@@ -15,11 +17,11 @@ export default function HomeProductCard(props: HomeSectionProduct) {
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
-    discount_percent
+    discount_percent,
   );
 
   return (
-    <Link className="block h-full" href={`/p/rsp-${id}`}>
+    <Link target="_blank" className="block h-full" href={`/p/rsp-${id}`}>
       <Card
         className="group h-full gap-2 md:gap-3 bg-background relative overflow-hidden border !p-1 md:p-2 shadow-sm transition hover:shadow-md"
         dir="rtl"
@@ -30,7 +32,7 @@ export default function HomeProductCard(props: HomeSectionProduct) {
             src={image || PRODUCT_PLACEHOLDER}
             alt={name}
             fill
-            className={cn("object-cover")}
+            className={cn("object-contain")}
           />
         </div>
 

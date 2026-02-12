@@ -18,7 +18,6 @@ export default function ContactPage() {
   const form = useForm();
   async function onSubmit(values: FieldValues) {
     // اینجا می‌توانید درخواست به سرور یا سرویس ایمیل (Resend, EmailJS, Webhook و ...) بفرستید
-    console.log("فرم ارسال شد:", values);
 
     // شبیه‌سازی ارسال موفق
     await new Promise((resolve) => setTimeout(resolve, 1200));

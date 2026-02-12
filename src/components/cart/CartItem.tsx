@@ -1,12 +1,12 @@
 "use client";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { formatToman } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 import QuantitySelect from "../Product/AddToCart/QuantitySelect";
 import { UserCartItem } from "@/types/cart";
 import { useMutation } from "@tanstack/react-query";
-import { deleteCartItem, updateCartItem } from "@/queries/cart";
+import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
+import { formatToman } from "@/lib/utils/price";
 
 export default function CartItem({
   id,

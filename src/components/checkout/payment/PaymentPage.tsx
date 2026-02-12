@@ -6,13 +6,13 @@ import PaymentMethodSelector from "../PaymentMethod";
 import PaymentCard from "./PaymentCard";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getOrderDetails } from "@/queries/orders";
 import PageLoader from "@/components/common/PageLoader";
 import OrderNotPayable from "./OrderNotPayable";
 import Responsive from "@/components/common/Responsive";
 import OrderItems from "./OrderItems";
 import { OrderDiscountSection } from "./OrderDiscountSection";
 import OrderSummeryInfo from "./OrderSummeryInfo";
+import { getOrderDetails } from "@/queries/profile/order";
 
 export default function PaymentPage() {
   const { order_id } = useParams();
@@ -43,7 +43,7 @@ export default function PaymentPage() {
                         {...data}
                         total_quantity={data.items.reduce(
                           (c, i) => i.quantity + c,
-                          0
+                          0,
                         )}
                       />
                     </div>

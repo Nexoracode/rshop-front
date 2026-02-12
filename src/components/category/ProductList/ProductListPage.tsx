@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getProductsInfinit } from "@/queries/products";
 import CollectionSkelton from "../CollectionSkelton";
 import ProductListLayout from "./ProductListLayout";
+import { getProductsListInfinit } from "@/queries/products/product-list";
 
 type Props = {
   slug: string;
@@ -19,7 +19,7 @@ export default function ProductListPage({
   sortBy,
 }: Props) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery(getProductsInfinit(slug, query, sortBy, page));
+    useInfiniteQuery(getProductsListInfinit({ slug, query, sortBy, page }));
 
   return data ? (
     <ProductListLayout

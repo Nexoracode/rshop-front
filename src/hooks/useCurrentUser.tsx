@@ -1,5 +1,5 @@
 "use client";
-import { getMe } from "@/queries/user";
+import { getMe } from "@/queries/auth/auth";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useCurrentUser() {

@@ -1,7 +1,6 @@
 "use client";
 import { useMemo, useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { cn, formatToman } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2, X } from "lucide-react";
@@ -9,6 +8,8 @@ import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import AddCompareDialog from "./AddCompareDialog";
 import { CompareListItem } from "@/types/product";
 import ProductRating from "@/components/Product/ProductReviews/ProductRating";
+import { formatToman } from "@/lib/utils/price";
+import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   items: Array<CompareListItem>;
@@ -123,7 +124,8 @@ export default function ProductCompare({
             {visibleKeys.map((key) => {
               const values = items.map(
                 ({ product }) =>
-                  product.attributes.find((a) => a.name === key)?.values || null
+                  product.attributes.find((a) => a.name === key)?.values ||
+                  null,
               );
               const isDiff = new Set(values).size > 1;
 
@@ -142,7 +144,7 @@ export default function ProductCompare({
                         "p-3 text-sm border-b text-center",
                         isDiff
                           ? "bg-primary/5 text-primary font-medium"
-                          : "text-muted-foreground"
+                          : "text-muted-foreground",
                       )}
                     >
                       {value?.map((v) => v).join(" ,") ?? "-"}

@@ -7,9 +7,9 @@ import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
 import { GiftMessageInput } from "./GiftMessageInput";
 import { GiftWrapModal } from "./GiftWrapModal";
 import useCheckout from "@/hooks/useCheckout";
-import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import { getGiftWrappings } from "@/queries/orders";
+import { getGiftWrappings } from "@/queries/checkout/order-meta";
+import { cn } from "@/lib/utils/classnames";
 
 export function PackageSelector() {
   const {
@@ -62,7 +62,7 @@ export function PackageSelector() {
               <div
                 className={cn(
                   "w-5 h-5 border-2 p-0.5 rounded-full ",
-                  is_gift && "border-success"
+                  is_gift && "border-success",
                 )}
               >
                 {is_gift && (

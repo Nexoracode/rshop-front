@@ -9,13 +9,13 @@ export default function ProductFeaturedBanner() {
         پیشنهاد شگفت انگیز
       </span>
 
-      <div>
+      {/*  <div>
         <ClientOnly>
           <CountdownTimer
             targetDate={new Date(Date.now() + 24 * 3600 * 1000)}
           />
         </ClientOnly>
-      </div>
+      </div> */}
     </div>
   );
 }

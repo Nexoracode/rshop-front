@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
 
 function Drawer({
   ...props
@@ -42,7 +42,7 @@ function DrawerOverlay({
       data-slot="drawer-overlay"
       className={cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 !opacity-100",
-        className
+        className,
       )}
       {...props}
     />
@@ -89,7 +89,7 @@ function DrawerContent({
         className={cn(
           "group/drawer-content fixed inset-x-0 bottom-0 z-50 flex flex-col",
           "bg-background rounded-t-2xl border-t max-h-[100dvh]",
-          className
+          className,
         )}
         {...props}
       >
@@ -127,7 +127,7 @@ function DrawerHeader({
       data-slot="drawer-header"
       className={cn(
         "relative flex border-b items-center justify-start px-4 pb-2 pt-[calc(env(safe-area-inset-top)+12px)]",
-        className
+        className,
       )}
       {...props}
     >

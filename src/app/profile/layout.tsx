@@ -4,7 +4,8 @@ import BannerPadding from "@/components/layout/Header/BannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/classnames";
+
 import React, { PropsWithChildren } from "react";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +26,7 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
         </Responsive>
         <main
           className={cn(
-            "rounded-xl flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]"
+            "rounded-xl flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]",
           )}
         >
           {children}

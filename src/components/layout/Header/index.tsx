@@ -11,8 +11,8 @@ import HeaderSearchBox from "./HeaderSearchBox";
 import UserMenu from "./UserMenu";
 import MainNav from "./MainNav";
 import HeaderCategoryPageTitle from "./HeaderCategoryPageTitle";
-import { cn } from "@/lib/utils";
 import AdsBanner from "./AdsBanner";
+import { cn } from "@/lib/utils/classnames";
 
 export default function Header() {
   const pathName = usePathname();
