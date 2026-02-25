@@ -1,15 +1,15 @@
 "use client";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { getProductsListInfinit } from "@/queries/products/product-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import React, { useMemo } from "react";
+import React from "react";
 import SidebarFilters from "./Filters/SidebarFilters";
-import MobileFilterSheet from "./MobileFilters/MobileFilterSheet";
 import { cn } from "@/lib/utils/classnames";
 import ProductListContent from "./ProductListContent";
 import ProductToolbar from "./Toolbar/ProductToolbar";
-import CollectionSkelton from "@/components/category/CollectionSkelton";
-import { SortItem } from "@/types/product";
+
+import Responsive from "@/components/common/Responsive";
+import MobileToolbar from "./Toolbar/MobileToolbar";
+import ProductListSkelton from "./Skeleton/ProductListSkelton";
 
 type Props = {
   type: "all" | "category" | "brand";
@@ -37,9 +37,7 @@ export default function ProductListContainer({
     getProductsListInfinit({ type, slug, query, page, sortBy }),
   );
 
-  const isMobile = useIsMobile();
-
-  if (isLoading || !data) return <CollectionSkelton />;
+  if (isLoading || !data) return <ProductListSkelton />;
 
   const products = data?.pages.flatMap((page) => page.data) ?? [];
 
@@ -49,24 +47,25 @@ export default function ProductListContainer({
   const filters = data?.pages[0].filters;
 
   return (
-    <div
-      className={cn("flex gap-6 md:gap-8", isMobile ? "flex-col" : "flex-row")}
-    >
+    <div className={cn("flex gap-6 md:gap-8 mt-4")}>
       {/* فیلترها فقط در دسکتاپ */}
-      {isMobile ? (
-        <MobileFilterSheet totalCount={totalCount} filters={filters} />
-      ) : (
+      <Responsive visible="desktop">
         <aside
           className="hidden w-[18rem] lg:block"
           style={{ position: "sticky", top: "6rem", alignSelf: "start" }}
         >
           <SidebarFilters filters={filters} />
         </aside>
-      )}
+      </Responsive>
 
       {/* محتوای اصلی */}
-      <div className={cn(isMobile ? "w-full" : " space-y-6 flex-1")}>
-        <ProductToolbar total_items={totalCount} />
+      <div className="w-full space-y-1">
+        <Responsive visible="mobile">
+          <MobileToolbar filters={filters} totalCount={totalCount} />
+        </Responsive>
+        <Responsive visible="desktop">
+          <ProductToolbar total_items={totalCount} />
+        </Responsive>
         <ProductListContent
           products={products}
           fetchNextPage={fetchNextPage}

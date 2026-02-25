@@ -13,6 +13,16 @@ import { toast } from "sonner";
 import { Textarea } from "@/components/ui/Textarea";
 import { cn } from "@/lib/utils/classnames";
 
+const validateRules = {
+  phone: {
+    regex: /^09\d{9}$/,
+    message: "شماره موبایل وارد شده صحیح نمی باشد.",
+  },
+  email: {
+    regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    message: "آدرس ایمیل وارد شده صحیح نمی باشد.",
+  },
+} as const;
 type Props = {
   label?: string;
   rules?:
@@ -21,7 +31,14 @@ type Props = {
         "disabled" | "valueAsNumber" | "valueAsDate" | "setValueAs"
       >
     | undefined;
-  type?: "text" | "password" | "otp" | "phone" | "number" | "textarea";
+  type?:
+    | "text"
+    | "email"
+    | "password"
+    | "otp"
+    | "phone"
+    | "number"
+    | "textarea";
   rows?: number;
 } & ComponentProps<typeof Input>;
 
@@ -42,10 +59,11 @@ export default function TextField({
       rules={{
         ...rules,
         validate:
-          type === "phone"
-            ? (value) =>
-                /^09\d{9}$/.test(value) ||
-                "شماره موبایل وارد شده صحیح نمی باشد."
+          type && type in validateRules
+            ? (value: string) => {
+                const rule = validateRules[type as keyof typeof validateRules];
+                return rule.regex.test(value) || rule.message;
+              }
             : undefined,
         required: required
           ? `ورود مقدار ${label ?? "این فیلد"} الزامی است`
@@ -132,10 +150,12 @@ export default function TextField({
               inputMode={"text"}
               placeholder=""
               value={value || ""}
+              aria-invalid={!!error}
               onChange={(e) => onChange(e.target.value)}
               className={cn(
-                "text-right tracking-widest input",
-                error && "border-rose-500 focus-visible:ring-rose-500",
+                "text-right  tracking-widest input",
+                error &&
+                  "ring-danger border-rose-500  focus-visible:ring-rose-500",
               )}
               {...props}
             />

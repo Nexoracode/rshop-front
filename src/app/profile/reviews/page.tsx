@@ -1,4 +1,4 @@
-import ReviewsPage from "@/components/profile/reviews/ReviewsPage";
+import ReviewsPage from "@/components/domain/profile/reviews/ReviewsPage";
 import React from "react";
 
 export default function page() {

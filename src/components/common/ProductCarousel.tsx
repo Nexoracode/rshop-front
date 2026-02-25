@@ -20,7 +20,10 @@ export default function ProductCarousel<T>({ items, renderItem }: Props<T>) {
       <CarouselPrevious />
       <CarouselContent>
         {items.map((product, index) => (
-          <CarouselItem key={index} className="basis-[10rem] sm:basis-[12rem]">
+          <CarouselItem
+            key={index}
+            className="basis-[10rem] border-l last:border-l-0 sm:basis-[12rem]"
+          >
             {renderItem(product)}
           </CarouselItem>
         ))}

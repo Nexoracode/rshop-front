@@ -1,11 +1,11 @@
 "use client";
-import QuantitySelect from "@/components/Product/AddToCart/QuantitySelect";
-import { Separator } from "@/components/ui/separator";
+import QuantitySelect from "@/components/domain/Product/AddToCart/QuantitySelect";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { UserCartItem } from "@/types/cart";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CartItemVariant from "./CartItemVariant";
 
 type Props = UserCartItem & {
   loading: boolean;
@@ -27,35 +27,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
         <div className="text-base font-medium line-clamp-1">
           {item.product.name}
         </div>
-        {/*  {item.variant ? (
-              <div>
-                {item.variant.attributes.map((attr) => (
-                  <p key={attr.id}>
-                    {attr.name} : {attr.values.value}
-                  </p>
-                ))}
-              </div>
-            ) : null} */}
-        <div className="flex gap-1">
-          {item.variant?.attributes
-            .sort(
-              (a, b) => a.attribute.display_order - b.attribute.display_order,
-            )
-            .map((i) => (
-              <>
-                <p className="text-sm" key={i.id}>
-                  <span className="font-light text-muted">
-                    {i.attribute.name}
-                  </span>{" "}
-                  :{" "}
-                  <span className="font-semibold text-neutral-900">
-                    {i.value.value}
-                  </span>
-                </p>
-                <Separator orientation="vertical" />
-              </>
-            ))}
-        </div>
+        <CartItemVariant variant={item.variant} />
         <div className="text-sm">
           {item.quantity} ×{" "}
           {(+item.unit_price - +item.discount).toLocaleString()} تومان

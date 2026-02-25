@@ -19,3 +19,8 @@ export const getSimilarProducts = (productId: number) =>
     },
     enabled: !!productId,
   });
+
+export const fetchProductById = async (
+  product_id: string,
+): Promise<{ product: Product; seo: SeoInfo }> =>
+  await apiFetch(`/product/site/${product_id}`);

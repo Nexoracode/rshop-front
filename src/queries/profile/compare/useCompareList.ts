@@ -8,17 +8,11 @@ import { toast } from "sonner";
 
 export const useCompareList = ({ productId }: { productId: number }) => {
   const { data } = useQuery(getCompareList);
-  const {
-    mutateAsync: addItem,
-    isSuccess,
-    isPending,
-  } = useMutation(addToCompareList);
+  const { mutateAsync: addItem, isPending } = useMutation(addToCompareList);
   const inCompareList = data?.find((i) => i.product.id === productId);
-  const {
-    mutateAsync: deleteItem,
-    isSuccess: deleteSuccess,
-    isPending: deletePending,
-  } = useMutation(deleteFromCompareList);
+  const { mutateAsync: deleteItem, isPending: deletePending } = useMutation(
+    deleteFromCompareList,
+  );
 
   const addToCampare = async (action: () => void) => {
     await addItem(

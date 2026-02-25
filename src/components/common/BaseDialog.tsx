@@ -59,6 +59,7 @@ export default function BaseDialog({
   loading,
   width = "md",
   hiddenFooter,
+  hiddenHeader,
   footer,
   className,
 }: Props) {
@@ -76,33 +77,35 @@ export default function BaseDialog({
           className,
         )}
       >
-        <DialogHeader className="flex p-3 sticky z-50 top-0 left-0 right-0 bg-card flex-row items-center justify-between">
-          {isMobile && (
-            <DialogClose asChild>
-              <Button
-                variant={"text-nohover"}
-                color="neutral"
-                size={"sm"}
-                className="inline-block w-fit px-0"
-              >
-                <ArrowRight />
-              </Button>
-            </DialogClose>
-          )}
-          <DialogTitle className="flex-1">{title}</DialogTitle>
-          {!isMobile ? (
-            <DialogClose asChild>
-              <Button
-                variant={"text-nohover"}
-                color="neutral"
-                size={"sm"}
-                className="inline-block w-fit px-0"
-              >
-                <X className="size-6" />
-              </Button>
-            </DialogClose>
-          ) : null}
-        </DialogHeader>
+        {hiddenHeader ? null : (
+          <DialogHeader className="flex p-3 sticky z-50 top-0 left-0 right-0 bg-card flex-row items-center justify-between">
+            {isMobile && (
+              <DialogClose asChild>
+                <Button
+                  variant={"text-nohover"}
+                  color="neutral"
+                  size={"sm"}
+                  className="inline-block w-fit px-0"
+                >
+                  <ArrowRight />
+                </Button>
+              </DialogClose>
+            )}
+            <DialogTitle className="flex-1">{title}</DialogTitle>
+            {!isMobile ? (
+              <DialogClose asChild>
+                <Button
+                  variant={"text-nohover"}
+                  color="neutral"
+                  size={"sm"}
+                  className="inline-block w-fit px-0"
+                >
+                  <X className="size-6" />
+                </Button>
+              </DialogClose>
+            ) : null}
+          </DialogHeader>
+        )}
         <div className="flex-1  overflow-auto scrollbar-custom  p-3">
           {content}
         </div>

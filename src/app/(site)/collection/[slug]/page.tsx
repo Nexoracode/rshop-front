@@ -1,6 +1,6 @@
-import CollectionGrid from "@/components/collection/CollectionGrid";
-import CollectionHero from "@/components/collection/CollectionHero";
-import ProductCardSkeleton from "@/components/common/Skeleton/ProductCardSkeleton";
+import ProductCardSkeleton from "@/components/shared/product/ProductCardSkeleton";
+import CollectionGrid from "@/components/domain/collection/CollectionGrid";
+import CollectionHero from "@/components/domain/collection/CollectionHero";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { getCollectionDetails } from "@/queries/products/collection";
 import React, { Suspense } from "react";

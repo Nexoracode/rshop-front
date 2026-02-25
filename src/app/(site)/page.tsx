@@ -1,13 +1,17 @@
 import PageLoader from "@/components/common/PageLoader";
-import HomePage from "@/components/home/HomePage";
+import HomePage from "@/components/domain/home/HomePage";
 import { Suspense } from "react";
 
 export const revalidate = 300;
 
 export default function Home() {
   return (
-    <Suspense fallback={<PageLoader />}>
-      <HomePage />
-    </Suspense>
+    <>
+      <Suspense fallback={<PageLoader />}>
+        <HomePage />
+      </Suspense>
+
+      {/* سکشن قهرمان / بنرها */}
+    </>
   );
 }

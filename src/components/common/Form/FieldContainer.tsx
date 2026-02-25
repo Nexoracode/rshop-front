@@ -1,4 +1,5 @@
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils/classnames";
 
 export default function FieldContainer({
   error,
@@ -12,7 +13,7 @@ export default function FieldContainer({
   required?: boolean;
 }) {
   return (
-    <div className="relative w-full pb-5">
+    <div className={cn("relative w-full pb-5")}>
       {label ? (
         <Label className="mb-1 text-xs text-muted ps-1">
           {label}
@@ -23,9 +24,7 @@ export default function FieldContainer({
       {children}
 
       {error ? (
-        <p className="text-xs text-rose-500 absolute right-2 bottom-0">
-          {error}
-        </p>
+        <p className="text-xs text-danger absolute right-2 bottom-0">{error}</p>
       ) : null}
     </div>
   );

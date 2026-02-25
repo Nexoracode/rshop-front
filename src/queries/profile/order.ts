@@ -22,10 +22,22 @@ export const getOrders = (
 ) =>
   queryOptions({
     queryKey: ["get-profile-orders", orderStatus],
-    queryFn: async (): Promise<Array<Order>> => {
+    queryFn: async (): Promise<{
+      reservation_order: number;
+      items: Array<Order>;
+    }> => {
       return await apiFetch(`/profile/orders/${orderStatus}`);
     },
   });
+export const getAwaitingOrders = queryOptions({
+  queryKey: ["get-awaiting-orders"],
+  queryFn: async (): Promise<{
+    items: Array<Order>;
+    reservation_order: number;
+  }> => {
+    return await apiFetch(`/profile/orders/awaiting-payment`);
+  },
+});
 
 export const getOrderDetails = (orderId: number) =>
   queryOptions({

@@ -1,8 +1,8 @@
 "use client";
 
 import Responsive from "@/components/common/Responsive";
-import DashboardOverview from "@/components/profile/dashboard/DashboardOverview";
-import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
+import DashboardOverview from "@/components/domain/profile/dashboard/DashboardOverview";
+import { ProfileSidebar } from "@/components/domain/profile/ProfileSidebar";
 import { Card } from "@/components/ui/card";
 
 export const dynamic = "force-dynamic";

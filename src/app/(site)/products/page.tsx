@@ -3,16 +3,14 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { SHOP_NAME, SHOP_URL } from "@/data/assets";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import CollectionSkelton from "@/components/category/CollectionSkelton";
 import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
 
-import { SortItem } from "@/types/product";
 import { queryParamToString } from "@/lib/utils/serialize-general";
+import ProductListSkelton from "@/components/domain/product-list/Skeleton/ProductListSkelton";
 
 export const revalidate = 300;
 
 export async function generateMetadata({
-  params,
   searchParams,
 }: PageProps<"/products/[...slug]">): Promise<Metadata> {
   const { page = "1" } = await searchParams;
@@ -54,7 +52,7 @@ export default async function ShopPage(props: PageProps<"/products">) {
         <h1 className="text-foreground font-semibold text-base">{"محصولات"}</h1>
       </div>
 
-      <Suspense fallback={<CollectionSkelton />}>
+      <Suspense fallback={<ProductListSkelton />}>
         <ProductListContainer
           query={queryParamToString(query)}
           page={queryParamToString(page)}

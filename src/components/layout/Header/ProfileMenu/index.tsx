@@ -19,7 +19,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import LogoutButton from "../../../profile/LogoutButton";
+import LogoutButton from "../../../domain/profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getMe } from "@/queries/auth/auth";
@@ -83,6 +83,7 @@ export default function ProfileMenu() {
       variant={"outline"}
       color="neutral"
       className="text-black border-muted-light"
+      size={"sm"}
       aria-label="ورود"
       startIcon={<LogInIcon className="-scale-x-100" />}
     >

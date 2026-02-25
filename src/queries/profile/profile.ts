@@ -6,8 +6,8 @@ import { mutationOptions } from "@tanstack/react-query";
 const queryClient = getQueryClient();
 
 export const editProfile = mutationOptions({
-  mutationFn: async ({ id, ...body }: Partial<User>) => {
-    apiFetch(`/users/${id}`, { body, method: "PATCH" });
+  mutationFn: async ({ ...body }: Partial<User>) => {
+    await apiFetch(`/users/me/update`, { body, method: "PATCH" });
   },
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ["get-me"] });

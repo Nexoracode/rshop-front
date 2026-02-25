@@ -1,201 +1,152 @@
-import DesktopTooltip from "@/components/common/DesktopTooltip";
-import PageLoader from "@/components/common/PageLoader";
-import AddToCompareBtn from "@/components/Product/ProductCard/AddToCompareBtn";
-import AddToWishlistBtn from "@/components/Product/ProductCard/AddToWishlistBtn";
-import MobileShareBtn from "@/components/Product/ProductCard/MobileShareBtn";
-import SharLinkBtn from "@/components/Product/ProductCard/SharLinkBtn";
-import Responsive from "@/components/common/Responsive";
-import ProductReviewsSkeleton from "@/components/common/Skeleton/ProductReviewsSkeleton";
-import RelatedProductsSkeleton from "@/components/common/Skeleton/RelatedProductsSkeleton";
-import ProductAttributes from "@/components/Product/ProductAttributes";
-import ProductDescription from "@/components/Product/ProductTabs/ProductDescription";
-import ProductGallery from "@/components/Product/ProductGallery";
-import ProductHelper from "@/components/Product/ProductTabs/ProductHelper";
-import ProductPageProvider from "@/components/Product/ProductProvider";
-import ProductSchema from "@/components/Product/ProductSchema";
-import ProductTabs from "@/components/Product/ProductTabs/ProductTabs";
-import { Separator } from "@/components/ui/separator";
-import { PRODUCT_PLACEHOLDER, SHOP_NAME, SHOP_URL } from "@/data/assets";
-import { Metadata } from "next";
-import dynamic from "next/dynamic";
+// app/p/[id]/page.tsx
 import { notFound } from "next/navigation";
-
 import { Suspense } from "react";
-import ProductSummeryCard from "@/components/Product/ProductSummeryCard";
-import ProductFeaturedBanner from "@/components/Product/ProductFeaturedBanner";
-import ProductInfoDialog from "@/components/Product/ProductInfo/ProductInfoDialog";
-import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
-import { getQueryClient } from "@/lib/utils/query-client";
-import { getProductById } from "@/queries/products/product-details";
-import { getCategoryBySlug } from "@/queries/products/category";
-import { calcPrice } from "@/lib/utils/number";
-import ProductBreadcrump from "@/components/Product/ProductBreadcrump";
+import { Separator } from "@/components/ui/separator";
 
-const ProductReviews = dynamic(
-  () => import("@/components/Product/ProductReviews"),
-);
+import { fetchProductById } from "@/queries/products/product-details";
+import { fetchCategoryBySlug } from "@/queries/products/category";
+import { SHOP_NAME, SHOP_URL, PRODUCT_PLACEHOLDER } from "@/data/assets";
 
-const RelatedProducts = dynamic(
-  () => import("@/components/Product/RelatedProducts"),
-);
+import ProductBreadcrump from "@/components/domain/Product/ProductBreadcrump";
+import ProductSchema from "@/components/domain/Product/ProductSchema";
+import ProductGallery from "@/components/domain/Product/ProductGallery";
+import ProductInfo from "@/components/domain/Product/ProductInfo/ProductInfo";
+import ProductTabs from "@/components/domain/Product/ProductTabs/ProductTabs";
+import ProductDescription from "@/components/domain/Product/ProductTabs/ProductDescription";
+import ProductAttributes from "@/components/domain/Product/ProductAttributes";
+import ProductSummeryCard from "@/components/domain/Product/ProductSummeryCard";
+import ProductFeaturedBanner from "@/components/domain/Product/ProductFeaturedBanner";
 
-async function getProduct(props: PageProps<"/p/[id]">) {
-  const { id } = await props.params;
+import RelatedProducts from "@/components/domain/Product/RelatedProducts";
+import ProductReviews from "@/components/domain/Product/ProductReviews";
 
-  const queryClient = getQueryClient();
+import SidebarActions from "@/components/domain/Product/SidebarActions";
+import ProductReviewsSkeleton from "@/components/domain/Product/ProductReviews/ProductReviewsSkeleton";
+import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProductsSkeleton";
 
-  const product = await queryClient.fetchQuery(
-    getProductById(id.split("-").pop() ?? ""),
-  );
+export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 
-  return product;
-}
-async function getProductCategroy(categorySlug: string) {
-  const queryClient = getQueryClient();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const productId = id.split("-").pop() ?? "";
+  const { seo } = await fetchProductById(productId);
 
-  const category = await queryClient.fetchQuery(
-    getCategoryBySlug(categorySlug),
-  );
-
-  return category;
-}
-
-export const revalidate = 300;
-
-export async function generateMetadata(
-  props: PageProps<"/p/[id]">,
-): Promise<Metadata> {
-  const { product, seo } = await getProduct(props);
-
-  if (!product) {
-    return {
-      title: "محصول یافت نشد",
-      robots: { index: false, follow: false },
-    };
+  if (!seo) {
+    return { title: "محصول یافت نشد", robots: { index: false } };
   }
 
-  const url = `${SHOP_URL}/p/rsp-${product.id}`;
-
-  const { final } = calcPrice(
-    product.price,
-    product.discount_amount,
-    product.discount_percent,
-  );
+  const url = `${SHOP_URL}/p/${id}`;
 
   return {
-    title: `${seo.title || product.name} | ${SHOP_NAME}`,
-    description: seo.description || `${product.description.slice(0, 155)}...`,
-    alternates: {
-      canonical: url,
-    },
+    title: seo.title,
+    description: seo.description?.slice(0, 155) + "...",
+    alternates: { canonical: url },
     openGraph: {
-      title: `${product.name} - ${final} تومان`,
-      description: seo.description || `${product.description.slice(0, 155)}...`,
+      title: seo.og_title,
+      description: seo.og_description.slice(0, 155) + "...",
       url,
-      images: product.medias.map((img) => ({
-        url: img.url,
-        alt: product.name,
-      })),
+      images: seo.og_image,
       type: "website",
       locale: "fa_IR",
       siteName: SHOP_NAME,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} - ${final} تومان`,
-      images: product.media_pinned?.url,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    other: {
-      "theme-color": "#000000",
+      title: seo.title,
+      images: seo.og_image,
     },
   };
 }
 
-export default async function ProductPage(props: PageProps<"/p/[id]">) {
-  const { product } = await getProduct(props);
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const productId = id.split("-").pop() ?? "";
+  const { product } = await fetchProductById(productId);
 
   if (!product) notFound();
-  const category = await getProductCategroy(product.category?.slug ?? "");
+
+  const category = product.category?.slug
+    ? await fetchCategoryBySlug(product.category.slug)
+    : null;
 
   return (
-    <div className="container min-h-screen my-10 space-y-5">
-      <ProductBreadcrump {...category} />
-      <ProductPageProvider product={product}>
-        <Suspense fallback={<PageLoader />}>
-          <ProductSchema {...product} />
-          <div className="flex flex-col md:flex-row w-full justify-between relative">
-            <div className="w-full space-y-2 flex-1 md:max-w-lg">
-              {product.is_feautered && <ProductFeaturedBanner />}
-              <div className="relative flex">
-                <div className="flex flex-col gap-3">
-                  <DesktopTooltip
-                    contentProps={{ side: "left" }}
-                    content="اظافه به علاقه مندی ها"
-                  >
-                    <AddToWishlistBtn id={product.id} />
-                  </DesktopTooltip>
-                  <DesktopTooltip
-                    contentProps={{ side: "left" }}
-                    content="اظافه به لیست مقایسه"
-                  >
-                    <AddToCompareBtn productId={product.id} />
-                  </DesktopTooltip>
-                  <Responsive visible="desktop">
-                    <DesktopTooltip
-                      contentProps={{ side: "left" }}
-                      content="اشتراک گذاری"
-                    >
-                      <SharLinkBtn />
-                    </DesktopTooltip>
-                  </Responsive>
+    <div className="container my-8 md:my-12 space-y-8 min-h-[80vh]">
+      {category && <ProductBreadcrump {...category} />}
 
-                  <Responsive visible="mobile">
-                    <MobileShareBtn />
-                  </Responsive>
-                </div>
-                <ProductGallery
-                  media_pinned={product.media_pinned}
-                  images={product.medias}
-                />
-              </div>
+      <ProductSchema {...product} />
+
+      {product.is_feautered && <ProductFeaturedBanner />}
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* ستون سمت چپ (گالری + actions sidebar در دسکتاپ) */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="relative flex gap-4">
+            {/* actions vertical در دسکتاپ */}
+            <div className="hidden lg:flex flex-col gap-4 sticky top-24 self-start">
+              <SidebarActions productId={product.id} />
             </div>
 
-            <ProductInfo {...product} />
-          </div>
-        </Suspense>
-
-        <Separator />
-
-        <Suspense fallback={<RelatedProductsSkeleton />}>
-          <RelatedProducts productId={product.id} />
-        </Suspense>
-
-        <ProductInfoDialog {...product} />
-
-        <div className="flex relative gap-4 justify-between">
-          <div className="flex-1 relative [&>section]:min-h-[30rem] ">
-            <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
-            <Separator />
-            <ProductDescription showMore description={product.description} />
-            <Separator />
-            <ProductAttributes attributes={product.specifications} />
-            <Separator />
-            <Suspense fallback={<ProductReviewsSkeleton />}>
-              <ProductReviews
-                product_id={product.id}
-                product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-                product_name={product.name}
+            {/* گالری اصلی */}
+            <div className="flex-1">
+              <ProductGallery
+                media_pinned={product.media_pinned}
+                images={product.medias}
               />
-            </Suspense>
+            </div>
           </div>
+        </div>
 
+        {/* اطلاعات محصول */}
+        <div className="lg:col-span-8">
+          <ProductInfo {...product} />
+        </div>
+      </div>
+
+      <Separator className="my-12" />
+
+      <Suspense fallback={<RelatedProductsSkeleton />}>
+        <RelatedProducts productId={product.id} />
+      </Suspense>
+
+      <Separator className="my-10" />
+
+      {/* بخش پایین: tabs + description + attributes + reviews */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-9 space-y-10">
+          <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
+
+          <ProductDescription description={product.description} showMore />
+
+          <Separator />
+
+          <ProductAttributes attributes={product.specifications} />
+
+          <Separator />
+
+          <Suspense fallback={<ProductReviewsSkeleton />}>
+            <ProductReviews
+              product_id={product.id}
+              product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+              product_name={product.name}
+            />
+          </Suspense>
+        </div>
+
+        {/* کارت خلاصه در دسکتاپ */}
+        <div className="lg:col-span-3 lg:sticky lg:top-24 self-start hidden lg:block">
           <ProductSummeryCard {...product} />
         </div>
-      </ProductPageProvider>
+      </div>
+
+      {/* Mobile share & actions اگر لازم */}
     </div>
   );
 }

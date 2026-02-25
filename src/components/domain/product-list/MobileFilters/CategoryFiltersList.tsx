@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function CategoryFiltersList({ categories }: Props) {
-  const getTree = (cat: CategoryFilter, slug = "/collection", level = 0) => {
+  const getTree = (cat: CategoryFilter, slug = "/products", level = 0) => {
     return (
       <div className={cn(level > 0 && "pr-2")}>
         <SheetClose asChild>

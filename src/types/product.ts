@@ -73,8 +73,8 @@ export type Product = {
   variants: Array<ProductVariant>;
   specifications: Array<ProductAttributeGroup>;
   attribute_nodes: Array<ProductAttributeGroup>;
-  count: number;
-  average_rating: number;
+  reviews_count: number;
+  average_raiting: number;
   items: Array<Review>;
   helper: ProductHelper | null;
 };
@@ -96,6 +96,7 @@ export type VariantAttribute = {
   slug: string;
   type: ProductAttributeType;
   values: ProductAttributeValue;
+  value: ProductAttributeValue;
 };
 export type CartVariantAttribute = {
   id: number;
@@ -172,7 +173,7 @@ export type CompareListItemProduct = {
   brand: string;
   category_id: number;
   category: Category;
-  price: 208135;
+  price: number;
   discount_amount: number;
   discount_percent: number;
   final_price: number;
@@ -208,4 +209,11 @@ export type Collection = {
   start_date: string; // ISO Date
   end_date: string; // ISO Date
   products: Array<CollectionProduct>;
+};
+
+export type SearchResult = {
+  term: string;
+  products: Array<ProductSearchResult>;
+  brands: Array<Brand>;
+  categories: Array<Category>;
 };

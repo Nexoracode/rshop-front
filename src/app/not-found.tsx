@@ -1,5 +1,5 @@
 import Image from "@/components/common/Image";
-import Footer from "@/components/layout/Footer";
+import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header";
 import Link from "next/link";
 

@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export function serializeQuery(obj: Record<string, any>, prefix = ""): string {
   const parts: string[] = [];
 

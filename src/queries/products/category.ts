@@ -16,7 +16,7 @@ export const getCategoryBySlug = (slug: string) =>
       category: Category;
       parents: Array<Category>;
     }> => {
-      return apiFetch(`/category/site/with-parents/slug/${slug}`);
+      return await apiFetch(`/category/site/with-parents/slug/${slug}`);
     },
   });
 
@@ -27,3 +27,10 @@ export const getCategorySeoDataBySlug = (slug: string) =>
       return apiFetch(`/category/site/seo/${slug}`);
     },
   });
+
+export const fetchCategoryBySlug = async (
+  slug: string,
+): Promise<{
+  category: Category;
+  parents: Array<Category>;
+}> => await apiFetch(`/category/site/with-parents/slug/${slug}`);

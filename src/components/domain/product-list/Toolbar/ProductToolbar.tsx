@@ -1,6 +1,5 @@
 import React from "react";
 import SortSelect from "./SortSelect";
-import Responsive from "@/components/common/Responsive";
 
 type Props = {
   total_items: number;

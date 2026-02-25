@@ -7,11 +7,11 @@ import { useMutation } from "@tanstack/react-query";
 import PageLoader from "@/components/common/PageLoader";
 import { useEffect } from "react";
 
-import PaymentFailed from "@/components/verify/PaymentFailed";
-import OrderSummerySection from "@/components/verify/OrderSummerySection";
-import ProductsSection from "@/components/verify/ProductsSection";
-import AddressSection from "@/components/verify/AddressSection";
 import { verifyPayment } from "@/queries/checkout/payment/verify";
+import OrderSummerySection from "@/components/domain/verify/OrderSummerySection";
+import ProductsSection from "@/components/domain/verify/ProductsSection";
+import AddressSection from "@/components/domain/verify/AddressSection";
+import PaymentFailed from "@/components/domain/verify/PaymentFailed";
 
 export default function PaymentVerifyPage() {
   const params = useSearchParams();

@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import React, { memo } from "react";
+import React from "react";
 import Collapsible from "./Collapsible";
 import FilterCategories from "./FilterCategories";
 import FilterPriceRange from "./FilterPriceRange";
@@ -18,7 +18,7 @@ type Props = {
 function SidebarFiltersComponent({
   filters: {
     attributes,
-    generic: { boolean_filter, brands, categories, price_range, special_offer },
+    generic: { boolean_filter, brands, categories, price_range },
   },
 }: Props) {
   const {
@@ -127,6 +127,6 @@ function SidebarFiltersComponent({
   );
 }
 
-const SidebarFilters = memo(SidebarFiltersComponent);
+const SidebarFilters = SidebarFiltersComponent;
 
 export default SidebarFilters;

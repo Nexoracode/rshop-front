@@ -1,9 +1,9 @@
 import Responsive from "@/components/common/Responsive";
 import Header from "@/components/layout/Header";
-import BannerPadding from "@/components/layout/Header/BannerPadding";
+import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
-import ProfileHeader from "@/components/profile/ProfileHeader";
-import { ProfileSidebar } from "@/components/profile/ProfileSidebar";
+import ProfileHeader from "@/components/domain/profile/ProfileHeader";
+import { ProfileSidebar } from "@/components/domain/profile/ProfileSidebar";
 import { cn } from "@/lib/utils/classnames";
 
 import React, { PropsWithChildren } from "react";

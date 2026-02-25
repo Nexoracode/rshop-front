@@ -1,4 +1,4 @@
-import PaymentPage from "@/components/checkout/payment/PaymentPage";
+import PaymentPage from "@/components/domain/checkout/payment/PaymentPage";
 import React from "react";
 
 export default function page() {

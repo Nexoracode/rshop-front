@@ -28,7 +28,6 @@ export default function useFilters() {
     key: K,
     value: ProductFilterQuery["filter"][K],
   ) {
-    console.log({ key, value });
     handleSetQuery("filter", { ...query?.filter, [key]: value });
   }
 

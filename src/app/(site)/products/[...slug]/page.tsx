@@ -4,8 +4,6 @@ import { Metadata } from "next";
 import { SHOP_NAME, SHOP_URL } from "@/data/assets";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import CollectionSkelton from "@/components/category/CollectionSkelton";
-import CategoryDescription from "@/components/category/CategoryDescription";
 import { notFound } from "next/navigation";
 import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
 import {
@@ -13,8 +11,9 @@ import {
   getCategorySeoDataBySlug,
 } from "@/queries/products/category";
 import { getQueryClient } from "@/lib/utils/query-client";
-import { SortItem } from "@/types/product";
 import { queryParamToString } from "@/lib/utils/serialize-general";
+import ProductListSkelton from "@/components/domain/product-list/Skeleton/ProductListSkelton";
+import CategoryDescription from "@/components/domain/category/CategoryDescription";
 
 export const revalidate = 300;
 
@@ -99,8 +98,6 @@ export default async function CategoryPage(
       ]
     : [{ label: "محصولات" }];
 
-  const queryStr = `${query}`;
-
   return (
     <div className="container space-y-1  py-3">
       <Breadcrumb items={breadcrumbItems} />
@@ -110,7 +107,7 @@ export default async function CategoryPage(
         </h1>
       </div>
 
-      <Suspense fallback={<CollectionSkelton />}>
+      <Suspense fallback={<ProductListSkelton />}>
         <ProductListContainer
           query={queryParamToString(query)}
           page={queryParamToString(page)}

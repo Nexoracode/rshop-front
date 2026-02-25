@@ -1,4 +1,4 @@
-import CheckoutForm from "@/components/checkout/CheckoutForm";
+import CheckoutForm from "@/components/domain/checkout/CheckoutForm";
 import React from "react";
 
 export default function CheckoutPage() {

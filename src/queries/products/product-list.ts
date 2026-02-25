@@ -1,6 +1,6 @@
 import { apiFetch } from "@/lib/api-fetch";
 import { PaginateData, ProductFilters } from "@/types";
-import { Product, SortItem } from "@/types/product";
+import { Product } from "@/types/product";
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
 export const getProductsByCategorySlug = (slug: string, query?: string) =>
@@ -38,8 +38,7 @@ export const getProductsListInfinit = ({
     queryFn: ({ pageParam = 1 }) => {
       const url = type === "brand" ? `/brand/${slug}` : `/${slug}`;
 
-      const queryParams = new URLSearchParams();
-      if (query) queryParams.append("query", query);
+      const queryParams = new URLSearchParams(query);
       if (sortBy) queryParams.append("sortBy", sortBy);
       if (pageParam) {
         queryParams.append("page", pageParam.toString());

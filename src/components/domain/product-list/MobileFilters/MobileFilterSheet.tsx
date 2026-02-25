@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Switch } from "@/components/ui/switch";
-import { ProductFilterQuery, ProductFilters } from "@/types";
+import { ProductFilters } from "@/types";
 import FilterItem from "./FilterItem";
 import CategoryFiltersList from "./CategoryFiltersList";
 import FilterPriceRange from "../Filters/FilterPriceRange";
@@ -10,12 +10,14 @@ import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
 import { SheetClose } from "@/components/ui/sheet";
 import useFilters from "../hooks/useFilters";
+import { SlidersHorizontalIcon } from "lucide-react";
+import TriggerButton from "../Toolbar/MobileToolbar/TriggerButton";
 
 type Props = { filters: ProductFilters; totalCount: number };
-export default function FiltersSheetContent({ filters, totalCount }: Props) {
+export default function MobileFilterSheet({ filters, totalCount }: Props) {
   const {
     attributes,
-    generic: { boolean_filter, brands, categories, price_range, special_offer },
+    generic: { boolean_filter, brands, categories, price_range },
   } = filters;
 
   const {
@@ -25,10 +27,22 @@ export default function FiltersSheetContent({ filters, totalCount }: Props) {
     handleSetFilter,
     query,
   } = useFilters();
+  const hasAnyFilter =
+    Object.keys(query.filter.attributes).length +
+    query.filter.brand.length +
+    query.filter.booleanFilters.length +
+    (query.filter.price_min !== "" || query.filter.price_max !== "" ? 1 : 0);
   return (
     <div>
       <BaseDialog
-        trigger={<button>فیلترها</button>}
+        trigger={
+          <TriggerButton
+            isActive={!!hasAnyFilter}
+            displayBadge={hasAnyFilter}
+            label="فیلتر ها"
+            Icon={SlidersHorizontalIcon}
+          />
+        }
         title="فیلترها"
         content={
           <div>
@@ -46,6 +60,10 @@ export default function FiltersSheetContent({ filters, totalCount }: Props) {
 
             <FilterItem
               label="محدوده قیمت"
+              isActive={
+                Boolean(query?.filter.price_min) ||
+                Boolean(query?.filter.price_max)
+              }
               content={
                 <FilterPriceRange
                   min={0}
@@ -64,6 +82,9 @@ export default function FiltersSheetContent({ filters, totalCount }: Props) {
                 <FilterItem
                   label={attr.name}
                   key={attr.id}
+                  isActive={Boolean(
+                    query?.filter.attributes?.[attr.id]?.length,
+                  )}
                   content={
                     <FilterColor
                       value={query?.filter.attributes[attr.id] || []}

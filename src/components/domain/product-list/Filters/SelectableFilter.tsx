@@ -1,7 +1,7 @@
 "use client";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ClosedCaption, Search, X } from "lucide-react";
+import { ClosedCaption, Search } from "lucide-react";
 import React, { useState } from "react";
 export type TreeItemType = {
   label: string;

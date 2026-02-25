@@ -39,7 +39,7 @@ export default function ProductListContent({
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage]);
+  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   const shouldShowPagination =
     hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
@@ -47,20 +47,20 @@ export default function ProductListContent({
     <div className="space-y-10">
       {/* نمایش محصولات */}
       {isMobile ? (
-        <ProductList products={products} />
+        <ProductList
+          products={products}
+          isFetchingNextPage={isFetchingNextPage}
+        />
       ) : (
-        <ProductGrid products={products} />
-      )}
-
-      {/* تریگر برای لود بیشتر (infinite scroll) */}
-      {hasNextPage && currentPage < 10 && (
-        <LoadMoreTrigger
-          ref={ref}
-          isFetching={isFetchingNextPage}
-          message="در حال بارگذاری محصولات بیشتر..."
+        <ProductGrid
+          products={products}
+          isFetchingNextPage={isFetchingNextPage}
         />
       )}
-
+      = {/* تریگر برای لود بیشتر (infinite scroll) */}
+      {hasNextPage && currentPage < 10 && (
+        <LoadMoreTrigger ref={ref} isFetching={isFetchingNextPage} />
+      )}
       {/* fallback به pagination معمولی بعد از ۱۰ صفحه */}
       {shouldShowPagination && (
         <div className="mt-12 flex justify-center">

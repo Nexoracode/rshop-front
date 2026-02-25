@@ -1,6 +1,6 @@
-import CategoriesMenu from "@/components/categories/CategoriesMenu";
+import CategoriesMenu from "@/components/domain/categories/CategoriesMenu";
 import Header from "@/components/layout/Header";
-import BannerPadding from "@/components/layout/Header/BannerPadding";
+import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { getCategoreis } from "@/queries/products/category";

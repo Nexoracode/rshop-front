@@ -1,5 +1,5 @@
 @utility container-home {
-  @apply w-full max-w-7xl mx-auto;
+  @apply w-full max-w-[87rem] mx-auto;
 }
 
 @utility content-center {
@@ -12,4 +12,16 @@
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@layer utilities {
+  .grid-divider {
+    --divider: theme("colors.gray.200");
+    gap: 1px;
+    background: var(--divider);
+  }
+
+  .grid-divider > * {
+    background: white;
+  }
 }

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { BASE_API_URL } from "@/data/assets";
-import { isServer } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { toFormData } from "./utils/form-data";
 
@@ -75,6 +74,7 @@ export async function apiFetch(path: string, options?: ApiFetchOptions) {
       message: "خطا در برقراری ارتباط با سرور",
       statusCode: 500,
       originalError: error,
+      pathWithBase,
     };
   }
 
@@ -89,8 +89,8 @@ export async function apiFetch(path: string, options?: ApiFetchOptions) {
     const message = data?.message ?? "خطا در برقراری ارتباط با سرور";
 
     if (showErrorToast) toast.error(message);
-
     throw {
+      pathWithBase,
       message,
       statusCode: res.status,
       data,

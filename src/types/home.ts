@@ -98,3 +98,52 @@ export type PromoBanner = {
   created_at: string;
   updated_at: string;
 };
+
+export type PublicSettings = {
+  id: number;
+  key: string;
+  value: string;
+  description: string | null;
+  category: string;
+};
+
+export type InfoPageDataType = "about_us" | "purchase-guide" | "return-policy";
+export type InfoPageData = {
+  id: number;
+  type: "about_us";
+  title: string;
+  content: string;
+  meta_title: string;
+  meta_description: string;
+  is_active: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type FaqIcon = {
+  id: number;
+  name: string;
+  svg: string;
+};
+export type Faq = {
+  id: number;
+  question: string;
+  answer: string;
+  faq_category_id: number;
+  faq_category: FaqCategory;
+  display_order: number;
+  is_active: boolean;
+  view_count: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type FaqCategory = {
+  id: 1;
+  name: string;
+  icon_id: number;
+  icon: FaqIcon | null;
+  display_order: number;
+  is_active: boolean;
+};

@@ -1,4 +1,4 @@
-import CardToCardPaymentPage from "@/components/checkout/payment/CardToCardPaymentPage";
+import CardToCardPaymentPage from "@/components/domain/checkout/payment/CardToCardPaymentPage";
 import React from "react";
 
 export default function CardToCardPage() {

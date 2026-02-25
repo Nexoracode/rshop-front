@@ -1,14 +1,7 @@
 import { apiFetch } from "@/lib/api-fetch";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { WishlistItem } from "@/types/product";
-import {
-  mutationOptions,
-  queryOptions,
-  useMutation,
-  useQuery,
-} from "@tanstack/react-query";
-import React, { useEffect } from "react";
-import { toast } from "sonner";
+import { mutationOptions, queryOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
 export const addWishlistList = mutationOptions({

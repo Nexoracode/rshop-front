@@ -11,12 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
-import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import ImageUploadField from "@/components/common/Form/ImageUploadField";
 
 export default function ContactPage() {
   const form = useForm();
-  async function onSubmit(values: FieldValues) {
+  async function onSubmit() {
     // اینجا می‌توانید درخواست به سرور یا سرویس ایمیل (Resend, EmailJS, Webhook و ...) بفرستید
 
     // شبیه‌سازی ارسال موفق

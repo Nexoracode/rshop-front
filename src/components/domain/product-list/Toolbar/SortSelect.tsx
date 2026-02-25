@@ -4,13 +4,9 @@ import { Button } from "@/components/ui/button";
 import { sortItems } from "@/data/assets";
 import { ArrowDownWideNarrowIcon } from "lucide-react";
 import React from "react";
-import ProductSortSheet from "./ProductSortSheet";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { SortItem } from "@/types/product";
 
-type Props = {};
-
-export default function SortSelect({}: Props) {
+export default function SortSelect() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
@@ -44,10 +40,6 @@ export default function SortSelect({}: Props) {
             </Button>
           ))}
         </div>
-      </Responsive>
-
-      <Responsive visible="mobile">
-        <ProductSortSheet />
       </Responsive>
     </React.Fragment>
   );

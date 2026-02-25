@@ -88,10 +88,7 @@ export function ResponsiveModal({
     <Root open={open} onOpenChange={onOpenChange}>
       {trigger && <Trigger asChild>{trigger}</Trigger>}
 
-      <Content
-        onClose={() => {}}
-        className={cn(contentExtraClasses, contentClassName)}
-      >
+      <Content className={cn(contentExtraClasses, contentClassName)}>
         {(title || description) && (
           <Header>
             {title && <Title>{title}</Title>}

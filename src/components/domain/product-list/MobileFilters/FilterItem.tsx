@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import SelectableFilter from "../Filters/SelectableFilter";
+import { cn } from "@/lib/utils/classnames";
 
 type FilterOptionType = {
   label: string;
@@ -15,6 +16,7 @@ type Props = {
   attrId?: number;
   value?: Array<string>;
   onChange?: (value: Array<string>) => void;
+  isActive?: boolean;
 };
 
 export default function FilterItem({
@@ -23,17 +25,24 @@ export default function FilterItem({
   content,
   value = [],
   onChange = () => {},
+  isActive = false,
 }: Props) {
   const [open, setOpen] = useState(false);
   return (
     <React.Fragment>
       <div
-        className="flex justify-between items-center py-3 border-b"
+        className={cn(
+          "flex justify-between relative items-center py-3 border-b",
+          (isActive || value.length > 0) && "bg-primary-100/50",
+        )}
         role="button"
         onClick={() => setOpen(true)}
       >
         <span className="text-muted text-sm">{label}</span>
 
+        {(isActive || value.length > 0) && (
+          <span className="w-2 h-2 absolute left-3 top-3 bg-primary rounded-full inline-block ms-1"></span>
+        )}
         <ChevronLeft className="size-5" />
       </div>
       {open && (

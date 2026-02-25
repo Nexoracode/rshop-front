@@ -1,6 +1,6 @@
-import Footer from "@/components/layout/Footer";
+import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header";
-import BannerPadding from "@/components/layout/Header/BannerPadding";
+import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 export default function RootLayout({

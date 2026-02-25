@@ -38,10 +38,10 @@ export const linkColumns = [
   {
     title: "راهنمای خرید",
     links: [
-      { label: "نحوه ثبت سفارش", href: "/guide/order" },
+      { label: "راهنمای خرید", href: "/store-info/purchase-guide" },
       { label: "شیوه‌های ارسال", href: "/guide/shipping" },
       { label: "سوالات متداول", href: "/guide/faq" },
-      { label: "رویه مرجوعی", href: "/guide/returns" },
+      { label: "رویه مرجوعی", href: "/guide/store-info/return_policy" },
     ],
   },
   {
@@ -56,7 +56,7 @@ export const linkColumns = [
   {
     title: "فروشگاه",
     links: [
-      { label: "درباره ما", href: "/about" },
+      { label: "درباره ما", href: "/guide/store-info/about-us" },
       { label: "تماس با ما", href: "/contact" },
       { label: "وبلاگ", href: "/blog" },
       { label: "فرصت‌های شغلی", href: "/careers" },
