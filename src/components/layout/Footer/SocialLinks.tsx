@@ -55,24 +55,29 @@ export default function SocialLinks({ data }: { data: Array<PublicSettings> }) {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 pt-2">
-      {socialItems.map(({ Icon, ...s }) => {
-        const socialItem = data.find((i) => i.key === s.key);
-        return socialItem ? (
-          <Tooltip key={socialItem.key}>
-            <TooltipTrigger asChild>
-              <a
-                href={socialItem.value}
-                aria-label={socialItem.description ?? ""}
-                className="inline-flex text-muted/50 items-center justify-center w-10 h-10  hover:text-primary transition "
-              >
-                <Icon className="size-6" />
-              </a>
-            </TooltipTrigger>
-            <TooltipContent>{s.label}</TooltipContent>
-          </Tooltip>
-        ) : null;
-      })}
+    <div className="space-y-5">
+      <button className="text-sm flex items-center justify-between w-full font-semibold">
+        ارتباط با ما
+      </button>
+      <div className="grid grid-cols-2 w-fit gap-4">
+        {socialItems.map(({ Icon, ...s }) => {
+          const socialItem = data.find((i) => i.key === s.key);
+          return socialItem ? (
+            <Tooltip key={socialItem.key}>
+              <TooltipTrigger asChild>
+                <a
+                  href={socialItem.value}
+                  aria-label={socialItem.description ?? ""}
+                  className="inline-flex text-muted/50 items-center justify-center w-10 h-10  hover:text-primary transition "
+                >
+                  <Icon className="size-6" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>{s.label}</TooltipContent>
+            </Tooltip>
+          ) : null;
+        })}
+      </div>
     </div>
   );
 }
