@@ -13,7 +13,7 @@ export default function PageLoader() {
             width={120}
             height={120}
             src={"/rshop_logo_h.png"}
-            alt=""
+            alt="logo"
           />
           <LoaderDots count={3} className="text-primary-400" size={10} />
         </CardContent>

@@ -1,3 +1,23 @@
+.animate-loop {
+  animation: softFloat 3s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slide-out-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-out forwards;
+}
+
+.animate-pop {
+  animation: pop-in 0.7s ease-out forwards;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -24,9 +44,6 @@
   }
 }
 
-.animate-soft-loop {
-  animation: softFloat 3s ease-in-out infinite;
-}
 @keyframes slide-in-left {
   0% {
     transform: translateX(-100px);
@@ -37,6 +54,7 @@
     opacity: 1;
   }
 }
+
 @keyframes slide-out-left {
   0% {
     transform: translateX(0);
@@ -46,17 +64,6 @@
     transform: translateX(-100px);
     opacity: 0;
   }
-}
-
-@utility animate-slide-in-left {
-  animation: slide-in-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@utility animate-slide-out-left {
-  animation: slide-out-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.7s ease-out forwards;
 }
 
 @keyframes pop-in {
@@ -72,8 +79,4 @@
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.animate-pop-in {
-  animation: pop-in 0.7s ease-out forwards;
 }

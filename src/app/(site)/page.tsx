@@ -6,12 +6,8 @@ export const revalidate = 300;
 
 export default function Home() {
   return (
-    <>
-      <Suspense fallback={<PageLoader />}>
-        <HomePage />
-      </Suspense>
-
-      {/* سکشن قهرمان / بنرها */}
-    </>
+    <Suspense fallback={<PageLoader />}>
+      <HomePage />
+    </Suspense>
   );
 }

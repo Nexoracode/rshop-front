@@ -1,0 +1,18 @@
+.custom-slider {
+  @apply appearance-none w-full h-1 bg-gray-600 rounded-full cursor-pointer;
+  background: linear-gradient(
+    to right,
+    theme("colors.blue.500") var(--tw-value, 0%),
+    theme("colors.gray.600") 0%
+  );
+}
+
+.custom-slider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-white rounded-full shadow 
+         hover:scale-110 transition-transform;
+}
+
+.custom-slider::-moz-range-thumb {
+  @apply w-4 h-4 bg-white rounded-full shadow
+         hover:scale-110 transition-transform;
+}

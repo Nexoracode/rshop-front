@@ -1,46 +1,63 @@
-@layer utilities {
-  /* Track: مسیر پس‌زمینه */
-  .scrollbar-custom::-webkit-scrollbar-track {
-    background: var(--neutral-100);
-    border-radius: 999px;
-  }
+/* Scrollbar Global Styles */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+}
 
-  /* Thumb: خود نوار اسکرول */
-  .scrollbar-custom::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--primary-300), var(--primary-500));
-    border-radius: 999px;
-    border: 2px solid var(--neutral-500);
-    transition: all 0.3s ease;
-  }
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9;
+  border-radius: 4px;
+}
 
-  /* گوشه‌ها (برای هم‌خوانی در گوشه صفحه) */
-  .scrollbar-custom::-webkit-scrollbar-corner {
-    background: var(--neutral-100);
-  }
-  /* برای Firefox */
-  .scrollbar-custom {
-    direction: ltr;
-    text-align: right;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(107, 114, 128, 0.5) var(--neutral-500);
-  }
-  .scrollbar-custom > * {
-    direction: rtl;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
+}
 
-  .scrollbar-custom::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+::-webkit-scrollbar-track {
+  background: #f0f0f1;
+}
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+/* Track: مسیر پس‌زمینه */
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+  border-radius: 999px;
+}
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+/* Thumb: خود نوار اسکرول */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-300), var(--primary-500));
+  border-radius: 999px;
+  border: 2px solid var(--neutral-500);
+  transition: all 0.3s ease;
+}
+
+/* گوشه‌ها (برای هم‌خوانی در گوشه صفحه) */
+.scrollbar-custom::-webkit-scrollbar-corner {
+  background: var(--neutral-100);
+}
+/* برای Firefox */
+.scrollbar-custom {
+  direction: ltr;
+  text-align: right;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 114, 128, 0.5) var(--neutral-500);
+}
+.scrollbar-custom > * {
+  direction: rtl;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

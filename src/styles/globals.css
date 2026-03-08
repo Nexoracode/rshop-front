@@ -5,12 +5,13 @@
 @import "./animation.css";
 @import "./scrollbar.css";
 @import "./typography.css";
-@import "./utilities.css";
+@import "./package.css";
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -20,51 +21,56 @@
   }
 }
 
-.pause-on-hover:hover * {
-  animation-play-state: paused !important;
-}
+@layer utilities {
+  .content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.container {
-  @apply mx-auto;
-}
+  .shadow-around {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 4px 12px rgba(0, 0, 0, 0.08);
+  }
 
-.custom-slider {
-  @apply appearance-none w-full h-1 bg-gray-600 rounded-full cursor-pointer;
-  background: linear-gradient(
-    to right,
-    theme("colors.blue.500") var(--tw-value, 0%),
-    theme("colors.gray.600") 0%
-  );
-}
+  .container-home {
+    @apply w-full max-w-[87rem] mx-auto;
+  }
 
-.custom-slider::-webkit-slider-thumb {
-  @apply appearance-none w-4 h-4 bg-white rounded-full shadow 
-         hover:scale-110 transition-transform;
-}
-.custom-slider::-moz-range-thumb {
-  @apply w-4 h-4 bg-white rounded-full shadow
-         hover:scale-110 transition-transform;
-}
+  .grid-divider {
+    --divider: theme("colors.gray.200");
+    gap: 1px;
+    background: var(--divider);
+  }
 
-.input {
-  @apply flex h-11 w-full rounded-lg focus:border-success focus-within:border-success bg-background px-3 py-2 text-sm text-foreground shadow-xs transition-colors
+  .grid-divider > * {
+    background: white;
+  }
+
+  .container {
+    @apply mx-auto;
+  }
+
+  .input {
+    @apply flex h-11 w-full rounded-lg focus:border-success focus-within:border-success bg-background px-3 py-2 text-sm text-foreground shadow-xs transition-colors
          placeholder:text-gray-400
          disabled:cursor-not-allowed disabled:opacity-50;
-}
+  }
 
-.devtools-indicator {
-  right: 20px !important;
-  left: unset !important;
-}
+  .pause-on-hover:hover * {
+    animation-play-state: paused !important;
+  }
 
-.tabs-indicator {
-  position: absolute;
-  block-size: 2px; /* height منطقی */
-  inline-size: var(--w, 0px); /* width منطقی */
-  inset-block-end: 0; /* bottom: 0 منطقی */
-  inset-inline-start: var(--x, 0px); /* left/right منطقی بسته به RTL/LTR */
-  background: var(--color-primary);
-  transition:
-    inline-size 300ms ease,
-    inset-inline-start 300ms ease;
+  .tabs-indicator {
+    position: absolute;
+    block-size: 2px; /* height منطقی */
+    inline-size: var(--w, 0px); /* width منطقی */
+    inset-block-end: 0; /* bottom: 0 منطقی */
+    inset-inline-start: var(--x, 0px); /* left/right منطقی بسته به RTL/LTR */
+    background: var(--color-primary);
+    transition:
+      inline-size 300ms ease,
+      inset-inline-start 300ms ease;
+  }
 }

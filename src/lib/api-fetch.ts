@@ -70,6 +70,8 @@ export async function apiFetch(path: string, options?: ApiFetchOptions) {
   } catch (error) {
     if (showErrorToast) toast.error("خطا در برقراری ارتباط با سرور");
 
+    console.log(error);
+
     throw {
       message: "خطا در برقراری ارتباط با سرور",
       statusCode: 500,
@@ -87,6 +89,8 @@ export async function apiFetch(path: string, options?: ApiFetchOptions) {
   // 🚨 HTTP errors (401, 403, 500, ...)
   if (!res.ok) {
     const message = data?.message ?? "خطا در برقراری ارتباط با سرور";
+
+    console.log("message =>", message);
 
     if (showErrorToast) toast.error(message);
     throw {
