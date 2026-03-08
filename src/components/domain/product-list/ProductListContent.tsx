@@ -8,6 +8,7 @@ import LoadMoreTrigger from "./LoadMoreTrigger";
 import { useInView } from "react-intersection-observer";
 import { MAX_PAGE_INFINIT_LOAD } from "@/data/assets";
 import Pagination from "@/components/common/Pagination";
+import EmptyState from "@/components/common/EmptyState";
 
 type Props = {
   isLoading: boolean;
@@ -43,6 +44,7 @@ export default function ProductListContent({
 
   const shouldShowPagination =
     hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
+
   return (
     <div className="space-y-10">
       {/* نمایش محصولات */}
@@ -57,15 +59,18 @@ export default function ProductListContent({
           isFetchingNextPage={isFetchingNextPage}
         />
       )}
-      = {/* تریگر برای لود بیشتر (infinite scroll) */}
+      {!products.length ? <EmptyState /> : ""}
+      {/* تریگر برای لود بیشتر (infinite scroll) */}
       {hasNextPage && currentPage < 10 && (
         <LoadMoreTrigger ref={ref} isFetching={isFetchingNextPage} />
       )}
       {/* fallback به pagination معمولی بعد از ۱۰ صفحه */}
-      {shouldShowPagination && (
+      {shouldShowPagination && products.length ? (
         <div className="mt-12 flex justify-center">
           <Pagination page={currentPage} totalPages={totalPages} />
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

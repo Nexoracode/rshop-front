@@ -1,4 +1,5 @@
 "use client";
+
 import { getProductsListInfinit } from "@/queries/products/product-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
@@ -6,7 +7,6 @@ import SidebarFilters from "./Filters/SidebarFilters";
 import { cn } from "@/lib/utils/classnames";
 import ProductListContent from "./ProductListContent";
 import ProductToolbar from "./Toolbar/ProductToolbar";
-
 import Responsive from "@/components/common/Responsive";
 import MobileToolbar from "./Toolbar/MobileToolbar";
 import ProductListSkelton from "./Skeleton/ProductListSkelton";
