@@ -1,6 +1,6 @@
 import Image from "@/components/common/Image";
 import Footer from "@/components/layout/Footer/Footer";
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/Header/Header";
 import Link from "next/link";
 
 export default function NotFound() {

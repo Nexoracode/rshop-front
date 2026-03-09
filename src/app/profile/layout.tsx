@@ -1,5 +1,5 @@
 import Responsive from "@/components/common/Responsive";
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/Header/Header";
 import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import ProfileHeader from "@/components/domain/profile/ProfileHeader";

@@ -1,5 +1,5 @@
 import CategoriesMenu from "@/components/domain/categories/CategoriesMenu";
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/Header/Header";
 import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import { getQueryClient } from "@/lib/utils/query-client";

@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/Footer/Footer";
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/Header/Header";
 import BannerPadding from "@/components/layout/Header/PromoBannerPadding";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 

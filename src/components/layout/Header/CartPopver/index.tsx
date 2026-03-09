@@ -17,7 +17,7 @@ export default function CartPopover() {
     if (cart?.total_quantity) setOpen(true);
   };
   return (
-    <React.Fragment>
+    <>
       <div
         className="relative"
         //   onMouseOut={() => setOpen(false)}
@@ -45,6 +45,6 @@ export default function CartPopover() {
           </div>
         )}
       </div>
-    </React.Fragment>
+    </>
   );
 }
