@@ -4,15 +4,15 @@ export default function CopyRightSection() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="flex flex-col gap-3 pt-6 pb-2">
-      <hr className="border-slate-200 mb-2" />
+    <div className="flex flex-col gap-3 py-6">
+      <hr className="border-slate-200" />
       <div className="flex flex-row-reverse items-center justify-between">
-        <div className="flex items-center justify-end gap-3">
-          <div className="border border-slate-200 p-2.5 flex items-center justify-center w-[89px] h-[89px] rounded-lg hover:scale-105 transition-all cursor-pointer">
-            <Image src={"/enamad.png"} width={80} height={80} alt="enamad" />
+        <div className="flex items-center justify-end gap-6">
+          <div className="flex items-center justify-center border-l w-[73px] h-[73px] hover:scale-105 transition-all cursor-pointer">
+            <Image src={"/enamad.png"} width={80} height={80} alt="enamad" className="ml-12" />
           </div>
 
-          <div className="border border-slate-200 p-2.5 flex items-center justify-center w-[89px] h-[89px] rounded-lg hover:scale-105 transition-all cursor-pointer">
+          <div className="flex items-center justify-center w-[73px] h-[73px] hover:scale-105 transition-all cursor-pointer">
             <Image src={"/saman.webp"} width={80} height={80} alt="saman" />
           </div>
         </div>
