@@ -4,7 +4,7 @@ export default function CopyRightSection() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="flex flex-col gap-3 pt-6 pb-2">
+    <div className="flex flex-col gap-3 pt-12 pb-2">
       <hr className="border-slate-200 mb-2" />
       <div className="flex flex-row-reverse items-center justify-between">
         <div className="flex items-center justify-end gap-3">
