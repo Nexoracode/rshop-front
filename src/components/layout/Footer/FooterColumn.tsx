@@ -14,18 +14,22 @@ export default function FooterColumn({ title, links }: FooterColumnType) {
   const isMobile = useIsMobile();
   return (
     <div>
-      <nav aria-label={title} className="space-y-5">
+      <nav aria-label={title} className="lg:space-y-5">
         <button
           onClick={() => isMobile && setActive((prev) => !prev)}
-          className="text-sm flex items-center justify-between w-full font-semibold"
+          className="text-sm flex items-center justify-between w-full font-semibold border-b pb-4 lg:border-none lg:pb-0"
         >
           {title}
 
-          {isMobile && <ChevronDownIcon />}
+          {isMobile && (
+            <ChevronDownIcon
+              className={`transition-all ${active ? "rotate-180" : ""}`}
+            />
+          )}
         </button>
         <ul
           className={cn(
-            "space-y-4 text-sm text-muted",
+            "space-y-4 text-sm text-muted mt-4 lg:mt-0",
             isMobile && !active && "hidden",
           )}
         >

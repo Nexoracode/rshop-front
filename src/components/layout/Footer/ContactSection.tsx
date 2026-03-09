@@ -19,7 +19,7 @@ export default async function ContactSection() {
     },
   ];
   return (
-    <div className="flex flex-col gap-5 text-sm">
+    <div className="flex flex-col gap-6 text-sm">
       {contactItems.map(({ label, link, key }) => {
         const contactData = contact.find((i) => i.key === key);
         
@@ -30,7 +30,7 @@ export default async function ContactSection() {
             className="flex items-center gap-2 break-words"
           >
               <span className="w-30">{label}</span>
-              <p className="w-full text-left">
+              <p className="w-full text-left text-slate-600">
                 {contactData?.value ?? "-"}
               </p>
           </a>

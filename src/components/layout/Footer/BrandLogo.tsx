@@ -4,7 +4,7 @@ import React from "react";
 
 export default function BrandLogo() {
   return (
-    <div className="flex items-center gap-3">
+    <div className="hidden lg:flex items-center gap-3">
       <Link
         href={"/"}
         className="relative block h-12 w-20 shrink-0"
