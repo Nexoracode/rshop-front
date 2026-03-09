@@ -82,12 +82,12 @@ export default function ProfileMenu() {
       href={{ pathname: "/users/login", query: { backUrl: path } }}
       variant={"outline"}
       color="neutral"
-      className="text-black border-muted-light"
+      className="text-black border rounded-md border-slate-300 py-5"
       size={"sm"}
       aria-label="ورود"
-      startIcon={<LogInIcon className="-scale-x-100" />}
+      startIcon={<LogInIcon className="-scale-x-100 text-gray-700" size={22} />}
     >
-      <span className="inline-block text-sm">ورود | ثبت نام</span>
+      <span className="inline-block text-[13px]">ورود | ثبت نام</span>
     </Button>
   );
 }

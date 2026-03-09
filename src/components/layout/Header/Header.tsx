@@ -35,9 +35,11 @@ export default function Header() {
             </>
           ) : (
             <>
-              <LogoLink />
+              <div className="w-full flex items-center gap-6">
+                <LogoLink />
 
-              <SearchBox />
+                <SearchBox />
+              </div>
 
               <UserMenu />
             </>
