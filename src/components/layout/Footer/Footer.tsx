@@ -48,7 +48,7 @@ export default function Footer() {
 
         <ServiceSection />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:gap-8 md:grid-cols-4">
           {linkColumns.map((col) => (
             <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
