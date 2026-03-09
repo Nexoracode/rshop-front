@@ -17,7 +17,7 @@ export default function FooterColumn({ title, links }: FooterColumnType) {
       <nav aria-label={title} className="lg:space-y-5">
         <button
           onClick={() => isMobile && setActive((prev) => !prev)}
-          className="text-sm flex items-center justify-between w-full font-semibold border-b pb-4 lg:border-none lg:pb-0"
+          className="text-sm flex items-center justify-between w-full font-semibold border-b pb-4 md:border-none md:pb-0"
         >
           {title}
 

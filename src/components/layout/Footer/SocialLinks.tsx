@@ -47,7 +47,7 @@ export default function SocialLinks({ data }: { data: Array<PublicSettings> }) {
 
   return (
     <div className="flex justify-end w-full">
-      <div className="grid grid-cols-6 gap-2.5 justify-items-end">
+      <div className="grid grid-cols-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 xl:gap-2.5 justify-items-end" dir="ltr">
         {socialItems.map(({ Icon, ...s }) => {
           const socialItem = data.find((i) => i.key === s.key);
           return socialItem ? (

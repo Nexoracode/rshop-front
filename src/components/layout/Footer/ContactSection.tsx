@@ -29,7 +29,7 @@ export default async function ContactSection() {
             href={`${link}${contactData?.value}`}
             className="flex items-center gap-2 break-words"
           >
-              <span className="w-30">{label}</span>
+              <span className="w-30 md:hidden xl:flex">{label}</span>
               <p className="w-full text-left text-slate-600">
                 {contactData?.value ?? "-"}
               </p>
