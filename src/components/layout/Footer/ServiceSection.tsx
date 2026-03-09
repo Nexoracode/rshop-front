@@ -32,7 +32,7 @@ export default function ServiceSection() {
       {services.map((service, idx) => (
         <div
           key={idx}
-          className="flex flex-col items-center gap-3"
+          className="flex items-center gap-3"
         >
           <Image
             width={28}

@@ -33,7 +33,7 @@ export default function FooterColumn({ title, links }: FooterColumnType) {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="transition block  hover:text-primary"
+                className="transition block hover:text-primary"
               >
                 {l.label}
               </Link>
