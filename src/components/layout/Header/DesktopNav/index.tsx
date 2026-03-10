@@ -17,6 +17,7 @@ import { getCategoreis } from "@/queries/products/category";
 import { cn } from "@/lib/utils/classnames";
 import useSticky from "@/hooks/useSticky";
 import CategoryViewport from "./CategoryViewport";
+import { useState } from "react";
 
 const navLinks = [
   { href: "/", Icon: HomeIcon, label: "خانه" },
@@ -30,49 +31,62 @@ const navLinks = [
 ];
 
 export default function MainNav() {
+  const [isOpen, setIsOpen] = useState(false);
   const { data: sections = [] } = useSuspenseQuery(getCategoreis);
 
   const { isVisible } = useSticky();
 
   return (
-    <nav
-      className={cn(
-        "hidden absolute  transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
-        !isVisible
-          ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
-          : "translate-y-0 opacity-100 h-10",
+    <>
+      {isOpen ? (
+        <div className="fixed z-40  w-screen h-screen bg-black/40"></div>
+      ) : (
+        ""
       )}
-    >
-      <div className="container flex items-center gap-6 py-2 text-sm font-medium">
-        <DropdownMenu dir="rtl">
-          <DropdownMenuTrigger asChild>
-            <div className="gap-2 flex border-l border-l-slate-300 justify-between pl-5 cursor-pointer">
-              <span className="flex font-medium  items-center">
-                <Menu size={20} className="ml-1" /> دسته‌بندی‌ کالاها
-              </span>
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="min-w-6xl">
-            <CategoryViewport categories={sections} />
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <nav
+        className={cn(
+          "hidden absolute  transition-all duration-300 z-50 bg-white shadow left-0 right-0  md:block",
+          !isVisible
+            ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
+            : "translate-y-0 opacity-100 h-10",
+        )}
+      >
+        <div className="container flex items-center gap-6 py-2 text-sm font-medium">
+          <DropdownMenu open={isOpen} onOpenChange={setIsOpen} dir="rtl">
+            <DropdownMenuTrigger asChild>
+              <div className="gap-2 flex border-l border-l-slate-300 justify-between pl-5 cursor-pointer">
+                <span className="flex font-medium  items-center">
+                  <Menu size={20} className="ml-1" /> دسته‌بندی‌ کالاها
+                </span>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-fit mt-3">
+              <div className="relative z-50">
+                <CategoryViewport categories={sections} />
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-        {navLinks.map(({ href, label, Icon }) => (
+          {navLinks.map(({ href, label, Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="text-muted hover:text-primary flex items-center gap-1.5"
+            >
+              {Icon ? <Icon size={17} /> : ""}
+              {label}
+            </Link>
+          ))}
           <Link
-            key={href}
-            href={href}
-            className="text-muted hover:text-primary flex items-center gap-1.5"
+            href={"/guide/faq"}
+            className="gap-2 flex border-r border-r-slate-300 justify-between pr-5 cursor-pointer"
           >
-            {Icon ? <Icon size={17} /> : ""}
-            {label}
+            <span className="flex font-medium  items-center text-slate-600">
+              سوالی دارید؟
+            </span>
           </Link>
-        ))}
-        <Link href={"/guide/faq"} className="gap-2 flex border-r border-r-slate-300 justify-between pr-5 cursor-pointer">
-          <span className="flex font-medium  items-center text-slate-600">
-            سوالی دارید؟
-          </span>
-        </Link>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </>
   );
 }

@@ -23,7 +23,7 @@ export default function CategoryViewport({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
+    <div className="grid  grid-cols-1 md:grid-cols-[220px_1fr]">
       {/* ستون دسته‌های اصلی */}
       <MainCategoriesList
         onSelect={setSelected}
