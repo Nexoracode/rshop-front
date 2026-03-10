@@ -5,18 +5,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
+import {
+  ContactIcon,
+  DicesIcon,
+  HomeIcon,
+  Icon,
+  LucideShoppingBag,
+  Menu,
+} from "lucide-react";
 import { getCategoreis } from "@/queries/products/category";
 import { cn } from "@/lib/utils/classnames";
 import useSticky from "@/hooks/useSticky";
 import CategoryViewport from "./CategoryViewport";
 
 const navLinks = [
-  { href: "/", label: "خانه" },
-  { href: "/products", label: "فروشگاه" },
-  { href: "/products?query=filter%5Bspecial_offer%5D=1", label: "ویژه‌ها" },
-  /* { href: "/blog", label: "بلاگ" }, */
-  { href: "/contact", label: "تماس با ما" },
+  { href: "/", Icon: HomeIcon, label: "خانه" },
+  { href: "/products", Icon: LucideShoppingBag, label: "فروشگاه" },
+  {
+    href: "/products?query=filter%5Bspecial_offer%5D=1",
+    Icon: DicesIcon,
+    label: "ویژه‌ها",
+  },
+  { href: "/contact", Icon: ContactIcon, label: "تماس با ما" },
 ];
 
 export default function MainNav() {
@@ -36,7 +46,7 @@ export default function MainNav() {
       <div className="container flex items-center gap-6 py-2 text-sm font-medium">
         <DropdownMenu dir="rtl">
           <DropdownMenuTrigger asChild>
-            <div className="gap-2 flex border-l border-l-black/40 justify-between pl-5 cursor-pointer">
+            <div className="gap-2 flex border-l border-l-slate-300 justify-between pl-5 cursor-pointer">
               <span className="flex font-medium  items-center">
                 <Menu size={20} className="ml-1" /> دسته‌بندی‌ کالاها
               </span>
@@ -47,15 +57,21 @@ export default function MainNav() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {navLinks.map((l) => (
+        {navLinks.map(({ href, label, Icon }) => (
           <Link
-            key={l.href}
-            href={l.href}
-            className="text-muted hover:text-primary"
+            key={href}
+            href={href}
+            className="text-muted hover:text-primary flex items-center gap-1.5"
           >
-            {l.label}
+            {Icon ? <Icon size={17} /> : ""}
+            {label}
           </Link>
         ))}
+        <Link href={"/guide/faq"} className="gap-2 flex border-r border-r-slate-300 justify-between pr-5 cursor-pointer">
+          <span className="flex font-medium  items-center text-slate-600">
+            سوالی دارید؟
+          </span>
+        </Link>
       </div>
     </nav>
   );
