@@ -11,10 +11,10 @@ export default function SubCategoriesGrid({
   category,
 }: SubCategoriesGridProps) {
   return (
-    <div className="flex-1 p-5 max-h-[30rem] overflow-auto scrollbar-custom ">
+    <div className="flex-1 p-5 max-h-[30rem] overflow-y-auto scrollbar-custom min-w-[500px] w-full">
       <Link
         href={`/products/${category.slug}`}
-        className="block mb-4 text-sm text-blue-500 font-semibold  pb-2"
+        className="mb-4 text-sm text-blue-500 font-semibold pb-2"
       >
         مشاهده همه محصولات {category.title}
         <ChevronLeftIcon className="inline-block size-5 mr-1" />
