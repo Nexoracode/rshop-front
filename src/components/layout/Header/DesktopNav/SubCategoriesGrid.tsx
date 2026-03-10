@@ -14,12 +14,12 @@ export default function SubCategoriesGrid({
     <div className="flex-1 p-5 max-h-[30rem] overflow-y-auto scrollbar-custom min-w-[500px] w-full">
       <Link
         href={`/products/${category.slug}`}
-        className="mb-4 text-sm text-blue-500 font-semibold pb-2"
+        className="text-sm text-sky-700 pb-2"
       >
+        <ChevronLeftIcon className="inline-block mr-1" size={15} />
         مشاهده همه محصولات {category.title}
-        <ChevronLeftIcon className="inline-block size-5 mr-1" />
       </Link>
-      <div className="grid grid-cols-3 [grid-auto-rows:fit-content(100%)] gap-6 p-4">
+      <div className="grid grid-cols-3 [grid-auto-rows:fit-content(100%)] gap-6 mt-7">
         {category.children?.map((category) => (
           <SubCategoriesColumn
             key={category.id}
