@@ -53,7 +53,7 @@ export default function PhoneInput({
         value={formatDisplay(raw)}
         onChange={handleChange}
         className={cn(
-          "text-center font-semibold tracking-widest input",
+          "text-center font-semibold tracking-widest input !py-6 !rounded-[8px]",
           error
             ? "!border-rose-500  focus:border-rose-500 focus-visible:ring-rose-500"
             : "",

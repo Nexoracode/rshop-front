@@ -1,6 +1,6 @@
 export const PRODUCT_PLACEHOLDER = "/product-placeholder.webp";
 
-export const SHOP_NAME = "فروشگاه آرشاپ";
+export const SHOP_NAME = "آرشاپ";
 
 export const SHOP_URL = "https://rshop.roohbakhshac.ir";
 

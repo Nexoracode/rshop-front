@@ -153,7 +153,7 @@ export default function TextField({
               aria-invalid={!!error}
               onChange={(e) => onChange(e.target.value)}
               className={cn(
-                "text-right  tracking-widest input",
+                "text-right  tracking-widest input ",
                 error &&
                   "ring-danger border-rose-500  focus-visible:ring-rose-500",
               )}

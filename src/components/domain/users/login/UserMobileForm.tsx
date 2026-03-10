@@ -1,6 +1,7 @@
 "use client";
 import TextField from "@/components/common/Form/TextField";
 import { Button } from "@/components/ui/button";
+import { SHOP_NAME } from "@/data/assets";
 import { useRequestOtp } from "@/queries/auth/useRequestOtp";
 import React, { useCallback, useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
@@ -28,30 +29,35 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
     }
   }, [phone, form, handleSubmit]);
   return (
-    <div>
-      <FormProvider {...form}>
-        <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
-          <h2 className="text-lg font-semibold">ورود | ثبت نام</h2>
+    <FormProvider {...form}>
+      <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold">
+            ورود یا ثبت‌نام در {SHOP_NAME}
+          </h2>
+          <p className="text-[13px] text-gray-500">
+            لطفا شماره موبایل خود را وارد نمایید
+          </p>
+        </div>
 
-          <div className="space-y-6">
-            <p className="text-sm text-muted-foreground font-light">
-              لطفا شماره موبایل خود را وارد نمایید
-            </p>
+        <div>
+          <TextField required name="phone" type="phone" className="!py-6"/>
 
-            <TextField required name="phone" type="phone" />
-          </div>
-
-          <div className="space-y-1">
-            <Button isLoading={isPending} size={"md"} className="w-full">
-              ورود
+          <div className="!-mt-1">
+            <Button
+              isLoading={isPending}
+              size={"md"}
+              className="w-full h-[48px] rounded-[8px]"
+            >
+              ورود به {SHOP_NAME}
             </Button>
 
-            <p className="text-muted-foreground text-xs font-light text-center">
-              ورود شما به معنای پذیرش قوانین و مقررات فروشگاه می باشد
+            <p className="text-xs text-slate-600 mt-5 font-light text-center">
+              ورود شما به معنای پذیرش شرایط {SHOP_NAME} و قوانین حریم‌خصوصی است
             </p>
           </div>
-        </form>
-      </FormProvider>
-    </div>
+        </div>
+      </form>
+    </FormProvider>
   );
 }
