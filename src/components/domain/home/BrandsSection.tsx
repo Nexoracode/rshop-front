@@ -10,14 +10,17 @@ import { Card } from "../../ui/card";
 import { Brand } from "@/types/product";
 import Link from "next/link";
 import Image from "../../common/Image";
-import SectionTitle from "@/components/common/SectionTitle";
+import { StarIcon } from "lucide-react";
 
 export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
   return (
     <section>
       <div className="relative container-home">
-        <Card className="py-4">
-          <SectionTitle center title="محبوب ترین برندها" />
+        <Card className="py-4 h-[224px] bg-white rounded-lg">
+          <div className="w-full flex items-center justify-center gap-2">
+            <StarIcon size={22} className="text-yellow-500"/>
+            <p className="text-lg font-semibold text-slate-700">محبوب ترین برندها</p>
+          </div>
           <Carousel>
             <CarouselNext />
             <CarouselPrevious />
