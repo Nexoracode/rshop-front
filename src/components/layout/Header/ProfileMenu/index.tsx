@@ -7,13 +7,14 @@ import {
 } from "@/components/ui/popover";
 import { useQuery } from "@tanstack/react-query";
 import {
-  ChevronDown,
+  ChevronDownIcon,
   ChevronLeft,
   Heart,
   LogInIcon,
   MapIcon,
   MessageCircle,
   ShoppingBag,
+  UserIcon,
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
@@ -42,38 +43,45 @@ export default function ProfileMenu() {
         <PopoverTrigger asChild>
           <Button
             variant="text-nohover"
-            color="neutral"
-            className="!flex items-center px-0"
-            endIcon={<ChevronDown fill="#444" strokeWidth={0} size={18} />}
+            className="!flex items-center px-0 text-slate-700"
+            endIcon={<ChevronDownIcon size={17} />}
           >
-            <UserRound size={24} />
+            <UserIcon size={24} />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="px-0" align="end">
-          <Link href="/profile" className="flex group mb-3 items-center px-3">
-            <span className="w-10 h-10 rounded-full bg-neutral-200 content-center">
-              <UserRound size={24} />
-            </span>
-            <span className="inline-block flex-1 ps-1">
-              {user.first_name ? (
-                <span>{`${user.first_name} ${user.last_name}`}</span>
-              ) : (
-                <span className="text-sm text-muted">{user.phone}</span>
-              )}
-            </span>
+        <PopoverContent className="p-0" align="end">
+          <div className="p-4">
+            <Link
+              href="/profile"
+              className="flex items-center justify-between gap-1.5 mb-4"
+            >
+              <div className="flex items-center gap-2">
+                <span className="!w-10 !h-10 rounded-full bg-slate-100 content-center">
+                  <UserIcon size={24} className="text-slate-600" />
+                </span>
+                <span className="w-42 truncate text-sm text-slate-800">
+                  {user.first_name ? (
+                    <span>{`${user.first_name} ${user.last_name}`}</span>
+                  ) : (
+                    <span className="text-sm text-muted">{user.phone}</span>
+                  )}
+                </span>
+              </div>
+              <ChevronLeft size={19} className="text-slate-700" />
+            </Link>
+            {menuItems.map(({ Icon, href, label }) => (
+              <UserMenuItem
+                key={href}
+                Icon={<Icon size={22} />}
+                label={label}
+                href={`/profile/${href}`}
+              />
+            ))}
 
-            <ChevronLeft />
-          </Link>
-          {menuItems.map(({ Icon, href, label }) => (
-            <UserMenuItem
-              key={href}
-              Icon={<Icon />}
-              label={label}
-              href={`/profile/${href}`}
-            />
-          ))}
-
-          <LogoutButton />
+            <div className="pr-2">
+              <LogoutButton />
+            </div>
+          </div>
         </PopoverContent>
       </Popover>
     </>

@@ -9,12 +9,12 @@ type UserMenuItemProps = {
 export default function UserMenuItem({ Icon, label, href }: UserMenuItemProps) {
   return (
     <Link
-      className="flex px-3 items-center hover:bg-neutral-100 transition-colors"
+      className="flex items-center hover:bg-neutral-100 transition-colors px-2 rounded-md"
       href={href}
     >
-      <span className="w-6 h-6 ml-3">{Icon}</span>
+      <span className="ml-3">{Icon}</span>
 
-      <span className="inline-block  flex-1 border-b py-3 ps-2">{label}</span>
+      <span className="inline-block flex-1 border-b py-3 text-sm text-slate-800">{label}</span>
     </Link>
   );
 }

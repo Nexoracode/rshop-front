@@ -26,11 +26,12 @@ export default function LogoutButton() {
       <Button
         color="danger"
         onClick={() => setOpen(true)}
-        startIcon={<LogOutIcon className="size-6" />}
-        size={"md"}
+        startIcon={<LogOutIcon size={22} />}
+        size={"sm"}
+        className="p-0 mt-2.5"
         variant={"text-nohover"}
       >
-        خروج از حساب کاربری
+        <span className="text-[13px] pr-1">خروج از حساب کاربری</span>
       </Button>
       <BaseDialog
         title="از حساب کاربری خارج می شوید؟"
