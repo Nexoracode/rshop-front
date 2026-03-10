@@ -38,7 +38,7 @@ export default function PhoneInput({
 
     if (!d) return "";
     return d
-      .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})(\d{0,3})$/, (m, a, b, c, d) =>
+      .replace(/^(\d{0,4})(\d{0,3})(\d{0,4})$/, (m, a, b, c, d) =>
         [a, b, c, d].filter(Boolean).join(" "),
       )
       .trim();
@@ -49,11 +49,11 @@ export default function PhoneInput({
       <Input
         dir="ltr"
         inputMode="numeric"
-        placeholder="0912 34 56 789"
+        placeholder="0912 345 6789"
         value={formatDisplay(raw)}
         onChange={handleChange}
         className={cn(
-          "text-center font-semibold tracking-widest input !py-6 !rounded-[8px]",
+          "text-center font-semibold tracking-widest input py-6 !rounded-[8px]",
           error
             ? "!border-rose-500  focus:border-rose-500 focus-visible:ring-rose-500"
             : "",

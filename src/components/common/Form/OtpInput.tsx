@@ -38,7 +38,7 @@ export default function OtpInput({
       inputMode="numeric"
       maxLength={length * 2} // چون فاصله‌ها هم حساب می‌شن
       className={cn(
-        "input tracking-[0.6em] text-center text-lg font-bold",
+        "input tracking-[0.6em] text-center text-lg !py-6 font-bold",
         error && "border-rose-500 focus-visible:ring-rose-500",
         className,
       )}
