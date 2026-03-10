@@ -40,7 +40,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
           </p>
         </div>
 
-        <div>
+        <div className="space-y-5">
           <TextField required name="phone" type="phone" className="!py-6"/>
 
           <div className="!-mt-1">

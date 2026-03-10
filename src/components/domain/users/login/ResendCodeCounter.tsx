@@ -30,18 +30,18 @@ export default function ResendCodeCounter({ onResend, isSuccess }: Props) {
   return (
     <div className="text-center w-full">
       {timer > 0 ? (
-        <p className="text-sm font-light text-muted-foreground">
+        <p className="text-[13px] font-light text-muted-foreground">
           {timeItem(timer % 60)}:{timeItem(Math.floor(timer / 60))}
           مانده تا دریافت مجدد کد
         </p>
       ) : (
         <div className="text-sm flex justify-center items-center font-light text-muted-foreground">
-          در یافت مجدد کد از طریق{" "}
+          دریافت مجدد کد از طریق{" "}
           <button
             onClick={onResend}
-            className="text-blue-500 font-semibold flex items-center px-2"
+            className="text-sky-600 flex items-center px-2"
           >
-            پیامک <ChevronLeft className="!text-lg" />
+            پیامک <ChevronLeft size={16} />
           </button>
         </div>
       )}

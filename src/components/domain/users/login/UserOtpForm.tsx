@@ -52,30 +52,29 @@ export default function UserOtpForm({ phone }: Props) {
   }, [code, handleSubmit]);
 
   return (
-    <div>
-      <FormProvider {...form}>
-        <form className="space-y-3" onSubmit={form.handleSubmit(handleSubmit)}>
+    <FormProvider {...form}>
+      <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
+        <div className="space-y-4">
           <h2 className="text-lg font-semibold">کد تایید را وارد کنید</h2>
+          <p className="text-[13px] text-gray-500">
+            کد تایید برای شماره {phone} ارسال شد.
+          </p>
+        </div>
 
-          <div className="space-y-6">
-            <p className="text-sm text-muted-foreground font-light">
-              کد تایید برای شماره {phone} ارسال شد.
-            </p>
+        <TextField
+          rules={{
+            minLength: {
+              value: 6,
+              message: "کد تاییدیه باید دارای 6 کاراکتر باشد.",
+            },
+          }}
+          required
+          name="code"
+          type="otp"
+          autoFocus
+        />
 
-            <TextField
-              rules={{
-                minLength: {
-                  value: 6,
-                  message: "کد تاییدیه باید دارای 6 کاراکتر باشد.",
-                },
-              }}
-              required
-              name="code"
-              type="otp"
-              autoFocus
-            />
-          </div>
-
+        <div className="space-y-4">
           <ResendCodeCounter
             isSuccess={resendSuccess}
             onResend={() => handleSendOtp({ phone })}
@@ -86,8 +85,8 @@ export default function UserOtpForm({ phone }: Props) {
               تایید
             </Button>
           </div>
-        </form>
-      </FormProvider>
-    </div>
+        </div>
+      </form>
+    </FormProvider>
   );
 }

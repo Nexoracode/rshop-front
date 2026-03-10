@@ -13,7 +13,7 @@ export default function FieldContainer({
   required?: boolean;
 }) {
   return (
-    <div className={cn("relative w-full pb-5")}>
+    <div className={cn("relative w-full")}>
       {label ? (
         <Label className="mb-1 text-xs text-muted ps-1">
           {label}
@@ -24,7 +24,7 @@ export default function FieldContainer({
       {children}
 
       {error ? (
-        <p className="text-xs text-danger absolute right-2 bottom-0">{error}</p>
+        <p className="text-xs mt-1.5 text-danger">{error}</p>
       ) : null}
     </div>
   );
