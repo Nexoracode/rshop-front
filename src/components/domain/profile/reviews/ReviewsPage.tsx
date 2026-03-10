@@ -26,7 +26,7 @@ export default function ReviewsPage() {
   const [product, setProduct] = useState<Review["product"]>();
 
   return (
-    <Card className="!p-0">
+    <Card className="!p-0 bg-transparent border-none">
       <h1 className="text-lg p-4 font-semibold">دیدگاه‌های من</h1>
 
       <Tabs dir="rtl" value={tab} onValueChange={setTab} className="w-full p-0">

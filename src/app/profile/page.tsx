@@ -10,9 +10,7 @@ export const dynamic = "force-dynamic";
 export default function ProfileDashboardPage() {
   return (
     <div className="space-y-4">
-      <Card>
-        <DashboardOverview />
-      </Card>
+      <DashboardOverview />
       <Responsive visible="mobile">
         <Card>
           <ProfileSidebar />

@@ -23,28 +23,27 @@ export default function ProfileInfoPage() {
   };
 
   return (
-    <Card>
-      <h1 className="text-lg font-semibold">اطلاعات حساب کاربری</h1>
+    <div>
+      <h1 className="text-lg font-semibold mb-4">اطلاعات حساب کاربری</h1>
 
-      <Card className="p-4 divide-y">
-        <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <ProfileInfoField
-              label="نام و نام خانوادگی"
-              fields={[
-                { label: "نام", name: "first_name" },
-                { label: "نام خانوادگی", name: "last_name" },
-              ]}
-            />
-
-            <ProfileInfoField
-              type="email"
-              label="ایمیل"
-              fields={[{ label: "آدرس ایمیل", name: "email" }]}
-            />
-          </form>
-        </FormProvider>
-      </Card>
-    </Card>
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-2">
+          <ProfileInfoField
+            label="نام و نام خانوادگی"
+            fields={[
+              { label: "نام", name: "first_name" },
+              { label: "نام خانوادگی", name: "last_name" },
+            ]}
+            className="border-b-0"
+          />
+          <hr />
+          <ProfileInfoField
+            type="email"
+            label="ایمیل"
+            fields={[{ label: "آدرس ایمیل", name: "email" }]}
+          />
+        </form>
+      </FormProvider>
+    </div>
   );
 }

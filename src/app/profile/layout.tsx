@@ -20,13 +20,13 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
       <Responsive visible="mobile">
         <ProfileHeader />
       </Responsive>
-      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6">
+      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6 mt-14">
         <Responsive visible="desktop">
           <ProfileSidebar />
         </Responsive>
         <main
           className={cn(
-            "rounded-xl flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]",
+            "flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]",
           )}
         >
           {children}

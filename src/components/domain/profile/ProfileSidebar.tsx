@@ -32,7 +32,7 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-card sticky top-20 h-fit rounded-sm md:border md:border-border md:w-[16rem] md:p-4 md:space-y-2">
+    <aside className="bg-white rounded-lg sticky top-20 h-fit md:border md:border-border md:w-[16rem] md:p-4 md:space-y-2">
       {items.map((item) => {
         const active = pathname === item.href;
         const Icon = item.icon;
@@ -44,7 +44,7 @@ export function ProfileSidebar() {
               "flex border-b md:border-0 items-center gap-3 md:rounded-lg md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
               active
                 ? "md:bg-primary/10 md:text-primary"
-                : "hover:bg-muted/30 text-muted-foreground",
+                : "hover:bg-slate-100 text-muted-foreground",
             )}
           >
             <Icon className="w-5 h-5" />
@@ -53,8 +53,8 @@ export function ProfileSidebar() {
           </Link>
         );
       })}
-
-      <div className="mt-6">
+      <hr />
+      <div className="pr-2 -mt-2">
         <LogoutButton />
       </div>
     </aside>

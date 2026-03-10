@@ -13,9 +13,9 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-5">
       {/* --- سفارش‌ها --- */}
-      <section className="space-y-2">
+      <section className="space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold  md:text-lg">سفارش‌های من</h2>
+          <h2 className="font-semibold md:text-lg">سفارش‌های من</h2>
 
           <Button
             size={"sm"}
@@ -72,7 +72,7 @@ function OrderStatCard({
   return (
     <Card
       className={cn(
-        "p-3 md:p-4 flex items-center lg:flex-row relative justify-between gap-2 bg-transparent border border-border transition-all",
+        "p-3 md:p-4 flex items-center lg:flex-row relative justify-between gap-2 transition-all bg-white rounded-lg",
         highlight && "flex-row justify-start",
       )}
     >

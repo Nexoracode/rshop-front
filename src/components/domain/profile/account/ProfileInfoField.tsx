@@ -14,12 +14,14 @@ type Props = {
   }>;
   label: string;
   type?: "email" | "text";
+  className?: string;
 };
 
 export default function ProfileInfoField({
   fields,
   label,
   type = "text",
+  className
 }: Props) {
   const [editing, setEditing] = useState(false);
 
@@ -32,7 +34,9 @@ export default function ProfileInfoField({
   }, [formState.isSubmitSuccessful]);
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b py-3 gap-3">
+    <div
+      className={`flex flex-col sm:flex-row sm:items-center justify-between last:border-b-0 border-b last:pb-0 py-3 gap-3 ${className}`}
+    >
       <div className="flex-1">
         <p className="text-sm text-muted-foreground">{label}</p>
 
