@@ -22,15 +22,15 @@ export default function SupportMessage({ message, product }: Props) {
   return (
     <div
       className={cn(
-        "flex w-full mb-2",
+        "flex w-full mb-4",
         isUser ? "justify-end" : "justify-start",
       )}
     >
       <div
         className={cn(
-          "max-w-[80%] rounded-2xl p-2 text-sm shadow-sm",
+          "max-w-[80%] rounded-2xl p-4 text-sm",
           isUser
-            ? "bg-neutral-200 text-foreground rounded-br-none"
+            ? "bg-neutral-100 text-foreground rounded-br-none"
             : "bg-primary text-primary-foreground rounded-bl-none",
         )}
       >

@@ -19,7 +19,7 @@ export default function SupportCard({
   id,
 }: Props) {
   return (
-    <Link href={`/profile/support/${id}`} className="!p-4 !border-x-0 !rounded-none !border-t-0 border !border-b-1 last:!border-0">
+    <Link href={`/profile/support/${id}`} className="!p-4 !border-x-0 !rounded-none !border-t-0 border !border-b-1 !px-0 last:!border-0">
       <Card className="flex relative border-none flex-row !p-0">
         <Image
           src={product ? product.image || PRODUCT_PLACEHOLDER : `/window.svg`}

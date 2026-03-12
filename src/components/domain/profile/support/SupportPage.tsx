@@ -31,21 +31,20 @@ export default function SupportPage() {
   }, [ticket?.messages]);
 
   return (
-    <Card className=" overflow-hidden">
-      <div className="flex flex-col h-[calc(100vh-10rem)] md:h-[calc(100vh-12rem)] w-full mx-auto border rounded-lg overflow-h-hidden">
+    <Card className="overflow-hidden !p-0">
+      <div className="flex flex-col h-[70vh] w-full mx-auto overflow-h-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-3 border-b bg-background">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between p-5 bg-background">
+          <div className="flex items-center gap-4">
             <Image
               src={
                 ticket?.product
                   ? ticket.product.image || PRODUCT_PLACEHOLDER
                   : "/support.png"
               }
-              className="rounded-lg border bg-neutral-200 p-1"
-              width={65}
-              height={65}
-              alt=""
+              width={40}
+              height={40}
+              alt="support"
             />
             <div>
               <p className="font-semibold  text-sm">
@@ -55,7 +54,7 @@ export default function SupportPage() {
                   className="inline-block"
                 >{`#${ticket?.id}`}</span>
               </p>
-              <p className="font-semibold text-sm">{ticket?.subject}</p>
+              <p className="font-semibold text-sm text-gray-500 mt-1">{ticket?.subject}</p>
             </div>
           </div>
           {ticket?.status === "closed" ? (

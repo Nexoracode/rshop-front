@@ -41,7 +41,7 @@ export default function ChatInput({ supportId }: Props) {
         disabled={text.trim().length === 0 || isPending}
         onClick={handleSend}
         variant={"outline"}
-        color="primary"
+        color="info"
         className="w-9 h-9"
       >
         <LucideSend className="w-7 h-7 -rotate-90" />
@@ -71,7 +71,7 @@ export const AutoResizeTextarea = React.forwardRef<
       ref={textareaRef}
       onInput={handleInput}
       rows={1} // ✅ Start With One Row
-      className={`resize-none overflow-hidden outline-none bg-neutral-100 dark:bg-neutral-700 rounded-lg px-3 py-2 text-sm ${className}`}
+      className={`resize-none text-[16px] overflow-hidden outline-none bg-slate-50 rounded-lg px-3 !h-12 py-3 text-sm ${className}`}
       {...props}
     />
   );
