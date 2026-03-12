@@ -15,7 +15,7 @@ export default function OrderItemCard({
   item: { product, variant, unit_price, ...item },
 }: Props) {
   return (
-    <div className="p-4 border rounded-md">
+    <div className="p-4 border rounded-lg">
       <div className="flex">
         <div className="relative w-28 aspect-square">
           <Image

@@ -21,7 +21,7 @@ export function OrderPaymentSection({
   date: string;
 }) {
   return (
-    <Card className="justify-between">
+    <Card className="">
       <h3 className="font-semibold mb-2">اطلاعات پرداخت</h3>
       {payment && (
         <div className="space-y-4">
