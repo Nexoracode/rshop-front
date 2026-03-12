@@ -34,7 +34,10 @@ export function ProfileSidebar() {
   return (
     <aside className="bg-white rounded-lg sticky top-20 h-fit md:border md:border-border md:w-[16rem] md:p-4 md:space-y-2">
       {items.map((item) => {
-        const active = pathname === item.href;
+        const active =
+          item.href === "/profile"
+            ? pathname === "/profile"
+            : pathname.startsWith(item.href);
         const Icon = item.icon;
         return (
           <Link
