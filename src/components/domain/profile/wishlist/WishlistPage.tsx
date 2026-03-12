@@ -19,25 +19,27 @@ export default function WishlistPage() {
     mutate({ itemId });
   };
   return (
-    <Card className="">
-      <div className="flex justify-between">
+    <div>
+      <div className="flex justify-between mb-8">
         <h1 className="text-lg font-semibold">علاقه‌مندی‌های من</h1>
       </div>
-      <ListLayout<WishlistItem>
-        items={wishlist}
-        loading={isFetching}
-        skeleton={<ProductCardSkeleton count={5} />}
-        className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
-        emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
-        renderItem={(item) => (
-          <WishlistCard
-            loading={isPending && variables.itemId === item.id}
-            onDelete={handleDelete}
-            key={item.id}
-            {...item}
-          />
-        )}
-      />
-    </Card>
+      <div className="border p-6 rounded-lg">
+        <ListLayout<WishlistItem>
+          items={wishlist}
+          loading={isFetching}
+          skeleton={<ProductCardSkeleton count={5} />}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
+          renderItem={(item) => (
+            <WishlistCard
+              loading={isPending && variables.itemId === item.id}
+              onDelete={handleDelete}
+              key={item.id}
+              {...item}
+            />
+          )}
+        />
+      </div>
+    </div>
   );
 }
