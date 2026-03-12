@@ -25,15 +25,12 @@ type Props = {
 export default function AddressCard(props: Props) {
   const { address, onEdit, onDelete, onSetPrimary } = props;
   return (
-    <div
-      onClick={() => {}}
-      className="bg-white rounded-lg shadow-sm p-4"
-    >
+    <div onClick={() => {}} className="relative bg-white rounded-lg shadow-sm p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-gray-800 font-semibold">{address.address_name}</h4>
         {address.is_primary && (
-          <div className="bg-green-50 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
+          <div className="bg-green-50 absolute bottom-4 left-4 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
             آدرس اصلی
           </div>
         )}
