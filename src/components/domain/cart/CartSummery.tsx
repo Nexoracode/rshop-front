@@ -37,7 +37,7 @@ export default function CartSummery() {
             ادامه جهت تسویه حساب
           </Button>
         </div>
-        <div className="text-sm hidden md:block text-muted mt-2">
+        <div className="text-sm hidden md:block text-muted border-t pt-4 leading-6">
           هزینه این سفارش هنوز پرداخت نشده و در صورت اتمام موجودی، کالا ها از
           سبد خرید حذف می شوند
         </div>

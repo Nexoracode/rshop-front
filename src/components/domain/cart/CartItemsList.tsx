@@ -13,19 +13,22 @@ export default function CartItemsList() {
   if (isPending) return <PageLoader />;
 
   return (
-    <div className=" gap-5 flex">
-      {data?.total_quantity ? null : (
-        <div className="w-full flex justify-center">
-          <EmptyCard />
+    <div>
+      <p className="text-xl mb-4 font-semibold">سبد خرید</p>
+      <div className="gap-5 flex">
+        {data?.total_quantity ? null : (
+          <div className="w-full flex justify-center">
+            <EmptyCard />
+          </div>
+        )}
+        <div className="flex flex-1  flex-col space-y-4">
+          {data?.items.map((item) => (
+            <CartItem {...item} key={item.id} />
+          ))}
         </div>
-      )}
-      <div className="flex flex-1  flex-col space-y-4">
-        {data?.items.map((item) => (
-          <CartItem {...item} key={item.id} />
-        ))}
-      </div>
 
-      {Number(data?.total_quantity) > 0 ? <CartSummery /> : null}
+        {Number(data?.total_quantity) > 0 ? <CartSummery /> : null}
+      </div>
     </div>
   );
 }

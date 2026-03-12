@@ -11,25 +11,28 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Card } from "@/components/ui/card";
 
 export default function RecentView() {
   const { data } = useQuery(recentViewList);
 
   return (
     <section className="w-full">
-      <h2 className="font-semibold text-lg mb-3">بازدیدهای اخیر شما</h2>
-      <Carousel>
-        <CarouselNext />
-        <CarouselPrevious />
+      <h2 className="font-semibold text-lg mb-4">بازدیدهای اخیر شما</h2>
+      <Card>
+        <Carousel>
+          <CarouselNext />
+          <CarouselPrevious />
 
-        <CarouselContent>
-          {data?.map((product) => (
-            <CarouselItem key={product.id} className="basis-[15rem]">
-              <RecentViewedCard {...product} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+          <CarouselContent>
+            {data?.map((product) => (
+              <CarouselItem key={product.id} className="basis-[15rem]">
+                <RecentViewedCard {...product} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </Card>
     </section>
   );
 }
