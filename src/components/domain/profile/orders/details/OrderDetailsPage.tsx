@@ -21,7 +21,7 @@ export default function OrderDetailsPage() {
     <PageLoader />
   ) : orderData ? (
     <div className="space-y-4">
-      <Card className="gap-4 ">
+      <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div className="flex">
             <Button
@@ -30,7 +30,7 @@ export default function OrderDetailsPage() {
               size={"sm"}
               href={`/profile/orders`}
             >
-              <ArrowRight />
+              <ArrowRight className="text-gray-600"/>
             </Button>
             <h1 className="text-lg font-semibold">جزئیات سفارش</h1>
           </div>
@@ -60,18 +60,18 @@ export default function OrderDetailsPage() {
             />
           )}
         </div>
-      </Card>
+      </div>
 
-      <Card className="p-4 md:p-6">
+      <div className="border border-gray-200 rounded-lg p-4 md:p-6">
         <div className="space-y-3">
-          <h3 className="font-semibold mb-2">محصولات خریداری‌شده</h3>
+          <h3 className="font-semibold mb-4">محصولات خریداری‌شده</h3>
           <div className="space-y-2">
             {orderData?.items.map((item) => (
               <OrderItemCard key={item.id} item={item} />
             ))}
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   ) : (
     <p>سفارش یافت نشد</p>

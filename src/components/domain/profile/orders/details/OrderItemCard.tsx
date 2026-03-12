@@ -15,9 +15,9 @@ export default function OrderItemCard({
   item: { product, variant, unit_price, ...item },
 }: Props) {
   return (
-    <div className="p-1 border bg-card">
+    <div className="p-4 border rounded-md">
       <div className="flex">
-        <div className="relative w-32 aspect-square">
+        <div className="relative w-28 aspect-square">
           <Image
             src={product.image || ""}
             alt={product.name}
