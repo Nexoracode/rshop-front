@@ -32,7 +32,7 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-white rounded-lg sticky top-20 h-fit md:border md:border-border md:w-[16rem] md:p-4 md:space-y-2">
+    <aside className="sticky top-20 h-fit md:border-l md:w-[16rem] md:p-4 md:space-y-2">
       {items.map((item) => {
         const active =
           item.href === "/profile"
