@@ -1,11 +1,19 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { Trash2, MapPin, PinIcon, Edit } from "lucide-react";
+import {
+  Trash2,
+  PinIcon,
+  Edit,
+  LucideMapPinned,
+  LucideMap,
+  LucideHome,
+  LucideMail,
+  LucideUser,
+  LucidePhone,
+} from "lucide-react";
 
 import { Menu, MenuItem } from "@/components/common/Menu";
 import { UserAddress } from "@/types/user";
-import { cn } from "@/lib/utils/classnames";
 
 type Props = {
   address: UserAddress;
@@ -18,36 +26,89 @@ export default function AddressCard(props: Props) {
   const { address, onEdit, onDelete, onSetPrimary } = props;
   return (
     <div
-      className={cn(
-        "!p-4 border !border-slate-300 rounded-lg relative bg-transparent",
-        address.is_primary && "border-primary-300 shadow-primary-foreground",
-      )}
+      onClick={() => {}}
+      className="bg-white rounded-lg shadow-sm p-4"
     >
-      {address.is_primary && (
-        <span className="absolute bottom-4 left-4 text-xs bg-green-100 text-green-700 px-3 py-1 rounded-md">
-          آدرس اصلی
-        </span>
-      )}
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h4 className="text-gray-800 font-semibold">{address.address_name}</h4>
+        {address.is_primary && (
+          <div className="bg-green-50 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
+            آدرس اصلی
+          </div>
+        )}
+      </div>
 
-      <div className="flex gap-3">
-        <div className="text-primary">
-          <MapPin className="w-6 h-6 mt-1" />
+      {/* Quick Info Row style */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
+        {/* شهر و استان */}
+        <div className="flex items-center gap-2">
+          <LucideMapPinned className="text-gray-400 text-lg" />
+          <div className="flex flex-col">
+            <p className="text-xs text-gray-500 mb-1">شهر و استان</p>
+            <p className="text-[14px] font-medium truncate">
+              {address.city}, {address.province}
+            </p>
+          </div>
         </div>
 
-        <div className="flex-1 space-y-1 text-sm">
-          <p className="font-semibold text-primary">{address.address_name}</p>
-          <p>
-            {address.city}، {address.province}، پلاک {address.plaque}، واحد{" "}
-            {address.unit}
-          </p>
-          <p>کد پستی: {address.postal_code}</p>
-          <p>
-            گیرنده:{" "}
-            {address.is_self
-              ? "خودم"
-              : `${address.recipient_name} - ${address.recipient_phone}`}
-          </p>
+        {/* آدرس */}
+        <div className="flex items-center gap-2">
+          <LucideMap className="text-gray-400 text-lg" />
+          <div className="flex flex-col">
+            <p className="text-xs text-gray-500 mb-1">آدرس</p>
+            <p className="text-[14px] font-medium truncate max-w-44">
+              {address.address_line}
+            </p>
+          </div>
         </div>
+
+        {/* پلاک و واحد */}
+        <div className="flex items-center gap-2">
+          <LucideHome className="text-gray-400 text-lg" />
+          <div className="flex flex-col">
+            <p className="text-xs text-gray-500 mb-1">پلاک / واحد</p>
+            <p className="text-[14px] font-medium">
+              پلاک {address.plaque}
+              {address.unit ? `, واحد ${address.unit}` : ""}
+            </p>
+          </div>
+        </div>
+
+        {/* کد پستی */}
+        <div className="flex items-center gap-2">
+          <LucideMail className="text-gray-400 text-lg" />
+          <div className="flex flex-col">
+            <p className="text-xs text-gray-500 mb-1">کد پستی</p>
+            <p className="text-[14px] font-medium">{address.postal_code}</p>
+          </div>
+        </div>
+
+        {/* نام تحویل‌گیرنده */}
+        {address.recipient_name && (
+          <div className="flex items-center gap-2">
+            <LucideUser className="text-gray-400 text-lg" />
+            <div className="flex flex-col">
+              <p className="text-xs text-gray-500 truncate mb-1">
+                نام تحویل‌گیرنده
+              </p>
+              <p className="text-[14px] font-medium">
+                {address.recipient_name}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* شماره تحویل‌گیرنده */}
+        {address.recipient_phone && (
+          <div className="flex items-center gap-2">
+            <LucidePhone className="text-gray-400 text-lg" />
+            <div className="flex flex-col">
+              <p className="text-xs text-gray-500 mb-1">شماره تحویل‌گیرنده</p>
+              <p className="text-[14px]">{address.recipient_phone}</p>
+            </div>
+          </div>
+        )}
       </div>
 
       <Menu
@@ -55,13 +116,13 @@ export default function AddressCard(props: Props) {
         items={[
           ...((!address.is_primary
             ? [
-              {
-                label: "تغییر به آدرس اصلی",
-                Icon: PinIcon,
-                onClick: () => onSetPrimary(address),
-                color: "primary",
-              },
-            ]
+                {
+                  label: "تغییر به آدرس اصلی",
+                  Icon: PinIcon,
+                  onClick: () => onSetPrimary(address),
+                  color: "primary",
+                },
+              ]
             : []) as MenuItem[]),
           {
             label: "ویرایش",
