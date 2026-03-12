@@ -25,7 +25,7 @@ type Props = {
 export default function AddressCard(props: Props) {
   const { address, onEdit, onDelete, onSetPrimary } = props;
   return (
-    <div onClick={() => {}} className="relative bg-white rounded-lg shadow-sm p-4">
+    <div onClick={() => {}} className="relative bg-white rounded-lg border border-slate-200 p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-gray-800 font-semibold">{address.address_name}</h4>
