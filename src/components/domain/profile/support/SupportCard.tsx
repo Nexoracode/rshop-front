@@ -19,12 +19,12 @@ export default function SupportCard({
   id,
 }: Props) {
   return (
-    <Link href={`/profile/support/${id}`}>
-      <Card className="flex relative !p-2 flex-row">
+    <Link href={`/profile/support/${id}`} className="!p-4 !border-x-0 !rounded-none !border-t-0 border !border-b-1 last:!border-0">
+      <Card className="flex relative border-none flex-row !p-0">
         <Image
           src={product ? product.image || PRODUCT_PLACEHOLDER : `/window.svg`}
           alt=""
-          className="border p-1 rounded-md"
+          className="border p-5 rounded-lg"
           width={72}
           height={72}
         />
@@ -40,7 +40,7 @@ export default function SupportCard({
         </div>
 
         <Badge
-          className="absolute bottom-2 left-2 w-20"
+          className="absolute bottom-2 left-2 w-20 rounded-md text-white"
           variant={ticketStatus[status]?.color}
         >
           {ticketStatus[status]?.label}

@@ -21,7 +21,7 @@ export default function SupportList() {
         items={tickets || []}
         renderItem={(ticket) => <TicketCard key={ticket.id} {...ticket} />}
         skeleton={<Skeletons count={3} className="h-12" />}
-        className="flex flex-col space-y-2"
+        className="flex flex-col space-y-3"
         loading={isPending}
       />
     </Card>
