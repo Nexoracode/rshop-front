@@ -25,27 +25,31 @@ export default function ReviewItemCard({
   onDelete,
 }: Props) {
   return (
-    <div className="space-y-2 relative border-b p-3 last:border-b-0">
-      <div className="flex items-stretch">
+    <div className="space-y-2 relative border p-4 rounded-lg">
+      <div className="flex">
         <Link target="_blank" href={`/p/rsp-${product.id}`}>
           <Image
             src={product.image}
             alt={product.name}
-            width={64}
-            height={64}
-            className="rounded-md border object-cover"
+            width={80}
+            height={80}
+            className="rounded-lg border object-cover"
           />
         </Link>
-        <div className="flex-1 pr-3">
-          <p className="font-medium text-sm">{product.name}</p>
-          <div className="text-sm text-muted">{toPersianDate(created_at)}</div>
+        <div className="flex flex-col gap-4 pr-3">
+          <div>
+            <p className="font-medium text-sm">{product.name}</p>
+            <div className="text-sm text-muted mt-1">
+              {toPersianDate(created_at)}
+            </div>
+          </div>
+          <ProductRating rating={rating} className="size-4" />
         </div>
       </div>
-      <ProductRating rating={rating} />
 
-      <p className="text-sm leading-relaxed border-t pt-2">{comment}</p>
+      <p className="text-sm leading-relaxed pt-2">{comment}</p>
 
-      <div className="absolute flex items-center left-2 top-0">
+      <div className="absolute flex items-center left-2 top-3">
         <div>
           {is_approved === true && (
             <Badge variant={"success"}>
