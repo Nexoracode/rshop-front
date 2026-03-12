@@ -1,7 +1,6 @@
 "use client";
 
 import ProfileInfoField from "./ProfileInfoField";
-import { Card } from "@/components/ui/card";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";

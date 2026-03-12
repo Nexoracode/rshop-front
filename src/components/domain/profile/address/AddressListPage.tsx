@@ -12,7 +12,6 @@ import {
   updateUserAddress,
 } from "@/queries/profile/address";
 import AddressList from "./AddressList";
-import { Card } from "@/components/ui/card";
 import { UserAddress } from "@/types/user";
 import AddressForm from "../../users/AddressForm";
 
@@ -41,14 +40,15 @@ export default function AddressListPage() {
   };
 
   return (
-    <Card>
-      <div className="flex items-center justify-between">
+    <div>
+      <div className="flex items-center justify-between pb-6">
         <h1 className="text-lg font-semibold">آدرس‌های من</h1>
         <Button
           variant={"text"}
           color="primary"
           size={"sm"}
-          startIcon={<Plus />}
+          startIcon={<Plus size={18} />}
+          className="py-5"
           onClick={() => setOpenForm({ action: "add", address: null })}
         >
           افزودن آدرس جدید
@@ -78,6 +78,6 @@ export default function AddressListPage() {
         onConfirm={handleDelete}
         loading={deletePending}
       />
-    </Card>
+    </div>
   );
 }

@@ -17,14 +17,14 @@ type Props = {
 export default function AddressCard(props: Props) {
   const { address, onEdit, onDelete, onSetPrimary } = props;
   return (
-    <Card
+    <div
       className={cn(
-        "!p-4 relative bg-transparent hover:shadow-md transition-all border-muted-light",
+        "!p-4 border !border-slate-300 rounded-lg relative bg-transparent",
         address.is_primary && "border-primary-300 shadow-primary-foreground",
       )}
     >
       {address.is_primary && (
-        <span className="absolute bottom-2 left-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+        <span className="absolute bottom-4 left-4 text-xs bg-green-100 text-green-700 px-3 py-1 rounded-md">
           آدرس اصلی
         </span>
       )}
@@ -55,13 +55,13 @@ export default function AddressCard(props: Props) {
         items={[
           ...((!address.is_primary
             ? [
-                {
-                  label: "تغییر به آدرس اصلی",
-                  Icon: PinIcon,
-                  onClick: () => onSetPrimary(address),
-                  color: "primary",
-                },
-              ]
+              {
+                label: "تغییر به آدرس اصلی",
+                Icon: PinIcon,
+                onClick: () => onSetPrimary(address),
+                color: "primary",
+              },
+            ]
             : []) as MenuItem[]),
           {
             label: "ویرایش",
@@ -77,6 +77,6 @@ export default function AddressCard(props: Props) {
           },
         ]}
       />
-    </Card>
+    </div>
   );
 }
