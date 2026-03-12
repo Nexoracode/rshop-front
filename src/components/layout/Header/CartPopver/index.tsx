@@ -17,9 +17,8 @@ export default function CartPopover() {
     if (cart?.total_quantity) setOpen(true);
   };
   return (
-    <>
       <div
-        className="relative"
+        className="relative !z-[100]"
         //   onMouseOut={() => setOpen(false)}
         onClick={() => setOpen(false)}
         onMouseEnter={handleOpen}
@@ -36,7 +35,7 @@ export default function CartPopover() {
           />
         )}
         {open && (
-          <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around absolute">
+          <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around z-50 absolute">
             <div className="text-muted-light font-semibold">
               {cart?.total_quantity} کالا
             </div>
@@ -45,6 +44,5 @@ export default function CartPopover() {
           </div>
         )}
       </div>
-    </>
   );
 }

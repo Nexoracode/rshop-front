@@ -39,13 +39,13 @@ export default function MainNav() {
   return (
     <>
       {isOpen ? (
-        <div className="fixed z-40  w-screen h-screen bg-black/40"></div>
+        <div className="fixed z-10  w-screen h-screen bg-black/40"></div>
       ) : (
         ""
       )}
       <nav
         className={cn(
-          "hidden absolute  transition-all duration-300 z-50 bg-white shadow left-0 right-0  md:block",
+          "hidden absolute  transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
           !isVisible
             ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
             : "translate-y-0 opacity-100 h-10",
