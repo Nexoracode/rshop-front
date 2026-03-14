@@ -1,4 +1,5 @@
 "use client";
+
 import {
   HeroSlider as HeroSliderType,
   LayoutType,
@@ -20,14 +21,13 @@ export default function PromoSection({
   layoutType,
 }: Props) {
   return (
-    <section className=" bg-white">
+    <section className="bg-white">
       <div
         className={cn(
           "grid grid-cols-1 gap-2",
           layoutType === "side_by_side" ? "container-home md:grid-cols-2" : "",
         )}
       >
-        {/* اسلایدشو بزرگ - دو ستون */}
         <div
           className={cn(
             layoutType === "side_by_side"
@@ -42,13 +42,12 @@ export default function PromoSection({
           />
         </div>
 
-        {/* چهار بنر کوچک - یک ستون در موبایل، دو*دو در دسکتاپ */}
         <div
           className={cn(
             " grid grid-cols-2 gap-1 md:gap-2",
             layoutType === "side_by_side"
               ? "sm:grid-cols-2"
-              : "container-home md:grid-cols-4",
+              : "container-home md:grid-cols-4 mt-4",
           )}
         >
           <PromoBanners banners={sideBanners} />
