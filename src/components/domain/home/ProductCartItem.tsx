@@ -21,16 +21,17 @@ export default function ProductCartItem(props: HomeSectionProduct) {
   return (
     <Link
       target="_blank"
-      className="flex flex-col bg-white h-[18rem]"
+      className="flex flex-col !rounded-sm bg-white !h-[254px]"
       href={`/p/rsp-${id}`}
     >
       {/* image */}
-      <div className="relative bg-white aspect-[1/1] w-full overflow-hidden">
+      <div className="relative mt-2 bg-white w-full flex items-center justify-center">
         <Image
           src={image || PRODUCT_PLACEHOLDER}
           alt={name}
-          fill
-          className={"object-fill p-4"}
+          width={132}
+          height={132}
+          className="w-[132px] h-[132px] rounded-lg"
         />
       </div>
 

@@ -6,14 +6,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils/classnames";
 import React from "react";
 
 type Props<T> = {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
+  hiddenSeparator ?: boolean;
 };
 
-export default function ProductCarousel<T>({ items, renderItem }: Props<T>) {
+export default function ProductCarousel<T>({ items, renderItem , hiddenSeparator = false }: Props<T>) {
   return (
     <Carousel>
       <CarouselNext />
@@ -22,7 +24,7 @@ export default function ProductCarousel<T>({ items, renderItem }: Props<T>) {
         {items.map((product, index) => (
           <CarouselItem
             key={index}
-            className="basis-[10rem] border-l last:border-l-0 sm:basis-[12rem]"
+            className={cn("basis-[10rem] sm:basis-[11rem]" , !hiddenSeparator && "border-l last:border-l-0 ")}
           >
             {renderItem(product)}
           </CarouselItem>
