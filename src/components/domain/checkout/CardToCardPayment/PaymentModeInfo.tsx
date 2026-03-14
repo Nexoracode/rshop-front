@@ -67,7 +67,6 @@ export function PaymentModeInfo({
             label="شماره کارت مبدا"
             name="sender_card_number"
           />
-
           <TextField required label="کد پیگیری" name="tracking_code" />
         </form>
       </FormProvider>
