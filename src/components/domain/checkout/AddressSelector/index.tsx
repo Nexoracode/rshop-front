@@ -36,7 +36,7 @@ export default function AddressSelector() {
       </div>
       <div className="grid gap-3">
         {primaryAddress ? (
-          <AddressCard address={address || primaryAddress} disableAction />
+          <AddressCard address={address || primaryAddress} disableAction className="border-none !p-0"/>
         ) : (
           <Button
             type="button"

@@ -21,6 +21,7 @@ type Props = {
   onDelete?: (address: UserAddress) => void;
   onSetPrimary?: (address: UserAddress) => void;
   disableAction?: boolean;
+  className?: string
 };
 
 export default function AddressCard(props: Props) {
@@ -30,11 +31,12 @@ export default function AddressCard(props: Props) {
     onDelete,
     onSetPrimary,
     disableAction = false,
+    className
   } = props;
   return (
     <div
       onClick={() => {}}
-      className="relative bg-white rounded-lg border border-slate-200 p-4"
+      className={`relative bg-white rounded-lg border border-slate-200 p-4 ${className}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
