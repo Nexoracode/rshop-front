@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, Edit2Icon, Trash2Icon } from "lucide-react";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
 import { GiftMessageInput } from "./GiftMessageInput";
 import { GiftWrapModal } from "./GiftWrapModal";
@@ -10,13 +10,15 @@ import useCheckout from "@/hooks/useCheckout";
 import { useQuery } from "@tanstack/react-query";
 import { getGiftWrappings } from "@/queries/checkout/order-meta";
 import { cn } from "@/lib/utils/classnames";
+import { Button } from "@/components/ui/button";
 
 export function PackageSelector() {
+  const [giftModal, setGiftModal] = useState(false);
+
   const {
     orderMeta: { is_gift = false, gift_wrapping_id },
     handleSetOrderMeta,
   } = useCheckout();
-  const [giftModal, setGiftModal] = useState(false);
 
   const { data } = useQuery(getGiftWrappings);
 
@@ -43,8 +45,47 @@ export function PackageSelector() {
     setGiftModal(false);
   };
 
+  const onDelete = () => {
+    handleSetOrderMeta({
+      gift_wrapping_id: undefined,
+      gift_message: "",
+      is_gift: false,
+    });
+  };
+
   return (
-    <div className={`space-y-4 ${is_gift ? "border p-6 rounded-xl" : ""}`} dir="rtl">
+    <div
+      className={`space-y-4 ${is_gift ? "border p-6 rounded-xl" : ""}`}
+      dir="rtl"
+    >
+      {is_gift ? (
+        <div className="flex items-center justify-between gap-2">
+          <p>بسته بندی انتخاب شده</p>
+          <div className="flex items-center gap-2">
+            <Button
+              color="info"
+              size={"sm"}
+              variant={"text"}
+              startIcon={<Edit2Icon className="size-5" />}
+              onClick={() => setGiftModal(true)}
+            >
+              <span className="hidden md:inline-block">تغییر طرح</span>
+            </Button>
+
+            <Button
+              color="danger"
+              variant={"text"}
+              size={"sm"}
+              startIcon={<Trash2Icon className="size-5" />}
+              onClick={onDelete}
+            >
+              <span className="hidden md:inline-block">حذف بسته‌بندی</span>
+            </Button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <Card
         onClick={() => handleSelectGift(true)}
         className={`!p-4 gap-0 cursor-pointer border relative ${
@@ -74,7 +115,7 @@ export function PackageSelector() {
       <div className="space-y-4" dir="rtl">
         {is_gift && gift_wrapping_id && (
           <>
-            <SelectedGiftWrapCard onEdit={() => setGiftModal(true)} />
+            <SelectedGiftWrapCard />
 
             {/* فیلد متن شخصی‌سازی */}
             <GiftMessageInput />

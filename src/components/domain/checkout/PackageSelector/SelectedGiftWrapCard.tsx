@@ -1,53 +1,21 @@
 import Image from "next/image";
 import useCheckout from "@/hooks/useCheckout";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { Edit2Icon, Trash2Icon } from "lucide-react";
 import { getGiftWrappings } from "@/queries/checkout/order-meta";
 import { formatToman } from "@/lib/utils/price";
 
-export function SelectedGiftWrapCard({ onEdit }: { onEdit: () => void }) {
+export function SelectedGiftWrapCard() {
   const {
     orderMeta: { gift_wrapping_id },
-    handleSetOrderMeta,
   } = useCheckout();
 
   const { data } = useQuery(getGiftWrappings);
 
   const selectedItem = data?.find((item) => item.id === gift_wrapping_id);
 
-  const onDelete = () => {
-    handleSetOrderMeta({
-      gift_wrapping_id: undefined,
-      gift_message: "",
-      is_gift: false,
-    });
-  };
 
   return (
-    <div className="border-b pb-6 space-y-4" dir="rtl">
-      <div className="flex gap-2">
-        <Button
-          color="info"
-          size={"sm"}
-          variant={"text"}
-          startIcon={<Edit2Icon className="size-5" />}
-          onClick={onEdit}
-        >
-          <span className="hidden md:inline-block">تغییر طرح</span>
-        </Button>
-
-        <Button
-          color="danger"
-          variant={"text"}
-          size={"sm"}
-          startIcon={<Trash2Icon className="size-5" />}
-          onClick={onDelete}
-        >
-          <span className="hidden md:inline-block">حذف بسته‌بندی</span>
-        </Button>
-      </div>
-
+    <div className="border-b pb-6 mt-6 space-y-4" dir="rtl">
       <div className="flex items-stretch gap-4">
         <div className="relative w-20 h-20 bg-muted/5 rounded-md overflow-hidden">
           <Image
