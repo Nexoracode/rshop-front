@@ -21,21 +21,14 @@ export default function CheckoutForm() {
       <QueryClientWrapper>
         <SectionTitle title="تکمیل سفارش" />
         <div className="flex items-start gap-5">
-          <div className="flex-1 space-y-5">
+          <div className="flex-1 space-y-6 mt-6">
             <UserInfo />
 
-            <Card className="p-3 bg-transparent">
-              <AddressSelector />
-            </Card>
+            <AddressSelector />
 
-            <Card className="p-3 bg-transparent">
-              <DiscountField />
-            </Card>
             <PackageSelector />
 
-            <Card className="p-3 bg-transparent">
-              <OrderNote />
-            </Card>
+            <OrderNote />
 
             <Responsive visible="mobile">
               <div className="px-4">
@@ -46,7 +39,9 @@ export default function CheckoutForm() {
             </Responsive>
           </div>
 
-          <CartSummary />
+          <CartSummary>
+            <DiscountField />
+          </CartSummary>
         </div>
       </QueryClientWrapper>
     </div>

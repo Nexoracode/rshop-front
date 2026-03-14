@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Edit2Icon } from "lucide-react";
+import { Edit2Icon, LucidePlus, Trash2Icon } from "lucide-react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 
 import useCheckout from "@/hooks/useCheckout";
@@ -46,42 +46,61 @@ export default function OrderNote() {
     </FormProvider>
   );
   return (
-    <div>
+    <div className="border p-6 rounded-xl">
+      <div className="flex items-center gap-6 justify-between">
+        <h5 className="font-semibold text-neutral-700">توضیحات سفارش</h5>
+        <div className="flex items-center gap-2">
+          <BaseDialog
+            content={formContent}
+            actionLabel="ثبت توضیحات"
+            onClick={form.handleSubmit(handleSubmit)}
+            cancellButton
+            open={open}
+            onOpenChange={setOpen}
+            title={
+              note.length
+                ? "ویرایش توضیحات"
+                : "ثبت توضیحات برای سفارش (اختیاری)"
+            }
+            trigger={
+              <Button
+                variant={"outline"}
+                size={"sm"}
+                fullWidth={false}
+                startIcon={
+                  !note.length ? (
+                    <LucidePlus className="size-5" />
+                  ) : (
+                    <Edit2Icon className="size-5" />
+                  )
+                }
+              >
+                {!note.length ? "افزودن" : ""}
+              </Button>
+            }
+          />
+          {note.length ? (
+            <Button
+              variant={"outline"}
+              size={"sm"}
+              fullWidth={false}
+              color="danger"
+              className="w-10 mx-0"
+              startIcon={<Trash2Icon className="size-5" />}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
       {note.length ? (
         <div>
-          <h5 className="font-semibold text-neutral-700">توضیحات سفارش</h5>
-
           <div
-            className="text-sm py-5 text-muted"
+            className="text-sm pt-5 text-muted"
             dangerouslySetInnerHTML={{ __html: note }}
           ></div>
         </div>
       ) : null}
-
-      <BaseDialog
-        content={formContent}
-        actionLabel="ثبت توضیحات"
-        onClick={form.handleSubmit(handleSubmit)}
-        cancellButton
-        open={open}
-        onOpenChange={setOpen}
-        title={
-          note.length ? "ویرایش توضیحات" : "ثبت توضیحات برای سفارش (اختیاری)"
-        }
-        trigger={
-          <Button
-            variant={"text-nohover"}
-            size={"sm"}
-            fullWidth={false}
-            className="w-auto max-w-fit mx-0"
-            startIcon={<Edit2Icon className="size-4" />}
-          >
-            {note.length
-              ? "ویرایش توضیحات"
-              : "ثبت توضیحات برای سفارش (اختیاری)"}
-          </Button>
-        }
-      />
     </div>
   );
 }

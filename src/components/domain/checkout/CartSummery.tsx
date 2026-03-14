@@ -10,7 +10,11 @@ import { formatToman } from "@/lib/utils/price";
 import Responsive from "@/components/common/Responsive";
 import { Card } from "@/components/ui/card";
 
-export default function CartSummary() {
+type CartSummaryProps = {
+  children: React.ReactNode;
+};
+
+const CartSummary: React.FC<CartSummaryProps> = ({ children }) => {
   const { data } = useQuery(getCart);
   const couponData = useMutationState({
     filters: { mutationKey: ["check-promotion"], status: "success" },
@@ -19,8 +23,8 @@ export default function CartSummary() {
     select: (mu) => mu.state.data as any,
   })[0];
   return (
-    <Card className="p-3  fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] md:bg-transparent z-50 md:z-[unset] rounded-none md:rounded-lg">
-      <div className="md:space-y-3 space-y-1">
+    <div className="flex flex-col-reverse md:flex-col bg-white p-4 md:p-0 md:bg-transparent gap-2 md:gap-6 fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] z-50 md:z-[unset]">
+      <div className="md:space-y-3 space-y-1 md:border border-slate-300 p-4 md:rounded-lg">
         <Responsive visible="desktop">
           <CartSummeryProducts />
           <CartSummeryInfo />
@@ -39,6 +43,9 @@ export default function CartSummary() {
           </Responsive>
         </div>
       </div>
-    </Card>
+      {children}
+    </div>
   );
-}
+};
+
+export default CartSummary;

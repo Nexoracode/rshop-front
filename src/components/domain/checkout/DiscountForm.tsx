@@ -49,20 +49,6 @@ export default function DiscountForm() {
       <div
         className={cn("relative w-full transition-all")}
       >
-        <div className="flex items-center justify-between gap-3 mb-3">
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <Tag className="h-4 w-4 text-primary" />
-            <span>استفاده از کد تخفیف</span>
-          </div>
-
-          {status === "valid" && (
-            <CheckCircle2 className="h-5 w-5 text-green-500 transition-all" />
-          )}
-          {status === "invalid" && (
-            <XCircle className="h-5 w-5 text-rose-500 transition-all" />
-          )}
-        </div>
-
         <div className="relative flex items-center">
           <Input
             value={code}
@@ -70,10 +56,10 @@ export default function DiscountForm() {
               setCode(e.target.value);
               setStatus("idle");
             }}
-            placeholder="مثلاً: SAVE10"
+            placeholder="درصورتی که کد تخفیف دارید وارد کنید"
             disabled={status === "loading"}
             className={cn(
-              "pr-3 h-12 rounded-lg font-semibold text-sm border focus-visible:ring-0",
+              "pr-3 h-12 rounded-lg font-semibold text-sm border border-slate-300 focus-visible:ring-0",
               status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&
@@ -107,7 +93,7 @@ export default function DiscountForm() {
                   : "text-muted-foreground",
             )}
           >
-            {message}
+            {}
           </p>
         )}
       </div>

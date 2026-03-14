@@ -11,7 +11,7 @@ export default function UserInfo() {
     <div className={cn("bg-background", !user?.first_name && "border-danger")}>
       <div className="flex w-full">
         {user?.first_name ? (
-          <div className="flex items-center gap-10 mt-8 mb-6">
+          <div className="flex items-center gap-10">
             <div className="gap-2 items-center">
               <div className="text-[13px] text-muted-light mb-2">
                 نام و نام خانوادگی:
