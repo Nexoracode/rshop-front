@@ -84,6 +84,7 @@ export default function OrderNote() {
               variant={"outline"}
               size={"sm"}
               fullWidth={false}
+              onClick={() => handleSetOrderMeta({ note: "" })}
               color="danger"
               className="w-10 mx-0"
               startIcon={<Trash2Icon className="size-5" />}
