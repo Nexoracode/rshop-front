@@ -28,7 +28,7 @@ export default function AddressSelector() {
   }, [primaryAddress, address, handleSetOrderMeta]);
 
   return (
-    <div className={cn("w-full space-y-3")}>
+    <div className={cn("w-full space-y-3 border p-6 rounded-xl")}>
       <Label className="text-sm font-medium">{"انتخاب آدرس ارسال"}</Label>
 
       <div className="grid gap-3">
