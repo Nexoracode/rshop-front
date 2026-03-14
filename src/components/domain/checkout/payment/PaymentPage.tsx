@@ -35,7 +35,11 @@ export default function PaymentPage() {
                 <Card className="p-3 bg-transparent">
                   <OrderItems items={data.items} />
                 </Card>
-                <OrderDiscountSection promotions={data.promotions} />
+                {data.promotions?.length ? (
+                  <OrderDiscountSection promotions={data.promotions} />
+                ) : (
+                  ""
+                )}
                 <Responsive visible="mobile">
                   <Card>
                     <div className="px-4">
