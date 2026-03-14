@@ -47,7 +47,7 @@ export default function DiscountForm() {
   return (
     <FieldContainer error="" label="">
       <div
-        className={cn("relative w-full rounded-xl border p-4 transition-all")}
+        className={cn("relative w-full transition-all")}
       >
         <div className="flex items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-2 text-sm font-semibold">

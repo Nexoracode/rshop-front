@@ -30,7 +30,42 @@ export function GiftMessageInput() {
 
   return (
     <div className="space-y-3" dir="rtl">
-      <div className="font-medium text-sm">متن دلخواه روی بسته‌بندی</div>
+      <div className="flex items-center gap-6 justify-between">
+        <div className="font-medium text-sm">متن دلخواه روی بسته‌بندی</div>
+        {!editing && (
+          <div className="flex justify-start gap-3">
+            {gift_message ? (
+              <>
+                <Button
+                  variant={"outline"}
+                  size={"sm"}
+                  color="info"
+                  className="w-10"
+                  startIcon={<Edit2Icon className="size-5" />}
+                  onClick={handleEdit}
+                />
+                <Button
+                  variant={"outline"}
+                  size={"sm"}
+                  className="w-10"
+                  color="danger"
+                  startIcon={<Trash2Icon className="size-5" />}
+                  onClick={handleDelete}
+                />
+              </>
+            ) : (
+              <Button
+                variant={"outline"}
+                size={"sm"}
+                startIcon={<PlusIcon className="size-4" />}
+                onClick={handleEdit}
+              >
+                افزودن
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
 
       {editing ? (
         <>
@@ -38,7 +73,7 @@ export function GiftMessageInput() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="پیغام شما روی بسته‌بندی چاپ می‌شود..."
-            className="min-h-[90px]"
+            className="min-h-[90px] rounded-xl"
           />
           <div className="flex justify-end">
             <Button size={"sm"} variant={"outline"} onClick={handleSave}>
@@ -46,46 +81,12 @@ export function GiftMessageInput() {
             </Button>
           </div>
         </>
-      ) : (
+      ) : gift_message?.length ? (
         <div className="bg-gray-50 p-3 rounded text-sm leading-relaxed">
-          {gift_message || "هیچ متنی ثبت نشده است."}
+          {gift_message}
         </div>
-      )}
-
-      {!editing && (
-        <div className="flex justify-start gap-3">
-          {gift_message ? (
-            <>
-              <Button
-                variant={"text"}
-                size={"sm"}
-                color="info"
-                startIcon={<Edit2Icon className="size-5" />}
-                onClick={handleEdit}
-              >
-                ویرایش متن
-              </Button>
-              <Button
-                variant={"text"}
-                size={"sm"}
-                color="danger"
-                startIcon={<Trash2Icon className="size-5" />}
-                onClick={handleDelete}
-              >
-                حذف متن
-              </Button>
-            </>
-          ) : (
-            <Button
-              variant={"text"}
-              size={"sm"}
-              startIcon={<PlusIcon className="size-5" />}
-              onClick={handleEdit}
-            >
-              افزودن متن دلخواه
-            </Button>
-          )}
-        </div>
+      ) : (
+        ""
       )}
     </div>
   );

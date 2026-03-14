@@ -65,22 +65,19 @@ export function PackageSelector() {
             <Button
               color="info"
               size={"sm"}
-              variant={"text"}
+              className="w-10"
+              variant={"outline"}
               startIcon={<Edit2Icon className="size-5" />}
               onClick={() => setGiftModal(true)}
-            >
-              <span className="hidden md:inline-block">تغییر طرح</span>
-            </Button>
-
+            />
             <Button
               color="danger"
-              variant={"text"}
+              variant={"outline"}
               size={"sm"}
+              className="w-10"
               startIcon={<Trash2Icon className="size-5" />}
               onClick={onDelete}
-            >
-              <span className="hidden md:inline-block">حذف بسته‌بندی</span>
-            </Button>
+            />
           </div>
         </div>
       ) : (
@@ -116,8 +113,6 @@ export function PackageSelector() {
         {is_gift && gift_wrapping_id && (
           <>
             <SelectedGiftWrapCard />
-
-            {/* فیلد متن شخصی‌سازی */}
             <GiftMessageInput />
           </>
         )}
