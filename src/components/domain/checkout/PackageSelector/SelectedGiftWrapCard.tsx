@@ -25,31 +25,27 @@ export function SelectedGiftWrapCard({ onEdit }: { onEdit: () => void }) {
   };
 
   return (
-    <div className="border rounded-lg p-4 space-y-4" dir="rtl">
-      <div className="flex justify-between items-center">
-        <div className="font-semibold">بسته‌بندی انتخاب‌شده</div>
+    <div className="border-b pb-6 space-y-4" dir="rtl">
+      <div className="flex gap-2">
+        <Button
+          color="info"
+          size={"sm"}
+          variant={"text"}
+          startIcon={<Edit2Icon className="size-5" />}
+          onClick={onEdit}
+        >
+          <span className="hidden md:inline-block">تغییر طرح</span>
+        </Button>
 
-        <div className="flex gap-2">
-          <Button
-            color="info"
-            size={"sm"}
-            variant={"text"}
-            startIcon={<Edit2Icon className="size-5" />}
-            onClick={onEdit}
-          >
-            <span className="hidden md:inline-block">تغییر طرح</span>
-          </Button>
-
-          <Button
-            color="danger"
-            variant={"text"}
-            size={"sm"}
-            startIcon={<Trash2Icon className="size-5" />}
-            onClick={onDelete}
-          >
-            <span className="hidden md:inline-block">حذف بسته‌بندی</span>
-          </Button>
-        </div>
+        <Button
+          color="danger"
+          variant={"text"}
+          size={"sm"}
+          startIcon={<Trash2Icon className="size-5" />}
+          onClick={onDelete}
+        >
+          <span className="hidden md:inline-block">حذف بسته‌بندی</span>
+        </Button>
       </div>
 
       <div className="flex items-stretch gap-4">

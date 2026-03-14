@@ -1,10 +1,8 @@
 "use client";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { AlertCircleIcon } from "lucide-react";
 import React from "react";
 import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils/classnames";
 
 export default function UserInfo() {

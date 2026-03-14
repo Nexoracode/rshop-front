@@ -29,8 +29,8 @@ export function GiftMessageInput() {
   };
 
   return (
-    <div className="border rounded-lg p-4 space-y-3" dir="rtl">
-      <div className="font-medium">متن دلخواه روی بسته‌بندی</div>
+    <div className="space-y-3" dir="rtl">
+      <div className="font-medium text-sm">متن دلخواه روی بسته‌بندی</div>
 
       {editing ? (
         <>

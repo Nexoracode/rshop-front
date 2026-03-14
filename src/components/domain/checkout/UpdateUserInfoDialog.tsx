@@ -41,7 +41,7 @@ export default function UpdateUserInfoDialog() {
           <div>
             <FormProvider {...form}>
               <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <div>
+                <div className="flex flex-col gap-4">
                   <TextField name="first_name" label="نام" />
                   <TextField name="last_name" label="نام خانوادگی" />
                   <Button isLoading={isPending} fullWidth>
@@ -56,7 +56,8 @@ export default function UpdateUserInfoDialog() {
           <Button
             variant={"fill"}
             size={"sm"}
-            color="warning"
+            color="info"
+            className="text-white"
             startIcon={<EditIcon className="size-4" />}
           >
             تکمیل اطلاعات
