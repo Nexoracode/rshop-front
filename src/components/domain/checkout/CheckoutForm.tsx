@@ -10,7 +10,6 @@ import CartSummeryProducts from "./CartSummeryInfo";
 
 import { PackageSelector } from "./PackageSelector";
 import QueryClientWrapper from "@/components/layout/QueryClientWrapper";
-import { Card } from "@/components/ui/card";
 import Responsive from "@/components/common/Responsive";
 import SectionTitle from "@/components/shared/asset/SectionTitle";
 import UserInfo from "./UserInfo";

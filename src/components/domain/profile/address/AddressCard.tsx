@@ -17,15 +17,25 @@ import { UserAddress } from "@/types/user";
 
 type Props = {
   address: UserAddress;
-  onEdit: (address: UserAddress) => void;
-  onDelete: (address: UserAddress) => void;
-  onSetPrimary: (address: UserAddress) => void;
+  onEdit?: (address: UserAddress) => void;
+  onDelete?: (address: UserAddress) => void;
+  onSetPrimary?: (address: UserAddress) => void;
+  disableAction?: boolean;
 };
 
 export default function AddressCard(props: Props) {
-  const { address, onEdit, onDelete, onSetPrimary } = props;
+  const {
+    address,
+    onEdit,
+    onDelete,
+    onSetPrimary,
+    disableAction = false,
+  } = props;
   return (
-    <div onClick={() => {}} className="relative bg-white rounded-lg border border-slate-200 p-4">
+    <div
+      onClick={() => {}}
+      className="relative bg-white rounded-lg border border-slate-200 p-4"
+    >
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-gray-800 font-semibold">{address.address_name}</h4>
@@ -108,33 +118,37 @@ export default function AddressCard(props: Props) {
         )}
       </div>
 
-      <Menu
-        className="absolute top-2 left-2"
-        items={[
-          ...((!address.is_primary
-            ? [
-                {
-                  label: "تغییر به آدرس اصلی",
-                  Icon: PinIcon,
-                  onClick: () => onSetPrimary(address),
-                  color: "primary",
-                },
-              ]
-            : []) as MenuItem[]),
-          {
-            label: "ویرایش",
-            Icon: Edit,
-            onClick: () => onEdit(address),
-            color: "info",
-          },
-          {
-            label: "حذف",
-            Icon: Trash2,
-            onClick: () => onDelete(address),
-            color: "danger",
-          },
-        ]}
-      />
+      {!disableAction ? (
+        <Menu
+          className="absolute top-2 left-2"
+          items={[
+            ...((!address.is_primary
+              ? [
+                  {
+                    label: "تغییر به آدرس اصلی",
+                    Icon: PinIcon,
+                    onClick: () => onSetPrimary?.(address),
+                    color: "primary",
+                  },
+                ]
+              : []) as MenuItem[]),
+            {
+              label: "ویرایش",
+              Icon: Edit,
+              onClick: () => onEdit?.(address),
+              color: "info",
+            },
+            {
+              label: "حذف",
+              Icon: Trash2,
+              onClick: () => onDelete?.(address),
+              color: "danger",
+            },
+          ]}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

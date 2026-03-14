@@ -7,9 +7,10 @@ import { MapPinPlusIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getUserAddress } from "@/queries/profile/address";
 import AddressForm from "../../users/AddressForm";
-import PrimaryAddressCard from "./PrimaryAddressCard";
 import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils/classnames";
+import AddressCard from "../../profile/address/AddressCard";
+import UserAddressDialog from "./UserAddressDialog";
 
 export default function AddressSelector() {
   const { data } = useQuery(getUserAddress);
@@ -29,14 +30,13 @@ export default function AddressSelector() {
 
   return (
     <div className={cn("w-full space-y-3 border p-6 rounded-xl")}>
-      <Label className="text-sm font-medium">{"انتخاب آدرس ارسال"}</Label>
-
+      <div className="flex items-center gap-6 justify-between">
+        <Label className="text-sm font-medium">{"انتخاب آدرس ارسال"}</Label>
+        <UserAddressDialog addresses={data || []} />
+      </div>
       <div className="grid gap-3">
         {primaryAddress ? (
-          <PrimaryAddressCard
-            primaryAddress={address || primaryAddress}
-            addresses={data || []}
-          />
+          <AddressCard address={address || primaryAddress} disableAction />
         ) : (
           <Button
             type="button"
@@ -50,8 +50,6 @@ export default function AddressSelector() {
         )}
       </div>
 
-      {/* دکمه افزودن آدرس جدید */}
-
       {addressOpen ? (
         <AddressForm
           address={null}
@@ -59,8 +57,6 @@ export default function AddressSelector() {
           onOpenChange={(open) => setAddressOpen(open)}
         />
       ) : null}
-
-      {}
     </div>
   );
 }
