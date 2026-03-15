@@ -29,34 +29,27 @@ export default function ProductPriceInfo({
   if (!is_limited_stock) {
     productStock = variant ? variant.stock : stock;
   }
-  return (
+  return productStock ? (
     <div className="mt-2 flex items-end md:w-full flex-col md:gap-3">
-      {productStock === 0 ? (
-        <p className="text-center pt-6 w-full text-danger-300 font-medium">
-          این محصول فعلا موجود نیست
-        </p>
-      ) : (
-        <>
-          <div className="">
-            <PriceBox className="text-xl font-bold text-black" price={final} />
-          </div>
-          {compareAt && compareAt > final ? (
-            <div className="flex gap-1 flex-row-reverse md:justify-between">
-              <span className="text-muted text-sm line-through">
-                {formatToman(compareAt)}
-              </span>
-              {percent > 0 && (
-                <Badge variant="secondary" className="rounded-full text-xs">
-                  {percent}%{" "}
-                  <span className="hidden md:inline-block">تخفیف</span>
-                </Badge>
-              )}
-            </div>
-          ) : (
-            <div></div>
+      <div className="">
+        <PriceBox className="text-xl font-bold text-black" price={final} />
+      </div>
+      {compareAt && compareAt > final ? (
+        <div className="flex gap-1 flex-row-reverse md:justify-between">
+          <span className="text-muted text-sm line-through">
+            {formatToman(compareAt)}
+          </span>
+          {percent > 0 && (
+            <Badge variant="secondary" className="rounded-full text-xs">
+              {percent}% <span className="hidden md:inline-block">تخفیف</span>
+            </Badge>
           )}
-        </>
+        </div>
+      ) : (
+        <div></div>
       )}
     </div>
+  ) : (
+    ""
   );
 }

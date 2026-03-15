@@ -85,7 +85,7 @@ export default async function ProductPage({
 
       {product.is_feautered && <ProductFeaturedBanner />}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24">
         {/* ستون سمت چپ (گالری + actions sidebar در دسکتاپ) */}
         <div className="lg:col-span-4 space-y-6">
           <div className="relative flex gap-4">
@@ -110,13 +110,9 @@ export default async function ProductPage({
         </div>
       </div>
 
-      <Separator className="my-12" />
-
       <Suspense fallback={<RelatedProductsSkeleton />}>
         <RelatedProducts productId={product.id} />
       </Suspense>
-
-      <Separator className="my-10" />
 
       {/* بخش پایین: tabs + description + attributes + reviews */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

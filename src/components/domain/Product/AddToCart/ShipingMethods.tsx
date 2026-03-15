@@ -13,18 +13,18 @@ export default function ShipingMethods() {
         onOpenChange={setOpen}
         trigger={
           <button onClick={() => setOpen(true)} className="w-full">
-            <span className="w-full flex justify-between items-center">
-              <Package2Icon className="text-primary" />
-              <span className="text-sm inline-block  text-right flex-1 ps-1 text-muted">
-                روش های ارسال
+            <span className="w-full flex justify-between items-center gap-1">
+              <TruckIcon className="text-slate-600" />
+              <span className="text-sm inline-block text-right flex-1 ps-1 text-muted">
+                ارسال
               </span>
-              <ChevronLeft className="text-muted-light size-6" />
+              <ChevronLeft className="size-6 -rotate-90 text-gray-400" />
             </span>
 
-            <span className="flex gap-2 relative pt-4 ps-4 items-center text-xs text-muted-light font-light">
+            <span className="flex gap-2 relative pt-4 ps-4 items-center text-[13px] text-slate-600 font-light">
               <span className="absolute right-0.5 top-1.5 bg-gradient-to-b to-primary-100 from-white h-3 w-0.5"></span>
               <span className="absolute w-1.5 h-1.5 top-5 right-0 bg-primary rounded-full"></span>
-              <TruckIcon className="size-4 text-danger" />
+              <Package2Icon className="size-4 text-sky-600" />
               توسط آرشاپ
             </span>
           </button>
@@ -45,7 +45,7 @@ export default function ShipingMethods() {
           <div>
             <div>
               <p className="font-medium">
-                <Truck className="inline-block text-primary ml-1 size-6" />
+                <Truck className="inline-block text-slate-600 ml-1 size-6" />
                 توسط آرشاپ
               </p>
               <p className="text-muted-light mt-2 leading-8 text-sm">

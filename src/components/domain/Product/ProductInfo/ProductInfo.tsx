@@ -113,34 +113,29 @@ export default function ProductInfo(props: Product) {
       <div
         className={cn(
           "lg:w-80 lg:max-w-md",
-          "bg-background border-t lg:border lg:rounded-xl lg:shadow-lg",
+          "bg-background border-t lg:border lg:rounded-xl",
           "fixed bottom-0 left-0 right-0 z-40",
           "lg:sticky lg:top-6 lg:self-start lg:h-fit",
           "transition-all duration-300",
         )}
       >
-        <div className="p-4 md:p-5 space-y-5">
-          {/* فروشنده (فقط دسکتاپ) */}
-          <div className="hidden lg:block">
-            <div className="text-sm text-muted-foreground">فروشنده</div>
-            <div className="font-semibold text-lg text-primary mt-1">آرشاپ</div>
+        <div className="p-4 md:p-6 space-y-5">
+          <div className="hidden lg:flex flex-col gap-2">
+            <div className="font-semibold text-lg text-gray-700">
+              فروشگاه آرشاپ
+            </div>
+            <div className="hidden lg:block">
+              <CreateSupportButton {...props} />
+            </div>
           </div>
 
-          <Separator className="hidden lg:block" />
-
-          {/* قیمت و اطلاعات پرداخت */}
           <ProductPriceInfo {...props} />
 
-          {/* دکمه افزودن به سبد خرید */}
-          <AddToCartButton product={props} />
-
-          {/* روش‌های ارسال + پشتیبانی (فقط دسکتاپ) */}
-          <div className="hidden lg:block space-y-5">
-            <Separator />
+          <div className="hidden lg:block">
             <ShipingMethods />
-            <Separator />
-            <CreateSupportButton {...props} />
           </div>
+
+          <AddToCartButton product={props} />
         </div>
       </div>
     </div>
