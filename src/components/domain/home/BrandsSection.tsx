@@ -51,7 +51,6 @@ export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
             </CarouselContent>
           </Carousel>
         </Card>
-        {/* کارت محصول نمونه */}
       </div>
     </section>
   );

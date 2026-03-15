@@ -15,7 +15,7 @@ export default function CategoriesList({
   selected,
 }: Props) {
   return (
-    <div className="" dir="rtl">
+    <div className="bg-white shadow p-4 rounded-lg" dir="rtl">
       <div className="flex min-w-fit md:w-[12rem] md:flex-col flex-nowrap">
         {sections.map(({ category, id }) => (
           <div
@@ -23,7 +23,7 @@ export default function CategoriesList({
             role="button"
             onClick={() => onSelect(id)}
             className={cn(
-              "flex min-w-fit md:w-full border-l md:border-l-0 px-2 mx-2 last:border-l-0 md:flex-1 items-center gap-1 p-1 cursor-pointer hover:bg-neutral-100 transition-colors",
+              "flex min-w-fit md:w-full border-l md:border-l-0 px-2 last:border-l-0 md:flex-1 items-center gap-1 p-1 cursor-pointer hover:bg-neutral-100 transition-colors",
               selected === id && "bg-primary-100 rounded-lg",
             )}
           >

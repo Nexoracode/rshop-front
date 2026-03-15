@@ -21,7 +21,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
   return (
     <Link
       target="_blank"
-      className="flex flex-col !rounded-sm bg-white !h-[254px]"
+      className={`flex flex-col bg-white !h-[254px]`}
       href={`/p/rsp-${id}`}
     >
       {/* image */}
@@ -44,18 +44,22 @@ export default function ProductCartItem(props: HomeSectionProduct) {
 
         {/* price */}
         <div className="flex justify-between items-center gap-2">
-          {compareAt && (
+          {compareAt ? (
             <Badge className="p-0 px-1" variant="danger">
               {percent}%
             </Badge>
+          ) : (
+            <div></div>
           )}
           <div className="flex items-end flex-col">
             <PriceBox price={final} className="text-base font-bold" />
-            {compareAt && (
+            {compareAt ? (
               <PriceBox
                 price={compareAt}
                 className="text-xs text-gray-400 line-through"
               />
+            ) : (
+              <div></div>
             )}
           </div>
         </div>

@@ -30,11 +30,15 @@ export default async function HomePage() {
 
       {featuredSection && <FeaturedSection {...featuredSection} />}
 
-      <CategoriesSection categories={data.categories} />
+      <div className="!mt-16">
+        <CategoriesSection categories={data.categories} />
+      </div>
 
       <HomeSections sections={data.sections} />
 
-      <BrandsSection brands={data.brands} />
+      <div className="!mt-16">
+        <BrandsSection brands={data.brands} />
+      </div>
 
       {/*    <BlogSection /> */}
     </div>
