@@ -33,7 +33,7 @@ export default function FaqPage({ faqs, faq_categories }: Props) {
   };
 
   return (
-    <div className="container-home space-y-20 px-5">
+    <div className="container-home space-y-20 px-5 mt-32">
       <FaqTitle
         label="موضوع پرسش شما چیست؟"
         icon={CircleQuestionMarkIcon}
