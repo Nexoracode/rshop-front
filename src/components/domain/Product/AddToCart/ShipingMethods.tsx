@@ -14,18 +14,14 @@ export default function ShipingMethods() {
         trigger={
           <button onClick={() => setOpen(true)} className="w-full">
             <span className="w-full flex justify-between items-center gap-1">
-              <TruckIcon className="text-slate-600" />
+              <TruckIcon className="size-5 text-slate-600" />
               <span className="text-sm inline-block text-right flex-1 ps-1 text-muted">
                 ارسال
               </span>
-              <ChevronLeft className="size-6 -rotate-90 text-gray-400" />
-            </span>
-
-            <span className="flex gap-2 relative pt-4 ps-4 items-center text-[13px] text-slate-600 font-light">
-              <span className="absolute right-0.5 top-1.5 bg-gradient-to-b to-primary-100 from-white h-3 w-0.5"></span>
-              <span className="absolute w-1.5 h-1.5 top-5 right-0 bg-primary rounded-full"></span>
-              <Package2Icon className="size-4 text-sky-600" />
-              توسط آرشاپ
+              <span className="flex gap-2 relative ps-4 items-center text-[13px] text-slate-600 font-light">
+                <Package2Icon className="size-4 text-sky-600" />
+                آرشاپ
+              </span>
             </span>
           </button>
         }

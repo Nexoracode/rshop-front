@@ -11,6 +11,7 @@ import ShipingMethods from "../AddToCart/ShipingMethods";
 import CreateSupportButton from "../CreateSupportButton";
 import ProductHelper from "../ProductTabs/ProductHelper";
 import { cn } from "@/lib/utils/classnames";
+import Image from "next/image";
 
 export default function ProductInfo(props: Product) {
   const {
@@ -121,8 +122,16 @@ export default function ProductInfo(props: Product) {
       >
         <div className="p-4 md:p-6 space-y-5">
           <div className="hidden lg:flex flex-col gap-2">
-            <div className="font-semibold text-lg text-gray-700">
-              فروشگاه آرشاپ
+            <div className="flex items-center justify-between border-b pb-4">
+              <div className="font-semibold text-[16px] text-slate-600">
+                فروشنده
+              </div>
+              <Image
+                width={60}
+                height={60}
+                alt="فروشگاه آکادمی روح بخش"
+                src={"/rshop_logo_h.png"}
+              />
             </div>
             <div className="hidden lg:block">
               <CreateSupportButton {...props} />
