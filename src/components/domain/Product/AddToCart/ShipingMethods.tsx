@@ -18,9 +18,8 @@ export default function ShipingMethods() {
               <span className="text-sm inline-block text-right flex-1 ps-1 text-muted">
                 ارسال
               </span>
-              <span className="flex gap-2 relative ps-4 items-center text-[13px] text-slate-600 font-light">
-                <Package2Icon className="size-4 text-sky-600" />
-                آرشاپ
+              <span className="flex gap-2 relative ps-4 items-center text-[13px] text-primary-500">
+                فروشگاه آرشاپ
               </span>
             </span>
           </button>
