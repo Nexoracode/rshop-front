@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { LucideIcon } from "lucide-react";
+import { LucideArrowUpLeft, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils/classnames";
 
 type Props = {
@@ -37,6 +37,7 @@ export default function SectionTitle({
           variant="text-nohover"
           className="px-0 text-sm lg:text-base font-medium group"
           href={link}
+          endIcon={<LucideArrowUpLeft/>}
         >
           {linkLabel}
         </Button>
