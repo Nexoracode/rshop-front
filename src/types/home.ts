@@ -7,7 +7,7 @@ export type HeroSlider = {
   description: string;
   image_url: string;
   is_dark: boolean;
-  backgroundColor: string;
+  background_color: string;
   button_text: string;
   button_link: string;
 };

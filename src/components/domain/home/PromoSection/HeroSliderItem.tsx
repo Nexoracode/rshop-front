@@ -11,25 +11,32 @@ type Props = {
   layoutType: LayoutType;
 } & HeroSlider;
 export default function HeroSliderItem({
-  image_url,
+  ...props
+}: Props) {
+  const  {image_url,
   title,
   description,
   button_link,
   button_text,
   layoutType,
-}: Props) {
+  background_color} = props
+  
   return (
     <Link href={button_link}>
-      <div className="select-none min-w-full rounded-xl md:rounded-none overflow-hidden h-full relative">
+      <div className="select-none min-w-full rounded-xl md:rounded-none overflow-hidden h-full relative" style={{backgroundColor: background_color ?? ""}}>
         <SliderAspect className="h-full">
-          <Image
-            src={image_url}
-            alt={title}
-            fill
-            sizes="(min-width:1024px) 66vw, 100vw"
-            className="object-cover  object-center"
-            priority
-          />
+          {image_url ? (
+            <Image
+              src={image_url}
+              alt={title}
+              fill
+              sizes="(min-width:1024px) 66vw, 100vw"
+              className="object-cover  object-center"
+              priority
+            />
+          ) : (
+            ""
+          )}
           <div className="absolute left-0 top-0 w-full h-full z-20 bg-black/30" />
           <div
             className={cn(
