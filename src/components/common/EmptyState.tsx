@@ -16,8 +16,8 @@ export default function EmptyState({
           <div className="absolute left-8 -top-4 w-20 h-20 bg-green-200 rounded-full"></div>
           <LucideBox className="w-24 h-24 opacity-30 mx-auto" />
         </div>
-        <h3 className="font-medium text-lg text-muted/80">{title}</h3>
-        {description && <p className="text-sm text-muted/50">{description}</p>}
+        <h3 className="font-medium text-lg text-muted/80 mt-4">{title}</h3>
+        {description && <p className="text-sm text-muted/50 mt-2">{description}</p>}
       </div>
     </div>
   );
