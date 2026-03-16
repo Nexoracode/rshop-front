@@ -63,7 +63,7 @@ export default function ProductTabs({
     <div
       className={cn(
         "sticky z-30 bg-background border-b rtl",
-        scrollDirection === "down" ? "top-[8rem]" : "top-[12rem]",
+        scrollDirection === "down" ? "top-[8rem]" : "top-[10.5rem]",
       )}
     >
       <div ref={barRef} className="relative flex">
