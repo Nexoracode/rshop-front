@@ -44,7 +44,7 @@ export default function ImportantAttributes({ specifications }: Props) {
           {specifications.map((attr) => (
             <div
               key={attr.id}
-              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-slate-50 min-w-fit md:min-w-[calc(33.333%)] rounded-lg p-3"
+              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 !h-[89.5px] md:bg-slate-50 min-w-fit md:min-w-[calc(33.333%)] rounded-lg p-3"
             >
               <p className="text-[13px] text-slate-800 -mb-1"> {attr.name}</p>
 

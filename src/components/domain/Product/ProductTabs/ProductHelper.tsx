@@ -16,6 +16,7 @@ export default function ProductHelper({
     <BaseDialog
       title={title}
       width="2xl"
+      className=""
       trigger={
         <div className="flex -mt-2 items-center border cursor-pointer hover:bg-sky-50 transition-all border-sky-200 text-sky-600 p-3 rounded-lg justify-between">
           راهنمای سایز
@@ -24,14 +25,11 @@ export default function ProductHelper({
       }
       content={
         <section className="space-y-4" id="helper">
-          <div className="relative  w-full aspect-square">
-            <Image
-              src={image}
-              className="p-2 object-contain border rounded-lg"
-              fill
-              alt=""
-            />
-          </div>
+          <img
+            src={image}
+            alt="helper-image"
+            className="p-2 object-contain border rounded-lg h-96 bg-slate-100"
+          />
 
           <p className="text-muted text-sm leading-6">{description}</p>
         </section>
