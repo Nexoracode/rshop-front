@@ -32,23 +32,24 @@ export default function ProductReviews({ ...props }: Props) {
     page !== null || Number(currentPageMeta?.current_page) > 1;
 
   return (
-    <section id="reviews" className="space-y-8 py-5">
+    <section id="reviews" className="space-y-8 py-1">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">
-        <div className="space-y-5">
-          <p className="text-center text-2xl font-semibold">
-            {data?.pages[0].averege_rating}{" "}
-            <span className="text-sm font-normal">از 5</span>
-          </p>
-
-          <div className="flex items-center">
-            <ProductRating rating={data?.pages[0].averege_rating ?? 1} />{" "}
+        <div className="space-y-5 border border-slate-200 rounded-lg h-fit p-5">
+          <div className="flex items-center justify-between">
+            <p className="text-center text-2xl font-semibold">
+              {data?.pages[0].averege_rating}{" "}
+              <span className="text-sm font-normal">از 5</span>
+            </p>
             <span className="text-muted text-xs ">
               از مجموع {data?.pages[0].count} امتیاز
             </span>
           </div>
+          <div className="flex items-center justify-center">
+            <ProductRating rating={data?.pages[0].averege_rating ?? 1} />{" "}
+          </div>
 
-          <p className="text-sm text-muted">
+          <p className="w-full text-center text-sm text-slate-600">
             {data?.pages[0].count === 0
               ? "اولین دیدگاه را در مورد این کالا ثبت کنید."
               : "شما هم در باره این کالا دیدگاه ثبت کنید"}
@@ -56,10 +57,10 @@ export default function ProductReviews({ ...props }: Props) {
 
           <SubmitReviewBtn {...props} />
         </div>
-        <div className="md:ps-10 pt-10 flex-1 space-y-3">
+        <div className="md:ps-6 flex-1">
           <ListLayout<Review>
             loading={isFetching}
-            className="space-y-6"
+            className="space-y-2"
             skeleton={<Skeletons count={3} />}
             emptyDescription="هنوز دیدگاهی در مورد این محصول ثبت نشده است"
             emptyTitle="اولین دیدگاه را در مورد این محصول ثبت کنید"

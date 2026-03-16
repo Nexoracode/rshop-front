@@ -9,7 +9,7 @@ type Props = {
 
 export default function ProductRating({ rating, className }: Props) {
   return (
-    <div className="flex items-center gap-1 text-yellow-500">
+    <div className="flex items-center gap-1 text-yellow-500 h-fit">
       {[1, 2, 3, 4, 5].map((i) =>
         i <= Math.floor(rating) ? (
           <Star
