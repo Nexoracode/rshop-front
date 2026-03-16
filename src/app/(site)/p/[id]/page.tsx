@@ -110,9 +110,11 @@ export default async function ProductPage({
         </div>
       </div>
 
-      <Suspense fallback={<RelatedProductsSkeleton />}>
-        <RelatedProducts productId={product.id} />
-      </Suspense>
+      <div className="border border-slate-200 rounded-lg p-6">
+        <Suspense fallback={<RelatedProductsSkeleton />}>
+          <RelatedProducts productId={product.id} />
+        </Suspense>
+      </div>
 
       {/* بخش پایین: tabs + description + attributes + reviews */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

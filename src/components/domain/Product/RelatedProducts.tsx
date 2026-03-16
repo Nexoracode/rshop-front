@@ -32,9 +32,9 @@ export default async function RelatedProducts({
           {data.map((product) => (
             <CarouselItem
               key={product.id}
-              className="basis-[12rem] sm:basis-[14rem]"
+              className="basis-[12rem] sm:basis-[14rem] last:[&>div]:border-l-0"
             >
-              <div className="bg-card h-full overflow-hidden border rounded-lg">
+              <div className="bg-card h-full overflow-hidden border-l">
                 <ProductCard {...product} />
               </div>
             </CarouselItem>

@@ -38,7 +38,7 @@ export default function ProductCard(props: Product) {
   return (
     <Link className="block" target="_blank" href={`/p/rsp-${id}`}>
       <Card
-        className="group !p-2  gap-2 md:gap-3 relative h-full border-none rounded-none shadow-none"
+        className="group !p-2 gap-2 md:gap-3 relative h-full border-none rounded-none shadow-none"
         dir="rtl"
       >
         {is_feautered && (
