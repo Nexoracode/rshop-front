@@ -17,7 +17,7 @@ export default function ProductHelper({
       title={title}
       width="2xl"
       trigger={
-        <div className="flex items-center border cursor-pointer hover:bg-sky-50 transition-all border-sky-200 text-sky-600 p-3 rounded-lg justify-between">
+        <div className="flex -mt-2 items-center border cursor-pointer hover:bg-sky-50 transition-all border-sky-200 text-sky-600 p-3 rounded-lg justify-between">
           راهنمای سایز
           <ChevronLeft size={24} className="text-sky-600" />
         </div>

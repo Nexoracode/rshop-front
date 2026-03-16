@@ -45,7 +45,7 @@ export default function VariantSelect({ attribute, variants }: Props) {
                 <Label
                   htmlFor={`color-${value.id}`}
                   className={cn(
-                    "relative  rounded-full p-0.5 cursor-pointer border-1 inline-flex items-center gap-2 data-[state=checked]:ring-2 data-[state=checked]:ring-ring data-[state=checked]:ring-offset-2",
+                    "relative rounded-md cursor-pointer border-1 inline-flex items-center gap-2 data-[state=checked]:ring-2 data-[state=checked]:ring-ring data-[state=checked]:ring-offset-2",
                     currentAttributeValue?.values.id === value.id &&
                       "ring-2 ring-primary",
                   )}
@@ -56,7 +56,7 @@ export default function VariantSelect({ attribute, variants }: Props) {
                     className="sr-only"
                   />
                   <span
-                    className="inline-block h-8 w-8 rounded-full border"
+                    className="inline-block h-7 w-7 rounded-md border"
                     style={{ backgroundColor: value.display_color ?? "#fff" }}
                   />
                 </Label>
