@@ -20,12 +20,7 @@ export default function ImageTumbnail({
       )}
     >
       {type === "image" ? (
-        <Image
-          src={url}
-          alt={`thumbnail ${id}`}
-          fill
-          className="object-contain p-2"
-        />
+        <Image src={url} alt={`thumbnail ${id}`} fill className="rounded-xl" />
       ) : (
         <div
           style={{ backgroundImage: `url(${media_pined?.url})` }}

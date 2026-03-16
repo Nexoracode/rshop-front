@@ -124,10 +124,15 @@ export default async function ProductPage({
           <ProductDescription description={product.description} showMore />
 
           <Separator />
+          {product.specifications.length ? (
+            <>
+              <ProductAttributes attributes={product.specifications} />
 
-          <ProductAttributes attributes={product.specifications} />
-
-          <Separator />
+              <Separator />
+            </>
+          ) : (
+            ""
+          )}
 
           <Suspense fallback={<ProductReviewsSkeleton />}>
             <ProductReviews
