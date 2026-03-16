@@ -32,12 +32,12 @@ export default function ProductAttributes({ attributes }: Props) {
                       {item.name}
                     </span>
 
-                    <div className="flex-1 pb-2 border-b ps-2">
+                    <div className="flex-1 py-2 !px-4 bg-slate-50 rounded-sm">
                       {item.values
                         .sort((a, b) => a.display_order - b.display_order)
                         .map((v) => (
                           <span
-                            className="block  text-xs md:text-sm text-muted leading-8"
+                            className="block text-xs md:text-sm text-muted leading-8"
                             key={v.id}
                           >
                             {v.value}

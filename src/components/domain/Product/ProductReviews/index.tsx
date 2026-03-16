@@ -35,7 +35,7 @@ export default function ProductReviews({ ...props }: Props) {
     <section id="reviews" className="space-y-8 py-1">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">
-        <div className="space-y-5 border border-slate-200 rounded-lg h-fit p-5">
+        <div className="space-y-5 shadow rounded-lg h-fit p-5">
           <div className="flex items-center justify-between">
             <p className="text-center text-2xl font-semibold">
               {data?.pages[0].averege_rating}{" "}
@@ -60,7 +60,7 @@ export default function ProductReviews({ ...props }: Props) {
         <div className="md:ps-6 flex-1">
           <ListLayout<Review>
             loading={isFetching}
-            className="space-y-2"
+            className="space-y-3"
             skeleton={<Skeletons count={3} />}
             emptyDescription="هنوز دیدگاهی در مورد این محصول ثبت نشده است"
             emptyTitle="اولین دیدگاه را در مورد این محصول ثبت کنید"
