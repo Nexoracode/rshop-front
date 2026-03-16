@@ -14,15 +14,17 @@ import { toast } from "sonner";
 import CartAddedToastContent from "../CartAddedToastContent";
 import ProductShipping from "./ProductShipping";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
-import { Loader2 } from "lucide-react";
+import { Loader2, StoreIcon, ZapIcon } from "lucide-react";
 import { useMounted } from "@/hooks/useMounted";
 
 type Props = {
   product: Product;
+  children: React.ReactNode;
 };
 
 export default function AddToCartButton({
   product: { variants, ...product },
+  children,
 }: Props) {
   const [openLoginDialog, setOpenLoginDialog] = React.useState(false);
   const mounted = useMounted();
@@ -118,23 +120,42 @@ export default function AddToCartButton({
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 -mt-1">
       <LoginRequiredDialog
         usage="cart"
         open={openLoginDialog}
         onOpenChange={setOpenLoginDialog}
       />
 
-      <ProductShipping
-        is_same_day_shipping={product.is_same_day_shipping}
-        preparation_days={product.preparation_days}
-        requires_preparation={product.requires_preparation}
-      />
+      <div className="flex flex-col gap-4 rounded-lg border border-slate-200 p-4">
+        <div className="flex flex-col gap-4">
+          {!isOutOfStock ? (
+            <div className="flex items-center text-green-700 text-xs gap-2">
+              <StoreIcon className="size-4 text-green-700" />
+              موجود در انبار آرشاب
+            </div>
+          ) : (
+            ""
+          )}
 
-      <LimitedStock
-        stock={variant?.stock ?? product.stock ?? 0}
-        is_limited_stock={product.is_limited_stock}
-      />
+          <div className="flex items-center text-secondary text-xs gap-2">
+            <ZapIcon className="text-secondary size-4" />
+            ارسال در سریع ترین زمان
+          </div>
+        </div>
+
+        <ProductShipping
+          is_same_day_shipping={product.is_same_day_shipping}
+          preparation_days={product.preparation_days}
+          requires_preparation={product.requires_preparation}
+        />
+        <LimitedStock
+          stock={variant?.stock ?? product.stock ?? 0}
+          is_limited_stock={product.is_limited_stock}
+        />
+      </div>
+      {children}
+
       {!isInCart ? (
         <Button
           size="md"
