@@ -35,12 +35,12 @@ export default function ProductPriceInfo({
         <PriceBox className="text-xl font-bold text-black" price={final} />
       </div>
       {compareAt && compareAt > final ? (
-        <div className="flex gap-1 flex-row-reverse md:justify-between">
-          <span className="text-muted text-sm line-through">
-            {formatToman(compareAt)}
+        <div className="flex gap-3 items-center flex-row-reverse md:justify-between">
+          <span className="text-slate-700 text-[15px] line-through">
+            {formatToman(compareAt, false)}
           </span>
           {percent > 0 && (
-            <Badge variant="secondary" className="rounded-full text-xs">
+            <Badge variant="success-outline" className="rounded-full text-xs">
               {percent}% <span className="hidden md:inline-block">تخفیف</span>
             </Badge>
           )}
