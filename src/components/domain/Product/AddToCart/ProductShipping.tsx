@@ -13,7 +13,7 @@ export default function ProductShipping({
   preparation_days,
 }: Props) {
   return is_same_day_shipping || requires_preparation ? (
-    <div className="flex items-center gap-1 text-secondary text-xs">
+    <div className="flex items-center gap-1 text-secondary text-xs mb-1">
       <Truck className="size-4" />
       <span>{is_same_day_shipping ? "ارسال امروز" : null}</span>
       <span>

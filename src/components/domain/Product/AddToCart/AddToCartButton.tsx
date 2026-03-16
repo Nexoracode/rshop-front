@@ -125,6 +125,12 @@ export default function AddToCartButton({
         onOpenChange={setOpenLoginDialog}
       />
 
+      <ProductShipping
+        is_same_day_shipping={product.is_same_day_shipping}
+        preparation_days={product.preparation_days}
+        requires_preparation={product.requires_preparation}
+      />
+
       <LimitedStock
         stock={variant?.stock ?? product.stock ?? 0}
         is_limited_stock={product.is_limited_stock}
@@ -163,12 +169,6 @@ export default function AddToCartButton({
           </div>
         </div>
       )}
-
-      <ProductShipping
-        is_same_day_shipping={product.is_same_day_shipping}
-        preparation_days={product.preparation_days}
-        requires_preparation={product.requires_preparation}
-      />
     </div>
   );
 }

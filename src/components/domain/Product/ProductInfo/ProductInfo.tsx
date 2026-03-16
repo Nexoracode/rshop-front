@@ -142,11 +142,11 @@ export default function ProductInfo(props: Product) {
             <ShipingMethods />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between -mt-1">
             <div className="w-full flex justify-between items-center gap-1">
               <LucideDock className="size-5 text-slate-600" />
               <span className="text-sm inline-block text-right flex-1 ps-1 text-muted">
-                ارسال
+                قیمت
               </span>
             </div>
             <ProductPriceInfo {...props} />

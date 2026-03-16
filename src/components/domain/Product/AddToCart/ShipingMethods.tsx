@@ -1,7 +1,7 @@
 "use client";
 import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Package2Icon, Truck, TruckIcon } from "lucide-react";
+import { Truck, TruckIcon } from "lucide-react";
 import React, { useState } from "react";
 
 export default function ShipingMethods() {

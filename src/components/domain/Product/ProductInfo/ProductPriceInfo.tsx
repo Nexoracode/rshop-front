@@ -50,6 +50,6 @@ export default function ProductPriceInfo({
       )}
     </div>
   ) : (
-    ""
+    "ناموجود"
   );
 }
