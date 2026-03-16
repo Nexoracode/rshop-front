@@ -35,7 +35,7 @@ export default function ProductReviews({ ...props }: Props) {
     <section id="reviews" className="space-y-8 py-1">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">
-        <div className="space-y-5 shadow rounded-lg h-fit p-5">
+        <div className="space-y-5 lg:shadow rounded-lg h-fit p-5">
           <div className="flex items-center justify-between">
             <p className="text-center text-2xl font-semibold">
               {data?.pages[0].averege_rating}{" "}
