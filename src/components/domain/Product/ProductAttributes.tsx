@@ -1,6 +1,5 @@
 import { ProductAttributeGroup } from "@/types/product";
 import React from "react";
-import SectionTitle from "../../common/SectionTitle";
 
 type Props = {
   attributes: Array<ProductAttributeGroup>;
@@ -8,8 +7,7 @@ type Props = {
 
 export default function ProductAttributes({ attributes }: Props) {
   return (
-    <section className="py-5" id="specifications">
-      <SectionTitle title="مشخصات" />
+    <section className="pb-5 -mt-4" id="specifications">
 
       {attributes
         .sort((a, b) => a.display_order - b.display_order)

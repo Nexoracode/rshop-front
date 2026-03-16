@@ -1,5 +1,4 @@
 import React from "react";
-import SectionTitle from "../../../common/SectionTitle";
 import DisplayFurtherDescription from "./DisplayFurtherDescription";
 import { cn } from "@/lib/utils/classnames";
 
@@ -13,8 +12,7 @@ export default function ProductDescription({
   showMore = false,
 }: Props) {
   return (
-    <section className="py-5" id="description">
-      <SectionTitle title="توضیحات" />
+    <section className="pb-5" id="description">
       <article
         dangerouslySetInnerHTML={{ __html: description }}
         className={cn(

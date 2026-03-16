@@ -118,7 +118,7 @@ export default async function ProductPage({
 
       {/* بخش پایین: tabs + description + attributes + reviews */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-9 space-y-10">
+        <div className="lg:col-span-9 space-y-6">
           <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
 
           <ProductDescription description={product.description} showMore />
