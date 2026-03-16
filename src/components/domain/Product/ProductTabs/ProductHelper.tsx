@@ -5,6 +5,7 @@ import React from "react";
 import { Button } from "../../../ui/button";
 
 import BaseDialog from "@/components/common/BaseDialog";
+import { ChevronLeft } from "lucide-react";
 
 export default function ProductHelper({
   description,
@@ -16,9 +17,10 @@ export default function ProductHelper({
       title={title}
       width="2xl"
       trigger={
-        <Button className="px-0" variant={"text-nohover"}>
+        <div className="flex items-center border cursor-pointer hover:bg-sky-50 transition-all border-sky-200 text-sky-600 p-3 rounded-lg justify-between">
           راهنمای سایز
-        </Button>
+          <ChevronLeft size={24} className="text-sky-600" />
+        </div>
       }
       content={
         <section className="space-y-4" id="helper">

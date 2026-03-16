@@ -33,11 +33,11 @@ export default function ImportantAttributes({ specifications }: Props) {
           {specifications.map((attr) => (
             <div
               key={attr.id}
-              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-muted-light/10 min-w-fit md:min-w-[calc(33.333%)] rounded-md p-2"
+              className="flex flex-col flex-1 gap-1 md:gap-2 border border-neutral-200 md:bg-slate-50 min-w-fit md:min-w-[calc(33.333%)] rounded-lg p-3"
             >
-              <p className="text-xs text-muted font-light"> {attr.name}:</p>
+              <p className="text-[13px] text-slate-800 -mb-1"> {attr.name}</p>
 
-              <p className="text-xs md:text-sm">
+              <p className="text-[13px] leading-5 text-slate-600">
                 {attr.values.map((i) => i.value).join(", ")}
               </p>
             </div>

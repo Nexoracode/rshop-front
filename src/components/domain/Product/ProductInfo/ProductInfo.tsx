@@ -34,15 +34,13 @@ export default function ProductInfo(props: Product) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 flex-1">
-      {/* بخش اطلاعات اصلی (سمت چپ در RTL) */}
       <div className="flex-1 space-y-6 lg:space-y-8 px-3 md:px-0">
-        {/* برند + دسته‌بندی + عنوان */}
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             {brand?.name && (
               <Link
                 href={`/brand/${brand.slug}`}
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors text-slate-500"
               >
                 {brand.name}
               </Link>
@@ -52,7 +50,7 @@ export default function ProductInfo(props: Product) {
                 <span>/</span>
                 <Link
                   href={`/products/${category.slug}`}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors text-slate-500"
                 >
                   {category.title}
                 </Link>
@@ -60,27 +58,28 @@ export default function ProductInfo(props: Product) {
             )}
           </div>
 
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight text-gray-700">
             {name}
           </h1>
         </div>
 
-        <Separator />
+        <div className="mb-3.5 !-mt-3.5">
+          <Separator />
+        </div>
 
-        {/* امتیاز + تعداد دیدگاه */}
         <div className="flex flex-wrap items-center gap-4">
           {reviews_count > 0 ? (
             <>
               <div className="flex items-center gap-1.5">
-                <Star fill="orange" strokeWidth={0} className="size-5" />
-                <span className="font-medium">
+                <Star fill="orange" strokeWidth={0} className="size-4" />
+                <span className="text-sm text-slate-700 font-medium">
                   {average_raiting.toFixed(1)}
                 </span>
-                <span className="text-muted-foreground text-sm">
+                <span className="text-sm text-slate-700">
                   (امتیاز {reviews_count} خریدار)
                 </span>
               </div>
-              <Badge variant="secondary" className="gap-1">
+              <Badge variant="secondary-outline" className="gap-1">
                 {reviews_count} دیدگاه
                 <ChevronLeftIcon className="size-3.5" />
               </Badge>
@@ -92,7 +91,6 @@ export default function ProductInfo(props: Product) {
           )}
         </div>
 
-        {/* انتخاب ویژگی‌ها (رنگ، سایز، گارانتی و ...) */}
         <div className="space-y-5">
           {attribute_nodes.map((group) =>
             group.attributes.map((attr) => (
@@ -101,22 +99,23 @@ export default function ProductInfo(props: Product) {
                 key={attr.id}
                 attribute={attr}
               />
-            )),
+            ))
           )}
         </div>
 
-        {/* ویژگی‌های مهم */}
-        <ImportantAttributes
-          specifications={specifications.flatMap((group) =>
-            group.attributes.filter((a) => a.is_important),
-          )}
-        />
+        {specifications.length ? (
+          <ImportantAttributes
+            specifications={specifications.flatMap((group) =>
+              group.attributes.filter((a) => a.is_important),
+            )}
+          />
+        ) : (
+          ""
+        )}
 
-        {/* راهنمای محصول (اگر وجود داشته باشد) */}
         {helper && <ProductHelper {...helper} />}
       </div>
 
-      {/* کارت قیمت + افزودن به سبد (sticky در موبایل، ثابت در دسکتاپ) */}
       <div
         className={cn(
           "lg:w-80 lg:max-w-md",

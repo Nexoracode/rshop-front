@@ -58,7 +58,6 @@ export default function VariantSelect({ attribute, variants }: Props) {
                   <span
                     className="inline-block h-8 w-8 rounded-full border"
                     style={{ backgroundColor: value.display_color ?? "#fff" }}
-                    aria-hidden
                   />
                 </Label>
               </TooltipTrigger>
