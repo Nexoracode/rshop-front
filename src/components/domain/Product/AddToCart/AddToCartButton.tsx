@@ -127,10 +127,10 @@ export default function AddToCartButton({
         onOpenChange={setOpenLoginDialog}
       />
 
-      <div className="flex flex-col gap-4 rounded-lg border border-slate-200 p-4">
+      <div className="flex flex-col gap-4 rounded-lg lg:border lg:border-slate-200 lg:p-4">
         <div className="flex flex-col gap-4">
           {!isOutOfStock ? (
-            <div className="flex items-center text-green-700 text-xs gap-2">
+            <div className="hidden lg:flex items-center text-green-700 text-xs gap-2">
               <StoreIcon className="size-4 text-green-700" />
               موجود در انبار آرشاب
             </div>
@@ -138,7 +138,7 @@ export default function AddToCartButton({
             ""
           )}
 
-          <div className="flex items-center text-secondary text-xs gap-2">
+          <div className="hidden lg:flex items-center text-secondary text-xs gap-2">
             <ZapIcon className="text-secondary size-4" />
             ارسال در سریع ترین زمان
           </div>

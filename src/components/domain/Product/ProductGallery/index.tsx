@@ -43,7 +43,7 @@ export default function ProductGallery({
             .filter((i) => i.type === "image")
             .map((img, i) => (
               <CarouselItem key={img.id}>
-                <div className="relative aspect-square w-[60vw] max-w-full md:w-auto mx-auto overflow-hidden">
+                <div className="relative aspect-square w-3/4 mx-auto md:w-full overflow-hidden">
                   {img.type === "image" ? (
                     <Image
                       src={img.url}
