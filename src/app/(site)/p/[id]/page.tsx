@@ -110,7 +110,7 @@ export default async function ProductPage({
         </div>
       </div>
 
-      <div className="border border-slate-200 rounded-lg p-6">
+      <div className="border border-slate-200 rounded-lg pt-6">
         <Suspense fallback={<RelatedProductsSkeleton />}>
           <RelatedProducts productId={product.id} />
         </Suspense>

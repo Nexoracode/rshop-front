@@ -23,7 +23,9 @@ export default async function RelatedProducts({
   if (data.length === 0) return null;
   return (
     <div className="space-y-3">
-      <SectionTitle title="محصولات مشابه" />
+      <div className="pr-6">
+        <SectionTitle title="محصولات مشابه" />
+      </div>
       <Carousel>
         <CarouselNext />
         <CarouselPrevious />
