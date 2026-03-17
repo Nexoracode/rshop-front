@@ -2,6 +2,8 @@
 
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { cn } from "@/lib/utils/classnames";
+import { getPromoBanners } from "@/queries/home/home";
+import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useRef } from "react";
 
 type TabKey = "description" | "specifications" | "reviews" | "helper";
@@ -18,9 +20,11 @@ export default function ProductTabs({
   activeTabs: Partial<Record<TabKey, boolean>>;
 }) {
   const [active, setActive] = useState<TabKey>("description");
+  const { data: adsBanners } = useQuery(getPromoBanners);
   const barRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useScrollDirection();
 
+  const haveAdsBanner = adsBanners && adsBanners?.length > 0;
   const handleScrollTo = (key: TabKey) => {
     const el = document.getElementById(key);
     if (!el) return;
@@ -63,7 +67,13 @@ export default function ProductTabs({
     <div
       className={cn(
         "sticky z-30 bg-background border-b rtl",
-        scrollDirection === "down" ? "top-[8rem]" : "top-[10.5rem]",
+        scrollDirection === "down"
+          ? haveAdsBanner
+            ? "top-[8rem]"
+            : "top-[4rem]"
+          : haveAdsBanner
+            ? "top-[10.5rem]"
+            : "top-[108px]",
       )}
     >
       <div ref={barRef} className="relative flex">
