@@ -22,7 +22,7 @@ export default function PromoCard({
         <div
           className={cn(
             "absolute z-20   overflow-hidden left-0 ",
-            background_color
+            title
               ? "w-[60%]  aspect-square top-[50%] -translate-y-[50%] -translate-x-[30%]"
               : "w-full h-full top-0",
           )}
@@ -34,7 +34,7 @@ export default function PromoCard({
             className="object-contain hover:scale-105 transition-transform"
           />
         </div>
-        {background_color && (
+        {title && (
           <div className="absolute w-full p-2 h-full justify-evenly flex flex-col top-0 right-0">
             {badge_text && (
               <div
