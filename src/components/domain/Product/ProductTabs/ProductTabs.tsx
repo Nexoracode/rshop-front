@@ -55,6 +55,43 @@ export default function ProductTabs({
     bar.style.setProperty("--w", `${w}px`);
   }, [active]);
 
+  useEffect(() => {
+    const observerOptions = {
+      root: null, // viewport
+      rootMargin: "0px",
+      threshold: 0.5, // 50% المان باید دیده شود تا رویداد فعال شود
+    };
+
+    const observerCallback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        const sectionId = entry.target.id;
+        if (entry.isIntersecting) {
+          setActive(sectionId);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    tabs.forEach((section) => {
+      const sectionElement = document.getElementById(section.key);
+      if (sectionElement) {
+        observer.observe(sectionElement);
+      }
+    });
+    return () => {
+      tabs.forEach((section) => {
+        const sectionElement = document.getElementById(section.key);
+        if (sectionElement) {
+          observer.unobserve(sectionElement);
+        }
+      });
+      observer.disconnect();
+    };
+  }, []);
+
   const activeTabs: Record<TabKey, boolean> = {
     description: true,
     reviews: true,
