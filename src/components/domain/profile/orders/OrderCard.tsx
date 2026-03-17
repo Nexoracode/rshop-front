@@ -16,7 +16,7 @@ export function OrderCard({ order }: { order: Order }) {
   return (
     <Link href={`/profile/orders/${order.id}`}>
       <div className="flex flex-col gap-4 hover:shadow-md transition-all p-4 rounded-lg border">
-        <div className="flex justify-between items-center border-b pb-4">
+        <div className="flex justify-between items-center pb-2">
           <Badge
             variant={statusColor[order.status]}
             className="text-white rounded-md"

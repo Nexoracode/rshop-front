@@ -14,6 +14,8 @@ type Props = {
 export default function OrderItemCard({
   item: { product, variant, unit_price, ...item },
 }: Props) {
+  console.log(product);
+
   return (
     <div className="p-4 border rounded-lg">
       <div className="flex">
@@ -53,7 +55,12 @@ export default function OrderItemCard({
           />
 
           <div className="flex w-full justify-end">
-            <Button variant={"outline"} size={"sm"} startIcon={<EyeIcon />}>
+            <Button
+              variant={"outline"}
+              size={"sm"}
+              startIcon={<EyeIcon />}
+              href={`/p/rsp-${product.id}`}
+            >
               مشاهده محصول
             </Button>
           </div>
