@@ -50,7 +50,7 @@ export default function ProductGridItem({ product }: Props) {
           alt={name}
           fill
           className={cn(
-            "object-cover opacity-100 ",
+            "object-cover opacity-100 p-6",
             medias.length > 1 &&
               "group-hover:opacity-0 transition-opacity duration-700",
           )}
@@ -60,7 +60,7 @@ export default function ProductGridItem({ product }: Props) {
             src={medias[1]?.url || PRODUCT_PLACEHOLDER}
             alt={name}
             fill
-            className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+            className="object-cover opacity-0 group-hover:opacity-100 p-6 transition-opacity duration-700"
           />
         )}
       </div>
@@ -73,15 +73,15 @@ export default function ProductGridItem({ product }: Props) {
         <div className="flex mt-3 flex-col sm:flex-row items-center gap-2">
           {inStock ? (
             <div className="flex items-start w-full justify-between">
-              {compareAt && <Badge variant="danger">{percent}%</Badge>}
+              {compareAt ? <Badge variant="danger">{percent}%</Badge> : <div></div>}
               <div className="flex flex-col">
                 <PriceBox price={final} className="text-base font-bold" />
-                {compareAt && (
+                {compareAt ? (
                   <PriceBox
                     price={compareAt}
                     className="text-xs text-gray-400"
                   />
-                )}
+                ) : <div></div>}
               </div>
             </div>
           ) : (
