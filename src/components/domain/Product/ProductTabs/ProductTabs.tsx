@@ -61,7 +61,7 @@ export default function ProductTabs({
       rootMargin: "0px",
       threshold: 0.5, // 50% المان باید دیده شود تا رویداد فعال شود
     };
-
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     const observerCallback = (entries: any[]) => {
       entries.forEach((entry) => {
         const sectionId = entry.target.id;

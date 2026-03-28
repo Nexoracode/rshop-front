@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { CheckCircle2, XCircle, Loader2, Tag } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import useCheckPromotion from "@/hooks/useCheckPromotion";
 import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils/classnames";
@@ -46,9 +46,7 @@ export default function DiscountForm() {
 
   return (
     <FieldContainer error="" label="">
-      <div
-        className={cn("relative w-full transition-all")}
-      >
+      <div className={cn("relative w-full transition-all")}>
         <div className="relative flex items-center">
           <Input
             value={code}

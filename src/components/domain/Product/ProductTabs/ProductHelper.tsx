@@ -1,11 +1,10 @@
 "use client";
 import { ProductHelper as ProductHelperType } from "@/types/product";
-import Image from "next/image";
 import React from "react";
-import { Button } from "../../../ui/button";
 
 import BaseDialog from "@/components/common/BaseDialog";
 import { ChevronLeft } from "lucide-react";
+import Image from "@/components/common/Image";
 
 export default function ProductHelper({
   description,
@@ -24,11 +23,12 @@ export default function ProductHelper({
         </div>
       }
       content={
-        <section className="space-y-4" id="helper">
-          <img
+        <section className="relative h-96 space-y-4" id="helper">
+          <Image
             src={image}
             alt="helper-image"
-            className="p-2 object-contain border rounded-lg h-96 bg-slate-100"
+            fill
+            className="p-2 object-contain border rounded-lg bg-slate-100"
           />
 
           <p className="text-muted text-sm leading-6">{description}</p>

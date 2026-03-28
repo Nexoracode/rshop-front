@@ -8,7 +8,6 @@ import CartSummeryInfo from "./CartSummeryInfo";
 import CartSummeryProducts from "./CartSummeryProducts";
 import { formatToman } from "@/lib/utils/price";
 import Responsive from "@/components/common/Responsive";
-import { Card } from "@/components/ui/card";
 
 type CartSummaryProps = {
   children: React.ReactNode;

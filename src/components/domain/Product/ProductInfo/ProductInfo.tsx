@@ -2,10 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
   ChevronLeftIcon,
-  LucideDock,
-  ShoppingBagIcon,
   Star,
-  ZapIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { Product } from "@/types/product";

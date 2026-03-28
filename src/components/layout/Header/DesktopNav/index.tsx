@@ -9,7 +9,6 @@ import {
   ContactIcon,
   DicesIcon,
   HomeIcon,
-  Icon,
   LucideShoppingBag,
   Menu,
 } from "lucide-react";

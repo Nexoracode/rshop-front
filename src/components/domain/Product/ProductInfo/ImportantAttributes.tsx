@@ -1,11 +1,7 @@
 "use client";
 import { ProductAttribute } from "@/types/product";
 import React from "react";
-import AttributeLinkButton from "../AttributeLinkButton";
-import Responsive from "../../../common/Responsive";
-import { Button } from "../../../ui/button";
-import { ChevronLeft, ChevronLeftIcon } from "lucide-react";
-import useProductInfoDialog from "@/hooks/product/useProductInfoDialog";
+import { ChevronLeftIcon } from "lucide-react";
 import useScrollToSection from "@/hooks/useScrollToSection";
 
 type Props = {
@@ -13,7 +9,6 @@ type Props = {
 };
 
 export default function ImportantAttributes({ specifications }: Props) {
-  const { openDialog } = useProductInfoDialog();
   const { handleScrollTo } = useScrollToSection();
   return (
     <div className="space-y-4">

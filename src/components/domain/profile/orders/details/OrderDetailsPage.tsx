@@ -6,7 +6,6 @@ import { OrderShippingSection } from "./OrderShippingSection";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import PageLoader from "@/components/common/PageLoader";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { getOrderDetails } from "@/queries/profile/order";

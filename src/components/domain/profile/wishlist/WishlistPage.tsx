@@ -7,7 +7,6 @@ import {
   getWishlistList,
 } from "@/queries/profile/wishlist/wishlist";
 import ProductCardSkeleton from "@/components/shared/product/ProductCardSkeleton";
-import { Card } from "@/components/ui/card";
 import { ListLayout } from "@/components/common/ListLayout";
 import { WishlistItem } from "@/types/product";
 
