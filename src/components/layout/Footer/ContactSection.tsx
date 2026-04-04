@@ -1,10 +1,15 @@
-import React from "react";
-import { getQueryClient } from "@/lib/utils/query-client";
-import { getFooterSettings } from "@/queries/home/home";
+"use client";
 
-export default async function ContactSection() {
-  const queryClient = getQueryClient();
-  const { contact } = await queryClient.fetchQuery(getFooterSettings);
+import React from "react";
+import { getFooterSettings } from "@/queries/home/home";
+import { useQuery } from "@tanstack/react-query";
+
+export default function ContactSection() {
+  const { data } = useQuery(getFooterSettings);
+
+  if (!data) {
+    return <div>در حال لود فوتر</div>;
+  }
 
   const contactItems = [
     {
@@ -21,18 +26,18 @@ export default async function ContactSection() {
   return (
     <div className="flex flex-col gap-6 text-sm">
       {contactItems.map(({ label, link, key }) => {
-        const contactData = contact.find((i) => i.key === key);
-        
+        const contactData = data?.contact.find((i) => i.key === key);
+
         return (
           <a
             key={label}
             href={`${link}${contactData?.value}`}
             className="flex items-center gap-2 break-words"
           >
-              <span className="w-30 md:hidden xl:flex">{label}</span>
-              <p className="w-full text-left text-slate-600">
-                {contactData?.value ?? "-"}
-              </p>
+            <span className="w-30 md:hidden xl:flex">{label}</span>
+            <p className="w-full text-left text-slate-600">
+              {contactData?.value ?? "-"}
+            </p>
           </a>
         );
       })}

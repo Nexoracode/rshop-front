@@ -8,7 +8,6 @@ import React from "react";
 import SocialSection from "./SocialSection";
 
 export default function Footer() {
-
   const linkColumns = [
     {
       title: "خدمات مشتریان",
@@ -28,7 +27,7 @@ export default function Footer() {
         { label: "دسته بندی ها", href: "/contact" },
       ],
     },
-        {
+    {
       title: "لینک های مفید",
       links: [
         { label: "درباره ما", href: "/guide/store-info/about-us" },
@@ -57,9 +56,7 @@ export default function Footer() {
               ارتباط با ما
             </button>
             <div className="flex flex-col gap-5">
-              <React.Suspense fallback={<p>در حال دریافت...</p>}>
-                <ContactSection />
-              </React.Suspense>
+              <ContactSection />
               <SocialSection />
             </div>
           </div>
