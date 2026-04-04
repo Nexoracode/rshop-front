@@ -26,7 +26,29 @@ export function OrderCard({ order }: { order: Order }) {
 
           <ChevronLeftIcon className="size-6 text-gray-600" />
         </div>
+        <div className="flex flex-nowrap text-nowrap border-b pb-3">
+          <p className="text-xs md:text-sm text-muted/50">
+            {toPersianDate(order.created_at)}
+          </p>
 
+          <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
+            .
+          </p>
+          <div className="flex items-center">
+            <p className="text-xs md:text-sm text-muted/60">شماره سفارش: </p>
+            <p className="text-xs md:text-sm pr-1">{order.id}</p>
+          </div>
+
+          <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
+            .
+          </p>
+          <div className="text-right flex items-center">
+            <p className="text-xs md:text-sm text-muted/60">مبلغ کل: </p>
+            <p className="font-semibold text-sm md:text-[1rem] text-primary pr-1">
+              {formatToman(+order.total)}
+            </p>
+          </div>
+        </div>
         <div>
           {order.items.map((item) => (
             <Image
@@ -35,7 +57,7 @@ export function OrderCard({ order }: { order: Order }) {
               alt={item.product.name}
               width={86}
               height={86}
-              className="inline-block rounded-md aspect-square border object-cover ml-1"
+              className="inline-block rounded-md aspect-square object-cover ml-1"
             />
           ))}
         </div>
@@ -59,32 +81,6 @@ export function OrderCard({ order }: { order: Order }) {
           ))}
         {order.status === "awaiting_payment" && (
           <div className="flex items-center justify-between">
-            <div className="flex flex-nowrap text-nowrap">
-              <p className="text-xs md:text-sm text-muted/50">
-                {toPersianDate(order.created_at)}
-              </p>
-
-              <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
-                .
-              </p>
-              <div className="flex items-center">
-                <p className="text-xs md:text-sm text-muted/60">
-                  شماره سفارش:{" "}
-                </p>
-                <p className="text-xs md:text-sm pr-1">{order.id}</p>
-              </div>
-
-              <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
-                .
-              </p>
-              <div className="text-right flex items-center">
-                <p className="text-xs md:text-sm text-muted/60">مبلغ کل: </p>
-                <p className="font-semibold text-sm md:text-[1rem] text-primary pr-1">
-                  {formatToman(+order.total)}
-                </p>
-              </div>
-            </div>
-
             <Button
               variant="fill"
               size={"md"}
