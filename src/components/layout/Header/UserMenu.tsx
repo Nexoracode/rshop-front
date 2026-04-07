@@ -26,7 +26,7 @@ export default function UserMenu() {
 
       {!isCartPage && (
         <>
-          <Separator orientation="vertical" className="!h-[25px]" />
+          <Separator orientation="vertical" className="!h-[25px] ml-2" />
           <CartPopover />
         </>
       )}

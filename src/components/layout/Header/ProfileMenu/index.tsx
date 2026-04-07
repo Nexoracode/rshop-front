@@ -14,6 +14,7 @@ import {
   MapIcon,
   MessageCircle,
   ShoppingBag,
+  User2Icon,
   UserIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -43,9 +44,9 @@ export default function ProfileMenu() {
           <Button
             variant="text-nohover"
             className="!flex items-center px-0 text-slate-700"
-            endIcon={<ChevronDownIcon size={17} />}
+            endIcon={<ChevronDownIcon size={15} />}
           >
-            <UserIcon size={24} />
+            <User2Icon size={24} className="text-slate-700"/>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0" align="end">
@@ -71,7 +72,7 @@ export default function ProfileMenu() {
             {menuItems.map(({ Icon, href, label }) => (
               <UserMenuItem
                 key={href}
-                Icon={<Icon size={22} />}
+                Icon={<Icon size={19} />}
                 label={label}
                 href={`/profile/${href}`}
               />

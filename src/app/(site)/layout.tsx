@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="md:pt-28 pt-10">
+    <div className="md:pt-[108px] pt-10">
       <Header />
       <main className="px-2 md:px-0 min-h-[100dvh]">
         <BannerPadding />
