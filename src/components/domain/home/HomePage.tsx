@@ -21,7 +21,7 @@ export default async function HomePage() {
   return !data ? (
     <PageLoader />
   ) : (
-    <div className="pb-8 space-y-4">
+    <div className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-6" : ""} space-y-4`}>
       <PromoSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}
@@ -30,7 +30,9 @@ export default async function HomePage() {
         {featuredSection && <FeaturedSection {...featuredSection} />}
       </PromoSection>
 
-        {featuredSection && data.layout_type === "side_by_side" && <FeaturedSection {...featuredSection} />}
+      {featuredSection && data.layout_type === "side_by_side" && (
+        <FeaturedSection {...featuredSection} />
+      )}
 
       <CategoriesSection categories={data.categories} />
 
