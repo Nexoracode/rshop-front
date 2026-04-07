@@ -32,7 +32,7 @@ export default function PromoSection({
           className={cn(
             layoutType === "side_by_side"
               ? "rounded-xl h-[14rem] md:h-auto overflow-hidden"
-              : "h-[11rem] md:h-[22rem]",
+              : "h-[11rem] md:h-[400px]",
           )}
         >
           <HeroSlider
@@ -47,7 +47,7 @@ export default function PromoSection({
             " grid grid-cols-2 gap-1 md:gap-2",
             layoutType === "side_by_side"
               ? "sm:grid-cols-2"
-              : "container-home md:grid-cols-4 mt-4",
+              : "container-home md:grid-cols-4 mt-2",
           )}
         >
           <PromoBanners banners={sideBanners} />

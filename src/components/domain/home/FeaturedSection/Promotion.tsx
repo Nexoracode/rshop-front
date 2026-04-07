@@ -45,13 +45,13 @@ export default function Promotion({
 
       {show_view_all_button && (
         <Button
-          endIcon={<ChevronLeft className="size-5" />}
+          endIcon={<ChevronLeft className="size-4" />}
           variant={"text-nohover"}
           size={"sm"}
           className="text-white"
           href={view_all_link}
         >
-          <span className="hidden md:inline-block ml-0.5">مشاهده</span> همه
+          <span className="hidden text-[13px] md:inline-block">مشاهده</span> همه
         </Button>
       )}
     </div>

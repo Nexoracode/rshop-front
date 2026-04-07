@@ -12,7 +12,7 @@ export default function FeaturedSection({
 }: HomeSection) {
   return (
     <div className="container-home relative">
-      <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex gap-5 rounded-xl p-2 md:p-5">
+      <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-xl p-2 md:p-5">
         <div className="md:w-[10rem]">
           <Promotion
             show_view_all_button={show_view_all_button}
@@ -20,9 +20,15 @@ export default function FeaturedSection({
           />
         </div>
         {display_style === "carousel" ? (
-          <ProductCarousel renderItem={ProductCartItem} items={products} hiddenSeparator />
+          <div className="w-full mr-4">
+            <ProductCarousel
+              renderItem={ProductCartItem}
+              items={products}
+              hiddenSeparator
+            />
+          </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-col-4 lg:grid-cols-5 ">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-col-4 lg:grid-cols-5">
             {products.map((product) => (
               <ProductCartItem key={product.id} {...product} />
             ))}

@@ -19,11 +19,11 @@ export default function CountdownTimer({
   const { timeLeft } = useCountDown({ targetDate, onExpire });
 
   return (
-    <div className="flex  items-center gap-2 text-sm font-medium text-red-600">
+    <div className="flex  items-center gap-2 text-sm font-medium !text-black">
       {timeLeft.expired ? (
         <span className="text-gray-500">تمام شد</span>
       ) : (
-        <div className="flex w-full text-danger items-center flex-row-reverse gap-0.5 text-xs sm:text-sm">
+        <div className="flex w-full text-white items-center flex-row-reverse gap-1 text-xs sm:text-sm mb-2 mt-3">
           {+timeLeft.days > 0 && (
             <TimeBox label="روز" value={timeLeft.days} color={color} />
           )}
@@ -47,7 +47,7 @@ const TimeBox = ({
   <div className="flex flex-col items-center  justify-center">
     <span
       className={cn(
-        "text-sm flex justify-center items-center text-danger rounded-full h-6 w-6",
+        "text-sm flex justify-center items-center text-black rounded-full h-6 w-6",
         color === "white" && "bg-white rounded-md h-6 w-6 md:w-8 md:h-8",
       )}
     >

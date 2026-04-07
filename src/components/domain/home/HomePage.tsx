@@ -21,7 +21,7 @@ export default async function HomePage() {
   return !data ? (
     <PageLoader />
   ) : (
-    <div className="py-10 space-y-8">
+    <div className="pb-8 space-y-4">
       <PromoSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}
@@ -30,15 +30,11 @@ export default async function HomePage() {
 
       {featuredSection && <FeaturedSection {...featuredSection} />}
 
-      <div className="!mt-16 ">
-        <CategoriesSection categories={data.categories} />
-      </div>
+      <CategoriesSection categories={data.categories} />
 
       <HomeSections sections={data.sections} />
 
-      <div className="!mt-16">
-        <BrandsSection brands={data.brands} />
-      </div>
+      <BrandsSection brands={data.brands} />
 
       {/*    <BlogSection /> */}
     </div>

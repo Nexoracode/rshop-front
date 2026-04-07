@@ -27,9 +27,9 @@ export default function HeroSlider({
       opts={{ dragFree: false, loop: true , align : "center" }}
       plugins={[Autoplay({ playOnInit: true, delay: 5000 })]}
     >
-      <CarouselNext className="bottom-0 right-[5rem] top-[unset]" />
-
-      <CarouselPrevious className="bottom-0 top-[unset]" />
+      <CarouselNext className="bottom-6 right-32 top-[unset]" />
+      <CarouselPrevious className="bottom-6 right-14 top-[unset]" />
+      
       <CarouselContent className="aspect-auto h-full">
         {slides.map((sliderItem) => (
           <CarouselItem className={cn(layoutType === "stacked" && "basis-[95%] md:basis-full")} key={sliderItem.id}>
@@ -37,7 +37,7 @@ export default function HeroSlider({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselDots className="absolute bottom-3 right-0 left-0" />
+      <CarouselDots className="absolute bottom-5 right-0 left-0" />
     </Carousel>
   );
 }

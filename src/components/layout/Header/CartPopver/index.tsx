@@ -29,9 +29,10 @@ export default function CartPopover() {
       ) : (
         <LinkWithChip
           href="/cart"
-          Icon={<ShoppingCart size={24} className="text-foreground" />}
+          Icon={<img src={"/cart-new.PNG"} />}
           count={cart?.total_quantity ?? 0}
           label="سبد خرید"
+          className="w-5.5 h-5.5"
         />
       )}
       {open && (
