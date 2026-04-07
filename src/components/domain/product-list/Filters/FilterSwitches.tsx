@@ -28,7 +28,7 @@ export default function FilterSwitches({
     <div className="flex border-b py-4 items-center justify-between">
       <Label
         htmlFor={`toggle-filter-${toggleId}`}
-        className="font-semibold  w-full flex justify-between text-neutral-600"
+        className="font-medium  w-full flex justify-between text-neutral-600"
       >
         {label}
         <Switch

@@ -45,7 +45,7 @@ export default function CategoriesMenu({ categories }: Props) {
                 src={cat.media?.url || PRODUCT_PLACEHOLDER}
                 className="border rounded-md p-0.5"
               />
-              <span className="text-xs font-light text-center inline-block">
+              <span className="text-xs font-normal text-center inline-block">
                 {cat.title}
               </span>
             </div>
@@ -55,7 +55,7 @@ export default function CategoriesMenu({ categories }: Props) {
           <Button
             size={"sm"}
             color="info"
-            className="px-0 text-xs font-semibold"
+            className="px-0 text-xs font-medium"
             variant={"text-nohover"}
             endIcon={<ChevronLeft className="size-4" />}
             href={`/products/${selectedCategory?.slug}`}
@@ -70,7 +70,7 @@ export default function CategoriesMenu({ categories }: Props) {
           >
             {selectedCategory?.children?.map((item) => (
               <AccordionItem key={`${item.id}`} value={`item-${item.id}`}>
-                <AccordionTrigger className="text-xs font-semibold">
+                <AccordionTrigger className="text-xs font-medium">
                   {item.title}
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
@@ -80,7 +80,7 @@ export default function CategoriesMenu({ categories }: Props) {
                     <Button
                       size={"sm"}
                       color="info"
-                      className="px-0 text-xs font-semibold text-right"
+                      className="px-0 text-xs font-medium text-right"
                       variant={"text-nohover"}
                       endIcon={<ChevronLeft className="size-4" />}
                       href={`/products/${selectedCategory.slug}/${item.slug}`}
@@ -95,7 +95,7 @@ export default function CategoriesMenu({ categories }: Props) {
                         color="neutral"
                         fullWidth
                         endIcon={<ChevronLeft className="size-4" />}
-                        className="border-b text-muted text-xs rounded-none flex justify-between !py-5 font-semibold last:border-b-0"
+                        className="border-b text-muted text-xs rounded-none flex justify-between !py-5 font-medium last:border-b-0"
                         href={`/products/${selectedCategory.slug}/${item.slug}/${subItem.slug}`}
                       >
                         {subItem.title}

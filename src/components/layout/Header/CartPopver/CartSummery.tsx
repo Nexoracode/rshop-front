@@ -13,7 +13,7 @@ export default function CartSummery() {
         </div>
         <div className="">
           <span className="">جمع کل: </span>
-          <span className="font-semibold">
+          <span className="font-medium">
             {cart?.total.toLocaleString("fa-IR")} تومان
           </span>
         </div>

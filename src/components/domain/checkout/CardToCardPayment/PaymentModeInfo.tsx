@@ -55,7 +55,7 @@ export function PaymentModeInfo({
 
   return (
     <div className="border flex flex-col justify-between h-full p-2  rounded-xl">
-      <h3 className="font-semibold">ثبت اطلاعات پرداخت</h3>
+      <h3 className="font-medium">ثبت اطلاعات پرداخت</h3>
       <FormProvider {...form}>
         <form className="space-y-4">
           <div className="flex gap-4">

@@ -79,7 +79,7 @@ export default function ProductCompare({
                   </div>
                 )}
                 {product.rating && <ProductRating rating={3} />}
-                <div className="text-primary font-semibold">
+                <div className="text-primary font-medium">
                   {formatToman(product.price)}
                 </div>
                 {onRemove && (
@@ -195,7 +195,7 @@ export default function ProductCompare({
               />
             </div>
 
-            <div className="font-semibold text-center text-primary text-lg">
+            <div className="font-medium text-center text-primary text-lg">
               {formatToman(product.price)}
             </div>
 

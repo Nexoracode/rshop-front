@@ -1,9 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ChevronLeftIcon,
-  Star,
-} from "lucide-react";
+import { ChevronLeftIcon, Star } from "lucide-react";
 import Link from "next/link";
 import { Product } from "@/types/product";
 import VariantSelect from "../VariantSelect";
@@ -96,7 +93,7 @@ export default function ProductInfo(props: Product) {
                 key={attr.id}
                 attribute={attr}
               />
-            ))
+            )),
           )}
         </div>
 
@@ -125,7 +122,7 @@ export default function ProductInfo(props: Product) {
         <div className="p-4 md:p-6 space-y-5">
           <div className="hidden lg:flex flex-col gap-2">
             <div className="flex items-center justify-between border-b pb-4">
-              <div className="font-semibold text-[16px] text-slate-600">
+              <div className="font-medium text-[16px] text-slate-600">
                 فروشنده
               </div>
               <Image

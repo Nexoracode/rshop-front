@@ -24,7 +24,7 @@ export default function ProfileInfoPage() {
 
   return (
     <div>
-      <h1 className="text-lg font-semibold mb-8">اطلاعات حساب کاربری</h1>
+      <h1 className="text-lg font-medium mb-8">اطلاعات حساب کاربری</h1>
 
       <Card>
         <FormProvider {...form}>

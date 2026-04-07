@@ -14,7 +14,7 @@ export default function SupportList() {
   return (
     <Card>
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold mb-4">تیکت‌های پشتیبانی</h1>
+        <h1 className="text-lg font-medium mb-4">تیکت‌های پشتیبانی</h1>
         <AddTicketButton />
       </div>
       <ListLayout<Ticket>

@@ -1,14 +1,18 @@
 import AwaitingPayments from "@/components/domain/cart/AwaitingPayments";
 import CartItemsList from "@/components/domain/cart/CartItemsList";
+import CartPageHeader from "@/components/domain/cart/CartPageHeader";
 import RecentView from "@/components/domain/cart/RecentView";
 import React from "react";
 
 export default function CartPage() {
   return (
-    <div className="container my-10 space-y-20 py-10">
-      <AwaitingPayments />
-      <CartItemsList />
-      <RecentView />
+    <div className="container relative">
+      <CartPageHeader />
+      <div className="mt-16 space-y-10 p-4">
+        <AwaitingPayments />
+        <CartItemsList />
+        <RecentView />
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default function PaymentCard({ order_id }: { order_id: number }) {
           <Responsive visible="mobile">
             <div className="flex md:hidden items-end flex-col  justify-between">
               <span className="text-xs text-muted">مبلغ قابل پرداخت</span>
-              <span className="text-primary text-lg font-semibold">
+              <span className="text-primary text-lg font-medium">
                 {formatToman(Number(data?.total ?? 0))}
               </span>
             </div>

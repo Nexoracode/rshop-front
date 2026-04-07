@@ -28,18 +28,13 @@ export default function ReviewsPage() {
   return (
     <Card className="!p-0 bg-transparent border-none">
       <div>
-        <h1 className="text-lg font-semibold mb-2">دیدگاه‌های من</h1>
+        <h1 className="text-lg font-medium mb-2">دیدگاه‌های من</h1>
         <p className="text-sm text-muted-foreground">
           در این بخش می‌توانید دیدگاه‌های خود را مشاهده کنید.
         </p>
       </div>
 
-      <Tabs
-        dir="rtl"
-        value={tab}
-        onValueChange={setTab}
-        className="w-full p-0"
-      >
+      <Tabs dir="rtl" value={tab} onValueChange={setTab} className="w-full p-0">
         <TabsList className="w-full justify-start pb-0">
           <div className="max-w-md flex-1 w-full h-full">
             <TabsTrigger value="pending">در انتظار دیدگاه</TabsTrigger>

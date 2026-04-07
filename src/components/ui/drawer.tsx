@@ -115,9 +115,7 @@ function DrawerContent({
 
         {/* Header with title and close */}
         <div className="relative border-b flex items-center justify-between px-4 pb-2 pt-[calc(env(safe-area-inset-top)+12px)]">
-          {title && (
-            <h3 className="text-sm font-semibold text-right">{title}</h3>
-          )}
+          {title && <h3 className="text-sm font-medium text-right">{title}</h3>}
 
           <DrawerClose asChild>
             <button
@@ -153,7 +151,7 @@ function DrawerHeader({
       {...props}
     >
       {title && (
-        <h3 className="text-sm text-muted font-semibold text-center flex-1">
+        <h3 className="text-sm text-muted font-medium text-center flex-1">
           {title}
         </h3>
       )}
@@ -187,7 +185,7 @@ function DrawerTitle({
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn("text-foreground font-semibold", className)}
+      className={cn("text-foreground font-medium", className)}
       {...props}
     />
   );

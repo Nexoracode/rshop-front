@@ -22,7 +22,7 @@ export default function ProfileHeader() {
         <div className="container px-2 bg-white relative z-20 flex text-foreground items-center py-3 gap-3">
           <BackButton link={pathName === "/profile" ? "/" : "-1"} />
 
-          <p className="text-sm font-semibold">
+          <p className="text-sm font-medium">
             {itemsByHref.find((i) => pathName.startsWith(i.href))?.label}
           </p>
         </div>

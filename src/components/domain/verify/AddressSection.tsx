@@ -24,7 +24,7 @@ export default function AddressSection({ address }: Props) {
     <Card>
       <div className="flex">
         <MapPin className="text-primary" />
-        <h3 className="font-semibold ps-2 text-gray-800 b-2">آدرس ارسال</h3>
+        <h3 className="font-medium ps-2 text-gray-800 b-2">آدرس ارسال</h3>
       </div>
 
       <div className="space-y-3 text-sm">

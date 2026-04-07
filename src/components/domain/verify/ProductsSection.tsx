@@ -15,9 +15,7 @@ export default function ProductsSection({ orderItems }: Props) {
     <Card>
       <div className="flex gap-2">
         <BoxesIcon className="text-primary" />
-        <h3 className="font-semibold text-gray-800  mb-2">
-          محصولات خریداری شده
-        </h3>
+        <h3 className="font-medium text-gray-800  mb-2">محصولات خریداری شده</h3>
       </div>
       <div className="space-y-2 flex flex-wrap justify-start">
         {orderItems.map(({ product, variant, ...item }) => (

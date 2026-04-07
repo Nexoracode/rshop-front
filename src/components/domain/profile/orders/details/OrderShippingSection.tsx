@@ -9,7 +9,7 @@ export function OrderShippingSection({ address }: { address: UserAddress }) {
   const { user } = useCurrentUser();
   return (
     <Card className="p-4">
-      <h3 className="font-semibold mb-2">اطلاعات ارسال</h3>
+      <h3 className="font-medium mb-2">اطلاعات ارسال</h3>
       <p className="text-sm">
         گیرنده:{" "}
         {address.is_self ? (

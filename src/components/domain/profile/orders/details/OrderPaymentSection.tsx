@@ -22,7 +22,7 @@ export function OrderPaymentSection({
 }) {
   return (
     <Card className="">
-      <h3 className="font-semibold mb-2">اطلاعات پرداخت</h3>
+      <h3 className="font-medium mb-2">اطلاعات پرداخت</h3>
       {payment && (
         <div className="space-y-4">
           <p className="text-sm">

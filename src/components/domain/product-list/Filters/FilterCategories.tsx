@@ -16,7 +16,7 @@ export default function FilterCategories({
     if (!cat.children?.length && level !== 0) {
       return (
         <Link
-          className="block py-1 text-sm hover:text-primary text-neutral-600 font-light"
+          className="block py-1 text-sm hover:text-primary text-neutral-600 font-normal"
           href={`${slug}/${cat.slug}`}
         >
           {cat.title}

@@ -25,7 +25,7 @@ export default function MostBuyProducts({ products }: Props) {
 
   return (
     <section className="w-full">
-      <h2 className="font-semibold text-lg mb-3">خرید های پر تکرار شما</h2>
+      <h2 className="font-medium text-lg mb-3">خرید های پر تکرار شما</h2>
       <Carousel>
         <CarouselNext />
         <CarouselPrevious />

@@ -5,12 +5,15 @@ import React from "react";
 type Props = {
   price: number;
   className: string;
+  suffix?: string;
+  iconSize?: number;
 };
 
-export default function PriceBox({ className, price }: Props) {
+export default function PriceBox({ className, price, suffix }: Props) {
   return (
     <span className={`${className}`}>
-      {formatToman(price, false)} <TomanIcon width={22} height={22} />
+      {formatToman(price, false)} <TomanIcon width={"1.2em"} height="1.2em" />{" "}
+      {suffix}
     </span>
   );
 }

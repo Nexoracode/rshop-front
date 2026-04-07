@@ -36,7 +36,7 @@ export default function ProductResultItem({
         <div className="flex-1 flex flex-col justify-evenly">
           <div className="text-sm leading-6 font-normal">{name}</div>
           <div className="">
-            <span className="text-xs font-semibold">{formatToman(final)}</span>{" "}
+            <span className="text-xs font-medium">{formatToman(final)}</span>{" "}
             {compareAt && (
               <span className="text-xs text-danger-500 line-through">
                 {formatToman(compareAt)}

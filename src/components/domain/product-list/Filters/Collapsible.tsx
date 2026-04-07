@@ -41,7 +41,7 @@ export default function Collapsible({
     <div className="py-4 border-b">
       <div className="flex justify-between text-sm text-neutral-600 hover:text-primary font-medium">
         {slug ? (
-          <Link className="font-semibold" href={slug}>
+          <Link className="font-medium" href={slug}>
             {label}
           </Link>
         ) : null}
@@ -53,7 +53,7 @@ export default function Collapsible({
           onClick={() => setOpen((prev) => !prev)}
         >
           {slug ? null : (
-            <span className="font-semibold  inline-block flex-1 text-right">
+            <span className="font-medium  inline-block flex-1 text-right">
               {label}
               {value.length > 0 || isSet ? (
                 <DotIcon className="inline-block" />

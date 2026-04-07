@@ -32,8 +32,8 @@ export default function OrderItems({ items }: { items: Array<OrderItem> }) {
                       key={i.name}
                       className="text-xs px-1 border-l-2 first:pr-0 last:border-l-0"
                     >
-                      <span className="text-muted font-light">{i.name}</span> :{" "}
-                      <span className="font-semibold text-neutral-800">
+                      <span className="text-muted font-normal">{i.name}</span> :{" "}
+                      <span className="font-medium text-neutral-800">
                         {i.value}
                       </span>
                     </p>
@@ -44,7 +44,7 @@ export default function OrderItems({ items }: { items: Array<OrderItem> }) {
                   تعداد: {item.quantity}
                 </p>
 
-                <p className="text-sm font-semibold text-foreground whitespace-nowrap">
+                <p className="text-sm font-medium text-foreground whitespace-nowrap">
                   {formatToman(Number(item.line_total))}
                 </p>
               </div>

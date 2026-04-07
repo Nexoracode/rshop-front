@@ -15,7 +15,10 @@ export default function CategoriesList({
   selected,
 }: Props) {
   return (
-    <div className="bg-white shadow p-4 rounded-lg" dir="rtl">
+    <div
+      className="bg-white shadow overflow-x-scroll no-scrollbar   p-3 rounded-lg"
+      dir="rtl"
+    >
       <div className="flex min-w-fit md:w-[12rem] md:flex-col flex-nowrap">
         {sections.map(({ category, id }) => (
           <div
@@ -23,7 +26,8 @@ export default function CategoriesList({
             role="button"
             onClick={() => onSelect(id)}
             className={cn(
-              "flex min-w-fit md:w-full border-l md:border-l-0 px-2 last:border-l-0 md:flex-1 items-center gap-1 p-1 cursor-pointer hover:bg-neutral-100 transition-colors",
+              "flex flex-col md:flex-row min-w-fit md:w-full px-2 md:flex-1 items-center gap-1 p-1 cursor-pointer hover:bg-neutral-100 transition-colors",
+              "px-3",
               selected === id && "bg-primary-100 rounded-lg",
             )}
           >
@@ -32,10 +36,12 @@ export default function CategoriesList({
               width={48}
               height={48}
               alt={category.name}
-              className="rounded-xl w-8 h-8 md:w-12 md:h-12 border border-muted/10 p-0.5"
+              className="rounded-xl w-14 h-14 md:w-12 md:h-12 border border-muted/10"
             />
 
-            <span className="text-sm">{category.name}</span>
+            <span className="text-xs mt-1 md:mt-0 md:text-sm">
+              {category.name}
+            </span>
           </div>
         ))}
       </div>

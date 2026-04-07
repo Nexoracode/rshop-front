@@ -72,13 +72,13 @@ export default function SearchSheet({
 
         {data?.categories.length ? (
           <div className="py-3">
-            <p className="text-sm font-semibold">جستجو در دسته بندی های: </p>
+            <p className="text-sm font-medium">جستجو در دسته بندی های: </p>
             <CategoryResultList categories={data.categories ?? []} />
           </div>
         ) : null}
         {data?.brands.length ? (
           <div className="py-3">
-            <p className="text-sm font-semibold">جستجو در برندهای: </p>
+            <p className="text-sm font-medium">جستجو در برندهای: </p>
 
             <BrandResultList brands={data.brands ?? []} />
           </div>

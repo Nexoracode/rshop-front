@@ -15,7 +15,7 @@ export default function DashboardOverview() {
       {/* --- سفارش‌ها --- */}
       <section className="space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold md:text-lg">سفارش‌های من</h2>
+          <h2 className="font-medium md:text-lg">سفارش‌های من</h2>
 
           <Button
             size={"sm"}
@@ -78,7 +78,7 @@ function OrderStatCard({
     >
       {Icon}
       <p className="text-sm flex-1 text-muted-foreground">{label}</p>
-      <p className="md:text-xl text-base flex items-center justify-center leading-0 font-semibold lg:relative absolute -top-1 -left-1 lg:left-auto lg:top-auto text-primary rounded-full w-6 h-6 lg:h-8 lg:w-8">
+      <p className="md:text-xl text-base flex items-center justify-center leading-0 font-medium lg:relative absolute -top-1 -left-1 lg:left-auto lg:top-auto text-primary rounded-full w-6 h-6 lg:h-8 lg:w-8">
         {value}
       </p>
       {action}

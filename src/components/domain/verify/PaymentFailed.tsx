@@ -29,7 +29,7 @@ export default function PaymentFailed({ order, payment }: Props) {
             </div>
 
             <div className="ps-3">
-              <div className="text-lg text-danger font-semibold">
+              <div className="text-lg text-danger font-medium">
                 متاسفانه پرداخت شما ناموفق بود
               </div>
 
@@ -57,7 +57,7 @@ export default function PaymentFailed({ order, payment }: Props) {
           </div>
 
           <div>
-            <span className="font-semibold">جزییات پرداخت</span>
+            <span className="font-medium">جزییات پرداخت</span>
 
             <div className="flex items-center gap-5 mt-6">
               <span className="inline-block bg-primary w-3 h-3 rounded-full"></span>

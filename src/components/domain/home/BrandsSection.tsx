@@ -18,8 +18,10 @@ export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
       <div className="relative container-home">
         <Card className="py-4 h-[224px] bg-white rounded-lg">
           <div className="w-full flex items-center justify-center gap-2">
-            <StarIcon size={22} className="text-yellow-500"/>
-            <p className="text-lg font-semibold text-slate-700">محبوب ترین برندها</p>
+            <StarIcon size={22} className="text-yellow-500" />
+            <p className="text-lg font-medium text-slate-700">
+              محبوب ترین برندها
+            </p>
           </div>
           <Carousel>
             <CarouselNext />

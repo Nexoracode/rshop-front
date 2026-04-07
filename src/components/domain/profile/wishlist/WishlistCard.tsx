@@ -35,7 +35,7 @@ export default function WishlistCard({
 
       <div className="flex-1 flex flex-col justify-between space-y-2">
         <div className="space-y-1">
-          <p className="text-sm font-semibold line-clamp-1">{name}</p>
+          <p className="text-sm font-medium line-clamp-1">{name}</p>
         </div>
 
         {/* اکشن‌ها */}

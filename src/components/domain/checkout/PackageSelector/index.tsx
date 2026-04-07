@@ -102,7 +102,7 @@ export function PackageSelector() {
             )}
           </div>
           <div className="ps-3">
-            <div className="font-semibold">بسته‌بندی هدیه</div>
+            <div className="font-medium">بسته‌بندی هدیه</div>
             <p className="text-sm text-gray-600 mt-1">
               امکان انتخاب طرح و متن دلخواه.
             </p>

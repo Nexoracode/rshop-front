@@ -68,8 +68,15 @@ export function Menu({ items, className = "" }: MenuProps) {
             <div className="mt-6 flex flex-col gap-3 text-sm">
               {items.map(({ Icon, label, onClick, color = "neutral" }) => (
                 <SheetClose key={label} asChild>
-                  <Button onClick={onClick} className="w-full justify-center">
-                    <Icon className={cn("size-5", `text-${color}`)} />
+                  <Button
+                    variant={"text-nohover"}
+                    onClick={onClick}
+                    size={"sm"}
+                    className="w-full justify-start text-slate-700"
+                    startIcon={
+                      <Icon className={cn("size-5", `text-${color}`)} />
+                    }
+                  >
                     {label}
                   </Button>
                 </SheetClose>

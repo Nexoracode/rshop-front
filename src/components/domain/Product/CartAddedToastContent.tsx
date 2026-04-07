@@ -18,7 +18,7 @@ export default function CartAddedToastContent({
 }: Props) {
   return (
     <div className="flex space-y-2 border rounded-md bg-card p-2 gap-2 flex-col justify-between ">
-      <div className="flex text-sm text-success font-semibold items-center">
+      <div className="flex text-sm text-success font-medium items-center">
         <Check />
         <p>محصول به سبد خرید اظافه شد.</p>
       </div>

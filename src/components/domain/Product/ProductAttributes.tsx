@@ -8,7 +8,6 @@ type Props = {
 export default function ProductAttributes({ attributes }: Props) {
   return (
     <section className="pb-5 -mt-4" id="specifications">
-
       {attributes
         .sort((a, b) => a.display_order - b.display_order)
         .map((attrGroup) => (
@@ -16,7 +15,7 @@ export default function ProductAttributes({ attributes }: Props) {
             key={attrGroup.id}
             className="flex flex-col mt-12 items-start md:flex-row justify-between"
           >
-            <p className="w-[200px] pt-2 text-muted text-sm font-semibold">
+            <p className="w-[200px] pt-2 text-muted text-sm font-medium">
               {attrGroup.name}
             </p>
 

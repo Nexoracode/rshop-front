@@ -11,7 +11,7 @@ export default function InfoRow({
     <div className="flex text-sm w-full border-b py-3 justify-between">
       <span className="text-muted-light">{label}:</span>
 
-      <span className="font-semibold">{value}</span>
+      <span className="font-medium">{value}</span>
     </div>
   );
 }

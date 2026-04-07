@@ -111,7 +111,7 @@ function ProductItem({
           src={item.media_pinned?.url || PRODUCT_PLACEHOLDER}
         />
       </div>
-      <p className="font-semibold text-sm">{item.name}</p>
+      <p className="font-medium text-sm">{item.name}</p>
       <div className="flex text-sm gap-2 items-center flex-row-reverse">
         <Star
           strokeWidth={0}
@@ -123,7 +123,7 @@ function ProductItem({
       <div className="flex justify-between">
         <div>{compareAt && <Badge variant={"danger"}>{percent}%</Badge>}</div>
         <div>
-          <p className="text-sm font-semibold">{formatToman(final)}</p>
+          <p className="text-sm font-medium">{formatToman(final)}</p>
           {compareAt && (
             <p className="line-through text-left text-xs text-muted/70">
               {formatToman(compareAt)}

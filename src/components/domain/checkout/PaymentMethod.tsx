@@ -86,7 +86,7 @@ export default function PaymentMethodSelector({
               <div className="flex flex-col flex-1 text-right">
                 <span
                   className={cn(
-                    "text-sm font-semibold",
+                    "text-sm font-medium",
                     isSelected ? "text-primary" : "",
                   )}
                 >

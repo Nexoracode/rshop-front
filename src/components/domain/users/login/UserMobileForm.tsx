@@ -32,7 +32,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
     <FormProvider {...form}>
       <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-lg font-medium">
             ورود یا ثبت‌نام در {SHOP_NAME}
           </h2>
           <p className="text-[13px] text-gray-500">
@@ -41,7 +41,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
         </div>
 
         <div className="space-y-5">
-          <TextField required name="phone" type="phone" className="!py-6"/>
+          <TextField required name="phone" type="phone" className="!py-6" />
 
           <div className="!-mt-1">
             <Button
@@ -52,7 +52,7 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
               ورود به {SHOP_NAME}
             </Button>
 
-            <p className="text-xs text-slate-600 mt-5 font-light text-center">
+            <p className="text-xs text-slate-600 mt-5 font-normal text-center">
               ورود شما به معنای پذیرش شرایط {SHOP_NAME} و قوانین حریم‌خصوصی است
             </p>
           </div>

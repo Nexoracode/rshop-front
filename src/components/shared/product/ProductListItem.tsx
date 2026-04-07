@@ -72,7 +72,7 @@ export default function ProductListItem(props: Product) {
         {/* content */}
         <div className="mt-2 flex-1 flex flex-col justify-between px-1 pb-2">
           {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
-          <h3 className="line-clamp-1 text-base font-semibold text-gray-800">
+          <h3 className="line-clamp-1 text-base font-medium text-gray-800">
             {name}
           </h3>
 
@@ -80,7 +80,7 @@ export default function ProductListItem(props: Product) {
           <div className="flex items-center gap-2">
             <PriceBox
               price={final}
-              className="text-sm font-semibold text-primary-600"
+              className="text-sm font-medium text-primary-600"
             />
 
             {compareAt && (

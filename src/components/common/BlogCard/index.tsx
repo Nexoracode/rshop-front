@@ -14,7 +14,7 @@ export default function BlogCard({ date, image, tiny_desc, title }: Blog) {
       </Link>
 
       <div className="space-y-1 px-2  lg:px-4">
-        <p className="text-xs lg:text-sm font-light text-neutral-400">
+        <p className="text-xs lg:text-sm font-normal text-neutral-400">
           {Intl.DateTimeFormat("fa-IR-u-ca-persian", {
             day: "numeric",
             month: "long",
@@ -22,11 +22,11 @@ export default function BlogCard({ date, image, tiny_desc, title }: Blog) {
           }).format(Date.parse(date))}
         </p>
 
-        <p className="text-foreground text-sm lg:text-base font-semibold">
+        <p className="text-foreground text-sm lg:text-base font-medium">
           {title}
         </p>
 
-        <p className="text-xs lg:text-sm line-clamp-2 text-justify text-neutral-400 font-light mb-0 leading-6">
+        <p className="text-xs lg:text-sm line-clamp-2 text-justify text-neutral-400 font-normal mb-0 leading-6">
           {tiny_desc}
         </p>
         <div className="flex justify-end my-2">

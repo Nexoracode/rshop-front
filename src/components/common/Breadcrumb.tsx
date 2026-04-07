@@ -30,7 +30,7 @@ export default function Breadcrumb({ items, className, lastIsLink }: Props) {
 
   return (
     <nav aria-label="breadcrumb" className={cn("w-full", className)}>
-      <div className="flex items-center font-light text-sm text-muted-light">
+      <div className="flex items-center font-normal text-sm text-muted-light">
         {finalItems.map((item, index) => {
           const isLast = index === finalItems.length - 1;
           return (

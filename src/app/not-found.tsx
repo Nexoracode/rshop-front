@@ -1,3 +1,4 @@
+"use client";
 import Image from "@/components/common/Image";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
@@ -32,7 +33,7 @@ export default function NotFound() {
             </Link>
 
             <button
-              //   onClick={() => history.back()}
+              onClick={() => history.back()}
               className="px-5 py-2.5 rounded-lg border text-sm font-medium"
             >
               بازگشت

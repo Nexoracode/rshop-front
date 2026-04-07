@@ -21,7 +21,7 @@ export default function VariantValues({ variant }: Props) {
                   }}
                 ></span>
               )}
-              <span className="font-semibold text-neutral-900">
+              <span className="font-medium text-neutral-900">
                 {attributeValue.value}
               </span>
             </p>

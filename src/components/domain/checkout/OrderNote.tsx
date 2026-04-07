@@ -30,7 +30,7 @@ export default function OrderNote() {
   const formContent = (
     <FormProvider {...form}>
       <form>
-        <p className="text-primary font-semibold text-sm mb-4">
+        <p className="text-primary font-medium text-sm mb-4">
           این توضیح برای فروشنده ارسال می‌شود.
         </p>
         <TextField
@@ -48,7 +48,7 @@ export default function OrderNote() {
   return (
     <div className="border p-6 rounded-xl">
       <div className="flex items-center gap-6 justify-between">
-        <h5 className="font-semibold text-neutral-700">توضیحات سفارش</h5>
+        <h5 className="font-medium text-neutral-700">توضیحات سفارش</h5>
         <div className="flex items-center gap-2">
           <BaseDialog
             content={formContent}

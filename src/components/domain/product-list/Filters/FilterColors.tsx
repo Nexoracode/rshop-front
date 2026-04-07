@@ -74,7 +74,7 @@ export default function FilterColor({
               </span>
             )}
 
-            <span className="inline-block pt-3 text-sm font-light text-muted/70">
+            <span className="inline-block pt-3 text-sm font-normal text-muted/70">
               {color.value}
             </span>
           </button>

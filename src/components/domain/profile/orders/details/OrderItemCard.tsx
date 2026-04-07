@@ -44,13 +44,13 @@ export default function OrderItemCard({
                   className="text-xs text-muted-light inline-block px-2 first:pr-0 border-l-2 last:border-l-0"
                 >
                   {attr.name}:{" "}
-                  <span className="text-muted font-semibold">{attr.value}</span>
+                  <span className="text-muted font-medium">{attr.value}</span>
                 </span>
               ))}
             </div>
           )}
           <PriceBox
-            className="font-semibold text-primary mt-1"
+            className="font-medium text-primary mt-1"
             price={+unit_price || 2500}
           />
 

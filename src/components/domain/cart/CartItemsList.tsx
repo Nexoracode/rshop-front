@@ -14,7 +14,7 @@ export default function CartItemsList() {
 
   return (
     <div>
-      <p className="text-xl mb-4 font-semibold">سبد خرید</p>
+      <p className="text-xl hidden md:block mb-4 font-medium">سبد خرید</p>
       <div className="gap-5 flex">
         {data?.total_quantity ? null : (
           <div className="w-full flex justify-center">

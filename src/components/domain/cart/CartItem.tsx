@@ -6,14 +6,15 @@ import QuantitySelect from "../Product/AddToCart/QuantitySelect";
 import { UserCartItem } from "@/types/cart";
 import { useMutation } from "@tanstack/react-query";
 import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
-import { formatToman } from "@/lib/utils/price";
+import PriceBox from "@/components/shared/product/PriceBox";
 
 export default function CartItem({
   id,
   product,
   variant,
   quantity,
-  unit_price,
+  discount,
+  line_total,
 }: UserCartItem) {
   const { mutate: deleteItem, isPending: deletePending } =
     useMutation(deleteCartItem);
@@ -26,7 +27,7 @@ export default function CartItem({
   return (
     <div
       key={id}
-      className="p-4 border gap-4 rounded-lg flex justify-between items-stretch"
+      className="p-3 border rounded-lg flex flex-col justify-between items-stretch"
     >
       <div className="flex gap-4">
         <Image
@@ -37,24 +38,38 @@ export default function CartItem({
         />
         <div className="flex-1 flex flex-col justify-between">
           <div className="flex-1">
-            <div className="text-sm font-semibold">{product.name}</div>
-            <p className="text-sm font-semibold">{variant?.name}</p>
-            <div className="text-sm text-muted">
-              {quantity} × {formatToman(+unit_price)}
-            </div>
+            <div className="text-sm font-medium">{product.name}</div>
+            {variant && (
+              <div className="flex gap-1">
+                {variant.attributes.map((attr) => (
+                  <div key={attr.id} className="text-xs  text-slate-600">
+                    {attr.attribute.name + " " + attr.value.value}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="text-sm font-semibold">
-            {formatToman(quantity * +unit_price)}
+          <div className="flex items-center justify-between">
+            <div>
+              {+discount > 0 && (
+                <PriceBox
+                  className="inline-block font-medium text-[10px] text-rose-600"
+                  suffix="تخفیف"
+                  price={+discount * quantity}
+                />
+              )}
+              <PriceBox className="font-medium" price={+line_total} />
+            </div>
+            <QuantitySelect
+              maxQty={product.stock}
+              onChange={handleQtyChange}
+              qty={quantity}
+              loading={deletePending || updatePending}
+            />
           </div>
         </div>
       </div>
-      <QuantitySelect
-        maxQty={product.stock}
-        onChange={handleQtyChange}
-        qty={quantity}
-        loading={deletePending || updatePending}
-      />
     </div>
   );
 }

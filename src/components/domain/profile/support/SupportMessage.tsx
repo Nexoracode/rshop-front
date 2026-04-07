@@ -56,7 +56,7 @@ export default function SupportMessage({ message, product }: Props) {
                 >
                   <PlusIcon className="size-5" />
                 </Button>
-                <p className="text-sm font-light text-muted/70">
+                <p className="text-sm font-normal text-muted/70">
                   {formatToman(Number(product?.price) ?? 0)}
                 </p>
               </div>

@@ -46,7 +46,7 @@ export default function ProductListItem(
 
         <div className={cn("flex flex-3/4", className)}>
           {num && (
-            <div className="text-info-300 text-2xl font-semibold flex items-center pr-3">
+            <div className="text-info-300 text-2xl font-medium flex items-center pr-3">
               {num}
             </div>
           )}

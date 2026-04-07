@@ -7,7 +7,7 @@ export default function ExpiredCTA({ endDate }: { endDate: string }) {
   if (expired)
     return (
       <div className="mt-10 rounded-2xl border bg-muted p-8 text-center space-y-4">
-        <h3 className="text-lg font-semibold">کمپین به پایان رسید</h3>
+        <h3 className="text-lg font-medium">کمپین به پایان رسید</h3>
         <p className="text-sm text-muted-foreground">پیشنهادهای جدید رو ببین</p>
 
         <div className="flex justify-center gap-3">

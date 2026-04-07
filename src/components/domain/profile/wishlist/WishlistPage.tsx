@@ -20,7 +20,7 @@ export default function WishlistPage() {
   return (
     <div>
       <div className="flex justify-between mb-8">
-        <h1 className="text-lg font-semibold">علاقه‌مندی‌های من</h1>
+        <h1 className="text-lg font-medium">علاقه‌مندی‌های من</h1>
       </div>
       <div className="border p-6 rounded-lg">
         <ListLayout<WishlistItem>

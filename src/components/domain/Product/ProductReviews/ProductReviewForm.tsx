@@ -86,7 +86,7 @@ function SubmitSuccess() {
         <CheckCircle2 className="w-16 h-16 text-green-500 animate-pop-in" />
       </div>
 
-      <p className="text-center text-lg font-semibold mb-4">
+      <p className="text-center text-lg font-medium mb-4">
         دیدگاه شما با موفقیت ثبت شد
       </p>
 

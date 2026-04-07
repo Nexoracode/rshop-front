@@ -12,7 +12,7 @@ export function OrderInfoSection({ order }: { order: Order }) {
     <Card className="p-4">
       <div className="flex justify-between items-center">
         <p className="text-sm text-muted-foreground">
-          شماره سفارش: <span className="font-semibold">{order.id}</span>
+          شماره سفارش: <span className="font-medium">{order.id}</span>
         </p>
         <Badge variant={statusColor[order.status]}>
           {statusLabel[order.status]}
@@ -21,7 +21,7 @@ export function OrderInfoSection({ order }: { order: Order }) {
       <div className="flex justify-between items-center">
         <p className="text-sm text-muted-foreground">
           کد رهگیری پستی:{" "}
-          <span className="font-semibold">
+          <span className="font-medium">
             {order.payment_gateway_ref ?? "پس از ارسال مرسوله قابل مشاهده است."}
           </span>
         </p>
@@ -29,15 +29,13 @@ export function OrderInfoSection({ order }: { order: Order }) {
       <div className="flex justify-between items-center">
         <p className="text-sm text-muted-foreground">
           تاریخ ثبت:{" "}
-          <span className="font-semibold">
-            {toPersianDate(order.created_at)}
-          </span>
+          <span className="font-medium">{toPersianDate(order.created_at)}</span>
         </p>
       </div>
       <div className="flex justify-between items-center">
         <p className="text-sm text-muted-foreground">
           مبلغ کل:{" "}
-          <span className="font-semibold">{formatToman(+order.total)}</span>
+          <span className="font-medium">{formatToman(+order.total)}</span>
         </p>
       </div>
     </Card>

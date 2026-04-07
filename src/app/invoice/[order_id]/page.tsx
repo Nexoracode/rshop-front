@@ -22,7 +22,7 @@ export default function Invoice() {
   ) : (
     <div className="space-y-4">
       <div className="print:hidden mt-10 w-[29.7cm] mx-auto p-4 flex justify-between items-center border-b-3 text-center">
-        <div className="font-semibold text-lg">صورت حساب فروش الکترونیکی</div>
+        <div className="font-medium text-lg">صورت حساب فروش الکترونیکی</div>
         <div className="flex justify-between">
           <button
             onClick={handlePrint}

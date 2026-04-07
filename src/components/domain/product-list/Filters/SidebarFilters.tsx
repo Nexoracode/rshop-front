@@ -33,7 +33,7 @@ function SidebarFiltersComponent({
     <Card>
       <section>
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">فیلترها</h3>
+          <h3 className="text-lg font-medium">فیلترها</h3>
 
           <Button
             onClick={handleClearFilters}

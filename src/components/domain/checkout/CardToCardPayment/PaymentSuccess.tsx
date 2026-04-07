@@ -26,7 +26,7 @@ export default function PaymentSuccess({
       </div>
       {paymentMode === "later" ? (
         <>
-          <div className="text-success-700 font-semibold text-lg">
+          <div className="text-success-700 font-medium text-lg">
             ثبت سفارش با موفقیت انجام شد.
           </div>
 
@@ -43,7 +43,7 @@ export default function PaymentSuccess({
         </>
       ) : (
         <>
-          <div className="text-success-700 font-semibold text-lg">
+          <div className="text-success-700 font-medium text-lg">
             ثبت رسید پرداخت با موفقیت انجام شد.
           </div>
 

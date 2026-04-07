@@ -13,7 +13,7 @@ export default function ImportantAttributes({ specifications }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm md:text-base font-semibold">ویژگی ها</p>
+        <p className="text-sm md:text-base font-medium">ویژگی ها</p>
         <div className="flex justify-between items-center">
           {/* <Button
           variant={"text-nohover"}

@@ -49,7 +49,7 @@ export default async function ShopPage(props: PageProps<"/products">) {
     <div className="container space-y-1  py-3">
       <Breadcrumb items={[{ label: "محصولات" }]} />
       <div className="pt-10 hidden md:block">
-        <h1 className="text-foreground font-semibold text-base">{"محصولات"}</h1>
+        <h1 className="text-foreground font-medium text-base">{"محصولات"}</h1>
       </div>
 
       <Suspense fallback={<ProductListSkelton />}>

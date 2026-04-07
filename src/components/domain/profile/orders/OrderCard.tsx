@@ -31,20 +31,16 @@ export function OrderCard({ order }: { order: Order }) {
             {toPersianDate(order.created_at)}
           </p>
 
-          <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
-            .
-          </p>
+          <p className="text-3xl text-muted/30 font-medium mx-2 leading-2">.</p>
           <div className="flex items-center">
             <p className="text-xs md:text-sm text-muted/60">شماره سفارش: </p>
             <p className="text-xs md:text-sm pr-1">{order.id}</p>
           </div>
 
-          <p className="text-3xl text-muted/30 font-semibold mx-2 leading-2">
-            .
-          </p>
+          <p className="text-3xl text-muted/30 font-medium mx-2 leading-2">.</p>
           <div className="text-right flex items-center">
             <p className="text-xs md:text-sm text-muted/60">مبلغ کل: </p>
-            <p className="font-semibold text-sm md:text-[1rem] text-primary pr-1">
+            <p className="font-medium text-sm md:text-[1rem] text-primary pr-1">
               {formatToman(+order.total)}
             </p>
           </div>

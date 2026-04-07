@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils/classnames";
 import FieldContainer from "@/components/common/Form/FieldContainer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { formatToman } from "@/lib/utils/price";
+import { toast } from "sonner";
 
 export default function DiscountForm() {
   const { handleCheck } = useCheckPromotion();
@@ -17,7 +19,7 @@ export default function DiscountForm() {
     "idle" | "loading" | "valid" | "invalid"
   >("idle");
   const [message, setMessage] = React.useState("");
-  const { handleSetOrderMeta } = useCheckout();
+  const { handleSetOrderMeta, orderMeta } = useCheckout();
 
   const handleValidate = async () => {
     if (!code.trim()) {
@@ -28,20 +30,21 @@ export default function DiscountForm() {
 
     setMessage("");
 
-    handleCheck(code, {
-      onError(error) {
-        setStatus("invalid");
-        setMessage(`${error.message} ❌`);
-      },
-      onSuccess(data) {
-        setStatus("valid");
-        handleSetOrderMeta({
-          promotion_code: code,
-          discount_amount: data.discount,
-        });
-        setMessage("کد تخفیف با موفقیت اعمال شد 🎉");
-      },
-    });
+    try {
+      const res = await handleCheck(code);
+      setStatus("valid");
+      setMessage(
+        `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
+      );
+      toast.success("کد تخفیف با موفقیت اعمال شد.");
+      handleSetOrderMeta({
+        promotion_code: code,
+        discount_amount: res.discount,
+      });
+    } catch (error) {
+      setStatus("invalid");
+      console.log({ error });
+    }
   };
 
   return (
@@ -55,9 +58,9 @@ export default function DiscountForm() {
               setStatus("idle");
             }}
             placeholder="درصورتی که کد تخفیف دارید وارد کنید"
-            disabled={status === "loading"}
+            disabled={status === "loading" || !!orderMeta.promotion_code}
             className={cn(
-              "pr-3 h-12 rounded-lg font-semibold text-sm border border-slate-300 focus-visible:ring-0",
+              "pr-3 h-12 rounded-lg font-medium text-sm border border-slate-300 focus-visible:ring-0",
               status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&

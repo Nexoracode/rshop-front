@@ -17,32 +17,32 @@ export default function CartPopover() {
     if (cart?.total_quantity) setOpen(true);
   };
   return (
-      <div
-        className="relative !z-[100]"
-        //   onMouseOut={() => setOpen(false)}
-        onClick={() => setOpen(false)}
-        onMouseEnter={handleOpen}
-        onMouseLeave={() => setOpen(false)}
-      >
-        {isPending ? (
-          <Skeleton className="h-8 w-16" />
-        ) : (
-          <LinkWithChip
-            href="/cart"
-            Icon={<ShoppingCart size={24} className="text-foreground" />}
-            count={cart?.total_quantity ?? 0}
-            label="سبد خرید"
-          />
-        )}
-        {open && (
-          <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around z-50 absolute">
-            <div className="text-muted-light font-semibold">
-              {cart?.total_quantity} کالا
-            </div>
-            <CartListItems />
-            <CartSummery />
+    <div
+      className="relative !z-[100]"
+      //   onMouseOut={() => setOpen(false)}
+      onClick={() => setOpen(false)}
+      onMouseEnter={handleOpen}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {isPending ? (
+        <Skeleton className="h-8 w-16" />
+      ) : (
+        <LinkWithChip
+          href="/cart"
+          Icon={<ShoppingCart size={24} className="text-foreground" />}
+          count={cart?.total_quantity ?? 0}
+          label="سبد خرید"
+        />
+      )}
+      {open && (
+        <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around z-50 absolute">
+          <div className="text-muted-light font-medium">
+            {cart?.total_quantity} کالا
           </div>
-        )}
-      </div>
+          <CartListItems />
+          <CartSummery />
+        </div>
+      )}
+    </div>
   );
 }

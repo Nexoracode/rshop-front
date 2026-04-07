@@ -29,9 +29,9 @@ export default function OrderDetailsPage() {
               size={"sm"}
               href={`/profile/orders`}
             >
-              <ArrowRight className="text-gray-600"/>
+              <ArrowRight className="text-gray-600" />
             </Button>
-            <h1 className="text-lg font-semibold">جزئیات سفارش</h1>
+            <h1 className="text-lg font-medium">جزئیات سفارش</h1>
           </div>
           {(orderData.status === "delivered" ||
             orderData.status === "preparing") && (
@@ -63,7 +63,7 @@ export default function OrderDetailsPage() {
 
       <div className="border border-gray-200 rounded-lg p-4 md:p-6">
         <div className="space-y-3">
-          <h3 className="font-semibold mb-4">محصولات خریداری‌شده</h3>
+          <h3 className="font-medium mb-4">محصولات خریداری‌شده</h3>
           <div className="space-y-2">
             {orderData?.items.map((item) => (
               <OrderItemCard key={item.id} item={item} />

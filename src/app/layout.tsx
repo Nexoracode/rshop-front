@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import Providers from "@/components/layout/Providers";
 import { Toaster } from "@/components/ui/sonner";
-import { doranFont } from "@/fonts";
+import { iranYekanFont } from "@/fonts";
 
 export const metadata: Metadata = {
   title: "آرشاپ | فروشگاه آکادمی روح بخش",
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${doranFont.className} font-display  min-h-screen antialiased`}
+        className={`${iranYekanFont.className} ${iranYekanFont.variable} font-display  min-h-screen antialiased`}
       >
         <Providers>{children}</Providers>
         <Toaster />

@@ -52,7 +52,7 @@ export default function PaymentVerifyPage() {
               width={100}
               height={100}
             />
-            <h1 className="text-xl font-semibold text-success">
+            <h1 className="text-xl font-medium text-success">
               {"پرداخت با موفقیت انجام شد"}
             </h1>
           </div>

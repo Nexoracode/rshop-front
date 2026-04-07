@@ -70,13 +70,11 @@ export function GiftWrapModal({ open, onOpenChange }: Props) {
                     </div>
 
                     <div className="p-3 flex-1 flex-col flex justify-between text-right">
-                      <div className="font-semibold text-muted">
-                        {item.name}
-                      </div>
+                      <div className="font-medium text-muted">{item.name}</div>
                       <div className="text-xs text-muted/70">
                         {item.description}
                       </div>
-                      <div className="text-sm font-semibold text-gray-600">
+                      <div className="text-sm font-medium text-gray-600">
                         {formatToman(Number(item.price))}
                       </div>
                     </div>

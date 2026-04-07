@@ -47,7 +47,7 @@ export default function SearchBox() {
             onClick={handleClose}
           >
             <div>
-              <p className="font-semibold">محصولات</p>
+              <p className="font-medium">محصولات</p>
               <PopoverClose asChild>
                 <ProductResultList
                   isPending={isPending}
@@ -59,7 +59,7 @@ export default function SearchBox() {
             {data?.categories.length ? (
               <>
                 <div className="py-3">
-                  <p className="text-sm font-semibold">
+                  <p className="text-sm font-medium">
                     جستجو در دسته بندی های:{" "}
                   </p>
                   <CategoryResultList categories={data.categories ?? []} />
@@ -69,7 +69,7 @@ export default function SearchBox() {
             ) : null}
             {data?.brands.length ? (
               <div className="py-3">
-                <p className="text-sm font-semibold">جستجو در برندهای: </p>
+                <p className="text-sm font-medium">جستجو در برندهای: </p>
                 <BrandResultList brands={data.brands} />
               </div>
             ) : null}

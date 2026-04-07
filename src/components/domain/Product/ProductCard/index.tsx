@@ -100,7 +100,7 @@ export default function ProductCard(props: Product) {
                 </div>
               </div>
             ) : (
-              <span className="block text-right mt-2 font-semibold  text-muted-light w-full">
+              <span className="block text-right mt-2 font-medium  text-muted-light w-full">
                 ناموجود
               </span>
             )}

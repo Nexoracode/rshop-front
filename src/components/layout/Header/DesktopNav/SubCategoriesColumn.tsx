@@ -15,7 +15,7 @@ export default function SubCategoriesColumn({
     <div>
       <Link
         href={`/products/${parent.slug}/${category.slug}`}
-        className="mb-2 text-sm font-semibold text-gray-800 border-r-2 h-4 flex items-center pr-2.5 border-r-primary hover:text-primary hover:bg-transparent"
+        className="mb-2 text-sm font-medium text-gray-800 border-r-2 h-4 flex items-center pr-2.5 border-r-primary hover:text-primary hover:bg-transparent"
       >
         {category.title}
         <ChevronLeft size={15} className="inline-block mr-1" />

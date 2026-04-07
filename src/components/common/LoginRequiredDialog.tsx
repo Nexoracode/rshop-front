@@ -89,7 +89,7 @@ export function LoginRequiredDialog({
           />
 
           <div className="mt-4 space-y-2">
-            <p className="text-center text-base font-semibold leading-10">
+            <p className="text-center text-base font-medium leading-10">
               {usageMessages[usage].title}
               <br />
               لطفاً ابتدا وارد حساب کاربری خود شوید.

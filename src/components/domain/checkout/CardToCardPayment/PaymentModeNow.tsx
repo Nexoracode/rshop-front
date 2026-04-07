@@ -28,7 +28,7 @@ export default function PaymentModeNow({
   };
   return (
     <div className="space-y-3 flex flex-col justify-between border h-full rounded-lg p-2">
-      <h3 className="font-semibold">بارگزاری رسید پرداخت</h3>
+      <h3 className="font-medium">بارگزاری رسید پرداخت</h3>
 
       {/* Dropzone-like uploader */}
       <FormProvider {...form}>

@@ -30,12 +30,12 @@ export default function ResendCodeCounter({ onResend, isSuccess }: Props) {
   return (
     <div className="text-center w-full">
       {timer > 0 ? (
-        <p className="text-[13px] font-light text-muted-foreground">
+        <p className="text-[13px] font-normal text-muted-foreground">
           {timeItem(timer % 60)}:{timeItem(Math.floor(timer / 60))}
           مانده تا دریافت مجدد کد
         </p>
       ) : (
-        <div className="text-sm flex justify-center items-center font-light text-muted-foreground">
+        <div className="text-sm flex justify-center items-center font-normal text-muted-foreground">
           دریافت مجدد کد از طریق{" "}
           <button
             onClick={onResend}

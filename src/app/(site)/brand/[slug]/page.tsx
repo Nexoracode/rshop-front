@@ -25,9 +25,7 @@ export default async function BrandPage({
     <div className="container space-y-1  py-10">
       <Breadcrumb items={breadcrumbItems} />
       <div className="pt-10 hidden md:block">
-        <h1 className="text-foreground font-semibold text-base">
-          {brand.name}
-        </h1>
+        <h1 className="text-foreground font-medium text-base">{brand.name}</h1>
       </div>
       <ProductListContainer
         query={queryParamToString(query)}

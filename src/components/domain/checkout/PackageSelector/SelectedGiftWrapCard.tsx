@@ -13,7 +13,6 @@ export function SelectedGiftWrapCard() {
 
   const selectedItem = data?.find((item) => item.id === gift_wrapping_id);
 
-
   return (
     <div className="border-b pb-6 mt-6" dir="rtl">
       <div className="flex items-stretch gap-4">
@@ -27,11 +26,11 @@ export function SelectedGiftWrapCard() {
         </div>
 
         <div className="flex flex-col justify-between">
-          <div className="font-semibold text-sm">{selectedItem?.name}</div>
+          <div className="font-medium text-sm">{selectedItem?.name}</div>
           <div className=" text-sm text-muted/70">
             {selectedItem?.description}
           </div>
-          <div className="text-gray-600 font-semibold text-sm">
+          <div className="text-gray-600 font-medium text-sm">
             {formatToman(Number(selectedItem?.price || 0))}
           </div>
         </div>

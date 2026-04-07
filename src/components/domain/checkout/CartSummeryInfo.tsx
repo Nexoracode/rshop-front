@@ -10,16 +10,18 @@ export default function CartSummeryInfo() {
   const { orderMeta } = useCheckout();
   return (
     <div className="space-y-4 border-t pt-4">
-      <div className="flex justify-between text-muted-foreground">
+      <div className="flex justify-between items-center text-muted-foreground">
         <span className="text-sm">جمع کل ({data?.total_quantity} کالا)</span>
-        <span className="font-semibold">
-          {formatToman(data?.subtotal ?? 0)}
+        <span className=" flex flex-col">
+          <span className="text-xs line-through">
+            {formatToman(data?.subtotal ?? 0)}
+          </span>
+          <span>{formatToman(data?.total ?? 0)}</span>
         </span>
       </div>
       <div className="flex justify-between text-muted-foreground">
         <span className="text-sm">مقدار تخفیف</span>
         <span className="text-danger-600">
-          {" "}
           {" "}
           {formatToman((data?.discount_total ?? 0) + orderMeta.discount_amount)}
         </span>

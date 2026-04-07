@@ -38,7 +38,7 @@ export default function LogoutButton() {
         content={
           <div className="flex flex-col gap-3 items-center">
             <LogOutIcon className="size-24 opacity-15" />
-            <p className="text-base font-semibold text-danger">
+            <p className="text-base font-medium text-danger">
               از حساب کاربری خارج می شوید؟
             </p>
             <p className="text-sm text-muted text-center leading-8">

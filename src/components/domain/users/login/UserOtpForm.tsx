@@ -55,7 +55,7 @@ export default function UserOtpForm({ phone }: Props) {
     <FormProvider {...form}>
       <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold">کد تایید را وارد کنید</h2>
+          <h2 className="text-lg font-medium">کد تایید را وارد کنید</h2>
           <p className="text-[13px] text-gray-500">
             کد تایید برای شماره {phone} ارسال شد.
           </p>

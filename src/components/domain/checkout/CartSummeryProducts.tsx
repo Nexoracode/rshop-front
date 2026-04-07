@@ -33,11 +33,11 @@ export default function CartSummeryProducts() {
                 <div className="flex gap-1">
                   {item.variant?.attributes.map((i) => (
                     <p key={i.id} className="text-sm">
-                      <span className="text-muted font-light">
+                      <span className="text-muted font-normal">
                         {i.attribute.name}
                       </span>{" "}
                       :{" "}
-                      <span className="font-semibold text-neutral-800">
+                      <span className="font-medium text-neutral-800">
                         {i.value.value}
                       </span>
                     </p>
@@ -48,7 +48,7 @@ export default function CartSummeryProducts() {
                     تعداد: {item.quantity}
                   </p>
 
-                  <p className="text-sm font-semibold text-foreground whitespace-nowrap">
+                  <p className="text-sm font-medium text-foreground whitespace-nowrap">
                     {formatToman(Number(item.line_total))}
                   </p>
                 </div>

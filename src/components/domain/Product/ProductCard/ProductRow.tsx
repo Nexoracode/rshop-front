@@ -73,7 +73,7 @@ export default function ProductRow(props: Product) {
       {/* content */}
       <div className="mt-2 flex-1 flex flex-col justify-between px-1 pb-2">
         {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
-        <h3 className="line-clamp-1 text-base font-semibold text-gray-800">
+        <h3 className="line-clamp-1 text-base font-medium text-gray-800">
           {name}
         </h3>
         {/* rating */}
@@ -85,7 +85,7 @@ export default function ProductRow(props: Product) {
 
         {/* price */}
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-primary-600">
+          <span className="text-sm font-medium text-primary-600">
             {formatToman(final)}{" "}
           </span>
           {compareAt && (

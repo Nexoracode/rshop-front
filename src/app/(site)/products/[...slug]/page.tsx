@@ -102,7 +102,7 @@ export default async function CategoryPage(
     <div className="container space-y-1  py-3">
       <Breadcrumb items={breadcrumbItems} />
       <div className="pt-10 hidden md:block">
-        <h1 className="text-foreground font-semibold text-base">
+        <h1 className="text-foreground font-medium text-base">
           {category ? category.category.title : "محصولات"}
         </h1>
       </div>

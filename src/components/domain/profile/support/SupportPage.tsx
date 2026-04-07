@@ -47,14 +47,16 @@ export default function SupportPage() {
               alt="support"
             />
             <div>
-              <p className="font-semibold  text-sm">
+              <p className="font-medium  text-sm">
                 تیکت شماره:{" "}
                 <span
                   dir="ltr"
                   className="inline-block"
                 >{`#${ticket?.id}`}</span>
               </p>
-              <p className="font-semibold text-sm text-gray-500 mt-1">{ticket?.subject}</p>
+              <p className="font-medium text-sm text-gray-500 mt-1">
+                {ticket?.subject}
+              </p>
             </div>
           </div>
           {ticket?.status === "closed" ? (

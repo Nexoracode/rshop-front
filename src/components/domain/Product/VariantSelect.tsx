@@ -29,7 +29,7 @@ export default function VariantSelect({ attribute, variants }: Props) {
 
   return (
     <div className="space-y-3">
-      <Label className="text-base font-semibold">
+      <Label className="text-base font-medium">
         {name} : {currentAttributeValue?.values.value}
       </Label>
 

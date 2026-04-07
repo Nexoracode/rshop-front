@@ -18,7 +18,7 @@ export default function RecentView() {
 
   return (
     <section className="w-full">
-      <h2 className="font-semibold text-lg mb-4">بازدیدهای اخیر شما</h2>
+      <h2 className="font-medium text-lg mb-4">بازدیدهای اخیر شما</h2>
       <Card>
         <Carousel>
           <CarouselNext />
@@ -26,7 +26,10 @@ export default function RecentView() {
 
           <CarouselContent>
             {data?.map((product) => (
-              <CarouselItem key={product.id} className="basis-[15rem]">
+              <CarouselItem
+                key={product.id}
+                className="basis-[10rem] md:basis-[15rem] border-l"
+              >
                 <RecentViewedCard {...product} />
               </CarouselItem>
             ))}

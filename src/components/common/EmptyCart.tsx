@@ -7,7 +7,7 @@ export function EmptyCard() {
     <div className="flex flex-col gap-4 items-center">
       <ShoppingBasket width={180} height={180} className="text-neutral-200" />
 
-      <p className="text-lg font-semibold">سبد خرید شما خالی است</p>
+      <p className="text-lg font-medium">سبد خرید شما خالی است</p>
 
       <p className="text-muted">برای مشاهده محصولات بیشتر به صفحه زیر بروید</p>
 

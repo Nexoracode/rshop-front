@@ -16,7 +16,7 @@ export default function RecentViewedPage() {
     <div>
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-lg font-semibold flex items-center gap-2">
+        <h1 className="text-lg font-medium flex items-center gap-2">
           <Eye className="w-5 h-5 text-primary" />
           بازدیدهای اخیر
         </h1>

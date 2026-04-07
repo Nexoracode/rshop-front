@@ -73,7 +73,11 @@ export default function ProductGridItem({ product }: Props) {
         <div className="flex mt-3 flex-col sm:flex-row items-center gap-2">
           {inStock ? (
             <div className="flex items-start w-full justify-between">
-              {compareAt ? <Badge variant="danger">{percent}%</Badge> : <div></div>}
+              {compareAt ? (
+                <Badge variant="danger">{percent}%</Badge>
+              ) : (
+                <div></div>
+              )}
               <div className="flex flex-col">
                 <PriceBox price={final} className="text-base font-bold" />
                 {compareAt ? (
@@ -81,11 +85,13 @@ export default function ProductGridItem({ product }: Props) {
                     price={compareAt}
                     className="text-xs text-gray-400"
                   />
-                ) : <div></div>}
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           ) : (
-            <span className="block text-right mt-2 font-semibold  text-muted-light w-full">
+            <span className="block text-right mt-2 font-medium  text-muted-light w-full">
               ناموجود
             </span>
           )}

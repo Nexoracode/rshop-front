@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Yekan-Regular";
+  src: url(/fonts/iranyekanwebregular.woff);
+}
+@font-face {
+  font-family: "Yekan-Medium";
+  src: url(/fonts/iranyekanwebmedium.woff);
+}
+@font-face {
+  font-family: "Yekan-Bold";
+  src: url(/fonts/iranyekanwebbold.woff);
+}
+@font-face {
+  font-family: "Yekan-ExtraBold";
+  src: url(/fonts/iranyekanwebextrabold.woff);
+}

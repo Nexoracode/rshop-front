@@ -38,7 +38,7 @@ export default function MobileBottomNav() {
             className={cn(
               "flex flex-col w-[20%] relative items-center justify-center py-2 text-xs transition-colors duration-200",
               active
-                ? "text-primary font-semibold"
+                ? "text-primary font-medium"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >

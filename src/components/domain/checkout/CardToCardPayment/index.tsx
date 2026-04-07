@@ -79,7 +79,7 @@ export default function CardToCardPayment({
   return (
     <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-semibold">پرداخت کارت به کارت</h3>
+        <h3 className="text-lg font-medium">پرداخت کارت به کارت</h3>
         <p className="text-xs md:text-sm text-muted mt-4">
           لطفا مبلغ سفارش را با اطلاعات زیر به حساب فروشگاه واریز کنید و تصویر
           رسید آن را بارگذاری کنید.

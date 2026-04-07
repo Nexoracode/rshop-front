@@ -7,8 +7,6 @@ export const checkPromotion = mutationOptions({
     code: string;
     userId?: number;
     subtotal: number;
-    shippingCost: number;
-    isFirstOrder: boolean;
     items: Array<{
       productId: number;
       categoryId: number;

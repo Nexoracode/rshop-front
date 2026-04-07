@@ -53,7 +53,7 @@ export default async function DynamicPage(
 
       <div className="min-h-screen bg-background">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 xl:px-16 py-10 md:py-16 lg:py-20">
-          <h1 className="text-xl text-center font-semibold tracking-tight sm:text-2xl  mb-10 md:mb-14">
+          <h1 className="text-xl text-center font-medium tracking-tight sm:text-2xl  mb-10 md:mb-14">
             {data.title}
           </h1>
           <div

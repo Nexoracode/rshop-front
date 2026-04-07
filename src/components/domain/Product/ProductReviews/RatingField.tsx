@@ -69,7 +69,7 @@ export default function RatingField({
           );
         })}
       </div>
-      <label className="text-lg inline-block w-full h-9 mt-5 font-semibold text-center text-primary">
+      <label className="text-lg inline-block w-full h-9 mt-5 font-medium text-center text-primary">
         {hover ? ratingLabels[hover - 1] : ratingLabels[stateValue - 1]}
       </label>
     </div>

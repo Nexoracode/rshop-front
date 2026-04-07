@@ -16,7 +16,7 @@ export default function AwatingPaymentCard({
 
       <div>
         <span className="text-muted-light">قابل پرداخت</span>{" "}
-        <span className="font-semibold">{formatToman(total)}</span>
+        <span className="font-medium">{formatToman(total)}</span>
       </div>
 
       <div className="flex text-warning-600">

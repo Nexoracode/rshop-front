@@ -42,7 +42,7 @@ export default function CollectionProductCart(props: CollectionProduct) {
                 <p className="text-xs text-muted/80">{brand.name}</p>
               ) : null}
 
-              <p className="line-clamp-1 text-sm text-foreground  font-semibold">
+              <p className="line-clamp-1 text-sm text-foreground  font-medium">
                 {name}
               </p>
             </div>

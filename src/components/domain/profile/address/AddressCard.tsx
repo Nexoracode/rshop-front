@@ -21,7 +21,7 @@ type Props = {
   onDelete?: (address: UserAddress) => void;
   onSetPrimary?: (address: UserAddress) => void;
   disableAction?: boolean;
-  className?: string
+  className?: string;
 };
 
 export default function AddressCard(props: Props) {
@@ -31,7 +31,7 @@ export default function AddressCard(props: Props) {
     onDelete,
     onSetPrimary,
     disableAction = false,
-    className
+    className,
   } = props;
   return (
     <div
@@ -40,7 +40,7 @@ export default function AddressCard(props: Props) {
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-gray-800 font-semibold">{address.address_name}</h4>
+        <h4 className="text-gray-800 font-medium">{address.address_name}</h4>
         {address.is_primary && (
           <div className="bg-green-50 absolute bottom-4 left-4 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
             آدرس اصلی

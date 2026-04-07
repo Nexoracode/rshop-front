@@ -61,7 +61,7 @@ export default function OrderNotPayable({ status, orderId }: Props) {
             alt=""
           />
 
-          <h2 className="text-xl font-semibold mt-4">{title}</h2>
+          <h2 className="text-xl font-medium mt-4">{title}</h2>
           <p className="mt-6 text-center text-sm text-gray-600">
             {description}
           </p>
