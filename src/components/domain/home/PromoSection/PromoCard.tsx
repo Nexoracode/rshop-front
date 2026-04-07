@@ -15,13 +15,13 @@ export default function PromoCard({
   return (
     <Link
       href={link}
-      style={{ backgroundColor: background_color || "#fafafa" }}
-      className="relative block md:aspect-[4/3] border aspect-[6/4] overflow-hidden rounded-lg"
+      style={{ backgroundColor: background_color || "white" }}
+      className="relative block md:aspect-[4/3] aspect-[6/4] overflow-hidden !rounded-2xl"
     >
       <div className="relative w-full h-full">
         <div
           className={cn(
-            "absolute z-20   overflow-hidden left-0 ",
+            "absolute z-20 overflow-hidden left-0 ",
             title
               ? "w-[60%]  aspect-square top-[50%] -translate-y-[50%] -translate-x-[30%]"
               : "w-full h-full top-0",
@@ -31,7 +31,7 @@ export default function PromoCard({
             src={image_url}
             alt={title}
             fill
-            className="object-contain hover:scale-105 transition-transform"
+            className="object-cover hover:scale-105 transition-transform"
           />
         </div>
         {title && (

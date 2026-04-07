@@ -26,9 +26,11 @@ export default async function HomePage() {
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}
         layoutType={data.layout_type}
-      />
+      >
+        {featuredSection && <FeaturedSection {...featuredSection} />}
+      </PromoSection>
 
-      {featuredSection && <FeaturedSection {...featuredSection} />}
+        {featuredSection && data.layout_type === "side_by_side" && <FeaturedSection {...featuredSection} />}
 
       <CategoriesSection categories={data.categories} />
 

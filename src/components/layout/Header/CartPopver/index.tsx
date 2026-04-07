@@ -18,7 +18,7 @@ export default function CartPopover() {
   };
   return (
     <div
-      className="relative !z-[100]"
+      className="relative h-[40px] !z-[100] flex items-center justify-end"
       //   onMouseOut={() => setOpen(false)}
       onClick={() => setOpen(false)}
       onMouseEnter={handleOpen}
@@ -29,14 +29,13 @@ export default function CartPopover() {
       ) : (
         <LinkWithChip
           href="/cart"
-          Icon={<img src={"/cart-new.PNG"} />}
+          Icon={<ShoppingCart size={24} className="text-slate-700" />}
           count={cart?.total_quantity ?? 0}
           label="سبد خرید"
-          className="w-5.5 h-5.5"
         />
       )}
       {open && (
-        <div className="space-y-3 bg-card left-0 p-3 rounded-lg w-sm shadow-around z-50 absolute">
+        <div className="space-y-3 bg-card top-11 z-50 left-0 p-3 rounded-lg w-sm shadow-around absolute">
           <div className="text-muted-light font-medium">
             {cart?.total_quantity} کالا
           </div>

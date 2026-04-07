@@ -13,12 +13,14 @@ type Props = {
   heroSliders: Array<HeroSliderType>;
   sideBanners: Array<SideBanners>;
   layoutType: LayoutType;
+  children?: React.ReactNode;
 };
 
 export default function PromoSection({
   heroSliders,
   sideBanners,
   layoutType,
+  children,
 }: Props) {
   return (
     <section className="bg-white">
@@ -42,12 +44,14 @@ export default function PromoSection({
           />
         </div>
 
+        {layoutType !== "side_by_side" ? <div className="mt-2">{children}</div> : ""}
+
         <div
           className={cn(
-            " grid grid-cols-2 gap-1 md:gap-2",
+            " grid grid-cols-2 md:gap-2",
             layoutType === "side_by_side"
-              ? "sm:grid-cols-2"
-              : "container-home md:grid-cols-4 mt-2",
+              ? "sm:grid-cols-2 !gap-1"
+              : "container-home md:grid-cols-4 mt-2 !gap-4",
           )}
         >
           <PromoBanners banners={sideBanners} />
