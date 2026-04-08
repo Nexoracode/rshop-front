@@ -30,34 +30,35 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
   }, [phone, form, handleSubmit]);
   return (
     <FormProvider {...form}>
-      <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="space-y-4">
-          <h2 className="text-lg font-medium">
-            ورود یا ثبت‌نام در {SHOP_NAME}
+      <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col items-center justify-center gap-2.5">
+          <h2 className="text-[20px] text-slate-700 font-extrabold">
+            ورود به حساب کاربری
           </h2>
-          <p className="text-[13px] text-gray-500">
-            لطفا شماره موبایل خود را وارد نمایید
-          </p>
+          <p className="text-sm text-slate-500">ورود یا ثبت نام در {SHOP_NAME}</p>
         </div>
-
-        <div className="space-y-5">
-          <TextField required name="phone" type="phone" className="!py-6" />
-
-          <div className="!-mt-1">
-            <Button
-              isLoading={isPending}
-              size={"md"}
-              className="w-full h-[48px] rounded-[8px]"
-            >
-              ورود به {SHOP_NAME}
-            </Button>
-
-            <p className="text-xs text-slate-600 mt-5 font-normal text-center">
-              ورود شما به معنای پذیرش شرایط {SHOP_NAME} و قوانین حریم‌خصوصی است
+        <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
+          <div className="space-y-4">
+            <p className="text-[13px] text-gray-500">
+              شماره موبایل خود را وارد نمایید
             </p>
           </div>
-        </div>
-      </form>
+
+          <div className="space-y-5">
+            <TextField required name="phone" type="phone" className="!py-6" />
+
+            <div className="!-mt-1">
+              <Button
+                isLoading={isPending}
+                size={"md"}
+                className="w-full text-sm h-[48px] rounded-[8px] bg-black/80 hover:bg-black/70"
+              >
+                ادامه و ورود به {SHOP_NAME}
+              </Button>
+            </div>
+          </div>
+        </form>
+      </div>
     </FormProvider>
   );
 }
