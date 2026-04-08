@@ -9,7 +9,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import ProductListCarousel from "./ProductListCarousel";
 import ProductGridCarousel from "./ProductGridCarousel";
 import ProductCarousel from "@/components/shared/product/ProductCarousel";
-import ListItemsGrid from "./ListItemsGrid";
 import CartItemsGrid from "./CartItemsGrid";
 
 export default function HomeSectionItem({
@@ -31,7 +30,7 @@ export default function HomeSectionItem({
       return <ProductCarousel items={products} renderItem={ProductCartItem} />;
 
     if (display_style === "grid") return <CartItemsGrid products={products} />;
-    return <ListItemsGrid products={products} />;
+    return <ProductListCarousel products={products} />;
   }, [products, display_style, isMobile]);
 
   return (
