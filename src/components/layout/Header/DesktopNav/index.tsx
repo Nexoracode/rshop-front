@@ -10,7 +10,6 @@ import {
   DicesIcon,
   HomeIcon,
   LocationEdit,
-  LucideLocationEdit,
   LucideShoppingBag,
   Menu,
 } from "lucide-react";

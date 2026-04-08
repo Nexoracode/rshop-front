@@ -4,9 +4,6 @@ import { HomeSection } from "@/types/home";
 import ProductCarousel from "@/components/shared/product/ProductCarousel";
 import ProductCartItem from "../ProductCartItem";
 import CategoriesList from "./CategoriesList";
-import SectionTitle from "@/components/common/SectionTitle";
-import Image from "next/image";
-import CountdownTimer from "../../Product/CountdownTimer";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 

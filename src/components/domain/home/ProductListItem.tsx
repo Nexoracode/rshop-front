@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeSectionProduct } from "@/types/home";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { calcPrice } from "@/lib/utils/number";
 import { cn } from "@/lib/utils/classnames";
 
 export default function ProductListItem(
@@ -12,21 +11,18 @@ export default function ProductListItem(
 ) {
   const {
     name,
-    price,
     brand,
-    discount_percent,
-    discount_amount,
     image,
     num,
     id,
     className,
   } = props;
 
-  const { compareAt, final, percent } = calcPrice(
+/*   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
     discount_percent,
-  );
+  ); */
 
   return (
     <Link target="_blank" href={`/p/rsp-${id}`} className="!w-[313px] !select-none">

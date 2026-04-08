@@ -32,14 +32,14 @@ export default function CategoriesSection({ categories }: Props) {
           <CarouselNext />
           <CarouselPrevious />
           <CarouselContent>
-            {chunckedCategories.map((group) => (
+            {chunckedCategories.map((group, index) => (
               <CarouselItem
                 className="basis-[6rem] md:basis-[10rem]"
-                key={group[0].id}
+                key={index}
               >
                 <div className="h-full flex flex-col">
-                  {group.map((category) => (
-                    <CategoryItem key={category.id} {...category} />
+                  {group.map((category, index) => (
+                    <CategoryItem key={index} {...category} />
                   ))}
                 </div>
               </CarouselItem>
@@ -47,8 +47,8 @@ export default function CategoriesSection({ categories }: Props) {
           </CarouselContent>
         </Carousel>
       ) : (
-        chunckedCategories9.map((group) => (
-          <div className="basis-[6rem] md:basis-[10rem]">
+        chunckedCategories9.map((group, index) => (
+          <div key={index} className="basis-[6rem] md:basis-[10rem]">
             <div className="h-full flex">
               {group.map((category) => (
                 <CategoryItem key={category.id} {...category} />
