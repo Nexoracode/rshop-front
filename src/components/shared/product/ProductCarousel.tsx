@@ -20,7 +20,7 @@ export default function ProductCarousel<T>({ items, renderItem , hiddenSeparator
     <Carousel>
       <CarouselNext />
       <CarouselPrevious />
-      <CarouselContent>
+      <CarouselContent className="pl-36">
         {items.map((product, index) => (
           <CarouselItem
             key={index}
