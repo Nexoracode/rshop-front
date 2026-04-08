@@ -21,7 +21,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
   return (
     <Link
       target="_blank"
-      className={`flex flex-col bg-white !h-[254px]`}
+      className={`flex flex-col bg-white !h-[254px] select-none`}
       href={`/p/rsp-${id}`}
     >
       {/* image */}
@@ -31,7 +31,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
           alt={name}
           width={132}
           height={132}
-          className="w-[132px] h-[132px] rounded-lg"
+          className="w-[132px] h-[132px] object-cover rounded-lg"
         />
       </div>
 
@@ -43,7 +43,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
         </h3>
 
         {/* price */}
-        <div className="flex justify-between items-center gap-2">
+        <div className="flex justify-between items-center gap-2 px-2">
           {compareAt ? (
             <Badge className="p-0 px-1" variant="danger">
               {percent}%

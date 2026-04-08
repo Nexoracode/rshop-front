@@ -23,12 +23,10 @@ export default function CategoriesSection({ categories }: Props) {
   const chunckedCategories9 = chunkArray(categories, 9);
   const isMobile = useIsMobile(1336);
   console.log(chunckedCategories);
-  
+
   return (
     <section className="container-home space-y-7 mt-12">
-      <div>
-        <SectionTitle center title="خرید بر اساس دسته‌بندی" />
-      </div>
+      <SectionTitle center title="خرید بر اساس دسته‌بندی" />
       {isMobile ? (
         <Carousel>
           <CarouselNext />
@@ -50,9 +48,7 @@ export default function CategoriesSection({ categories }: Props) {
         </Carousel>
       ) : (
         chunckedCategories9.map((group) => (
-          <div
-            className="basis-[6rem] md:basis-[10rem]"
-          >
+          <div className="basis-[6rem] md:basis-[10rem]">
             <div className="h-full flex">
               {group.map((category) => (
                 <CategoryItem key={category.id} {...category} />

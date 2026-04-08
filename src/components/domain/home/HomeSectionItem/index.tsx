@@ -33,10 +33,11 @@ export default function HomeSectionItem({
     if (display_style === "grid") return <CartItemsGrid products={products} />;
     return <ListItemsGrid products={products} />;
   }, [products, display_style, isMobile]);
+
   return (
     <section>
       <div className="container-home border rounded-lg relative overflow-hidden">
-        <div className="p-4">
+        <div className="p-6">
           <SectionTitle
             title={title}
             link={show_view_all_button ? `/collection/${slug}` : undefined}

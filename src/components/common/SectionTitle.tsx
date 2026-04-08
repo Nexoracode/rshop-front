@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { LucideArrowLeft, LucideArrowRight, LucideArrowUpLeft, LucideIcon } from "lucide-react";
+import { LucideArrowLeft, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils/classnames";
 
 type Props = {
@@ -19,11 +19,11 @@ export default function SectionTitle({
   Icon,
 }: Props) {
   return (
-    <div className="flex mb-10 items-center gap-3">
+    <div className="w-full flex items-center justify-between mb-10 gap-3">
       <h2
         className={cn(
-          "flex-1 text-[1rem] lg:text-xl font-medium text-gray-800 leading-tight",
-          center && "lg:text-center",
+          "text-[1rem] lg:text-[18px] flex items-center gap-2 font-medium text-gray-800",
+          center && "lg:justify-center flex-1",
         )}
       >
         {Icon && <Icon />}
@@ -35,9 +35,9 @@ export default function SectionTitle({
           color="primary"
           size="sm"
           variant="text-nohover"
-          className="px-0 text-sm lg:text-base font-medium group"
+          className="px-0 !text-sm lg:text-base font-medium group"
           href={link}
-          endIcon={<LucideArrowLeft size={18}/>}
+          endIcon={<LucideArrowLeft size={16} />}
         >
           {linkLabel}
         </Button>
