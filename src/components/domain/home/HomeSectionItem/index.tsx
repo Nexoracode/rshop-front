@@ -35,11 +35,13 @@ export default function HomeSectionItem({
   }, [products, display_style, isMobile]);
   return (
     <section>
-      <div className="p-4 container-home border rounded-lg relative">
-        <SectionTitle
-          title={title}
-          link={show_view_all_button ? `/collection/${slug}` : undefined}
-        />
+      <div className="container-home border rounded-lg relative overflow-hidden">
+        <div className="p-4">
+          <SectionTitle
+            title={title}
+            link={show_view_all_button ? `/collection/${slug}` : undefined}
+          />
+        </div>
         {productList}
       </div>
     </section>

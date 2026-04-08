@@ -23,13 +23,12 @@ export default function HeroSlider({
 }) {
   return (
     <Carousel
-      className="h-full"
+      className="h-full group"
       opts={{ dragFree: false, loop: true , align : "center" }}
       plugins={[Autoplay({ playOnInit: true, delay: 5000 })]}
     >
-      <CarouselNext className="bottom-6 right-32 top-[unset]" />
-      <CarouselPrevious className="bottom-6 right-14 top-[unset]" />
-      
+      <CarouselNext className="bottom-6 right-32 top-[unset] opacity-0 group-hover:opacity-100" />
+      <CarouselPrevious className="bottom-6 right-14 top-[unset] opacity-0 group-hover:opacity-100" />
       <CarouselContent className="aspect-auto h-full">
         {slides.map((sliderItem) => (
           <CarouselItem className={cn(layoutType === "stacked" && "basis-[95%] md:basis-full")} key={sliderItem.id}>

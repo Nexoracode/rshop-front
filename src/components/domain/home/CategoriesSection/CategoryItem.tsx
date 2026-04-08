@@ -17,7 +17,7 @@ export default function CategoryItem({ name, slug, image }: HomeCategory) {
           className="object-fill  border p-0.5 rounded-full"
         />
       </div>
-      <h3 className="text-xs md:text-base text-center mt-2">{name}</h3>
+      <h3 className="text-xs sm:text-sm text-center text-black mt-4">{name}</h3>
     </Link>
   );
 }

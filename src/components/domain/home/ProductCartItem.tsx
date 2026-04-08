@@ -38,7 +38,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
       {/* content */}
       <div className="mt-2 flex-1 justify-between flex flex-col px-1 pb-2">
         {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
-        <h3 className="line-clamp-2 text-sm font-medium text-gray-800">
+        <h3 className="line-clamp-2 text-[13px] font-medium px-2 text-gray-600">
           {name}
         </h3>
 
