@@ -18,7 +18,7 @@ export default function HomeSections({ sections }: Props) {
     .filter((s) => s.section_type === "special_products")
     .sort((a, b) => a.sort_order - b.sort_order);
   return (
-    <div className="flex flex-col gap-12 mt-16">
+    <div className="flex flex-col gap-6 mt-16">
       {mostPopular && (
         <HomeSectionItem {...mostPopular} display_style="carousel" />
       )}
