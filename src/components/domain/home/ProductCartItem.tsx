@@ -36,7 +36,7 @@ export default function ProductCartItem(props: HomeSectionProduct) {
       </div>
 
       {/* content */}
-      <div className="mt-2 flex-1 justify-between flex flex-col px-1 pb-2">
+      <div className="mt-4 flex-1 justify-between flex flex-col px-1 pb-2">
         {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
         <h3 className="line-clamp-2 text-[13px] font-medium px-2 text-gray-600">
           {name}
