@@ -12,7 +12,7 @@ export default function Promotion({
 }) {
   return (
     <div className="flex md:flex-col justify-between h-full items-center mb-2.5">
-      <div className="flex md:flex-col-reverse items-center flex-1 justify-between px-4 md:px-0 md:justify-evenly w-full">
+      <div className="flex md:flex-col-reverse items-center flex-1 justify-between pr-4 md:px-0 md:justify-evenly w-full">
         <Image
           src={"/Amazing.svg"}
           width={90}
@@ -29,7 +29,7 @@ export default function Promotion({
           alt=""
         />
 
-        <div className="md:my-2.5">
+        <div className="md:mt-2.5">
           <CountdownTimer
             showIcon={false}
             color="white"

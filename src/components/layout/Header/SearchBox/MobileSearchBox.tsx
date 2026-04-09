@@ -1,5 +1,5 @@
 "use client";
-import { LucideSearch } from "lucide-react";
+import { LucideSearch, Search } from "lucide-react";
 
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { searchTerm } from "@/queries/products/search";
 import { cn } from "@/lib/utils/classnames";
 import SearchSheet from "./SearchSheet";
+import { Input } from "@/components/ui/input";
 
 export default function MobileSearchBox({
   triggerMode = "button",
@@ -35,13 +36,18 @@ export default function MobileSearchBox({
     <React.Fragment>
       <div className="relative w-full">
         {triggerMode === "button" ? (
-          <button
-            onClick={() => setOpen(true)}
-            className="rounded-md relative !w-full block text-sm bg-neutral-200 p-3 text-black text-right"
-          >
-            جستجوی محصول...
-            <LucideSearch className="text-primary absolute left-3 top-[50%] -translate-y-[50%]" />
-          </button>
+          <div onClick={() => setOpen(true)} className="relative mx-2">
+            <Input
+              dir="rtl"
+              placeholder="جستجوی محصول..."
+              value={search}
+              onChange={(e) => {}}
+              className={`rounded-sm h-[44px] ${search.length ? "bg-white !border !border-slate-200" : "bg-[rgb(240,241,241)] border-none"} py-5 focus-visible:ring-0 text-gray-700`}
+            />
+            <button className="absolute text-muted px-4 top-0 bottom-0 -left-1 rounded-l-sm rounded-r-0">
+              <Search className="size-5" />
+            </button>
+          </div>
         ) : (
           <button
             onClick={() => setOpen(true)}
