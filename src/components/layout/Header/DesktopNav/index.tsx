@@ -51,7 +51,7 @@ export default function MainNav() {
             : "translate-y-0 opacity-100 h-10",
         )}
       >
-        <div className="container flex items-center justify-between gap-6 py-2">
+        <div className="container-home flex items-center justify-between gap-6 py-2">
           <div className="flex items-center gap-6 font-medium text-sm">
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen} dir="rtl">
               <DropdownMenuTrigger asChild>
@@ -87,7 +87,7 @@ export default function MainNav() {
               </span>
             </Link>
           </div>
-          <div className="flex items-center justify-center gap-2 pl-2 cursor-default">
+          <div className="items-center justify-center gap-2 pl-2 cursor-default hidden lg:flex">
             <LocationEdit size={18} className="text-slate-700"/>
             <p className="text-slate-700 text-[13px]">ارسال به شهر شما</p>
           </div>
