@@ -1,5 +1,5 @@
 "use client";
-import { ChevronLeft } from "lucide-react";
+
 import React, { useEffect, useState } from "react";
 
 type Props = {
@@ -22,27 +22,22 @@ export default function ResendCodeCounter({ onResend, isSuccess }: Props) {
   }, [isSuccess]);
 
   const timeItem = (value: number) => (
-    <span className="w-7 font-bold inline-block">
-      {value.toString().padStart(2, "0")}
-    </span>
+    <span>{value.toString().padStart(2, "0")}</span>
   );
 
   return (
-    <div className="text-center w-full">
+    <div className="w-full flex items-center justify-center gap-1.5">
+      <p className="text-[13px] font-normal text-slate-600">دریافت نکردید؟</p>
       {timer > 0 ? (
-        <p className="text-[13px] font-normal text-muted-foreground">
+        <p className="text-[13px] font-normal text-primary-500 flex items-center justify-end">
           {timeItem(timer % 60)}:{timeItem(Math.floor(timer / 60))}
-          مانده تا دریافت مجدد کد
         </p>
       ) : (
-        <div className="text-sm flex justify-center items-center font-normal text-muted-foreground">
-          دریافت مجدد کد از طریق{" "}
-          <button
-            onClick={onResend}
-            className="text-sky-600 flex items-center px-2"
-          >
-            پیامک <ChevronLeft size={16} />
-          </button>
+        <div
+          className="text-[13px] flex justify-center items-center font-normal cursor-pointer text-sky-600"
+          onClick={onResend}
+        >
+          ارسال مجدد
         </div>
       )}
     </div>

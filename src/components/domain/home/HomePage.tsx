@@ -21,7 +21,7 @@ export default async function HomePage() {
   return !data ? (
     <PageLoader />
   ) : (
-    <div className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-6" : ""} space-y-4`}>
+    <div className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-" : ""} space-y-4`}>
       <PromoSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}

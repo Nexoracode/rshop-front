@@ -53,12 +53,22 @@ export default function UserOtpForm({ phone }: Props) {
 
   return (
     <FormProvider {...form}>
-      <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="space-y-4">
-          <h2 className="text-lg font-medium">کد تایید را وارد کنید</h2>
-          <p className="text-[13px] text-gray-500">
-            کد تایید برای شماره {phone} ارسال شد.
+      <form
+        className="flex flex-col justify-between h-full"
+        onSubmit={form.handleSubmit(handleSubmit)}
+      >
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-[19px] text-slate-800 font-extrabold">
+            کد تایید را وارد کنید
+          </h2>
+          <p className="text-[13px] text-slate-700 mt-5 mb-2">
+            کد به {Number(phone).toLocaleString("fa", { useGrouping: false })}{" "}
+            ارسال شد.
           </p>
+          <ResendCodeCounter
+            isSuccess={resendSuccess}
+            onResend={() => handleSendOtp({ phone })}
+          />
         </div>
 
         <TextField
@@ -74,18 +84,13 @@ export default function UserOtpForm({ phone }: Props) {
           autoFocus
         />
 
-        <div className="space-y-4">
-          <ResendCodeCounter
-            isSuccess={resendSuccess}
-            onResend={() => handleSendOtp({ phone })}
-          />
-
-          <div className="space-y-1">
-            <Button isLoading={isPending} size={"md"} className="w-full">
-              تایید
-            </Button>
-          </div>
-        </div>
+        <Button
+          isLoading={isPending}
+          size={"md"}
+          className="w-full text-sm h-[48px] rounded-[8px] bg-black/80 hover:bg-black/70"
+        >
+          تایید و ورود
+        </Button>
       </form>
     </FormProvider>
   );

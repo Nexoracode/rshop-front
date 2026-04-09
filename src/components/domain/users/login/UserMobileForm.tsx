@@ -32,10 +32,10 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
     <FormProvider {...form}>
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col items-center justify-center gap-2.5">
-          <h2 className="text-[20px] text-slate-700 font-extrabold">
+          <h2 className="text-[19px] text-slate-700 font-extrabold">
             ورود به حساب کاربری
           </h2>
-          <p className="text-sm text-slate-500">ورود یا ثبت نام در {SHOP_NAME}</p>
+          <p className="text-[13px] text-slate-500">ورود یا ثبت نام در {SHOP_NAME}</p>
         </div>
         <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="space-y-4">
