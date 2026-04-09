@@ -23,10 +23,10 @@ export function middleware(request: NextRequest) {
   /*   const token =
     request.cookies.get("refresh_token")?.value ||
     request.headers.get("access_token")?.split(" ")[1]; */
-  const token = request.cookies.get("access_token");
+  const refresh = request.cookies.get("refresh_token");
 
   // اگر توکن نبود → redirect به login
-  if (!token) {
+  if (!refresh) {
     const loginUrl = new URL("/users/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);

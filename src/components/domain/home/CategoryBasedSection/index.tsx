@@ -19,7 +19,7 @@ export default function CategoryBasedSection({
 
   return (
     <div className="container-home relative">
-      <div className="bg-[#29A28B] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-2 md:p-5 h-[298px]">
+      <div className="bg-[#29A28B] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-2 md:p-5 md:h-[298px]">
         <div className="md:!min-w-[10rem] flex flex-col items-center">
           <div className="flex md:flex-col justify-between h-full items-center">
             <div className="flex md:flex-col-reverse items-center flex-1 justify-evenly w-full">
@@ -42,7 +42,7 @@ export default function CategoryBasedSection({
             </Button>
           </div>
         </div>
-        <div className="w-full mt-7 md:mt-0 md:w-full mr-4">
+        <div className="w-full mt-3 md:mt-0 md:w-full md:mr-4">
           <ProductCarousel
             items={selectedSection.products}
             renderItem={ProductCartItem}

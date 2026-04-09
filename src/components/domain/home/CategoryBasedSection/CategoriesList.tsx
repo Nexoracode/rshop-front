@@ -39,7 +39,7 @@ export default function CategoriesList({
               className={`w-14 h-14 md:w-12 md:h-12 rounded-full`}
             />
 
-            <span className={`text-xs font-bold mt-1 md:mt-0 md:text-sm text-white pr-2`}>
+            <span className={`text-xs font-bold mt-1 md:mt-0 md:text-sm text-white w-full text-center md:text-right md:pr-2`}>
               {category.name}
             </span>
           </div>

@@ -23,7 +23,7 @@ export default function CountdownTimer({
       {timeLeft.expired ? (
         <span className="text-gray-500">تمام شد</span>
       ) : (
-        <div className="flex w-full text-white items-center flex-row-reverse gap-1 text-xs sm:text-sm mb-2 mt-3">
+        <div className="flex w-full text-white items-center flex-row-reverse gap-1 text-xs sm:text-sm">
           {+timeLeft.days > 0 && (
             <TimeBox label="روز" value={timeLeft.days} color={color} />
           )}

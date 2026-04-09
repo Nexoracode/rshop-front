@@ -5,7 +5,7 @@ export default function CopyRightSection() {
 
   return (
     <div className="flex flex-col gap-3 pt-6 lg:pt-12 pb-3">
-      <hr className="border-slate-200 mb-4" />
+      <hr className="border-slate-200 mb-2 md:mb-4" />
       <div className="flex flex-row-reverse items-center justify-center lg:justify-between">
         <div className="hidden lg:flex items-center justify-end gap-3">
           <div className="shadow-md p-2.5 flex items-center justify-center w-[89px] h-[89px] rounded-lg hover:scale-105 transition-all cursor-pointer">
@@ -44,7 +44,7 @@ export default function CopyRightSection() {
               ></path>
             </g>
           </svg>
-          <p className="text-[13px] text-gray-600">
+          <p className="text-[11px] md:text-[13px] text-gray-600">
             کلیه حقوق مادی و معنوی سایت برای آرشاپ محفوظ است. {year}
           </p>
         </div>

@@ -20,12 +20,12 @@ export default function FeaturedSection({
           />
         </div>
         {display_style === "carousel" ? (
-          <div className="w-full  mr-4">
+          <div className="w-full md:mr-4">
             <ProductCarousel
               renderItem={ProductCartItem}
               items={products}
               hiddenSeparator
-              CarouselContentClass="pl-36 rounded-2xl"
+              CarouselContentClass="md:pl-36 rounded-2xl"
             />
           </div>
         ) : (

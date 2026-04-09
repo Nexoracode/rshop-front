@@ -26,7 +26,7 @@ export default function ProductListItem(
 
   return (
     <Link target="_blank" href={`/p/rsp-${id}`} className="!w-[313px] !select-none">
-      <div className="flex border md:border-0 w-full">
+      <div className="flex w-full">
         <div className="w-[5rem] md:w-[7rem] aspect-square space-y-2">
           <div className="relative aspect-[1/1]  overflow-hidden">
             <Image

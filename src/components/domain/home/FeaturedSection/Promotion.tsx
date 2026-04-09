@@ -11,14 +11,14 @@ export default function Promotion({
   show_view_all_button: boolean;
 }) {
   return (
-    <div className="flex  md:flex-col justify-between h-full items-center">
-      <div className="flex md:flex-col-reverse items-center flex-1 justify-evenly  w-full">
+    <div className="flex md:flex-col justify-between h-full items-center mb-2.5">
+      <div className="flex md:flex-col-reverse items-center flex-1 justify-between px-4 md:px-0 md:justify-evenly w-full">
         <Image
           src={"/Amazing.svg"}
           width={90}
           height={200}
           alt=""
-          className="w-8 h-8 md:w-20 md:h-20 object-cover md:object-fill"
+          className="w-8 h-8 md:w-20 md:h-20 object-cover md:object-fill hidden md:flex"
         />
 
         <Image
@@ -29,11 +29,14 @@ export default function Promotion({
           alt=""
         />
 
-        <CountdownTimer
-          showIcon={false}
-          color="white"
-          targetDate={new Date(Date.now() + 3600000)}
-        />
+        <div className="md:my-2.5">
+          <CountdownTimer
+            showIcon={false}
+            color="white"
+            targetDate={new Date(Date.now() + 3600000)}
+          />
+        </div>
+
         <Image
           src={"/Amazings.svg"}
           className="hidden md:block"

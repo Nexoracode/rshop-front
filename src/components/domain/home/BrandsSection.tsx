@@ -35,12 +35,12 @@ export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
                   href={`/brand/${brand.slug}`}
                   className="mx-auto rounded-md border md:border-0  flex gap-1 flex-col items-center select-none"
                 >
-                  <div className="w-full bg-muted-light/30 md:bg-slate-50 md:w-[6rem] rounded-t-md h-[6rem] block  overflow-hidden relative">
+                  <div className="w-full bg-muted-light/30 md:bg-slate-50 md:w-[6rem] rounded-md h-[6rem] block  overflow-hidden relative">
                     <Image
                       fill
                       src={brand.logo}
                       alt={brand.name}
-                      className="object-contain object-center"
+                      className="object-cover"
                     />
                   </div>
                   <span className="text-muted p-1 inline-block md:hidden  text-xs">

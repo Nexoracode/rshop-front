@@ -28,9 +28,9 @@ export default function CategoriesSection({ categories }: Props) {
     <section className="container-home space-y-7 mt-12">
       <SectionTitle center title="خرید بر اساس دسته‌بندی" />
       {isMobile ? (
-        <Carousel>
-          <CarouselNext />
-          <CarouselPrevious />
+        <Carousel className="relative">
+          <CarouselNext className="flex"/>
+          <CarouselPrevious className="flex"/>
           <CarouselContent>
             {chunckedCategories.map((group, index) => (
               <CarouselItem

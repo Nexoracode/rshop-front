@@ -34,7 +34,7 @@ export default function PromoSection({
           className={cn(
             layoutType === "side_by_side"
               ? "rounded-xl h-[14rem] md:h-auto overflow-hidden"
-              : "h-[11rem] md:h-[400px]",
+              : "mt-12 md:mt-0 h-[200px] lg:h-[300px] xl:h-[400px]",
           )}
         >
           <HeroSlider
