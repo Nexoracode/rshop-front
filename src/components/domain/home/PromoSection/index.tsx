@@ -26,7 +26,7 @@ export default function PromoSection({
     <section className="bg-white">
       <div
         className={cn(
-          "grid grid-cols-1 gap-4",
+          "grid grid-cols-1 gap-2 md:gap-4",
           layoutType === "side_by_side" ? "container-home md:grid-cols-2" : "",
         )}
       >
@@ -51,7 +51,7 @@ export default function PromoSection({
             " grid grid-cols-2 md:gap-2",
             layoutType === "side_by_side"
               ? "sm:grid-cols-2 !gap-4"
-              : "container-home md:grid-cols-4 mt-2 !gap-4",
+              : "container-home md:grid-cols-4 mt-2 gap-2 md:!gap-4",
           )}
         >
           <PromoBanners banners={sideBanners} />

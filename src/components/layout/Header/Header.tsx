@@ -20,7 +20,7 @@ export default function Header() {
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
   const isMobileCategoryPage = isMobile && pathName.startsWith("/products/");
   return (
-    <header className="fixed bg-white top-0 z-50 w-full border-b shadow backdrop-blur">
+    <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
       <PromoBanner />
 
       <div className="relative">

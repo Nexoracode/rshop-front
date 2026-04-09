@@ -19,7 +19,7 @@ export default function SectionTitle({
   Icon,
 }: Props) {
   return (
-    <div className="w-full flex items-center justify-between md:mb-10 gap-3">
+    <div className="w-full flex items-center justify-between mb-2 gap-3">
       <h2
         className={cn(
           "text-[1rem] lg:text-[18px] flex items-center gap-2 font-medium text-gray-800",

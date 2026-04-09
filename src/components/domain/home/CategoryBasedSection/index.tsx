@@ -19,7 +19,7 @@ export default function CategoryBasedSection({
 
   return (
     <div className="container-home relative">
-      <div className="bg-primary-500 flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-2 md:p-5 md:h-[298px]">
+      <div className="bg-primary-500 flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-3 md:p-5 md:h-[298px]">
         <div className="md:!min-w-[10rem] flex flex-col items-center">
           <div className="flex md:flex-col justify-between h-full items-center">
             <div className="relative flex md:flex-col-reverse items-center flex-1 justify-evenly w-full">

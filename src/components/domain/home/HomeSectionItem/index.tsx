@@ -35,8 +35,8 @@ export default function HomeSectionItem({
 
   return (
     <section>
-      <div className="container-home border rounded-lg relative overflow-hidden">
-        <div className="p-6">
+      <div className="container-home md:border rounded-lg relative overflow-hidden">
+        <div className="p-2 md:p-6">
           <SectionTitle
             title={title}
             link={show_view_all_button ? `/collection/${slug}` : undefined}

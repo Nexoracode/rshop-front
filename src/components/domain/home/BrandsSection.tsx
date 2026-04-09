@@ -14,9 +14,9 @@ import { StarIcon } from "lucide-react";
 
 export default function BrandsSection({ brands }: { brands: Array<Brand> }) {
   return (
-    <div className="relative container-home mt-6">
-      <Card className="py-4 h-[214px] bg-white rounded-lg">
-        <div className="w-full flex items-center justify-center gap-2 mb-2">
+    <div className="relative container-home md:mt-6">
+      <Card className="md:py-4 h-[214px] bg-white rounded-lg border-0 md:border p-0">
+        <div className="w-full flex items-center justify-center gap-2 mb-1 md:mb-2">
           <StarIcon size={22} className="text-yellow-500" />
           <p className="text-lg font-medium text-slate-700">
             محبوب ترین برندها

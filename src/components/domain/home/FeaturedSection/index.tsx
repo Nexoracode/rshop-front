@@ -12,7 +12,7 @@ export default function FeaturedSection({
 }: HomeSection) {
   return (
     <div className="container-home relative">
-      <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-2 md:p-5">
+      <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-3 md:p-5">
         <div className="md:w-[10rem]">
           <Promotion
             show_view_all_button={show_view_all_button}

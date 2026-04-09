@@ -25,7 +25,7 @@ export default function CategoriesSection({ categories }: Props) {
   console.log(chunckedCategories);
 
   return (
-    <section className="container-home space-y-7 mt-12">
+    <section className="container-home space-y-4 md:space-y-7 mt-8 md:mt-12">
       <SectionTitle center title="خرید بر اساس دسته‌بندی" />
       {isMobile ? (
         <Carousel className="relative">

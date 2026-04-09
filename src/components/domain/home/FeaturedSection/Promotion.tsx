@@ -11,7 +11,7 @@ export default function Promotion({
   show_view_all_button: boolean;
 }) {
   return (
-    <div className="flex md:flex-col justify-between h-full items-center mb-2.5">
+    <div className="flex md:flex-col justify-between h-full items-center mt-1 mb-3.5 md:m-0">
       <div className="flex md:flex-col-reverse items-center flex-1 justify-between pr-4 md:px-0 md:justify-evenly w-full">
         <Image
           src={"/Amazing.svg"}
