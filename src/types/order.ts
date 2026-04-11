@@ -120,7 +120,7 @@ export type OrderMeta = {
   address: UserAddress | null;
   payment_method: PaymentMethod;
   note: string;
-  promotion_code: string;
+  promotion_code: string | null;
   discount_amount: number;
   gift_wrapping_id?: number;
   gift_message?: string;

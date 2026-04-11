@@ -14,7 +14,7 @@ export default function ProductGrid({ products, isFetchingNextPage }: Props) {
       {products.map((product, index) => (
         <div
           key={product.id}
-          className={`hover:z-20 border-b border-l hover:shadow-around ${index+1 / 5 !== 0 ? "!border-l-0" : ""}`}
+          className={`hover:z-20 border-b border-l hover:shadow-around ${(index + 1) % 5 === 0 ? "2xl:!border-l-0" : ""}`}
         >
           <ProductGridItem key={product.id} product={product} />
         </div>

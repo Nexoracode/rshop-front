@@ -29,14 +29,14 @@ export const getOrderMeta = queryOptions({
   queryFn: (): OrderMeta =>
     queryClient.getQueryData(["order-meta"]) ?? {
       address: null,
-      promotion_code: "",
+      promotion_code: null,
       note: "",
       payment_method: "online",
       discount_amount: 0,
     },
   initialData: {
     address: null,
-    promotion_code: "",
+    promotion_code: null,
     note: "",
     payment_method: "online",
     discount_amount: 0,
