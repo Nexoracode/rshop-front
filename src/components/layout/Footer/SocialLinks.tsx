@@ -51,7 +51,7 @@ export default function SocialLinks({ data }: { data: Array<PublicSettings> }) {
         {socialItems.map(({ Icon, ...s }) => {
           const socialItem = data.find((i) => i.key === s.key);
           return socialItem ? (
-            <div key={socialItem.key} className="w-[40px] h-[40px] flex items-center justify-center rounded-md shadow-md">
+            <div key={socialItem.key} className="w-[40px] h-[40px] flex items-center justify-center rounded-md border">
               <Link
                 href={socialItem.value}
                 className="text-muted/50 hover:text-primary transition-all"

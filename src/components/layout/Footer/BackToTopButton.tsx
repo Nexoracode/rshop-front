@@ -10,7 +10,7 @@ export default function BackToTopButton() {
       size="sm"
       color="neutral"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="inline-flex items-center border-slate-200 rounded-full lg:rounded-lg py-4.5 hover:bg-transparent"
+      className="inline-flex items-center border-slate-200 rounded-full lg:rounded-md py-4.5 hover:bg-transparent"
       aria-label="رفتن به بالا"
       endIcon={<ChevronUp className="h-4.5 w-4.5 text-gray-500" />}
     >

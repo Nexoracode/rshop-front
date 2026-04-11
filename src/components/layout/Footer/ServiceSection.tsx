@@ -42,7 +42,7 @@ export default function ServiceSection() {
             alt="Logo Svg"
             style={{ objectFit: "cover" }}
           />
-          <h3 className="text-[13px] text-slate-800">{service.title}</h3>
+          <h3 className="text-xs text-slate-800">{service.title}</h3>
         </div>
       ))}
     </section>
