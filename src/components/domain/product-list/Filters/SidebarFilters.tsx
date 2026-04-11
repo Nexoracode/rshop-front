@@ -29,21 +29,42 @@ function SidebarFiltersComponent({
     query,
   } = useFilters();
 
+  const {
+    attributes: attr,
+    booleanFilters,
+    brand,
+    price_max,
+    price_min,
+  } = query.filter;
+
+  const hasFilter =
+    (Object.keys(attr).length > 0 ||
+    booleanFilters.length ||
+    brand.length ||
+    String(price_max).length ||
+    String(price_min).length) ? true : false
+
+      console.log(hasFilter);
+      
+
   return (
     <Card>
       <section>
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium">فیلترها</h3>
-
-          <Button
-            onClick={handleClearFilters}
-            variant={"text-nohover"}
-            size={"sm"}
-            className="px-0"
-            color="danger"
-          >
-            حذف فیلترها
-          </Button>
+          {hasFilter ? (
+            <Button
+              onClick={handleClearFilters}
+              variant={"text-nohover"}
+              size={"sm"}
+              className="px-0"
+              color="danger"
+            >
+              حذف فیلترها
+            </Button>
+          ) : (
+            ""
+          )}
         </div>
 
         <Collapsible label="دسته بندی">

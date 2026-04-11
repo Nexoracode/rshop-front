@@ -22,19 +22,18 @@ export default function SortSelect() {
   return (
     <React.Fragment>
       <Responsive visible="desktop">
-        <div className="flex">
-          <div className="flex text-sm text-neutral-700 items-center">
+        <div className="flex items-center">
+          <div className="flex items-center gap-1.5 text-sm text-[12.5px] pl-2">
             <ArrowDownWideNarrowIcon className="size-5" />
-            <span className="ps-2">مرتب سازی:</span>
+            <span>مرتب سازی:</span>
           </div>
           {sortItems.map((item) => (
             <Button
               size={"sm"}
-              color={sortBy === item.value ? "primary" : "neutral"}
               variant={"text-nohover"}
               onClick={() => handleSort(item.value)}
               key={item.label}
-              className={"px-2"}
+              className={`px-2 text-[12.5px] ${sortBy === item.value ? "text-primary-500" : "text-gray-500"}`}
             >
               {item.label}
             </Button>

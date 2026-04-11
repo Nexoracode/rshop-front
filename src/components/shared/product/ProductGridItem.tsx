@@ -44,28 +44,32 @@ export default function ProductGridItem({ product }: Props) {
       )}
 
       {/* image */}
-      <div className="relative rounded-sm aspect-[1/1] w-full overflow-hidden">
+      <div className="relative aspect-[1/1] w-full overflow-hidden">
         <Image
           src={media_pinned?.url || PRODUCT_PLACEHOLDER}
           alt={name}
           fill
           className={cn(
-            "object-cover opacity-100 p-6",
+            "object-cover opacity-100 p-4",
             medias.length > 1 &&
               "group-hover:opacity-0 transition-opacity duration-700",
           )}
+          style={{ borderRadius: "30px" }}
         />
         {medias?.[1] && (
           <Image
             src={medias[1]?.url || PRODUCT_PLACEHOLDER}
             alt={name}
             fill
-            className="object-cover opacity-0 group-hover:opacity-100 p-6 transition-opacity duration-700"
+            className="object-cover p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+            style={{ borderRadius: "30px" }}
           />
         )}
       </div>
       <div className="mt-2 space-y-1 px-1 pb-2">
-        {brand ? <p className="text-xs text-gray-500">{brand.name}</p> : null}
+        {brand ? (
+          <p className="text-xs text-gray-500 mb-2">{brand.name}</p>
+        ) : null}
         <h3 className="line-clamp-1 text-sm font-medium text-gray-800">
           {name}
         </h3>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft, Home } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { SHOP_NAME } from "@/data/assets";
 import { cn } from "@/lib/utils/classnames";
 
@@ -30,7 +30,7 @@ export default function Breadcrumb({ items, className, lastIsLink }: Props) {
 
   return (
     <nav aria-label="breadcrumb" className={cn("w-full", className)}>
-      <div className="flex items-center font-normal text-sm text-muted-light">
+      <div className="flex items-center font-normal text-[13px] text-slate-500">
         {finalItems.map((item, index) => {
           const isLast = index === finalItems.length - 1;
           return (
@@ -40,15 +40,15 @@ export default function Breadcrumb({ items, className, lastIsLink }: Props) {
                   href={item.href ?? "#"}
                   className="flex items-center gap-1 hover:text-foreground transition-colors"
                 >
-                  {item.href === "/" && <Home className="size-4" />}
+                  {item.href === "/" && "فروشگاه اینترنتی "}
                   {item.label}
                 </Link>
               ) : (
-                <span className="text-muted font-medium">{item.label}</span>
+                <span>{item.label}</span>
               )}
 
               {!isLast && (
-                <ChevronLeft className="mx-2 size-4 text-muted-light" />
+                <span className="px-2.5">/</span>
               )}
             </div>
           );

@@ -46,10 +46,10 @@ export default async function ShopPage(props: PageProps<"/products">) {
   const { query, sortBy, page = "1" } = await props.searchParams;
 
   return (
-    <div className="container space-y-1  py-3">
+    <div className="container mt-6">
       <Breadcrumb items={[{ label: "محصولات" }]} />
-      <div className="pt-10 hidden md:block">
-        <h1 className="text-foreground font-medium text-base">{"محصولات"}</h1>
+      <div className="mt-10 mb-6 hidden md:block">
+        <h1 className="text-foreground font-bold text-lg">{"محصولات"}</h1>
       </div>
 
       <Suspense fallback={<ProductListSkelton />}>

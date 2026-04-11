@@ -47,7 +47,7 @@ export default function ProductListContainer({
   const filters = data?.pages[0].filters;
 
   return (
-    <div className={cn("flex gap-6 md:gap-8 mt-4")}>
+    <div className={cn("flex gap-5 mt-4")}>
       {/* فیلترها فقط در دسکتاپ */}
       <Responsive visible="desktop">
         <aside
