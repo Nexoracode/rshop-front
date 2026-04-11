@@ -45,13 +45,13 @@ export default function MainNav() {
       )}
       <nav
         className={cn(
-          "hidden absolute  transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
+          "hidden absolute transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
           !isVisible
             ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
             : "translate-y-0 opacity-100 h-10",
         )}
       >
-        <div className="container-home flex items-center justify-between gap-6 py-2">
+        <div className="max-w-[1536px] w-full mx-auto flex items-center justify-between gap-6 py-2">
           <div className="flex items-center gap-6 font-medium text-sm">
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen} dir="rtl">
               <DropdownMenuTrigger asChild>
