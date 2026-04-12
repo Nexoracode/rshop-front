@@ -36,7 +36,7 @@ export default function ProductGridItem({ product }: Props) {
     variants,
   });
   return (
-    <Link target="_blank" className="block p-2" href={`/p/rsp-${id}`}>
+    <Link target="_blank" className="block p-2 bg-white !h-[360px]" href={`/p/rsp-${id}`}>
       {is_feautered && (
         <span className="absolute top-2 z-10 text-danger text-sm font-bold">
           فروش ویژه
@@ -67,9 +67,9 @@ export default function ProductGridItem({ product }: Props) {
         )}
       </div>
       <div className="mt-2 space-y-1 px-1 pb-2">
-        {brand ? (
-          <p className="text-xs text-gray-500 mb-2">{brand.name}</p>
-        ) : null}
+        <p className="text-xs text-gray-500 mb-2">
+          {brand ? brand.name : "برند ندارد"}
+        </p>
         <h3 className="line-clamp-1 text-sm font-medium text-gray-800">
           {name}
         </h3>
@@ -90,12 +90,13 @@ export default function ProductGridItem({ product }: Props) {
                     className="text-xs text-gray-400"
                   />
                 ) : (
-                  <div></div>
+                  <div>
+                  </div>
                 )}
               </div>
             </div>
           ) : (
-            <span className="block text-right mt-2 font-medium  text-muted-light w-full">
+            <span className="block text-left font-medium text-muted-light w-full">
               ناموجود
             </span>
           )}

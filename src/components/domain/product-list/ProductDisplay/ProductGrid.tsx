@@ -10,11 +10,11 @@ type Props = {
 
 export default function ProductGrid({ products, isFetchingNextPage }: Props) {
   return (
-    <div className="flex-1 grid grid-cols-1 min-[340px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    <div className="flex-1 grid grid-cols-1 bg-gray-100 min-[340px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-0.5">
       {products.map((product, index) => (
         <div
           key={product.id}
-          className={`hover:z-20 border-b border-l hover:shadow-around ${(index + 1) % 5 === 0 ? "2xl:!border-l-0" : ""}`}
+          className={`hover:z-20 hover:shadow-around`}
         >
           <ProductGridItem key={product.id} product={product} />
         </div>
