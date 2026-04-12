@@ -102,7 +102,9 @@ export default async function CategoryPage(
     <div className="container mt-6">
       <Breadcrumb items={breadcrumbItems} />
       <div className="mt-10 mb-6 hidden md:block">
-        <h1 className="text-foreground font-bold text-lg">{category ? category.category.title : "محصولات"}</h1>
+        <h1 className="text-foreground font-bold text-lg">
+          {category ? category.category.title : "محصولات"}
+        </h1>
       </div>
 
       <Suspense fallback={<ProductListSkelton />}>
@@ -115,9 +117,11 @@ export default async function CategoryPage(
         />
       </Suspense>
 
-      <Separator />
       {category?.category.description && (
-        <CategoryDescription description={category.category.description} />
+        <>
+          <Separator />
+          <CategoryDescription description={category.category.description} />
+        </>
       )}
     </div>
   );
