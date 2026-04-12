@@ -34,11 +34,17 @@ export default function PromoBanner() {
 
   if (isFetching) {
     return (
+      <></>
+    );
+  }
+
+/*   if (isFetching) {
+    return (
       <div className="w-full relative h-[2.5rem] md:h-[4rem]">
         <Skeleton className="h-full" />
       </div>
     );
-  }
+  } */
 
   if (banners.length === 0) return null;
 

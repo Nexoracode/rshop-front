@@ -51,7 +51,7 @@ export default function ProductListContainer({
       {/* فیلترها فقط در دسکتاپ */}
       <Responsive visible="desktop">
         <aside
-          className="hidden w-[18rem] lg:block"
+          className="hidden !min-w-[266px] !max-w-[266px] lg:block"
           style={{ position: "sticky", top: "6rem", alignSelf: "start" }}
         >
           <SidebarFilters filters={filters} />
