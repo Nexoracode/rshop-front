@@ -36,7 +36,11 @@ export default function ProductGridItem({ product }: Props) {
     variants,
   });
   return (
-    <Link target="_blank" className="block p-2 bg-white !h-[360px]" href={`/p/rsp-${id}`}>
+    <Link
+      target="_blank"
+      className="block p-2 bg-white !h-[360px] hover:shadow-xl transition-all"
+      href={`/p/rsp-${id}`}
+    >
       {is_feautered && (
         <span className="absolute top-2 z-10 text-danger text-sm font-bold">
           فروش ویژه
@@ -90,8 +94,7 @@ export default function ProductGridItem({ product }: Props) {
                     className="text-xs text-gray-400"
                   />
                 ) : (
-                  <div>
-                  </div>
+                  <div></div>
                 )}
               </div>
             </div>

@@ -99,12 +99,10 @@ export default async function CategoryPage(
     : [{ label: "محصولات" }];
 
   return (
-    <div className="container space-y-1  py-3">
+    <div className="container mt-6">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="pt-10 hidden md:block">
-        <h1 className="text-foreground font-medium text-base">
-          {category ? category.category.title : "محصولات"}
-        </h1>
+      <div className="mt-10 mb-6 hidden md:block">
+        <h1 className="text-foreground font-bold text-lg">{category ? category.category.title : "محصولات"}</h1>
       </div>
 
       <Suspense fallback={<ProductListSkelton />}>
