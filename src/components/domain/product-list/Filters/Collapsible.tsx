@@ -128,10 +128,10 @@ function SelectedItems({
     onChange(newItems);
   };
   return (
-    <div className="flex flex-wrap gap-0.5 my-2">
+    <div className="flex flex-wrap gap-2 my-2">
       {items.map((i) => (
-        <Badge key={i.value} variant={"neutral"}>
-          {i.label}
+        <Badge key={i.value} className="flex items-center gap-3 bg-slate-100 p-1 px-2">
+          <span>{i.label}</span>
 
           <button onClick={() => handleDelete(i)}>
             <X className="size-3" />

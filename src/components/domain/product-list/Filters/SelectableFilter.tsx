@@ -1,7 +1,7 @@
 "use client";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ClosedCaption, Search } from "lucide-react";
+import { ClosedCaption, RemoveFormatting, Search, X } from "lucide-react";
 import React, { useState } from "react";
 export type TreeItemType = {
   label: string;
@@ -34,11 +34,13 @@ export default function SelectableFilter({
   return (
     <div>
       {search ? (
-        <SearchInput
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          placeholder={`جستجوی ${label} ...`}
-        />
+        <div className="mt-3 mb-2">
+          <SearchInput
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            placeholder={`جستجوی ${label} ...`}
+          />
+        </div>
       ) : null}
 
       {items
@@ -74,7 +76,7 @@ function CheckBoxItem({
         id={`checkbox_${value}`}
       />
       <Label
-        className="font-medium border-b flex-1 py-4"
+        className="font-medium border-b border-[#f2f2f2] flex-1 py-4"
         htmlFor={`checkbox_${value}`}
       >
         {label}
@@ -94,7 +96,7 @@ const SearchInput = ({
 }) => {
   return (
     <div className="relative border ps-8 py-1.5 rounded-md">
-      <Search className="absolute size-5 text-muted right-2" />
+      <Search className="absolute top-2 size-4.5 text-muted right-2" />
       <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -106,7 +108,7 @@ const SearchInput = ({
           onClick={() => setSearchTerm("")}
           className="absolute cu left-1 top-[50%] -translate-y-[50%]"
         >
-          <ClosedCaption fontSize={22} className="" />{" "}
+          <X className="size-4 ml-1 text-slate-700" />{" "}
         </button>
       ) : null}
     </div>
