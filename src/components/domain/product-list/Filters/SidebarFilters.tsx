@@ -48,6 +48,8 @@ function SidebarFiltersComponent({
       ? true
       : false;
 
+  console.log(query.filter);
+
   return (
     <Card>
       <section>
@@ -68,7 +70,15 @@ function SidebarFiltersComponent({
           )}
         </div>
 
-        <Collapsible label="دسته بندی" activeSeprator defaultOpen={categories.map((cat) => pathName.includes(cat.slug)).length ? true : false}>
+        <Collapsible
+          label="دسته بندی"
+          activeSeprator
+          defaultOpen={
+            categories.map((cat) => pathName.includes(cat.slug))?.[0] !== false
+              ? true
+              : false
+          }
+        >
           <FilterCategories categories={categories} />
         </Collapsible>
 
@@ -130,7 +140,11 @@ function SidebarFiltersComponent({
             {attributes
               .filter((attr) => attr.type === "color")
               .map((attr) => (
-                <Collapsible key={attr.id} label={attr.name}>
+                <Collapsible
+                  key={attr.id}
+                  label={attr.name}
+                  defaultOpen={query?.filter?.attributes[attr.id]?.length > 0}
+                >
                   <FilterColor
                     value={query?.filter.attributes[attr.id] || []}
                     onChange={(colors) =>
