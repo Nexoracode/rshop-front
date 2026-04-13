@@ -6,6 +6,7 @@ import React from "react";
 
 import { usePathname } from "next/navigation";
 import Collapsible from "./Collapsible";
+import { ChevronLeftIcon } from "lucide-react";
 
 type FilterCategoriesProps = {
   categories: CategoryFilter[];
@@ -14,18 +15,19 @@ type FilterCategoriesProps = {
 const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
   const pathName = usePathname();
 
-  const getTree = (
-    cat: CategoryFilter,
-    slug = "/products",
-    level = 0
-  ) => {
-    if (!cat.children?.length && level !== 0) {
+  const getTree = (cat: CategoryFilter, slug = "/products", level = 0) => {
+    if (!cat.children?.length) {
       return (
         <Link
-          className="block py-1 text-sm hover:text-primary text-neutral-600 font-normal"
+          className="py-1 text-sm hover:text-primary flex items-center justify-between text-neutral-600 font-normal"
           href={`${slug}/${cat.slug}`}
         >
-          {cat.title}
+          <span>{cat.title}</span>
+          <ChevronLeftIcon
+            className={"text-slate-500"}
+            width={18}
+            height={18}
+          />
         </Link>
       );
     }
@@ -52,7 +54,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
   };
 
   return (
-    <div className="relative pl-2 -ml-3 overflow-y-auto scrollbar-custom h-[20rem]">
+    <div className="relative pl-2 -ml-3 overflow-y-auto scrollbar-custom max-h-[20rem]">
       {categories.map((cat) => (
         <div
           key={cat.id}

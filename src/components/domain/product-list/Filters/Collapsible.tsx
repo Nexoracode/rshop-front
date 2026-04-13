@@ -72,10 +72,10 @@ export default function Collapsible({
           <ChevronLeftIcon
             className={cn(
               open ? "rotate-90" : "-rotate-90",
-              "transition-transform text-slate-700",
+              "transition-transform text-slate-500",
             )}
-            width={20}
-            height={20}
+            width={18}
+            height={18}
           />
         </button>
       </div>

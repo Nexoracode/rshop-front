@@ -27,6 +27,7 @@ export default function ProductListContainer({
   page,
   sortBy,
 }: Props) {
+  const { isVisible } = useSticky();
   const {
     data,
     isLoading,
@@ -39,7 +40,6 @@ export default function ProductListContainer({
   );
 
   if (isLoading || !data) return <ProductListSkelton />;
-  const { isVisible } = useSticky();
 
   const products = data?.pages.flatMap((page) => page.data) ?? [];
 
