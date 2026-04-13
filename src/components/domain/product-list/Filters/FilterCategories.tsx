@@ -31,7 +31,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
         </Link>
       );
     }
-
+    
     return (
       <Collapsible
         defaultOpen={pathName.includes(cat.slug)}
@@ -39,7 +39,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
         label={cat.title}
         activeSeprator={false}
       >
-        <div className="bg-slate-50 pr-3 mt-3">
+        <div className={`bg-slate-50 pr-3 mt-3`}>
           {cat.children?.map((subCat) => (
             <div
               key={subCat.id}
@@ -54,7 +54,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
   };
 
   return (
-    <div className="relative pl-2 -ml-3 overflow-y-auto scrollbar-custom max-h-[20rem]">
+    <div className={`relative overflow-y-auto scrollbar-custom ${categories.length >= 6 ? "pl-2 -ml-3" : ""} max-h-[20rem]`}>
       {categories.map((cat) => (
         <div
           key={cat.id}

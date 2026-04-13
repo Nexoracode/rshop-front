@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import React from "react";
+import React, { useEffect } from "react";
 import Collapsible from "./Collapsible";
 import FilterCategories from "./FilterCategories";
 import FilterPriceRange from "./FilterPriceRange";
@@ -10,6 +10,7 @@ import FilterColor from "./FilterColors";
 import { ProductFilters } from "@/types";
 import useFilters from "../hooks/useFilters";
 import { formatToman } from "@/lib/utils/price";
+import { usePathname } from "next/navigation";
 
 type Props = {
   filters: ProductFilters;
@@ -21,6 +22,7 @@ function SidebarFiltersComponent({
     generic: { boolean_filter, brands, categories, price_range },
   },
 }: Props) {
+  const pathName = usePathname();
   const {
     handleClearFilters,
     handleSetAttributeQuery,
@@ -66,7 +68,7 @@ function SidebarFiltersComponent({
           )}
         </div>
 
-        <Collapsible label="دسته بندی" activeSeprator>
+        <Collapsible label="دسته بندی" activeSeprator defaultOpen={categories.map((cat) => pathName.includes(cat.slug)).length ? true : false}>
           <FilterCategories categories={categories} />
         </Collapsible>
 
@@ -80,6 +82,7 @@ function SidebarFiltersComponent({
             label="برند"
             value={query?.filter.brand}
             onChange={(v) => handleSetFilter("brand", v)}
+            defaultOpen={brand.length ? true : false}
           />
         )}
 
@@ -87,6 +90,9 @@ function SidebarFiltersComponent({
           isSet={!!query.filter.price_max || !!query.filter.price_min}
           text={`از ${formatToman(+query.filter.price_min || price_range.min)} تا ${formatToman(+query.filter.price_max || price_range.max)}`}
           label="محدوده قیمت"
+          defaultOpen={
+            String(price_max).length || String(price_min).length ? true : false
+          }
         >
           <FilterPriceRange
             min={price_range.min}
@@ -110,7 +116,12 @@ function SidebarFiltersComponent({
             key={key}
             toggleId={key}
             label={boolean_filter[key]["label"]}
-            className={(!attributes.length && index+1 === Object.keys(boolean_filter).length) ? "!border-b-0 !pb-0" : ""}
+            className={
+              !attributes.length &&
+              index + 1 === Object.keys(boolean_filter).length
+                ? "!border-b-0 !pb-0"
+                : ""
+            }
           />
         ))}
 
