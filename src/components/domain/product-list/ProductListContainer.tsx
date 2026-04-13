@@ -10,6 +10,7 @@ import ProductToolbar from "./Toolbar/ProductToolbar";
 import Responsive from "@/components/common/Responsive";
 import MobileToolbar from "./Toolbar/MobileToolbar";
 import ProductListSkelton from "./Skeleton/ProductListSkelton";
+import useSticky from "@/hooks/useSticky";
 
 type Props = {
   type: "all" | "category" | "brand";
@@ -38,6 +39,7 @@ export default function ProductListContainer({
   );
 
   if (isLoading || !data) return <ProductListSkelton />;
+  const { isVisible } = useSticky();
 
   const products = data?.pages.flatMap((page) => page.data) ?? [];
 
@@ -52,7 +54,7 @@ export default function ProductListContainer({
       <Responsive visible="desktop">
         <aside
           className="hidden !min-w-[266px] !max-w-[266px] lg:block"
-          style={{ position: "sticky", top: "6rem", alignSelf: "start" }}
+          style={{ position: "sticky", top: isVisible ? "12rem" : "9.5rem", alignSelf: "start" }}
         >
           <SidebarFilters filters={filters} />
         </aside>

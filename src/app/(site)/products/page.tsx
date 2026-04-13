@@ -42,6 +42,7 @@ export async function generateMetadata({
     },
   };
 }
+
 export default async function ShopPage(props: PageProps<"/products">) {
   const { query, sortBy, page = "1" } = await props.searchParams;
 
