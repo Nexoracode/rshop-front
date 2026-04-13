@@ -113,10 +113,11 @@ function SidebarFiltersComponent({
           />
         ))}
 
-        {attributes &&
-          attributes.map((attr) => {
-            if (attr.type === "color")
-              return (
+        {attributes && (
+          <>
+            {attributes
+              .filter((attr) => attr.type === "color")
+              .map((attr) => (
                 <Collapsible key={attr.id} label={attr.name}>
                   <FilterColor
                     value={query?.filter.attributes[attr.id] || []}
@@ -127,21 +128,32 @@ function SidebarFiltersComponent({
                     multiple
                   />
                 </Collapsible>
-              );
-
-            return (
-              <Collapsible
-                key={attr.id}
-                label={attr.name}
-                items={attr.values.map((i) => ({
-                  label: i.value,
-                  value: i.id,
-                }))}
-                value={query?.filter?.attributes?.[attr.id]}
-                onChange={(v) => handleSetAttributeQuery(String(attr.id), v)}
-              />
-            );
-          })}
+              ))}
+            {attributes
+              .filter((attr) => attr.type !== "color")
+              .map((attr, index) => {
+                const attrLength = attributes.filter(
+                  (attr) => attr.type !== "color",
+                ).length;
+                return (
+                  <Collapsible
+                    key={attr.id}
+                    label={attr.name}
+                    items={attr.values.map((i) => ({
+                      label: i.value,
+                      value: i.id,
+                    }))}
+                    value={query?.filter?.attributes?.[attr.id]}
+                    onChange={(v) =>
+                      handleSetAttributeQuery(String(attr.id), v)
+                    }
+                    activeSeprator={index + 1 === attrLength ? false : true}
+                    className={index + 1 === attrLength ? " pt-3" : ""}
+                  />
+                );
+              })}
+          </>
+        )}
       </section>
     </Card>
   );

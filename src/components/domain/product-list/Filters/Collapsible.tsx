@@ -24,6 +24,7 @@ type Props = {
   isSet?: boolean;
   text?: string;
   activeSeprator?: boolean
+  className?: string
 };
 
 export default function Collapsible({
@@ -37,13 +38,14 @@ export default function Collapsible({
   defaultOpen = false,
   isSet = false,
   text = "",
-  activeSeprator = true
+  activeSeprator = true,
+  className
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
     <div
-      className={`${activeSeprator ? "border-b border-[#f2f2f2] py-4" : ""}`}
+      className={`${activeSeprator ? "border-b border-[#f2f2f2] py-4" : ""} ${className}`}
     >
       <div className="flex justify-between text-sm text-neutral-600 font-medium">
         {slug ? (
