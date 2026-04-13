@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import SelectableFilter from "./SelectableFilter";
 import { ChevronLeftIcon, DotIcon, X } from "lucide-react";
@@ -10,6 +11,7 @@ type TreeItemType = {
   label: string;
   value: string | number;
 };
+
 type Props = {
   label: string;
   search?: boolean;
@@ -21,6 +23,7 @@ type Props = {
   onChange?: (value: Array<string>) => void;
   isSet?: boolean;
   text?: string;
+  activeSeprator?: boolean
 };
 
 export default function Collapsible({
@@ -34,12 +37,15 @@ export default function Collapsible({
   defaultOpen = false,
   isSet = false,
   text = "",
+  activeSeprator = true
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="py-4 border-b">
-      <div className="flex justify-between text-sm text-neutral-600 hover:text-primary font-medium">
+    <div
+      className={`${activeSeprator ? "border-b border-[#f2f2f2] py-4" : ""}`}
+    >
+      <div className="flex justify-between text-sm text-neutral-600 font-medium">
         {slug ? (
           <Link className="font-medium" href={slug}>
             {label}
@@ -50,27 +56,34 @@ export default function Collapsible({
             "flex cursor-pointer font-medium justify-between",
             !slug && "w-full",
           )}
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => {
+            setOpen((prev) => !prev);
+          }}
         >
           {slug ? null : (
-            <span className="font-medium  inline-block flex-1 text-right">
+            <span className="text-gray-800 text-[15px] inline-block flex-1 text-right">
               {label}
               {value.length > 0 || isSet ? (
                 <DotIcon className="inline-block" />
               ) : null}
             </span>
           )}
+
           <ChevronLeftIcon
             className={cn(
               open ? "rotate-90" : "-rotate-90",
-              "transition-transform",
+              "transition-transform text-slate-700",
             )}
-            width={22}
-            height={22}
+            width={20}
+            height={20}
           />
         </button>
       </div>
-      <div className="text-xs text-muted-light">{isSet && text}</div>
+      {isSet ? (
+        <div className="text-xs text-muted-light mt-1.5">{text}</div>
+      ) : (
+        ""
+      )}
       {value.length > 0 && (
         <SelectedItems
           onChange={onChange}
@@ -80,8 +93,8 @@ export default function Collapsible({
 
       <div
         className={cn(
-          "scale-y-0 h-0 origin-top overflow-y-auto scrollbar-custom max-h-[20rem] transition-all",
-          open && "scale-y-100 py-2 h-auto mt-3",
+          "h-0 scale-y-0 origin-top flex flex-col transition-all",
+          open && "h-full scale-y-100",
         )}
       >
         {children}

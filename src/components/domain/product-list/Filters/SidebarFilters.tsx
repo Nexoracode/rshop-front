@@ -38,27 +38,26 @@ function SidebarFiltersComponent({
   } = query.filter;
 
   const hasFilter =
-    (Object.keys(attr).length > 0 ||
+    Object.keys(attr).length > 0 ||
     booleanFilters.length ||
     brand.length ||
     String(price_max).length ||
-    String(price_min).length) ? true : false
-
-      console.log(hasFilter);
-      
+    String(price_min).length
+      ? true
+      : false;
 
   return (
     <Card>
       <section>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-medium">فیلترها</h3>
           {hasFilter ? (
             <Button
               onClick={handleClearFilters}
               variant={"text-nohover"}
               size={"sm"}
-              className="px-0"
-              color="danger"
+              className="px-0 text-sm"
+              color="info"
             >
               حذف فیلترها
             </Button>
@@ -67,7 +66,7 @@ function SidebarFiltersComponent({
           )}
         </div>
 
-        <Collapsible label="دسته بندی">
+        <Collapsible label="دسته بندی" defaultOpen activeSeprator>
           <FilterCategories categories={categories} />
         </Collapsible>
 
