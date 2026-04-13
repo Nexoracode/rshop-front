@@ -101,7 +101,7 @@ function SidebarFiltersComponent({
         </Collapsible>
         {(
           Object.keys(boolean_filter) as Array<keyof typeof boolean_filter>
-        ).map((key) => (
+        ).map((key, index) => (
           <FilterSwitches
             checked={Boolean(
               query?.filter.booleanFilters?.find((i) => i.key === key),
@@ -110,6 +110,7 @@ function SidebarFiltersComponent({
             key={key}
             toggleId={key}
             label={boolean_filter[key]["label"]}
+            className={(!attributes.length && index+1 === Object.keys(boolean_filter).length) ? "!border-b-0 !pb-0" : ""}
           />
         ))}
 
@@ -118,7 +119,7 @@ function SidebarFiltersComponent({
             {attributes
               .filter((attr) => attr.type === "color")
               .map((attr) => (
-                <Collapsible key={attr.id} label={attr.name}>
+                <Collapsible key={attr.id} label={attr.name} defaultOpen>
                   <FilterColor
                     value={query?.filter.attributes[attr.id] || []}
                     onChange={(colors) =>

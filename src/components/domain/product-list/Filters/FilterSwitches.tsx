@@ -13,6 +13,7 @@ interface ToggleFilterProps {
 
   checked?: boolean;
   onCheckedChange?: (check: boolean) => void;
+  className?: string
 }
 
 export default function FilterSwitches({
@@ -21,11 +22,12 @@ export default function FilterSwitches({
   checked = false,
   toggleId = "",
   onCheckedChange = () => {},
+  className
 }: ToggleFilterProps) {
   // 🟢 استیت داخلی روشن/خاموش
 
   return (
-    <div className="flex border-b py-4 items-center justify-between">
+    <div className={`flex border-b border-[#f2f2f2] py-4 items-center justify-between ${className}`}>
       <Label
         htmlFor={`toggle-filter-${toggleId}`}
         className="font-medium  w-full flex justify-between text-neutral-600"

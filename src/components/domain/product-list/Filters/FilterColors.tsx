@@ -40,7 +40,7 @@ export default function FilterColor({
   };
 
   return (
-    <div className="flex p-2 flex-wrap gap-3">
+    <div className="grid grid-cols-4 gap-3 pt-4">
       {colors.map((color) => {
         const active = value.includes(String(color.id));
         return (
@@ -49,12 +49,14 @@ export default function FilterColor({
             type="button"
             disabled={disabled}
             onClick={() => toggle(String(color.id))}
-            className={"relative w-12"}
+            className={
+              "relative w-12 flex flex-col items-center justify-center"
+            }
             aria-label={`انتخاب رنگ ${color.value}`}
           >
             <span
               className={cn(
-                "block h-12 w-12 rounded-lg border border-gray-300 shadow-sm p-1",
+                "block h-11 w-11 rounded-lg border border-gray-300 shadow-sm p-1",
                 "transition-transform duration-150",
                 active && "border-primary border-2",
                 disabled && "opacity-50 cursor-not-allowed",
@@ -62,19 +64,20 @@ export default function FilterColor({
             >
               <span
                 style={{ backgroundColor: color.display_color || "#ffffff" }}
-                className="inline-block rounded-md w-full h-full"
+                className="inline-block rounded-[10px] w-full h-full border"
               ></span>
             </span>
+
             {active && (
               <span
-                className="absolute h-fit inset-0 flex items-center justify-center text-white text-xl top-[20%]  font-bold"
+                className="absolute h-fit inset-0 flex items-center justify-center text-white text-md top-[17%] font-bold"
                 style={{ textShadow: "0 0 2px black" }}
               >
                 ✓
               </span>
             )}
 
-            <span className="inline-block pt-3 text-sm font-normal text-muted/70">
+            <span className="inline-block pt-2 text-xs font-normal text-muted/70 truncate">
               {color.value}
             </span>
           </button>
