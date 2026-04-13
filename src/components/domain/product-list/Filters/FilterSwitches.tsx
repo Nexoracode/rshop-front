@@ -30,9 +30,9 @@ export default function FilterSwitches({
     <div className={`flex border-b border-[#f2f2f2] py-4 items-center justify-between ${className}`}>
       <Label
         htmlFor={`toggle-filter-${toggleId}`}
-        className="font-medium  w-full flex justify-between text-neutral-600"
+        className="w-full flex justify-between text-slate-800"
       >
-        {label}
+        <span className="leading-6">{label}</span>
         <Switch
           checked={checked}
           onCheckedChange={onCheckedChange}

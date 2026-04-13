@@ -73,47 +73,48 @@ export default function FilterPriceRange({
   const handleValueChange = (v: number[]) => {
     setRange([v[0], v[1]] as Range);
   };
+
   return (
     <div className="w-full space-y-4">
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col items-center gap-8 mt-8">
         {/* ارزان‌ترین */}
-        <div className="flex-1 space-y-1">
-          <Label htmlFor="price-min" className="text-xs">
+        <div className="flex items-center justify-end space-y-1">
+          <Label htmlFor="price-min" className="text-sm pl-3">
             از
           </Label>
-          <div className="relative">
+          <div className="flex items-center">
             <Input
               id="price-min"
               type="text"
               inputMode="numeric"
               disabled={disabled}
-              className="pl-10 text-right font-bold !text-lg"
+              className="pl-2 text-end font-bold !text-2xl border-0 pb-4 rounded-none border-slate-200 border-b shadow-none"
               value={format(range[0])}
               onChange={handleMinInput}
               onBlur={handleBlur}
             />
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+            <span className="text-[13px] text-slate-900 pr-3">
               {currency}
             </span>
           </div>
         </div>
-        {/* گران‌ترین */}
-        <div className="flex-1 space-y-1">
-          <Label htmlFor="price-max" className="text-xs">
+
+        <div className="flex items-center justify-end space-y-1">
+          <Label htmlFor="price-max" className="text-sm pl-3">
             تا
           </Label>
-          <div className="relative">
+          <div className="flex items-center">
             <Input
               id="price-max"
               type="text"
               inputMode="numeric"
               disabled={disabled}
-              className="pl-10 text-right font-bold !text-lg"
+              className="pl-2 text-end font-bold !text-2xl border-0 pb-4 rounded-none border-slate-200 border-b shadow-none"
               value={format(range[1])}
               onChange={handleMaxInput}
               onBlur={handleBlur}
             />
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+            <span className="text-[13px] text-slate-900 pr-3">
               {currency}
             </span>
           </div>
@@ -121,7 +122,7 @@ export default function FilterPriceRange({
       </div>
 
       {/* اسلایدر: دستهٔ چپ = حداکثر ، دستهٔ راست = حداقل */}
-      <div className="px-1">
+      <div className="mt-8 mb-2">
         <Slider
           value={[range[0], range[1]]} // معکوس برای نمایش
           onValueChange={handleValueChange}
@@ -132,16 +133,15 @@ export default function FilterPriceRange({
           disabled={disabled}
           className="mt-4"
         />
-        <div className="flex justify-between text-xs text-muted-foreground mt-4">
+        <div className="flex justify-between text-xs text-slate-600 mt-4">
           <span>ارزان‌ترین</span>
           <span>گران‌ترین</span>
         </div>
       </div>
 
-      {/* نمایش مقدار انتخابی نهایی */}
-      <p className="text-sm text-muted-foreground mt-2">
+{/*       <p className="text-sm text-muted-foreground mt-2">
         از {format(range[0])} تا {format(range[1])} {currency}
-      </p>
+      </p> */}
     </div>
   );
 }

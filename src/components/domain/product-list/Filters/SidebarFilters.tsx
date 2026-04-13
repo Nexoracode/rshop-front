@@ -66,7 +66,7 @@ function SidebarFiltersComponent({
           )}
         </div>
 
-        <Collapsible label="دسته بندی" defaultOpen activeSeprator>
+        <Collapsible label="دسته بندی" activeSeprator>
           <FilterCategories categories={categories} />
         </Collapsible>
 
@@ -119,7 +119,7 @@ function SidebarFiltersComponent({
             {attributes
               .filter((attr) => attr.type === "color")
               .map((attr) => (
-                <Collapsible key={attr.id} label={attr.name} defaultOpen>
+                <Collapsible key={attr.id} label={attr.name}>
                   <FilterColor
                     value={query?.filter.attributes[attr.id] || []}
                     onChange={(colors) =>
