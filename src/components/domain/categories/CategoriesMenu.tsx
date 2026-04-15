@@ -26,7 +26,7 @@ export default function CategoriesMenu({ categories }: Props) {
 
   return (
     <div className="overflow-hidden">
-      <div className="relative">
+      <div className="relative mt-10">
         <div className="w-[90px] pb-20 max-h-full overflow-y-auto absolute top-0 right-0 no-scrollbar">
           {categories.map((cat) => (
             <div
@@ -41,7 +41,7 @@ export default function CategoriesMenu({ categories }: Props) {
               {cat?.icon?.svg ? (
                 <div className="w-full flex items-center justify-center mb-1.5">
                   <div
-                    className="[&>svg]:w-6 [&>svg]:h-auto [&>svg]:max-h-6"
+                    className="[&>svg]:w-5.5 [&>svg]:h-auto [&>svg]:max-h-5.5"
                     dangerouslySetInnerHTML={{ __html: cat?.icon?.svg }}
                   />
                 </div>
