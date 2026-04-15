@@ -16,13 +16,13 @@ export default function FooterColumn({ title, links }: FooterColumnType) {
     <nav className="md:space-y-5">
       <button
         onClick={() => isMobile && setActive((prev) => !prev)}
-        className="text-[17px] flex items-center justify-between w-full font-medium border-b pb-4 md:border-none md:pb-0"
+        className="text-sm md:text-[17px] flex items-center justify-between w-full font-medium border-b pb-4 md:border-none md:pb-0"
       >
         {title}
 
         {isMobile && (
           <ChevronDownIcon
-            className={`transition-all ${active ? "rotate-180" : ""}`}
+            className={`size-5 transition-all ${active ? "rotate-180" : ""}`}
           />
         )}
       </button>

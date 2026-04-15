@@ -52,7 +52,7 @@ export default function Footer() {
             <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
           <div className="space-y-6">
-            <button className="text-[17px] flex items-center justify-between w-full font-medium">
+            <button className="text-sm md:text-[17px] flex items-center justify-between w-full font-medium">
               ارتباط با ما
             </button>
             <div className="flex flex-col gap-5">
