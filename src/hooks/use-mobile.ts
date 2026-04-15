@@ -9,16 +9,11 @@ export function useIsMobile(breakpoint: number = 768): boolean {
   );
 
   // Initial state is computed only on client; false on server to avoid hydration mismatch
-  const [isMobile, setIsMobile] = useState<boolean>(true);
-
-  useEffect(() => {
-    setIsMobile(() => {
-      if (typeof window === "undefined" || !("matchMedia" in window))
-        return false;
-      return window.matchMedia(query).matches;
-    });
-  }, []);
-
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === "undefined" || !("matchMedia" in window))
+      return false;
+    return window.matchMedia(query).matches;
+  });
   useEffect(() => {
     if (typeof window === "undefined" || !("matchMedia" in window)) return;
 

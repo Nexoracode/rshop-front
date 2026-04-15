@@ -25,7 +25,7 @@ export type Category = {
   children?: Category[];
   media?: Media | null;
   parent_id: number;
-  icon: any
+  icon: Record<string, any>
   parent: Partial<Category> | null;
 };
 

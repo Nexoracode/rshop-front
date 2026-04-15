@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 const services = [
@@ -34,7 +35,7 @@ export default function ServiceSection() {
           className="w-40 relative flex flex-col items-center gap-3"
         >
           {/* w-7 md:w-10 h-7 md:h-10 */}
-          <img
+          <Image
             className="inline-block mr-2"
             src={service.icon}
             width="56"
