@@ -42,12 +42,6 @@ export default function ProductGridItem({ product }: Props) {
         className="block p-2 bg-white !h-[360px] hover:shadow-xl transition-all"
         href={`/p/rsp-${id}`}
       >
-        {is_feautered && (
-          <span className="absolute top-2 z-10 text-danger text-sm font-bold">
-            فروش ویژه
-          </span>
-        )}
-
         {/* image */}
         <div className="relative aspect-[1/1] w-full overflow-hidden">
           <Image
@@ -72,9 +66,16 @@ export default function ProductGridItem({ product }: Props) {
           )}
         </div>
         <div className="mt-2 space-y-1 px-1 pb-2">
-          <p className="text-xs text-gray-500 mb-2">
-            {brand ? brand.name : "برند ندارد"}
-          </p>
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xs text-gray-500 mb-2">
+              {brand ? brand.name : "برند ندارد"}
+            </p>
+            {is_feautered && (
+              <span className="text-danger text-[13px] font-bold">
+                فروش ویژه
+              </span>
+            )}
+          </div>
           <h3 className="line-clamp-1 text-sm font-medium text-gray-800">
             {name}
           </h3>

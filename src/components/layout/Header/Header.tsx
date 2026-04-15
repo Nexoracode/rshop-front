@@ -27,7 +27,7 @@ export default function Header() {
         <div className="max-w-[1536px] w-full mx-auto px-2 bg-white relative z-20 flex text-foreground items-center justify-between py-3 gap-3">
           {isMobile ? (
             <>
-              {isMobileCategoryPage && <CategoryPageHeader />}
+              <CategoryPageHeader isMobileCategoryPage={isMobileCategoryPage}/>
 
               {isMobileProductPage && <ProductPageHeader />}
 

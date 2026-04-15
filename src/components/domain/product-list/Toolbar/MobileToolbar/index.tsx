@@ -24,7 +24,7 @@ export default function MobileToolbar({ filters, totalCount }: Props) {
     query,
   } = useFilters();
   return (
-    <div className="w-full h-[2.5rem] flex items-end max-w-full no-scrollbar overflow-x-auto">
+    <div className="sticky z-40 bg-white py-2 pt-3.5 top-[100px]  w-full flex items-end max-w-full no-scrollbar overflow-x-auto">
       <div className="flex gap-2">
         <ProductSortSheet />
 

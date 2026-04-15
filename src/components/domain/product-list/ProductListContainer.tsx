@@ -54,14 +54,18 @@ export default function ProductListContainer({
       <Responsive visible="desktop">
         <aside
           className="hidden !min-w-[266px] !max-w-[266px] lg:block"
-          style={{ position: "sticky", top: isVisible ? "12rem" : "9.5rem", alignSelf: "start" }}
+          style={{
+            position: "sticky",
+            top: isVisible ? "12rem" : "9.5rem",
+            alignSelf: "start",
+          }}
         >
           <SidebarFilters filters={filters} />
         </aside>
       </Responsive>
 
       {/* محتوای اصلی */}
-      <div className="w-full space-y-1">
+      <div className="relative w-full space-y-1">
         <Responsive visible="mobile">
           <MobileToolbar filters={filters} totalCount={totalCount} />
         </Responsive>

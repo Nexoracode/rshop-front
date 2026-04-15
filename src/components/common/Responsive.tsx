@@ -10,7 +10,7 @@ export default function Responsive({
   children,
   visible = "desktop",
 }: PropsWithChildren<Props>) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(1020);
   return (visible === "desktop" && !isMobile) ||
     (visible === "mobile" && isMobile)
     ? children
