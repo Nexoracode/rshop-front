@@ -104,6 +104,9 @@ export default async function ProductPage({
           </div>
         </div>
 
+        <SidebarActions productId={product.id} className="flex lg:hidden !flex-row items-center justify-end pl-2 gap-4 !-mt-4 !-mb-6"/>
+
+
         {/* اطلاعات محصول */}
         <div className="lg:col-span-8">
           <ProductInfo {...product} />

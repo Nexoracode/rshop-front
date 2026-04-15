@@ -6,7 +6,7 @@ import MobileSearchBox from "../SearchBox/MobileSearchBox";
 export default function ProductPageHeader() {
   return (
     <>
-      <BackButton />
+      <BackButton link="/products"/>
 
       <MobileSearchBox triggerMode="icon" />
 

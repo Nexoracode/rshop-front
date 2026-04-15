@@ -2,11 +2,11 @@ import AddToWishlistBtn from "@/components/domain/Product/ProductCard/AddToWishl
 import SharLinkBtn from "@/components/domain/Product/ProductCard/SharLinkBtn";
 import DesktopTooltip from "@/components/common/DesktopTooltip";
 
-type Props = { productId: number };
+type Props = { productId: number; className?: string };
 
-export default function SidebarActions({ productId }: Props) {
+export default function SidebarActions({ productId, className }: Props) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className={`flex flex-col gap-4 ${className}`}>
       <DesktopTooltip
         content="اضافه به علاقه‌مندی‌ها"
         contentProps={{ side: "left" }}

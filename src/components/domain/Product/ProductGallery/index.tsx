@@ -60,7 +60,7 @@ export default function ProductGallery({
               </CarouselItem>
             ))}
         </CarouselContent>
-        <CarouselDots className="absolute md:hidden left-2 bottom-1 bg-black/20 p-1 z-50 rounded-full" />
+        <CarouselDots className="absolute md:hidden left-1/2 -translate-x-1/2 bottom-1 bg-black/20 p-1 z-50 rounded-full" />
       </Carousel>
 
       <div className="md:flex hidden justify-start gap-1">
@@ -105,7 +105,7 @@ export default function ProductGallery({
       <Button
         rounded={"full"}
         onClick={() => setActive(0)}
-        className="absolute top-2 left-2 bg-black/40 w-9 h-9 md:hidden"
+        className="absolute top-2 left-2 bg-black/20 w-9 h-9 md:hidden"
       >
         <PlaySquare className="size-6 text-white/60" />
       </Button>
