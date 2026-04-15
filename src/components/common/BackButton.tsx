@@ -20,7 +20,7 @@ export default function BackButton({ onClick, link, ...props }: Props) {
 
   return (
     <button {...props} onClick={handleClick}>
-      <ArrowRight className="size-5.5 ml-1.5" />
+      <ArrowRight className="size-5.5" />
     </button>
   );
 }

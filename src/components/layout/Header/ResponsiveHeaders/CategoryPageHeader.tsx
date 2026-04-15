@@ -5,15 +5,15 @@ import BackButton from "@/components/common/BackButton";
 import SharePageLink from "../SharePageLink";
 
 export default function CategoryPageHeader({
-  isMobileCategoryPage,
+  pathname,
 }: {
-  isMobileCategoryPage: boolean;
+  pathname: boolean;
 }) {
   return (
     <>
       <BackButton />
 
-      {isMobileCategoryPage ? (
+      {pathname ? (
         <HeaderCategoryPageTitle />
       ) : (
         <div className="flex-1 text-sm font-medium">
@@ -21,9 +21,11 @@ export default function CategoryPageHeader({
         </div>
       )}
 
-      <MobileSearchBox triggerMode="icon" />
+      <div className="flex items-center">
+        <MobileSearchBox triggerMode="icon" />
 
-      <SharePageLink />
+        <SharePageLink />
+      </div>
     </>
   );
 }

@@ -18,7 +18,7 @@ export default function Header() {
   const isMobile = useIsMobile();
   const isMobileHomePage = isMobile && pathName === "/";
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
-  const isMobileCategoryPage = isMobile && pathName.startsWith("/products/");
+  const isMobileCategoryPage = isMobile && pathName.includes("/products");
   return (
     <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
       <PromoBanner />
@@ -27,7 +27,11 @@ export default function Header() {
         <div className="max-w-[1536px] w-full mx-auto px-2 bg-white relative z-20 flex text-foreground items-center justify-between py-3 gap-3">
           {isMobile ? (
             <>
-              <CategoryPageHeader isMobileCategoryPage={isMobileCategoryPage}/>
+              {isMobileCategoryPage ? (
+                <CategoryPageHeader pathname={pathName.startsWith("/products/")}/>
+              ) : (
+                ""
+              )}
 
               {isMobileProductPage && <ProductPageHeader />}
 
