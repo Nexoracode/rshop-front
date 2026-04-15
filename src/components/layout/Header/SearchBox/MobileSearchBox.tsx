@@ -41,7 +41,7 @@ export default function MobileSearchBox({
               dir="rtl"
               placeholder="جستجوی محصول..."
               value={search}
-              onChange={(e) => {}}
+              onChange={() => {}}
               className={`rounded-sm h-[44px] ${search.length ? "bg-white !border !border-slate-200" : "bg-[rgb(240,241,241)] border-none"} py-5 focus-visible:ring-0 text-gray-700`}
             />
             <button className="absolute text-muted px-4 top-0 bottom-0 -left-1 rounded-l-sm rounded-r-0">

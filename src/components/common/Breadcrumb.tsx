@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import { SHOP_NAME } from "@/data/assets";
 import { cn } from "@/lib/utils/classnames";
 

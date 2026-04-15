@@ -42,7 +42,7 @@ export default function CreateOrderBtn() {
       createOrderHandle({
         addressId: address?.id || 0,
         note,
-        code: promotion_code,
+        code: promotion_code ?? null,
         is_gift,
         gift_message,
         gift_wrapping_id,

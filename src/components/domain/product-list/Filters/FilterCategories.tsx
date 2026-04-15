@@ -15,7 +15,7 @@ type FilterCategoriesProps = {
 const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
   const pathName = usePathname();
 
-  const getTree = (cat: CategoryFilter, slug = "/products", level = 0) => {
+  const getTree = (cat: CategoryFilter, slug = "/products") => {
     if (!cat.children?.length) {
       return (
         <Link

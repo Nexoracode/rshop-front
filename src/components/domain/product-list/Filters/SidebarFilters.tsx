@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import React, { useEffect } from "react";
+import React from "react";
 import Collapsible from "./Collapsible";
 import FilterCategories from "./FilterCategories";
 import FilterPriceRange from "./FilterPriceRange";

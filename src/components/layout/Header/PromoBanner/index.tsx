@@ -1,5 +1,5 @@
 "use client";
-import { Skeleton } from "@/components/ui/skeleton";
+
 import { getPromoBanners } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";

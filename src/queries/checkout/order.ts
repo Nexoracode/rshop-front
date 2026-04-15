@@ -20,7 +20,7 @@ export const checkPromotion = mutationOptions({
 
 export const createOrder = mutationOptions({
   mutationFn: async (body: {
-    code?: string;
+    code?: string | null;
     note?: string;
     addressId: number;
     is_gift?: boolean;
