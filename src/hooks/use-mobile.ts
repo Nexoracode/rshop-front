@@ -5,15 +5,19 @@ import { useEffect, useMemo, useState } from "react";
 export function useIsMobile(breakpoint: number = 768): boolean {
   const query = useMemo(
     () => `(max-width: ${breakpoint - 0.02}px)`, // the -0.02 avoids edge off-by-one at exactly breakpoint
-    [breakpoint]
+    [breakpoint],
   );
 
   // Initial state is computed only on client; false on server to avoid hydration mismatch
-  const [isMobile, setIsMobile] = useState<boolean>(() => {
-    if (typeof window === "undefined" || !("matchMedia" in window))
-      return false;
-    return window.matchMedia(query).matches;
-  });
+  const [isMobile, setIsMobile] = useState<boolean>(true);
+
+  useEffect(() => {
+    setIsMobile(() => {
+      if (typeof window === "undefined" || !("matchMedia" in window))
+        return false;
+      return window.matchMedia(query).matches;
+    });
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("matchMedia" in window)) return;
