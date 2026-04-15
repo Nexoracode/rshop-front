@@ -26,8 +26,8 @@ export default function CategoriesMenu({ categories }: Props) {
 
   return (
     <div className="overflow-hidden">
-      <div className="relative w-full">
-        <div className="w-[7.5rem] pb-20 max-h-full overflow-y-auto absolute top-0 right-0 no-scrollbar">
+      <div className="relative">
+        <div className="w-[90px] pb-20 max-h-full overflow-y-auto absolute top-0 right-0 no-scrollbar">
           {categories.map((cat) => (
             <div
               role="button"
@@ -38,20 +38,29 @@ export default function CategoriesMenu({ categories }: Props) {
               key={cat.id}
               onClick={() => setSelectedId(cat.id)}
             >
-              <Image
-                width={35}
-                height={35}
-                alt=""
-                src={cat.media?.url || PRODUCT_PLACEHOLDER}
-                className="border rounded-md p-0.5"
-              />
+              {cat?.icon?.svg ? (
+                <div className="w-full flex items-center justify-center mb-1.5">
+                  <div
+                    className="[&>svg]:w-6 [&>svg]:h-auto [&>svg]:max-h-6"
+                    dangerouslySetInnerHTML={{ __html: cat?.icon?.svg }}
+                  />
+                </div>
+              ) : (
+                <Image
+                  width={35}
+                  height={35}
+                  alt=""
+                  src={PRODUCT_PLACEHOLDER}
+                  className="border rounded-md p-0.5 mb-1.5"
+                />
+              )}
               <span className="text-xs font-normal text-center inline-block">
                 {cat.title}
               </span>
             </div>
           ))}
         </div>
-        <div className="ps-[8.5rem] pb-20 h-[768px] overflow-auto no-scrollbar p-2 px-4">
+        <div className="ps-[105px] pb-20 h-[768px] overflow-auto no-scrollbar mt-4">
           <Button
             size={"sm"}
             color="info"
