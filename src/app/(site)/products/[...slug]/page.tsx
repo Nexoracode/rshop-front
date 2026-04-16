@@ -79,27 +79,30 @@ export default async function CategoryPage(
 
   if (!category) return notFound();
 
-  const categoryParents =
-    category?.parents.sort((a, b) => a.level - b.level) ?? [];
-
   const breadcrumbItems = category
     ? [
-        ...category.parents.map((c) => ({
+        // Parents
+        ...category.parents.map((c, index) => ({
           label: c.title,
-          href: `/products/${categoryParents
-            .filter((p) => p.level > c.level)
+          href: `/products/${category.parents
+            .slice(0, index + 1)
             .map((p) => p.slug)
             .join("/")}`,
         })),
+
+        // Final category (child)
         {
           label: category.category.title,
-          href: `/products/${categorySlug}`,
+          href: `/products/${[
+            ...category.parents.map((p) => p.slug),
+            category.category.slug,
+          ].join("/")}`,
         },
       ]
     : [{ label: "محصولات" }];
 
   return (
-    <div className="container mt-3 md:mt-6">
+    <div className="container mt-12 md:mt-6">
       <Breadcrumb items={breadcrumbItems} />
       <div className="mt-10 mb-6 hidden md:block">
         <h1 className="text-foreground font-bold text-lg">

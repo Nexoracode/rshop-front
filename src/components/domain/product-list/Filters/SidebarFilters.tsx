@@ -50,6 +50,8 @@ function SidebarFiltersComponent({
 
   console.log(query.filter);
 
+  console.log(pathName);
+
   return (
     <Card>
       <section>
@@ -70,17 +72,22 @@ function SidebarFiltersComponent({
           )}
         </div>
 
-        <Collapsible
-          label="دسته بندی"
-          activeSeprator
-          defaultOpen={
-            categories.map((cat) => pathName.includes(cat.slug))?.[0] !== false
-              ? true
-              : false
-          }
-        >
-          <FilterCategories categories={categories} />
-        </Collapsible>
+        {pathName.includes("/products/") ? (
+          ""
+        ) : (
+          <Collapsible
+            label="دسته بندی"
+            activeSeprator
+            defaultOpen={
+              categories.map((cat) => pathName.includes(cat.slug))?.[0] !==
+              false
+                ? true
+                : false
+            }
+          >
+            <FilterCategories categories={categories} />
+          </Collapsible>
+        )}
 
         {brands && (
           <Collapsible

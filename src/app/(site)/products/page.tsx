@@ -47,7 +47,7 @@ export default async function ShopPage(props: PageProps<"/products">) {
   const { query, sortBy, page = "1" } = await props.searchParams;
 
   return (
-    <div className="container mt-3 md:mt-6">
+    <div className="container mt-12 md:mt-6">
       <Breadcrumb items={[{ label: "محصولات" }]} />
       <div className="mt-10 mb-6 hidden md:block">
         <h1 className="text-foreground font-bold text-lg">{"محصولات"}</h1>
