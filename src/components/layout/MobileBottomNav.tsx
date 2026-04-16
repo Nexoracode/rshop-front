@@ -12,7 +12,7 @@ const navItems = [
   { name: "خانه", href: "/", icon: Home },
   { name: "دسته‌ها", href: "/categories", icon: Layers },
   { name: "سبد خرید", href: "/cart", icon: ShoppingCart },
-  { name: "علاقه‌مندی‌ها", href: "/wishlist", icon: Heart },
+  { name: "علاقه‌مندی‌ها", href: "/profile/wishlist", icon: Heart },
   { name: "پروفایل", href: "/profile", icon: User },
 ];
 
