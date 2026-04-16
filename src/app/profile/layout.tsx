@@ -17,8 +17,8 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
       <div className="flex md:hidden">
         <ProfileHeader />
       </div>
-      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6 mt-9  lg:mt-14">
-        <div className="border-l hidden lg:flex">
+      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex flex-col-reverse lg:flex-row gap-6 mt-9 lg:mt-14">
+        <div className="lg:border-l md:hidden lg:flex">
           <ProfileSidebar />
         </div>
         <main

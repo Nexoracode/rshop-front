@@ -32,8 +32,8 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-20 h-fit w-full border lg:border-0 rounded-lg p-6 lg:p-4 lg:w-[16rem] md:space-y-2">
-      <div className="grid grid-cols-4 gap-2 mb-4 lg:mb-0 lg:flex flex-col">
+    <aside className="sticky top-20 h-fit w-full md:border lg:border-0 rounded-lg p-3 md:p-6 lg:p-4 lg:w-[16rem] md:space-y-2">
+      <div className="grid md:grid-cols-4 gap-2 mb-4 lg:mb-0 lg:flex flex-col">
         {items.map((item) => {
           const active =
             item.href === "/profile"
@@ -45,7 +45,7 @@ export function ProfileSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex border-b border-slate-200 md:border-0 items-center gap-3 rounded-md md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
+                "flex border-b border-slate-200 md:border-0 items-center gap-3 md:rounded-md md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
                 active
                   ? "md:bg-primary/10 md:text-primary"
                   : "hover:bg-slate-100 text-muted-foreground",
