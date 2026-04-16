@@ -40,7 +40,7 @@ export default function ProductListContent({
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
+  }, [inView, hasNextPage, isFetchingNextPage]);
 
   const shouldShowPagination =
     hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
