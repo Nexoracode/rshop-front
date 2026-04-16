@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export default function ProfileLayout({ children }: PropsWithChildren) {
   return (
-    <div className="md:pt-28 pt-10 pb-20">
+    <div className="lg:pt-28 pb-20">
       <BannerPadding />
       <Responsive visible="desktop">
         <Header />
@@ -20,15 +20,13 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
       <Responsive visible="mobile">
         <ProfileHeader />
       </Responsive>
-      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6 mt-14">
+      <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6 mt-9  lg:mt-14">
         <Responsive visible="desktop">
-          <ProfileSidebar />
+          <div className="border-l">
+            <ProfileSidebar />
+          </div>
         </Responsive>
-        <main
-          className={cn(
-            "flex-1 max-w-full md:max-w-[calc(100%-17.5rem)]",
-          )}
-        >
+        <main className={cn("flex-1 max-w-full lg:max-w-[calc(100%-17.5rem)] px-3 lg:px-0")}>
           {children}
         </main>
       </div>

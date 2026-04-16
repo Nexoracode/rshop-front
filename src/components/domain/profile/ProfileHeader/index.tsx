@@ -17,9 +17,9 @@ const itemsByHref = [
 export default function ProfileHeader() {
   const pathName = usePathname();
   return (
-    <header className="fixed bg-white   top-0 z-50 w-full border-b shadow backdrop-blur">
+    <header className="fixed bg-white top-0 z-50 w-full border-b shadow backdrop-blur">
       <div className=" relative">
-        <div className="container px-2 bg-white relative z-20 flex text-foreground items-center py-3 gap-3">
+        <div className="px-2 bg-white relative z-20 flex text-foreground items-center py-3 gap-3">
           <BackButton link={pathName === "/profile" ? "/" : "-1"} />
 
           <p className="text-sm font-medium">

@@ -32,7 +32,7 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-20 h-fit md:border-l md:w-[16rem] md:p-4 md:space-y-2">
+    <aside className="sticky top-20 h-fit md:w-[16rem] lg:p-4 md:space-y-2">
       {items.map((item) => {
         const active =
           item.href === "/profile"
@@ -44,7 +44,7 @@ export function ProfileSidebar() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex border-b md:border-0 items-center gap-3 md:rounded-lg md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
+              "flex border-b border-slate-200 md:border-0 items-center gap-3 md:rounded-lg md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
               active
                 ? "md:bg-primary/10 md:text-primary"
                 : "hover:bg-slate-100 text-muted-foreground",
@@ -56,8 +56,8 @@ export function ProfileSidebar() {
           </Link>
         );
       })}
-      <hr />
-      <div className="pr-2 -mt-2">
+      <hr className="hidden md:flex" />
+      <div className="md:pr-2 md:-mt-2">
         <LogoutButton />
       </div>
     </aside>
