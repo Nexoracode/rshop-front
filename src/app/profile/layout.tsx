@@ -1,4 +1,3 @@
-import Responsive from "@/components/common/Responsive";
 import Header from "@/components/layout/Header/Header";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import ProfileHeader from "@/components/domain/profile/ProfileHeader";
@@ -19,11 +18,9 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
         <ProfileHeader />
       </div>
       <div className="max-w-[68rem] mx-auto py-6 px-1 md:px-0 flex gap-6 mt-9  lg:mt-14">
-        <Responsive visible="desktop">
-          <div className="border-l">
-            <ProfileSidebar />
-          </div>
-        </Responsive>
+        <div className="border-l hidden lg:flex">
+          <ProfileSidebar />
+        </div>
         <main
           className={cn(
             "flex-1 max-w-full space-y-6 lg:max-w-[calc(100%-17.5rem)] px-3 lg:px-0",
