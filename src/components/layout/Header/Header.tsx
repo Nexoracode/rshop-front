@@ -13,7 +13,11 @@ import SearchBox from "./SearchBox";
 import HomePageHeader from "./ResponsiveHeaders/HomePageHeader";
 import DesktopNav from "./DesktopNav";
 
-export default function Header() {
+type HeaderProps = {
+  showPromoBanner?: boolean;
+};
+
+export default function Header({ showPromoBanner = true }: HeaderProps) {
   const pathName = usePathname();
   const isMobile = useIsMobile();
   const isMobileHomePage = isMobile && pathName === "/";
@@ -22,7 +26,9 @@ export default function Header() {
   const isCategoriesListInMobile = isMobile && pathName.includes("/categories");
   return (
     <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
-      {!isMobileCategoryPage && !isCategoriesListInMobile && <PromoBanner />}
+      {!isMobileCategoryPage &&
+        !isCategoriesListInMobile &&
+        showPromoBanner && <PromoBanner />}
 
       <div className="relative">
         <div className="max-w-[1536px] w-full mx-auto px-2 bg-white relative z-20 flex text-foreground items-center justify-between py-3 gap-3">
