@@ -26,7 +26,7 @@ export function OrderCard({ order }: { order: Order }) {
 
           <ChevronLeftIcon className="size-6 text-gray-600" />
         </div>
-        <div className="flex flex-nowrap text-nowrap border-b pb-3">
+        <div className="flex flex-wrap text-nowrap border-b pb-3 space-y-4">
           <p className="text-xs md:text-sm text-muted/50">
             {toPersianDate(order.created_at)}
           </p>
