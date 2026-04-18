@@ -16,7 +16,7 @@ type Props = {
 
 export default function UserOtpForm({ phone }: Props) {
   const form = useForm();
-  const { mutateAsync, isPending } = useMutation(verifyOtp);
+  const { mutateAsync, isPending, isSuccess, data } = useMutation(verifyOtp);
   const { handleSendOtp, isSuccess: resendSuccess } = useRequestOtp({
     handleSuccess: () => {},
   });
@@ -28,31 +28,33 @@ export default function UserOtpForm({ phone }: Props) {
 
   const code = form.watch("code", "");
 
-  const handleSubmit = (values: FieldValues) => {
+  useEffect(() => {
     let test = null;
-    const { code } = values;
-    mutateAsync(
-      {
-        code,
-        identifier: phone,
-      },
-      {
-        onSuccess: (data) => {
-          if (data?.user) {
-            toast.success("ورود به حساب کاربری انجام شد.");
-            router.refresh();
-            test = setTimeout(() => {
-              router.push(`${backUrl}`);
-            }, 500);
-          }
-        },
-      },
-    );
-  };
+    if (data?.user) {
+      toast.success("ورود به حساب کاربری انجام شد.");
+      router.refresh();
+      test = setTimeout(() => {
+        router.push(`${backUrl}`);
+      }, 500);
+    }
+    return () => {
+      if (test) {
+        clearTimeout(test);
+      }
+    };
+  }, [isSuccess, data]);
 
   useEffect(() => {
     if (code.length === 6) handleSubmit({ code });
   }, [code]);
+
+  const handleSubmit = (values: FieldValues) => {
+    const { code } = values;
+    mutateAsync({
+      code,
+      identifier: phone,
+    });
+  };
 
   return (
     <FormProvider {...form}>

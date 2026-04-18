@@ -20,22 +20,27 @@ export default function LogoutButton() {
   const { mutate, isPending, isSuccess } = useMutation(userLogout);
   const router = useRouter();
   const pathname = usePathname();
-  const handleLogout = async () => {
-    try {
-      mutate();
-    } catch (error) {
-      console.log({ error });
-    }
-  };
 
   useEffect(() => {
+    let test = null;
     if (isSuccess) {
       if (protectedRoutes.some((route) => pathname.startsWith(route))) {
-        router.push("/");
+        router.refresh();
+        test = setTimeout(() => {
+          router.push("/");
+        }, 500);
       }
       setOpen(false);
     }
+    return () => {
+      if (test) {
+        clearTimeout(test);
+      }
+    };
   }, [isSuccess, setOpen]);
+
+  const handleLogout = () => mutate();
+
   return (
     <React.Fragment>
       <Button
