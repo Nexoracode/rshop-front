@@ -28,7 +28,7 @@ export function middleware(request: NextRequest) {
   // اگر توکن نبود → redirect به login
   if (!refresh) {
     const loginUrl = new URL("/users/login", request.url);
-    loginUrl.searchParams.set("redirect", pathname);
+   // loginUrl.searchParams.set("", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
