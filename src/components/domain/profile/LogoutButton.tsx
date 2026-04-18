@@ -25,9 +25,9 @@ export default function LogoutButton() {
     let test = null;
     if (isSuccess) {
       if (protectedRoutes.some((route) => pathname.startsWith(route))) {
-        router.push("/");
+        router.refresh();
         test = setTimeout(() => {
-          router.refresh();
+          router.push("/");
         }, 500);
       }
       setOpen(false);
