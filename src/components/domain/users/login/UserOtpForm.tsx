@@ -37,9 +37,14 @@ export default function UserOtpForm({ phone }: Props) {
           identifier: phone,
         },
         {
-          onSuccess() {
-            toast.success("ورود به حساب کاربری انجام شد.");
-            router.push(`${backUrl}`);
+          onSuccess: (data) => {
+            console.log("DDDDDDDDDD", data);
+            
+            if (data?.user) {
+              toast.success("ورود به حساب کاربری انجام شد.");
+              console.log({ data });
+              router.push(`${backUrl}`);
+            }
           },
         },
       );
