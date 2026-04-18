@@ -2,7 +2,6 @@
 
 import { BASE_API_URL } from "@/data/assets";
 import { toast } from "sonner";
-import { toFormData } from "./utils/form-data";
 
 type ApiFetchOptions = Omit<RequestInit, "body"> & {
   hasFile?: boolean;
