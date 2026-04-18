@@ -28,30 +28,31 @@ export default function UserOtpForm({ phone }: Props) {
 
   const code = form.watch("code", "");
 
-  const handleSubmit = useCallback(
-    (values: FieldValues) => {
-      const { code } = values;
-      mutateAsync(
-        {
-          code,
-          identifier: phone,
-        },
-        {
-          onSuccess: (data) => {            
-            if (data?.user) {
-              toast.success("ورود به حساب کاربری انجام شد.");
+  const handleSubmit = (values: FieldValues) => {
+    let test = null;
+    const { code } = values;
+    mutateAsync(
+      {
+        code,
+        identifier: phone,
+      },
+      {
+        onSuccess: (data) => {
+          if (data?.user) {
+            toast.success("ورود به حساب کاربری انجام شد.");
+            router.refresh();
+            test = setTimeout(() => {
               router.push(`${backUrl}`);
-            }
-          },
+            }, 500);
+          }
         },
-      );
-    },
-    [mutateAsync, phone, backUrl, router],
-  );
+      },
+    );
+  };
 
   useEffect(() => {
     if (code.length === 6) handleSubmit({ code });
-  }, [code, handleSubmit]);
+  }, [code]);
 
   return (
     <FormProvider {...form}>
