@@ -1,3 +1,4 @@
+import ClientOnly from "@/components/common/ClientOnly";
 import Image from "@/components/common/Image";
 import CountdownTimer from "@/components/domain/Product/CountdownTimer";
 import { Button } from "@/components/ui/button";
@@ -30,11 +31,13 @@ export default function Promotion({
         />
 
         <div className="md:mt-2.5">
-          <CountdownTimer
-            showIcon={false}
-            color="white"
-            targetDate={new Date(Date.now() + 3600000)}
-          />
+          <ClientOnly>
+            <CountdownTimer
+              showIcon={false}
+              color="white"
+              targetDate={new Date(Date.now() + 3600000)}
+            />
+          </ClientOnly>
         </div>
 
         <Image

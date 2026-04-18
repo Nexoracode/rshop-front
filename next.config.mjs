@@ -1,5 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dl.poshtybanman.ir",
+        port: "",
+        pathname: "/Rshop/**",
+        search: "",
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
@@ -13,25 +24,9 @@ const nextConfig = {
       }, */
     ];
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "dl.poshtybanman.ir",
-        port: "",
-        pathname: "/Rshop/**",
-        search: "",
-      },
-    ],
-  },
-  devIndicators: {
-    position: "bottom-right",
-  },
-  compiler: {
+  /* compiler: {
     removeConsole: process.env.NODE_ENV === "production",
-  },
-
-  output: "standalone",
+  }, */
 };
 
 export default nextConfig;

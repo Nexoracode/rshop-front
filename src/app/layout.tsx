@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body
         className={`${iranYekanFont.className} ${iranYekanFont.variable} font-display  min-h-screen antialiased`}
+        cz-shortcut-listen="false"
       >
         <Providers>{children}</Providers>
         <Toaster />
