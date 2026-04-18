@@ -30,10 +30,10 @@ export default function LogoutButton() {
 
   useEffect(() => {
     if (isSuccess) {
-      setOpen(false);
       if (protectedRoutes.some((route) => pathname.startsWith(route))) {
         router.push("/");
       }
+      setOpen(false);
     }
   }, [isSuccess, setOpen]);
   return (
