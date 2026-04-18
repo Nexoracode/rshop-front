@@ -6,10 +6,20 @@ import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import BaseDialog from "@/components/common/BaseDialog";
 import { userLogout } from "@/queries/auth/auth";
+import { usePathname, useRouter } from "next/navigation";
 
+const protectedRoutes = [
+  "/profile",
+  "/checkout",
+  "/cart",
+  "/wishlist",
+  "/compare",
+];
 export default function LogoutButton() {
   const [open, setOpen] = useState(false);
   const { mutate, isPending, isSuccess } = useMutation(userLogout);
+  const router = useRouter();
+  const pathname = usePathname();
   const handleLogout = async () => {
     try {
       mutate();
@@ -19,7 +29,12 @@ export default function LogoutButton() {
   };
 
   useEffect(() => {
-    if (isSuccess) setOpen(false);
+    if (isSuccess) {
+      setOpen(false);
+      if (protectedRoutes.some((route) => pathname.startsWith(route))) {
+        router.push("/");
+      }
+    }
   }, [isSuccess, setOpen]);
   return (
     <React.Fragment>
