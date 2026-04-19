@@ -50,6 +50,6 @@ export const getProductsListInfinit = ({
       return apiFetch(`/catalog${url}?${queryStr}`);
     },
     getNextPageParam: ({ meta }) =>
-      meta.current_page === meta.total_pages ? null : meta.current_page + 1,
+      meta?.current_page === meta?.total_pages ? null : meta?.current_page + 1,
     initialPageParam: 1,
   });

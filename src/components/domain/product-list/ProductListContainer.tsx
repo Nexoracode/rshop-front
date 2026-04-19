@@ -43,10 +43,10 @@ export default function ProductListContainer({
 
   const products = data?.pages.flatMap((page) => page.data) ?? [];
 
-  const currentPage = data?.pages.length ?? 1;
-  const totalPages = data?.pages[0]?.meta.total_pages ?? 1;
-  const totalCount = data?.pages[0]?.meta.total_items ?? 0;
-  const filters = data?.pages[0].filters;
+  const currentPage = data?.pages?.length ?? 1;
+  const totalPages = data?.pages[0]?.meta?.total_pages ?? 1;
+  const totalCount = data?.pages[0]?.meta?.total_items ?? 0;
+  const filters = data?.pages[0]?.filters;
 
   return (
     <div className={cn("flex gap-5 mt-4")}>

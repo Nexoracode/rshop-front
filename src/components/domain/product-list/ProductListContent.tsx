@@ -37,10 +37,10 @@ export default function ProductListContent({
   });
 
   useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage && products.length) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, isFetchingNextPage]);
+  }, [hasNextPage, isFetchingNextPage]);
 
   const shouldShowPagination =
     hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
