@@ -3,39 +3,23 @@ import { recentViewList } from "@/queries/profile/recent_views";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-import RecentViewedCard from "../profile/recent/RecentViewdCard";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card } from "@/components/ui/card";
+import SectionTitle from "@/components/common/SectionTitle";
+import ProductCartItem from "../home/ProductCartItem";
+import ProductCarousel from "@/components/common/ProductCarousel";
 
 export default function RecentView() {
   const { data } = useQuery(recentViewList);
 
-  return (
-    <section className="w-full">
-      <h2 className="font-medium text-lg mb-4">بازدیدهای اخیر شما</h2>
-      <Card>
-        <Carousel>
-          <CarouselNext />
-          <CarouselPrevious />
+  const products: any = data?.map((p) => p.product);
 
-          <CarouselContent>
-            {data?.map((product) => (
-              <CarouselItem
-                key={product.id}
-                className="basis-[10rem] md:basis-[15rem] border-l"
-              >
-                <RecentViewedCard {...product} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </Card>
-    </section>
+  if (!products?.length) return null;
+
+  return (
+    <div className="md:border rounded-lg relative overflow-hidden">
+      <div className="p-2 md:p-6">
+        <SectionTitle title={"بازدیدهای اخیر شما"} />
+      </div>
+      <ProductCarousel items={products} renderItem={ProductCartItem} />
+    </div>
   );
 }
