@@ -15,7 +15,6 @@ import TriggerButton from "../Toolbar/MobileToolbar/TriggerButton";
 
 type Props = { filters: ProductFilters; totalCount: number };
 export default function MobileFilterSheet({ filters, totalCount }: Props) {
-  console.log(filters);
 
   const {
     attributes,

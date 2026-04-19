@@ -125,7 +125,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       "خطا در برقراری ارتباط با سرور";
 
     if (showErrorToast) toast.error(message);
-    return false;
+    return null;
   }
 
   // -----------------------------

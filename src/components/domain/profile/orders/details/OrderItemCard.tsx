@@ -14,7 +14,6 @@ type Props = {
 export default function OrderItemCard({
   item: { product, variant, unit_price, ...item },
 }: Props) {
-  console.log(product);
 
   return (
     <div className="p-4 border rounded-lg">

@@ -60,7 +60,7 @@ export default function ProductListContainer({
             alignSelf: "start",
           }}
         >
-          <SidebarFilters filters={filters} />
+         {/*  <SidebarFilters filters={filters} /> */}
         </aside>
       </Responsive>
 

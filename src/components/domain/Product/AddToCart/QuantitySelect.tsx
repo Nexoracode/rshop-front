@@ -34,7 +34,6 @@ export default function QuantitySelect({
     onChange?.(qty! > 1 ? qty! - 1 : 0);
   };
 
-  console.log({ qty, maxQty });
   return (
     <div className="flex gap-2 items-center">
       <div className="inline-flex shadow items-center rounded-lg border bg-background">

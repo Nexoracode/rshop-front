@@ -43,7 +43,6 @@ export default function DiscountForm() {
       });
     } catch (error) {
       setStatus("invalid");
-      console.log({ error });
     }
   };
 

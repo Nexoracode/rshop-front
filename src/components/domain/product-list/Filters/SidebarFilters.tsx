@@ -16,12 +16,12 @@ type Props = {
   filters: ProductFilters;
 };
 
-function SidebarFiltersComponent({
-  filters: {
+function SidebarFiltersComponent({ filters }: Props) {
+  const {
     attributes,
     generic: { boolean_filter, brands, categories, price_range },
-  },
-}: Props) {
+  } = filters;
+
   const pathName = usePathname();
   const {
     handleClearFilters,
@@ -47,10 +47,6 @@ function SidebarFiltersComponent({
     String(price_min).length
       ? true
       : false;
-
-  console.log(query.filter);
-
-  console.log(pathName);
 
   return (
     <Card>

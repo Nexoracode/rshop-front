@@ -22,7 +22,6 @@ export default function CategoriesSection({ categories }: Props) {
   const chunckedCategories = chunkArray(categories, 2);
   const chunckedCategories9 = chunkArray(categories, 9);
   const isMobile = useIsMobile(1336);
-  console.log(chunckedCategories);
 
   return (
     <section className="container-home space-y-4 md:space-y-7 mt-8 md:mt-12">

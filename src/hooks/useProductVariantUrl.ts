@@ -25,7 +25,6 @@ export default function useProductVariantUrl(variants: ProductVariant[]) {
   };
 
   const selectAttributeValue = (attr_id: number, value: number) => {
-    console.log({ selectedVariant, s: { attr_id, value } });
     const currentValues =
       selectedVariant?.attributes.map((attr) => ({
         attr_id: attr.id,
@@ -35,7 +34,6 @@ export default function useProductVariantUrl(variants: ProductVariant[]) {
     const selectedVariantAttributes = currentValues.map((cv) =>
       cv.attr_id === attr_id ? { attr_id, value } : cv,
     );
-    console.log({ selectedVariantAttributes, variants });
 
     const currentVariant = variants.find((variant) =>
       selectedVariantAttributes.find((sv) =>
@@ -44,8 +42,6 @@ export default function useProductVariantUrl(variants: ProductVariant[]) {
         ),
       ),
     );
-
-    console.log({ currentVariant });
 
     setVariant(currentVariant?.id ?? null);
   };
