@@ -89,8 +89,6 @@ export type TicketTopic = {
 };
 
 export type RecentView = {
-  id: number;
-  viewed_at: string;
   product: {
     id: number;
     name: string;
