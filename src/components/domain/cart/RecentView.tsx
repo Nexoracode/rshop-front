@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 import SectionTitle from "@/components/common/SectionTitle";
-import ProductCartItem from "../home/ProductCartItem";
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { HomeSectionProduct } from "@/types/home";
 import RecentViewedCard from "../profile/recent/RecentViewdCard";
 
 export default function RecentView() {
@@ -24,7 +22,7 @@ export default function RecentView() {
   if (!products?.length) return null;
 
   return (
-    <div className="md:border rounded-lg relative overflow-hidden">
+    <div className="md:border rounded-lg relative overflow-hidden !mt-24">
       <div className="p-2 md:p-6">
         <SectionTitle title={"بازدیدهای اخیر شما"} />
       </div>
