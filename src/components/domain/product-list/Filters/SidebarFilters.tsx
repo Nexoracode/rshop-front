@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import React from "react";
@@ -16,7 +17,7 @@ type Props = {
   filters: ProductFilters;
 };
 
-function SidebarFiltersComponent({ filters }: Props) {
+function SidebarFilters({ filters }: Props) {
   const {
     attributes,
     generic: { boolean_filter, brands, categories, price_range },
@@ -187,7 +188,5 @@ function SidebarFiltersComponent({ filters }: Props) {
     </Card>
   );
 }
-
-const SidebarFilters = SidebarFiltersComponent;
 
 export default SidebarFilters;

@@ -4,6 +4,7 @@ import CollectionHero from "@/components/domain/collection/CollectionHero";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { getCollectionDetails } from "@/queries/products/collection";
 import React, { Suspense } from "react";
+import EmptyState from "@/components/common/EmptyState";
 
 export default async function CollectionPage({
   params,
@@ -14,7 +15,13 @@ export default async function CollectionPage({
 
   const data = await queryClient.fetchQuery(getCollectionDetails(slug));
 
-  if (!data) return <p>کالکشن یافت نشد</p>;
+  if (!data) {
+    return (
+      <div className="w-full h-[84vh] flex items-center justify-center">
+        <EmptyState />
+      </div>
+    );
+  }
 
   return (
     <div className="container space-y-1  py-10">

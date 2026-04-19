@@ -6,13 +6,15 @@ import React from "react";
 
 export default function CartPage() {
   return (
-    <div className="container relative">
+    <>
       <CartPageHeader />
-      <div className="mt-16 space-y-10 p-4">
-        <AwaitingPayments />
-        <CartItemsList />
-        <RecentView />
+      <div className="container">
+        <div className="mt-16 space-y-10 p-4">
+          <AwaitingPayments />
+          <CartItemsList />
+          <RecentView />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
