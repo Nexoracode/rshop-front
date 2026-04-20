@@ -9,29 +9,36 @@ export default function AwatingPaymentCard({
   id,
   total,
   remaining_seconds,
-}: Order & { remaining_seconds: number }) {
+  remaininigOrders,
+}: Order & { remaining_seconds: number; remaininigOrders: number }) {
   return (
-    <div className="flex text-sm items-center justify-between border-b last:border-b-0">
-      <div>{id}</div>
+    <div>
+      <div className="flex items-center justify-between bg-slate-50 rounded-lg p-4 mb-4">
+        <p className="animate-pulse text-sm">{`شما ${remaininigOrders} سفارش در انتظار پرداخت دارید`}</p>
+        <div className="flex text-warning-600">
+          <AlertCircle className="size-4" />
 
-      <div>
-        <span className="text-muted-light">قابل پرداخت</span>{" "}
-        <span className="font-medium">{formatToman(total)}</span>
-      </div>
-
-      <div className="flex text-warning-600">
-        <AlertCircle />
-
-        <div className="ps-2">
-          سفارش شما در صورت عدم پرداخت تا {formatDurationFa(remaining_seconds)}{" "}
-          دیگر لغو خواهدشد.{" "}
+          <div className="ps-2 text-[13px]">
+            در صورت عدم پرداخت تا {formatDurationFa(remaining_seconds)} دیگر
+            سفارش لغو خواهدشد.{" "}
+          </div>
         </div>
       </div>
-      <div className="space-x-3">
-        <Button variant={"outline"} href={`/profile/orders/${id}`}>
-          جزییات سفارش
-        </Button>
-        <Button href={`/checkout/payment/${id}`}>پرداخت</Button>
+      <div className="flex text-sm items-center justify-between">
+        <div className="flex items-center gap-4">
+          <p className="text-[15px]">قابل پرداخت</p>
+          <p className="text-[19px] font-medium">
+            {formatToman(total, false)}
+            <span className="text-xs text-slate-500 pr-1.5">تومان</span>
+          </p>
+        </div>
+
+        <div className="space-x-3">
+          <Button variant={"outline"} href={`/profile/orders/${id}`}>
+            جزییات سفارش
+          </Button>
+          <Button href={`/checkout/payment/${id}`}>پرداخت</Button>
+        </div>
       </div>
     </div>
   );

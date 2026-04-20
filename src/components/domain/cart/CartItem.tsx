@@ -35,6 +35,7 @@ export default function CartItem({
           alt={product.name}
           width={100}
           height={100}
+          className="h-[100px] object-cover rounded-lg"
         />
         <div className="flex-1 flex flex-col justify-between">
           <div className="flex-1">

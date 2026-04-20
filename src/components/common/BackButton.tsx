@@ -6,9 +6,17 @@ import React, { ComponentProps } from "react";
 type Props = {
   link?: string;
   onClick?: (() => void) | null;
+  children?: React.ReactNode;
+  className?: string;
 } & Omit<ComponentProps<"button">, "onClick">;
 
-export default function BackButton({ onClick, link, ...props }: Props) {
+export default function BackButton({
+  onClick,
+  link,
+  children,
+  className,
+  ...props
+}: Props) {
   const router = useRouter();
   const handleClick = () => {
     if (typeof onClick === "function") return onClick();
@@ -19,8 +27,9 @@ export default function BackButton({ onClick, link, ...props }: Props) {
   };
 
   return (
-    <button {...props} onClick={handleClick}>
-      <ArrowRight className="size-5.5" />
+    <button {...props} onClick={handleClick} className={`flex items-center gap-2 cursor-pointer ${className}`}>
+      <ArrowRight className="size-5" />
+      {children}
     </button>
   );
 }

@@ -18,7 +18,7 @@ export default function CartSummery() {
         <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
 
         <div className="lg:flex hidden items-center justify-between">
-          <p className="text-[13px]">مبلغ کل</p>
+          <p className="text-[13px]">مبلغ کل ({data?.total_quantity})</p>
           <p className="text-base font-medium">
             {formatToman(data?.subtotal ?? 0, false)}
             {toman()}

@@ -42,7 +42,7 @@ export default function RecentView() {
   if (!products?.length) return null;
 
   return (
-    <div className="sm:border rounded-lg relative overflow-hidden lg:!mt-16 mb-[110px] lg:mb-0">
+    <div className="sm:border rounded-lg relative overflow-hidden mb-[110px] lg:mb-0">
       <div className="pt-6 sm:p-6">
         <p className="text-lg font-bold mb-3">بازدیدهای اخیر</p>
       </div>

@@ -37,16 +37,13 @@ export default function CartItemsList() {
 
   return (
     <div className="gap-5 flex">
-      {data?.total_quantity ? null : (
-        <div className="w-full flex justify-center">
-          <EmptyCard />
-        </div>
-      )}
       <div className="sm:border border-slate-200 rounded-lg sm:p-6 flex flex-1 flex-col gap-4 h-fit">
         <p className="hidden md:block text-lg font-bold mb-3">سبد خرید من</p>
-        {data?.items.map((item) => (
-          <CartItem {...item} key={item.id} />
-        ))}
+        {data?.items?.length ? (
+          data.items.map((item) => <CartItem {...item} key={item.id} />)
+        ) : (
+          <EmptyCard />
+        )}
       </div>
 
       {Number(data?.total_quantity) > 0 ? <CartSummery /> : null}

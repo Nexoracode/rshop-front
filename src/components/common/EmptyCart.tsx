@@ -11,7 +11,7 @@ export function EmptyCard() {
 
       <p className="text-muted">برای مشاهده محصولات بیشتر به صفحه زیر بروید</p>
 
-      <Button href={"/"} variant={"text"} fullWidth>
+      <Button href={"/"} variant={"text"}>
         رفتن به فروشگاه
       </Button>
     </div>

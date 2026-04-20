@@ -14,7 +14,7 @@ export default function AwaitingPayments() {
   const { data, isFetching } = useQuery(getAwaitingOrders);
   const isMobile = useIsMobile();
 
-  if (isFetching) return <Skeleton className="h-16" />;
+  if (isFetching) return <Skeleton className="h-16 bg-slate-100" />;
 
   const remaininigOrders =
     data?.items
@@ -30,25 +30,27 @@ export default function AwaitingPayments() {
     <Card>
       {isMobile ? (
         <Link
-          className="flex items-center text-sm py-3"
+          className="flex items-center justify-between text-sm p-3"
           href={`/profile/orders`}
         >
-          <AlertCircle className="text-warning-600 size-5" />
+          <div className="flex items-center gap-1.5">
+            <AlertCircle className="text-warning-600 size-4" />
 
-          <span className="ps-2 flex-1 inline-block">
-            {remaininigOrders.length} سفارش در انتظار پرداخت{" "}
-          </span>
+            <span>
+              {remaininigOrders.length} سفارش در انتظار پرداخت{" "}
+            </span>
+          </div>
 
           <ChevronLeft className="size-4" />
         </Link>
       ) : (
-        <>
-          <div className="border-b pb-2">{`شما ${remaininigOrders.length} سفارش در انتظار پرداخت دارید`}</div>
-
-          {remaininigOrders.map((order) => (
-            <AwatingPaymentCard key={order.id} {...order} />
-          ))}
-        </>
+        remaininigOrders.map((order) => (
+          <AwatingPaymentCard
+            key={order.id}
+            {...order}
+            remaininigOrders={+remaininigOrders.length}
+          />
+        ))
       )}
     </Card>
   ) : null;
