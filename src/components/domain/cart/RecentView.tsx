@@ -19,14 +19,14 @@ export default function RecentView() {
 
   if (!data?.length || isPending)
     return (
-      <div className="border border-slate-200 w-full h-[345px] rounded-lg mt-16 p-6 flex flex-col justify-between gap-4">
-        <p className="text-[20px] mt-2">بازدید های اخیر شما</p>
-        <div className="w-full h-[235px] flex items-center">
-          <div className="w-[180px] h-full border-l-2 animate-pulse border-black/10 rounded-r-lg flex flex-col justify-between p-4">
+      <div className="border border-slate-200 w-full h-[345px] rounded-lg mt-16 p-6 pb-0 pr-0 flex flex-col justify-between gap-4">
+        <p className="text-[20px] mt-2 mr-6 bg-slate-100 h-[30px] w-46 rounded-md animate-pulse"></p>
+        <div className="w-full h-[250px] flex items-center pr-2">
+          <div className="w-[180px] h-full border-l-2 border-slate-200 animate-pulse rounded-r-lg flex flex-col justify-between p-4">
             <div className="bg-slate-100 rounded-md w-full h-[130px]"></div>
             <div className="bg-slate-100 rounded-md w-full h-[30px]"></div>
           </div>
-          <div className="w-[180px] h-full border-l-2 animate-pulse border-black/10 flex flex-col justify-between p-4">
+          <div className="w-[180px] h-full border-l-2 border-slate-200 animate-pulse flex flex-col justify-between p-4">
             <div className="bg-slate-100 rounded-md w-full h-[130px]"></div>
             <div className="bg-slate-100 rounded-md w-full h-[30px]"></div>
           </div>

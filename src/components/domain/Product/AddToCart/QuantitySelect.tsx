@@ -36,7 +36,7 @@ export default function QuantitySelect({
 
   return (
     <div className="flex gap-2 items-center">
-      <div className="inline-flex shadow items-center rounded-lg border bg-background">
+      <div className="inline-flex items-center rounded-md p-0.5 border bg-background">
         <Button
           type="button"
           variant={"text-nohover"}
@@ -78,7 +78,7 @@ export default function QuantitySelect({
           onClick={handleDecrease}
           aria-label="کاهش تعداد"
         >
-          {qty === 1 ? <Trash2Icon size={18} /> : <Minus size={18} />}
+          {qty === 1 ? <Trash2Icon size={16} className="text-slate-500"/> : <Minus size={18} />}
         </Button>
       </div>
     </div>

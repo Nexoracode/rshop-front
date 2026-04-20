@@ -27,7 +27,7 @@ export default function CartItem({
   return (
     <div
       key={id}
-      className="p-3 border rounded-lg flex flex-col justify-between items-stretch"
+      className="border-b pb-5 last:pb-0 border-slate-200 last:border-0 flex flex-col justify-between items-stretch"
     >
       <div className="flex gap-4">
         <Image
