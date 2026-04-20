@@ -4,7 +4,6 @@ import { recentViewList } from "@/queries/profile/recent_views";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-import SectionTitle from "@/components/common/SectionTitle";
 import {
   Carousel,
   CarouselContent,

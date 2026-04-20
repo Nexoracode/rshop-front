@@ -89,6 +89,7 @@ export type TicketTopic = {
 };
 
 export type RecentView = {
+  id?: number;
   product: {
     id: number;
     name: string;
