@@ -19,7 +19,7 @@ export default function RecentView() {
 
   if (!data?.length || isPending)
     return (
-      <div className="border border-slate-200 w-full h-[345px] rounded-lg mt-16 p-6 pb-0 pr-0 flex flex-col justify-between gap-4">
+      <div className="border border-slate-200 w-full h-[345px] rounded-lg lg:mt-16 p-6 pb-0 pr-0 flex flex-col justify-between gap-4">
         <p className="text-[20px] mt-2 mr-6 bg-slate-100 h-[30px] w-46 rounded-md animate-pulse"></p>
         <div className="w-full h-[250px] flex items-center pr-2">
           <div className="w-[180px] h-full border-l-2 border-slate-200 animate-pulse rounded-r-lg flex flex-col justify-between p-4">
@@ -43,9 +43,9 @@ export default function RecentView() {
   if (!products?.length) return null;
 
   return (
-    <div className="lg:border rounded-lg relative overflow-hidden lg:!mt-16">
-      <div className="pr-0 pb-3 lg:p-6">
-        <SectionTitle title={"بازدیدهای اخیر شما"} />
+    <div className="sm:border rounded-lg relative overflow-hidden lg:!mt-16 mb-[110px] lg:mb-0">
+      <div className="pt-6 sm:p-6">
+        <p className="text-lg font-bold mb-3">بازدیدهای اخیر</p>
       </div>
       <Carousel>
         <CarouselNext />
@@ -54,7 +54,7 @@ export default function RecentView() {
           {products.map((product, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-[10rem] border-l last:border-l-0 sm:basis-[12rem]"
+              className="border-l last:border-l-0 basis-[11rem] sm:basis-[12rem]"
             >
               <RecentViewedCard product={product} />
             </CarouselItem>

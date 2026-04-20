@@ -29,7 +29,7 @@ export default function CartItemsList() {
             </div>
           </div>
         </div>
-        <div className="border border-slate-200 min-w-[350px] h-[314px] rounded-lg p-5 flex flex-col gap-4 justify-between">
+        <div className="border border-slate-200 min-w-[350px] h-[314px] rounded-lg p-5 hidden lg:flex flex-col gap-4 justify-between">
           <div className="bg-slate-100 w-full h-full rounded-lg animate-pulse"></div>
           <div className="w-full bg-slate-100 !min-h-[48px] rounded-lg animate-pulse"></div>
         </div>
@@ -43,7 +43,7 @@ export default function CartItemsList() {
           <EmptyCard />
         </div>
       )}
-      <div className="border border-slate-200 rounded-lg p-6 flex flex-1 flex-col gap-4 h-fit">
+      <div className="sm:border border-slate-200 rounded-lg sm:p-6 flex flex-1 flex-col gap-4 h-fit">
         <p className="hidden md:block text-lg font-bold mb-3">سبد خرید من</p>
         {data?.items.map((item) => (
           <CartItem {...item} key={item.id} />
