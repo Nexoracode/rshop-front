@@ -43,8 +43,8 @@ export default function RecentView() {
   if (!products?.length) return null;
 
   return (
-    <div className="md:border rounded-lg relative overflow-hidden !mt-16">
-      <div className="p-2 md:p-6">
+    <div className="border rounded-lg relative overflow-hidden lg:!mt-16">
+      <div className="p-6">
         <SectionTitle title={"بازدیدهای اخیر شما"} />
       </div>
       <Carousel>
