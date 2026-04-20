@@ -9,7 +9,7 @@ export default function CartPage() {
     <>
       <CartPageHeader />
       <div className="container">
-        <div className="mt-16 space-y-10 p-4">
+        <div className="space-y-10 p-4 mb-[110px] lg:mb-0">
           {/*  <AwaitingPayments /> */}
           <CartItemsList />
           <RecentView />

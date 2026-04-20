@@ -13,11 +13,11 @@ export default function CartSummery() {
   };
 
   return (
-    <div className="fixed md:relative bottom-0 left-0 right-0 md:w-[350px] md:left-0 md:right-[unset] md:bottom-[unset]  z-50 md:z-[unset]">
-      <div className="flex justify-between border-t rounded-none md:rounded-xl md:border flex-row-reverse md:flex-col md:gap-4 p-6">
-        <p className="hidden md:block text-lg font-bold mb-3">خلاصه سفارش</p>
+    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset]  z-50 lg:z-[unset]">
+      <div className="flex justify-between border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6">
+        <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
 
-        <div className="md:flex hidden items-center justify-between">
+        <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px]">مبلغ کل</p>
           <p className="text-base font-medium">
             {formatToman(data?.subtotal ?? 0, false)}
@@ -25,7 +25,7 @@ export default function CartSummery() {
           </p>
         </div>
 
-        <div className="md:flex hidden items-center justify-between">
+        <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px] text-green-600">تخفیف</p>
           <p className="text-base font-medium text-green-600">
             {formatToman(data?.discount_total ?? 0, false)}
@@ -33,9 +33,9 @@ export default function CartSummery() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between md:border-t md:pt-4">
+        <div className="flex flex-col py-1 lg:py-0 lg:flex-row lg:items-center justify-between lg:border-t lg:pt-4">
           <p className="text-[15px]">قابل پرداخت</p>
-          <p className="text-sm md:text-[19px] font-medium">
+          <p className="text-[19px] font-medium">
             {formatToman(data?.total ?? 0, false)}
             {toman()}
           </p>
