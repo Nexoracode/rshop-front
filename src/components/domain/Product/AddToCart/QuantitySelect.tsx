@@ -37,16 +37,20 @@ export default function QuantitySelect({
   return (
     <div className="flex gap-2 items-center">
       <div className="inline-flex items-center rounded-md p-0.5 border bg-background">
-        <Button
-          type="button"
-          variant={"text-nohover"}
-          size={"sm"}
-          className="px-2"
-          onClick={handleIncrease}
-          aria-label="افزایش تعداد"
-        >
-          <Plus size={18} />
-        </Button>
+        {maxQty && qty === maxQty ? (
+          <span className="text-danger text-xs pr-1.5 pl-1 cursor-default select-none">حداکثر</span>
+        ) : (
+          <Button
+            type="button"
+            variant={"text-nohover"}
+            size={"sm"}
+            className="px-2"
+            onClick={handleIncrease}
+            aria-label="افزایش تعداد"
+          >
+            <Plus size={18} />
+          </Button>
+        )}
         {loading ? (
           <span>
             <LoaderDots count={3} size={3} />
@@ -65,9 +69,6 @@ export default function QuantitySelect({
               className="w-6 text-center bg-transparent focus:outline-none"
               aria-label="تعداد"
             />
-            {maxQty && qty === maxQty && (
-              <span className="text-danger text-xs">حداکثر</span>
-            )}
           </div>
         )}
         <Button
@@ -78,7 +79,11 @@ export default function QuantitySelect({
           onClick={handleDecrease}
           aria-label="کاهش تعداد"
         >
-          {qty === 1 ? <Trash2Icon size={16} className="text-slate-500"/> : <Minus size={18} />}
+          {qty === 1 ? (
+            <Trash2Icon size={16} className="text-slate-500" />
+          ) : (
+            <Minus size={18} />
+          )}
         </Button>
       </div>
     </div>
