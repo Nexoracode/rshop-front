@@ -1,39 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { EyeIcon } from "lucide-react";
 import { RecentView } from "@/types/user";
 import Link from "next/link";
+import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import { Button } from "@/components/ui/button";
+import { EyeIcon } from "lucide-react";
 
 export default function RecentViewedCard({
   product: { id, image, name },
 }: RecentView) {
   return (
-    <Link target="_blank" href={`/p/rsp-${id}`}>
-      <div className="group p-2 md:p-4">
-        <div className="aspect-square relative rounded-md overflow-hidden">
-          <Image
-            src={image}
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
+    <Link
+      target="_blank"
+      className={`flex flex-col bg-white !h-[254px] select-none`}
+      href={`/p/rsp-${id}`}
+    >
+      {/* image */}
+      <div className="relative mt-2 bg-white w-full flex items-center justify-center">
+        <Image
+          src={image || PRODUCT_PLACEHOLDER}
+          alt={name}
+          width={132}
+          height={132}
+          className="w-[132px] h-[132px] object-cover rounded-lg"
+        />
+      </div>
 
-        <div className="flex-1 flex flex-col justify-between space-y-2">
-          {/* جزئیات */}
-          <div className="space-y-1 mt-3">
-            <p className="text-sm font-medium line-clamp-1">{name}</p>
-          </div>
+      {/* content */}
+      <div className="mt-4 flex-1 justify-between flex flex-col px-2 pb-3">
+        <h3 className="line-clamp-2 text-[13px] font-medium px-2 text-gray-600">
+          {name}
+        </h3>
 
-          {/* اکشن‌ها */}
+        <div className="flex items-center justify-center">
           <Button
             startIcon={<EyeIcon className="w-4 h-4 ml-1" />}
             size="sm"
-            fullWidth
             href={`/p/rsp-${id}`}
             variant={"outline"}
+            className="text-[13px]"
           >
             مشاهده محصول
           </Button>

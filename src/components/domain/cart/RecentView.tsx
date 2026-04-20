@@ -19,12 +19,21 @@ export default function RecentView() {
 
   if (!data?.length || isPending)
     return (
-      <div className="bg-slate-100 w-full h-[345px] rounded-lg animate-pulse mt-16 p-6 flex flex-col justify-between gap-4">
+      <div className="border border-slate-200 w-full h-[345px] rounded-lg mt-16 p-6 flex flex-col justify-between gap-4">
         <p className="text-[20px] mt-2">بازدید های اخیر شما</p>
         <div className="w-full h-[235px] flex items-center">
-          <div className="w-[180px] h-full border-l-3 border-black/20 bg-slate-200 rounded-r-lg"></div>
-          <div className="w-[180px] h-full border-l-3 border-black/20 bg-slate-200"></div>
-          <div className="w-[180px] h-full bg-slate-200 rounded-r-lg"></div>
+          <div className="w-[180px] h-full border-l-2 animate-pulse border-black/10 rounded-r-lg flex flex-col justify-between p-4">
+            <div className="bg-slate-100 rounded-md w-full h-[130px]"></div>
+            <div className="bg-slate-100 rounded-md w-full h-[30px]"></div>
+          </div>
+          <div className="w-[180px] h-full border-l-2 animate-pulse border-black/10 flex flex-col justify-between p-4">
+            <div className="bg-slate-100 rounded-md w-full h-[130px]"></div>
+            <div className="bg-slate-100 rounded-md w-full h-[30px]"></div>
+          </div>
+          <div className="w-[180px] h-full animate-pulse p-4 flex flex-col justify-between gap-4">
+            <div className="bg-slate-100 rounded-md w-full h-[130px]"></div>
+            <div className="bg-slate-100 rounded-md w-full h-[30px]"></div>
+          </div>
         </div>
       </div>
     );
