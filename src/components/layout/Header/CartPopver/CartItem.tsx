@@ -1,11 +1,13 @@
 "use client";
 import QuantitySelect from "@/components/domain/Product/AddToCart/QuantitySelect";
-import { PRODUCT_PLACEHOLDER } from "@/data/assets";
+import { PRODUCT_PLACEHOLDER, SHOP_NAME } from "@/data/assets";
 import { UserCartItem } from "@/types/cart";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CartItemVariant from "./CartItemVariant";
+import ShipingMethods from "@/components/domain/Product/AddToCart/ShipingMethods";
+import { TruckIcon } from "lucide-react";
 
 type Props = UserCartItem & {
   loading: boolean;
@@ -13,32 +15,53 @@ type Props = UserCartItem & {
 };
 export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
-    <div className="flex items-center gap-3 border-b last:border-b-0 py-2">
-      <Link target="_blank" href={`/p/rsp-${item.id}`}>
-        <Image
-          src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-          width={160}
-          height={160}
-          alt=""
-          className="size-16 rounded-md bg-muted"
-        />
-      </Link>
-      <div className="flex-1">
-        <div className="text-base font-medium line-clamp-1">
-          {item.product.name}
-        </div>
-        <CartItemVariant variant={item.variant} />
-        <div className="text-sm">
-          {item.quantity} ×{" "}
-          {(+item.unit_price - +item.discount).toLocaleString()} تومان
+    <div className="flex flex-col gap-3 border-b last:border-b-0 py-5">
+      <div className="h-[114px] flex items-center gap-5">
+        <Link target="_blank" href={`/p/rsp-${item.id}`}>
+          <Image
+            src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+            width={114}
+            height={114}
+            alt=""
+            className="rounded-md bg-muted border"
+          />
+        </Link>
+        <div
+          className={`!h-full flex flex-col pt-1.5 pb-2.5 ${item.variant ? "justify-between" : "justify-center"}`}
+        >
+          <div>
+            <div className="text-[15px] font-medium line-clamp-2 leading-7">
+              {item.product.name}
+            </div>
+            {item.variant ? (
+              <div className="mt-2">
+                <CartItemVariant variant={item.variant} />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <span className="flex items-center gap-2 mt-3">
+            <TruckIcon className="size-4.5 text-primary-500" />
+            <span className="!text-xs text-slate-600">
+              ارسال فروشگاه {SHOP_NAME}
+            </span>
+          </span>
         </div>
       </div>
-      <QuantitySelect
-        qty={item.quantity}
-        maxQty={item.product.stock}
-        onChange={onChange}
-        loading={loading}
-      />
+      <div className="flex items-center justify-start gap-5">
+        <div className="w-[114px] flex items-center justify-center">
+          <QuantitySelect
+            qty={item.quantity}
+            maxQty={item.product.stock}
+            onChange={onChange}
+            loading={loading}
+          />
+        </div>
+        <span className="text-[17px]">
+          {(+item.unit_price - +item.discount).toLocaleString("fa")} تومان
+        </span>
+      </div>
     </div>
   );
 }

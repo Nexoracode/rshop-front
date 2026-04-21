@@ -1,30 +1,22 @@
 "use client";
+
+import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
 
 export default function CartSummery() {
   const { data: cart } = useCart();
   return (
-    <div className="w-full p-3 space-y-3">
-      <div className="flex justify-between">
-        <div className="text-sm">
-          <span className="">تعداد اقلام:</span>
-          <span className="font-bold">{cart?.total_quantity}</span>
-        </div>
-        <div className="">
-          <span className="">جمع کل: </span>
-          <span className="font-medium">
-            {cart?.total.toLocaleString("fa-IR")} تومان
-          </span>
-        </div>
+    <div className="flex items-center justify-between border-t pt-3 px-5">
+      <div className="flex flex-col gap-1">
+        <span className="text-xs text-slate-600">مبلغ قابل پرداخت</span>
+        <span className="font-medium text-lg">
+          <PriceBox price={Number(cart?.total)} />
+        </span>
       </div>
-      <div className="grid grid-cols-2 gap-3 border-t pt-3">
-        <Button href="/cart" variant={"outline"}>
-          {" "}
-          مشاهده سبد
-        </Button>
-        <Button href="/checkout">تسویه حساب</Button>
-      </div>
+      <Button href="/cart" variant="fill" className="!py-5.5">
+        ثبت سفارش
+      </Button>
     </div>
   );
 }

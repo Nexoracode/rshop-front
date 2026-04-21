@@ -37,20 +37,16 @@ export default function QuantitySelect({
   return (
     <div className="flex gap-2 items-center">
       <div className="inline-flex items-center rounded-md p-0.5 border bg-background">
-        {maxQty && qty === maxQty ? (
-          <span className="text-danger text-xs pr-1.5 pl-1 cursor-default select-none">حداکثر</span>
-        ) : (
-          <Button
-            type="button"
-            variant={"text-nohover"}
-            size={"sm"}
-            className="px-2"
-            onClick={handleIncrease}
-            aria-label="افزایش تعداد"
-          >
-            <Plus size={18} />
-          </Button>
-        )}
+        <Button
+          type="button"
+          variant={"text-nohover"}
+          size={"sm"}
+          className="px-2"
+          onClick={handleIncrease}
+          aria-label="افزایش تعداد"
+        >
+          <Plus size={18} />
+        </Button>
         {loading ? (
           <span>
             <LoaderDots count={3} size={3} />
@@ -66,9 +62,16 @@ export default function QuantitySelect({
               const next = Number.isFinite(v) && v > 0 ? Math.floor(v) : 1;
               onChange?(qty + 1)(Math.max(1, Math.min(next, maxQty)));
             }} */
-              className="w-6 text-center bg-transparent focus:outline-none"
+              className="w-6 text-center bg-transparent text-primary-500 focus:outline-none"
               aria-label="تعداد"
             />
+            {maxQty && qty === maxQty ? (
+              <span className="text-slate-500 text-xs pr-1.5 pl-1 cursor-default select-none">
+                حداکثر
+              </span>
+            ) : (
+              " "
+            )}
           </div>
         )}
         <Button

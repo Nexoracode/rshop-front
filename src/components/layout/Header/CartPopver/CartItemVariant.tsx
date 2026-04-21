@@ -22,14 +22,14 @@ export default function CartItemVariant({ variant }: Props) {
                 ></span>
               ) : (
                 <>
-                  <span className="font-normal text-muted">
+                  <span className="font-normal text-muted !text-[13px]">
                     {i.attribute.name}
                   </span>{" "}
                   :{" "}
                 </>
               )}
 
-              <span className="font-medium text-neutral-900">
+              <span className="font-medium text-neutral-900 !text-[13px]">
                 {i.value.value}
               </span>
             </p>

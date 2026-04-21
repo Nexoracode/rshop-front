@@ -14,7 +14,13 @@ import { toast } from "sonner";
 import CartAddedToastContent from "../CartAddedToastContent";
 import ProductShipping from "./ProductShipping";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
-import { Loader2, StoreIcon, ZapIcon } from "lucide-react";
+import {
+  ArrowBigLeft,
+  ArrowDownRight,
+  Loader2,
+  StoreIcon,
+  ZapIcon,
+} from "lucide-react";
 import { useMounted } from "@/hooks/useMounted";
 
 type Props = {
@@ -175,19 +181,19 @@ export default function AddToCartButton({
           )}
         </Button>
       ) : (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
           <QuantitySelect
             qty={currentQuantity}
             maxQty={maxQty}
             onChange={handleQuantityChange}
           />
 
-          <div className="flex flex-col text-sm text-muted-foreground">
-            <span>در سبد شما</span>
-            <Link href="/cart" className="text-primary hover:underline">
-              مشاهده سبد خرید →
-            </Link>
-          </div>
+          <Link href="/cart" className="text-primary hover:underline text-sm">
+            <div className="flex items-center gap-1.5">
+              مشاهده سبد خرید
+              <ArrowDownRight className="rotate-180 text-primary size-4.5" />
+            </div>
+          </Link>
         </div>
       )}
     </div>

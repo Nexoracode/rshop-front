@@ -34,15 +34,15 @@ export default function CartPopover() {
           label="سبد خرید"
         />
       )}
-      {open && (
-        <div className="space-y-3 bg-card top-11 z-50 left-0 p-3 rounded-lg w-sm shadow-around absolute">
-          <div className="text-muted-light font-medium">
+  {/*     {open && ( */}
+        <div className="bg-white top-11 z-50 left-0 rounded-lg w-[400px] h-[482px] shadow-around flex flex-col justify-between absolute pt-4 pb-5">
+          <div className="text-slate-600 text-sm px-5">
             {cart?.total_quantity} کالا
           </div>
           <CartListItems />
           <CartSummery />
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

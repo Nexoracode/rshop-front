@@ -4,7 +4,7 @@ import { formatToman } from "@/lib/utils/price";
 
 type Props = {
   price: number;
-  className: string;
+  className?: string;
 };
 
 export default function PriceBox({ className, price }: Props) {
