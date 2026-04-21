@@ -21,7 +21,7 @@ export default function ProductSummeryCard(product: Product) {
   return (
     <Card
       className={cn(
-        "hidden space-y-4 md:block w-[300px] sticky !rounded-none top-2 mt-14 h-fit border-y-0 border-l-0 border-r",
+        "hidden space-y-4 md:block sticky bg-white rounded-lg top-2 mt-10 h-fit border-y-0 border",
         bannerExists && "top-[10rem]",
       )}
     >

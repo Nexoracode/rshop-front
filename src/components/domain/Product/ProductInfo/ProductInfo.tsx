@@ -113,7 +113,7 @@ export default function ProductInfo(props: Product) {
       <div
         className={cn(
           "lg:w-80 lg:max-w-md",
-          "bg-background border-t lg:shadow-[0_0_6px_rgb(233,235,236)] lg:border-none lg:rounded-xl",
+          "bg-white border-t lg:border lg:rounded-xl",
           "fixed bottom-0 left-0 right-0 z-40",
           "lg:sticky lg:top-6 lg:self-start lg:h-fit",
           "transition-all duration-300",

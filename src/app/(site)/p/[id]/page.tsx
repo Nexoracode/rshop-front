@@ -119,9 +119,8 @@ export default async function ProductPage({
         </Suspense>
       </div>
 
-      {/* بخش پایین: tabs + description + attributes + reviews */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-9 space-y-6">
+      <div className="grid grid-cols-1 lg:flex gap-8">
+        <div className="w-full space-y-6">
           <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
 
           <ProductDescription description={product.description} showMore />
@@ -147,12 +146,11 @@ export default async function ProductPage({
         </div>
 
         {/* کارت خلاصه در دسکتاپ */}
-        <div className="lg:col-span-3 lg:sticky lg:top-24 self-start hidden lg:block">
+        <div className="min-w-[318px] lg:sticky lg:top-24 self-start hidden lg:block">
           <ProductSummeryCard {...product} />
         </div>
       </div>
 
-      {/* Mobile share & actions اگر لازم */}
     </div>
   );
 }
