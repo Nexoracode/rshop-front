@@ -30,22 +30,26 @@ export default function CartItem({
       key={id}
       className="border-b pb-5 last:pb-0 border-slate-200 last:border-0 flex flex-col justify-between items-stretch"
     >
-      <div className="flex gap-4">
-        <Image
-          src={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-          alt={product.name}
-          width={100}
-          height={100}
-          className="h-[100px] object-cover rounded-lg"
-        />
-        <div className="flex-1 flex flex-col justify-between py-1">
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium">{product.name}</div>
+      <div className="w-full flex justify-between items-end gap-4">
+        <div className="flex items-center gap-4">
+          <Image
+            src={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+            alt={product.name}
+            width={100}
+            height={100}
+            className="h-[100px] object-cover rounded-lg"
+          />
+          <div className="flex flex-col gap-3.5">
+            <div className="flex items-center justify-between">
+              <div className="text-sm font-medium">{product.name}</div>
+            </div>
+
+            {variant ? <CartItemVariant variant={variant} /> : ""}
           </div>
+        </div>
 
+        <div className="flex flex-col justify-between py-1">
           <div className="w-full flex items-center justify-between">
-            {variant ? <CartItemVariant variant={variant} /> : <div></div>}
-
             <div className="flex gap-8">
               <div className="flex flex-col justify-end items-end">
                 {+discount > 0 && (
@@ -69,6 +73,7 @@ export default function CartItem({
           </div>
         </div>
       </div>
+
     </div>
   );
 }
