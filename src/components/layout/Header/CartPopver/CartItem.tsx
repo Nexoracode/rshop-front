@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CartItemVariant from "./CartItemVariant";
-import ShipingMethods from "@/components/domain/Product/AddToCart/ShipingMethods";
 import { TruckIcon } from "lucide-react";
 
 type Props = UserCartItem & {

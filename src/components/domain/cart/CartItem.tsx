@@ -7,6 +7,7 @@ import { UserCartItem } from "@/types/cart";
 import { useMutation } from "@tanstack/react-query";
 import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 import PriceBox from "@/components/shared/product/PriceBox";
+import CartItemVariant from "@/components/layout/Header/CartPopver/CartItemVariant";
 
 export default function CartItem({
   id,
@@ -35,41 +36,36 @@ export default function CartItem({
           alt={product.name}
           width={100}
           height={100}
-          className="h-[100px] object-cover rounded-lg border"
+          className="h-[100px] object-cover rounded-lg"
         />
         <div className="flex-1 flex flex-col justify-between py-1">
-          <div className="flex-1">
+          <div className="flex items-center justify-between">
             <div className="text-sm font-medium">{product.name}</div>
-            {variant && (
-              <div className="flex gap-1">
-                {variant.attributes.map((attr) => (
-                  <div key={attr.id} className="text-xs  text-slate-600">
-                    {attr.attribute.name + " " + attr.value.value}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              {+discount > 0 && (
-                <PriceBox
-                  className="font-medium text-[13px] text-green-600 mb-1"
-                  suffix="تومان تخفیف"
-                  price={+discount * quantity}
-                  iconClass="size-5.5"
-                  showToman={false}
-                />
-              )}
-              <PriceBox className="font-medium" price={+line_total} />
+          <div className="w-full flex items-center justify-between">
+            {variant ? <CartItemVariant variant={variant} /> : <div></div>}
+
+            <div className="flex gap-8">
+              <div className="flex flex-col justify-end items-end">
+                {+discount > 0 && (
+                  <PriceBox
+                    className="font-medium text-[13px] text-green-600 mb-1"
+                    suffix="تومان تخفیف"
+                    price={+discount * quantity}
+                    iconClass="size-5.5"
+                    showToman={false}
+                  />
+                )}
+                <PriceBox className="font-medium" price={+line_total} />
+              </div>
+              <QuantitySelect
+                maxQty={product.stock}
+                onChange={handleQtyChange}
+                qty={quantity}
+                loading={deletePending || updatePending}
+              />
             </div>
-            <QuantitySelect
-              maxQty={product.stock}
-              onChange={handleQtyChange}
-              qty={quantity}
-              loading={deletePending || updatePending}
-            />
           </div>
         </div>
       </div>
