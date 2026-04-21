@@ -35,60 +35,51 @@ export default function QuantitySelect({
   };
 
   return (
-    <div className="flex gap-2 items-center">
-      <div className="inline-flex items-center rounded-md p-0.5 border bg-background">
-        <Button
-          type="button"
-          variant={"text-nohover"}
-          size={"sm"}
-          className="px-2"
-          onClick={handleIncrease}
-          aria-label="افزایش تعداد"
-        >
-          <Plus size={18} />
-        </Button>
-        {loading ? (
-          <span>
-            <LoaderDots count={3} size={3} />
-          </span>
-        ) : (
-          <div className="flex flex-col items-center">
-            <input
-              inputMode="numeric"
-              value={qty}
-              disabled
-              /* onChange={(e) => {
+    <div className="inline-flex items-center justify-between rounded-md p-0.5 border bg-background w-[96px] h-[38px]">
+      <Button
+        type="button"
+        variant={"text-nohover"}
+        size={"sm"}
+        className="px-2"
+        onClick={handleIncrease}
+        aria-label="افزایش تعداد"
+      >
+        <Plus size={18} className={maxQty && qty === maxQty ? "rotate-45 !text-slate-400 cursor-default" : ""}/>
+      </Button>
+      {loading ? (
+        <span>
+          <LoaderDots count={3} size={3} />
+        </span>
+      ) : (
+        <div className="flex flex-col items-center">
+          <input
+            inputMode="numeric"
+            value={qty}
+            disabled
+            /* onChange={(e) => {
               const v = Number(e.target.value || 1);
               const next = Number.isFinite(v) && v > 0 ? Math.floor(v) : 1;
               onChange?(qty + 1)(Math.max(1, Math.min(next, maxQty)));
             }} */
-              className="w-6 text-center bg-transparent text-primary-500 focus:outline-none"
-              aria-label="تعداد"
-            />
-            {maxQty && qty === maxQty ? (
-              <span className="text-slate-500 text-xs pr-1.5 pl-1 cursor-default select-none">
-                حداکثر
-              </span>
-            ) : (
-              " "
-            )}
-          </div>
+            className={`w-6 text-center bg-transparent focus:outline-none ${maxQty && qty === maxQty ? "text-red-500" : "text-primary-500"}`}
+            aria-label="تعداد"
+          />
+        </div>
+      )}
+      <Button
+        type="button"
+        variant={"text-nohover"}
+        className="px-2"
+        size={"sm"}
+        onClick={handleDecrease}
+        aria-label="کاهش تعداد"
+      >
+        {qty === 1 ? (
+          <Trash2Icon size={16} className="text-slate-500" />
+        ) : (
+          <Minus size={18} />
         )}
-        <Button
-          type="button"
-          variant={"text-nohover"}
-          className="px-2"
-          size={"sm"}
-          onClick={handleDecrease}
-          aria-label="کاهش تعداد"
-        >
-          {qty === 1 ? (
-            <Trash2Icon size={16} className="text-slate-500" />
-          ) : (
-            <Minus size={18} />
-          )}
-        </Button>
-      </div>
+      </Button>
     </div>
   );
 }

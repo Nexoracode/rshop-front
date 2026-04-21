@@ -14,7 +14,7 @@ export default function CartItemVariant({ variant }: Props) {
         .sort((a, b) => a.attribute.display_order - b.attribute.display_order)
         .map((i) => (
           <>
-            <p className="text-sm flex items-center" key={i.id}>
+            <p className="text-sm flex items-center gap-1" key={i.id}>
               {i.attribute.type === "color" ? (
                 <span
                   className="w-3 h-3 ml-1 rounded-full inline-block"
