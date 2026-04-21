@@ -48,7 +48,7 @@ export default function CartItem({
           </div>
         </div>
 
-        <div className="flex w-full sm:w-fit sm:flex-col sm:h-[100px] sm:pt-1.5 md:pt-0 md:flex-row gap-8 items-end md:items-center justify-between sm:justify-center">
+        <div className="flex w-full sm:w-fit sm:flex-col sm:h-[100px] md:h-fit sm:pt-1.5 md:pt-0 md:flex-row gap-8 items-end md:items-center justify-between sm:justify-center">
           <div className="flex flex-col justify-end sm:items-end">
             {+discount > 0 && (
               <PriceBox
