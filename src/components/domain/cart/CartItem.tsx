@@ -35,9 +35,9 @@ export default function CartItem({
           alt={product.name}
           width={100}
           height={100}
-          className="h-[100px] object-cover rounded-lg"
+          className="h-[100px] object-cover rounded-lg border"
         />
-        <div className="flex-1 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col justify-between py-1">
           <div className="flex-1">
             <div className="text-sm font-medium">{product.name}</div>
             {variant && (
@@ -52,12 +52,14 @@ export default function CartItem({
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex flex-col">
               {+discount > 0 && (
                 <PriceBox
-                  className="inline-block font-medium text-[10px] text-rose-600"
-                  suffix="تخفیف"
+                  className="font-medium text-[13px] text-green-600 mb-1"
+                  suffix="تومان تخفیف"
                   price={+discount * quantity}
+                  iconClass="size-5.5"
+                  showToman={false}
                 />
               )}
               <PriceBox className="font-medium" price={+line_total} />

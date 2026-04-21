@@ -14,7 +14,7 @@ export default function AwaitingPayments() {
   const { data, isFetching } = useQuery(getAwaitingOrders);
   const isMobile = useIsMobile();
 
-  if (isFetching) return <Skeleton className="h-16 bg-slate-100" />;
+  if (isFetching || !data) return <Skeleton className="h-16 bg-slate-100" />;
 
   const remaininigOrders =
     data?.items

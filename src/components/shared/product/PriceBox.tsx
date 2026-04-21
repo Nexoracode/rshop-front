@@ -6,13 +6,25 @@ type Props = {
   price: number;
   className: string;
   suffix?: string;
-  iconSize?: number;
+  iconClass?: string;
+  showToman?: boolean;
 };
 
-export default function PriceBox({ className, price, suffix }: Props) {
+export default function PriceBox({
+  className,
+  price,
+  suffix,
+  iconClass,
+  showToman = true,
+}: Props) {
   return (
-    <span className={`${className}`}>
-      {formatToman(price, false)} <TomanIcon width={"1.2em"} height="1.2em" />{" "}
+    <span className={`${className} flex flex-row items-center gap-1`}>
+      {formatToman(price, false)}{" "}
+      {showToman ? (
+        <TomanIcon width={"1.2em"} height="1.2em" className={`${iconClass}`} />
+      ) : (
+        ""
+      )}{" "}
       {suffix}
     </span>
   );
