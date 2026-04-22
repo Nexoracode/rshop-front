@@ -6,6 +6,7 @@ import { getCart } from "@/queries/cart/cart";
 import CartItem from "@/components/layout/Header/CartPopver/CartItem";
 import CreateOrderBtn from "./CreateOrderBtn";
 import CartSummery from "../cart/CartSummery";
+import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 
 export default function CartSummeryProducts() {
   const { data, isFetching } = useQuery(getCart);
@@ -14,18 +15,24 @@ export default function CartSummeryProducts() {
     return (
       <div className="lg:w-[350px] lg:h-[512px] border border-slate-200 rounded-lg flex flex-col justify-between">
         <div className="p-4 lg:p-0 flex flex-col gap-6">
-          <div className="hidden lg:flex mx-4 w-[105px] mt-5 h-[20px] rounded-lg animate-pulse bg-slate-100"></div>
+          <div className="hidden lg:flex mx-4 mt-5">
+            <Skeleton className="w-[105px] h-[20px]" />
+          </div>
+
           <div className="flex flex-col gap-4">
-            <div className="lg:mx-4 w-[105px] h-[105px] rounded-lg animate-pulse bg-slate-100"></div>
+            <div className="lg:mx-4">
+              <Skeleton className="w-[105px] h-[105px]" />
+            </div>
+
             <div className="lg:mx-4 flex items-center justify-between">
-              <div className="w-[105px] h-[20px] rounded-lg animate-pulse bg-slate-100"></div>
-              <div className="w-[105px] h-[20px] rounded-lg animate-pulse bg-slate-100"></div>
+              <Skeletons count={2} className="w-[105px] h-[20px]" />
             </div>
           </div>
         </div>
+
         <div className="w-full min-h-[286px] border-t border-slate-200 rounded-lg hidden lg:flex flex-col gap-4 justify-between py-6 p-4">
-          <div className="bg-slate-100 w-full h-full animate-pulse rounded-lg"></div>
-          <div className="bg-slate-100 w-full min-h-[48px] animate-pulse rounded-lg"></div>
+          <Skeleton className="w-full h-full" />
+          <Skeleton className="w-full min-h-[48px]" />
         </div>
       </div>
     );
