@@ -10,9 +10,9 @@ type CartSummaryProps = {
 
 const CartSummary: React.FC<CartSummaryProps> = ({ children }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="w-full lg:w-fit flex flex-col gap-6">
       <CartSummeryProducts />
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <CartSummery
           footer={<CreateOrderBtn />}
           showRules

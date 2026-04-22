@@ -8,7 +8,7 @@ export default function CartPage() {
   return (
     <>
       <CartPageHeader />
-      <div className="container space-y-10 px-2 sm:px-0 py-4">
+      <div className="container space-y-10 px-4 lg:px-0 py-4">
         <AwaitingPayments />
         <CartItemsList />
         <RecentView />

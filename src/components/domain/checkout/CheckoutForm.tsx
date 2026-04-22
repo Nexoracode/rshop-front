@@ -15,8 +15,8 @@ export default function CheckoutForm() {
   return (
     <div className="space-y-5">
       <QueryClientWrapper>
-        <div className="flex flex-col md:flex-row md:items-start gap-5">
-          <div className="flex-1 space-y-6 mt-6">
+        <div className="flex flex-col lg:flex-row md:items-start gap-5">
+          <div className="w-full px-4 lg:px-0 flex-1 space-y-6 mt-6">
             <SectionTitle title="تکمیل سفارش" />
 
             <UserInfo />

@@ -17,7 +17,7 @@ export default function CartSummeryProducts() {
 
   return (
     <div
-      className={`bg-white border border-slate-200 rounded-lg md:w-[350px] h-full md:h-[692px] flex flex-col justify-between pt-4 pb-5 transition-all`}
+      className={`bg-white lg:border border-slate-200 rounded-lg w-full lg:w-[350px] h-full lg:h-[692px] flex flex-col justify-between lg:pt-4 lg:pb-5 transition-all`}
     >
       <div className="text-slate-600 text-sm px-5">
         {data?.total_quantity} کالا
@@ -28,7 +28,7 @@ export default function CartSummeryProducts() {
           <CartItem key={item.id} {...item} loading={false} />
         ))}
       </div>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <CartSummery footer={<CreateOrderBtn />} className="!pb-2 !border-x-0 !border-b-0 mx-1"/>
       </div>
     </div>
