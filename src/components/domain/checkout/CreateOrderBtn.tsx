@@ -59,7 +59,7 @@ export default function CreateOrderBtn() {
     <Button
       isLoading={isPending}
       onClick={handleCreateOrder}
-      className="w-full"
+      className="w-[194px] lg:w-full"
     >
       تکمیل سفارش
     </Button>
