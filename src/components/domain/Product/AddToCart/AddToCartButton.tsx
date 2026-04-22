@@ -15,7 +15,6 @@ import CartAddedToastContent from "../CartAddedToastContent";
 import ProductShipping from "./ProductShipping";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
 import {
-  ArrowBigLeft,
   ArrowDownRight,
   Loader2,
   StoreIcon,
@@ -26,11 +25,13 @@ import { useMounted } from "@/hooks/useMounted";
 type Props = {
   product: Product;
   children: React.ReactNode;
+  productDetailBoxClass?: string
 };
 
 export default function AddToCartButton({
   product: { variants, ...product },
   children,
+  productDetailBoxClass
 }: Props) {
   const [openLoginDialog, setOpenLoginDialog] = React.useState(false);
   const mounted = useMounted();
@@ -133,7 +134,7 @@ export default function AddToCartButton({
         onOpenChange={setOpenLoginDialog}
       />
 
-      <div className="flex flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4">
+      <div className={`flex flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}>
         <div className="flex flex-col gap-4">
           {!isOutOfStock ? (
             <div className="hidden lg:flex items-center text-green-700 text-xs gap-2">

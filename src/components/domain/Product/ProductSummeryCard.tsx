@@ -31,9 +31,9 @@ export default function ProductSummeryCard(product: Product) {
           alt=""
           width={65}
           height={65}
-          className="border rounded-md aspect-square"
+          className="rounded-md aspect-square"
         />
-        <div className="flex-1 pr-2">
+        <div className="flex-1 pr-2 flex flex-col gap-2">
           <p className="text-sm line-clamp-2 leading-relaxed text-muted">
             {name}
           </p>
@@ -42,7 +42,7 @@ export default function ProductSummeryCard(product: Product) {
         </div>
       </div>
 
-      <AddToCartButton product={product}>
+      <AddToCartButton product={product} productDetailBoxClass="bg-white !p-0 my-1">
         <div className="my-2">
           <ProductPriceInfo {...product} />
         </div>
