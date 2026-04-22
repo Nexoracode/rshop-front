@@ -1,62 +1,38 @@
 "use client";
+
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCart } from "@/queries/cart/cart";
-import Image from "next/image";
-import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { formatToman } from "@/lib/utils/price";
 import { Skeleton } from "@/components/ui/skeleton";
+import CartItem from "@/components/layout/Header/CartPopver/CartItem";
+import CartSummeryInfo from "./CartSummeryInfo";
+import CreateOrderBtn from "./CreateOrderBtn";
+import Responsive from "@/components/common/Responsive";
+import CartSummery from "../cart/CartSummery";
 
 export default function CartSummeryProducts() {
   const { data, isFetching } = useQuery(getCart);
+
+  if (isFetching || !data) {
+    return <Skeleton />;
+  }
+
   return (
-    <div className="divide-y space-y-2 divide-border">
-      {isFetching ? (
-        <Skeleton />
-      ) : (
-        data?.items.map((item) => (
-          <div key={item.id} className="flex items-center pb-1 justify-between">
-            <div className="flex items-stretch gap-3 flex-1">
-              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border bg-muted">
-                <Image
-                  src={item.product.media_pinned?.url ?? PRODUCT_PLACEHOLDER}
-                  alt={item.product.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+    <div
+      className={`bg-white border rounded-lg md:w-[350px] h-full md:h-[626px] flex flex-col justify-between pt-4 pb-5 transition-all`}
+    >
+      <div className="text-slate-600 text-sm px-5">
+        {data?.total_quantity} کالا
+      </div>
 
-              <div className="flex flex-col flex-1 justify-evenly text-right">
-                <p className="text-sm font-medium text-foreground">
-                  {item.product.name}
-                </p>
-                <div className="flex gap-1">
-                  {item.variant?.attributes.map((i) => (
-                    <p key={i.id} className="text-sm">
-                      <span className="text-muted font-normal">
-                        {i.attribute.name}
-                      </span>{" "}
-                      :{" "}
-                      <span className="font-medium text-neutral-800">
-                        {i.value.value}
-                      </span>
-                    </p>
-                  ))}
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-xs text-muted-foreground">
-                    تعداد: {item.quantity}
-                  </p>
-
-                  <p className="text-sm font-medium text-foreground whitespace-nowrap">
-                    {formatToman(Number(item.line_total))}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))
-      )}
+      <div className="px-5 md:overflow-y-auto scrollbar-custom">
+        {data?.items.map((item) => (
+          <CartItem key={item.id} {...item} loading={false} />
+        ))}
+      </div>
+      <div className="hidden md:block">
+        <CartSummery footer={<CreateOrderBtn />} className="!pb-0 !border-x-0 !border-b-0 mx-1"/>
+      </div>
     </div>
   );
 }

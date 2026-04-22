@@ -3,7 +3,7 @@ import React from "react";
 
 export default function CheckoutPage() {
   return (
-    <div className="container my-10 space-y-20">
+    <div className="container space-y-10 px-2 sm:px-0 py-4">
       <CheckoutForm />
     </div>
   );

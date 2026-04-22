@@ -19,7 +19,7 @@ export default function CheckoutForm() {
     <div className="min-h-screen space-y-5">
       <QueryClientWrapper>
         <SectionTitle title="تکمیل سفارش" />
-        <div className="flex items-start gap-5">
+        <div className="flex flex-col md:flex-row md:items-start gap-5">
           <div className="flex-1 space-y-6 mt-6">
             <UserInfo />
 
@@ -28,14 +28,6 @@ export default function CheckoutForm() {
             <PackageSelector />
 
             <OrderNote />
-
-            <Responsive visible="mobile">
-              <div className="px-4">
-                <CartSummeryInfo />
-
-                <CartSummeryProducts />
-              </div>
-            </Responsive>
           </div>
 
           <CartSummary>

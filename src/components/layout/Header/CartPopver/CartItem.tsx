@@ -7,10 +7,11 @@ import Link from "next/link";
 import React from "react";
 import CartItemVariant from "./CartItemVariant";
 import { TruckIcon } from "lucide-react";
+import PriceBox from "@/components/shared/product/PriceBox";
 
 type Props = UserCartItem & {
   loading: boolean;
-  onChange: (qty: number) => void;
+  onChange?: (qty: number) => void;
 };
 export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
@@ -40,26 +41,46 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
               ""
             )}
           </div>
-          <span className="flex items-center gap-2 mt-3">
-            <TruckIcon className="size-4.5 text-primary-500" />
-            <span className="!text-xs text-slate-600">
-              ارسال فروشگاه {SHOP_NAME}
+          {!onChange ? (
+            <p className="text-primary-500 mt-3">
+              {item.quantity.toLocaleString("fa")} عدد
+            </p>
+          ) : (
+            <span className="flex items-center gap-2 mt-3">
+              <TruckIcon className="size-4.5 text-primary-500" />
+              <span className="!text-xs text-slate-600">
+                ارسال فروشگاه {SHOP_NAME}
+              </span>
             </span>
-          </span>
+          )}
         </div>
       </div>
       <div className="flex items-center justify-start gap-5">
-        <div className="w-[114px] flex items-center justify-center">
-          <QuantitySelect
-            qty={item.quantity}
-            maxQty={item.product.stock}
-            onChange={onChange}
-            loading={loading}
-          />
+        {onChange ? (
+          <div className="min-w-[114px] flex items-center justify-center">
+            <QuantitySelect
+              qty={item.quantity}
+              maxQty={item.product.stock}
+              onChange={onChange}
+              loading={loading}
+            />
+          </div>
+        ) : (
+          ""
+        )}
+
+        <div className="w-full flex items-center justify-between">
+          <PriceBox className="font-medium" price={+item.line_total} />
+          {+item.discount > 0 && (
+            <PriceBox
+              className="font-medium text-[13px] text-green-600 line-clamp-1 truncate text-end"
+              suffix="تخفیف"
+              price={+item.discount * item.quantity}
+              iconClass="size-5.5"
+              showToman={false}
+            />
+          )}
         </div>
-        <span className="text-[17px]">
-          {(+item.unit_price - +item.discount).toLocaleString("fa")} تومان
-        </span>
       </div>
     </div>
   );

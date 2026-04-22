@@ -5,7 +5,13 @@ import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-export default function CartSummery() {
+export default function CartSummery({
+  footer,
+  className,
+}: {
+  footer?: React.ReactNode;
+  className?: string;
+}) {
   const { data } = useQuery(getCart);
 
   const toman = () => {
@@ -13,9 +19,15 @@ export default function CartSummery() {
   };
 
   return (
-    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset]  z-50 lg:z-[unset]">
-      <div className="flex justify-between border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6">
-        <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
+    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset]">
+      <div
+        className={`flex justify-between border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6 ${className}`}
+      >
+        {!footer ? (
+          <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
+        ) : (
+          ""
+        )}
 
         <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px]">مبلغ کل ({data?.total_quantity})</p>
@@ -41,16 +53,18 @@ export default function CartSummery() {
           </p>
         </div>
 
-        <div>
+        {footer ? (
+          footer
+        ) : (
           <div>
             <Button href="/checkout" className="w-full">
               ادامه خرید
             </Button>
+            <p className="text-slate-500 text-xs mt-3">
+              با خرید از {SHOP_NAME} قوانین را پذیرفته اید.
+            </p>
           </div>
-          <p className="text-slate-500 text-xs mt-3">
-            با خرید از {SHOP_NAME} قوانین را پذیرفته اید.
-          </p>
-        </div>
+        )}
       </div>
     </div>
   );
