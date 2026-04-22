@@ -23,7 +23,7 @@ export default function CartListItems() {
   };
 
   return (
-    <div className="px-5 h-[360px] overflow-y-auto scrollbar-custom">
+    <div className="px-5 max-h-[360px] overflow-y-auto scrollbar-custom">
       {cart?.items.map((item) => (
         <CartItem
           key={item.id}

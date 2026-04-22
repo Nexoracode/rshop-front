@@ -34,7 +34,7 @@ export default function CartPopover() {
           label="سبد خرید"
         />
       )}
-      <div className={`bg-white top-11 z-50 left-0 rounded-lg w-[400px] h-[482px] shadow-around flex flex-col justify-between absolute pt-4 pb-5 transition-all ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+      <div className={`bg-white top-11 z-50 left-0 rounded-lg w-[400px] max-h-[482px] shadow-around flex flex-col justify-between absolute pt-4 pb-5 transition-all ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
         <div className="text-slate-600 text-sm px-5">
           {cart?.total_quantity} کالا
         </div>
