@@ -14,25 +14,23 @@ import SectionTitle from "@/components/common/SectionTitle";
 export default function CheckoutForm() {
   return (
     <div className="space-y-5">
-      <QueryClientWrapper>
-        <div className="flex flex-col lg:flex-row md:items-start gap-5">
-          <div className="w-full flex-1 space-y-6 mt-6">
-            <SectionTitle title="تکمیل سفارش" />
+      <div className="flex flex-col lg:flex-row md:items-start gap-5">
+        <div className="w-full flex-1 space-y-6 mt-6">
+          <SectionTitle title="تکمیل سفارش" />
 
-            <UserInfo />
+          <UserInfo />
 
-            <AddressSelector />
+          <AddressSelector />
 
-            <PackageSelector />
+          <PackageSelector />
 
-            <OrderNote />
-          </div>
-
-          <CartSummary>
-            <DiscountField />
-          </CartSummary>
+          <OrderNote />
         </div>
-      </QueryClientWrapper>
+
+        <CartSummary>
+          <DiscountField />
+        </CartSummary>
+      </div>
     </div>
   );
 }

@@ -11,17 +11,17 @@ import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 export default function CartSummeryProducts() {
   const { data, isFetching } = useQuery(getCart);
 
-  if (isFetching || data) {
+  if (isFetching || !data) {
     return (
-      <div className="lg:w-[350px] lg:h-[512px] border border-slate-200 rounded-lg flex flex-col justify-between">
+      <div className="lg:w-[350px] lg:h-[492px] border border-slate-200 rounded-lg flex flex-col justify-between">
         <div className="p-4 lg:p-0 flex flex-col gap-6">
-          <div className="hidden lg:flex mx-4 mt-5">
-            <Skeleton className="w-[105px] h-[20px]" />
+          <div className="hidden lg:flex mx-4 mt-4">
+            <Skeleton className="w-[100px] h-[20px]" />
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <div className="lg:mx-4">
-              <Skeleton className="w-[105px] h-[105px]" />
+              <Skeleton className="w-[100px] h-[100px]" />
             </div>
 
             <div className="lg:mx-4 flex items-center justify-between">
