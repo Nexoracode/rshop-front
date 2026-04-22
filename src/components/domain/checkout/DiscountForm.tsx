@@ -30,27 +30,30 @@ export default function DiscountForm() {
 
     setMessage("");
 
-    try {
       const res = await handleCheck(code);
-      setStatus("valid");
-      setMessage(
-        `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
-      );
-      toast.success("کد تخفیف با موفقیت اعمال شد.");
-      handleSetOrderMeta({
-        promotion_code: code,
-        discount_amount: res.discount,
-      });
-    } catch (error) {
-      setStatus("invalid");
-      console.log(error);
-    }
+      if(res){
+        setStatus("valid");
+        setMessage(
+          `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
+        );
+        toast.success("کد تخفیف با موفقیت اعمال شد.");
+        handleSetOrderMeta({
+          promotion_code: code,
+          discount_amount: res.discount,
+        });
+      }else {
+        setStatus("invalid")
+      }
+   
   };
 
   return (
     <FieldContainer error="" label="">
       <div className={cn("relative w-full transition-all")}>
-        <div className="relative flex items-center border rounded-lg p-3">
+        <div className={cn("relative  flex items-center border rounded-lg p-3" ,  status === "valid" &&
+                "border-green-500 focus-visible:ring-green-500",
+              status === "invalid" &&
+                "border-rose-500 focus-visible:ring-rose-500",)}>
           <Input
             value={code}
             onChange={(e) => {
@@ -59,13 +62,9 @@ export default function DiscountForm() {
             }}
             placeholder="کد تخفیف دارید؟ وارد کنید..."
             disabled={status === "loading" || !!orderMeta.promotion_code}
-            className={cn(
-              "font-medium text-sm border-none shadow-none focus-visible:ring-0 !p-0",
-              status === "valid" &&
-                "border-green-500 focus-visible:ring-green-500",
-              status === "invalid" &&
-                "border-rose-500 focus-visible:ring-rose-500",
-            )}
+            className={
+              "font-medium text-sm border-none shadow-none focus-visible:ring-0 !p-0"
+            }
           />
 
           <Button

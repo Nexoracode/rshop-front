@@ -28,13 +28,7 @@ export function PackageSelector() {
     if (is_gift) {
       handleSetOrderMeta({ is_gift: true });
       setGiftModal(true);
-    } else {
-      handleSetOrderMeta({
-        is_gift,
-        gift_wrapping_id: undefined,
-        gift_message: "",
-      });
-    }
+    } 
   };
 
   const handleSetGiftModal = (selected: number | null) => {
