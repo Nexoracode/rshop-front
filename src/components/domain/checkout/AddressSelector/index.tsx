@@ -11,10 +11,12 @@ import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils/classnames";
 import AddressCard from "../../profile/address/AddressCard";
 import UserAddressDialog from "./UserAddressDialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AddressSelector() {
-  const { data } = useQuery(getUserAddress);
+  const { data, isPending } = useQuery(getUserAddress);
   const [addressOpen, setAddressOpen] = React.useState(false);
+
   const {
     orderMeta: { address },
     handleSetOrderMeta,
@@ -26,7 +28,7 @@ export default function AddressSelector() {
     if (!address && primaryAddress) {
       handleSetOrderMeta({ address: primaryAddress });
     }
-  }, [primaryAddress, address, handleSetOrderMeta]);
+  }, [primaryAddress, address]);
 
   return (
     <div className={cn("w-full space-y-3 border p-6 rounded-xl")}>
@@ -34,21 +36,29 @@ export default function AddressSelector() {
         <Label className="text-sm font-medium">{"انتخاب آدرس ارسال"}</Label>
         <UserAddressDialog addresses={data || []} />
       </div>
-      <div className="grid gap-3">
-        {primaryAddress ? (
-          <AddressCard address={address || primaryAddress} disableAction className="border-none !p-0"/>
-        ) : (
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full border-dashed text-sm mt-2 h-24"
-            onClick={() => setAddressOpen(true)}
-            startIcon={<MapPinPlusIcon size={18} />}
-          >
-            افزودن آدرس جدید
-          </Button>
-        )}
-      </div>
+      {isPending ? (
+        <Skeleton className="w-full h-[154px]" />
+      ) : (
+        <div className="grid gap-3">
+          {primaryAddress ? (
+            <AddressCard
+              address={address || primaryAddress}
+              disableAction
+              className="border-none !p-0"
+            />
+          ) : (
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full border-dashed text-sm mt-2 h-[154px]"
+              onClick={() => setAddressOpen(true)}
+              startIcon={<MapPinPlusIcon size={18} />}
+            >
+              افزودن آدرس جدید
+            </Button>
+          )}
+        </div>
+      )}
 
       {addressOpen ? (
         <AddressForm

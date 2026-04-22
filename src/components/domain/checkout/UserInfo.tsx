@@ -4,9 +4,15 @@ import { AlertCircleIcon } from "lucide-react";
 import React from "react";
 import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
 import { cn } from "@/lib/utils/classnames";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UserInfo() {
-  const { user } = useCurrentUser();
+  const { user, isPending } = useCurrentUser();
+
+  if (isPending || !user) {
+    return <Skeleton className="w-full h-[48px]" />;
+  }
+
   return (
     <div className={cn("bg-background", !user?.first_name && "border-danger")}>
       <div className="flex w-full">
@@ -22,7 +28,9 @@ export default function UserInfo() {
               </div>
             </div>
             <div className="gap-2 items-center">
-              <div className="text-[13px] text-muted-light mb-2">شماره همراه:</div>
+              <div className="text-[13px] text-muted-light mb-2">
+                شماره همراه:
+              </div>
 
               <div className="font-medium text-sm text-muted">{user.phone}</div>
             </div>

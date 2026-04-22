@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 export default function useCheckout() {
   const { mutate } = useMutation(setOrderMeta);
   const { data: orderMeta } = useQuery(getOrderMeta);
-
+  
   const handleSetOrderMeta = (meta: Partial<OrderMeta>) => {
     mutate({
       ...orderMeta,
