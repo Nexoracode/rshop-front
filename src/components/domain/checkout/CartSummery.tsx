@@ -19,7 +19,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ children }) => {
     <div className="flex flex-col gap-6">
       <CartSummeryProducts />
       <div className="md:hidden flex flex-col-reverse md:flex-col bg-white p-4 md:p-0 md:bg-transparent gap-2 md:gap-6 fixed md:!sticky md:top-24 bottom-0 left-0 right-0 md:w-[20rem] z-50 md:z-[unset]">
-        <div className="md:space-y-3 space-y-1 md:border border-slate-300 p-4 md:rounded-lg">
+        <div className="md:space-y-3 space-y-1 md:border border-slate-200 p-4 md:rounded-lg">
           <div className="flex justify-between gap-2 items-center">
             <div className="flex flex-1">
               <CreateOrderBtn />

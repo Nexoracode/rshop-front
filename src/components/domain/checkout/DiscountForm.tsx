@@ -50,17 +50,17 @@ export default function DiscountForm() {
   return (
     <FieldContainer error="" label="">
       <div className={cn("relative w-full transition-all")}>
-        <div className="relative flex items-center">
+        <div className="relative flex items-center border rounded-lg p-3">
           <Input
             value={code}
             onChange={(e) => {
               setCode(e.target.value);
               setStatus("idle");
             }}
-            placeholder="درصورتی که کد تخفیف دارید وارد کنید"
+            placeholder="کد تخفیف دارید؟ وارد کنید..."
             disabled={status === "loading" || !!orderMeta.promotion_code}
             className={cn(
-              "pr-3 h-12 rounded-lg font-medium text-sm border border-slate-300 focus-visible:ring-0",
+              "font-medium text-sm border-none shadow-none focus-visible:ring-0 !p-0",
               status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&
@@ -73,7 +73,7 @@ export default function DiscountForm() {
             size="sm"
             onClick={handleValidate}
             disabled={status === "loading" || status === "valid"}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-md px-4 h-9"
+            className="rounded-md px-4 h-9"
           >
             {status === "loading" ? (
               <Loader2 className="h-4 w-4 animate-spin" />
