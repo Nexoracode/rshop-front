@@ -70,8 +70,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
         )}
 
         <div className="w-full flex items-center justify-between">
-          <PriceBox className="font-medium" price={+item.line_total} />
-          {+item.discount > 0 && (
+          {+item.discount > 0 ? (
             <PriceBox
               className="font-medium text-[13px] text-green-600 line-clamp-1 truncate text-end"
               suffix="تخفیف"
@@ -79,7 +78,10 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
               iconClass="size-5.5"
               showToman={false}
             />
+          ) : (
+            <div></div>
           )}
+          <PriceBox className="font-medium" price={+item.line_total} />
         </div>
       </div>
     </div>

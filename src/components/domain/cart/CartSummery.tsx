@@ -23,11 +23,7 @@ export default function CartSummery({
       <div
         className={`flex justify-between border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6 ${className}`}
       >
-        {!footer ? (
-          <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
-        ) : (
-          ""
-        )}
+        <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
 
         <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px]">مبلغ کل ({data?.total_quantity})</p>

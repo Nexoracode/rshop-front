@@ -5,9 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCart } from "@/queries/cart/cart";
 import { Skeleton } from "@/components/ui/skeleton";
 import CartItem from "@/components/layout/Header/CartPopver/CartItem";
-import CartSummeryInfo from "./CartSummeryInfo";
 import CreateOrderBtn from "./CreateOrderBtn";
-import Responsive from "@/components/common/Responsive";
 import CartSummery from "../cart/CartSummery";
 
 export default function CartSummeryProducts() {
@@ -19,7 +17,7 @@ export default function CartSummeryProducts() {
 
   return (
     <div
-      className={`bg-white border rounded-lg md:w-[350px] h-full md:h-[626px] flex flex-col justify-between pt-4 pb-5 transition-all`}
+      className={`bg-white border rounded-lg md:w-[350px] h-full md:h-[686px] flex flex-col justify-between pt-4 pb-5 transition-all`}
     >
       <div className="text-slate-600 text-sm px-5">
         {data?.total_quantity} کالا
