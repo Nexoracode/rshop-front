@@ -39,6 +39,7 @@ export default function UserAddressDialog({ addresses }: Props) {
               <DialogClose key={address.id} asChild>
                 <div>
                   <AddressCard
+                    showAddressName={false}
                     onSelect={() =>
                       handleSetOrderMeta({ ...orderMeta, address })
                     }

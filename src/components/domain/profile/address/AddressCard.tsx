@@ -23,20 +23,22 @@ type Props = {
   onSetPrimary?: (address: UserAddress) => void;
   disableAction?: boolean;
   className?: string;
-  infoRowClass?: string
+  infoRowClass?: string;
+  showAddressName?: boolean;
 };
 
-export default function AddressCard(props: Props) {
-  const {
-    address,
-    onEdit,
-    onDelete,
-    onSetPrimary,
-    disableAction = false,
-    className,
-    infoRowClass,
-    onSelect
-  } = props;
+export default function AddressCard({
+  address,
+  onEdit,
+  onDelete,
+  onSetPrimary,
+  disableAction = false,
+  className,
+  infoRowClass,
+  onSelect,
+  showAddressName,
+}: Props) {
+  console.log(showAddressName);
   
   return (
     <div
@@ -44,17 +46,23 @@ export default function AddressCard(props: Props) {
       className={`relative bg-white rounded-lg border border-slate-200 p-4 ${onSelect ? "cursor-pointer hover:bg-primary-50 transition-all" : ""} ${className}`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h4 className="text-gray-800 font-medium">{address?.address_name}</h4>
-        {address.is_primary && (
-          <div className="bg-green-50 absolute bottom-4 left-4 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
-            آدرس اصلی
-          </div>
-        )}
-      </div>
+      {showAddressName ? (
+        <div className="flex items-center justify-between mb-6">
+          <h4 className="text-gray-800 font-medium">{address?.address_name}</h4>
+          {address.is_primary && (
+            <div className="bg-green-50 absolute bottom-4 left-4 rounded-md text-green-600 text-xs p-1 px-3 border border-green-300">
+              آدرس اصلی
+            </div>
+          )}
+        </div>
+      ) : (
+        ""
+      )}
 
       {/* Quick Info Row style */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 ${infoRowClass}`}>
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 ${infoRowClass}`}
+      >
         {/* شهر و استان */}
         <div className="flex items-center gap-2">
           <LucideMapPinned className="text-gray-400 text-lg" />

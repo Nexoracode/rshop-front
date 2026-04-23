@@ -58,9 +58,9 @@ export default function GiftMessageInput() {
   );
 
   return (
-    <div className="border p-6 rounded-xl" dir="rtl">
+    <div className="border p-3 sm:p-4 rounded-xl" dir="rtl">
       <div className="flex items-center gap-6 justify-between">
-        <h5 className="font-medium text-neutral-700">متن دلخواه روی بسته‌بندی</h5>
+        <h5 className="font-medium text-xs sm:text-[15px] text-neutral-700">متن دلخواه روی بسته‌بندی</h5>
         
         <div className="flex items-center gap-2">
           <BaseDialog

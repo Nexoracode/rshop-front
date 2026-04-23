@@ -36,6 +36,7 @@ export default function AddressList({
             onEdit={onEdit}
             onDelete={onDelete}
             onSetPrimary={onSetPrimary}
+            showAddressName
           />
         ))
       ) : (

@@ -76,24 +76,28 @@ export default function OrderNote() {
 
   return (
     <div className="flex flex-row-reverse items-end gap-8">
-      {note.length ? (
-        <div className="flex items-center gap-3 pb-1">
-          {submitDescription()}
-          <div
-            className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
-            onClick={() => handleSetOrderMeta({ note: "" })}
-          >
-            <Trash2Icon className="size-4" />
-            <span className="font-medium text-sm">
-              {!note.length ? "افزودن" : ""}
-            </span>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
       <div className="min-w-[240px] gap-2 items-center">
-        <div className="text-[13px] text-muted-light mb-2">توضیحات سفارش:</div>
+        <div className="flex items-center justify-between gap-8 mb-2">
+          <div className="text-[13px] text-muted-light">
+            توضیحات سفارش:
+          </div>
+          {note.length ? (
+            <div className="flex items-center gap-3">
+              {submitDescription()}
+              <div
+                className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
+                onClick={() => handleSetOrderMeta({ note: "" })}
+              >
+                <Trash2Icon className="size-4" />
+                <span className="font-medium text-sm">
+                  {!note.length ? "افزودن" : ""}
+                </span>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="font-medium text-sm text-muted">
           {note.length ? note : submitDescription()}
         </div>

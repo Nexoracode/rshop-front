@@ -37,7 +37,7 @@ export default function AddressSelector() {
         <UserAddressDialog addresses={data || []} />
       </div>
       {isPending ? (
-        <Skeleton className="w-full h-[154px]" />
+        <Skeleton className="w-full h-[106px]" />
       ) : (
         <div className="grid gap-3">
           {primaryAddress ? (
