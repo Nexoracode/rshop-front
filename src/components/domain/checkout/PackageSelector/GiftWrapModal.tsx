@@ -11,34 +11,18 @@ import { cn } from "@/lib/utils/classnames";
 import { formatToman } from "@/lib/utils/price";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
 
-type Props = {
-  is_gift: boolean;
-  onHandleSelectGift: (val: boolean) => void;
-};
-
-export function GiftWrapModal({
-  is_gift,
-  onHandleSelectGift,
-}: Props) {
-  
-  const [open, setOpen] = useState(false)
+export function GiftWrapModal() {
+  const [open, setOpen] = useState(false);
 
   const { data } = useQuery(getGiftWrappings);
   const {
-    orderMeta: { gift_wrapping_id },
+    orderMeta: { is_gift = false, gift_wrapping_id },
     handleSetOrderMeta,
   } = useCheckout();
 
   const handleSelectPack = (selectedId: number) => {
-    handleSetOrderMeta({ gift_wrapping_id: selectedId });
-    onHandleSelectGift(true);
+    handleSetOrderMeta({ gift_wrapping_id: selectedId, is_gift: true });
     setOpen(false);
-  };
-
-  const handleSelectGift = (is_gift: boolean) => {
-    if (is_gift) {
-      handleSetOrderMeta({ is_gift });
-    }
   };
 
   const onDelete = () => {
@@ -47,13 +31,6 @@ export function GiftWrapModal({
       gift_message: "",
       is_gift: false,
     });
-  };
-
-  const handleClose = () => {
-    if (!gift_wrapping_id) {
-      handleSetOrderMeta({ is_gift: false });
-    }
-    setOpen(false);
   };
 
   const GiftModal = () => {

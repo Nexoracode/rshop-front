@@ -7,15 +7,18 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
-import { Button } from "@/components/ui/button";
 
 export default function GiftMessageInput() {
+  const [open, setOpen] = useState(false);
   const {
     handleSetOrderMeta,
-    orderMeta: { gift_message },
+    orderMeta: {is_gift = false, gift_message },
   } = useCheckout();
-
-  const [open, setOpen] = useState(false);
+    console.log(is_gift);
+    
+  if (!is_gift) {
+    return null
+  }
 
   const form = useForm({ values: { gift_message: gift_message || "" } });
 
