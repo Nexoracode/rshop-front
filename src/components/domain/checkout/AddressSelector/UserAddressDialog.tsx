@@ -28,6 +28,7 @@ export default function UserAddressDialog({ addresses }: Props) {
             type="button"
             variant="text-nohover"
             size={"sm"}
+            className="!p-0"
             endIcon={<ChevronLeft size={18} />}
           >
             تغییر آدرس
