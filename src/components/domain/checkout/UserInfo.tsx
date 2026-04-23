@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils/classnames";
 import { Skeleton } from "@/components/ui/skeleton";
 import OrderNote from "./OrderNote";
 import { PackageSelector } from "./PackageSelector";
+import AddressSelector from "./AddressSelector";
 
 export default function UserInfo() {
   const { user, isPending } = useCurrentUser();
@@ -38,6 +39,7 @@ export default function UserInfo() {
             </div>
             <OrderNote />
             <PackageSelector />
+            <AddressSelector />
           </div>
         ) : (
           <div className="items-center space-y-2 justify-between w-full">
