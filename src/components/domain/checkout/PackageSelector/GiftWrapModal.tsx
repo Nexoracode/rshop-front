@@ -14,28 +14,29 @@ import { formatToman } from "@/lib/utils/price";
 
 type Props = {
   open: boolean;
-  onOpenChange: (v: number | null) => void;
+  onClose: () => void;
 };
 
-export function GiftWrapModal({ open, onOpenChange }: Props) {
+export function GiftWrapModal({ open, onClose }: Props) {
   const { data } = useQuery(getGiftWrappings);
   const {
     orderMeta: { gift_wrapping_id },
     handleSetOrderMeta,
   } = useCheckout();
-  const [selected, setSelelcted] = React.useState<number | null>(
-    gift_wrapping_id || null,
-  );
-  const handleSelectPack = () => {
-    if (selected === null) return;
-    handleSetOrderMeta({ gift_wrapping_id: selected });
-    onOpenChange(selected);
+
+  const handleSelectPack = (selectedId: number) => {
+    handleSetOrderMeta({ gift_wrapping_id: selectedId });
+    onClose();
   };
 
   const handleClose = (open: boolean) => {
     if (open) return;
-    setSelelcted(null);
-    onOpenChange(null);
+    
+    if (!gift_wrapping_id) {
+      handleSetOrderMeta({ is_gift: false });
+    }
+
+    onClose();
   };
   return (
     <React.Fragment>
@@ -53,10 +54,10 @@ export function GiftWrapModal({ open, onOpenChange }: Props) {
                   <div
                     role="button"
                     key={item.id}
-                    onClick={() => setSelelcted(item.id)}
+                    onClick={() => handleSelectPack(item.id)}
                     className={cn(
                       "border relative flex items-stretch cursor-pointer rounded-lg overflow-hidden hover:border-muted-500 transition",
-                      selected === item.id &&
+                      gift_wrapping_id === item.id &&
                         "border-green-500 bg-green-500/10",
                     )}
                   >
@@ -79,17 +80,17 @@ export function GiftWrapModal({ open, onOpenChange }: Props) {
                       </div>
                     </div>
 
-                    {selected === item.id && (
+                    {gift_wrapping_id === item.id && (
                       <Check className="absolute left-3 top-3 text-green-600" />
                     )}
                   </div>
                 ))}
             </div>
-            <div className="absolute bottom-0 w-full">
+            {/* <div className="absolute bottom-0 w-full">
               <Button disabled={!selected} fullWidth onClick={handleSelectPack}>
                 ثبت
               </Button>
-            </div>
+            </div> */}
           </div>
         }
       />
