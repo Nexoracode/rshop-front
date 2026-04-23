@@ -76,7 +76,7 @@ export default function OrderNote() {
     <div className="w-1/2 flex flex-col gap-6 border p-6 rounded-lg">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">توضیحات سفارش</div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {submitDescription()}
           {note.length ? (
             <div
@@ -92,7 +92,7 @@ export default function OrderNote() {
       </div>
 
       {note.length ? (
-        <div className="font-medium text-sm text-muted">{note}</div>
+        <div className="font-medium text-sm text-muted leading-8 max-h-[200px] overflow-y-auto">{note}</div>
       ) : (
         <EmptySectionCheckout />
       )}

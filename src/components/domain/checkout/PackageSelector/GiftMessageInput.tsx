@@ -90,13 +90,13 @@ export default function GiftMessageInput() {
   };
 
   return (
-    <div className="gap-2 items-center">
-      <div className="flex items-center justify-between gap-8 mb-2">
-        <div className="text-[13px] text-muted-light">توضیحات بسته بندی:</div>
+    <div className="w-1/2 flex flex-col gap-6 p-6 rounded-lg border">
+      <div className="flex items-center justify-between gap-8">
+        <div className="text-[13px] text-muted-light">توضیحات بسته بندی</div>
 
-        {gift_message?.length ? (
-          <div className="flex items-center gap-3">
-            {GiftMessageModal()}
+        <div className="flex items-center gap-4">
+          {GiftMessageModal()}
+          {gift_message?.length ? (
             <div
               className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
               onClick={handleDelete}
@@ -106,14 +106,19 @@ export default function GiftMessageInput() {
                 {!gift_message.length ? "افزودن" : ""}
               </span>
             </div>
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-      <div className="font-medium text-sm text-muted">
-        {gift_message?.length ? gift_message : GiftMessageModal()}
-      </div>
+
+      {gift_message?.length ? (
+        <div className="font-medium text-sm text-muted leading-8 max-h-[200px] overflow-y-auto scrollbar-custom pl-2">
+          {gift_message}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

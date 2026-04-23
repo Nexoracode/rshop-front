@@ -103,15 +103,17 @@ export function GiftWrapModal() {
   return (
     <div className="flex flex-col gap-6 items-center">
       <div className="w-full flex items-center justify-between gap-8">
-        <div className="text-sm text-muted-light">بسته بندی:</div>
-        {GiftModal()}
-        {is_gift ? (
-          <div className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all">
-            <Trash2Icon className="size-4" onClick={onDelete} />
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="text-sm text-muted-light">بسته بندی</div>
+        <div className="flex items-center gap-4">
+          {GiftModal()}
+          {is_gift ? (
+            <div className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all">
+              <Trash2Icon className="size-4" onClick={onDelete} />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       {is_gift ? <SelectedGiftWrapCard /> : <EmptySectionCheckout />}

@@ -11,9 +11,11 @@ export function PackageSelector() {
   if (!data?.length) return null;
 
   return (
-    <div className="w-1/2 flex flex-col gap-6 p-6 rounded-lg border">
-      <GiftWrapModal />
+    <>
+      <div className="w-1/2 flex flex-col gap-6 p-6 rounded-lg border">
+        <GiftWrapModal />
+      </div>
       <GiftMessageInput />
-    </div>
+    </>
   );
 }
