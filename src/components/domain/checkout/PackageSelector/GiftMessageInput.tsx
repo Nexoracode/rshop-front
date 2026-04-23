@@ -9,18 +9,17 @@ import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
 
 export default function GiftMessageInput() {
-  const [open, setOpen] = useState(false);
   const {
     handleSetOrderMeta,
-    orderMeta: {is_gift = false, gift_message },
+    orderMeta: { is_gift = false, gift_message },
   } = useCheckout();
-    console.log(is_gift);
-    
-  if (!is_gift) {
-    return null
-  }
-
   const form = useForm({ values: { gift_message: gift_message || "" } });
+  const [open, setOpen] = useState(false);
+  console.log(is_gift);
+
+  if (!is_gift) {
+    return null;
+  }
 
   const handleSubmit = ({ gift_message }: FieldValues) => {
     const trimmedMessage = gift_message?.trim();
