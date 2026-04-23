@@ -1,93 +1,119 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/Textarea";
-import useCheckout from "@/hooks/useCheckout";
-import { Edit2Icon, PlusIcon, Trash2Icon } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Edit2Icon, LucidePlus, Trash2Icon } from "lucide-react";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
 
-export function GiftMessageInput() {
+import useCheckout from "@/hooks/useCheckout";
+import TextField from "@/components/common/Form/TextField";
+import BaseDialog from "@/components/common/BaseDialog";
+import { Button } from "@/components/ui/button";
+
+export default function GiftMessageInput() {
   const {
     handleSetOrderMeta,
     orderMeta: { gift_message },
   } = useCheckout();
-  const [editing, setEditing] = useState(false);
-  const [text, setText] = useState(gift_message || "");
 
-  const handleSave = () => {
-    handleSetOrderMeta({ gift_message: text });
-    setEditing(false);
-  };
+  const [open, setOpen] = useState(false);
 
-  const handleEdit = () => {
-    setEditing(true);
+  const form = useForm({ values: { gift_message: gift_message || "" } });
+
+  const handleSubmit = ({ gift_message }: FieldValues) => {
+    const trimmedMessage = gift_message?.trim();
+
+    // اگر خالی بود، متا رو خالی کن
+    if (!trimmedMessage) {
+      handleSetOrderMeta({ gift_message: "" });
+      setOpen(false);
+      return;
+    }
+
+    handleSetOrderMeta({ gift_message: trimmedMessage });
+    setOpen(false);
   };
 
   const handleDelete = () => {
-    setText("");
     handleSetOrderMeta({ gift_message: "" });
   };
 
+  const formContent = (
+    <FormProvider {...form}>
+      <form>
+        <p className="text-primary font-medium text-sm mb-4">
+          پیغام شما روی بسته‌بندی چاپ می‌شود.
+        </p>
+        <TextField
+          rows={4}
+          label="متن پیغام"
+          type="textarea"
+          autoFocus
+          required={false}
+          className="resize-none 0 border border-muted/30 focus-visible:border-0"
+          name="gift_message"
+          placeholder="پیغام شما روی بسته‌بندی چاپ می‌شود..."
+        />
+      </form>
+    </FormProvider>
+  );
+
   return (
-    <div className="space-y-3" dir="rtl">
+    <div className="border p-6 rounded-xl" dir="rtl">
       <div className="flex items-center gap-6 justify-between">
-        <div className="font-medium text-sm">متن دلخواه روی بسته‌بندی</div>
-        {!editing && (
-          <div className="flex justify-start gap-3">
-            {gift_message ? (
-              <>
-                <Button
-                  variant={"outline"}
-                  size={"sm"}
-                  color="info"
-                  className="w-10"
-                  startIcon={<Edit2Icon className="size-5" />}
-                  onClick={handleEdit}
-                />
-                <Button
-                  variant={"outline"}
-                  size={"sm"}
-                  className="w-10"
-                  color="danger"
-                  startIcon={<Trash2Icon className="size-5" />}
-                  onClick={handleDelete}
-                />
-              </>
-            ) : (
+        <h5 className="font-medium text-neutral-700">متن دلخواه روی بسته‌بندی</h5>
+        
+        <div className="flex items-center gap-2">
+          <BaseDialog
+            content={formContent}
+            actionLabel="ثبت متن"
+            onClick={form.handleSubmit(handleSubmit)}
+            cancellButton
+            open={open}
+            onOpenChange={setOpen}
+            title={
+              gift_message?.length
+                ? "ویرایش متن بسته‌بندی"
+                : "افزودن متن به بسته‌بندی (اختیاری)"
+            }
+            trigger={
               <Button
                 variant={"outline"}
                 size={"sm"}
-                startIcon={<PlusIcon className="size-4" />}
-                onClick={handleEdit}
+                fullWidth={false}
+                startIcon={
+                  !gift_message?.length ? (
+                    <LucidePlus className="size-5" />
+                  ) : (
+                    <Edit2Icon className="size-5" />
+                  )
+                }
               >
-                افزودن
+                {!gift_message?.length ? "افزودن" : ""}
               </Button>
-            )}
-          </div>
-        )}
-      </div>
-
-      {editing ? (
-        <>
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="پیغام شما روی بسته‌بندی چاپ می‌شود..."
-            className="min-h-[90px] rounded-xl"
+            }
           />
-          <div className="flex justify-end">
-            <Button size={"sm"} variant={"outline"} onClick={handleSave}>
-              ثبت متن
-            </Button>
-          </div>
-        </>
-      ) : gift_message?.length ? (
-        <div className="bg-gray-50 p-3 rounded text-sm leading-relaxed">
-          {gift_message}
+          
+          {gift_message?.length ? (
+            <Button
+              variant={"outline"}
+              size={"sm"}
+              fullWidth={false}
+              onClick={handleDelete}
+              color="danger"
+              className="w-10 mx-0"
+              startIcon={<Trash2Icon className="size-5" />}
+            />
+          ) : null}
         </div>
-      ) : (
-        ""
-      )}
+      </div>
+      
+      {gift_message?.length ? (
+        <div className="pt-5">
+          <div className="text-sm text-muted">
+            {gift_message}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

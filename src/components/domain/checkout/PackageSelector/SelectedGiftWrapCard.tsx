@@ -14,7 +14,7 @@ export function SelectedGiftWrapCard() {
   const selectedItem = data?.find((item) => item.id === gift_wrapping_id);
 
   return (
-    <div className="border-b pb-6 mt-6" dir="rtl">
+    <div className="pb-3 mt-6" dir="rtl">
       <div className="flex items-stretch gap-4">
         <div className="relative w-20 h-20 bg-muted/5 rounded-md overflow-hidden">
           <Image

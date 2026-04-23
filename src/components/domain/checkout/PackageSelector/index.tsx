@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Check, Edit2Icon, Trash2Icon } from "lucide-react";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
-import { GiftMessageInput } from "./GiftMessageInput";
+import GiftMessageInput from "./GiftMessageInput";
 import { GiftWrapModal } from "./GiftWrapModal";
 import useCheckout from "@/hooks/useCheckout";
 import { useQuery } from "@tanstack/react-query";
@@ -33,7 +33,7 @@ export function PackageSelector() {
 
   const handleSetGiftModal = (selected: number | null) => {
     if (!selected) {
-       handleSetOrderMeta({ is_gift : false });
+      handleSetOrderMeta({ is_gift: false });
     }
 
     setGiftModal(false);
@@ -117,7 +117,7 @@ export function PackageSelector() {
           </>
         )}
 
-        <GiftWrapModal open={giftModal} onClose={()=>setGiftModal(false)} />
+        <GiftWrapModal open={giftModal} onClose={() => setGiftModal(false)} />
       </div>
     </div>
   );
