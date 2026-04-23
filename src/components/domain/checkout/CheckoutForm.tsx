@@ -4,7 +4,6 @@ import React from "react";
 import DiscountField from "./DiscountForm";
 import AddressSelector from "./AddressSelector";
 import CartSummary from "./CartSummery";
-import { PackageSelector } from "./PackageSelector";
 import UserInfo from "./UserInfo";
 import SectionTitle from "@/components/common/SectionTitle";
 
@@ -20,8 +19,6 @@ export default function CheckoutForm() {
           </div>
 
           <AddressSelector />
-
-          <PackageSelector />
         </div>
 
         <CartSummary>

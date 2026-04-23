@@ -6,7 +6,6 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
-import { Button } from "@/components/ui/button";
 
 export default function OrderNote() {
   const {
@@ -56,7 +55,7 @@ export default function OrderNote() {
         open={open}
         onOpenChange={setOpen}
         title={
-          note.length ? "ویرایش توضیحات" : "ثبت توضیحات برای سفارش (اختیاری)"
+          note.length ? "ویرایش توضیحات" : "توضیحات سفارش"
         }
         trigger={
           <div className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all">
@@ -76,7 +75,7 @@ export default function OrderNote() {
 
   return (
     <div className="flex flex-row-reverse items-end gap-8">
-      <div className="min-w-[240px] gap-2 items-center">
+      <div className="gap-2 items-center">
         <div className="flex items-center justify-between gap-8 mb-2">
           <div className="text-[13px] text-muted-light">
             توضیحات سفارش:
@@ -89,9 +88,6 @@ export default function OrderNote() {
                 onClick={() => handleSetOrderMeta({ note: "" })}
               >
                 <Trash2Icon className="size-4" />
-                <span className="font-medium text-sm">
-                  {!note.length ? "افزودن" : ""}
-                </span>
               </div>
             </div>
           ) : (

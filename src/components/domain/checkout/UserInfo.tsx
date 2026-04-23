@@ -6,6 +6,7 @@ import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
 import { cn } from "@/lib/utils/classnames";
 import { Skeleton } from "@/components/ui/skeleton";
 import OrderNote from "./OrderNote";
+import { PackageSelector } from "./PackageSelector";
 
 export default function UserInfo() {
   const { user, isPending } = useCurrentUser();
@@ -18,7 +19,7 @@ export default function UserInfo() {
     <div className={cn("bg-background", !user?.first_name && "border-danger")}>
       <div className="flex w-full">
         {user?.first_name ? (
-          <div className="flex items-center flex-wrap gap-10">
+          <div className="flex items-center flex-wrap gap-16">
             <div className="gap-2 items-center">
               <div className="text-[13px] text-muted-light mb-2">
                 نام و نام خانوادگی:
@@ -36,6 +37,7 @@ export default function UserInfo() {
               <div className="font-medium text-sm text-muted">{user.phone}</div>
             </div>
             <OrderNote />
+            <PackageSelector />
           </div>
         ) : (
           <div className="items-center space-y-2 justify-between w-full">

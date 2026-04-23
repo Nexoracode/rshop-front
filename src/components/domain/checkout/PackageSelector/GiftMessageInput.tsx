@@ -57,63 +57,61 @@ export default function GiftMessageInput() {
     </FormProvider>
   );
 
-  return (
-    <div className="border p-3 sm:p-4 rounded-xl" dir="rtl">
-      <div className="flex items-center gap-6 justify-between">
-        <h5 className="font-medium text-xs sm:text-[15px] text-neutral-700">متن دلخواه روی بسته‌بندی</h5>
-        
-        <div className="flex items-center gap-2">
-          <BaseDialog
-            content={formContent}
-            actionLabel="ثبت متن"
-            onClick={form.handleSubmit(handleSubmit)}
-            cancellButton
-            open={open}
-            onOpenChange={setOpen}
-            title={
-              gift_message?.length
-                ? "ویرایش متن بسته‌بندی"
-                : "افزودن متن به بسته‌بندی (اختیاری)"
-            }
-            trigger={
-              <Button
-                variant={"outline"}
-                size={"sm"}
-                fullWidth={false}
-                startIcon={
-                  !gift_message?.length ? (
-                    <LucidePlus className="size-5" />
-                  ) : (
-                    <Edit2Icon className="size-5" />
-                  )
-                }
-              >
-                {!gift_message?.length ? "افزودن" : ""}
-              </Button>
-            }
-          />
-          
-          {gift_message?.length ? (
-            <Button
-              variant={"outline"}
-              size={"sm"}
-              fullWidth={false}
-              onClick={handleDelete}
-              color="danger"
-              className="w-10 mx-0"
-              startIcon={<Trash2Icon className="size-5" />}
-            />
-          ) : null}
-        </div>
-      </div>
-      
-      {gift_message?.length ? (
-        <div className="pt-5">
-          <div className="text-sm text-muted">
-            {gift_message}
+  const GiftMessageModal = () => {
+    return (
+      <BaseDialog
+        content={formContent}
+        actionLabel="ثبت متن"
+        onClick={form.handleSubmit(handleSubmit)}
+        cancellButton
+        open={open}
+        onOpenChange={setOpen}
+        title={
+          gift_message?.length
+            ? "ویرایش متن بسته‌بندی"
+            : "افزودن متن به بسته‌بندی (اختیاری)"
+        }
+        trigger={
+          <div className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all">
+            {!gift_message?.length ? (
+              <LucidePlus className="size-4" />
+            ) : (
+              <Edit2Icon className="size-4" />
+            )}
+            <span className="font-medium text-sm">
+              {!gift_message?.length ? "افزودن" : ""}
+            </span>
           </div>
-        </div>
-      ) : null}
+        }
+      />
+    );
+  };
+
+  return (
+    <div className="gap-2 items-center">
+      <div className="flex items-center justify-between gap-8 mb-2">
+        <div className="text-[13px] text-muted-light">توضیحات بسته بندی:</div>
+
+        {gift_message?.length ? (
+          <div className="flex items-center gap-3">
+            {GiftMessageModal()}
+            <div
+              className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
+              onClick={handleDelete}
+            >
+              <Trash2Icon className="size-4" />
+              <span className="font-medium text-sm">
+                {!gift_message.length ? "افزودن" : ""}
+              </span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="font-medium text-sm text-muted">
+        {gift_message?.length ? gift_message : GiftMessageModal()}
+      </div>
     </div>
   );
 }

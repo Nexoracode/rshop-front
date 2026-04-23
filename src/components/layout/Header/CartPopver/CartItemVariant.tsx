@@ -12,8 +12,8 @@ export default function CartItemVariant({ variant }: Props) {
     <div className="flex gap-1">
       {variant?.attributes
         .sort((a, b) => a.attribute.display_order - b.attribute.display_order)
-        .map((i) => (
-          <>
+        .map((i, index) => (
+          <React.Fragment key={index}>
             <p className="text-sm flex items-center gap-1" key={i.id}>
               {i.attribute.type === "color" ? (
                 <span
@@ -34,7 +34,7 @@ export default function CartItemVariant({ variant }: Props) {
               </span>
             </p>
             <Separator orientation="vertical" />
-          </>
+          </React.Fragment>
         ))}
     </div>
   );
