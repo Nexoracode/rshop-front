@@ -5,6 +5,7 @@ import React from "react";
 import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
 import { cn } from "@/lib/utils/classnames";
 import { Skeleton } from "@/components/ui/skeleton";
+import OrderNote from "./OrderNote";
 
 export default function UserInfo() {
   const { user, isPending } = useCurrentUser();
@@ -34,6 +35,7 @@ export default function UserInfo() {
 
               <div className="font-medium text-sm text-muted">{user.phone}</div>
             </div>
+            <OrderNote />
           </div>
         ) : (
           <div className="items-center space-y-2 justify-between w-full">
