@@ -3,11 +3,11 @@ import React from "react";
 import { ChevronLeft, MapPinPlus } from "lucide-react";
 import AddressForm from "../../users/AddressForm";
 import { UserAddress } from "@/types/user";
-import UserAddressCard from "./UserAddressCard";
 import useCheckout from "@/hooks/useCheckout";
 import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
+import AddressCard from "../../profile/address/AddressCard";
 
 type Props = {
   addresses: Array<UserAddress>;
@@ -37,11 +37,16 @@ export default function UserAddressDialog({ addresses }: Props) {
           <div className="flex flex-col gap-4">
             {addresses.map((address) => (
               <DialogClose key={address.id} asChild>
-                <UserAddressCard
-                  {...address}
-                  onClick={() => handleSetOrderMeta({ ...orderMeta, address })}
-                  onEdit={() => setAction({ act: "edit", item: address })}
-                />
+                <div>
+                  <AddressCard
+                    onSelect={() =>
+                      handleSetOrderMeta({ ...orderMeta, address })
+                    }
+                    address={address}
+                    onEdit={() => setAction({ act: "edit", item: address })}
+                    infoRowClass="!grid-cols-1"
+                  />
+                </div>
               </DialogClose>
             ))}
           </div>

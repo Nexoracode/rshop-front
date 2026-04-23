@@ -108,28 +108,24 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
   }, [isSuccess, updateSuccess, onOpenChange, form]);
 
   return (
-    <>
-      <BaseDialog
-        title={address ? "ویرایش آدرس" : "افزودن آدرس"}
-        content={
-          <FormProvider {...form}>
-            <form>
-              <AddressFormFields activeStep={activeStep} />
-            </form>
-          </FormProvider>
-        }
-        onClick={() =>
-          activeStep === 0
-            ? handleNextStep()
-            : form.handleSubmit(handleSubmit)()
-        }
-        open={open}
-        onOpenChange={onOpenChange}
-        onCancell={() => (activeStep === 1 ? setActiveStep(0) : null)}
-        cancellButton={activeStep === 1}
-        actionLabel={activeStep === 0 ? "تایید و ادامه" : "ثبت آدرس"}
-        loading={isPending || updatePending}
-      />
-    </>
+    <BaseDialog
+      title={address ? "ویرایش آدرس" : "افزودن آدرس"}
+      content={
+        <FormProvider {...form}>
+          <form>
+            <AddressFormFields activeStep={activeStep} />
+          </form>
+        </FormProvider>
+      }
+      onClick={() =>
+        activeStep === 0 ? handleNextStep() : form.handleSubmit(handleSubmit)()
+      }
+      open={open}
+      onOpenChange={onOpenChange}
+      onCancell={() => (activeStep === 1 ? setActiveStep(0) : null)}
+      cancellButton={activeStep === 1}
+      actionLabel={activeStep === 0 ? "تایید و ادامه" : "ثبت آدرس"}
+      loading={isPending || updatePending}
+    />
   );
 }
