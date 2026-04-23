@@ -14,7 +14,7 @@ export default function UserInfo() {
   }
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full border rounded-lg p-6">
       {user?.first_name ? (
         <div className="flex items-center flex-wrap gap-16">
           <div className="gap-2 items-center">

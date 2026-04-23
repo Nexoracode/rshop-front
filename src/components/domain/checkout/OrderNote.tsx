@@ -6,7 +6,6 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
-import Image from "next/image";
 import EmptySectionCheckout from "./EmptySectionCheckout";
 
 export default function OrderNote() {
@@ -74,7 +73,7 @@ export default function OrderNote() {
   };
 
   return (
-    <div className="w-1/2 flex flex-col gap-6 border-t pt-6">
+    <div className="w-1/2 flex flex-col gap-6 border p-6 rounded-lg">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">توضیحات سفارش</div>
         <div className="flex items-center gap-3">
