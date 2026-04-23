@@ -6,6 +6,8 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
+import Image from "next/image";
+import EmptySectionCheckout from "./EmptySectionCheckout";
 
 export default function OrderNote() {
   const {
@@ -54,9 +56,7 @@ export default function OrderNote() {
         cancellButton
         open={open}
         onOpenChange={setOpen}
-        title={
-          note.length ? "ویرایش توضیحات" : "توضیحات سفارش"
-        }
+        title={note.length ? "ویرایش توضیحات" : "توضیحات سفارش"}
         trigger={
           <div className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all">
             {!note.length ? (
@@ -74,30 +74,29 @@ export default function OrderNote() {
   };
 
   return (
-    <div className="flex flex-row-reverse items-end gap-8">
-      <div className="gap-2 items-center">
-        <div className="flex items-center justify-between gap-8 mb-2">
-          <div className="text-[13px] text-muted-light">
-            توضیحات سفارش:
-          </div>
+    <div className="w-1/2 flex flex-col gap-6 border-t pt-6">
+      <div className="w-full flex items-center justify-between gap-8">
+        <div className="text-sm text-muted-light">توضیحات سفارش</div>
+        <div className="flex items-center gap-3">
+          {submitDescription()}
           {note.length ? (
-            <div className="flex items-center gap-3">
-              {submitDescription()}
-              <div
-                className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
-                onClick={() => handleSetOrderMeta({ note: "" })}
-              >
-                <Trash2Icon className="size-4" />
-              </div>
+            <div
+              className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all"
+              onClick={() => handleSetOrderMeta({ note: "" })}
+            >
+              <Trash2Icon className="size-4" />
             </div>
           ) : (
             ""
           )}
         </div>
-        <div className="font-medium text-sm text-muted">
-          {note.length ? note : submitDescription()}
-        </div>
       </div>
+
+      {note.length ? (
+        <div className="font-medium text-sm text-muted">{note}</div>
+      ) : (
+        <EmptySectionCheckout />
+      )}
     </div>
   );
 }

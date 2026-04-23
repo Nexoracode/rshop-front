@@ -29,7 +29,7 @@ export default function UserAddressDialog({ addresses }: Props) {
             variant="text-nohover"
             size={"sm"}
             className="!p-0"
-            endIcon={<ChevronLeft size={18} />}
+            endIcon={<ChevronLeft className="size-4" />}
           >
             تغییر آدرس
           </Button>

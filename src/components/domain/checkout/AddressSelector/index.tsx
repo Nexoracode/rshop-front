@@ -30,19 +30,14 @@ export default function AddressSelector() {
   const currentAddress = address || primaryAddress;
 
   return (
-    <div className="w-full space-y-3 border p-6 rounded-xl">
+    <div className="w-full border-t pt-6">
       {isPending ? (
         <Skeleton className="w-full h-[106px]" />
       ) : (
         <div className="gap-2 items-center">
-          {/* خط اول: عنوان و دکمه ویرایش */}
-          <div className="flex items-center justify-between gap-8 mb-2">
-            <div className="text-[13px] text-muted-light">آدرس ارسال:</div>
-            {currentAddress && (
-              <div className="flex items-center gap-3">
-                <UserAddressDialog addresses={data || []} />
-              </div>
-            )}
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-muted-light mb-1.5">آدرس ارسال:</div>
+            {currentAddress && <UserAddressDialog addresses={data || []} />}
           </div>
 
           {/* خط دوم: نمایش خلاصه آدرس یا دکمه افزودن */}
@@ -52,8 +47,9 @@ export default function AddressSelector() {
             ) : (
               <Button
                 type="button"
-                variant="outline"
-                className="w-full border-dashed text-sm"
+                variant="text-nohover"
+                size={"sm"}
+                className="!p-0"
                 onClick={() => setAddressOpen(true)}
               >
                 افزودن آدرس جدید

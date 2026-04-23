@@ -10,6 +10,7 @@ import { getGiftWrappings } from "@/queries/checkout/order-meta";
 import { cn } from "@/lib/utils/classnames";
 import { formatToman } from "@/lib/utils/price";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
+import EmptySectionCheckout from "../EmptySectionCheckout";
 
 export function GiftWrapModal() {
   const [open, setOpen] = useState(false);
@@ -100,24 +101,20 @@ export function GiftWrapModal() {
   };
 
   return (
-    <div className="gap-2 items-center">
-      <div className="flex items-center justify-between gap-8 mb-2">
-        <div className="text-[13px] text-muted-light">بسته بندی:</div>
-
+    <div className="flex flex-col gap-6 items-center">
+      <div className="w-full flex items-center justify-between gap-8">
+        <div className="text-sm text-muted-light">بسته بندی:</div>
+        {GiftModal()}
         {is_gift ? (
-          <div className="flex items-center gap-3">
-            {GiftModal()}
-            <div className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all">
-              <Trash2Icon className="size-4" onClick={onDelete} />
-            </div>
+          <div className="flex items-center gap-1 text-slate-500 cursor-pointer hover:text-red-500 transition-all">
+            <Trash2Icon className="size-4" onClick={onDelete} />
           </div>
         ) : (
           ""
         )}
       </div>
-      <div className="font-medium text-sm text-muted">
-        {is_gift ? <SelectedGiftWrapCard /> : GiftModal()}
-      </div>
+
+      {is_gift ? <SelectedGiftWrapCard /> : <EmptySectionCheckout />}
     </div>
   );
 }
