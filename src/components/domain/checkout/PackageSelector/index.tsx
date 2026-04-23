@@ -67,7 +67,7 @@ export function PackageSelector() {
           )}
         </div>
         <div className="font-medium text-sm text-muted">
-          {is_gift && gift_wrapping_id ? <SelectedGiftWrapCard /> : giftModal()}
+          {is_gift ? <SelectedGiftWrapCard /> : giftModal()}
         </div>
       </div>
 
