@@ -14,13 +14,13 @@ export function SelectedGiftWrapCard() {
   const selectedItem = data?.find((item) => item.id === gift_wrapping_id);
 
   return (
-    <div className="w-full flex items-center bg-slate-50 rounded-lg p-4 gap-4">
+    <div className="w-full flex items-center gap-4">
       <Image
         src={selectedItem?.image?.url || "/gift.png"}
         alt={"بسته‌بندی هدیه"}
         width={110}
         height={110}
-        className="object-cover rounded-lg shadow-lg"
+        className="object-cover rounded-lg border"
       />
 
       <div className="h-full flex flex-col justify-between py-1">
