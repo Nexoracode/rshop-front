@@ -91,7 +91,7 @@ export default function GiftMessageInput() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 p-6 rounded-lg border">
+    <div className="w-full flex flex-col gap-6 p-6 border-b sm:border sm:rounded-lg">
       <div className="flex items-center justify-between gap-8">
         <div className="text-[13px] text-muted-light">توضیحات بسته بندی</div>
 

@@ -30,7 +30,7 @@ export default function AddressSelector() {
   const currentAddress = address || primaryAddress;
 
   return (
-    <div className="w-full p-6 rounded-lg border">
+    <div className="w-full p-6 border-b sm:border sm:rounded-lg">
       {isPending ? (
         <Skeleton className="w-full h-[106px]" />
       ) : (

@@ -73,7 +73,7 @@ export default function OrderNote() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 border p-6 rounded-lg">
+    <div className="w-full flex flex-col gap-6 p-6 border-b sm:border sm:rounded-lg">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">توضیحات سفارش</div>
         <div className="flex items-center gap-4">
