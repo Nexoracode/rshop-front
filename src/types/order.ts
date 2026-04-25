@@ -19,16 +19,15 @@ export type OrderItem = {
   line_total: string;
   product: OrderProduct;
   variant:
-    | ({
+    | (Omit<ProductVariant, "attributes"> & {
         attributes: Array<{
           name: string;
           value: string;
-          display_color: number;
+          display_color: string | null; // ← اینجا درست شد
         }>;
-      } & Omit<ProductVariant, "attributes">)
+      })
     | null;
 };
-
 export type StatusOrder =
   | "pending_approval"
   | "awaiting_payment"
