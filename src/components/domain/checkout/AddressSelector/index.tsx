@@ -18,9 +18,17 @@ export default function AddressSelector() {
     handleSetOrderMeta,
   } = useCheckout();
 
-  const primaryAddress = data?.find((a) => a.is_primary) || data?.[0];
+  // ✅ normalize data (جلوگیری از crash)
+  const addresses = React.useMemo(() => {
+    if (!data) return [];
+    if (Array.isArray(data)) return data;
+    if (Array.isArray((data as any)?.data)) return (data as any).data;
+    return [];
+  }, [data]);
 
-  // انتخاب خودکار آدرس اصلی در صورت نبودن آدرس انتخاب‌شده
+  const primaryAddress =
+    addresses.find((a: Record<string, string>) => a.is_primary) || addresses[0];
+
   React.useEffect(() => {
     if (!address && primaryAddress) {
       handleSetOrderMeta({ address: primaryAddress });
@@ -29,7 +37,7 @@ export default function AddressSelector() {
 
   const currentAddress = address || primaryAddress;
 
-  if (isPending) {
+  if (isPending || !addresses.length) {
     return (
       <div className="border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6 h-[110px]">
         <Skeleton className="w-full h-full" />
@@ -42,10 +50,10 @@ export default function AddressSelector() {
       <div className="gap-2 items-center">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
-          {currentAddress && <UserAddressDialog addresses={data || []} />}
+
+          {currentAddress && <UserAddressDialog addresses={addresses} />}
         </div>
 
-        {/* خط دوم: نمایش خلاصه آدرس یا دکمه افزودن */}
         <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
           {currentAddress ? (
             `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
@@ -53,7 +61,7 @@ export default function AddressSelector() {
             <Button
               type="button"
               variant="text-nohover"
-              size={"sm"}
+              size="sm"
               className="!p-0"
               onClick={() => setAddressOpen(true)}
             >
@@ -63,7 +71,6 @@ export default function AddressSelector() {
         </div>
       </div>
 
-      {/* فرم افزودن آدرس جدید (بدون تغییر) */}
       {addressOpen && (
         <AddressForm
           address={null}
