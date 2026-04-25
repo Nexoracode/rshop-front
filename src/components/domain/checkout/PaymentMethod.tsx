@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Label } from "@/components/ui/label";
 import { CreditCard, Banknote } from "lucide-react";
 import useCheckout from "@/hooks/useCheckout";
 import { PaymentMethod as Method } from "@/types/order";
