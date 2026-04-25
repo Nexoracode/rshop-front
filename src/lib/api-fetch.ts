@@ -69,7 +69,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
   // 4) Request + network catch
   // -----------------------------
   try {
-    let finalBody: any = undefined;
+    let finalBody = undefined;
 
     if (body) {
       if (hasFile) {

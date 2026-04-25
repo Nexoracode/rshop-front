@@ -22,12 +22,12 @@ export default function AddressSelector() {
   const addresses = React.useMemo(() => {
     if (!data) return [];
     if (Array.isArray(data)) return data;
-    if (Array.isArray((data as any)?.data)) return (data as any).data;
     return [];
   }, [data]);
 
   const primaryAddress =
-    addresses.find((a: Record<string, string>) => a.is_primary) || addresses[0];
+    addresses.find((a: { is_primary: boolean }) => a.is_primary) ||
+    addresses[0];
 
   React.useEffect(() => {
     if (!address && primaryAddress) {
