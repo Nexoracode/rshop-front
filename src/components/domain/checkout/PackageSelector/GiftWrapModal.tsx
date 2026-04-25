@@ -45,7 +45,7 @@ export function GiftWrapModal() {
             <div className="md:max-h-[70vh] pb-16 overflow-auto no-scrollbar space-y-2">
               {data
                 ?.filter((i) => i.is_active && i.is_for_gift)
-                .map((item, index) => (
+                ?.map((item, index) => (
                   <div
                     role="button"
                     key={index}

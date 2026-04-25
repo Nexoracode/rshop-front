@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import React from "react";
 import PaymentMethodSelector from "../PaymentMethod";
 import PaymentCard from "./PaymentCard";
@@ -16,6 +15,7 @@ import PriceBox from "@/components/common/PriceBox";
 export default function PaymentPage() {
   const { order_id } = useParams();
   const { data, isPending } = useQuery(getOrderDetails(Number(order_id)));
+
   return (
     <div className="space-y-6">
       {isPending ? (
@@ -27,7 +27,9 @@ export default function PaymentPage() {
           <>
             <div className="flex gap-8">
               <div className="flex-1 space-y-8">
-                <div className={`lg:hidden flex flex-col gap-4 md:p-6 rounded-lg md:border`}>
+                <div
+                  className={`lg:hidden flex flex-col gap-4 md:p-6 rounded-lg md:border`}
+                >
                   <p className="text-lg font-bold mb-3">جزئیات سفارش</p>
 
                   {/* subtotal */}
@@ -73,12 +75,14 @@ export default function PaymentPage() {
                   <PaymentMethodSelector />
                 </div>
                 <div className="hidden lg:flex flex-col border p-5 rounded-lg">
-                  <p className="hidden lg:block text-lg font-bold mb-3">روش پرداخت</p>
+                  <p className="hidden lg:block text-lg font-bold mb-3">
+                    روش پرداخت
+                  </p>
                   <PaymentMethodSelector />
                 </div>
-                <Card className="p-3 md:p-6">
+                <div className="sm:border border-slate-200 rounded-lg sm:p-6 h-fit">
                   <OrderItems items={data.items} />
-                </Card>
+                </div>
                 {data.promotions?.length ? (
                   <OrderDiscountSection promotions={data.promotions} />
                 ) : (

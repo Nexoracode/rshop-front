@@ -25,6 +25,7 @@ export default function CartItem({
     if (qty === 0) deleteItem({ itemId: id });
     else updateItem({ itemId: id, quantity: qty });
   };
+
   return (
     <div
       key={id}

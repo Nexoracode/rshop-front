@@ -15,7 +15,7 @@ export default function CartItemVariant({ variant }: Props) {
         .map((i, index) => (
           <React.Fragment key={index}>
             <p className="text-sm flex items-center gap-1" key={i.id}>
-              {i.attribute.type === "color" ? (
+              {i?.attribute.type === "color" ? (
                 <span
                   className="w-3 h-3 ml-1 rounded-full inline-block"
                   style={{ backgroundColor: `${i.value.display_color}` }}
