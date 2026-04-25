@@ -29,7 +29,7 @@ export default function AddressSelector() {
 
   const currentAddress = address || primaryAddress;
 
-  if (isPending || !data) {
+  if (isPending) {
     return (
       <div className="border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6 h-[110px]">
         <Skeleton className="w-full h-full" />

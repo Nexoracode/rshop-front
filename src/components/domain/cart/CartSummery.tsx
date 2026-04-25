@@ -24,7 +24,7 @@ export default function CartSummery({
   return (
     <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset]">
       <div
-        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6 ${className}`}
+        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-3 md:p-6 ${className}`}
       >
         <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
 

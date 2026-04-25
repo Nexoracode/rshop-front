@@ -28,12 +28,10 @@ export default function OrderSummeryInfo({
   showRules = false,
   orderID,
 }: Props) {
-  return (
-    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:bottom-auto z-50 lg:z-auto">
-      <div
-        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-4 lg:p-6 ${className}`}
-      >
-        <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
+  const DetailSummery = () => {
+    return (
+      <>
+        <p className="hidden lg:block text-lg font-bold mb-3">جزئیات سفارش</p>
 
         {/* subtotal */}
         <div className="hidden lg:flex items-center justify-between">
@@ -76,13 +74,18 @@ export default function OrderSummeryInfo({
         {/* total */}
         <div className="flex flex-col py-1 lg:py-0 lg:flex-row lg:items-center justify-between lg:border-t lg:pt-4">
           <p className="text-[15px]">قابل پرداخت</p>
-          <PriceBox
-            price={Number(total)}
-            className="text-[19px] font-medium"
-          />
+          <PriceBox price={Number(total)} className="text-[19px] font-medium" />
         </div>
+      </>
+    );
+  };
 
-        {/* footer */}
+  return (
+    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:bottom-auto z-50 lg:z-auto">
+      <div
+        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-3 md:px-6 ${className}`}
+      >
+        <DetailSummery />
         <div>
           <CreatePaymentBtn order_id={orderID} />
 

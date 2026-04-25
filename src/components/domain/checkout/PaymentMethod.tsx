@@ -15,7 +15,6 @@ interface PaymentMethod {
 }
 
 interface PaymentMethodSelectorProps {
-  label?: string;
   defaultValue?: string;
   onChange?: (id: string) => void;
   className?: string;
@@ -37,7 +36,6 @@ const methods: PaymentMethod[] = [
 ];
 
 export default function PaymentMethodSelector({
-  label = "روش پرداخت",
   className,
 }: PaymentMethodSelectorProps) {
   const {
@@ -50,9 +48,7 @@ export default function PaymentMethodSelector({
   };
 
   return (
-    <div className={cn("space-y-3 w-full", className)}>
-      {label && <Label className="text-sm font-medium">{label}</Label>}
-
+    <div className={cn("space-y-3 w-full mt-2", className)}>
       <div className="grid gap-3">
         {methods.map((m) => {
           const Icon = m.icon;
@@ -63,22 +59,22 @@ export default function PaymentMethodSelector({
               type="button"
               onClick={() => handleSelect(m.id)}
               className={cn(
-                "w-full rounded-xl border p-4 text-right transition-all flex items-center gap-3 hover:shadow-sm",
+                "w-full rounded-lg border p-3 sm:p-5 text-right transition-all flex items-center gap-3 hover:shadow-sm",
                 isSelected
-                  ? "border-primary bg-primary/5 ring-1 ring-primary"
+                  ? "border-primary bg-primary/5  ring-primary"
                   : "border-border hover:bg-muted/20",
               )}
             >
               <div
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-lg border shrink-0",
-                  isSelected ? "border-primary bg-primary/10" : "border-muted",
+                  "flex h-10 w-10 items-center justify-center rounded-full border shrink-0",
+                  isSelected ? "border-primary bg-primary/10" : "border-slate-500",
                 )}
               >
                 <Icon
                   className={cn(
-                    "h-5 w-5",
-                    isSelected ? "text-primary" : "text-muted-foreground",
+                    "h-6 w-6",
+                    isSelected ? "text-primary" : "text-slate-500",
                   )}
                 />
               </div>
@@ -86,14 +82,14 @@ export default function PaymentMethodSelector({
               <div className="flex flex-col flex-1 text-right">
                 <span
                   className={cn(
-                    "text-sm font-medium",
+                    "text-sm font-bold",
                     isSelected ? "text-primary" : "",
                   )}
                 >
                   {m.label}
                 </span>
                 {m.description && (
-                  <span className="text-xs text-muted-foreground leading-relaxed">
+                  <span className="text-xs text-muted-foreground leading-relaxed mt-2">
                     {m.description}
                   </span>
                 )}

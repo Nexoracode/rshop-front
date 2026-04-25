@@ -3,7 +3,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="container my-10 space-y-20">
+    <div className="container space-y-10 p-3 md:p-6">
       <PaymentPage />
     </div>
   );

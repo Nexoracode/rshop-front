@@ -12,17 +12,15 @@ export default function PaymentCard({ order_id }: { order_id: number }) {
   }
 
   return (
-    <div>
-      <OrderSummeryInfo
-        discount_total={+data.discount_total}
-        subtotal={+data.subtotal}
-        total={+data.total}
-        total_quantity={data?.items.reduce((c, i) => i.quantity + c, 0)}
-        shipping_cost={data.shipping_cost}
-        gift_wrapping_cost={data.gift_wrapping_cost}
-        showRules
-        orderID={order_id}
-      />
-    </div>
+    <OrderSummeryInfo
+      discount_total={+data.discount_total}
+      subtotal={+data.subtotal}
+      total={+data.total}
+      total_quantity={data?.items.reduce((c, i) => i.quantity + c, 0)}
+      shipping_cost={data.shipping_cost}
+      gift_wrapping_cost={data.gift_wrapping_cost}
+      showRules
+      orderID={order_id}
+    />
   );
 }
