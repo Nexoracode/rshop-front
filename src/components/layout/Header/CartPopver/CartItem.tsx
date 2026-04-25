@@ -15,7 +15,7 @@ type Props = UserCartItem & {
 };
 export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
-    <div className="flex flex-col gap-1.5 border-b last:border-b-0 py-5 last:py-0 sm:last:pb-5">
+    <div className="flex flex-col gap-1.5 border-b last:border-b-0 py-3 sm:last:pb-5">
       <div className="h-[114px] flex items-center gap-5">
         <Link target="_blank" href={`/p/rsp-${item.id}`}>
           <Image

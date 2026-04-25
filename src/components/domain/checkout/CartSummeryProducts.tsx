@@ -40,7 +40,7 @@ export default function CartSummeryProducts() {
 
   return (
     <div
-      className={`bg-white md:border border-slate-200 rounded-lg w-full lg:w-[350px] h-full lg:max-h-[692px] flex flex-col justify-between ${data.items.length > 1 ? "md:pt-4" : "lg:pt-4"} lg:pb-5 transition-all`}
+      className={`bg-white md:border border-slate-200 rounded-lg w-full lg:w-[350px] h-full lg:max-h-[662px] flex flex-col justify-between ${data.items.length > 1 ? "md:pt-4" : "lg:pt-4"} lg:pb-5 transition-all`}
     >
       {data.items.length > 1 ? (
         <div className="text-slate-600 text-sm px-5">

@@ -59,10 +59,10 @@ export default function PaymentMethodSelector({
               type="button"
               onClick={() => handleSelect(m.id)}
               className={cn(
-                "w-full rounded-lg border p-3 sm:p-5 text-right transition-all flex items-center gap-3 hover:shadow-sm",
+                "w-full rounded-lg border p-3 sm:p-5 text-right transition-all flex items-center gap-3",
                 isSelected
                   ? "border-primary bg-primary/5  ring-primary"
-                  : "border-border hover:bg-muted/20",
+                  : "border-border hover:shadow-md",
               )}
             >
               <div

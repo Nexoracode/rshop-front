@@ -1,7 +1,6 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import { SHOP_NAME } from "@/data/assets";
-import { formatToman } from "@/lib/utils/price";
 import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
@@ -16,10 +15,6 @@ export default function CartSummery({
   showRules?: boolean;
 }) {
   const { data } = useQuery(getCart);
-
-  const toman = () => {
-    return <span className="text-xs text-slate-500 pr-1.5">تومان</span>;
-  };
 
   return (
     <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset]">
