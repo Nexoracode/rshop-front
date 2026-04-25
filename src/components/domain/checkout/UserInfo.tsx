@@ -10,7 +10,11 @@ export default function UserInfo() {
   const { user, isPending } = useCurrentUser();
 
   if (isPending || !user) {
-    return <Skeleton className="w-full h-[48px]" />;
+    return (
+      <div className="h-[97.5px] border-b sm:border sm:rounded-lg py-4 px-6">
+        <Skeleton className="w-full h-full" />
+      </div>
+    );
   }
 
   return (

@@ -13,7 +13,7 @@ export default function CartSummeryProducts() {
 
   if (isFetching || !data) {
     return (
-      <div className="lg:w-[350px] lg:h-[492px] border border-slate-200 rounded-lg flex flex-col justify-between">
+      <div className="lg:w-[350px] lg:h-[492px] sm:border border-slate-200 rounded-lg flex flex-col justify-between">
         <div className="p-4 lg:p-0 flex flex-col gap-6">
           <div className="hidden lg:flex mx-4 mt-4">
             <Skeleton className="w-[100px] h-[20px]" />

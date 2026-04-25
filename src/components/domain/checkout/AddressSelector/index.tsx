@@ -29,35 +29,39 @@ export default function AddressSelector() {
 
   const currentAddress = address || primaryAddress;
 
+  if (isPending || !data) {
+    return (
+      <div className="border-b sm:border sm:rounded-lg py-4 px-6 h-[110px]">
+        <Skeleton className="w-full h-full" />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full p-6 border-b sm:border sm:rounded-lg">
-      {isPending ? (
-        <Skeleton className="w-full h-[106px]" />
-      ) : (
-        <div className="gap-2 items-center">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-muted-light">آدرس ارسال:</div>
-            {currentAddress && <UserAddressDialog addresses={data || []} />}
-          </div>
-
-          {/* خط دوم: نمایش خلاصه آدرس یا دکمه افزودن */}
-          <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
-            {currentAddress ? (
-              `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
-            ) : (
-              <Button
-                type="button"
-                variant="text-nohover"
-                size={"sm"}
-                className="!p-0"
-                onClick={() => setAddressOpen(true)}
-              >
-                افزودن آدرس جدید
-              </Button>
-            )}
-          </div>
+      <div className="gap-2 items-center">
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-muted-light">آدرس ارسال:</div>
+          {currentAddress && <UserAddressDialog addresses={data || []} />}
         </div>
-      )}
+
+        {/* خط دوم: نمایش خلاصه آدرس یا دکمه افزودن */}
+        <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
+          {currentAddress ? (
+            `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
+          ) : (
+            <Button
+              type="button"
+              variant="text-nohover"
+              size={"sm"}
+              className="!p-0"
+              onClick={() => setAddressOpen(true)}
+            >
+              افزودن آدرس جدید
+            </Button>
+          )}
+        </div>
+      </div>
 
       {/* فرم افزودن آدرس جدید (بدون تغییر) */}
       {addressOpen && (
