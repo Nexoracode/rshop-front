@@ -55,7 +55,7 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
       <Button
         isLoading={isPending || cardPaymentPending}
         onClick={handlePayment}
-        className="w-full md:mt-4"
+        className="w-full"
       >
         پرداخت
       </Button>

@@ -11,14 +11,14 @@ export default function UserInfo() {
 
   if (isPending || !user) {
     return (
-      <div className="h-[97.5px] border-b sm:border sm:rounded-lg py-4 px-6">
+      <div className="h-[97.5px] border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
         <Skeleton className="w-full h-full" />
       </div>
     );
   }
 
   return (
-    <div className="flex w-full border-b sm:border sm:rounded-lg p-6">
+    <div className="flex w-full border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
       {user?.first_name ? (
         <div className="flex items-center flex-wrap gap-8">
           <div className="gap-2 items-center">

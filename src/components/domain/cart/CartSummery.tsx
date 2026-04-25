@@ -1,3 +1,4 @@
+import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import { SHOP_NAME } from "@/data/assets";
 import { formatToman } from "@/lib/utils/price";
@@ -29,26 +30,26 @@ export default function CartSummery({
 
         <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px]">مبلغ کل ({data?.total_quantity})</p>
-          <p className="text-base font-medium">
-            {formatToman(data?.subtotal ?? 0, false)}
-            {toman()}
-          </p>
+          <PriceBox
+            price={Number(data?.subtotal ?? 0)}
+            className="text-base font-medium"
+          />
         </div>
 
         <div className="lg:flex hidden items-center justify-between">
           <p className="text-[13px] text-green-600">تخفیف</p>
-          <p className="text-base font-medium text-green-600">
-            {formatToman(data?.discount_total ?? 0, false)}
-            <span className="text-xs text-green-600 pr-1.5">تومان</span>
-          </p>
+          <PriceBox
+            price={Number(data?.discount_total ?? 0)}
+            className="text-base font-medium text-green-600"
+          />
         </div>
 
         <div className="flex flex-col py-1 lg:py-0 lg:flex-row lg:items-center justify-between lg:border-t lg:pt-4">
           <p className="text-[15px]">قابل پرداخت</p>
-          <p className="text-[19px] font-medium">
-            {formatToman(data?.total ?? 0, false)}
-            {toman()}
-          </p>
+          <PriceBox
+            price={Number(data?.total)}
+            className="text-[19px] font-medium"
+          />
         </div>
 
         <div>

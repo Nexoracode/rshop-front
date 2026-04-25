@@ -50,7 +50,7 @@ export default function DiscountForm() {
   return (
     <FieldContainer error="" label="">
       <div className={cn("relative w-full transition-all")}>
-        <div className={cn("relative  flex items-center border rounded-lg p-3" ,  status === "valid" &&
+        <div className={cn("relative  flex items-center border rounded-lg py-4 px-6" ,  status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&
                 "border-rose-500 focus-visible:ring-rose-500",)}>
@@ -72,7 +72,7 @@ export default function DiscountForm() {
             size="sm"
             onClick={handleValidate}
             disabled={status === "loading" || status === "valid"}
-            className="rounded-md px-4 h-9"
+            className="rounded-md px-4 h-9 bg-black/80"
           >
             {status === "loading" ? (
               <Loader2 className="h-4 w-4 animate-spin" />

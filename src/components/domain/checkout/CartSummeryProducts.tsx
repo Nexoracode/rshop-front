@@ -14,7 +14,7 @@ export default function CartSummeryProducts() {
   if (isFetching || !data) {
     return (
       <div className="lg:w-[350px] lg:h-[492px] sm:border border-slate-200 rounded-lg flex flex-col justify-between">
-        <div className="p-4 lg:p-0 flex flex-col gap-6">
+        <div className="px-4 sm:p-4 lg:p-0 flex flex-col gap-6">
           <div className="hidden lg:flex mx-4 mt-4">
             <Skeleton className="w-[100px] h-[20px]" />
           </div>
@@ -50,7 +50,7 @@ export default function CartSummeryProducts() {
         ""
       )}
 
-      <div className="px-5 md:overflow-y-auto scrollbar-custom">
+      <div className="px-4 sm:px-6 md:overflow-y-auto scrollbar-custom">
         {data?.items.map((item) => (
           <CartItem key={item.id} {...item} loading={false} />
         ))}

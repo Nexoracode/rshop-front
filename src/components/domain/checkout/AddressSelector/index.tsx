@@ -31,14 +31,14 @@ export default function AddressSelector() {
 
   if (isPending || !data) {
     return (
-      <div className="border-b sm:border sm:rounded-lg py-4 px-6 h-[110px]">
+      <div className="border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6 h-[110px]">
         <Skeleton className="w-full h-full" />
       </div>
     );
   }
 
   return (
-    <div className="w-full p-6 border-b sm:border sm:rounded-lg">
+    <div className="w-full px-2 py-6 sm:p-6 border-b sm:border sm:rounded-lg">
       <div className="gap-2 items-center">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
