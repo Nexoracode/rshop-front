@@ -7,6 +7,7 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
+import EmptySectionCheckout from "../EmptySectionCheckout";
 
 export default function GiftMessageInput() {
   const {
@@ -117,7 +118,7 @@ export default function GiftMessageInput() {
           {gift_message}
         </div>
       ) : (
-        ""
+        <EmptySectionCheckout />
       )}
     </div>
   );

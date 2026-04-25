@@ -15,7 +15,7 @@ export default function CheckoutForm() {
         <div className="w-full flex flex-col gap-8">
           <UserInfo />
           <AddressSelector />
-          <div className="w-full flex gap-8">
+          <div className="w-full grid sm:grid-cols-2 2xl:flex gap-8">
             <OrderNote />
             <PackageSelector />
           </div>

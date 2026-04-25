@@ -101,7 +101,7 @@ export function GiftWrapModal() {
   };
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="w-full flex flex-col gap-6 items-center">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">بسته بندی</div>
         <div className="flex items-center gap-4">
