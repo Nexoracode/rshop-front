@@ -36,12 +36,12 @@ export default function AddressSelector() {
       ) : (
         <div className="gap-2 items-center">
           <div className="flex items-center justify-between">
-            <div className="text-sm text-muted-light mb-1.5">آدرس ارسال:</div>
+            <div className="text-sm text-muted-light">آدرس ارسال:</div>
             {currentAddress && <UserAddressDialog addresses={data || []} />}
           </div>
 
           {/* خط دوم: نمایش خلاصه آدرس یا دکمه افزودن */}
-          <div className="font-medium text-sm text-muted">
+          <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
             {currentAddress ? (
               `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
             ) : (

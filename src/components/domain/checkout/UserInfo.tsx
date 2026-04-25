@@ -16,7 +16,7 @@ export default function UserInfo() {
   return (
     <div className="flex w-full border-b sm:border sm:rounded-lg p-6">
       {user?.first_name ? (
-        <div className="flex items-center flex-wrap gap-16">
+        <div className="flex items-center flex-wrap gap-8">
           <div className="gap-2 items-center">
             <div className="text-[13px] text-muted-light mb-2">
               نام و نام خانوادگی:
