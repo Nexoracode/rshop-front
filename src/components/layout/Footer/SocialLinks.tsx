@@ -3,7 +3,6 @@ import IconEitaa from "@/components/Icons/IconEitaa";
 import IconRubika from "@/components/Icons/IconRubika";
 import { PublicSettings } from "@/types/home";
 import { InstagramIcon, MessageCircle, SendIcon } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
 export default function SocialLinks({ data }: { data: Array<PublicSettings> }) {
@@ -52,12 +51,13 @@ export default function SocialLinks({ data }: { data: Array<PublicSettings> }) {
           const socialItem = data.find((i) => i.key === s.key);
           return socialItem ? (
             <div key={socialItem.key} className="w-[40px] h-[40px] flex items-center justify-center rounded-md border">
-              <Link
-                href={socialItem.value}
+              <a
+                href={!socialItem.value.includes("https://") ? `https://${socialItem.value}` : socialItem.value}
+                target="_blank"
                 className="text-muted/50 hover:text-primary transition-all"
               >
                 <Icon className="w-6" />
-              </Link>
+              </a>
             </div>
           ) : null;
         })}
