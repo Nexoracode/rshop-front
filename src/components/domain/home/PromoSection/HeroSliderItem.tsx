@@ -10,20 +10,23 @@ import Link from "next/link";
 type Props = {
   layoutType: LayoutType;
 } & HeroSlider;
-export default function HeroSliderItem({
-  ...props
-}: Props) {
-  const  {image_url,
-  title,
-  description,
-  button_link,
-  button_text,
-  layoutType,
-  background_color} = props
-  
+export default function HeroSliderItem({ ...props }: Props) {
+  const {
+    image_url,
+    title,
+    description,
+    button_link,
+    button_text,
+    layoutType,
+    background_color,
+  } = props;
+
   return (
     <Link href={button_link}>
-      <div className="select-none min-w-full rounded-xl md:rounded-none overflow-hidden h-full relative" style={{backgroundColor: background_color ?? ""}}>
+      <div
+        className="select-none min-w-full rounded-xl md:rounded-none overflow-hidden h-full relative"
+        style={{ backgroundColor: background_color ?? "" }}
+      >
         <SliderAspect className="h-full">
           {image_url ? (
             <Image
@@ -37,7 +40,11 @@ export default function HeroSliderItem({
           ) : (
             ""
           )}
-          <div className="absolute left-0 top-0 w-full h-full z-20 bg-black/30" />
+          {title.length && description.length ? (
+            <div className="absolute left-0 top-0 w-full h-full z-20 bg-black/30" />
+          ) : (
+            ""
+          )}
           <div
             className={cn(
               "absolute  top-0 bottom-0 z-30 h-full flex flex-col justify-center gap-4 p-2 ",
@@ -46,14 +53,17 @@ export default function HeroSliderItem({
                 : "container-home right-[50%] translate-x-[50%]",
             )}
           >
-            <h2
-              className={cn(
-                "text-2xl sm:text-[42px] text-shadow-blue-400 font-extrabold drop-shadow text-white",
-                //   s.is_dark ? "text-white" : "text-black"
-              )}
-            >
-              {title}
-            </h2>
+            {title ? (
+              <h2
+                className={cn(
+                  "text-2xl sm:text-[42px] text-shadow-blue-400 font-extrabold drop-shadow text-white",
+                )}
+              >
+                {title}
+              </h2>
+            ) : (
+              ""
+            )}
             {description && (
               <p
                 className={cn(

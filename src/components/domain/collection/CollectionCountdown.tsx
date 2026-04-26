@@ -29,13 +29,13 @@ export default function CollectionCountdown({ endDate }: { endDate: string }) {
 
   return (
     <div className="flex flex-row-reverse justify-end gap-2">
-      {Object.entries(time).map(([k, v]) => (
+      {(Object.entries(time)).reverse().map(([k, v]) => (
         <div
           key={k}
-          className="min-w-[52px] rounded-lg bg-muted px-2 py-1 text-center"
+          className="min-w-[52px] rounded-md bg-white p-2 px-3 text-center"
         >
-          <div className="font-bold">{v}</div>
-          <div className="text-xs text-muted-foreground">
+          <div className="font-bold text-gray-800">{v.toLocaleString("fa")}</div>
+          <div className="text-xs text-gray-800">
             {k === "d"
               ? "روز"
               : k === "h"

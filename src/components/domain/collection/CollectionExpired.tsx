@@ -9,7 +9,7 @@ export default function CollectionExpired({ end_date }: Props) {
 
   if (expired)
     <div className="mt-3 rounded bg-destructive/20 px-4 py-2 text-sm">
-      خرید از این کمپین متوقف شده
+      طرح کمپین به پایان رسیده
     </div>;
 
   return null;
