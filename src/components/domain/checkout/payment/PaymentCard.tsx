@@ -7,6 +7,9 @@ import { getOrderDetails } from "@/queries/profile/order";
 export default function PaymentCard({ order_id }: { order_id: number }) {
   const { data } = useQuery(getOrderDetails(Number(order_id)));
 
+  console.log(data);
+  
+
   if (!data) {
     return null;
   }
