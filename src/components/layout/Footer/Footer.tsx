@@ -12,8 +12,6 @@ export default function Footer() {
     {
       title: "خدمات مشتریان",
       links: [
-        { label: "راهنمای خرید", href: "/store-info/purchase-guide" },
-        { label: "شیوه‌های ارسال", href: "/guide/shipping" },
         { label: "سوالات متداول", href: "/guide/faq" },
         { label: "رویه مرجوعی", href: "/guide/store-info/return_policy" },
       ],
@@ -21,17 +19,17 @@ export default function Footer() {
     {
       title: "محصولات",
       links: [
-        { label: "جدیدترین‌ها", href: "/products/new" },
-        { label: "پرفروش‌ها", href: "/products/bestsellers" },
-        { label: "تخفیف دارها", href: "/guide/store-info/about-us" },
-        { label: "دسته بندی ها", href: "/contact" },
+        { label: "پربازدیدترین ها", href: "/products?sortBy=visited" },
+        { label: "پرفروش‌‌ها", href: "/products?sortBy=bestselling" },
+        { label: "تخفیف دارها", href: "/products?query=filter%5Bspecial_offer%5D=1" },
+        { label: "محبوب ترین ها", href: "/products?sortBy=popular" },
       ],
     },
     {
       title: "لینک های مفید",
       links: [
+        { label: "فروشگاه", href: "/products" },
         { label: "درباره ما", href: "/guide/store-info/about-us" },
-        { label: "تماس با ما", href: "/contact" },
       ],
     },
   ];
