@@ -12,7 +12,7 @@ export default async function HomePage() {
   const queryClient = getQueryClient();
   const data = await queryClient.fetchQuery(getHomeSections);
   
-  if (!data) return <PageLoader />;
+  if (!data) return <PageLoader />;  
 
   const featuredSection = data.sections.find(
     (s) => s.section_type === "featured",

@@ -7,16 +7,14 @@ import ProductCartItem from "../ProductCartItem";
 export default function FeaturedSection({
   products,
   display_style,
-  show_view_all_button,
-  view_all_link,
 }: HomeSection) {
   return (
     <div className="container-home relative">
       <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-3 md:p-5">
         <div className="md:w-[10rem]">
           <Promotion
-            show_view_all_button={show_view_all_button}
-            view_all_link={view_all_link}
+            show_view_all_button={true}
+            view_all_link={"/products?query=filter%5Bspecial_offer%5D=1"}
           />
         </div>
         {display_style === "carousel" ? (
