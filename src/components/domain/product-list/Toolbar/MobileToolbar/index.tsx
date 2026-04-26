@@ -29,12 +29,15 @@ export default function MobileToolbar({ filters, totalCount }: Props) {
         <ProductSortSheet />
 
         <MobileFilterSheet filters={filters} totalCount={totalCount} />
-
-        <BrandFilters
-          filters={filters}
-          handleSetFilter={handleSetFilter}
-          query={query}
-        />
+        {filters.generic.brands ? (
+          <BrandFilters
+            filters={filters}
+            handleSetFilter={handleSetFilter}
+            query={query}
+          />
+        ) : (
+          ""
+        )}
         <FilterSheet
           chevren
           content={

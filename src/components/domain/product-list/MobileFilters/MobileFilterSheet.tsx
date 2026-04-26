@@ -15,7 +15,6 @@ import TriggerButton from "../Toolbar/MobileToolbar/TriggerButton";
 
 type Props = { filters: ProductFilters; totalCount: number };
 export default function MobileFilterSheet({ filters, totalCount }: Props) {
-
   const {
     attributes,
     generic: { boolean_filter, brands, categories, price_range },
@@ -52,12 +51,16 @@ export default function MobileFilterSheet({ filters, totalCount }: Props) {
               content={<CategoryFiltersList categories={categories} />}
             />
 
-            <FilterItem
-              label="برند"
-              items={brands.map((b) => ({ label: b.name, value: b.id }))}
-              value={query.filter.brand}
-              onChange={(v) => handleSetFilter("brand", v)}
-            />
+            {brands ? (
+              <FilterItem
+                label="برند"
+                items={brands.map((b) => ({ label: b.name, value: b.id }))}
+                value={query.filter.brand}
+                onChange={(v) => handleSetFilter("brand", v)}
+              />
+            ) : (
+              ""
+            )}
 
             <FilterItem
               label="محدوده قیمت"

@@ -1,4 +1,4 @@
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { LucideIcon } from "lucide-react";
 import React from "react";
 import TriggerButton from "./TriggerButton";
@@ -30,7 +30,7 @@ export default function FilterSheet({
           isActive={isActive}
         />
       </DrawerTrigger>
-      <DrawerContent title={modalLabel}>{content}</DrawerContent>
+      <DrawerContent title={modalLabel}><DrawerTitle></DrawerTitle>{content}</DrawerContent>
     </Drawer>
   );
 }

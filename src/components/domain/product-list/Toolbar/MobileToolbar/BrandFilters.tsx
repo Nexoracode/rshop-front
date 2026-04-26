@@ -20,15 +20,15 @@ export default function BrandFilters({
   return (
     <FilterSheet
       chevren
-      isActive={Boolean(query?.filter.brand?.length)}
+      isActive={Boolean(query?.filter?.brand?.length)}
       content={
         <SelectableFilter
-          items={filters.generic.brands.map((item) => ({
+          items={filters?.generic?.brands?.map((item) => ({
             label: item.name,
             value: item.id,
           }))}
           label={"برند"}
-          search={filters.generic.brands.length > 10}
+          search={filters?.generic?.brands?.length > 10}
           value={query?.filter?.brand ?? []}
           onChange={(value) => handleSetFilter("brand", value)}
         />
