@@ -4,34 +4,29 @@ import { useEffect, useMemo, useState } from "react";
 
 export function useIsMobile(breakpoint: number = 768): boolean {
   const query = useMemo(
-    () => `(max-width: ${breakpoint - 0.02}px)`, // the -0.02 avoids edge off-by-one at exactly breakpoint
+    () => `(max-width: ${breakpoint - 0.02}px)`,
     [breakpoint],
   );
 
-  // Initial state is computed only on client; false on server to avoid hydration mismatch
-  const [isMobile, setIsMobile] = useState<boolean>(() => {
-    if (typeof window === "undefined" || !("matchMedia" in window))
-      return false;
-    return window.matchMedia(query).matches;
-  });
+  // ✅ همیشه false در ابتدا (چه سرور چه کلاینت)
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
   useEffect(() => {
     if (typeof window === "undefined" || !("matchMedia" in window)) return;
 
     const mql = window.matchMedia(query);
     const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
 
-    // sync in case breakpoint changed
+    // تنظیم مقدار اولیه صحیح بعد از mount
     setIsMobile(mql.matches);
 
-    // Safari < 14 fallback: addListener/removeListener
     if ("addEventListener" in mql) {
       mql.addEventListener("change", onChange);
       return () => mql.removeEventListener("change", onChange);
     } else {
-      // @ts-expect-error legacy API
-      mql.addListener(onChange);
-      // @ts-expect-error legacy API
-      return () => mql.removeListener(onChange);
+      // fallback برای مرورگرهای قدیمی
+      (mql as any).addListener(onChange);
+      return () => (mql as any).removeListener(onChange);
     }
   }, [query]);
 

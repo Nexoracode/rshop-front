@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import LogoLink from "../LogoLink";
 import MobileSearchBox from "../SearchBox/MobileSearchBox";

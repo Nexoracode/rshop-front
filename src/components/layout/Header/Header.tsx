@@ -23,7 +23,7 @@ export default function Header({ showPromoBanner = true }: HeaderProps) {
   const isMobileHomePage = isMobile && pathName === "/";
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
   const isMobileCategoryPage = isMobile && pathName.includes("/products");
-  const isCategoriesListInMobile = isMobile && pathName.includes("/categories");
+  const isCategoriesListInMobile = isMobile && pathName.includes("/categories");  
   return (
     <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
       {!isMobileCategoryPage &&

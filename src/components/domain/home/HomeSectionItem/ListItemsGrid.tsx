@@ -17,7 +17,7 @@ export default function ListItemsGrid({ products }: Props) {
       {roundedProducts.map((product, index) => (
         <div
           className={cn()}
-          key={typeof product === "number" ? product : product.id}
+          key={index}
         >
           {typeof product !== "number" && (
             <ProductListItem

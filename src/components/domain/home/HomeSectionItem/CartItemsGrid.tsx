@@ -17,7 +17,7 @@ export default function CartItemsGrid({ products }: Props) {
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
       {roundedProducts.map((product, index) => (
         <div
-          key={product?.id}
+          key={index}
           className={cn(
             "border-l border-b",
             index > roundedProducts.length - 7 && "lg:border-b-0",

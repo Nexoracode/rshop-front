@@ -5,6 +5,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
+      suppressHydrationWarning
       className={cn(
         "bg-white !rounded-lg text-card-foreground flex flex-col gap-6 border border-slate-200 md:p-6 p-2",
         className,

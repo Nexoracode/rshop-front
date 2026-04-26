@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "@/components/common/Image";
 import Link from "next/link";
 import React from "react";
