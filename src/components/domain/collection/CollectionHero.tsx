@@ -13,7 +13,7 @@ export default async function CollectionHero({ data }: { data: Collection }) {
           <Image
             src={image}
             alt={title}
-            width={1200}
+            width={1536}
             height={400}
             className="h-full min-w-full object-cover"
             priority
