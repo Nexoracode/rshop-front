@@ -8,6 +8,8 @@ import AddressForm from "../../users/AddressForm";
 import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LucidePlus } from "lucide-react";
+import EmptySectionCheckout from "../EmptySectionCheckout";
 
 export default function AddressSelector() {
   const { data, isPending } = useQuery(getUserAddress);
@@ -37,7 +39,7 @@ export default function AddressSelector() {
 
   const currentAddress = address || primaryAddress;
 
-  if (isPending || !addresses.length) {
+  if (isPending) {
     return (
       <div className="border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6 h-[110px]">
         <Skeleton className="w-full h-full" />
@@ -51,22 +53,26 @@ export default function AddressSelector() {
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
 
-          {currentAddress && <UserAddressDialog addresses={addresses} />}
+          {currentAddress ? (
+            <UserAddressDialog addresses={addresses} />
+          ) : (
+            <div
+              className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all"
+              onClick={() => setAddressOpen(true)}
+            >
+              <LucidePlus className="size-4" />
+              <span className="font-medium text-sm">افزودن</span>
+            </div>
+          )}
         </div>
 
         <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
           {currentAddress ? (
             `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
           ) : (
-            <Button
-              type="button"
-              variant="text-nohover"
-              size="sm"
-              className="!p-0"
-              onClick={() => setAddressOpen(true)}
-            >
-              افزودن آدرس جدید
-            </Button>
+            <div className="mt-4">
+              <EmptySectionCheckout />
+            </div>
           )}
         </div>
       </div>

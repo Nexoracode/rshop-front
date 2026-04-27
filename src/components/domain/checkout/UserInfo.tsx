@@ -39,8 +39,8 @@ export default function UserInfo() {
           </div>
         </div>
       ) : (
-        <div className="items-center space-y-2 justify-between w-full">
-          <div className="flex-1 flex items-center gap-2 font-medium text-danger text-sm border border-danger p-2 rounded-sm bg-danger/10">
+        <div className="flex items-center justify-between gap-8 w-full">
+          <div className="flex-1 flex items-center gap-2 font-medium text-danger text-sm">
             <AlertCircleIcon className="size-4" />
             جهت ثبت سفارش تکمیل اطلاعات کاربری الزامی است.
           </div>
