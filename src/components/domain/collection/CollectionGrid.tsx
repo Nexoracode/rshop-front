@@ -9,7 +9,7 @@ export default async function CollectionGrid({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+      <div className="grid gap-2 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
         {products.products.map((p) => (
           <CollectionProductCart key={p.id} {...p} />
         ))}
