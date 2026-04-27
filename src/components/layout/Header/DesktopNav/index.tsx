@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
-  ContactIcon,
   DicesIcon,
   HomeIcon,
   LocationEdit,
@@ -27,7 +26,6 @@ const navLinks = [
     Icon: DicesIcon,
     label: "ویژه‌ها",
   },
-  { href: "/contact", Icon: ContactIcon, label: "تماس با ما" },
 ];
 
 export default function MainNav() {

@@ -43,7 +43,7 @@ export default function SearchBox() {
           <PopoverContent
             align="start"
             //sideOffset={-35}
-            className="w-[min(36rem,90vw)] p-3 rounded-xs"
+            className="w-[min(36rem,90vw)] p-3 !rounded-lg"
             onClick={handleClose}
           >
             <div>

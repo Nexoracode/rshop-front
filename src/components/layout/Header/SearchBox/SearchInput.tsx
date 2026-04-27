@@ -21,7 +21,7 @@ const SearchInput = React.forwardRef<HTMLDivElement, Props>(
             setSearch(e.target.value);
           }}
           onBlur={(e) => !!debouncedSearch && e.target.focus()}
-          className={`rounded-sm h-[44px] ${search.length ? "bg-white !border !border-slate-200" : "bg-[rgb(240,241,241)] border-none"} py-5 focus-visible:ring-0 text-gray-700 ps-11`}
+          className={`rounded-md h-[48px] bg-[rgb(240,241,241)] ${search.length ? "bg-white !border !border-slate-200 rounded-lg shadow-[0_0_7px_lightgray]" : ""} border-none focus:bg-white focus:!border focus:!border-slate-200 focus:rounded-lg focus:shadow-[0_0_7px_lightgray] py-5 focus-visible:ring-0 text-gray-700 ps-11`}
         />
         <button className="absolute  text-muted px-4  top-0 bottom-0 -right-1 rounded-l-sm rounded-r-0">
           <Search className="size-5" />
