@@ -15,7 +15,7 @@ export default async function CollectionHero({ data }: { data: Collection }) {
             alt={title}
             width={1200}
             height={400}
-            className="h-full w-full object-cover"
+            className="h-full min-w-full object-cover"
             priority
           />
           {description ? (
@@ -40,7 +40,7 @@ export default async function CollectionHero({ data }: { data: Collection }) {
           )}
 
           <div className="flex items-center justify-end">
-            <div className="hidden md:flex lg:bg-black/50 lg:border-2 border-dashed border-white lg:p-4 rounded-lg">
+            <div className="hidden md:flex lg:bg-black/50 lg:border-2 border-dashed border-white lg:p-4 rounded-lg min-h-[60px]">
               <CollectionCountdown endDate={end_date} />
               <CollectionExpired end_date={end_date} />
             </div>
@@ -48,7 +48,7 @@ export default async function CollectionHero({ data }: { data: Collection }) {
         </div>
       </div>
 
-      <div className="md:hidden border-2 border-dashed px-2 w-full flex items-center justify-center rounded-lg">
+      <div className="md:hidden border-2 border-dashed px-2 w-full flex items-center justify-center rounded-lg min-h-[60px]">
         <CollectionCountdown endDate={end_date} />
         <CollectionExpired end_date={end_date} />
       </div>

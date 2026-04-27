@@ -25,7 +25,7 @@ export default function CollectionCountdown({ endDate }: { endDate: string }) {
   }, [endDate]);
 
   if (!time)
-    return <span className="text-sm text-destructive">پایان کمپین</span>;
+    return <span className="text-sm text-destructive flex items-center md:bg-black/50 px-4 rounded-md">پایان کمپین</span>;
 
   return (
     <div className="flex flex-row-reverse justify-end gap-2">
