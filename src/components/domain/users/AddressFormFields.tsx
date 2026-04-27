@@ -43,7 +43,7 @@ export default function AddressFormFields({ activeStep }: Props) {
           <div className="col-span-2">
             <TextField required name="address_line" label="آدرس" />
           </div>
-          <TextField required name="plaque" type="number" label="پلاک" />
+          <TextField required name="plaque" maxLength={5} label="پلاک" />
           <TextField name="unit" type="number" label="واحد" />
           <div className="col-span-2">
             <TextField

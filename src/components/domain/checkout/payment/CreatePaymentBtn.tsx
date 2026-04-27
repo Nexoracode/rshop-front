@@ -30,7 +30,9 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
   } = useMutation(createCardToCardPayment);
 
   useEffect(() => {
-    if (isSuccess) location.href = paymentData.payment_url;
+    if (isSuccess) {}
+      
+    // location.href = paymentData.payment_url;
   }, [isSuccess, paymentData]);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function CreatePaymentBtn({ order_id }: { order_id: number }) {
         پرداخت
       </Button>
 
-      <TransferToGate open={isSuccess} />
+      <TransferToGate open={isSuccess && paymentData} />
     </>
   );
 }
