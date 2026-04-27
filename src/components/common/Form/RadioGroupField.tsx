@@ -31,8 +31,8 @@ export default function RadioGroupField({
         onValueChange={onChange}
         className="flex flex-wrap gap-2 pt-5"
       >
-        {options?.map((op) => (
-          <div key={op.value} className="flex items-center space-x-2">
+        {options?.map((op, index) => (
+          <div key={index} className="flex cursor-pointer items-center space-x-2">
             <RadioGroupItem
               value={op.value}
               id={`option-${name}-${op.value}`}

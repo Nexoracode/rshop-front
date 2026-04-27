@@ -42,7 +42,7 @@ export default function AddressListPage() {
   return (
     <div>
       <div className="flex items-center justify-between pb-6">
-        <h1 className="text-lg font-medium">آدرس‌های من</h1>
+        <h1 className="text-lg font-medium">آدرس‌ های من</h1>
         <Button
           variant={"text"}
           color="primary"

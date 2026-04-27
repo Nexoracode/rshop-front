@@ -43,13 +43,16 @@ export default function AddressFormFields({ activeStep }: Props) {
           <div className="col-span-2">
             <TextField required name="address_line" label="آدرس" />
           </div>
-          <TextField required name="plaque" label="پلاک" />
-          <TextField name="unit" label="واحد" />
+          <TextField required name="plaque" type="number" label="پلاک" />
+          <TextField name="unit" type="number" label="واحد" />
           <div className="col-span-2">
             <TextField
               required
               name="postal_code"
               type="number"
+              rules={{
+                minLength: {value: 10, message: "کد پستی باید 10 رقم باشد"},
+              }}
               maxLength={10}
               label="کد پستی"
             />

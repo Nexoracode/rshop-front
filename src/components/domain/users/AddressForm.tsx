@@ -1,9 +1,9 @@
 "use client";
+
 import React, { useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { addUserAddress, updateUserAddress } from "@/queries/profile/address";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { UserAddress } from "@/types/user";
 import AddressFormFields from "./AddressFormFields";
 import BaseDialog from "@/components/common/BaseDialog";
@@ -15,7 +15,6 @@ type Props = {
 };
 
 export default function AddressForm({ address, open, onOpenChange }: Props) {
-  const { user } = useCurrentUser();
   const [activeStep, setActiveStep] = React.useState(0);
   const {
     mutate: addAddress,
@@ -29,7 +28,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
   } = useMutation(updateUserAddress);
   const form = useForm({
     values: address
-      ? { ...address, is_self: String(address.is_self) }
+      ? { ...address, is_self: address.is_self }
       : {
           city: "",
           province: "",
@@ -65,7 +64,11 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
       is_primary,
       is_self,
     } = data;
-    const isSelfBoolean = is_self === "true";
+
+    const recipientName = recipient_name === undefined ? null : recipient_name;
+    const recipientPhone =
+      recipient_phone === undefined ? null : recipient_phone;
+
     if (address) {
       updateAddress({
         id: address.id,
@@ -75,8 +78,8 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         plaque,
         postal_code,
         province,
-        recipient_name,
-        recipient_phone,
+        recipient_name: recipientName,
+        recipient_phone: recipientPhone,
         unit,
         is_primary,
         is_self: is_self === "true",
@@ -89,10 +92,8 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         plaque,
         postal_code,
         province,
-        recipient_name: isSelfBoolean
-          ? `${user?.first_name} ${user?.last_name}`
-          : recipient_name,
-        recipient_phone: isSelfBoolean ? user?.phone : recipient_phone,
+        recipient_name: recipientName,
+        recipient_phone: recipientPhone,
         unit,
         is_primary,
         is_self: is_self === "true",
