@@ -8,7 +8,6 @@ export function useIsMobile(breakpoint: number = 768): boolean {
     [breakpoint],
   );
 
-  // ✅ همیشه false در ابتدا (چه سرور چه کلاینت)
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,17 +16,10 @@ export function useIsMobile(breakpoint: number = 768): boolean {
     const mql = window.matchMedia(query);
     const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
 
-    // تنظیم مقدار اولیه صحیح بعد از mount
     setIsMobile(mql.matches);
-
-    if ("addEventListener" in mql) {
-      mql.addEventListener("change", onChange);
-      return () => mql.removeEventListener("change", onChange);
-    } else {
-      // fallback برای مرورگرهای قدیمی
-      (mql as any).addListener(onChange);
-      return () => (mql as any).removeListener(onChange);
-    }
+    mql.addEventListener("change", onChange);
+    
+    return () => mql.removeEventListener("change", onChange);
   }, [query]);
 
   return isMobile;
