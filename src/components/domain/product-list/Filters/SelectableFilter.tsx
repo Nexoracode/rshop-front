@@ -47,7 +47,7 @@ export default function SelectableFilter({
         ?.filter((i) => i.label.match(searchTerm))
         .map((item) => (
           <CheckBoxItem
-            checked={value.includes(String(item.value))}
+            checked={value?.includes(String(item.value))}
             onCheckedChange={(check) => handleChange(check, item)}
             key={item.value}
             {...item}

@@ -24,7 +24,6 @@ export default function BooleanFilters({
         query?.filter.booleanFilters?.find((i) => i.key === filter),
       )}
       onClick={() => {
-        alert(filter);
         handleSetBooleanQuery(
           filter,
           Boolean(!query?.filter.booleanFilters?.find((i) => i.key === filter)),

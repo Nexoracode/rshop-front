@@ -84,7 +84,7 @@ function DrawerContent({
     }
   }, [open]);
 
-  React.useEffect(() => {
+  /*   React.useEffect(() => {
     const handlePopState = () => {
       if (openedRef.current) {
         // Close drawer on browser back
@@ -95,7 +95,7 @@ function DrawerContent({
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [onOpenChange]);
+  }, [onOpenChange]); */
 
   return (
     <DrawerPortal>

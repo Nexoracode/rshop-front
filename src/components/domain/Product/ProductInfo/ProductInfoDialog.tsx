@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Product } from "@/types/product";
 import ProductAttributes from "../ProductAttributes";
 import ProductDescription from "../ProductTabs/ProductDescription";
@@ -20,8 +20,9 @@ export default function ProductInfoDialog({
   description,
 }: Product) {
   const { openTab, closeDialog } = useProductInfoDialog();
+
   return (
-    <Drawer open={!!openTab} onClose={() => closeDialog()}>
+    <Drawer open={!!openTab} onClose={closeDialog}>
       <DrawerContent title="معرفی و مشخصات مصول">
         <div className="relative">
           <Tabs defaultValue={openTab ?? ""}>

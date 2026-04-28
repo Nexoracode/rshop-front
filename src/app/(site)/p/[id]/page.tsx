@@ -23,6 +23,7 @@ import ProductReviews from "@/components/domain/Product/ProductReviews";
 import SidebarActions from "@/components/domain/Product/SidebarActions";
 import ProductReviewsSkeleton from "@/components/domain/Product/ProductReviews/ProductReviewsSkeleton";
 import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProductsSkeleton";
+import ProductInfoDialog from "@/components/domain/Product/ProductInfo/ProductInfoDialog";
 
 export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 
@@ -104,7 +105,10 @@ export default async function ProductPage({
           </div>
         </div>
 
-        <SidebarActions productId={product.id} className="flex lg:hidden !flex-row items-center justify-end pl-2 gap-4 !-mt-4 !-mb-6"/>
+        <SidebarActions
+          productId={product.id}
+          className="flex lg:hidden !flex-row items-center justify-end pl-2 gap-4 !-mt-4 !-mb-6"
+        />
 
         {/* اطلاعات محصول */}
         <div className="lg:col-span-8">
@@ -148,8 +152,11 @@ export default async function ProductPage({
         <div className="min-w-[318px] max-w-[318px] lg:sticky lg:top-24 self-start hidden lg:block">
           <ProductSummeryCard {...product} />
         </div>
-      </div>
 
+        <div className="md:hidden">
+          <ProductInfoDialog {...product} />
+        </div>
+      </div>
     </div>
   );
 }

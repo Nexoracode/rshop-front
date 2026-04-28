@@ -4,6 +4,7 @@ import * as React from "react";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
+import { persianToEnglishNumbers } from "@/lib/utils/price";
 
 type Range = [number, number];
 
@@ -42,7 +43,8 @@ export default function FilterPriceRange({
 
   const format = (n: number) => new Intl.NumberFormat("fa-IR").format(n);
   const parse = (s: string) => {
-    const onlyDigits = s.replace(/[^\d]/g, "");
+    const englishNumbers = persianToEnglishNumbers(s);
+    const onlyDigits = englishNumbers.replace(/[^\d]/g, "");
     return Number(onlyDigits || 0);
   };
 
@@ -93,9 +95,7 @@ export default function FilterPriceRange({
               onChange={handleMinInput}
               onBlur={handleBlur}
             />
-            <span className="text-[13px] text-slate-900 pr-3">
-              {currency}
-            </span>
+            <span className="text-[13px] text-slate-900 pr-3">{currency}</span>
           </div>
         </div>
 
@@ -114,9 +114,7 @@ export default function FilterPriceRange({
               onChange={handleMaxInput}
               onBlur={handleBlur}
             />
-            <span className="text-[13px] text-slate-900 pr-3">
-              {currency}
-            </span>
+            <span className="text-[13px] text-slate-900 pr-3">{currency}</span>
           </div>
         </div>
       </div>
@@ -139,7 +137,7 @@ export default function FilterPriceRange({
         </div>
       </div>
 
-{/*       <p className="text-sm text-muted-foreground mt-2">
+      {/*       <p className="text-sm text-muted-foreground mt-2">
         از {format(range[0])} تا {format(range[1])} {currency}
       </p> */}
     </div>

@@ -4,6 +4,15 @@ function toFaDigits(input: string): string {
   return input.replace(/\d/g, (d) => faDigits[+d]).replace(/\./g, "٫");
 }
 
+export const persianToEnglishNumbers = (value: string | number): string => {
+  const str = String(value);
+
+  return str.replace(/[\u06F0-\u06F9]/g, (char) => {
+    const code = char.charCodeAt(0);
+    return String(code - 0x06f0);
+  });
+};
+
 function trimZeros(s: string): string {
   return s.replace(/\.0+$/, "").replace(/(\.\d*[1-9])0+$/, "$1");
 }
