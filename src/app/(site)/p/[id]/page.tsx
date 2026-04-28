@@ -146,7 +146,7 @@ export default async function ProductPage({
         </div>
 
         {/* کارت خلاصه در دسکتاپ */}
-        <div className="min-w-[318px] lg:sticky lg:top-24 self-start hidden lg:block">
+        <div className="min-w-[318px] max-w-[318px] lg:sticky lg:top-24 self-start hidden lg:block">
           <ProductSummeryCard {...product} />
         </div>
       </div>

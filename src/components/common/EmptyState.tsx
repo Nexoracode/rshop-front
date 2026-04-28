@@ -1,6 +1,6 @@
 "use client";
 
-import { LucideShoppingBag } from "lucide-react";
+import Image from "next/image";
 
 export default function EmptyState({
   title = "موردی فعلا در دسترس نیست",
@@ -10,9 +10,9 @@ export default function EmptyState({
   description?: string;
 }) {
   return (
-    <div className="flex flex-col w-full items-center justify-center col-span-12 gap-2 py-10 text-center text-muted-foreground">
+    <div className="flex flex-col w-full items-center justify-center col-span-12 gap-2 text-center text-muted-foreground">
       <div className="w-fit">
-        <LucideShoppingBag className="w-24 h-24 opacity-30 mx-auto" />
+        <Image src={"/empty-sfl.webp"} width={200} height={200} alt="image" className="mx-auto"/>
         <h3 className="font-medium text-lg text-muted/80 mt-4">{title}</h3>
         {description && (
           <p className="text-sm text-muted/50 mt-2">{description}</p>
