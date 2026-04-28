@@ -7,9 +7,19 @@ import { Copy } from "lucide-react";
 import React from "react";
 
 export default function ShopCardInfo({ amount }: { amount: number }) {
-  const { data } = useQuery(getShopCardInfo);
+  const { data, isLoading } = useQuery(getShopCardInfo);
+
+  if (isLoading) {
+    return (
+      <div className="rounded-xl border bg-white p-5 text-sm text-muted-foreground">
+        در حال دریافت اطلاعات...
+      </div>
+    );
+  }
+
   return (
-    <div className="rounded-lg border bg-card/50 p-4 grid gap-3">
+    <div className="rounded-xl border bg-white p-5 space-y-5">
+      {/* Card Number */}
       {data?.card_number && (
         <CardInfoItem
           label="شماره کارت"
@@ -17,25 +27,20 @@ export default function ShopCardInfo({ amount }: { amount: number }) {
           copyValue={data.card_number.replace(/''/g, "")}
         />
       )}
+
+      {/* IBAN */}
       {data?.iban && <CardInfoItem label="شماره شبا" value={data.iban} />}
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-        <div>
-          بانک:{" "}
-          <span className="text-foreground text-sm font-medium">
-            {data?.bank_name}
-          </span>
-        </div>
-        <div>
-          به نام:{" "}
-          <span className="text-foreground text-sm font-medium">
-            {data?.card_holder}
-          </span>
-        </div>
-        {amount && (
-          <div>
-            مبلغ: <PriceBox price={amount} className="text-foreground" />
+
+      {/* Meta Info */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+        <MetaItem label="بانک" value={data?.bank_name} />
+        <MetaItem label="به نام" value={data?.card_holder} />
+        {amount ? (
+          <div className="flex flex-col">
+            <span className="text-muted-foreground text-xs">مبلغ</span>
+            <PriceBox price={amount} className="font-semibold text-base" />
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
@@ -53,20 +58,33 @@ function CardInfoItem({
   const { handleCopy } = useCopyClipboard();
 
   return (
-    <div className="flex items-center justify-between gap-3">
-      <div>
-        <div className="text-sm text-muted-foreground">{label}</div>
-        <div className="tracking-widest text-sm ltr">{value}</div>
+    <div className="flex items-center justify-between rounded-lg border p-3 hover:border-primary-500 transition">
+      <div className="space-y-1">
+        <div className="text-xs text-muted-foreground">{label}</div>
+        <div className="tracking-widest text-sm font-medium ltr">{value}</div>
       </div>
+
       <Button
-        variant="outline"
-        size="icon"
-        className="py-0 gap-0.5"
+        size="sm"
         onClick={() => handleCopy(copyValue ?? value, value)}
-        startIcon={<Copy className="size-4 me-1" />}
+        className="gap-1 text-xs flex items-center bg-primary-50 group border border-primary-500"
       >
-        کپی
+        <div className="flex items-center text-primary-500 gap-2 group-hover:text-white">
+          <Copy className="size-4" />
+          <span>کپی</span>
+        </div>
       </Button>
+    </div>
+  );
+}
+
+function MetaItem({ label, value }: { label: string; value?: string }) {
+  if (!value) return null;
+
+  return (
+    <div className="flex flex-col">
+      <span className="text-muted-foreground text-xs">{label}</span>
+      <span className="text-sm font-medium text-foreground">{value}</span>
     </div>
   );
 }
