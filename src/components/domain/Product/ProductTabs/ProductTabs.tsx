@@ -1,5 +1,6 @@
 "use client";
 
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { cn } from "@/lib/utils/classnames";
 import { getPromoBanners } from "@/queries/home/home";
@@ -23,6 +24,7 @@ export default function ProductTabs({
   const { data: adsBanners } = useQuery(getPromoBanners);
   const barRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useScrollDirection();
+  const isMobile = useIsMobile()
 
   const haveAdsBanner = adsBanners && adsBanners?.length > 0;
   const handleScrollTo = (key: TabKey) => {
@@ -106,11 +108,11 @@ export default function ProductTabs({
         "sticky z-30 bg-background border-b rtl",
         scrollDirection === "down"
           ? haveAdsBanner
-            ? "top-[8rem]"
-            : "top-[4rem]"
+            ? isMobile ? "top-[6rem]" : "top-[8rem]"
+            : isMobile ? "top-[3.5rem]" : "top-[4rem]"
           : haveAdsBanner
-            ? "top-[10.5rem]"
-            : "top-[108px]",
+            ? isMobile ? "top-[6rem]" : "top-[10.5rem]"
+            : isMobile ? "top-[56px]" : "top-[108px]",
       )}
     >
       <div ref={barRef} className="relative flex">
