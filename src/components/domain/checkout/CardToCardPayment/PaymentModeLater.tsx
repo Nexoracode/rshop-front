@@ -2,17 +2,14 @@
 import { AlertTriangle } from "lucide-react";
 import React from "react";
 import PaymentModalFooter from "./PaymentModalFooter";
-import { Separator } from "@/components/ui/separator";
 import { useMutation } from "@tanstack/react-query";
 import { cardTocardPaymentLater } from "@/queries/checkout/payment/card-to-card";
 
 export default function PaymentModeLater({
-  onClose,
   onSuccess,
   order_id,
 }: {
   onSuccess: () => void;
-  onClose: () => void;
   order_id: number;
 }) {
   const { mutateAsync, isPending } = useMutation(cardTocardPaymentLater);
@@ -33,7 +30,6 @@ export default function PaymentModeLater({
       <PaymentModalFooter
         isLoading={isPending}
         onClick={handleSubmit}
-        onClose={onClose}
       />
     </div>
   );

@@ -17,13 +17,15 @@ export default function PaymentModalFooter({
   return (
     <div className="w-full">
       <div className="flex pt-2 flex-col sm:flex-row gap-3 sm:justify-between sm:items-center">
-        <div>
-          
-        </div>
+        <div></div>
         <div className="flex gap-2 sm:justify-end">
-          <Button fullWidth variant="text" onClick={onClose}>
-            انصراف
-          </Button>
+          {onClose ? (
+            <Button fullWidth variant="text" onClick={onClose}>
+              انصراف
+            </Button>
+          ) : (
+            ""
+          )}
           <Button
             fullWidth
             onClick={onClick}

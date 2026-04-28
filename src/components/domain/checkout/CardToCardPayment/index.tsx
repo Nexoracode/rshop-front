@@ -51,7 +51,6 @@ export default function CardToCardPayment({
     later: (
       <PaymentModeLater
         order_id={order_id}
-        onClose={onClose}
         onSuccess={handleSuccess}
       />
     ),

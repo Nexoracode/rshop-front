@@ -1,7 +1,7 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import CardToCardPayment from "../CardToCardPayment";
 import { getOrderDetails } from "@/queries/profile/order";

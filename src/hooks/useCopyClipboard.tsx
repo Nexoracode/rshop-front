@@ -4,7 +4,7 @@ export default function useCopyClipboard() {
   const handleCopy = async (
     text: string,
     formatted?: string,
-    message: string = "شماره کارت کپی شد"
+    message: string = "کپی شد"
   ) => {
     try {
       await navigator.clipboard.writeText(text);
