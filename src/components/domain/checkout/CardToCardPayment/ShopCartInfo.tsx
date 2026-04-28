@@ -61,7 +61,9 @@ function CardInfoItem({
     <div className="flex items-center justify-between rounded-lg border p-3 hover:border-primary-500 transition">
       <div className="space-y-1">
         <div className="text-xs text-muted-foreground">{label}</div>
-        <div className="tracking-widest text-sm font-medium ltr">{value}</div>
+        <div className="tracking-widest text-sm font-medium ltr truncate line-clamp-1 w-50 sm:w-full">
+          {value}
+        </div>
       </div>
 
       <Button
@@ -71,7 +73,6 @@ function CardInfoItem({
       >
         <div className="flex items-center text-primary-500 gap-2 group-hover:text-white">
           <Copy className="size-4" />
-          <span>کپی</span>
         </div>
       </Button>
     </div>

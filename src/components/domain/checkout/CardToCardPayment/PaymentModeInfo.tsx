@@ -58,7 +58,7 @@ export function PaymentModeInfo({
       <div className="flex flex-col gap-5">
         <h3 className="font-medium">ثبت اطلاعات پرداخت</h3>
         <FormProvider {...form}>
-          <form className="space-y-4">
+          <form className="space-y-6">
             <div className="flex gap-4">
               <DateField required label="تاریخ پرداخت" name="deposit_date" />
               <TimeField required label="زمان واریز" name="deposit_time" />

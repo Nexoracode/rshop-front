@@ -80,19 +80,19 @@ export default function CardToCardPayment({
     <div className="space-y-3">
       <div>
         <h3 className="text-lg font-medium">پرداخت کارت به کارت</h3>
-        <p className="text-xs md:text-sm text-muted mt-4">
+        <p className="text-sm leading-7 text-muted mt-4">
           لطفا مبلغ سفارش را با اطلاعات زیر به حساب فروشگاه واریز کنید و تصویر
           رسید آن را بارگذاری کنید.
         </p>
       </div>
       <PaymentExpireAlert date={date} />
-      <div className="md:flex space-y-4 gap-4">
-        <div className="flex-1 space-y-4">
+      <div className="lg:flex space-y-4 gap-4">
+        <div className="lg:w-1/2 flex-1 space-y-4">
           <ShopCardInfo amount={Number(amount)} />
           <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
         </div>
 
-        <div className="flex-1">{modeAction[mode]}</div>
+        <div className="lg:w-1/2">{modeAction[mode]}</div>
       </div>
     </div>
   );

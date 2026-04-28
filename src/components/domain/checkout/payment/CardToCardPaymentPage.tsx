@@ -26,7 +26,7 @@ export default function CardToCardPaymentPage() {
   )
 
   return (
-    <Card className="max-w-5xl mx-auto">
+    <Card className="max-w-5xl mx-auto border-none sm:border">
       <CardToCardPayment
         date={order.created_at}
         amount={order.total}
