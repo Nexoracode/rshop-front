@@ -28,7 +28,7 @@ export default function ProductInfo(props: Product) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 flex-1">
-      <div className="flex-1 space-y-6 lg:space-y-8 px-3 md:px-0">
+      <div className="flex-1 space-y-6 lg:space-y-8">
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             {brand?.name && (
@@ -52,7 +52,7 @@ export default function ProductInfo(props: Product) {
             )}
           </div>
 
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight text-gray-700">
+          <h1 className="text-lg lg:text-xl leading-9 font-bold text-gray-700">
             {name}
           </h1>
         </div>
@@ -119,7 +119,7 @@ export default function ProductInfo(props: Product) {
           "transition-all duration-300",
         )}
       >
-        <div className="p-4 md:p-6 space-y-5">
+        <div className="p-3 md:p-6 space-y-5">
           <div className="hidden lg:flex flex-col gap-2">
             <div className="flex items-center justify-between border-b pb-4">
               <div className="font-medium text-[16px] text-slate-600">
@@ -142,7 +142,7 @@ export default function ProductInfo(props: Product) {
           </div>
 
           <AddToCartButton product={props}>
-            <div className="my-2">
+            <div className="lg:my-2">
               <ProductPriceInfo {...props} />
             </div>
           </AddToCartButton>

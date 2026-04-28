@@ -78,7 +78,7 @@ export default async function ProductPage({
     : null;
 
   return (
-    <div className="container my-8 md:my-12 space-y-8 min-h-[80vh]">
+    <div className="container mt-8 mb-12 md:my-12 space-y-8 min-h-[80vh]">
       {category && <ProductBreadcrump {...category} />}
 
       <ProductSchema {...product} />
@@ -105,7 +105,6 @@ export default async function ProductPage({
         </div>
 
         <SidebarActions productId={product.id} className="flex lg:hidden !flex-row items-center justify-end pl-2 gap-4 !-mt-4 !-mb-6"/>
-
 
         {/* اطلاعات محصول */}
         <div className="lg:col-span-8">

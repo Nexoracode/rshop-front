@@ -34,7 +34,7 @@ export default function ImportantAttributes({ specifications }: Props) {
           </div>
         </div>
       </div>
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-auto no-scrollbar">
         <div className="flex md:grid md:w-full gap-2 md:grid-cols-3">
           {specifications.map((attr) => (
             <div
