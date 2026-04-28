@@ -12,7 +12,7 @@ import PaymentExpireAlert from "./PaymentExpireAlert";
 
 type Props = {
   open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   payment_id: number;
   order_id: number;
   amount: number;
@@ -67,7 +67,7 @@ export default function CardToCardPayment({
   if (success)
     return (
       <PaymentSuccess
-        onClose={onClose}
+        onClose={() => onClose?.()}
         date={date}
         paymentMode={mode}
         later={later}

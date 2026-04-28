@@ -14,7 +14,7 @@ export default function PaymentModeNow({
 }: {
   payment_id: number;
   onSuccess: () => void;
-  onClose: () => void;
+  onClose?: () => void;
   receipt_image: Media | null;
 }) {
   const form = useForm({ values: { file: receipt_image?.url } });

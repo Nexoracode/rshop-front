@@ -19,7 +19,7 @@ export function PaymentModeInfo({
 }: {
   payment_id: number;
   onSuccess: () => void;
-  onClose: () => void;
+  onClose?: () => void;
   values: CardToCardPaymentInfo | null;
 }) {
   const form = useForm({

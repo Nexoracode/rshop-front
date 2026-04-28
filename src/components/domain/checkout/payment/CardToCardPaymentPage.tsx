@@ -32,7 +32,6 @@ export default function CardToCardPaymentPage() {
         amount={order.total}
         order_id={order.id}
         payment_id={order.payment.id}
-        onClose={() => {}}
         open={true}
       />
     </Card>
