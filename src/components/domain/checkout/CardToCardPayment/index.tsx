@@ -87,7 +87,7 @@ export default function CardToCardPayment({
       </div>
       <PaymentExpireAlert date={date} />
       <div className="lg:flex space-y-4 gap-4">
-        <div className="lg:w-1/2 flex-1 space-y-4">
+        <div className="lg:w-1/2 space-y-4 flex flex-col justify-between h-full m-0">
           <ShopCardInfo amount={Number(amount)} />
           <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
         </div>
