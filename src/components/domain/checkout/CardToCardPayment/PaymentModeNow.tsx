@@ -27,15 +27,15 @@ export default function PaymentModeNow({
     );
   };
   return (
-    <div className="space-y-3 flex flex-col justify-between border h-full rounded-lg p-2">
-      <h3 className="font-medium">بارگزاری رسید پرداخت</h3>
-
-      {/* Dropzone-like uploader */}
-      <FormProvider {...form}>
-        <form>
-          <ImageUploadField required name="file" label="تصویر رسید پرداخت" />
-        </form>
-      </FormProvider>
+    <div className="space-y-3 flex flex-col justify-between border h-full rounded-lg p-6">
+      <div className="flex flex-col gap-5">
+        <h3 className="font-medium">بارگذاری رسید پرداخت</h3>
+        <FormProvider {...form}>
+          <form>
+            <ImageUploadField required name="file" label="" />
+          </form>
+        </FormProvider>
+      </div>
 
       <PaymentModalFooter
         onClick={form.handleSubmit(handleSubmit)}

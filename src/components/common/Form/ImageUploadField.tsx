@@ -15,7 +15,7 @@ export default function ImageUploadField({ name, label, required }: Props) {
     <Controller
       control={control}
       name={name}
-      rules={{ required: required && `بارگزاری ${label} الزامی است.` }}
+      rules={{ required: required && `بارگذاری ${label} الزامی است.` }}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <FieldContainer
           label={label}

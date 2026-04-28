@@ -17,8 +17,8 @@ export default function PaymentModalFooter({
   return (
     <div className="w-full">
       <div className="flex pt-2 flex-col sm:flex-row gap-3 sm:justify-between sm:items-center">
-        <div className="text-xs text-muted-foreground">
-          با انتخاب «تأیید»، دستورالعمل‌های فوق را می‌پذیرید.
+        <div>
+          
         </div>
         <div className="flex gap-2 sm:justify-end">
           <Button fullWidth variant="text" onClick={onClose}>

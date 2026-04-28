@@ -4,13 +4,11 @@ import { Input } from "@/components/ui/input";
 import { UploadCloud } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
-import Image from "../Image";
-import Link from "next/link";
 
 type Props = { onChange: (file: File | null) => void; value: string | null };
 
-export default function ImageUpload({ onChange, value }: Props) {
-  const [file, setFile] = React.useState<File | string | null>(() => value);
+export default function ImageUpload({ onChange }: Props) {
+  const [file, setFile] = React.useState<File | null>(null);
 
   const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -44,42 +42,42 @@ export default function ImageUpload({ onChange, value }: Props) {
   };
 
   return (
-    <div className="flex justify-between gap-2 items-stretch">
+    <div>
       <label
         htmlFor="receipt"
         onDrop={onDrop}
         onDragOver={(e) => e.preventDefault()}
-        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed p-6 text-center hover:bg-muted/20 cursor-pointer"
+        className="group flex flex-col items-center justify-center gap-3 rounded-xl border-3 border-dashed border-muted-foreground/40 p-6 text-center cursor-pointer transition-all hover:bg-slate-50"
       >
-        <UploadCloud className="size-7" />
-        <div className="text-sm">
-          فایل را اینجا رها کنید یا{" "}
-          <span className="underline">انتخاب کنید</span>
+        <div className="flex items-center justify-center size-12 rounded-full bg-slate-600 transition">
+          <UploadCloud className="size-5 text-white" />
         </div>
-        <div className="text-xs text-muted-foreground">
-          فرمت‌های مجاز: JPG, PNG, WebP, PDF — حداکثر 10MB
+
+        <div className="space-y-1">
+          <p className="text-sm font-medium">
+            فایل را اینجا رها کنید یا{" "}
+            <span className="text-primary underline underline-offset-2">
+              انتخاب کنید
+            </span>
+          </p>
+
+          {file ? (
+            <p className="text-xs font-medium text-foreground">
+              {file.name}
+            </p>
+          ) : (
+            <>
+              <p className="text-xs text-muted-foreground">
+                فرمت‌های مجاز: JPG، PNG، WebP، PDF
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                حداکثر حجم: 10MB
+              </p>
+            </>
+          )}
         </div>
-        {file && file instanceof File && (
-          <div className="mt-2 text-xs font-medium px-2 py-1 rounded bg-muted-light">
-            {file.name} ({Math.ceil(file.size / 1024)} KB)
-          </div>
-        )}
       </label>
-      {file && (
-        <div className="relative cursor-pointer rounded-2xl border border-dashed bg-muted-light/10  aspect-square w-[10rem]">
-          <Link
-            target="_blank"
-            href={file instanceof File ? URL.createObjectURL(file) : file}
-          >
-            <Image
-              alt=""
-              fill
-              className="object-center object-contain p-4"
-              src={file instanceof File ? URL.createObjectURL(file) : file}
-            />
-          </Link>
-        </div>
-      )}
+
       <Input
         id="receipt"
         type="file"
@@ -98,6 +96,6 @@ function validateFile(file: File) {
     "image/webp",
     "application/pdf",
   ];
-  const maxSize = 10 * 1024 * 1024; // 10MB
+  const maxSize = 10 * 1024 * 1024;
   return validTypes.includes(file.type) && file.size <= maxSize;
 }

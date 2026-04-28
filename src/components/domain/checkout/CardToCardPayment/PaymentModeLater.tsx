@@ -21,16 +21,15 @@ export default function PaymentModeLater({
     mutateAsync({ order_id }, { onSuccess });
   };
   return (
-    <div className="space-y-3">
-      <div className="flex items-start gap-3 rounded-xl border p-3 bg-warning/30 text-muted">
-        <AlertTriangle className="size-5 shrink-0 mt-0.5" />
+    <div className="space-y-3 flex flex-col justify-between border h-full rounded-lg p-6">
+      <div className="flex items-center gap-4 rounded-xl border border-yellow-400 p-4 bg-white text-muted">
+        <AlertTriangle className="size-5 shrink-0 text-yellow-600" />
         <p className="text-sm leading-6">
           فرصت پرداخت <span className="font-medium">محدود</span> است و ممکن است
           موجودی محصول به اتمام برسد. لطفاً در اولین فرصت از پنل کاربری اقدام
           کنید.
         </p>
       </div>
-      <Separator />
       <PaymentModalFooter
         isLoading={isPending}
         onClick={handleSubmit}
