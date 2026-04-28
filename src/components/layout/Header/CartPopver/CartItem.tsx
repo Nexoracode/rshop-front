@@ -1,4 +1,5 @@
 "use client";
+
 import QuantitySelect from "@/components/domain/Product/AddToCart/QuantitySelect";
 import { PRODUCT_PLACEHOLDER, SHOP_NAME } from "@/data/assets";
 import { UserCartItem } from "@/types/cart";
@@ -8,14 +9,22 @@ import React from "react";
 import CartItemVariant from "./CartItemVariant";
 import { TruckIcon } from "lucide-react";
 import PriceBox from "@/components/shared/product/PriceBox";
+import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
 
 type Props = UserCartItem & {
   loading: boolean;
   onChange?: (qty: number) => void;
 };
 export default function CartItem({ onChange, loading, ...item }: Props) {
+
+  const maxQty = maxQuantitySelector({
+    orderLimit: item.product.order_limit,
+    productStock: item.product.stock,
+    variantStock: item.variant?.stock || 0,
+  });
+
   return (
-    <div className="flex flex-col gap-1.5 border-b last:border-b-0 py-3 sm:last:pb-5">
+    <div className="flex flex-col gap-5 border-b last:border-b-0 py-3 sm:last:pb-5">
       <div className="h-[114px] flex items-center gap-5">
         <Link target="_blank" href={`/p/rsp-${item.id}`}>
           <Image
@@ -23,7 +32,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
             width={114}
             height={114}
             alt=""
-            className="rounded-md bg-muted"
+            className="min-w-[114px] max-h-[114px] object-cover rounded-md bg-muted"
           />
         </Link>
         <div
@@ -60,7 +69,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
           <div className="min-w-[114px] flex items-center justify-center">
             <QuantitySelect
               qty={item.quantity}
-              maxQty={item.product.stock}
+              maxQty={maxQty}
               onChange={onChange}
               loading={loading}
             />

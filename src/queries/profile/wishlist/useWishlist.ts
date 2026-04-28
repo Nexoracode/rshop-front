@@ -17,13 +17,9 @@ export const useWishlist = ({
   const { mutateAsync: addToWishlistItem, isPending } =
     useMutation(addWishlistList);
   const { mutateAsync: deleteFromWishlistMutate, isPending: deletePending } =
-    useMutation(deleteFromWishlist);
-  console.log("data =>", data);
-  
-  const inWishlist = data && data?.find((i) => i.product.id === id);
-  
-  console.log("inWishlist =>", inWishlist);
-  
+    useMutation(deleteFromWishlist);  
+    
+  const inWishlist = data && data?.find((i) => i.product.id === id);  
 
   const toggle = () => {
     if (!inWishlist)

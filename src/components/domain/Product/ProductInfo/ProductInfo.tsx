@@ -26,8 +26,6 @@ export default function ProductInfo(props: Product) {
     variants,
   } = props;
 
-  console.log("props =>", props);
-
   return (
     <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 flex-1">
       <div className="flex-1 space-y-6 lg:space-y-8 px-3 md:px-0">

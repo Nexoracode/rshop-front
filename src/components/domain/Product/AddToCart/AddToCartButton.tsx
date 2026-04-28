@@ -21,6 +21,7 @@ import {
   ZapIcon,
 } from "lucide-react";
 import { useMounted } from "@/hooks/useMounted";
+import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
 
 type Props = {
   product: Product;
@@ -36,7 +37,6 @@ export default function AddToCartButton({
   const [openLoginDialog, setOpenLoginDialog] = React.useState(false);
   const mounted = useMounted();
   const { selectedVariant: variant } = useProductVariantUrl(variants);
-
   const { user } = useCurrentUser();
 
   const { isPending: isAdding, mutateAsync: addToCart } =
@@ -64,13 +64,16 @@ export default function AddToCartButton({
       ? item.variant?.id === variant.id
       : item.product.id === product.id && !item.variant,
   );
-
+  
   const isInCart = !!cartItem;
   const currentQuantity = cartItem?.quantity ?? 0;
 
   // حداکثر تعداد مجاز
-  const maxQty =
-    product.order_limit || (variant?.stock ?? product.stock ?? 9999);
+  const maxQty = maxQuantitySelector({
+    orderLimit: product.order_limit,
+    productStock: product.stock,
+    variantStock: variant?.stock || 0
+  })
 
   const isOutOfStock = maxQty <= 0;
 

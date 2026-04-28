@@ -16,7 +16,6 @@ export default function GiftMessageInput() {
   } = useCheckout();
   const form = useForm({ values: { gift_message: gift_message || "" } });
   const [open, setOpen] = useState(false);
-  console.log(is_gift);
 
   if (!is_gift) {
     return null;

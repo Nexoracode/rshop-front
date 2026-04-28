@@ -38,8 +38,6 @@ export default function AddressCard({
   onSelect,
   showAddressName,
 }: Props) {
-  console.log("address =>", address);
-
   return (
     <div
       onClick={onSelect}

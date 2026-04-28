@@ -12,10 +12,7 @@ export default function CardToCardPaymentPage() {
 
   const { data: order, isPending } = useQuery(
     getOrderDetails(Number(order_id)),
-  );
-
-  console.log(order, order_id);
-  
+  );  
 
   if (isPending) return <div>Loading...</div>;
 

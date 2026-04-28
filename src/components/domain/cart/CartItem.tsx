@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 import PriceBox from "@/components/shared/product/PriceBox";
 import CartItemVariant from "@/components/layout/Header/CartPopver/CartItemVariant";
+import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
 
 export default function CartItem({
   id,
@@ -25,6 +26,12 @@ export default function CartItem({
     if (qty === 0) deleteItem({ itemId: id });
     else updateItem({ itemId: id, quantity: qty });
   };
+
+  const maxQty = maxQuantitySelector({
+    orderLimit: product.order_limit,
+    productStock: product.stock,
+    variantStock: variant?.stock || 0,
+  });
 
   return (
     <div
@@ -63,7 +70,7 @@ export default function CartItem({
             <PriceBox className="font-medium" price={+line_total} />
           </div>
           <QuantitySelect
-            maxQty={product.stock}
+            maxQty={maxQty}
             onChange={handleQtyChange}
             qty={quantity}
             loading={deletePending || updatePending}
