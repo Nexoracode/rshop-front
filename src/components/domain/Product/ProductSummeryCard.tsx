@@ -43,7 +43,7 @@ export default function ProductSummeryCard(product: Product) {
       </div>
 
       <AddToCartButton product={product} productDetailBoxClass="bg-white !p-0 my-1">
-        <div className="my-2">
+        <div className="my-2 lg:w-full">
           <ProductPriceInfo {...product} />
         </div>
       </AddToCartButton>

@@ -26,7 +26,7 @@ export default function Header({ showPromoBanner = true }: HeaderProps) {
   const isCategoriesListInMobile = isMobile && pathName.includes("/categories");  
   const isCollectionInMobile = isMobile && pathName.includes("/collection");  
   return (
-    <header className="fixed bg-white top-0 z-[999999] w-full border-b border-slate-200">
+    <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
       {!isMobileCategoryPage &&
         !isCategoriesListInMobile &&
         showPromoBanner && <PromoBanner />}

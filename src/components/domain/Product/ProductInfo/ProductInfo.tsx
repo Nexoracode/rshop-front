@@ -119,7 +119,7 @@ export default function ProductInfo(props: Product) {
           "transition-all duration-300",
         )}
       >
-        <div className="p-3 md:p-6 space-y-5">
+        <div className="p-3 lg:p-6 space-y-5">
           <div className="hidden lg:flex flex-col gap-2">
             <div className="flex items-center justify-between border-b pb-4">
               <div className="font-medium text-[16px] text-slate-600">
@@ -142,7 +142,7 @@ export default function ProductInfo(props: Product) {
           </div>
 
           <AddToCartButton product={props}>
-            <div className="lg:my-2">
+            <div className="lg:my-2 lg:w-full">
               <ProductPriceInfo {...props} />
             </div>
           </AddToCartButton>

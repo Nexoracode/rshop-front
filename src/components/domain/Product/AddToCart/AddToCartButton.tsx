@@ -130,14 +130,14 @@ export default function AddToCartButton({
   }
 
   return (
-    <div className="flex flex-col gap-3 -mt-1">
+    <div className="flex justify-between items-center lg:items-end lg:justify-start lg:flex-col gap-3 -mt-1">
       <LoginRequiredDialog
         usage="cart"
         open={openLoginDialog}
         onOpenChange={setOpenLoginDialog}
       />
 
-      <div className={`flex flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}>
+      <div className={`hidden lg:flex w-full flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}>
         <div className="flex flex-col gap-4">
           {!isOutOfStock ? (
             <div className="hidden lg:flex items-center text-green-700 text-xs gap-2">
@@ -148,8 +148,8 @@ export default function AddToCartButton({
             ""
           )}
 
-          <div className="hidden lg:flex items-center text-secondary text-xs gap-2">
-            <ZapIcon className="text-secondary size-4" />
+          <div className="hidden lg:flex items-center text-sky-600 text-xs gap-2">
+            <ZapIcon className="text-sky-600 size-4" />
             ارسال در سریع ترین زمان
           </div>
         </div>
@@ -164,14 +164,15 @@ export default function AddToCartButton({
           is_limited_stock={product.is_limited_stock}
         />
       </div>
+      
       {children}
 
       {!isInCart ? (
         <Button
           size="md"
-          fullWidth
           disabled={isAdding || isOutOfStock}
           onClick={handleAddToCart}
+          className="lg:w-full"
         >
           {isAdding ? (
             <span className="flex items-center">
@@ -185,7 +186,7 @@ export default function AddToCartButton({
           )}
         </Button>
       ) : (
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <QuantitySelect
             qty={currentQuantity}
             maxQty={maxQty}
@@ -193,8 +194,10 @@ export default function AddToCartButton({
           />
 
           <Link href="/cart" className="text-primary hover:underline text-sm">
-            <div className="flex items-center gap-1.5">
-              مشاهده سبد خرید
+            <div className="flex flex-row items-center gap-1.5">
+              <span className="hidden lg:flex">مشاهده سبد خرید</span>
+              <span className="lg:hidden">سبد خرید</span>
+          
               <ArrowDownRight className="rotate-180 text-primary size-4.5" />
             </div>
           </Link>

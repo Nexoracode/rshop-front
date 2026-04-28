@@ -30,12 +30,12 @@ export default function ProductPriceInfo({
     productStock = variant ? variant.stock : stock;
   }
   return productStock ? (
-    <div className="flex flex-row-reverse items-center justify-between md:w-full md:gap-3">
+    <div className="flex flex-col lg:flex-row-reverse lg:items-center justify-between md:w-full md:gap-3">
       <div>
         <PriceBox className="text-xl font-bold text-black" price={final} />
       </div>
       {compareAt && compareAt > final ? (
-        <div className="flex flex-col-reverse gap-1 items-center">
+        <div className="flex lg:flex-col-reverse gap-3 mt-1 lg:mt-0 lg:gap-1 lg:items-center">
           <span className="text-slate-700 text-[15px] line-through">
             {formatToman(compareAt, false)}
           </span>
