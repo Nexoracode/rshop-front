@@ -18,14 +18,14 @@ const nextConfig = {
         destination:
           "https://app-backend-rshop-nodejs.roohbakhshac.com/api/:path*",
       }, */
-      /* {
-        source: "/api/:path*",
-        destination: "http://172.18.100.42:3000/api/:path*",
-      }, */
       {
         source: "/api/:path*",
-        destination: "http://192.168.0.182:3000/api/:path*",
+        destination: "http://172.18.100.42:3000/api/:path*",
       },
+      /*   {
+        source: "/api/:path*",
+        destination: "http://192.168.0.182:3000/api/:path*",
+      }, */
     ];
   },
   /* compiler: {
