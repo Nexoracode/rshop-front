@@ -2,13 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-export function useIsMobile(breakpoint: number = 768): boolean {
+export function useIsMobile(breakpoint: number = 768): boolean | null {
   const query = useMemo(
     () => `(max-width: ${breakpoint - 0.02}px)`,
     [breakpoint],
   );
 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("matchMedia" in window)) return;
@@ -18,7 +18,7 @@ export function useIsMobile(breakpoint: number = 768): boolean {
 
     setIsMobile(mql.matches);
     mql.addEventListener("change", onChange);
-    
+
     return () => mql.removeEventListener("change", onChange);
   }, [query]);
 

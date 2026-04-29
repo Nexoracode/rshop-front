@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import Providers from "@/components/layout/Providers";
 import { Toaster } from "@/components/ui/sonner";
 import { iranYekanFont } from "@/fonts";
+import PageLoading from "@/components/shared/asset/PageLoading";
 
 export const metadata: Metadata = {
   title: "آرشاپ | فروشگاه آکادمی روح بخش",
@@ -20,7 +21,10 @@ export default function RootLayout({
         className={`${iranYekanFont.className} ${iranYekanFont.variable} font-display  min-h-screen antialiased`}
         cz-shortcut-listen="false"
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <PageLoading />
+          {children}
+        </Providers>
         <Toaster />
       </body>
     </html>

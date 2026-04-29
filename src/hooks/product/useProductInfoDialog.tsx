@@ -8,8 +8,6 @@ export default function useProductInfoDialog() {
   const searchParams = useSearchParams();
   const openTab = searchParams.get("product_info_dialog");
 
-  console.log({ openTab });
-
   const setDialogTab = (tab: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
 

@@ -8,14 +8,13 @@ export default async function CollectionHero({ data }: { data: Collection }) {
 
   return (
     <div className="flex items-center flex-col gap-3">
-      <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-gray-900 to-gray-800">
-        <div className="relative h-[200px] lg:h-[300px] xl:h-[400px]">
+      <div className="relative w-full rounded-2xl border bg-gradient-to-br from-gray-900 to-gray-800">
+        <div className="relative w-full h-[200px] lg:h-[300px] xl:h-[400px]">
           <Image
-            src={image}
+            src={"/SADASDS.PNG"}
             alt={title}
-            width={1536}
-            height={400}
-            className="h-full min-w-full object-cover"
+            fill
+            className="h-full w-[100%] object-cover"
             priority
           />
           {description ? (

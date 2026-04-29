@@ -27,7 +27,9 @@ export default function PromoSection({
       <div
         className={cn(
           "grid grid-cols-1 gap-2 md:gap-4",
-          layoutType === "side_by_side" ? "container-home md:grid-cols-2" : "",
+          layoutType === "side_by_side"
+            ? "container-home  mt-12 md:grid-cols-2"
+            : "",
         )}
       >
         <div
@@ -44,7 +46,11 @@ export default function PromoSection({
           />
         </div>
 
-        {layoutType !== "side_by_side" ? <div className="mt-2">{children}</div> : ""}
+        {layoutType !== "side_by_side" ? (
+          <div className="mt-2">{children}</div>
+        ) : (
+          ""
+        )}
 
         <div
           className={cn(

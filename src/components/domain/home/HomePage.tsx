@@ -11,17 +11,19 @@ import PromoSection from "./PromoSection";
 export default async function HomePage() {
   const queryClient = getQueryClient();
   const data = await queryClient.fetchQuery(getHomeSections);
-  
-  if (!data) return <PageLoader />;  
+
+  if (!data) return <PageLoader />;
 
   const featuredSection = data.sections.find(
-    (s) => s.section_type === "featured",
+    (s) => s.section_type === "promotion_based",
   );
 
   return !data ? (
     <PageLoader />
   ) : (
-    <div className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-" : ""} space-y-4`}>
+    <div
+      className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-" : ""} space-y-4`}
+    >
       <PromoSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}

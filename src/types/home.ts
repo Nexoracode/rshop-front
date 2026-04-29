@@ -54,7 +54,8 @@ export type SectionType =
   | "featured"
   | "special_products"
   | "most_popular"
-  | "category_based";
+  | "category_based"
+  | "promotion_based";
 
 export type DisplayStyle = "carousel" | "grid" | "list";
 

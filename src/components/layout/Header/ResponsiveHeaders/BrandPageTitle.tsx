@@ -1,19 +1,20 @@
 "use client";
+import { getBrandBySlug } from "@/queries/products/brand";
 import { getCategoryBySlug } from "@/queries/products/category";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";
 
-export default function HeaderCategoryPageTitle() {
+export default function BrandPageTitle() {
   const { slug = [""] } = useParams();
 
-  const categorySlug = Array.isArray(slug) ? slug[slug.length - 1] : slug;
+  const brandSlug = Array.isArray(slug) ? slug[slug.length - 1] : slug;
 
-  const { data } = useQuery(getCategoryBySlug(categorySlug));
+  const { data } = useQuery(getBrandBySlug(brandSlug));
 
   return (
     <div className="flex-1 text-sm font-medium w-full text-nowrap">
-      <p>{data?.category.title}</p>
+      <p>{data?.name}</p>
     </div>
   );
 }

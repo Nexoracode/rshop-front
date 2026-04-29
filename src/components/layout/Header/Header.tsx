@@ -7,11 +7,11 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import UserMenu from "./UserMenu";
 import PromoBanner from "./PromoBanner";
 import LogoLink from "./LogoLink";
-import CategoryPageHeader from "./ResponsiveHeaders/CategoryPageHeader";
 import ProductPageHeader from "./ResponsiveHeaders/ProductPageHeader";
 import SearchBox from "./SearchBox";
 import HomePageHeader from "./ResponsiveHeaders/HomePageHeader";
 import DesktopNav from "./DesktopNav";
+import ProductsListPageHeader from "./ResponsiveHeaders/ProductsListPageHeader";
 
 type HeaderProps = {
   showPromoBanner?: boolean;
@@ -19,12 +19,14 @@ type HeaderProps = {
 
 export default function Header({ showPromoBanner = true }: HeaderProps) {
   const pathName = usePathname();
-  const isMobile = useIsMobile();
+  const mobileScreeen = useIsMobile();
+  const isMobile = mobileScreeen === true;
   const isMobileHomePage = isMobile && pathName === "/";
   const isMobileProductPage = isMobile && pathName.startsWith("/p/");
   const isMobileCategoryPage = isMobile && pathName.includes("/products");
-  const isCategoriesListInMobile = isMobile && pathName.includes("/categories");  
-  const isCollectionInMobile = isMobile && pathName.includes("/collection");  
+  const isMobileBrandPage = isMobile && pathName.includes("/brand");
+  const isCategoriesListInMobile = isMobile && pathName.includes("/categories");
+  const isCollectionInMobile = isMobile && pathName.includes("/collection");
   return (
     <header className="fixed bg-white top-0 z-50 w-full border-b border-slate-200">
       {!isMobileCategoryPage &&
@@ -35,9 +37,11 @@ export default function Header({ showPromoBanner = true }: HeaderProps) {
         <div className="max-w-[1536px] w-full mx-auto px-2 bg-white relative z-50 flex text-foreground items-center justify-between py-3 gap-3">
           {isMobile ? (
             <>
-              {isMobileCategoryPage ? (
-                <CategoryPageHeader
-                  pathname={pathName.startsWith("/products/")}
+              {isMobileCategoryPage || isMobileBrandPage ? (
+                <ProductsListPageHeader
+                  isBrandPage={isMobileBrandPage}
+                  isCategoryPage={isMobileCategoryPage}
+                  isShopPage={pathName === "/products"}
                 />
               ) : (
                 ""
@@ -45,9 +49,9 @@ export default function Header({ showPromoBanner = true }: HeaderProps) {
 
               {isMobileProductPage && <ProductPageHeader />}
 
-              {(isMobileHomePage || isCategoriesListInMobile || isCollectionInMobile) && (
-                <HomePageHeader />
-              )}
+              {(isMobileHomePage ||
+                isCategoriesListInMobile ||
+                isCollectionInMobile) && <HomePageHeader />}
             </>
           ) : (
             <>

@@ -26,7 +26,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
     showErrorToast: showErrorToastParam = true,
     ...restOptions
   } = options;
-  
+
   const isServer = typeof window === "undefined";
 
   // -----------------------------
@@ -97,7 +97,6 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       body: finalBody,
       ...restOptions,
     });
-    
   } catch (_error) {
     return false;
   }
@@ -119,7 +118,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
   // -----------------------------
   // 6) HTTP error handling
   // -----------------------------
-  if (!res.ok) {    
+  if (!res.ok) {
     const message =
       (data && typeof data === "object" && data.message) ||
       "خطا در برقراری ارتباط با سرور";
