@@ -10,5 +10,8 @@ export default async function FAQPage() {
   const queryClient = getQueryClient();
 
   const data = await queryClient.fetchQuery(getStoreFaqs);
+
+  if (!data) return <div>خطا در دریافت اطلاعات</div>;
+
   return <FaqPage {...data} />;
 }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Product } from "@/types/product";
 import ProductAttributes from "../ProductAttributes";
 import ProductDescription from "../ProductTabs/ProductDescription";

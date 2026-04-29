@@ -12,6 +12,7 @@ export default async function CategoriesPage() {
 
   const data = await queryClient.fetchQuery(getCategoreis);
 
+  if (!data) return <div>خطا در دریافت اطلاعات</div>;
   return (
     <div className="md:pt-28 pt-10">
       <Header />
