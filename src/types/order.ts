@@ -124,6 +124,7 @@ export type OrderMeta = {
   gift_wrapping_id?: number;
   gift_message?: string;
   is_gift?: boolean;
+  is_for_gift?: boolean;
 };
 
 export type GiftWrapping = {

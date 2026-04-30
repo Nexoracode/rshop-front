@@ -17,10 +17,10 @@ export const doranFont = localFont({
 
 export const iranYekanFont = localFont({
   src: [
-    { path: "./iranyekanwebregular.woff", weight: "400" },
-    { path: "./iranyekanwebmedium.woff", weight: "500" },
-    { path: "./iranyekanwebbold.woff", weight: "700" },
-    { path: "./iranyekanwebextrabold.woff", weight: "800" },
+    { path: "./iranyekanwebregular.woff", weight: "400", style: "normal" },
+    { path: "./iranyekanwebmedium.woff", weight: "500", style: "normal" },
+    { path: "./iranyekanwebbold.woff", weight: "700", style: "normal" },
+    { path: "./iranyekanwebextrabold.woff", weight: "800", style: "normal" },
   ],
 
   variable: "--font-iranyekan",

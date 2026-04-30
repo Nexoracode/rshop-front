@@ -22,17 +22,21 @@ export function PaymentModeInfo({
   onClose?: () => void;
   values: CardToCardPaymentInfo | null;
 }) {
+  console.log({ values });
   const form = useForm({
-    values: values
-      ? {
-          tracking_code: values.tracking_code,
-          sender_card_number: values.sender_card_number,
-          deposit_date: values.deposit_date,
-          deposit_time: values.deposit_date
-            ? getTimeString(values.deposit_date ?? "")
-            : null,
-        }
-      : {},
+    values:
+      values && values.card_to_card_status === "uploaded"
+        ? {
+            tracking_code: values.tracking_code,
+            sender_card_number: values.sender_card_number,
+            deposit_date: values.deposit_date,
+            deposit_time: values.deposit_date
+              ? getTimeString(values.deposit_date ?? "")
+              : null,
+          }
+        : {
+            deposit_time: "18:00",
+          },
   });
 
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);

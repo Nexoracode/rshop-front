@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { statusColor, statusLabel } from "@/data/order";
 import { Order } from "@/types/order";
 import { toPersianDate } from "@/lib/utils/date-time";
-import { formatToman } from "@/lib/utils/price";
+import { formatToman, toFaDigits } from "@/lib/utils/price";
 
 export function OrderCard({ order }: { order: Order }) {
   return (
@@ -26,18 +26,20 @@ export function OrderCard({ order }: { order: Order }) {
 
           <ChevronLeftIcon className="size-6 text-gray-600" />
         </div>
-        <div className="flex flex-wrap text-nowrap border-b pb-3 space-y-4">
+        <div className="flex flex-wrap text-nowrap border-b items-center">
           <p className="text-xs md:text-sm text-muted/50">
             {toPersianDate(order.created_at)}
           </p>
 
-          <p className="text-3xl text-muted/30 font-medium mx-2 leading-2">.</p>
+          <p className="text-3xl text-muted/30 font-medium mx-2">.</p>
           <div className="flex items-center">
             <p className="text-xs md:text-sm text-muted/60">شماره سفارش: </p>
-            <p className="text-xs md:text-sm pr-1">{order.id}</p>
+            <p className="text-xs md:text-sm pr-1">{toFaDigits(order.id)}</p>
           </div>
 
-          <p className="text-3xl text-muted/30 font-medium mx-2 leading-2">.</p>
+          <span className="text-3xl flex items-center h-8 leading-0 text-muted/30 font-medium mx-2">
+            .
+          </span>
           <div className="text-right flex items-center">
             <p className="text-xs md:text-sm text-muted/60">مبلغ کل: </p>
             <p className="font-medium text-sm md:text-[1rem] text-primary pr-1">

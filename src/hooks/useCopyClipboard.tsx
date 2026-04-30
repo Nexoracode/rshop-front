@@ -1,14 +1,23 @@
+import React from "react";
 import { toast } from "sonner";
 
 export default function useCopyClipboard() {
   const handleCopy = async (
     text: string,
     formatted?: string,
-    message: string = "کپی شد"
+    message: string = "کپی شد",
   ) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success(message, { description: formatted });
+      toast.success(message, {
+        description: React.createElement(
+          "span",
+          {
+            style: { direction: "ltr", display: "inline-block" },
+          },
+          formatted,
+        ),
+      });
     } catch {
       // fallback
       const tmp = document.createElement("textarea");

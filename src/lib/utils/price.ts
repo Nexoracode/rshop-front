@@ -1,7 +1,17 @@
 const faDigits = "۰۱۲۳۴۵۶۷۸۹";
 
-function toFaDigits(input: string): string {
-  return input.replace(/\d/g, (d) => faDigits[+d]).replace(/\./g, "٫");
+export function formatCardNumber(value: string) {
+  return value
+    .replace(/\D/g, "") // remove non-digits
+    .replace(/(.{4})/g, "$1 ") // add space every 4 digits
+    .trim();
+}
+
+export function toFaDigits(input: string | number): string {
+  return input
+    .toString()
+    .replace(/\d/g, (d) => faDigits[+d])
+    .replace(/\./g, "٫");
 }
 
 export const persianToEnglishNumbers = (value: string | number): string => {

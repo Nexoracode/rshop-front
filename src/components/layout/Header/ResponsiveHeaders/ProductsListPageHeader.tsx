@@ -1,6 +1,5 @@
 import React from "react";
 import MobileSearchBox from "../SearchBox/MobileSearchBox";
-import HeaderCategoryPageTitle from "./CategoryPageTitle";
 import BackButton from "@/components/common/BackButton";
 import SharePageLink from "../SharePageLink";
 import BrandPageTitle from "./BrandPageTitle";
@@ -8,7 +7,6 @@ import CategoryPageTitle from "./CategoryPageTitle";
 
 export default function ProductsListPageHeader({
   isBrandPage,
-  isCategoryPage,
   isShopPage,
 }: {
   isCategoryPage: boolean;

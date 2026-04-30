@@ -16,3 +16,16 @@
   @apply w-4 h-4 bg-white rounded-full shadow
          hover:scale-110 transition-transform;
 }
+
+input[type="time"] {
+  position: relative;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+}

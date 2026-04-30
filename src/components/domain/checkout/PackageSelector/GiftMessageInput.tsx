@@ -43,7 +43,7 @@ export default function GiftMessageInput() {
     <FormProvider {...form}>
       <form>
         <p className="text-primary font-medium text-sm mb-4">
-          پیغام شما روی بسته‌بندی چاپ می‌شود.
+          پیغام شما روی هدیه چاپ می‌شود.
         </p>
         <TextField
           rows={4}
@@ -53,7 +53,7 @@ export default function GiftMessageInput() {
           required={false}
           className="resize-none 0 border border-muted/30 focus-visible:border-0"
           name="gift_message"
-          placeholder="پیغام شما روی بسته‌بندی چاپ می‌شود..."
+          placeholder="پیغام شما روی هدیه چاپ می‌شود..."
         />
       </form>
     </FormProvider>
@@ -70,8 +70,8 @@ export default function GiftMessageInput() {
         onOpenChange={setOpen}
         title={
           gift_message?.length
-            ? "ویرایش متن بسته‌بندی"
-            : "افزودن متن به بسته‌بندی (اختیاری)"
+            ? "ویرایش متن هدیه"
+            : "افزودن متن به هدیه (اختیاری)"
         }
         trigger={
           <div className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all">
@@ -92,7 +92,7 @@ export default function GiftMessageInput() {
   return (
     <div className="w-full flex flex-col gap-6 border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
       <div className="flex items-center justify-between gap-8">
-        <div className="text-[13px] text-muted-light">توضیحات بسته بندی</div>
+        <div className="text-[13px] text-muted-light">توضیحات هدیه</div>
 
         <div className="flex items-center gap-4">
           {GiftMessageModal()}

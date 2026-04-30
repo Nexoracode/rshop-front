@@ -119,7 +119,7 @@ function SidebarProvider({
       state,
       open,
       setOpen,
-      isMobile,
+      isMobile: isMobile === true,
       openMobile,
       setOpenMobile,
       toggleSidebar,

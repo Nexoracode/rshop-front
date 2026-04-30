@@ -1,5 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { TimerIcon } from "lucide-react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import FieldContainer from "./FieldContainer";
@@ -43,13 +42,14 @@ export function TimeInput({ value, onChange }: TimeInputProps) {
         type="time"
         id="time-picker"
         value={value}
+        lang="en-GB"
         onChange={(e) => onChange?.(e.target.value)}
-        step="1"
+        step="60"
         dir="rtl"
-        className="bg-background input justify-end text-right  appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+        className="bg-background input justify-end text-right [&::-webkit-calendar-picker-indicator]:inline-block"
       />
-
-      <TimerIcon className="absolute text-primary left-3 top-[50%] -translate-y-[50%]" />
+      {/*       <TimerIcon className="absolute text-primary left-3 top-[50%] -translate-y-[50%]" />
+       */}{" "}
     </div>
   );
 }

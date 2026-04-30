@@ -1,6 +1,7 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import useCopyClipboard from "@/hooks/useCopyClipboard";
+import { formatCardNumber, toFaDigits } from "@/lib/utils/price";
 import { getShopCardInfo } from "@/queries/checkout/order-meta";
 import { useQuery } from "@tanstack/react-query";
 import { Copy } from "lucide-react";
@@ -61,14 +62,19 @@ function CardInfoItem({
     <div className="flex items-center justify-between rounded-lg border p-3 hover:border-primary-500 transition">
       <div className="space-y-1">
         <div className="text-xs text-muted-foreground">{label}</div>
-        <div className="tracking-widest text-sm font-medium ltr truncate line-clamp-1 w-50 sm:w-full">
-          {value}
+        <div
+          style={{ direction: "ltr" }}
+          className="tracking-widest text-sm font-medium truncate line-clamp-1 w-50 sm:w-full"
+        >
+          {toFaDigits(formatCardNumber(value))}
         </div>
       </div>
 
       <Button
         size="sm"
-        onClick={() => handleCopy(copyValue ?? value, value)}
+        onClick={() =>
+          handleCopy(copyValue ?? value, toFaDigits(formatCardNumber(value)))
+        }
         className="gap-1 text-xs flex items-center bg-primary-50 group border border-primary-500"
       >
         <div className="flex items-center text-primary-500 gap-2 group-hover:text-white">

@@ -14,6 +14,9 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-iranyekan);
+    -webkit-font-feature-settings: "ss01";
+    font-feature-settings: "ss01";
   }
 
   button {

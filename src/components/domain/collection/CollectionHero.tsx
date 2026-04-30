@@ -4,7 +4,7 @@ import CollectionExpired from "./CollectionExpired";
 import { Collection } from "@/types/product";
 
 export default async function CollectionHero({ data }: { data: Collection }) {
-  const { description, end_date, image, title } = data;
+  const { description, end_date, title } = data;
 
   return (
     <div className="flex items-center flex-col gap-3">

@@ -1,6 +1,7 @@
 "use client";
 import LoaderDots from "@/components/common/LoaderDots";
 import { Button } from "@/components/ui/button";
+import { toFaDigits } from "@/lib/utils/price";
 import { Minus, Plus, Trash2Icon } from "lucide-react";
 import React from "react";
 
@@ -61,7 +62,7 @@ export default function QuantitySelect({
         <div className="flex flex-col items-center">
           <input
             inputMode="numeric"
-            value={qty}
+            value={toFaDigits(qty)}
             disabled
             /* onChange={(e) => {
               const v = Number(e.target.value || 1);

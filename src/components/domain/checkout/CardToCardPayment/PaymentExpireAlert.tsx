@@ -9,7 +9,7 @@ type Props = {
 
 export default function PaymentExpireAlert({ date }: Props) {
   return (
-    <div className="bg-warning/10 rounded-lg p-4 lg:p-6 flex items-center">
+    <div className="bg-warning/10 rounded-lg p-4 lg:p-4 flex items-center">
       <AlertCircle className="text-yellow-600 block md:size-5 size-9" />
       <p className="text-xs leading-6 md:text-sm ps-2">
         {`شما تا ${toPersianDateTime(

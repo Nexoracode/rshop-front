@@ -16,6 +16,7 @@ type Props = {
 };
 
 export default function SubmitPaymentReceip(props: Props) {
+  const { paymentInfo } = props;
   const [open, setOpen] = useState(false);
   const { refetch } = useQuery(getOrderDetails(props.order_id));
   const handleClose = () => {
@@ -27,7 +28,9 @@ export default function SubmitPaymentReceip(props: Props) {
       <BaseDialog
         trigger={
           <Button variant={"outline"} size={"sm"}>
-            ثبت رسید پرداخت
+            {paymentInfo.card_to_card_status === "uploaded"
+              ? "مشاهده رسید پرداخت"
+              : "ثبت رسید پرداخت"}
           </Button>
         }
         width="4xl"

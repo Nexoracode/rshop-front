@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils/classnames";
+import { toFaDigits } from "@/lib/utils/price";
 import Link from "next/link";
 import { ComponentProps, ReactNode } from "react";
 
@@ -28,7 +29,7 @@ export default function LinkWithChip({
       {Icon}
       {count ? (
         <span className="absolute bg-primary-400 w-4 h-4 text-xs font-medium rounded -right-1.5 -bottom-1.5 text-white content-center">
-          {count}
+          {toFaDigits(count)}
         </span>
       ) : null}
     </Link>

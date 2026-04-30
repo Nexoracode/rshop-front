@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils/classnames";
 import { formatToman } from "@/lib/utils/price";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
 import EmptySectionCheckout from "../EmptySectionCheckout";
+import { GiftWrapping } from "@/types/order";
+import { Badge } from "@/components/ui/badge";
 
 export function GiftWrapModal() {
   const [open, setOpen] = useState(false);
@@ -21,8 +23,12 @@ export function GiftWrapModal() {
     handleSetOrderMeta,
   } = useCheckout();
 
-  const handleSelectPack = (selectedId: number) => {
-    handleSetOrderMeta({ gift_wrapping_id: selectedId, is_gift: true });
+  const handleSelectPack = (selectedPackage: GiftWrapping) => {
+    handleSetOrderMeta({
+      gift_wrapping_id: selectedPackage.id,
+      is_gift: true,
+      is_for_gift: selectedPackage.is_for_gift,
+    });
     setOpen(false);
   };
 
@@ -31,6 +37,7 @@ export function GiftWrapModal() {
       gift_wrapping_id: undefined,
       gift_message: "",
       is_gift: false,
+      is_for_gift: false,
     });
   };
 
@@ -44,12 +51,12 @@ export function GiftWrapModal() {
           <div className="relative">
             <div className="md:max-h-[70vh] pb-16 overflow-auto no-scrollbar space-y-2">
               {data
-                ?.filter((i) => i.is_active && i.is_for_gift)
+                ?.filter((i) => i.is_active)
                 ?.map((item, index) => (
                   <div
                     role="button"
                     key={index}
-                    onClick={() => handleSelectPack(item.id)}
+                    onClick={() => handleSelectPack(item)}
                     className={cn(
                       "border relative flex items-stretch cursor-pointer rounded-lg overflow-hidden hover:border-muted-500 transition",
                       gift_wrapping_id === item.id &&
@@ -78,6 +85,14 @@ export function GiftWrapModal() {
                     {gift_wrapping_id === item.id && (
                       <Check className="absolute left-3 top-3 text-green-600" />
                     )}
+                    {item.is_for_gift ? (
+                      <Badge
+                        variant={"primary"}
+                        className="absolute left-2 bottom-2"
+                      >
+                        هدیه
+                      </Badge>
+                    ) : null}
                   </div>
                 ))}
             </div>

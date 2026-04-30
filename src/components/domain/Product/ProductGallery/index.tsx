@@ -37,7 +37,7 @@ export default function ProductGallery({
   );
   return (
     <div className="space-y-3 mx-auto w-full">
-      <Carousel className="mx-auto" opts={{ active: isMobile }}>
+      <Carousel className="mx-auto" opts={{ active: isMobile === true }}>
         <CarouselContent>
           {sortedImages
             .filter((i) => i.type === "image")

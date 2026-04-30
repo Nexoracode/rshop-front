@@ -25,13 +25,11 @@ export default function ProductPriceInfo({
     : [price, discount_amount, discount_percent];
   const { compareAt, final, percent } = calcPrice(...calcPriceParams);
 
-  let productStock = maxQuantitySelector({
+  const productStock = maxQuantitySelector({
     orderLimit: order_limit,
     productStock: stock,
     variantStock: variant?.stock || null,
   });
-
-  console.log({ productStock, variant, stock, order_limit });
   return productStock > 0 ? (
     <div className="flex flex-col lg:flex-row-reverse lg:items-center justify-between md:w-full md:gap-3">
       <div>

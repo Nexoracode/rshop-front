@@ -1,6 +1,7 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toFaDigits } from "@/lib/utils/price";
 import { getDetailedProfile } from "@/queries/profile/order";
 import { ProfileOrderStatus } from "@/types/order";
 import { useQuery } from "@tanstack/react-query";
@@ -27,7 +28,7 @@ export function OrdersTabs({ value, onChange, tabs }: Props) {
                 <Skeleton className="size-5" />
               ) : data ? (
                 <span className="bg-neutral-200  text-center rounded-sm w-5 h-5 inline-block max-[330px]:hidden">
-                  {data.order_summary[tab as ProfileOrderStatus]}
+                  {toFaDigits(data.order_summary[tab as ProfileOrderStatus])}
                 </span>
               ) : null}
             </span>

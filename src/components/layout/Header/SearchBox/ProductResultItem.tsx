@@ -1,6 +1,4 @@
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { calcPrice } from "@/lib/utils/number";
-import { formatToman } from "@/lib/utils/price";
 import { ProductSearchResult } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,15 +8,7 @@ export default function ProductResultItem({
   id,
   name,
   image,
-  price,
-  discount_amount,
-  discount_percent,
 }: ProductSearchResult) {
-  const { compareAt, final } = calcPrice(
-    price,
-    discount_amount,
-    discount_percent,
-  );
   return (
     <li className="w-full pb-1 border-b md:w-[110%] last:border-b-transparent">
       <Link

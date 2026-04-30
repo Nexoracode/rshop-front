@@ -3,6 +3,7 @@
 import React from "react";
 import { getFooterSettings } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
+import { toFaDigits } from "@/lib/utils/price";
 
 export default function ContactSection() {
   const { data } = useQuery(getFooterSettings);
@@ -36,7 +37,7 @@ export default function ContactSection() {
           >
             <span className="w-30 md:hidden xl:flex">{label}</span>
             <p className="w-full text-left text-slate-600">
-              {contactData?.value ?? "-"}
+              {toFaDigits(contactData?.value ?? "") ?? "-"}
             </p>
           </a>
         );

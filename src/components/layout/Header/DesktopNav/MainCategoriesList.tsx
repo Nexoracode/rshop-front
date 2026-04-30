@@ -1,5 +1,3 @@
-import Image from "@/components/common/Image";
-import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Category } from "@/types/product";
 import { ChevronLeftIcon, PackageIcon } from "lucide-react";
 import React from "react";
