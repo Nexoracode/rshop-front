@@ -28,7 +28,7 @@ export default function OrderSummerySection({
         <InfoRow label="کد پیگیری" value={ref_id} />
         <InfoRow label="تاریخ" value={toPersianDate(invoice_date)} />
         <InfoRow label="مبلغ پرداختی" value={formatToman(Number(total))} />
-        <InfoRow label="درگاه پرداخت" value={PaymentGatewayFa[gateway].label} />
+        <InfoRow label="درگاه پرداخت" value={PaymentGatewayFa[gateway].label} className="border-b-0"/>
       </div>
     </Card>
   );
