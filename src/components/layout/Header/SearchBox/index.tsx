@@ -13,6 +13,8 @@ import ProductResultList from "./ProductResultList";
 import CategoryResultList from "./CategoryResultList";
 import BrandResultList from "./BrandResultList";
 import { searchTerm } from "@/queries/products/search";
+import SearchTermLink from "./SearchTermLink";
+import { ChevronLeftIcon } from "lucide-react";
 
 export default function SearchBox() {
   const { search, setSearch, debouncedSearch } = useDebounceSearch();
@@ -46,7 +48,12 @@ export default function SearchBox() {
             className="w-[min(36rem,90vw)] p-3 !rounded-lg"
             onClick={handleClose}
           >
-            <div>
+            <div className="border-b flex items-center justify-between">
+              <SearchTermLink debouncedSearch={debouncedSearch} />
+
+              <ChevronLeftIcon size={16} />
+            </div>
+            <div className="mt-2">
               <p className="font-medium">محصولات</p>
               <PopoverClose asChild>
                 <ProductResultList

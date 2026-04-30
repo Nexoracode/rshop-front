@@ -44,7 +44,14 @@ export default function QuantitySelect({
         onClick={handleIncrease}
         aria-label="افزایش تعداد"
       >
-        <Plus size={18} className={maxQty && qty === maxQty ? "rotate-45 !text-slate-400 cursor-default" : ""}/>
+        <Plus
+          size={18}
+          className={
+            maxQty && qty === maxQty
+              ? "rotate-45 !text-slate-400 cursor-default"
+              : ""
+          }
+        />
       </Button>
       {loading ? (
         <span>
@@ -61,9 +68,16 @@ export default function QuantitySelect({
               const next = Number.isFinite(v) && v > 0 ? Math.floor(v) : 1;
               onChange?(qty + 1)(Math.max(1, Math.min(next, maxQty)));
             }} */
-            className={`w-6 text-center bg-transparent focus:outline-none ${maxQty && qty === maxQty ? "text-red-500" : "text-primary-500"}`}
+            className={`w-6 text-center -mb-1 bg-transparent focus:outline-none ${maxQty && qty === maxQty ? "text-red-500" : "text-primary-500"}`}
             aria-label="تعداد"
           />
+          {qty === maxQty ? (
+            <span className="text-[9px] text-gray-400 font-semibold">
+              حداکثر
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       )}
       <Button

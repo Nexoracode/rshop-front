@@ -20,7 +20,7 @@ export default function ProductResultItem({
     discount_percent,
   );
   return (
-    <li className="w-full pb-1 border-b md:w-[50%] md:odd:pl-1 md:even:pr-1">
+    <li className="w-full pb-1 border-b md:w-[110%] last:border-b-transparent">
       <Link
         target="_blank"
         href={`/p/rsp-${id}`}
@@ -34,15 +34,17 @@ export default function ProductResultItem({
           className="border size-[4rem] rounded-md p-1 bg-background/30"
         />
         <div className="flex-1 flex flex-col justify-evenly">
-          <div className="text-sm leading-6 font-normal">{name}</div>
-          <div className="">
+          <div className="text-sm leading-6 line-clamp-2 font-normal">
+            {name}
+          </div>
+          {/*  <div className="">
             <span className="text-xs font-medium">{formatToman(final)}</span>{" "}
             {compareAt && (
               <span className="text-xs text-danger-500 line-through">
                 {formatToman(compareAt)}
               </span>
             )}{" "}
-          </div>
+          </div> */}
         </div>
       </Link>
     </li>

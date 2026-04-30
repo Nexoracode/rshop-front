@@ -26,6 +26,6 @@ const ProductResultList = React.forwardRef<HTMLUListElement, Props>(
         )}
       </ul>
     );
-  }
+  },
 );
 export default ProductResultList;

@@ -14,25 +14,20 @@ import { toast } from "sonner";
 import CartAddedToastContent from "../CartAddedToastContent";
 import ProductShipping from "./ProductShipping";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
-import {
-  ArrowDownRight,
-  Loader2,
-  StoreIcon,
-  ZapIcon,
-} from "lucide-react";
+import { ArrowDownRight, Loader2, StoreIcon, ZapIcon } from "lucide-react";
 import { useMounted } from "@/hooks/useMounted";
 import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
 
 type Props = {
   product: Product;
   children: React.ReactNode;
-  productDetailBoxClass?: string
+  productDetailBoxClass?: string;
 };
 
 export default function AddToCartButton({
   product: { variants, ...product },
   children,
-  productDetailBoxClass
+  productDetailBoxClass,
 }: Props) {
   const [openLoginDialog, setOpenLoginDialog] = React.useState(false);
   const mounted = useMounted();
@@ -64,7 +59,7 @@ export default function AddToCartButton({
       ? item.variant?.id === variant.id
       : item.product.id === product.id && !item.variant,
   );
-  
+
   const isInCart = !!cartItem;
   const currentQuantity = cartItem?.quantity ?? 0;
 
@@ -72,9 +67,10 @@ export default function AddToCartButton({
   const maxQty = maxQuantitySelector({
     orderLimit: product.order_limit,
     productStock: product.stock,
-    variantStock: variant?.stock || 0
-  })
+    variantStock: variant?.stock || null,
+  });
 
+  console.log({ maxQty, variant, s: product.stock, ol: product.order_limit });
   const isOutOfStock = maxQty <= 0;
 
   const handleAddToCart = () => {
@@ -137,7 +133,9 @@ export default function AddToCartButton({
         onOpenChange={setOpenLoginDialog}
       />
 
-      <div className={`hidden lg:flex w-full flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}>
+      <div
+        className={`hidden lg:flex w-full flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}
+      >
         <div className="flex flex-col gap-4">
           {!isOutOfStock ? (
             <div className="hidden lg:flex items-center text-green-700 text-xs gap-2">
@@ -164,7 +162,7 @@ export default function AddToCartButton({
           is_limited_stock={product.is_limited_stock}
         />
       </div>
-      
+
       {children}
 
       {!isInCart ? (
@@ -197,7 +195,7 @@ export default function AddToCartButton({
             <div className="flex flex-row items-center gap-1.5">
               <span className="hidden lg:flex">مشاهده سبد خرید</span>
               <span className="lg:hidden">سبد خرید</span>
-          
+
               <ArrowDownRight className="rotate-180 text-primary size-4.5" />
             </div>
           </Link>

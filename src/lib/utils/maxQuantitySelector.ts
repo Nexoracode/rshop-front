@@ -4,7 +4,7 @@ export default function maxQuantitySelector({
   variantStock,
 }: {
   productStock: number;
-  variantStock: number;
+  variantStock: number | null;
   orderLimit: number;
 }) {
   const stock = variantStock ?? productStock;
@@ -13,7 +13,7 @@ export default function maxQuantitySelector({
     return 0;
   }
   if (orderLimit && orderLimit <= stock) {
-    return orderLimit
+    return orderLimit;
   }
-  return stock
+  return stock;
 }

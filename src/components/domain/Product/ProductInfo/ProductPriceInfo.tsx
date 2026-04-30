@@ -6,13 +6,14 @@ import PriceBox from "@/components/common/PriceBox";
 import { formatToman } from "@/lib/utils/price";
 import { calcPrice } from "@/lib/utils/number";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
+import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
 
 export default function ProductPriceInfo({
   stock,
   price,
   discount_amount,
   discount_percent,
-  is_limited_stock,
+  order_limit,
   variants,
 }: Product) {
   const { selectedVariant: variant } = useProductVariantUrl(variants);
@@ -24,12 +25,14 @@ export default function ProductPriceInfo({
     : [price, discount_amount, discount_percent];
   const { compareAt, final, percent } = calcPrice(...calcPriceParams);
 
-  let productStock = 9999;
+  let productStock = maxQuantitySelector({
+    orderLimit: order_limit,
+    productStock: stock,
+    variantStock: variant?.stock || null,
+  });
 
-  if (!is_limited_stock) {
-    productStock = variant ? variant.stock : stock;
-  }
-  return productStock ? (
+  console.log({ productStock, variant, stock, order_limit });
+  return productStock > 0 ? (
     <div className="flex flex-col lg:flex-row-reverse lg:items-center justify-between md:w-full md:gap-3">
       <div>
         <PriceBox className="text-xl font-bold text-black" price={final} />
