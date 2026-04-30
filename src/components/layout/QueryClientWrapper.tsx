@@ -1,7 +1,7 @@
 "use client";
 import { useIsFetching } from "@tanstack/react-query";
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import PageLoader from "../common/PageLoader";
+import PageLoading from "../shared/asset/PageLoading";
 
 export default function QueryClientWrapper({ children }: PropsWithChildren) {
   const [mounted, setMounted] = useState(false);
@@ -20,5 +20,5 @@ export default function QueryClientWrapper({ children }: PropsWithChildren) {
     }
   }, [mounted, isFetching]);
 
-  return !initialDone ? <PageLoader /> : children;
+  return !initialDone ? <PageLoading /> : children;
 }

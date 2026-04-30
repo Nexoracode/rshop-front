@@ -6,13 +6,13 @@ import {
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import ProductCompare from "./ProductCompare";
-import PageLoader from "@/components/common/PageLoader";
+import PageLoading from "@/components/shared/asset/PageLoading";
 
 export default function ProductComparePage() {
   const { data: compareList, isLoading } = useQuery(getCompareList);
   const { mutate } = useMutation(deleteFromCompareList);
   return isLoading ? (
-    <PageLoader />
+    <PageLoading />
   ) : (
     <div className="container mx-auto">
       <ProductCompare

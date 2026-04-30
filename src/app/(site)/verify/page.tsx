@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import PageLoader from "@/components/common/PageLoader";
 import { useEffect } from "react";
 
 import { verifyPayment } from "@/queries/checkout/payment/verify";
@@ -12,6 +11,7 @@ import OrderSummerySection from "@/components/domain/verify/OrderSummerySection"
 import ProductsSection from "@/components/domain/verify/ProductsSection";
 import AddressSection from "@/components/domain/verify/AddressSection";
 import PaymentFailed from "@/components/domain/verify/PaymentFailed";
+import PageLoading from "@/components/shared/asset/PageLoading";
 
 export default function PaymentVerifyPage() {
   const params = useSearchParams();
@@ -34,7 +34,7 @@ export default function PaymentVerifyPage() {
       );
   }, [Authority, mutateAsync, Status, router]);
 
-  if (isPending || !data || data.code == 101) return <PageLoader />;
+  if (isPending || !data || data.code == 101) return <PageLoading />;
 
   if (data.success === false)
     return <PaymentFailed order={data.order} payment={data.payment} />;

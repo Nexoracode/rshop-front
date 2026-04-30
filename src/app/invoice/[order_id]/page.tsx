@@ -1,5 +1,5 @@
 "use client";
-import PageLoader from "@/components/common/PageLoader";
+import PageLoading from "@/components/shared/asset/PageLoading";
 import { statusLabel } from "@/data/order";
 import { toPersianDate } from "@/lib/utils/date-time";
 import { formatToman } from "@/lib/utils/price";
@@ -16,7 +16,7 @@ export default function Invoice() {
   const { data, isPending } = useQuery(getOrderDetails(Number(order_id)));
 
   return isPending ? (
-    <PageLoader />
+    <PageLoading />
   ) : !data ? (
     <div>NOT FOUND</div>
   ) : (

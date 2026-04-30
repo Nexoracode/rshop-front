@@ -5,10 +5,10 @@ import { OrderPaymentSection } from "./OrderPaymentSection";
 import { OrderShippingSection } from "./OrderShippingSection";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import PageLoader from "@/components/common/PageLoader";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { getOrderDetails } from "@/queries/profile/order";
+import PageLoading from "@/components/shared/asset/PageLoading";
 
 export default function OrderDetailsPage() {
   const { order_id } = useParams<{ order_id: string }>();
@@ -17,7 +17,7 @@ export default function OrderDetailsPage() {
   );
 
   return isPending ? (
-    <PageLoader />
+    <PageLoading />
   ) : orderData ? (
     <div className="space-y-4">
       <div className="flex flex-col gap-4">

@@ -1,25 +1,25 @@
 import React from "react";
 import BrandsSection from "./BrandsSection";
 import { getHomeSections } from "@/queries/home/home";
-import PageLoader from "../../common/PageLoader";
 import { getQueryClient } from "@/lib/utils/query-client";
 import HomeSections from "./HomeSections";
 import FeaturedSection from "./FeaturedSection";
 import CategoriesSection from "./CategoriesSection";
 import PromoSection from "./PromoSection";
+import PageLoading from "@/components/shared/asset/PageLoading";
 
 export default async function HomePage() {
   const queryClient = getQueryClient();
   const data = await queryClient.fetchQuery(getHomeSections);
 
-  if (!data) return <PageLoader />;
+  if (!data) return <PageLoading />;
 
   const featuredSection = data.sections.find(
     (s) => s.section_type === "promotion_based",
   );
 
   return !data ? (
-    <PageLoader />
+    <PageLoading />
   ) : (
     <div
       className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-" : ""} space-y-4`}
