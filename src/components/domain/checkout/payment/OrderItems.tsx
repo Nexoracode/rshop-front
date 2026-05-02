@@ -9,9 +9,6 @@ export default function OrderItems({ items }: { items: Array<OrderItem> }) {
   return items.map((item) => {
     const attrs = item.variant?.attributes ?? [];
 
-    console.log(item);
-    
-
     return (
       <div
         key={item.id}

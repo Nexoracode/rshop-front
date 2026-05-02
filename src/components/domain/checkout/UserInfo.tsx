@@ -5,6 +5,7 @@ import { AlertCircleIcon } from "lucide-react";
 import React from "react";
 import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toFaDigits } from "@/lib/utils/price";
 
 export default function UserInfo() {
   const { user, isPending } = useCurrentUser();
@@ -35,7 +36,9 @@ export default function UserInfo() {
               شماره همراه:
             </div>
 
-            <div className="font-medium text-sm text-muted">{user.phone}</div>
+            <div className="font-medium text-sm text-muted">
+              {toFaDigits(user.phone)}
+            </div>
           </div>
         </div>
       ) : (

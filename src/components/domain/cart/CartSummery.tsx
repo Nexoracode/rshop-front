@@ -1,6 +1,7 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import { SHOP_NAME } from "@/data/assets";
+import { PromotionTypeFa } from "@/data/order";
 import useCheckout from "@/hooks/useCheckout";
 import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
@@ -17,7 +18,7 @@ export default function CartSummery({
 }) {
   const { data } = useQuery(getCart);
   const {
-    orderMeta: { promotion_code, discount_amount },
+    orderMeta: { promotion_code, discount_amount, promotions },
   } = useCheckout();
 
   return (
@@ -42,15 +43,20 @@ export default function CartSummery({
             className="text-base font-medium "
           />
         </div>
-        {discount_amount > 0 ? (
+        {promotions?.map((promo) => (
+          <div
+            key={promo.id}
+            className="lg:flex hidden items-center justify-between"
+          >
+            <p className="text-[13px] text-rose-600">{promo.name}</p>
+            <PriceBox
+              price={Number(promo.discount_amount ?? 0)}
+              className="text-base font-medium text-rose-600"
+            />
+          </div>
+        ))}
+        {promotions?.length > 0 ? (
           <>
-            <div className="lg:flex hidden items-center justify-between">
-              <p className="text-[13px] text-rose-600">تخفیف شگفت انگیز</p>
-              <PriceBox
-                price={Number(discount_amount ?? 0)}
-                className="text-base font-medium text-rose-600"
-              />
-            </div>
             <div className="lg:flex hidden items-center justify-between">
               <p className="text-[13px] text-green-600">مجموع تخفیف </p>
               <PriceBox

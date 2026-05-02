@@ -39,12 +39,13 @@ export default function DiscountForm() {
     if (res) {
       setStatus("valid");
       setMessage(
-        `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
+        ` ${res.applied_promotions[0].name} به مبلغ ${formatToman(res.discount)} به این سفارش تعلق گرفت.`,
       );
       toast.success("کد تخفیف با موفقیت اعمال شد.");
       handleSetOrderMeta({
         promotion_code: code,
         discount_amount: res.discount,
+        promotions: res.applied_promotions,
       });
     } else {
       setStatus("invalid");
@@ -53,7 +54,7 @@ export default function DiscountForm() {
 
   return (
     <FieldContainer error="" label="">
-      <div className={cn("relative w-full transition-all")}>
+      <div className={cn("relative w-full lg:w-[350px] transition-all")}>
         {orderMeta.promotion_code ? (
           <div
             className={cn(

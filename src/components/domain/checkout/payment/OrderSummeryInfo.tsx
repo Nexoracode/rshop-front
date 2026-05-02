@@ -3,7 +3,7 @@ import PriceBox from "@/components/common/PriceBox";
 import React from "react";
 import CreatePaymentBtn from "./CreatePaymentBtn";
 import { SHOP_NAME } from "@/data/assets";
-import { DiscountBreakdown } from "@/types/order";
+import { DiscountBreakdown, Promotion } from "@/types/order";
 
 type Props = {
   total_quantity: number;
@@ -17,6 +17,7 @@ type Props = {
   showRules?: boolean;
   orderID: number;
   discount_breakdown: DiscountBreakdown;
+  promotions: Array<Promotion>;
 };
 
 export default function OrderSummeryInfo({
@@ -30,6 +31,7 @@ export default function OrderSummeryInfo({
   showRules = false,
   orderID,
   discount_breakdown,
+  promotions,
 }: Props) {
   return (
     <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:bottom-auto z-50 lg:z-auto">
@@ -75,13 +77,18 @@ export default function OrderSummeryInfo({
             className="text-base font-medium"
           />
         </div>
-        <div className="hidden lg:flex items-center justify-between">
-          <p className="text-[13px] text-rose-600">تخفیف شگفت انگیز</p>
-          <PriceBox
-            price={Number(discount_breakdown.promotion_discounts.total)}
-            className="text-base font-medium text-rose-600"
-          />
-        </div>
+        {promotions.map((promo) => (
+          <div
+            key={promo.id}
+            className="hidden lg:flex items-center justify-between"
+          >
+            <p className="text-[13px] text-rose-600">{promo.name}</p>
+            <PriceBox
+              price={Number(promo.amount)}
+              className="text-base font-medium text-rose-600"
+            />
+          </div>
+        ))}
         <div className="hidden lg:flex items-center justify-between">
           <p className="text-[13px] text-green-600">مجموع تخفیف</p>
           <PriceBox

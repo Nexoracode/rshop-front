@@ -1,7 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { ComponentProps } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { ComponentProps, useEffect, useRef } from "react";
 
 type Props = {
   link?: string;
@@ -18,6 +18,7 @@ export default function BackButton({
   ...props
 }: Props) {
   const router = useRouter();
+
   const handleClick = () => {
     if (typeof onClick === "function") return onClick();
 
@@ -27,7 +28,11 @@ export default function BackButton({
   };
 
   return (
-    <button {...props} onClick={handleClick} className={`flex items-center gap-2 cursor-pointer ${className}`}>
+    <button
+      {...props}
+      onClick={handleClick}
+      className={`flex items-center gap-2 cursor-pointer ${className}`}
+    >
       <ArrowRight className="size-5" />
       {children}
     </button>

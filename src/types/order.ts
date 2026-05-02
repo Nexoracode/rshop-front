@@ -64,6 +64,13 @@ export type PaymentMethod =
   | "bank_transfer"
   | "credit"
   | "wallet";
+
+export type PromotionType =
+  | "coupon" // کد تخفیف
+  | "flash_deal" // شگفت اننگیز
+  | "free_shipping" // ارسال رایگان
+  | "first_order" // اولین سفارش
+  | "next_order_reward"; // پاداش سفارش بعدی
 export type PaymentGateway = "zarinpal" | "melat" | "meli";
 
 export type CardToCardPaymentInfo = {
@@ -140,6 +147,12 @@ export type OrderMeta = {
   payment_method: PaymentMethod;
   note: string;
   promotion_code: string | null;
+  promotions: Array<{
+    id: number;
+    name: string;
+    type: PromotionType;
+    discount_amount: number;
+  }>;
   discount_amount: number;
   gift_wrapping_id?: number;
   gift_message?: string;

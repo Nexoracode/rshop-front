@@ -22,7 +22,6 @@ export function PaymentModeInfo({
   onClose?: () => void;
   values: CardToCardPaymentInfo | null;
 }) {
-  console.log({ values });
   const form = useForm({
     values:
       values && values.card_to_card_status === "uploaded"

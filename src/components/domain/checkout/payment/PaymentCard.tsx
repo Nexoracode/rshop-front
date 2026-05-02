@@ -22,6 +22,7 @@ export default function PaymentCard({ order_id }: { order_id: number }) {
       showRules
       orderID={order_id}
       discount_breakdown={data.discount_breakdown}
+      promotions={data.promotions}
     />
   );
 }
