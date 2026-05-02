@@ -21,6 +21,7 @@ export default function PaymentCard({ order_id }: { order_id: number }) {
       gift_wrapping_cost={data.gift_wrapping_cost}
       showRules
       orderID={order_id}
+      discount_breakdown={data.discount_breakdown}
     />
   );
 }

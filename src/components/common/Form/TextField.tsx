@@ -12,6 +12,7 @@ import FieldContainer from "./FieldContainer";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/Textarea";
 import { cn } from "@/lib/utils/classnames";
+import NumberInput from "./NumberInput";
 
 const validateRules = {
   phone: {
@@ -100,22 +101,11 @@ export default function TextField({
               label={label}
               error={error?.message}
             >
-              <Input
-                dir="ltr"
-                inputMode={"numeric"}
-                pattern={"[0-9]*"}
-                placeholder=""
+              <NumberInput
+                error={!!error?.message}
                 value={value}
-                onChange={(e) =>
-                  !/^[0-9]*$/.test(e.target.value)
-                    ? toast.error(`برای فیلد ${label} فقط ورود عدد مجاز است.`)
-                    : onChange(e.target.value)
-                }
-                className={cn(
-                  "text-right tracking-widest input",
-                  error && "border-rose-500 focus-visible:ring-rose-500",
-                )}
-                {...props}
+                onChange={(v) => onChange(v)}
+                label={label ?? ""}
               />
             </FieldContainer>
           );

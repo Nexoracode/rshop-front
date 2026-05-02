@@ -77,7 +77,6 @@ function PaymentPageSkeleton() {
 
           {/* Order items skeleton (matches real OrderItems UI) */}
           <div className="sm:border rounded-lg sm:p-6 space-y-4">
-
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -151,9 +150,7 @@ export default function PaymentPage() {
   const { data, isPending } = useQuery(getOrderDetails(Number(order_id)));
 
   if (isPending || !data) {
-    return (
-      <PaymentPageSkeleton/>
-    );
+    return <PaymentPageSkeleton />;
   }
 
   return (
@@ -203,10 +200,32 @@ export default function PaymentPage() {
                   )}
 
                   {/* discount */}
-                  <div className="flex items-center justify-between">
-                    <p className="text-[13px] text-green-600">تخفیف</p>
+                  <div className="flex items-center justify-between border-t pt-2">
+                    <p className="text-[13px] ">تخفیف محصولات</p>
                     <PriceBox
-                      price={Number(data.discount_total)}
+                      price={Number(
+                        data.discount_breakdown.product_discounts.total,
+                      )}
+                      className="text-base font-medium"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[13px] text-rose-600">
+                      تخفیف شگفت انگیز
+                    </p>
+                    <PriceBox
+                      price={Number(
+                        data.discount_breakdown.promotion_discounts.total,
+                      )}
+                      className="text-base font-medium text-rose-600"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[13px] text-green-600">مجموع تخفیف</p>
+                    <PriceBox
+                      price={Number(
+                        data.discount_breakdown.summary.grand_total_discount,
+                      )}
                       className="text-base font-medium text-green-600"
                     />
                   </div>
@@ -218,11 +237,6 @@ export default function PaymentPage() {
                   </p>
                   <PaymentMethodSelector />
                 </div>
-                {data.promotions?.length ? (
-                  <OrderDiscountSection promotions={data.promotions} />
-                ) : (
-                  ""
-                )}
                 <div className="sm:border border-slate-200 rounded-lg sm:p-6 h-fit">
                   <OrderItems items={data.items} />
                 </div>

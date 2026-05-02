@@ -14,6 +14,7 @@ import {
 
 import { Menu, MenuItem } from "@/components/common/Menu";
 import { UserAddress } from "@/types/user";
+import { toFaDigits } from "@/lib/utils/price";
 
 type Props = {
   address: UserAddress;
@@ -100,7 +101,9 @@ export default function AddressCard({
           <LucideMail className="text-gray-400 text-lg" />
           <div className="flex flex-col">
             <p className="text-xs text-gray-500 mb-1">کد پستی</p>
-            <p className="text-[14px] font-medium">{address.postal_code}</p>
+            <p className="text-[14px] font-medium">
+              {toFaDigits(address.postal_code)}
+            </p>
           </div>
         </div>
 
@@ -125,7 +128,9 @@ export default function AddressCard({
             <LucidePhone className="text-gray-400 text-lg" />
             <div className="flex flex-col">
               <p className="text-xs text-gray-500 mb-1">شماره تحویل‌گیرنده</p>
-              <p className="text-[14px]">{address.recipient_phone}</p>
+              <p className="text-[14px]">
+                {toFaDigits(address.recipient_phone)}
+              </p>
             </div>
           </div>
         )}

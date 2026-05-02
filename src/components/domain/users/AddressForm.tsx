@@ -2,8 +2,12 @@
 
 import React, { useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import { addUserAddress, updateUserAddress } from "@/queries/profile/address";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  addUserAddress,
+  getProvinces,
+  updateUserAddress,
+} from "@/queries/profile/address";
 import { UserAddress } from "@/types/user";
 import AddressFormFields from "./AddressFormFields";
 import BaseDialog from "@/components/common/BaseDialog";
@@ -15,6 +19,7 @@ type Props = {
 };
 
 export default function AddressForm({ address, open, onOpenChange }: Props) {
+  const { data: provinces } = useQuery(getProvinces);
   const [activeStep, setActiveStep] = React.useState(0);
   const {
     mutate: addAddress,
@@ -29,7 +34,11 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
 
   const form = useForm({
     values: address
-      ? { ...address, is_self: String(address.is_self) }
+      ? {
+          ...address,
+          province: provinces?.find((i) => i.title === address.province)?.id,
+          is_self: String(address.is_self),
+        }
       : {
           city: "",
           province: "",
@@ -66,9 +75,11 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
       is_self,
     } = data;
 
-    const isSelf = is_self === "true"
-    const recipientName = recipient_name === undefined ? null : isSelf ? null : recipient_name;
-    const recipientPhone = recipient_phone === undefined ? null : isSelf ? null : recipient_phone;
+    const isSelf = is_self === "true";
+    const recipientName =
+      recipient_name === undefined ? null : isSelf ? null : recipient_name;
+    const recipientPhone =
+      recipient_phone === undefined ? null : isSelf ? null : recipient_phone;
 
     if (address) {
       updateAddress({
@@ -78,7 +89,8 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         city,
         plaque,
         postal_code,
-        province,
+        province:
+          provinces?.find((i) => i.id === Number(province))?.title ?? "",
         recipient_name: recipientName,
         recipient_phone: recipientPhone,
         unit,
@@ -92,7 +104,8 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         city,
         plaque,
         postal_code,
-        province,
+        province:
+          provinces?.find((i) => i.id === Number(province))?.title ?? "",
         recipient_name: recipientName,
         recipient_phone: recipientPhone,
         unit,

@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils/classnames";
 
 interface Option {
   label: string;
-  value: string;
+  value: string | number;
 }
 
 interface Props<T extends FieldValues> {
@@ -25,6 +25,7 @@ interface Props<T extends FieldValues> {
   required?: boolean;
   disabled?: boolean;
   className?: string;
+  loading?: boolean;
 }
 
 export default function SelectField<T extends FieldValues>({
@@ -35,6 +36,7 @@ export default function SelectField<T extends FieldValues>({
   required,
   disabled,
   className,
+  loading,
 }: Props<T>) {
   const { control } = useFormContext<T>();
   const {
@@ -51,11 +53,11 @@ export default function SelectField<T extends FieldValues>({
   return (
     <FieldContainer label={label} error={error?.message} required={required}>
       <Select<Option>
-        options={options}
+        options={loading ? [] : options}
         value={options.find((o) => o.value === value) || null}
         onChange={(opt) => onChange(opt ? opt.value : "")}
         isDisabled={disabled}
-        placeholder={placeholder}
+        placeholder={loading ? " در حال دریافت..." : placeholder}
         className={cn(
           "input border border-muted-light w-full !p-0 ",
           className,

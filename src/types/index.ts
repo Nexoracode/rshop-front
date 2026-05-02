@@ -101,3 +101,16 @@ export type Blog = {
   date: string;
   slug: string;
 };
+
+export type Province = {
+  id: number;
+  title: string;
+  location: null;
+};
+
+export type City = {
+  id: number;
+  city_id: number;
+  title: string;
+  location: null;
+};

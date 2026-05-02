@@ -1,18 +1,23 @@
 "use client";
 import React from "react";
-import { regions } from "@/data/regions";
 import { useFormContext } from "react-hook-form";
 import SelectField from "@/components/common/Form/SelectField";
 import TextField from "@/components/common/Form/TextField";
 import RadioGroupField from "@/components/common/Form/RadioGroupField";
+import { useQuery } from "@tanstack/react-query";
+import { getCities, getProvinces } from "@/queries/profile/address";
 
 type Props = {
   activeStep: number;
 };
 
 export default function AddressFormFields({ activeStep }: Props) {
+  const { data, isPending } = useQuery(getProvinces);
   const form = useFormContext();
   const province = form.watch("province");
+  const { data: cities, isFetching: citiesFething } = useQuery(
+    getCities(Number(province)),
+  );
   const is_self = form.watch("is_self");
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -22,22 +27,25 @@ export default function AddressFormFields({ activeStep }: Props) {
             label="استان"
             name="province"
             required
-            options={regions.map((i) => ({
-              label: i.province,
-              value: i.province,
-            }))}
+            loading={isPending}
+            options={
+              data?.map((i) => ({
+                label: i.title,
+                value: i.id,
+              })) ?? []
+            }
           />
           <SelectField
             label="شهر"
             name="city"
             required
+            loading={citiesFething}
+            placeholder={province ? "انتخاب کنید..." : " استان را انتخاب کنید"}
             options={
-              regions
-                .find((i) => i.province === province)
-                ?.cities.map((i) => ({
-                  label: i,
-                  value: i,
-                })) ?? []
+              cities?.map((city) => ({
+                label: city.title,
+                value: city.title,
+              })) ?? []
             }
           />
           <div className="col-span-2">
@@ -51,7 +59,7 @@ export default function AddressFormFields({ activeStep }: Props) {
               name="postal_code"
               type="number"
               rules={{
-                minLength: {value: 10, message: "کد پستی باید 10 رقم باشد"},
+                minLength: { value: 10, message: "کد پستی باید 10 رقم باشد" },
               }}
               maxLength={10}
               label="کد پستی"

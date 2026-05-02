@@ -40,7 +40,7 @@ export default function ProductListContent({
     if (inView && hasNextPage && !isFetchingNextPage && products.length) {
       fetchNextPage();
     }
-  }, [hasNextPage, isFetchingNextPage]);
+  }, [hasNextPage, isFetchingNextPage, inView]);
 
   const shouldShowPagination =
     hasNextPage && currentPage >= MAX_PAGE_INFINIT_LOAD;
@@ -60,9 +60,12 @@ export default function ProductListContent({
         />
       )}
       {!products.length ? <EmptyState /> : ""}
+
       {/* تریگر برای لود بیشتر (infinite scroll) */}
       {hasNextPage && currentPage < 10 && (
-        <LoadMoreTrigger ref={ref} isFetching={isFetchingNextPage} />
+        <div ref={ref}>
+          <LoadMoreTrigger isFetching={isFetchingNextPage} />
+        </div>
       )}
       {/* fallback به pagination معمولی بعد از ۱۰ صفحه */}
       {shouldShowPagination && products.length ? (

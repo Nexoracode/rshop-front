@@ -92,6 +92,25 @@ export type Payment = {
   updated_at: string;
 } & CardToCardPaymentInfo;
 
+export type DiscountBreakdown = {
+  product_discounts: {
+    total: number;
+  };
+  promotion_discounts: {
+    total: number;
+  };
+  manual_discount: {
+    total: number;
+    type: string | null;
+    value: number;
+  };
+  summary: {
+    total_product_discounts: number;
+    total_promotion_discounts: number;
+    total_manual_discount: number;
+    grand_total_discount: number;
+  };
+};
 export type Order = {
   id: number;
   address: UserAddress;
@@ -99,6 +118,7 @@ export type Order = {
   status: StatusOrder;
   subtotal: number;
   discount_total: number;
+  discount_breakdown: DiscountBreakdown;
   total: number;
   payment_gateway_ref: string | null;
   coupon_code: string | null;
