@@ -28,7 +28,7 @@ export default function PaymentVerifyPage() {
         { Authority, Status },
         {
           onSuccess(data) {
-            if (data.code === 101) router.push(`/`);
+            if (!data || data.code === 101) router.push(`/cart`);
           },
         },
       );

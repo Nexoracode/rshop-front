@@ -1,4 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
+import { PromotionType } from "@/types/order";
 import { mutationOptions } from "@tanstack/react-query";
 
 export const checkPromotion = mutationOptions({
@@ -14,8 +15,17 @@ export const checkPromotion = mutationOptions({
       quantity: number;
       unitPrice: number;
     }>;
-  }): Promise<{ discount: number }> =>
-    await apiFetch("/promotions/check", { method: "POST", body }),
+  }): Promise<{
+    discount: number;
+    applied_promotions: [
+      {
+        id: number;
+        name: string;
+        type: PromotionType;
+        discount_amount: number;
+      },
+    ];
+  }> => await apiFetch("/promotions/check", { method: "POST", body }),
 });
 
 export const createOrder = mutationOptions({

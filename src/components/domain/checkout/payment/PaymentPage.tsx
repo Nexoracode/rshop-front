@@ -11,6 +11,7 @@ import { OrderDiscountSection } from "./OrderDiscountSection";
 import { getOrderDetails } from "@/queries/profile/order";
 import PriceBox from "@/components/common/PriceBox";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
+import CartPageHeader from "../../cart/CartPageHeader";
 
 function PaymentPageSkeleton() {
   return (
@@ -154,100 +155,109 @@ export default function PaymentPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {data ? (
-        data.status !== "awaiting_payment" && data.status !== "start_order" ? (
-          <OrderNotPayable status={data.status} orderId={data.id} />
-        ) : (
-          <>
-            <div className="flex gap-8">
-              <div className="flex-1 space-y-8">
-                <div
-                  className={`lg:hidden flex flex-col gap-4 md:p-6 rounded-lg md:border`}
-                >
-                  <p className="text-lg font-bold mb-3">جزئیات سفارش</p>
+    <div>
+      <CartPageHeader hiddenBack={data.status !== "start_order"} />
+      <div className="container space-y-10 p-3 md:p-6 mb-28">
+        <div className="space-y-6">
+          {data ? (
+            data.status !== "awaiting_payment" &&
+            data.status !== "start_order" ? (
+              <OrderNotPayable status={data.status} orderId={data.id} />
+            ) : (
+              <>
+                <div className="flex gap-8">
+                  <div className="flex-1 space-y-8">
+                    <div
+                      className={`lg:hidden flex flex-col gap-4 md:p-6 rounded-lg md:border`}
+                    >
+                      <p className="text-lg font-bold mb-3">جزئیات سفارش</p>
 
-                  {/* subtotal */}
-                  <div className="flex items-center justify-between">
-                    <p className="text-[13px]">
-                      مبلغ کل ({data?.items.reduce((c, i) => i.quantity + c, 0)}
-                      )
-                    </p>
-                    <PriceBox
-                      price={Number(data.subtotal)}
-                      className="text-base font-medium"
-                    />
-                  </div>
+                      {/* subtotal */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-[13px]">
+                          مبلغ کل (
+                          {data?.items.reduce((c, i) => i.quantity + c, 0)})
+                        </p>
+                        <PriceBox
+                          price={Number(data.subtotal)}
+                          className="text-base font-medium"
+                        />
+                      </div>
 
-                  {/* shipping */}
-                  <div className="flex items-center justify-between">
-                    <p className="text-[13px]">هزینه ارسال</p>
-                    <PriceBox
-                      price={Number(data.shipping_cost)}
-                      className="text-base font-medium"
-                    />
-                  </div>
+                      {/* shipping */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-[13px]">هزینه ارسال</p>
+                        <PriceBox
+                          price={Number(data.shipping_cost)}
+                          className="text-base font-medium"
+                        />
+                      </div>
 
-                  {/* gift wrapping */}
-                  {data.gift_wrapping_cost !== null && (
-                    <div className="flex items-center justify-between">
-                      <p className="text-[13px]">بسته‌بندی</p>
-                      <PriceBox
-                        price={Number(data.gift_wrapping_cost)}
-                        className="text-base font-medium"
-                      />
+                      {/* gift wrapping */}
+                      {data.gift_wrapping_cost !== null && (
+                        <div className="flex items-center justify-between">
+                          <p className="text-[13px]">بسته‌بندی</p>
+                          <PriceBox
+                            price={Number(data.gift_wrapping_cost)}
+                            className="text-base font-medium"
+                          />
+                        </div>
+                      )}
+
+                      {/* discount */}
+                      <div className="flex items-center justify-between border-t pt-2">
+                        <p className="text-[13px] ">تخفیف محصولات</p>
+                        <PriceBox
+                          price={Number(
+                            data.discount_breakdown.product_discounts.total,
+                          )}
+                          className="text-base font-medium"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-[13px] text-rose-600">
+                          تخفیف شگفت انگیز
+                        </p>
+                        <PriceBox
+                          price={Number(
+                            data.discount_breakdown.promotion_discounts.total,
+                          )}
+                          className="text-base font-medium text-rose-600"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-[13px] text-green-600">
+                          مجموع تخفیف
+                        </p>
+                        <PriceBox
+                          price={Number(
+                            data.discount_breakdown.summary
+                              .grand_total_discount,
+                          )}
+                          className="text-base font-medium text-green-600"
+                        />
+                      </div>
+                      <PaymentMethodSelector />
                     </div>
-                  )}
-
-                  {/* discount */}
-                  <div className="flex items-center justify-between border-t pt-2">
-                    <p className="text-[13px] ">تخفیف محصولات</p>
-                    <PriceBox
-                      price={Number(
-                        data.discount_breakdown.product_discounts.total,
-                      )}
-                      className="text-base font-medium"
-                    />
+                    <div className="hidden lg:flex flex-col border p-5 rounded-lg">
+                      <p className="hidden lg:block text-lg font-bold mb-3">
+                        روش پرداخت
+                      </p>
+                      <PaymentMethodSelector />
+                    </div>
+                    <div className="sm:border border-slate-200 rounded-lg sm:p-6 h-fit">
+                      <OrderItems items={data.items} />
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[13px] text-rose-600">
-                      تخفیف شگفت انگیز
-                    </p>
-                    <PriceBox
-                      price={Number(
-                        data.discount_breakdown.promotion_discounts.total,
-                      )}
-                      className="text-base font-medium text-rose-600"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[13px] text-green-600">مجموع تخفیف</p>
-                    <PriceBox
-                      price={Number(
-                        data.discount_breakdown.summary.grand_total_discount,
-                      )}
-                      className="text-base font-medium text-green-600"
-                    />
-                  </div>
-                  <PaymentMethodSelector />
+                  <PaymentCard order_id={data.id} />
                 </div>
-                <div className="hidden lg:flex flex-col border p-5 rounded-lg">
-                  <p className="hidden lg:block text-lg font-bold mb-3">
-                    روش پرداخت
-                  </p>
-                  <PaymentMethodSelector />
-                </div>
-                <div className="sm:border border-slate-200 rounded-lg sm:p-6 h-fit">
-                  <OrderItems items={data.items} />
-                </div>
-              </div>
-              <PaymentCard order_id={data.id} />
-            </div>
-          </>
-        )
-      ) : (
-        <p>سفارش یافت نشد</p>
-      )}
+              </>
+            )
+          ) : (
+            <p>سفارش یافت نشد</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   PaymentGateway,
   PaymentMethod,
   PaymentStatus,
+  PromotionType,
 } from "@/types/order";
 import { ComponentProps } from "react";
 
@@ -129,4 +130,12 @@ export const CardToCardPaymentStatusFa: Translate<
     label: "در انتظار تایید",
     color: "warning",
   },
+};
+
+export const PromotionTypeFa: Translate<PromotionType> = {
+  coupon: { label: "کد تخیخف" },
+  flash_deal: { label: "شگفت انگیز" },
+  next_order_reward: { label: "پاداش شفارش بعدی" },
+  free_shipping: { label: "ارسال رایگان" },
+  first_order: { label: "اولین سفارش" },
 };

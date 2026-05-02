@@ -70,7 +70,6 @@ export default function AddToCartButton({
     variantStock: variant?.stock || null,
   });
 
-  console.log({ maxQty, variant, s: product.stock, ol: product.order_limit });
   const isOutOfStock = maxQty <= 0;
 
   const handleAddToCart = () => {
