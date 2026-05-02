@@ -91,7 +91,7 @@ export default function CardToCardPayment({
           <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
         </div>
 
-        <div className="lg:w-1/2">{modeAction[mode]}</div>
+        <div className="lg:w-1/2 mt-4 lg:mt-0">{modeAction[mode]}</div>
       </div>
     </div>
   );

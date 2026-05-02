@@ -1,6 +1,11 @@
 import React from "react";
 import { Payment, VerifyOrder } from "@/types/order";
-import { AlertCircle } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowLeftRight,
+  Clock3,
+  CreditCard,
+} from "lucide-react";
 import PaymentRetryBtn from "./PaymentRetryBtn";
 import Image from "@/components/common/Image";
 import { Card } from "@/components/ui/card";
@@ -12,73 +17,96 @@ type Props = {
   payment: Payment;
 };
 
+function formatAuthority(authority?: string) {
+  if (!authority) return "-";
+  return authority.replace(/^[sS0]+/, "") || "-";
+}
+
 export default function PaymentFailed({ order, payment }: Props) {
+  const authority = formatAuthority(payment?.authority);
+  const paymentDate = payment?.created_at
+    ? toPersianDate(payment.created_at)
+    : "-";
+
   return (
-    <div className="relative min-h-screen px-4 py-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 ">
-      <div className="max-w-3xl pt-12 space-y-4 mx-auto">
-        <Card>
-          <div className="space-y-3 flex items-start">
-            <div>
+    <div className="min-h-screen bg-background px-4 py-10">
+      <div className="mx-auto max-w-2xl space-y-6">
+        {/* MAIN CARD */}
+        <Card className="rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col items-center text-center">
+            <div className="rounded-2xl bg-danger/10 p-3">
               <Image
-                src={"/payment-not-allow.png"}
-                width={75}
-                height={75}
-                alt=""
-                className="border-2 rounded-sm border-danger p-1"
+                src="/payment-not-allow.png"
+                width={70}
+                height={70}
+                alt="پرداخت ناموفق"
+                className="rounded-xl"
               />
             </div>
 
-            <div className="ps-3">
-              <div className="text-lg text-danger font-medium">
-                متاسفانه پرداخت شما ناموفق بود
-              </div>
+            <h1 className="mt-4 text-xl sm:text-2xl font-semibold text-danger">
+              پرداخت ناموفق بود
+            </h1>
 
-              <div className="text-muted-light">
-                شماره سفارش{" "}
-                <span className="text-black inline-block ps-2">
-                  {order?.id}
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="space-x-4 flex">
-            <PaymentRetryBtn order_id={order.id} />
-            <Button href={`/checkout/payment/${order.id}`} variant={"text"}>
-              تغییر روش پرداخت
-            </Button>
-          </div>
-        </Card>
+            <p className="mt-2 text-sm text-muted-foreground">
+              سفارش{" "}
+              <span className="font-medium text-foreground">
+                #{order?.id}
+              </span>{" "}
+              ثبت شد اما پرداخت انجام نشد
+            </p>
 
-        <Card>
-          <div className="flex text-sm gap-2 text-muted-light items-center">
-            <AlertCircle />
-            چنانچه مبلغی از حساب شما کسر شده باشد تا 72 ساعت آینده به حساب شما
-            باز خواهد گشت.
-          </div>
+            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
+              <PaymentRetryBtn order_id={order.id} />
 
-          <div>
-            <span className="font-medium">جزییات پرداخت</span>
-
-            <div className="flex items-center gap-5 mt-6">
-              <span className="inline-block bg-primary w-3 h-3 rounded-full"></span>
-
-              <span className="text-sm">درگاه</span>
-
-              <div className="text-sm  text-muted-light">
-                کد پیگیری
-                <span className="text-black block mt-5">
-                  {payment?.authority.replace(/^[sS0]+/, "")}
-                </span>
-              </div>
-              <div className="text-sm  text-muted-light">
-                تاریخ
-                <span className="text-black block mt-5">
-                  {payment ? toPersianDate(payment?.created_at) : ""}
-                </span>
-              </div>
+              <Button
+                href={`/checkout/payment/${order.id}`}
+                variant="outline"
+                className="w-full"
+              >
+                تغییر روش پرداخت
+              </Button>
             </div>
           </div>
         </Card>
+
+        {/* WARNING */}
+        <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+          <p>
+            در صورت کسر مبلغ، حداکثر تا ۷۲ ساعت آینده به حساب شما بازگردانده
+            می‌شود.
+          </p>
+        </div>
+
+        {/* DETAILS (NO HEAVY BOXES 😌) */}
+        <div className="space-y-3 text-sm">
+          <div className="flex items-center justify-between border-b pb-2">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <CreditCard className="w-4 h-4" />
+              درگاه
+            </span>
+            <span className="font-medium">اینترنتی</span>
+          </div>
+
+          <div className="flex items-center justify-between border-b pb-2">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <ArrowLeftRight className="w-4 h-4" />
+              کد پیگیری
+            </span>
+            <span className="font-mono text-xs sm:text-sm">
+              {authority}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between border-b pb-2">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <Clock3 className="w-4 h-4" />
+              تاریخ
+            </span>
+            <span>{paymentDate}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
