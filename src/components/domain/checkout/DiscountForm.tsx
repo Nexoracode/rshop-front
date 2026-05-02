@@ -2,7 +2,12 @@
 
 import * as React from "react";
 
-import { Loader2 } from "lucide-react";
+import {
+  BadgeCheckIcon,
+  BadgePercentIcon,
+  Loader2,
+  TicketIcon,
+} from "lucide-react";
 import useCheckPromotion from "@/hooks/useCheckPromotion";
 import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils/classnames";
@@ -30,71 +35,86 @@ export default function DiscountForm() {
 
     setMessage("");
 
-      const res = await handleCheck(code);
-      if(res){
-        setStatus("valid");
-        setMessage(
-          `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
-        );
-        toast.success("کد تخفیف با موفقیت اعمال شد.");
-        handleSetOrderMeta({
-          promotion_code: code,
-          discount_amount: res.discount,
-        });
-      }else {
-        setStatus("invalid")
-      }
-   
+    const res = await handleCheck(code);
+    if (res) {
+      setStatus("valid");
+      setMessage(
+        `مبلغ ${formatToman(res.discount)} تخفیف به این سفارش تعلق گرفت .`,
+      );
+      toast.success("کد تخفیف با موفقیت اعمال شد.");
+      handleSetOrderMeta({
+        promotion_code: code,
+        discount_amount: res.discount,
+      });
+    } else {
+      setStatus("invalid");
+    }
   };
 
   return (
     <FieldContainer error="" label="">
       <div className={cn("relative w-full transition-all")}>
-        <div className={cn("relative  flex items-center border rounded-lg py-4 px-6" ,  status === "valid" &&
+        {orderMeta.promotion_code ? (
+          <div
+            className={cn(
+              "relative  flex items-center border rounded-lg p-2",
+              status === "valid" &&
+                "border-green-500 focus-visible:ring-green-500",
+            )}
+          >
+            <BadgeCheckIcon className="text-green-600" size={42} />
+            {message && (
+              <p
+                className={cn(
+                  "text-sm pr-1 leading-7 font-medium",
+                  status === "valid"
+                    ? "text-green-600 dark:text-green-400"
+                    : status === "invalid"
+                      ? "text-rose-600 dark:text-rose-400"
+                      : "text-muted-foreground",
+                )}
+              >
+                {message}
+              </p>
+            )}
+          </div>
+        ) : (
+          <div
+            className={cn(
+              "relative  flex items-center border rounded-lg py-4 px-6",
+              status === "valid" &&
                 "border-green-500 focus-visible:ring-green-500",
               status === "invalid" &&
-                "border-rose-500 focus-visible:ring-rose-500",)}>
-          <Input
-            value={code}
-            onChange={(e) => {
-              setCode(e.target.value);
-              setStatus("idle");
-            }}
-            placeholder="کد تخفیف دارید؟ وارد کنید..."
-            disabled={status === "loading" || !!orderMeta.promotion_code}
-            className={
-              "font-medium text-sm border-none shadow-none focus-visible:ring-0 !p-0"
-            }
-          />
-
-          <Button
-            type="button"
-            size="sm"
-            onClick={handleValidate}
-            disabled={status === "loading" || status === "valid"}
-            className="rounded-md px-4 h-9 bg-black/80"
-          >
-            {status === "loading" ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              "اعمال کد"
-            )}
-          </Button>
-        </div>
-
-        {message && (
-          <p
-            className={cn(
-              "mt-3 text-xs font-medium",
-              status === "valid"
-                ? "text-green-600 dark:text-green-400"
-                : status === "invalid"
-                  ? "text-rose-600 dark:text-rose-400"
-                  : "text-muted-foreground",
+                "border-rose-500 focus-visible:ring-rose-500",
             )}
           >
-            {}
-          </p>
+            <Input
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value);
+                setStatus("idle");
+              }}
+              placeholder="کد تخفیف دارید؟ وارد کنید..."
+              disabled={status === "loading" || !!orderMeta.promotion_code}
+              className={
+                "font-medium text-sm border-none shadow-none focus-visible:ring-0 !p-0"
+              }
+            />
+
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleValidate}
+              disabled={status === "loading" || status === "valid"}
+              className="rounded-md px-4 h-9 bg-black/80"
+            >
+              {status === "loading" ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "اعمال کد"
+              )}
+            </Button>
+          </div>
         )}
       </div>
     </FieldContainer>

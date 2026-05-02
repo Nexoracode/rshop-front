@@ -1,6 +1,7 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import { SHOP_NAME } from "@/data/assets";
+import useCheckout from "@/hooks/useCheckout";
 import { getCart } from "@/queries/cart/cart";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
@@ -15,6 +16,9 @@ export default function CartSummery({
   showRules?: boolean;
 }) {
   const { data } = useQuery(getCart);
+  const {
+    orderMeta: { promotion_code, discount_amount },
+  } = useCheckout();
 
   return (
     <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset]">
@@ -32,17 +36,37 @@ export default function CartSummery({
         </div>
 
         <div className="lg:flex hidden items-center justify-between">
-          <p className="text-[13px] text-green-600">تخفیف</p>
+          <p className="text-[13px] ">تخفیف محصولات</p>
           <PriceBox
             price={Number(data?.discount_total ?? 0)}
-            className="text-base font-medium text-green-600"
+            className="text-base font-medium "
           />
         </div>
+        {discount_amount > 0 ? (
+          <>
+            <div className="lg:flex hidden items-center justify-between">
+              <p className="text-[13px] text-rose-600">تخفیف شگفت انگیز</p>
+              <PriceBox
+                price={Number(discount_amount ?? 0)}
+                className="text-base font-medium text-rose-600"
+              />
+            </div>
+            <div className="lg:flex hidden items-center justify-between">
+              <p className="text-[13px] text-green-600">مجموع تخفیف </p>
+              <PriceBox
+                price={Number((data?.discount_total ?? 0) + discount_amount)}
+                className="text-base font-medium text-green-600"
+              />
+            </div>
+          </>
+        ) : (
+          ""
+        )}
 
         <div className="flex flex-col py-1 lg:py-0 lg:flex-row lg:items-center justify-between lg:border-t lg:pt-4">
           <p className="text-[15px]">قابل پرداخت</p>
           <PriceBox
-            price={Number(data?.total)}
+            price={Number((data?.total ?? 0) - discount_amount)}
             className="text-[19px] font-medium"
           />
         </div>
