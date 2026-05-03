@@ -12,7 +12,11 @@ export const useRequestOtp = ({
   const handleSendOtp = ({ phone }: { phone: string }) => {
     mutateAsync(
       { identifier: phone },
-      { onSuccess: (_data, variables) => handleSuccess(variables) },
+      {
+        onSuccess: (data, variables) => {
+          if (data) handleSuccess(variables);
+        },
+      },
     );
   };
 

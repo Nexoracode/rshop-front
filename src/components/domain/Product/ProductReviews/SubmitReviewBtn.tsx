@@ -7,6 +7,7 @@ import BaseDialog from "@/components/common/BaseDialog";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
 import ProductReviewForm from "./ProductReviewForm";
+import ClientOnly from "@/components/common/ClientOnly";
 
 type Props = {
   product_id: number;

@@ -35,7 +35,9 @@ export default function UserMobileForm({ onSendOtpSucess }: Props) {
           <h2 className="text-[19px] text-slate-700 font-extrabold">
             ورود به حساب کاربری
           </h2>
-          <p className="text-[13px] text-slate-500">ورود یا ثبت نام در {SHOP_NAME}</p>
+          <p className="text-[13px] text-slate-500">
+            ورود یا ثبت نام در {SHOP_NAME}
+          </p>
         </div>
         <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="space-y-4">

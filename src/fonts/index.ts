@@ -24,4 +24,8 @@ export const iranYekanFont = localFont({
   ],
 
   variable: "--font-iranyekan",
+
+  display: "swap",
+  preload: true,
+  fallback: ["Tahoma", "Segoe UI", "system-ui", "sans-serif"],
 });

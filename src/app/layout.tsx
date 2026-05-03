@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html className={` ${iranYekanFont.variable} `} lang="fa" dir="rtl">
       <body
-        className={`${iranYekanFont.className} ${iranYekanFont.variable} font-display  min-h-screen antialiased`}
+        className={`${iranYekanFont.className} min-h-screen antialiased`}
         cz-shortcut-listen="false"
       >
         <Providers>

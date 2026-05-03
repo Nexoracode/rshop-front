@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils/classnames";
 import { getPromoBanners } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useRef } from "react";
+import ProductsTabsWrapper from "./ProductsTabsWrapper";
 
 type TabKey = "description" | "specifications" | "reviews" | "helper";
 
@@ -21,12 +22,8 @@ export default function ProductTabs({
   activeTabs: Partial<Record<TabKey, boolean>>;
 }) {
   const [active, setActive] = useState<TabKey>("description");
-  const { data: adsBanners } = useQuery(getPromoBanners);
   const barRef = useRef<HTMLDivElement>(null);
-  const scrollDirection = useScrollDirection();
-  const isMobile = useIsMobile()
 
-  const haveAdsBanner = adsBanners && adsBanners?.length > 0;
   const handleScrollTo = (key: TabKey) => {
     const el = document.getElementById(key);
     if (!el) return;
@@ -103,18 +100,7 @@ export default function ProductTabs({
   };
 
   return (
-    <div
-      className={cn(
-        "sticky z-30 bg-background border-b rtl",
-        scrollDirection === "down"
-          ? haveAdsBanner
-            ? isMobile ? "top-[6rem]" : "top-[8rem]"
-            : isMobile ? "top-[3.5rem]" : "top-[4rem]"
-          : haveAdsBanner
-            ? isMobile ? "top-[6rem]" : "top-[10.5rem]"
-            : isMobile ? "top-[56px]" : "top-[108px]",
-      )}
-    >
+    <ProductsTabsWrapper>
       <div ref={barRef} className="relative flex">
         {tabs
           .filter((tab) => activeTabs[tab.key])
@@ -137,6 +123,6 @@ export default function ProductTabs({
         {/* 🔥 خط انیمیشنی زیر تب */}
         <div className="tabs-indicator" />
       </div>
-    </div>
+    </ProductsTabsWrapper>
   );
 }
