@@ -7,7 +7,6 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import OrderNotPayable from "./OrderNotPayable";
 import OrderItems from "./OrderItems";
-import { OrderDiscountSection } from "./OrderDiscountSection";
 import { getOrderDetails } from "@/queries/profile/order";
 import PriceBox from "@/components/common/PriceBox";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";

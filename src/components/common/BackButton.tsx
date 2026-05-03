@@ -1,7 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import React, { ComponentProps, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import React, { ComponentProps } from "react";
 
 type Props = {
   link?: string;

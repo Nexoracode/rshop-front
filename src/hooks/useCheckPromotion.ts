@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import useCurrentUser from "./useCurrentUser";
 import { checkPromotion } from "@/queries/checkout/order";
 import useCart from "./useCart";

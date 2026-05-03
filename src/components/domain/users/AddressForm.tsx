@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addUserAddress,
-  getCities,
   getProvinces,
   updateUserAddress,
 } from "@/queries/profile/address";

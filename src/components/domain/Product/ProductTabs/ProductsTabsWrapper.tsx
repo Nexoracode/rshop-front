@@ -8,8 +8,6 @@ import { getPromoBanners } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
 import React, { PropsWithChildren } from "react";
 
-type Props = {};
-
 export default function ProductsTabsWrapper({ children }: PropsWithChildren) {
   const mounted = useMounted();
   const { data: adsBanners } = useQuery(getPromoBanners);

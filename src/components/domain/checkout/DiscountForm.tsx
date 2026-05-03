@@ -2,12 +2,7 @@
 
 import * as React from "react";
 
-import {
-  BadgeCheckIcon,
-  BadgePercentIcon,
-  Loader2,
-  TicketIcon,
-} from "lucide-react";
+import { BadgeCheckIcon, Loader2 } from "lucide-react";
 import useCheckPromotion from "@/hooks/useCheckPromotion";
 import useCheckout from "@/hooks/useCheckout";
 import { cn } from "@/lib/utils/classnames";

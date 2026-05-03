@@ -5,13 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import {
-  DicesIcon,
-  HomeIcon,
-  LocationEdit,
-  LucideShoppingBag,
-  Menu,
-} from "lucide-react";
+import { DicesIcon, HomeIcon, LocationEdit, Menu } from "lucide-react";
 import { getCategoreis } from "@/queries/products/category";
 import { cn } from "@/lib/utils/classnames";
 import useSticky from "@/hooks/useSticky";
@@ -86,7 +80,7 @@ export default function MainNav() {
             </Link>
           </div>
           <div className="items-center justify-center gap-2 pl-2 cursor-default hidden lg:flex">
-            <LocationEdit size={18} className="text-slate-700"/>
+            <LocationEdit size={18} className="text-slate-700" />
             <p className="text-slate-700 text-[13px]">ارسال به شهر شما</p>
           </div>
         </div>

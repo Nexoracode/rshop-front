@@ -1,9 +1,6 @@
 import React from "react";
 
 import { forwardRef } from "react";
-import ProductListItemSkeleton from "./Skeleton/ProductListItemSkeleton";
-import ProductListSkelton from "./Skeleton/ProductListSkelton";
-import ProductCardSkeleton from "@/components/shared/product/ProductCardSkeleton";
 
 type LoadMoreTriggerProps = {
   isFetching: boolean;

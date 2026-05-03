@@ -33,6 +33,7 @@ export const getOrderMeta = queryOptions({
       note: "",
       payment_method: "online",
       discount_amount: 0,
+      promotions: [],
     },
   initialData: {
     address: null,
@@ -40,6 +41,7 @@ export const getOrderMeta = queryOptions({
     note: "",
     payment_method: "online",
     discount_amount: 0,
+    promotions: [],
   },
 });
 export const setOrderMeta = mutationOptions({

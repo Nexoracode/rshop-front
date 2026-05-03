@@ -1,10 +1,6 @@
 "use client";
 
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { cn } from "@/lib/utils/classnames";
-import { getPromoBanners } from "@/queries/home/home";
-import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useRef } from "react";
 import ProductsTabsWrapper from "./ProductsTabsWrapper";
 

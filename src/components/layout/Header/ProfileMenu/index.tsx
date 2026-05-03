@@ -5,7 +5,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useQuery } from "@tanstack/react-query";
 import {
   ChevronDownIcon,
   ChevronLeft,
@@ -23,7 +22,6 @@ import React from "react";
 import LogoutButton from "../../../domain/profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getMe } from "@/queries/auth/auth";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 const menuItems = [
