@@ -70,7 +70,6 @@ export function OrderCard({ order }: { order: Order }) {
                   variant="text"
                   size={"sm"}
                   href={`/invoice/${order.id}`}
-                  target="_blank"
                 >
                   مشاهده فاکتور
                 </Button>

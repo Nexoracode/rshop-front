@@ -9,23 +9,16 @@ import { cn } from "@/lib/utils/classnames";
 export default function ProductListItem(
   props: HomeSectionProduct & { num?: number; className?: string },
 ) {
-  const {
-    name,
-    brand,
-    image,
-    num,
-    id,
-    className,
-  } = props;
+  const { name, brand, image, num, id, className } = props;
 
-/*   const { compareAt, final, percent } = calcPrice(
+  /*   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,
     discount_percent,
   ); */
 
   return (
-    <Link target="_blank" href={`/p/rsp-${id}`} className="!w-[313px] !select-none">
+    <Link href={`/p/rsp-${id}`} className="!w-[313px] !select-none">
       <div className="flex w-full">
         <div className="w-[5rem] md:w-[7rem] aspect-square space-y-2">
           <div className="relative aspect-[1/1]  overflow-hidden">
@@ -50,10 +43,12 @@ export default function ProductListItem(
                 <p className="text-xs text-muted/80">{brand.name}</p>
               ) : null}
 
-              <h4 className="line-clamp-2 text-[13px] font-medium text-gray-600">{name}</h4>
+              <h4 className="line-clamp-2 text-[13px] font-medium text-gray-600">
+                {name}
+              </h4>
             </div>
 
-           {/*  {compareAt && (
+            {/*  {compareAt && (
               <Badge variant={"danger"} className="absolute top-2 left-2 ">
                 {percent}%
               </Badge>

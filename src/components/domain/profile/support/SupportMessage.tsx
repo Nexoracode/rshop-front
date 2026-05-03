@@ -49,11 +49,7 @@ export default function SupportMessage({ message, product }: Props) {
             <div className="flex-1 flex flex-col justify-between px-2">
               <p className="text-sm font-medium">{product?.title}</p>
               <div className="flex items-center justify-between">
-                <Button
-                  size={"icon"}
-                  target="_blank"
-                  href={`/p/rsp-${product?.id}`}
-                >
+                <Button size={"icon"} href={`/p/rsp-${product?.id}`}>
                   <PlusIcon className="size-5" />
                 </Button>
                 <p className="text-sm font-normal text-muted/70">

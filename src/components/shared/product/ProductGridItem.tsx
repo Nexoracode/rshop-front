@@ -38,7 +38,6 @@ export default function ProductGridItem({ product }: Props) {
   return (
     <div className="bg-gray-100 p-[0.8px]">
       <Link
-        target="_blank"
         className="block p-2 bg-white !h-[360px] hover:shadow-xl transition-all"
         href={`/p/rsp-${id}`}
       >

@@ -5,13 +5,15 @@ import { mutationOptions, queryOptions } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
 
-export const getCart = queryOptions({
-  queryKey: ["get-cart"],
-  queryFn: async (): Promise<UserCart> => {
-    return await apiFetch("/cards/me");
-  },
-  retry: false,
-});
+export const getCart = (hasUser: boolean) =>
+  queryOptions({
+    queryKey: ["get-cart"],
+    queryFn: async (): Promise<UserCart> => {
+      return await apiFetch("/cards/me");
+    },
+    retry: false,
+    enabled: hasUser,
+  });
 
 export const addCartItem = mutationOptions({
   mutationFn: async (body: {

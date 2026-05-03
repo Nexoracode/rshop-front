@@ -16,7 +16,6 @@ type Props = UserCartItem & {
   onChange?: (qty: number) => void;
 };
 export default function CartItem({ onChange, loading, ...item }: Props) {
-
   const maxQty = maxQuantitySelector({
     orderLimit: item.product.order_limit,
     productStock: item.product.stock,
@@ -26,7 +25,7 @@ export default function CartItem({ onChange, loading, ...item }: Props) {
   return (
     <div className="flex flex-col gap-5 border-b last:border-b-0 py-3 sm:last:pb-5">
       <div className="h-[114px] flex items-center gap-5">
-        <Link target="_blank" href={`/p/rsp-${item.id}`}>
+        <Link href={`/p/rsp-${item.id}`}>
           <Image
             src={item.product.media_pinned?.url || PRODUCT_PLACEHOLDER}
             width={114}

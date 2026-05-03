@@ -12,7 +12,6 @@ export default function RecentViewedCard({
 }: RecentView) {
   return (
     <Link
-      target="_blank"
       className={`flex flex-col bg-white !h-[254px] select-none`}
       href={`/p/rsp-${id}`}
     >

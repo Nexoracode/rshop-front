@@ -17,6 +17,7 @@ import useProductVariantUrl from "@/hooks/useProductVariantUrl";
 import { ArrowDownRight, Loader2, StoreIcon, ZapIcon } from "lucide-react";
 import { useMounted } from "@/hooks/useMounted";
 import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
+import useCart from "@/hooks/useCart";
 
 type Props = {
   product: Product;
@@ -39,10 +40,7 @@ export default function AddToCartButton({
 
   const { mutate: updateCart } = useMutation(updateCartItem);
 
-  const { data: cart, isLoading: isCartLoading } = useQuery({
-    ...getCart,
-    enabled: mounted,
-  });
+  const { data: cart, isLoading: isCartLoading } = useCart();
 
   if (!mounted || isCartLoading) {
     // در زمان SSR و تا mount شدن کلاینت، فقط placeholder یا دکمه خام نشان بده
@@ -190,7 +188,10 @@ export default function AddToCartButton({
             onChange={handleQuantityChange}
           />
 
-          <Link href="/cart" className="text-primary hover:underline text-sm w-fit">
+          <Link
+            href="/cart"
+            className="text-primary hover:underline text-sm w-fit"
+          >
             <div className="flex flex-row items-center gap-1.5">
               <span className="hidden lg:flex">مشاهده سبد خرید</span>
               <span className="lg:hidden">سبد خرید</span>

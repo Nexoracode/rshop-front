@@ -37,7 +37,6 @@ export default function OrderDetailsPage() {
             orderData.status === "preparing") && (
             <Button
               href={`/invoice/${orderData.id}`}
-              target="_blank"
               rel="noopener noreferrer"
               variant={"text"}
               size={"sm"}

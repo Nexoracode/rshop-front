@@ -1,4 +1,5 @@
 import { apiFetch } from "@/lib/api-fetch";
+import { getCookie } from "@/lib/utils/get-cookies";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { User } from "@/types/user";
 import { mutationOptions, queryOptions } from "@tanstack/react-query";
@@ -22,13 +23,15 @@ export const verifyOtp = mutationOptions({
   },
 });
 
-export const getMe = queryOptions({
-  queryKey: ["get-me"],
-  queryFn: async (): Promise<User | null> => {
-    return await apiFetch("/users/me");
-  },
-  retry: false,
-});
+export const getMe = (hasRefreshToken: boolean) =>
+  queryOptions({
+    queryKey: ["get-me"],
+    queryFn: async (): Promise<User | null> => {
+      return await apiFetch("/users/me");
+    },
+    retry: false,
+    enabled: hasRefreshToken,
+  });
 
 export const userLogout = mutationOptions({
   mutationFn: async () => {
@@ -42,4 +45,9 @@ export const userLogout = mutationOptions({
     queryClient.setQueryData(["get-cart"], null);
     queryClient.setQueryData(["get-user-compare-list"], null);
   },
+});
+
+export const refreshTokenQuery = queryOptions({
+  queryKey: ["refresh_token"],
+  queryFn: async () => (await getCookie("refresh_token")) ?? null,
 });

@@ -16,7 +16,7 @@ export default function ReviewPendingCard({ product, onReview }: Props) {
   return (
     <Card className="flex bg-background !p-4 hover:shadow-md transition">
       <div className="flex items-start gap-3">
-        <Link target="_blank" href={`/p/rsp-${product.id}`}>
+        <Link href={`/p/rsp-${product.id}`}>
           <Image
             src={product.image}
             alt={product.name}

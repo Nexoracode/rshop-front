@@ -20,7 +20,6 @@ export default function ProductCartItem(props: HomeSectionProduct) {
 
   return (
     <Link
-      target="_blank"
       className={`flex flex-col bg-white !h-[254px] select-none`}
       href={`/p/rsp-${id}`}
     >

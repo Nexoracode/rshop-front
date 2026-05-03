@@ -54,7 +54,6 @@ export default function WishlistCard({
             startIcon={<EyeIcon className="mr-2 sm:mr-0" />}
             className="flex-1"
             href={`/p/rsp-${id}`}
-            target="_blank"
           >
             <span className="hidden sm:inline-block">مشاهده محصول</span>
           </Button>

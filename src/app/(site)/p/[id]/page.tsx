@@ -1,4 +1,3 @@
-// app/p/[id]/page.tsx
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Separator } from "@/components/ui/separator";

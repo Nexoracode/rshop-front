@@ -24,6 +24,7 @@ import LogoutButton from "../../../domain/profile/LogoutButton";
 import UserMenuItem from "./UserMenuItem";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getMe } from "@/queries/auth/auth";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 const menuItems = [
   { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
@@ -33,7 +34,7 @@ const menuItems = [
 ];
 
 export default function ProfileMenu() {
-  const { data: user, isPending } = useQuery(getMe);
+  const { user, isPending } = useCurrentUser();
   const path = usePathname();
   return isPending ? (
     <Skeleton className="h-8 w-33" />
@@ -46,7 +47,7 @@ export default function ProfileMenu() {
             className="!flex items-center px-0 text-slate-700"
             endIcon={<ChevronDownIcon size={15} />}
           >
-            <User2Icon size={24} className="text-slate-700"/>
+            <User2Icon size={24} className="text-slate-700" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0" align="end">

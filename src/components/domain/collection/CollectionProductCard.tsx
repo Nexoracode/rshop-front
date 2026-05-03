@@ -24,7 +24,7 @@ export default function CollectionProductCart(props: CollectionProduct) {
       className="group relative overflow-hidden border !p-1 shadow-sm transition hover:shadow-md"
       dir="rtl"
     >
-      <Link target="_blank" href={`/p/rsp-${id}`}>
+      <Link href={`/p/rsp-${id}`}>
         <div className="flex space-y-2 flex-col items-start">
           <div className="relative w-full aspect-[1/1]  overflow-hidden">
             <Image

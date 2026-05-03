@@ -27,7 +27,7 @@ export default function ReviewItemCard({
   return (
     <div className="space-y-2 relative border p-4 rounded-lg">
       <div className="flex">
-        <Link target="_blank" href={`/p/rsp-${product.id}`}>
+        <Link href={`/p/rsp-${product.id}`}>
           <Image
             src={product.image}
             alt={product.name}
