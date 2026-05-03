@@ -20,7 +20,7 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "/", Icon: HomeIcon, label: "خانه" },
-  { href: "/products", Icon: LucideShoppingBag, label: "فروشگاه" },
+  /* { href: "/products", Icon: LucideShoppingBag, label: "فروشگاه" }, */
   {
     href: "/products?query=filter%5Bspecial_offer%5D=1",
     Icon: DicesIcon,
