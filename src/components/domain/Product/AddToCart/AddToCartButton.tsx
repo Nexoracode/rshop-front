@@ -183,14 +183,14 @@ export default function AddToCartButton({
           )}
         </Button>
       ) : (
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="lg:w-full flex flex-col lg:flex-row items-center justify-between gap-4">
           <QuantitySelect
             qty={currentQuantity}
             maxQty={maxQty}
             onChange={handleQuantityChange}
           />
 
-          <Link href="/cart" className="text-primary hover:underline text-sm">
+          <Link href="/cart" className="text-primary hover:underline text-sm w-fit">
             <div className="flex flex-row items-center gap-1.5">
               <span className="hidden lg:flex">مشاهده سبد خرید</span>
               <span className="lg:hidden">سبد خرید</span>
