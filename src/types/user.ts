@@ -14,6 +14,7 @@ export type User = {
 export type UserAddress = {
   id: number;
   city: string;
+  city_id: number;
   province: string;
   plaque: string;
   unit: string;

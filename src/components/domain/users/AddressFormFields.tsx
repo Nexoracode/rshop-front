@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import SelectField from "@/components/common/Form/SelectField";
 import TextField from "@/components/common/Form/TextField";
@@ -15,10 +15,18 @@ export default function AddressFormFields({ activeStep }: Props) {
   const { data, isPending } = useQuery(getProvinces);
   const form = useFormContext();
   const province = form.watch("province");
+  const city = form.watch("city");
   const { data: cities, isFetching: citiesFething } = useQuery(
     getCities(Number(province)),
   );
   const is_self = form.watch("is_self");
+
+  useEffect(() => {
+    if (city) {
+      const cityId = cities?.find((c) => c.title === city)?.city_id;
+      form.setValue("cityId", cityId);
+    }
+  }, [city]);
   return (
     <div className="grid grid-cols-2 gap-4">
       {activeStep === 0 ? (

@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addUserAddress,
+  getCities,
   getProvinces,
   updateUserAddress,
 } from "@/queries/profile/address";
 import { UserAddress } from "@/types/user";
 import AddressFormFields from "./AddressFormFields";
 import BaseDialog from "@/components/common/BaseDialog";
+import { toast } from "sonner";
 
 type Props = {
   address: UserAddress | null;
@@ -70,6 +72,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
       province,
       recipient_name,
       recipient_phone,
+      cityId,
       unit,
       is_primary,
       is_self,
@@ -81,16 +84,18 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
     const recipientPhone =
       recipient_phone === undefined ? null : isSelf ? null : recipient_phone;
 
+    const provinceTitle =
+      provinces?.find((i) => i.id === Number(province))?.title ?? "";
     if (address) {
       updateAddress({
         id: address.id,
         address_line,
         address_name,
-        city,
         plaque,
         postal_code,
-        province:
-          provinces?.find((i) => i.id === Number(province))?.title ?? "",
+        province: provinceTitle,
+        city,
+        city_id: cityId,
         recipient_name: recipientName,
         recipient_phone: recipientPhone,
         unit,
@@ -104,8 +109,8 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
         city,
         plaque,
         postal_code,
-        province:
-          provinces?.find((i) => i.id === Number(province))?.title ?? "",
+        province: provinceTitle,
+        city_id: cityId,
         recipient_name: recipientName,
         recipient_phone: recipientPhone,
         unit,
@@ -117,6 +122,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
 
   useEffect(() => {
     if (isSuccess || updateSuccess) {
+      toast.success("ثبت آدرس با موفقیت انجام شد.");
       onOpenChange(false);
       form.reset();
     }

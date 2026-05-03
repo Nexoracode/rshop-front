@@ -54,7 +54,8 @@ export function OrderPaymentSection({
       )}
 
       {payment.payment_method === "card_to_card" &&
-        payment.card_to_card_status === "pending" && (
+        (payment.card_to_card_status === "pending" ||
+          payment.card_to_card_status === "uploaded") && (
           <SubmitPaymentReceip
             date={date}
             amount={Number(payment.amount)}

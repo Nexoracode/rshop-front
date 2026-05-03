@@ -134,7 +134,7 @@ export function GiftWrapModal() {
       {is_gift ? (
         <SelectedGiftWrapCard />
       ) : (
-        <div className="hidden md:block">
+        <div className="hidden md:block w-full">
           <EmptySectionCheckout />
         </div>
       )}

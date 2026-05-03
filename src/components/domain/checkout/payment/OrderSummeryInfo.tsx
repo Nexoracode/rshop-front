@@ -79,7 +79,7 @@ export default function OrderSummeryInfo({
         </div>
         {promotions.map((promo) => (
           <div
-            key={promo.id}
+            key={promo.promotion_id}
             className="hidden lg:flex items-center justify-between"
           >
             <p className="text-[13px] text-rose-600">{promo.name}</p>
