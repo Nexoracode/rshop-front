@@ -92,9 +92,13 @@ export default function OrderNote() {
       </div>
 
       {note.length ? (
-        <div className="font-medium text-sm text-muted leading-8 max-h-[200px] scrollbar-custom pl-2 overflow-y-auto">{note}</div>
+        <div className="font-medium text-sm text-muted leading-8 max-h-[200px] scrollbar-custom pl-2 overflow-y-auto">
+          {note}
+        </div>
       ) : (
-        <EmptySectionCheckout />
+        <div className="hidden md:block">
+          <EmptySectionCheckout />
+        </div>
       )}
     </div>
   );
