@@ -1,15 +1,14 @@
 "use client";
 
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getCart } from "@/queries/cart/cart";
 import CartItem from "@/components/layout/Header/CartPopver/CartItem";
 import CreateOrderBtn from "./CreateOrderBtn";
 import CartSummery from "../cart/CartSummery";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
+import useCart from "@/hooks/useCart";
 
 export default function CartSummeryProducts() {
-  const { data, isFetching } = useQuery(getCart);
+  const { data, isFetching } = useCart();
 
   if (isFetching || !data) {
     return (

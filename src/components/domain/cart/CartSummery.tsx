@@ -1,10 +1,8 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
 import { SHOP_NAME } from "@/data/assets";
-import { PromotionTypeFa } from "@/data/order";
+import useCart from "@/hooks/useCart";
 import useCheckout from "@/hooks/useCheckout";
-import { getCart } from "@/queries/cart/cart";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 export default function CartSummery({
@@ -16,7 +14,7 @@ export default function CartSummery({
   className?: string;
   showRules?: boolean;
 }) {
-  const { data } = useQuery(getCart);
+  const { data } = useCart();
   const {
     orderMeta: { promotion_code, discount_amount, promotions },
   } = useCheckout();

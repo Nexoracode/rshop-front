@@ -1,13 +1,12 @@
 "use client";
-import { getCart } from "@/queries/cart/cart";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import CartItem from "./CartItem";
 import CartSummery from "./CartSummery";
 import { EmptyCard } from "@/components/common/EmptyCart";
+import useCart from "@/hooks/useCart";
 
 export default function CartItemsList() {
-  const { data, isPending } = useQuery(getCart);
+  const { data, isPending } = useCart();
 
   if (isPending || !data)
     return (
@@ -46,7 +45,7 @@ export default function CartItemsList() {
         )}
       </div>
 
-      {Number(data?.total_quantity) > 0 ? <CartSummery showRules/> : null}
+      {Number(data?.total_quantity) > 0 ? <CartSummery showRules /> : null}
     </div>
   );
 }

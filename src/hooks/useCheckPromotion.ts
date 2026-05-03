@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useCurrentUser from "./useCurrentUser";
-import { getCart } from "@/queries/cart/cart";
 import { checkPromotion } from "@/queries/checkout/order";
+import useCart from "./useCart";
 
 export default function useCheckPromotion() {
   const { mutateAsync, isPending } = useMutation(checkPromotion);
   const currentUser = useCurrentUser();
-  const { data } = useQuery(getCart);
+  const { data } = useCart();
   const handleCheck = async (code = "") => {
     return mutateAsync({
       code,
