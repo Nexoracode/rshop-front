@@ -35,7 +35,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={"lg:border-t border-slate-200 lg:mt-24 pt-7 pb-20 md:pb-0"}>
+    <footer className={"lg:border-t border-slate-200 lg:mt-24 pt-7 pb-24 md:pb-0"}>
       <div className={"max-w-[87rem] mx-auto px-4"}>
         <div className="flex items-center justify-center mb-8 lg:mb-12 lg:justify-between">
           <BrandLogo />
