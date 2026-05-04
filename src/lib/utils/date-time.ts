@@ -23,6 +23,7 @@ export function toPersianDateTime(date: string): string {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "Asia/Tehran",
   }).format(new Date(date));
 }
 

@@ -34,13 +34,13 @@ export const statusColor: Record<
   start_order: "info",
   refunded: "danger",
   expired: "warning",
-  rejected: "danger-outline",
+  rejected: "danger",
   awaiting_payment: "warning",
-  payment_confirmation_pending: "warning-outline",
+  payment_confirmation_pending: "warning",
   pending_approval: "warning",
   preparing: "neutral",
   not_delivered: "danger",
-  payment_failed: "danger-outline",
+  payment_failed: "danger",
 };
 
 export const PaymentMethodFa: Translate<PaymentMethod> = {

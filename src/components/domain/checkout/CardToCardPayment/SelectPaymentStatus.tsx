@@ -2,6 +2,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import React from "react";
 import { cn } from "@/lib/utils/classnames";
 import { PaymentMode } from "./types";
+import { Payment } from "@/types/order";
 
 const items = [
   {
@@ -29,15 +30,27 @@ type Props = {
   mode: PaymentMode;
   setMode: (m: PaymentMode) => void;
   later: boolean;
+  status: Payment["card_to_card_status"];
 };
 
-export default function SelectPaymentMode({ mode, setMode, later }: Props) {
+export default function SelectPaymentMode({
+  mode,
+  setMode,
+  later,
+  status,
+}: Props) {
   const selectItems = !later ? itemWithLater : items;
+
+  const handleChange = (v: PaymentMode) => {
+    if (status === "pending") {
+      setMode(v);
+    }
+  };
 
   return (
     <RadioGroup
       value={mode}
-      onValueChange={(v) => setMode(v as PaymentMode)}
+      onValueChange={handleChange}
       className="grid gap-3"
     >
       {selectItems.map((item) => {
@@ -50,7 +63,7 @@ export default function SelectPaymentMode({ mode, setMode, later }: Props) {
             className={cn(
               "flex items-center gap-3 rounded-xl border p-4 cursor-pointer transition",
               "hover:border-primary-500",
-              isActive && "border-primary bg-primary/5"
+              isActive && "border-primary bg-primary/5",
             )}
           >
             <RadioGroupItem
@@ -63,7 +76,7 @@ export default function SelectPaymentMode({ mode, setMode, later }: Props) {
               <div
                 className={cn(
                   "text-sm font-medium",
-                  isActive ? "text-foreground" : "text-muted-foreground"
+                  isActive ? "text-foreground" : "text-muted-foreground",
                 )}
               >
                 {item.label}

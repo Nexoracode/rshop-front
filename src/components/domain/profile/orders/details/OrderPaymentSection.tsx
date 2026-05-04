@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Payment } from "@/types/order";
+import { Order, Payment } from "@/types/order";
 import SubmitPaymentReceip from "./SubmitPaymentReceip";
 import {
   CardToCardPaymentStatusFa,
@@ -10,16 +10,34 @@ import {
 } from "@/data/order";
 import { Badge } from "@/components/ui/badge";
 import { toPersianDateTime } from "@/lib/utils/date-time";
+import { useMemo } from "react";
 
 export function OrderPaymentSection({
   payment,
   order_id,
   date,
+  orderStatus,
 }: {
   payment: Payment;
   order_id: number;
   date: string;
+  orderStatus: Order["status"];
 }) {
+  const paymentReceip = useMemo(() => {
+    if (payment.payment_method !== "card_to_card") return null;
+
+    if (orderStatus === "expired") return null;
+
+    return (
+      <SubmitPaymentReceip
+        date={date}
+        amount={Number(payment.amount)}
+        order_id={order_id}
+        payment_id={payment.id}
+        paymentInfo={payment}
+      />
+    );
+  }, [payment, orderStatus]);
   return (
     <Card className="">
       <h3 className="font-medium mb-2">اطلاعات پرداخت</h3>
@@ -53,17 +71,7 @@ export function OrderPaymentSection({
         </div>
       )}
 
-      {payment.payment_method === "card_to_card" &&
-        (payment.card_to_card_status === "pending" ||
-          payment.card_to_card_status === "uploaded") && (
-          <SubmitPaymentReceip
-            date={date}
-            amount={Number(payment.amount)}
-            order_id={order_id}
-            payment_id={payment.id}
-            paymentInfo={payment}
-          />
-        )}
+      {paymentReceip}
     </Card>
   );
 }
