@@ -7,7 +7,8 @@ import ProductCartItem from "../ProductCartItem";
 export default function FeaturedSection({
   products,
   display_style,
-}: HomeSection) {
+  end_date,
+}: HomeSection & { end_date?: string }) {
   return (
     <div className="container-home relative">
       <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-3 md:p-5">
@@ -15,6 +16,7 @@ export default function FeaturedSection({
           <Promotion
             show_view_all_button={true}
             view_all_link={"/products?query=filter%5Bspecial_offer%5D=1"}
+            end_date={end_date}
           />
         </div>
         {display_style === "carousel" ? (

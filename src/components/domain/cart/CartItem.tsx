@@ -30,7 +30,7 @@ export default function CartItem({
   const maxQty = maxQuantitySelector({
     orderLimit: product.order_limit,
     productStock: product.stock,
-    variantStock: variant?.stock || 0,
+    variantStock: variant?.stock,
   });
 
   return (

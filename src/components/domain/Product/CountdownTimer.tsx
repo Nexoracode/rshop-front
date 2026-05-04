@@ -2,6 +2,7 @@
 
 import useCountDown from "@/hooks/useCountDown";
 import { cn } from "@/lib/utils/classnames";
+import { toFaDigits } from "@/lib/utils/price";
 import React from "react";
 
 interface CountdownTimerProps {
@@ -25,7 +26,9 @@ export default function CountdownTimer({
       ) : (
         <div className="flex w-full text-white items-center flex-row-reverse gap-1 text-xs sm:text-sm">
           {+timeLeft.days > 0 && (
-            <TimeBox label="روز" value={timeLeft.days} color={color} />
+            <>
+              <TimeBox label="روز" value={timeLeft.days} color={color} /> :
+            </>
           )}
           <TimeBox label="ساعت" value={timeLeft.hours} color={color} /> :
           <TimeBox label="دقیقه" value={timeLeft.minutes} color={color} /> :
@@ -51,7 +54,7 @@ const TimeBox = ({
         color === "white" && "bg-white rounded-md h-6 w-6 md:w-8 md:h-8",
       )}
     >
-      {value}
+      {toFaDigits(value)}
     </span>
   </div>
 );

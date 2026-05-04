@@ -2,23 +2,47 @@ import {
   parseQueryParams,
   serializeFilterQuery,
 } from "@/lib/utils/serialize-filter";
-import { BooleanFilterKey, ProductFilterQuery } from "@/types";
+import { BooleanFilter, BooleanFilterKey, ProductFilterQuery } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
+type Filters = {
+  filter: {
+    attributes: Record<string, string[]>;
+    brand: Array<string>;
+    price_max: string | number;
+    price_min: string | number;
+    booleanFilters: Array<BooleanFilter>;
+  };
+};
 export default function useFilters() {
+  const [query, setQuery] = useState<Filters>({
+    filter: {
+      attributes: {},
+      booleanFilters: [],
+      brand: [],
+      price_max: "",
+      price_min: "",
+    },
+  });
   const params = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
 
   const queryString = params.get("query") ?? "";
 
-  const query = parseQueryParams(queryString);
+  useEffect(() => {
+    setQuery(parseQueryParams(queryString));
+  }, []);
 
   function handleSetQuery<K extends keyof ProductFilterQuery>(
     key: K,
     value: ProductFilterQuery[K],
   ) {
     const newQuery = { ...query, [key]: value };
+
+    setQuery(newQuery);
+
     router.push(
       `${pathName}?${serializeFilterQuery(newQuery as ProductFilterQuery)}`,
     );
