@@ -68,7 +68,7 @@ export default function PromoSection({
 
       <div className="bg-white !z-20 mt-[255px] md:mt-[210px] lg:mt-[310px] xl:mt-[410px] px-2 md:px-0">
         {layoutType !== "side_by_side" ? (
-          <div className={!isVisibleNav.isVisible ? "pt-4" : ""}>
+          <div className={`pt-4 ${!isVisibleNav.isVisible ? "pt-4" : "lg:pt-0"} transition-all duration-500`}>
             {children}
           </div>
         ) : (
