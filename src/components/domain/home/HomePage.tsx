@@ -18,8 +18,6 @@ export default async function HomePage() {
     (s) => s.section_type === "promotion_based",
   );
 
-  console.log({ featuredSection });
-
   return !data ? (
     <PageLoading />
   ) : (
