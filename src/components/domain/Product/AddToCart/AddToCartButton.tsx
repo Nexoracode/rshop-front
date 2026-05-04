@@ -38,7 +38,8 @@ export default function AddToCartButton({
   const { isPending: isAdding, mutateAsync: addToCart } =
     useMutation(addCartItem);
 
-  const { mutate: updateCart } = useMutation(updateCartItem);
+  const { mutate: updateCart, isPending: updatePending } =
+    useMutation(updateCartItem);
 
   const { data: cart, isLoading: isCartLoading } = useCart();
 
@@ -186,6 +187,7 @@ export default function AddToCartButton({
             qty={currentQuantity}
             maxQty={maxQty}
             onChange={handleQuantityChange}
+            loading={updatePending}
           />
 
           <Link

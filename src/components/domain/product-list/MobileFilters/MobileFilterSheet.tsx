@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { ProductFilters } from "@/types";
 import FilterItem from "./FilterItem";
@@ -15,6 +15,7 @@ import TriggerButton from "../Toolbar/MobileToolbar/TriggerButton";
 
 type Props = { filters: ProductFilters; totalCount: number };
 export default function MobileFilterSheet({ filters, totalCount }: Props) {
+  const [open, setOpen] = useState(false);
   const {
     attributes,
     generic: { boolean_filter, brands, categories, price_range },
@@ -34,15 +35,16 @@ export default function MobileFilterSheet({ filters, totalCount }: Props) {
     (query.filter.price_min !== "" || query.filter.price_max !== "" ? 1 : 0);
   return (
     <div>
+      <TriggerButton
+        isActive={!!hasAnyFilter}
+        displayBadge={hasAnyFilter}
+        label="فیلتر ها"
+        Icon={SlidersHorizontalIcon}
+        onClick={() => setOpen(true)}
+      />
       <BaseDialog
-        trigger={
-          <TriggerButton
-            isActive={!!hasAnyFilter}
-            displayBadge={hasAnyFilter}
-            label="فیلتر ها"
-            Icon={SlidersHorizontalIcon}
-          />
-        }
+        open={open}
+        onOpenChange={setOpen}
         title="فیلترها"
         content={
           <div>

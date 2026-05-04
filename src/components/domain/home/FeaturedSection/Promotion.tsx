@@ -7,9 +7,11 @@ import { ChevronLeft } from "lucide-react";
 export default function Promotion({
   view_all_link,
   show_view_all_button,
+  end_date,
 }: {
   view_all_link: string;
   show_view_all_button: boolean;
+  end_date?: string;
 }) {
   return (
     <div className="flex md:flex-col justify-between h-full items-center mt-1 mb-3.5 md:m-0">
@@ -32,11 +34,13 @@ export default function Promotion({
 
         <div className="md:mt-2.5">
           <ClientOnly>
-            <CountdownTimer
-              showIcon={false}
-              color="white"
-              targetDate={new Date(Date.now() + 3600000)}
-            />
+            {end_date && (
+              <CountdownTimer
+                showIcon={false}
+                color="white"
+                targetDate={new Date(Date.parse(end_date))}
+              />
+            )}
           </ClientOnly>
         </div>
 

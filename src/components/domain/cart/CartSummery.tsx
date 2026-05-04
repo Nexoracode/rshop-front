@@ -16,7 +16,7 @@ export default function CartSummery({
 }) {
   const { data } = useCart();
   const {
-    orderMeta: { promotion_code, discount_amount, promotions },
+    orderMeta: { discount_amount, promotions },
   } = useCheckout();
 
   return (

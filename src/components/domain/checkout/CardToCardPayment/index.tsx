@@ -46,14 +46,10 @@ export default function CardToCardPayment({
         onSuccess={handleSuccess}
         payment_id={payment_id}
         receipt_image={paymentInfo?.receipt_image ?? null}
+        status={paymentInfo?.card_to_card_status ?? "pending"}
       />
     ),
-    later: (
-      <PaymentModeLater
-        order_id={order_id}
-        onSuccess={handleSuccess}
-      />
-    ),
+    later: <PaymentModeLater order_id={order_id} onSuccess={handleSuccess} />,
     info: (
       <PaymentModeInfo
         onClose={onClose}
@@ -88,7 +84,12 @@ export default function CardToCardPayment({
       <div className="lg:flex space-y-4 gap-4">
         <div className="lg:w-1/2 space-y-4 flex flex-col justify-between h-full m-0">
           <ShopCardInfo amount={Number(amount)} />
-          <SelectPaymentMode later={later} mode={mode} setMode={setMode} />
+          <SelectPaymentMode
+            status={paymentInfo?.card_to_card_status ?? "pending"}
+            later={later}
+            mode={mode}
+            setMode={setMode}
+          />
         </div>
 
         <div className="lg:w-1/2 mt-4 lg:mt-0">{modeAction[mode]}</div>
