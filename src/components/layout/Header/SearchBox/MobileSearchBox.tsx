@@ -36,17 +36,24 @@ export default function MobileSearchBox({
     <React.Fragment>
       <div className="relative w-full">
         {triggerMode === "button" ? (
-          <div onClick={() => setOpen(true)} className="relative mx-2">
-            <Input
-              dir="rtl"
-              placeholder="جستجوی محصول..."
-              value={search}
-              onChange={() => {}}
-              className={`rounded-sm h-[44px] ${search.length ? "bg-white !border !border-slate-200" : "bg-[rgb(240,241,241)] border-none"} py-5 focus-visible:ring-0 text-gray-700`}
-            />
-            <button className="absolute text-muted px-4 top-0 bottom-0 -left-1 rounded-l-sm rounded-r-0">
-              <Search className="size-5" />
-            </button>
+          <div onClick={() => setOpen(true)}>
+            <div
+              className={`relative flex items-center justify-between gap-8 w-full px-5 bg-[rgb(242,243,245)] rounded-full h-[44px] border border-transparent ${search.length ? "bg-white !border-slate-200" : ""}`}
+            >
+              <div className="w-full flex items-center justify-between gap-1">
+                <Input
+                  dir="rtl"
+                  placeholder="جستجو"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  onBlur={(e) => !!debouncedSearch && e.target.focus()}
+                  className={`bg-transparent border-none shadow-none w-full focus:bg-transparent focus:!border-none ps-0 focus-visible:ring-0 text-gray-600 placeholder:text-gray-500 placeholder:text-[13px]`}
+                />
+                <Search className="size-5.5 text-slate-500" />
+              </div>
+            </div>
           </div>
         ) : (
           <button
