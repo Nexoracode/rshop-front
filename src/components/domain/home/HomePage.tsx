@@ -21,9 +21,7 @@ export default async function HomePage() {
   return !data ? (
     <PageLoading />
   ) : (
-    <div
-      className={`pb-8 ${data.layout_type === "side_by_side" ? "pt-" : ""} space-y-4`}
-    >
+    <div className="flex flex-col">
       <PromoSection
         heroSliders={data.hero_sliders}
         sideBanners={data.side_banners}
@@ -32,17 +30,19 @@ export default async function HomePage() {
         {featuredSection && <FeaturedSection {...featuredSection} />}
       </PromoSection>
 
-      {featuredSection && data.layout_type === "side_by_side" && (
-        <FeaturedSection {...featuredSection} />
-      )}
+      <div className="bg-white !z-20 relative space-y-4 px-2 md:px-0">
+        {featuredSection && data.layout_type === "side_by_side" && (
+          <FeaturedSection {...featuredSection} />
+        )}
 
-      <CategoriesSection categories={data.categories} />
+        <CategoriesSection categories={data.categories} />
 
-      <HomeSections sections={data.sections} />
+        <HomeSections sections={data.sections} />
 
-      <BrandsSection brands={data.brands} />
+        <BrandsSection brands={data.brands} />
 
-      {/*    <BlogSection /> */}
+        {/*    <BlogSection /> */}
+      </div>
     </div>
   );
 }

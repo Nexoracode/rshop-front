@@ -10,14 +10,15 @@ export default function PageLoading() {
   return isMobile === null ? (
     <div className="fixed z-[9999] bg-white right-0 top-0 w-screen h-screen">
       <div className="w-full  h-full flex items-center justify-center">
-        <div className="w-fit  shimmer-image ">
+        <div className="w-fit shimmer-image">
           <Image
             priority
             alt=""
             width={200}
             height={200}
             src={"/rshop_logo_h.png"}
-            className=""
+            className="object-contain"
+            style={{ width: "auto", height: "auto" }}
           />
         </div>
       </div>

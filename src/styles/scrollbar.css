@@ -1,6 +1,6 @@
-/* Scrollbar Global Styles */
+/* کروم، اج، سافاری */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 0px;
   height: 6px;
 }
 
@@ -15,6 +15,12 @@
 
 ::-webkit-scrollbar-track {
   background: #f0f0f0;
+}
+
+/* فایرفاکس */
+* {
+  scrollbar-width: none;
+  scrollbar-color: #c9c9c9 #f0f0f0;
 }
 
 /*  */

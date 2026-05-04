@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import CustomBanner from "./CustomBanner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function PromoBanner() {
   const { data: data, isFetching } = useQuery(getPromoBanners);
@@ -33,23 +34,13 @@ export default function PromoBanner() {
   }, [currentIndex, banners]);
 
   if (isFetching) {
-    return (
-      <></>
-    );
+    return <Skeleton className="h-[40px] md:h-[60px] rounded-none" />;
   }
-
-/*   if (isFetching) {
-    return (
-      <div className="w-full relative h-[2.5rem] md:h-[4rem]">
-        <Skeleton className="h-full" />
-      </div>
-    );
-  } */
 
   if (banners.length === 0) return null;
 
   return (
-    <div className="w-full relative h-[2.5rem] object-center  md:h-[4rem] overflow-hidden">
+    <div className="w-full relative  object-center h-[40px] md:h-[60px] overflow-hidden">
       {banners.map((banner, index) => {
         const isActive = index === currentIndex;
 

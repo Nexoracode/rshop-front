@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { DicesIcon, HomeIcon, LocationEdit, Menu } from "lucide-react";
+import { LocationEdit, LucideBadgePercent, LucideEye, LucideTrendingUp, Menu } from "lucide-react";
 import { getCategoreis } from "@/queries/products/category";
 import { cn } from "@/lib/utils/classnames";
 import useSticky from "@/hooks/useSticky";
@@ -13,12 +13,20 @@ import CategoryViewport from "./CategoryViewport";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/", Icon: HomeIcon, label: "خانه" },
-  /* { href: "/products", Icon: LucideShoppingBag, label: "فروشگاه" }, */
   {
     href: "/products?query=filter%5Bspecial_offer%5D=1",
-    Icon: DicesIcon,
-    label: "ویژه‌ها",
+    Icon: LucideBadgePercent,
+    label: "شگفت‌انگیزها",
+  },
+  {
+    href: "products?sortBy=visited",
+    Icon: LucideEye,
+    label: "پربازدیدترین‌ها",
+  },
+  {
+    href: "/products?sortBy=bestselling",
+    Icon: LucideTrendingUp,
+    label: "پرفروش‌ترین‌ها",
   },
 ];
 
@@ -39,7 +47,7 @@ export default function MainNav() {
         className={cn(
           "hidden absolute transition-all duration-300 z-10 bg-white shadow left-0 right-0  md:block",
           !isVisible
-            ? "-translate-y-6 opacity-0 pointer-events-none h-0 shadow-none"
+            ? "-translate-y-12 opacity-0 pointer-events-none h-0 shadow-none"
             : "translate-y-0 opacity-100 h-10",
         )}
       >
@@ -64,7 +72,7 @@ export default function MainNav() {
               <Link
                 key={href}
                 href={href}
-                className="text-muted hover:text-primary flex items-center gap-1.5"
+                className="text-slate-500 transition-all text-[13px] hover:text-slate-700 flex items-center gap-1.5"
               >
                 {Icon ? <Icon size={17} /> : ""}
                 {label}
@@ -72,16 +80,16 @@ export default function MainNav() {
             ))}
             <Link
               href={"/guide/faq"}
-              className="gap-2 flex border-r border-r-slate-300 justify-between pr-5 cursor-pointer"
+              className="border-r border-r-slate-300 transition-all text-slate-500 hover:text-slate-700 pr-5 cursor-pointer"
             >
-              <span className="flex font-medium items-center text-slate-600">
+              <span className="text-[13px]">
                 سوالی دارید؟
               </span>
             </Link>
           </div>
           <div className="items-center justify-center gap-2 pl-2 cursor-default hidden lg:flex">
             <LocationEdit size={18} className="text-slate-700" />
-            <p className="text-slate-700 text-[13px]">ارسال به شهر شما</p>
+            <p className="text-slate-700 text-[13px]">ارسال به آدرس شما</p>
           </div>
         </div>
       </nav>

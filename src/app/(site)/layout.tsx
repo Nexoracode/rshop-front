@@ -9,9 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="md:pt-[108px] pt-10">
+    <div className="pt-10 md:pt-[108px]">
       <Header />
-      <main className="px-2 md:px-0 min-h-[100dvh]">
+      <main className="min-h-[100dvh]">
         <PromoBannerPadding />
         {children}
       </main>
