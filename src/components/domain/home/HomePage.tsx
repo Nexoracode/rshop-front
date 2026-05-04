@@ -18,6 +18,8 @@ export default async function HomePage() {
     (s) => s.section_type === "promotion_based",
   );
 
+  console.log({ data });
+
   return !data ? (
     <PageLoading />
   ) : (

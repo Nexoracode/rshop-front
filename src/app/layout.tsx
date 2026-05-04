@@ -22,8 +22,7 @@ export default function RootLayout({
         cz-shortcut-listen="false"
       >
         <Providers>
-          <PageLoading />
-          {children}
+          <PageLoading>{children}</PageLoading>
         </Providers>
         <Toaster />
       </body>

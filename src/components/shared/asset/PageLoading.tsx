@@ -2,15 +2,15 @@
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import Image from "next/image";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export default function PageLoading() {
+export default function PageLoading({ children }: PropsWithChildren) {
   const isMobile = useIsMobile();
 
   return isMobile === null ? (
     <div className="fixed z-[9999] bg-white right-0 top-0 w-screen h-screen">
       <div className="w-full  h-full flex items-center justify-center">
-        <div className="w-fit shimmer-image">
+        <div className=" w-40 shimmer-image">
           <Image
             priority
             alt=""
@@ -23,5 +23,7 @@ export default function PageLoading() {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    children
+  );
 }
