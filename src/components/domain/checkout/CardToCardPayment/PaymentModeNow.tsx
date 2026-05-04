@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { Payment } from "@/types/order";
 import Image from "@/components/common/Image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { CheckCircle2Icon } from "lucide-react";
 import { Alert } from "@/components/ui/alert";
 
 export default function PaymentModeNow({
@@ -26,7 +25,6 @@ export default function PaymentModeNow({
   status: Payment["card_to_card_status"];
 }) {
   const form = useForm({ values: { file: receipt_image?.url } });
-  const file = form.watch("file");
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
   const handleSubmit = (values: FieldValues) => {
     const { file } = values;

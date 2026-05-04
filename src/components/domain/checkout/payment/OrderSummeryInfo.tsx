@@ -23,7 +23,6 @@ type Props = {
 export default function OrderSummeryInfo({
   subtotal,
   total,
-  discount_total,
   total_quantity,
   gift_wrapping_cost,
   shipping_cost,

@@ -8,11 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import TextField from "@/components/common/Form/TextField";
 import PaymentModalFooter from "./PaymentModalFooter";
 import { CardToCardPaymentInfo } from "@/types/order";
-import {
-  getTimeString,
-  toPersianDate,
-  toPersianDateTime,
-} from "@/lib/utils/date-time";
+import { getTimeString, toPersianDateTime } from "@/lib/utils/date-time";
 import { uploadReceipImage } from "@/queries/checkout/payment/card-to-card";
 import { toast } from "sonner";
 
@@ -59,7 +55,9 @@ export function PaymentModeInfo({
         onSuccess: (data) => {
           if (data) {
             onSuccess();
+            return;
           }
+          toast.error("ثبت اطلاعات با خطا مواجه شد.");
         },
       },
     );
