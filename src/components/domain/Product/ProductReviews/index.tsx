@@ -12,6 +12,8 @@ import Pagination from "../../../common/Pagination";
 import ProductRating from "./ProductRating";
 import SubmitReviewBtn from "./SubmitReviewBtn";
 import { getProductReviews } from "@/queries/products/product-reviews";
+import { useIsMobile } from "@/hooks/use-mobile";
+import ProductReviewsMobile from "./ProductReviewsMobile";
 
 type Props = {
   product_id: number;
@@ -24,6 +26,7 @@ export default function ProductReviews({ ...props }: Props) {
   const { data, isFetching, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery(getProductReviews(props.product_id, page));
 
+  const isMobile = useIsMobile();
   const currentPage = data?.pages[data.pages.length - 1];
 
   if (!currentPage) return null;
@@ -35,7 +38,9 @@ export default function ProductReviews({ ...props }: Props) {
   const displayPagination =
     page !== null || Number(currentPageMeta?.current_page) > 1;
 
-  return (
+  return isMobile ? (
+    <ProductReviewsMobile {...currentPage} />
+  ) : (
     <section id="reviews" className="space-y-8 py-1">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">

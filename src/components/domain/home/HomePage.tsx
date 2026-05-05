@@ -10,9 +10,8 @@ import PageLoading from "@/components/shared/asset/PageLoading";
 
 export default async function HomePage() {
   const queryClient = getQueryClient();
-  const data = await queryClient.fetchQuery(getHomeSections);
 
-  if (!data) return <PageLoading />;
+  const data = await queryClient.fetchQuery(getHomeSections);
 
   const featuredSection = data.sections.find(
     (s) => s.section_type === "promotion_based",

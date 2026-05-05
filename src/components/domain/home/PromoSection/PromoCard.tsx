@@ -32,6 +32,7 @@ export default function PromoCard({
             alt={title}
             fill
             className="object-cover hover:scale-105 transition-transform"
+            unoptimized={false}
           />
         </div>
         {title && (

@@ -4,8 +4,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { LocationEdit, LucideBadgePercent, LucideEye, LucideTrendingUp, Menu } from "lucide-react";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  LocationEdit,
+  LucideBadgePercent,
+  LucideEye,
+  LucideTrendingUp,
+  Menu,
+} from "lucide-react";
 import { getCategoreis } from "@/queries/products/category";
 import { cn } from "@/lib/utils/classnames";
 import useSticky from "@/hooks/useSticky";
@@ -32,7 +38,7 @@ const navLinks = [
 
 export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: sections = [] } = useSuspenseQuery(getCategoreis);
+  const { data: sections = [] } = useQuery(getCategoreis);
 
   const { isVisible } = useSticky();
 
@@ -82,9 +88,7 @@ export default function MainNav() {
               href={"/guide/faq"}
               className="border-r border-r-slate-300 transition-all text-slate-500 hover:text-slate-700 pr-5 cursor-pointer"
             >
-              <span className="text-[13px]">
-                سوالی دارید؟
-              </span>
+              <span className="text-[13px]">سوالی دارید؟</span>
             </Link>
           </div>
           <div className="items-center justify-center gap-2 pl-2 cursor-default hidden lg:flex">

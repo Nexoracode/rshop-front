@@ -36,6 +36,7 @@ export default function HeroSliderItem({ ...props }: Props) {
               sizes="(min-width:1024px) 66vw, 100vw"
               className="object-cover  object-center"
               priority
+              unoptimized={false}
             />
           ) : (
             ""
