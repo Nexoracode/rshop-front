@@ -10,6 +10,7 @@ const nextConfig = {
         search: "",
       },
     ],
+    unoptimized: true,
   },
   async rewrites() {
     return [
