@@ -24,7 +24,11 @@ export default function ProductReviews({ ...props }: Props) {
   const { data, isFetching, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery(getProductReviews(props.product_id, page));
 
-  const currentPageMeta = data?.pages[data.pages.length - 1].meta;
+  const currentPage = data?.pages[data.pages.length - 1];
+
+  if (!currentPage) return null;
+
+  const currentPageMeta = currentPage.meta;
   const isLastPage =
     currentPageMeta?.current_page === currentPageMeta?.total_pages ||
     currentPageMeta?.total_pages === 0;
