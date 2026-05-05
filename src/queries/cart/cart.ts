@@ -27,18 +27,21 @@ export const addCartItem = mutationOptions({
       showErrorToast: false,
     });
   },
-  onSuccess: async () => {
-    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+  onSuccess: async (data) => {
+    await queryClient.setQueryData(["get-cart"], data);
   },
 });
 
 export const updateCartItem = mutationOptions({
-  mutationFn: async (body: { itemId: number; quantity: number }) => {
+  mutationFn: async (body: {
+    itemId: number;
+    quantity: number;
+  }): Promise<UserCart> => {
     const response = await apiFetch("/cards/update", { method: "PATCH", body });
     return response;
   },
-  onSuccess: async () => {
-    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+  onSuccess: async (data) => {
+    await queryClient.setQueryData(["get-cart"], data);
   },
 });
 
@@ -46,15 +49,15 @@ export const deleteCartItem = mutationOptions({
   mutationFn: async (body: { itemId: number }) => {
     return await apiFetch("/cards/remove", { method: "PATCH", body });
   },
-  onSuccess: async () => {
-    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+  onSuccess: async (data) => {
+    await queryClient.setQueryData(["get-cart"], data);
   },
 });
 export const clearCart = mutationOptions({
   mutationFn: async () => {
     return await apiFetch("/cards/remove", { method: "delete" });
   },
-  onSuccess: async () => {
-    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+  onSuccess: async (data) => {
+    await queryClient.setQueryData(["get-cart"], data);
   },
 });

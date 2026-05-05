@@ -23,6 +23,7 @@ export default function QuantitySelect({
   ) => {
     e.preventDefault();
     e.stopPropagation();
+    if (loading) return;
     if (maxQty >= qty + 1) {
       onChange?.(qty + 1);
     }
@@ -32,6 +33,7 @@ export default function QuantitySelect({
   ) => {
     e.preventDefault();
     e.stopPropagation();
+    if (loading) return;
     onChange?.(qty! > 1 ? qty! - 1 : 0);
   };
 
