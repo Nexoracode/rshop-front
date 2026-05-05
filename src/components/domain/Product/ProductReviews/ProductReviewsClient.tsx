@@ -14,6 +14,7 @@ import SubmitReviewBtn from "./SubmitReviewBtn";
 import { getProductReviews } from "@/queries/products/product-reviews";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ProductReviewsMobile from "./ProductReviewsMobile";
+import dynamic from "next/dynamic";
 
 type Props = {
   product_id: number;
@@ -21,7 +22,7 @@ type Props = {
   product_name: string;
 };
 
-export default function ProductReviews({ ...props }: Props) {
+export default function ProductReviewsClient({ ...props }: Props) {
   const [page, setPage] = useState<number | null>(null);
   const { data, isFetching, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery(getProductReviews(props.product_id, page));
@@ -41,7 +42,7 @@ export default function ProductReviews({ ...props }: Props) {
   return isMobile ? (
     <ProductReviewsMobile {...currentPage} />
   ) : (
-    <section id="reviews" className="space-y-8 py-1">
+    <section id="reviews" className="space-y-8 py-1 scroll-target">
       <SectionTitle title="دیدگاه کاربران" />
       <div className="flex flex-col md:flex-row justify-start">
         <div className="space-y-5 lg:shadow rounded-lg h-fit p-5">

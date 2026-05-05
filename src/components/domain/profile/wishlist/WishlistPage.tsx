@@ -11,7 +11,7 @@ import { ListLayout } from "@/components/common/ListLayout";
 import { WishlistItem } from "@/types/product";
 
 export default function WishlistPage() {
-  const { data: wishlist = [], isFetching } = useQuery(getWishlistList);
+  const { data: wishlist = [], isFetching } = useQuery(getWishlistList(true));
   const { mutate, variables, isPending } = useMutation(deleteFromWishlist);
 
   const handleDelete = (itemId: number) => {

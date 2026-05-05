@@ -87,3 +87,7 @@
       inset-inline-start 300ms ease;
   }
 }
+
+.scroll-target {
+  scroll-margin-top: 180px; /* فاصله از بالای صفحه */
+}

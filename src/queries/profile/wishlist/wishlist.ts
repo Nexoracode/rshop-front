@@ -16,15 +16,17 @@ export const addWishlistList = mutationOptions({
     });
   },
 });
-export const getWishlistList = queryOptions({
-  queryKey: ["get-user-wishlist-list"],
-  staleTime: Infinity,
-  refetchOnWindowFocus: false,
-  queryFn: async (): Promise<Array<WishlistItem>> => {
-    return await apiFetch("/profile/wishlist", { showErrorToast: false });
-  },
-  retry: false,
-});
+export const getWishlistList = (enabled: boolean) =>
+  queryOptions({
+    queryKey: ["get-user-wishlist-list"],
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    queryFn: async (): Promise<Array<WishlistItem>> => {
+      return await apiFetch("/profile/wishlist", { showErrorToast: false });
+    },
+    retry: false,
+    enabled,
+  });
 
 export const deleteFromWishlist = mutationOptions({
   mutationFn: async ({ itemId }: { itemId: number }) =>

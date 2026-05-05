@@ -89,6 +89,7 @@ export default function ProductGallery({
               src={media_pinned?.url ?? PRODUCT_PLACEHOLDER}
               alt={`thumbnail`}
               fill
+              sizes="(max-width:768px) 100%, 5rem"
               className="object-contain max-w-xl blur-xs"
             />
 

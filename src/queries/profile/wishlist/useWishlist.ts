@@ -5,6 +5,7 @@ import {
   getWishlistList,
 } from "./wishlist";
 import { toast } from "sonner";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export const useWishlist = ({
   id,
@@ -13,13 +14,15 @@ export const useWishlist = ({
   id: number;
   action: React.ReactNode;
 }) => {
-  const { data } = useQuery(getWishlistList);
+  const { user } = useCurrentUser();
+  const { data } = useQuery(getWishlistList(!!user));
+
   const { mutateAsync: addToWishlistItem, isPending } =
     useMutation(addWishlistList);
   const { mutateAsync: deleteFromWishlistMutate, isPending: deletePending } =
-    useMutation(deleteFromWishlist);  
-    
-  const inWishlist = data && data?.find((i) => i.product.id === id);  
+    useMutation(deleteFromWishlist);
+
+  const inWishlist = data && data?.find((i) => i.product.id === id);
 
   const toggle = () => {
     if (!inWishlist)

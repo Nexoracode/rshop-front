@@ -34,7 +34,7 @@ export default function PromoBanner() {
   }, [currentIndex, banners]);
 
   if (isFetching) {
-    return <Skeleton className="h-[40px] md:h-[60px] rounded-none" />;
+    return null;
   }
 
   if (banners.length === 0) return null;

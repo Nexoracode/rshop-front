@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ChevronLeftIcon, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Link from "next/link";
 import { Product } from "@/types/product";
 import VariantSelect from "../VariantSelect";
@@ -12,6 +11,7 @@ import CreateSupportButton from "../CreateSupportButton";
 import ProductHelper from "../ProductTabs/ProductHelper";
 import { cn } from "@/lib/utils/classnames";
 import Image from "next/image";
+import ReviewsNavButton from "./ReviewsNavButton";
 
 export default function ProductInfo(props: Product) {
   const {
@@ -73,10 +73,7 @@ export default function ProductInfo(props: Product) {
                   (امتیاز {reviews_count} خریدار)
                 </span>
               </div>
-              <Badge variant="secondary-outline" className="gap-1">
-                {reviews_count} دیدگاه
-                <ChevronLeftIcon className="size-3.5" />
-              </Badge>
+              <ReviewsNavButton reviews_count={reviews_count} />
             </>
           ) : (
             <p className="text-sm text-muted-foreground">

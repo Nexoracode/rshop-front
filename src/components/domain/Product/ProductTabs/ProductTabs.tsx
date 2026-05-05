@@ -26,7 +26,7 @@ export default function ProductTabs({
 
     el.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
 
     setActive(key);

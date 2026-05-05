@@ -17,12 +17,11 @@ import ProductSummeryCard from "@/components/domain/Product/ProductSummeryCard";
 import ProductFeaturedBanner from "@/components/domain/Product/ProductFeaturedBanner";
 
 import RelatedProducts from "@/components/domain/Product/RelatedProducts";
-import ProductReviews from "@/components/domain/Product/ProductReviews";
 
 import SidebarActions from "@/components/domain/Product/SidebarActions";
-import ProductReviewsSkeleton from "@/components/domain/Product/ProductReviews/ProductReviewsSkeleton";
 import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProductsSkeleton";
 import ProductInfoDialog from "@/components/domain/Product/ProductInfo/ProductInfoDialog";
+import ProductReviews from "@/components/domain/Product/ProductReviews/ProductReviews";
 
 export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 
@@ -77,7 +76,7 @@ export default async function ProductPage({
     ? await fetchCategoryBySlug(product.category.slug)
     : null;
   return (
-    <div className="container mt-8 mb-12 md:my-12 space-y-8 min-h-[80vh]">
+    <div className="container px-2 md:px-0 mt-8 mb-12 md:my-12 space-y-8 min-h-[80vh]">
       {category && <ProductBreadcrump {...category} />}
 
       <ProductSchema {...product} />
@@ -137,13 +136,11 @@ export default async function ProductPage({
             ""
           )}
 
-          <Suspense fallback={<ProductReviewsSkeleton />}>
-            <ProductReviews
-              product_id={product.id}
-              product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-              product_name={product.name}
-            />
-          </Suspense>
+          <ProductReviews
+            product_id={product.id}
+            product_image={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+            product_name={product.name}
+          />
         </div>
 
         {/* کارت خلاصه در دسکتاپ */}
