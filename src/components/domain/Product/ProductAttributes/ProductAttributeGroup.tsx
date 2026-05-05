@@ -1,6 +1,5 @@
 import { ProductAttributeGroup as ProductAttributeGroupType } from "@/types/product";
 import React from "react";
-import ProductAttributes from "./ProductAttributes";
 import ProductAttributesList from "./ProductAttributesList";
 
 export default function ProductAttributeGroup({

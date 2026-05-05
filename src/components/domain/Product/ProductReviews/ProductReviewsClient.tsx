@@ -14,7 +14,6 @@ import SubmitReviewBtn from "./SubmitReviewBtn";
 import { getProductReviews } from "@/queries/products/product-reviews";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ProductReviewsMobile from "./ProductReviewsMobile";
-import dynamic from "next/dynamic";
 
 type Props = {
   product_id: number;

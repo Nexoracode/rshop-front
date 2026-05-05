@@ -20,8 +20,8 @@ import RelatedProducts from "@/components/domain/Product/RelatedProducts";
 
 import SidebarActions from "@/components/domain/Product/SidebarActions";
 import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProductsSkeleton";
-import ProductInfoDialog from "@/components/domain/Product/ProductInfo/ProductInfoDialog";
 import ProductReviews from "@/components/domain/Product/ProductReviews/ProductReviews";
+import ProductInfoDialog from "@/components/domain/Product/ProductInfo/ProductInfoDialog";
 
 export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 

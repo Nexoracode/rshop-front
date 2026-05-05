@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import CustomBanner from "./CustomBanner";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function PromoBanner() {
   const { data: data, isFetching } = useQuery(getPromoBanners);
