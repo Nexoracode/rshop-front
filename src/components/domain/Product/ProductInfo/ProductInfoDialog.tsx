@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Product } from "@/types/product";
-import ProductAttributes from "../ProductAttributes/ProductAttributes";
 import ProductDescription from "../ProductTabs/ProductDescription";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -43,7 +42,7 @@ export default function ProductInfoDialog({
                 {specifications
                   .sort((a, b) => a.display_order - b.display_order)
                   .map((attrGroup) => (
-                    <ProductAttributeGroup {...attrGroup} />
+                    <ProductAttributeGroup key={attrGroup.id} {...attrGroup} />
                   ))}
               </div>
             </TabsContent>

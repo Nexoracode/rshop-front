@@ -18,7 +18,9 @@ export default function ProductAttributes({ attributes }: Props) {
       ) : (
         attributes
           .sort((a, b) => a.display_order - b.display_order)
-          .map((attrGroup) => <ProductAttributeGroup {...attrGroup} />)
+          .map((attrGroup) => (
+            <ProductAttributeGroup key={attrGroup.id} {...attrGroup} />
+          ))
       )}
     </section>
   );
