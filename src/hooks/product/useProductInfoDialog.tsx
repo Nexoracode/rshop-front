@@ -1,30 +1,15 @@
 "use client";
-
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useProductPage } from "@/queries/products/product-page";
 
 export default function useProductInfoDialog() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const openTab = searchParams.get("product_info_dialog");
-
-  const setDialogTab = (tab: string | null) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (tab) {
-      params.set("product_info_dialog", tab.toString());
-    } else {
-      params.delete("product_info_dialog");
-    }
-
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
+  const { pageData, setPageData } = useProductPage();
 
   const openDialog = (infoTab: string) => {
-    setDialogTab(infoTab);
+    setPageData({ activeTab: infoTab });
   };
   const closeDialog = () => {
-    setDialogTab(null);
+    setPageData({ activeTab: null });
   };
-  return { openDialog, closeDialog, openTab };
+
+  return { openDialog, closeDialog, activeTab: pageData.activeTab };
 }

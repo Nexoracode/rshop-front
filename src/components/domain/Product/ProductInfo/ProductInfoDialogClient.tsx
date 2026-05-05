@@ -19,13 +19,13 @@ export default function ProductInfoDialogClient({
   specifications,
   description,
 }: Product) {
-  const { openTab, closeDialog } = useProductInfoDialog();
+  const { activeTab, closeDialog } = useProductInfoDialog();
 
   return (
-    <Drawer open={!!openTab} onClose={closeDialog}>
+    <Drawer open={!!activeTab} onClose={closeDialog}>
       <DrawerContent title="معرفی و مشخصات مصول">
         <div className="relative">
-          <Tabs defaultValue={openTab ?? ""}>
+          <Tabs defaultValue={activeTab ?? ""}>
             <TabsList className="sticky w-full top-0">
               {tabs.map((tab) => (
                 <TabsTrigger value={tab.key} key={tab.key}>

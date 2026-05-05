@@ -21,7 +21,7 @@ import RelatedProducts from "@/components/domain/Product/RelatedProducts";
 import SidebarActions from "@/components/domain/Product/SidebarActions";
 import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProductsSkeleton";
 import ProductReviews from "@/components/domain/Product/ProductReviews/ProductReviews";
-import ProductInfoDialog from "@/components/domain/Product/ProductInfo/ProductInfoDialog";
+import ProductInfoDialogClient from "@/components/domain/Product/ProductInfo/ProductInfoDialogClient";
 
 export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 
@@ -149,7 +149,7 @@ export default async function ProductPage({
         </div>
 
         <div className="md:hidden">
-          <ProductInfoDialog {...product} />
+          <ProductInfoDialogClient {...product} />
         </div>
       </div>
     </div>

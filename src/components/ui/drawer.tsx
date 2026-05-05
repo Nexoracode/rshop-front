@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 import { cn } from "@/lib/utils/classnames";
+import { DialogTitle } from "./dialog";
 
 function Drawer({
   open,
@@ -110,6 +111,7 @@ function DrawerContent({
         )}
         {...props}
       >
+        <DialogTitle></DialogTitle>
         {/* Handle bar for drag */}
         <div className="mx-auto mt-2 h-0.5 w-10 rounded-full bg-muted-light" />
 
