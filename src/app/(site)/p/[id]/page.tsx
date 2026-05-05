@@ -12,7 +12,7 @@ import ProductGallery from "@/components/domain/Product/ProductGallery";
 import ProductInfo from "@/components/domain/Product/ProductInfo/ProductInfo";
 import ProductTabs from "@/components/domain/Product/ProductTabs/ProductTabs";
 import ProductDescription from "@/components/domain/Product/ProductTabs/ProductDescription";
-import ProductAttributes from "@/components/domain/Product/ProductAttributes";
+import ProductAttributes from "@/components/domain/Product/ProductAttributes/ProductAttributes";
 import ProductSummeryCard from "@/components/domain/Product/ProductSummeryCard";
 import ProductFeaturedBanner from "@/components/domain/Product/ProductFeaturedBanner";
 
@@ -76,7 +76,6 @@ export default async function ProductPage({
   const category = product.category?.slug
     ? await fetchCategoryBySlug(product.category.slug)
     : null;
-
   return (
     <div className="container mt-8 mb-12 md:my-12 space-y-8 min-h-[80vh]">
       {category && <ProductBreadcrump {...category} />}

@@ -21,7 +21,7 @@ export default function ProductDescription({
         )}
       ></article>
 
-      {showMore && <DisplayFurtherDescription />}
+      {showMore && description && <DisplayFurtherDescription />}
     </section>
   );
 }

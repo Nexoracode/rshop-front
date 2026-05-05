@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { Product } from "@/types/product";
-import ProductAttributes from "../ProductAttributes";
+import ProductAttributes from "../ProductAttributes/ProductAttributes";
 import ProductDescription from "../ProductTabs/ProductDescription";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useProductInfoDialog from "@/hooks/product/useProductInfoDialog";
+import ProductAttributeGroup from "../ProductAttributes/ProductAttributeGroup";
 
 type TabKey = "description" | "specifications" | "reviews";
 
@@ -38,7 +39,13 @@ export default function ProductInfoDialog({
               <ProductDescription description={description} />
             </TabsContent>
             <TabsContent value="specifications">
-              <ProductAttributes attributes={specifications} />
+              <div className="">
+                {specifications
+                  .sort((a, b) => a.display_order - b.display_order)
+                  .map((attrGroup) => (
+                    <ProductAttributeGroup {...attrGroup} />
+                  ))}
+              </div>
             </TabsContent>
           </Tabs>
         </div>

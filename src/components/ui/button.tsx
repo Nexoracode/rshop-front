@@ -70,7 +70,7 @@ export const buttonVariants = cva(
       {
         variant: "fill",
         color: "neutral",
-        class: "bg-neutral-300 text-foreground hover:bg-neutral/90",
+        class: "bg-neutral-200 text-foreground hover:bg-neutral/90",
       },
       {
         variant: "fill",

@@ -58,7 +58,7 @@ function TabsContent({
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
-      className={cn("flex-1 p-3 outline-none", className)}
+      className={cn("flex-1 p-3 pb-28 outline-none", className)}
       {...props}
     />
   );
