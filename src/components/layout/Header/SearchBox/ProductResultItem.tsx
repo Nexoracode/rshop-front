@@ -2,7 +2,6 @@ import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { ProductSearchResult } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export default function ProductResultItem({
   id,
@@ -10,29 +9,22 @@ export default function ProductResultItem({
   image,
 }: ProductSearchResult) {
   return (
-    <li className="w-full pb-1 border-b md:w-[110%] last:border-b-transparent">
-      <Link href={`/p/rsp-${id}`} className="flex gap-2 items-stretch">
+    <Link
+      href={`/p/rsp-${id}`}
+      className="flex flex-col items-center gap-3 hover:rounded-lg transition-all duration-200 h-fit hover:bg-gray-50 p-2"
+    >
+      <div className="relative size-16 rounded-md">
         <Image
-          width={70}
-          height={70}
           src={image ?? PRODUCT_PLACEHOLDER}
-          alt=""
-          className="border size-[4rem] rounded-md p-1 bg-background/30"
+          alt={name}
+          fill
+          className="object-contain p-0."
+          sizes="58px"
         />
-        <div className="flex-1 flex flex-col justify-evenly">
-          <div className="text-sm leading-6 line-clamp-2 font-normal">
-            {name}
-          </div>
-          {/*  <div className="">
-            <span className="text-xs font-medium">{formatToman(final)}</span>{" "}
-            {compareAt && (
-              <span className="text-xs text-danger-500 line-through">
-                {formatToman(compareAt)}
-              </span>
-            )}{" "}
-          </div> */}
-        </div>
-      </Link>
-    </li>
+      </div>
+      <h4 className="text-[13px] font-medium text-gray-600 line-clamp-1">
+        {name}
+      </h4>
+    </Link>
   );
 }

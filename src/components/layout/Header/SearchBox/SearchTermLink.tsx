@@ -1,4 +1,4 @@
-import { SearchIcon } from "lucide-react";
+import { LucideArrowLeft, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -11,10 +11,19 @@ export default function SearchTermLink({ debouncedSearch }: Props) {
         pathname: "/products",
         query: { search: debouncedSearch },
       }}
-      className="bg-background items-center  flex w-full p-2 text-sm hover:text-secondary mt-2"
+      className="border-t flex items-center gap-4 justify-between w-full pt-6 pb-2 text-sm hover:text-sky-600 transition-all mt-5"
     >
-      <SearchIcon className="text-muted-light size-6 me-2" />
-      جستجو برای {`"${debouncedSearch}"`}
+      <div className="flex items-center gap-4">
+        <Search className="size-5.5 text-slate-500" />
+        <span className="text-[13px] text-slate-600">
+          {" "}
+          جستجو برای {`"${debouncedSearch}"`}
+        </span>
+      </div>
+      <div className="flex items-center gap-2 text-sm rounded-lg text-primary-600">
+        <span>مشاهده نتایج</span>
+        <LucideArrowLeft className="size-4.5"/>
+      </div>
     </Link>
   );
 }
