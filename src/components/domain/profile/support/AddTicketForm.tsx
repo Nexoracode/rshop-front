@@ -43,7 +43,7 @@ export default function AddTicketForm({ onBack, category }: Props) {
         {category.category}
       </Label>
       <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(handleSubmit)}>
           <SelectField
             options={category.items}
             name="subject"

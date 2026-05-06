@@ -15,6 +15,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ children }) => {
       <div className="lg:hidden">
         <CartSummery
           footer={<CreateOrderBtn />}
+          className="bottom-0"
           showRules
         />
       </div>

@@ -9,6 +9,7 @@ import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 import PriceBox from "@/components/shared/product/PriceBox";
 import CartItemVariant from "@/components/layout/Header/CartPopver/CartItemVariant";
 import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
+import Link from "next/link";
 
 export default function CartItem({
   id,
@@ -40,13 +41,15 @@ export default function CartItem({
     >
       <div className="w-full flex flex-col sm:flex-row justify-between items-end gap-4">
         <div className="w-full sm:w-fit flex items-center gap-4">
-          <Image
-            src={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
-            alt={product.name}
-            width={100}
-            height={100}
-            className="h-[100px] border sm:border-0 object-cover rounded-lg"
-          />
+          <Link href={`/p/rsp-${product.id}`}>
+            <Image
+              src={product.media_pinned?.url || PRODUCT_PLACEHOLDER}
+              alt={product.name}
+              width={100}
+              height={100}
+              className="h-[100px] border sm:border-0 object-cover rounded-lg"
+            />
+          </Link>
           <div className="flex flex-col gap-3.5">
             <div className="flex items-center justify-between">
               <div className="text-sm font-medium">{product.name}</div>

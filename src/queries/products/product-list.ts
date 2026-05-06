@@ -22,11 +22,13 @@ export const getProductsListInfinit = ({
   slug,
   sortBy = "newest",
   type,
+  search,
 }: {
   slug?: string;
   query?: string;
   sortBy?: string;
   page?: string;
+  search?: string;
   type: "all" | "category" | "brand";
 }) =>
   infiniteQueryOptions<
@@ -34,12 +36,25 @@ export const getProductsListInfinit = ({
       filters: ProductFilters;
     }
   >({
-    queryKey: ["get-products-list-infinite", slug, query, sortBy, type, page],
+    queryKey: [
+      "get-products-list-infinite",
+      slug,
+      query,
+      sortBy,
+      type,
+      page,
+      search,
+    ],
     queryFn: ({ pageParam = 1 }) => {
-      const url = type === "brand" ? `/brand/${slug}` : `/${slug}`;
+      const url = search
+        ? ""
+        : type === "brand"
+          ? `/brand/${slug}`
+          : `/${slug}`;
 
       const queryParams = new URLSearchParams(query);
       if (sortBy) queryParams.append("sortBy", sortBy);
+      if (search) queryParams.append("search", search);
       if (pageParam) {
         queryParams.append("page", pageParam.toString());
       } else if (page) {

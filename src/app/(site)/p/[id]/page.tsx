@@ -135,7 +135,6 @@ export default async function ProductPage({
       <div className="grid grid-cols-1 lg:flex gap-8">
         <div className="w-full space-y-6">
           <ProductTabs activeTabs={{ helper: Boolean(product.helper) }} />
-
           <ProductDescription description={product.description} showMore />
 
           <Separator />

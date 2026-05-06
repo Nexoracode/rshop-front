@@ -169,7 +169,7 @@ export default function AddToCartButton({
             size="md"
             disabled={isAdding || isOutOfStock}
             onClick={handleAddToCart}
-            className="lg:w-full"
+            className="lg:w-full text-sm"
           >
             {isAdding ? (
               <span className="flex items-center">
@@ -197,9 +197,8 @@ export default function AddToCartButton({
             >
               <div className="flex flex-row items-center gap-1.5">
                 <span className="hidden lg:flex">مشاهده سبد خرید</span>
-                <span className="lg:hidden">سبد خرید</span>
 
-                <ArrowDownRight className="rotate-180 text-primary size-4.5" />
+                <ArrowDownRight className="rotate-180 hidden lg:inline-block text-primary size-4.5" />
               </div>
             </Link>
           </div>

@@ -28,7 +28,7 @@ export default function SupportMessage({ message, product }: Props) {
     >
       <div
         className={cn(
-          "max-w-[80%] rounded-2xl p-4 text-sm",
+          "max-w-[80%] rounded-2xl p-2 md:p-4 text-sm",
           isUser
             ? "bg-neutral-100 text-foreground rounded-br-none"
             : "bg-primary text-primary-foreground rounded-bl-none",

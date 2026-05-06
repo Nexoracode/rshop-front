@@ -18,6 +18,7 @@ type Props = {
   query?: string;
   page?: string;
   sortBy?: string;
+  search?: string;
 };
 
 export default function ProductListContainer({
@@ -26,6 +27,7 @@ export default function ProductListContainer({
   query,
   page,
   sortBy,
+  search,
 }: Props) {
   const { isVisible } = useSticky();
   const {
@@ -36,7 +38,7 @@ export default function ProductListContainer({
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    getProductsListInfinit({ type, slug, query, page, sortBy }),
+    getProductsListInfinit({ type, slug, query, page, sortBy, search }),
   );
 
   if (isLoading || !data) return <ProductListSkelton />;

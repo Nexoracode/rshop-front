@@ -14,7 +14,7 @@ export default function AwaitingPayments() {
   const { data, isFetching } = useQuery(getAwaitingOrders);
   const isMobile = useIsMobile();
 
-  if (isFetching || !data) return <Skeleton className="h-16 bg-slate-100" />;
+  if (isFetching || !data) return null;
 
   const remaininigOrders =
     data?.items
@@ -36,9 +36,7 @@ export default function AwaitingPayments() {
           <div className="flex items-center gap-1.5">
             <AlertCircle className="text-warning-600 size-4" />
 
-            <span>
-              {remaininigOrders.length} سفارش در انتظار پرداخت{" "}
-            </span>
+            <span>{remaininigOrders.length} سفارش در انتظار پرداخت </span>
           </div>
 
           <ChevronLeft className="size-4" />

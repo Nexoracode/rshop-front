@@ -33,9 +33,9 @@ export const buttonVariants = cva(
       // 📏 Size
       size: {
         icon: "p-1 rounded-md",
-        sm: "text-sm h-8 px-3 rounded-md",
-        md: "text-base h-10 px-4 rounded-md",
-        lg: "text-lg h-12 px-6 rounded-lg",
+        sm: "text-xs h-8 px-3 rounded-md",
+        md: "text-sm h-10 px-4 rounded-md",
+        lg: "text-base h-12 px-6 rounded-lg",
       },
 
       // 🔘 Radius

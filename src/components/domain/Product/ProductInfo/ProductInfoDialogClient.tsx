@@ -11,7 +11,7 @@ type TabKey = "description" | "specifications" | "reviews";
 
 const tabs: { key: TabKey; label: string }[] = [
   { key: "description", label: "توضیحات" },
-  { key: "specifications", label: "ویژگی‌ها" },
+  { key: "specifications", label: "جدول مشخصات" },
 ];
 
 export default function ProductInfoDialogClient({
@@ -20,9 +20,12 @@ export default function ProductInfoDialogClient({
 }: Product) {
   const { activeTab, closeDialog } = useProductInfoDialog();
 
+  const open =
+    activeTab !== null &&
+    ["specifications", "description"]?.includes(activeTab);
   return (
-    <Drawer open={!!activeTab} onClose={closeDialog}>
-      <DrawerContent title="معرفی و مشخصات مصول">
+    <Drawer open={open} onClose={closeDialog}>
+      <DrawerContent title="توضیحات و مشخصات محصول">
         <div className="relative">
           <Tabs defaultValue={activeTab ?? ""}>
             <TabsList className="sticky w-full top-0">

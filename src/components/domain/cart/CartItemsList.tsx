@@ -45,7 +45,9 @@ export default function CartItemsList() {
         )}
       </div>
 
-      {Number(data?.total_quantity) > 0 ? <CartSummery showRules /> : null}
+      {Number(data?.total_quantity) > 0 ? (
+        <CartSummery hasMobileNavigate showRules />
+      ) : null}
     </div>
   );
 }

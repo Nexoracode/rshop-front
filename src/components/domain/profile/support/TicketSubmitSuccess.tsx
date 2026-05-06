@@ -19,8 +19,8 @@ export default function TicketSubmitSuccess({ ticketId }: Props) {
       </p>
 
       <div className="space-y-3">
-        <Button href={`/profile/support/${ticketId}`} className="w-full">
-          مشاهده وضعیت تیکت‌ها
+        <Button href={`/profile/support`} className="w-full">
+          فهمیدم
         </Button>
       </div>
     </div>

@@ -14,6 +14,7 @@ type Filters = {
     price_min: string | number;
     booleanFilters: Array<BooleanFilter>;
   };
+  search: string;
 };
 export default function useFilters() {
   const [query, setQuery] = useState<Filters>({
@@ -24,6 +25,7 @@ export default function useFilters() {
       price_max: "",
       price_min: "",
     },
+    search: "",
   });
   const params = useSearchParams();
   const router = useRouter();

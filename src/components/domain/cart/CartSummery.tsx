@@ -9,10 +9,12 @@ export default function CartSummery({
   footer,
   className,
   showRules = false,
+  hasMobileNavigate = false,
 }: {
   footer?: React.ReactNode;
   className?: string;
   showRules?: boolean;
+  hasMobileNavigate?: boolean;
 }) {
   const { data } = useCart();
   const {
@@ -20,9 +22,11 @@ export default function CartSummery({
   } = useCheckout();
 
   return (
-    <div className="fixed lg:relative bottom-0 left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset]">
+    <div
+      className={`fixed lg:relative left-0 right-0 lg:w-[350px] lg:left-0 lg:right-[unset] lg:bottom-[unset] z-50 lg:z-[unset] ${hasMobileNavigate ? "bottom-[45px]" : "bottom-0"}`}
+    >
       <div
-        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-3 md:p-6 ${className}`}
+        className={`flex justify-between lg:sticky top-2 border-t border-slate-200 rounded-none lg:rounded-xl bg-white lg:border flex-row lg:flex-col lg:gap-4 p-1 p-3 pt-0 md:p-6 ${className}`}
       >
         <p className="hidden lg:block text-lg font-bold mb-3">خلاصه سفارش</p>
 
@@ -75,21 +79,21 @@ export default function CartSummery({
           />
         </div>
 
-        <div>
+        <div className="flex items-center">
           {footer ? (
             footer
           ) : (
-            <Button href="/checkout" className="w-full">
+            <Button href="/checkout" className="w-full text-sm">
               ادامه خرید
             </Button>
           )}
-          {showRules ? (
+          {/*  {showRules ? (
             <p className="text-slate-500 text-xs mt-3">
               با خرید از {SHOP_NAME} قوانین را پذیرفته اید.
             </p>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </div>
     </div>

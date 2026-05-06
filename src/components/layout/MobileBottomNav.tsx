@@ -16,7 +16,7 @@ const navItems = [
   { name: "پروفایل", href: "/profile", icon: User },
 ];
 
-const hiddenInRoutes = ["/p/", "/cart", "/checkout"];
+const hiddenInRoutes = ["/p/", "/checkout"];
 
 export default function MobileBottomNav() {
   const pathname = usePathname();

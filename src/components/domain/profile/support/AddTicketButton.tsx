@@ -20,7 +20,7 @@ export default function AddTicketButton() {
       }
       title="ثبت درخواست پشتیبانی جدید"
       trigger={
-        <Button variant={"text"} size={"sm"} startIcon={<Plus />}>
+        <Button variant={"text"} size={"md"} startIcon={<Plus size={18} />}>
           ثبت درخواست
         </Button>
       }

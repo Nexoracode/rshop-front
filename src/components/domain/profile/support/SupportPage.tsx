@@ -34,7 +34,7 @@ export default function SupportPage() {
     <Card className="overflow-hidden !p-0">
       <div className="flex flex-col h-[70vh] w-full mx-auto overflow-h-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-5 bg-background">
+        <div className="flex flex-col md:flex-row md:items-center justify-between p-2 md:p-5 bg-background">
           <div className="flex items-center gap-4">
             <Image
               src={
@@ -54,22 +54,27 @@ export default function SupportPage() {
                   className="inline-block"
                 >{`#${ticket?.id}`}</span>
               </p>
-              <p className="font-medium text-sm text-gray-500 mt-1">
+              <p className="font-medium text-xs md:text-sm text-gray-500 mt-1">
                 {ticket?.subject}
               </p>
             </div>
           </div>
-          {ticket?.status === "closed" ? (
-            <Badge variant={"warning"}>بسته شده</Badge>
-          ) : (
-            <CloseTicketButton id={ticket?.id ?? 0} />
-          )}
+          <div className="mt-4 flex justify-end md:mt-0">
+            {ticket?.status === "closed" ? (
+              <Badge variant={"warning"}>بسته شده</Badge>
+            ) : (
+              <CloseTicketButton id={ticket?.id ?? 0} />
+            )}
+          </div>
         </div>
 
         <Separator />
 
         {/* Chat messages */}
-        <ScrollArea ref={scrollRef} className="flex-1 overflow-y-auto p-4">
+        <ScrollArea
+          ref={scrollRef}
+          className="flex-1 overflow-y-auto p-2 md:p-4"
+        >
           {ticket?.messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} product={ticket.product} />
           ))}

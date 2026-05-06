@@ -17,7 +17,7 @@ export default function ProductReviewsMobileHeader({
   return (
     <>
       <div className="flex h-10 justify-between items-start">
-        <h4>دیدگاه کاربران</h4>
+        <h4 className="font-bold">دیدگاه کاربران</h4>
 
         {count > 0 ? (
           <Button

@@ -16,7 +16,7 @@ export default function ProductsTabsWrapper({ children }: PropsWithChildren) {
   const isMobile = useIsMobile();
   const haveAdsBanner = adsBanners && adsBanners?.length > 0;
 
-  if (!mounted) return null;
+  if (!mounted || isMobile) return null;
   return (
     <div
       className={cn(

@@ -1,6 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { toFaDigits } from "@/lib/utils/price";
+import { useProductPage } from "@/queries/products/product-page";
 import { ChevronLeftIcon } from "lucide-react";
 import React from "react";
 
@@ -9,14 +11,20 @@ type Props = {
 };
 
 export default function ReviewsNavButton({ reviews_count }: Props) {
+  const isMobile = useIsMobile();
+  const { setPageData } = useProductPage();
   const handleScrollTo = () => {
-    const el = document.getElementById("reviews");
-    if (!el) return;
+    if (isMobile) {
+      setPageData({ activeTab: "reviews" });
+    } else {
+      const el = document.getElementById("reviews");
+      if (!el) return;
 
-    el.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
   return (
     <Button

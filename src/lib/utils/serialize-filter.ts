@@ -58,6 +58,8 @@ export const parseQueryParams = (query: string) => {
     booleanFilters: [],
   };
 
+  let search: string = "";
+
   queryParts.forEach((part) => {
     const [key, value] = part.split("=");
     if (key.startsWith("filter[attributes]")) {
@@ -105,7 +107,9 @@ export const parseQueryParams = (query: string) => {
         value: Boolean(Number(value)),
       });
     }
+
+    if (key === "search") search = String(value);
   });
 
-  return { filter };
+  return { filter, search };
 };

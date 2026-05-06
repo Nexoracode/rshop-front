@@ -13,6 +13,7 @@ export default function ProductDescription({
 }: Props) {
   return (
     <section className="pb-5" id="description">
+      {showMore && <h4 className="pb-2 font-bold">توضیحات </h4>}
       <article
         dangerouslySetInnerHTML={{ __html: description }}
         className={cn(

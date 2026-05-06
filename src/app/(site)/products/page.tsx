@@ -44,7 +44,7 @@ export async function generateMetadata({
 }
 
 export default async function ShopPage(props: PageProps<"/products">) {
-  const { query, sortBy, page = "1" } = await props.searchParams;
+  const { query, sortBy, page = "1", search = "" } = await props.searchParams;
 
   return (
     <div className="container mt-12 md:mt-6">
@@ -58,6 +58,7 @@ export default async function ShopPage(props: PageProps<"/products">) {
           query={queryParamToString(query)}
           page={queryParamToString(page)}
           sortBy={queryParamToString(sortBy)}
+          search={queryParamToString(search)}
           slug=""
           type="all"
         />
