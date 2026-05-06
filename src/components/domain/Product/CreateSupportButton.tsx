@@ -42,11 +42,11 @@ export default function CreateSupportButton({ id, name }: Product) {
         variant={"outline"}
         onClick={handleClick}
         disabled={isPending || isSuccess}
-        className="justify-between text-gray-600 font-normal text-sm hidden md:flex px-0 border-0 hover:bg-transparent py-4"
+        className="justify-between text-gray-600 font-normal text-sm flex px-0 border-0 hover:bg-transparent py-4"
         color="neutral"
         fullWidth
         size={"md"}
-        endIcon={<ChevronLeft size={24} className="text-gray-400"/>}
+        endIcon={<ChevronLeft size={24} className="text-gray-400" />}
         isLoading={isPending}
       >
         <MessageCircleQuestionMark

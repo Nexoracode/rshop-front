@@ -111,13 +111,12 @@ export default function ProductInfo(props: Product) {
         className={cn(
           "lg:w-80 lg:max-w-md",
           "bg-white border-t lg:border lg:rounded-xl",
-          "fixed bottom-0 left-0 right-0 z-40",
           "lg:sticky lg:top-6 lg:self-start lg:h-fit",
           "transition-all duration-300",
         )}
       >
         <div className="p-3 lg:p-6 space-y-5">
-          <div className="hidden lg:flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between border-b pb-4">
               <div className="font-medium text-[16px] text-slate-600">
                 فروشنده
@@ -129,12 +128,12 @@ export default function ProductInfo(props: Product) {
                 src={"/rshop_logo_h.png"}
               />
             </div>
-            <div className="hidden lg:block">
+            <div>
               <CreateSupportButton {...props} />
             </div>
           </div>
 
-          <div className="hidden lg:block">
+          <div>
             <ShipingMethods />
           </div>
 

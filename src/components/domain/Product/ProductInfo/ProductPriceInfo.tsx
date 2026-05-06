@@ -7,6 +7,7 @@ import { formatToman } from "@/lib/utils/price";
 import { calcPrice } from "@/lib/utils/number";
 import useProductVariantUrl from "@/hooks/useProductVariantUrl";
 import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
+import VariantValues from "../VariantValues";
 
 export default function ProductPriceInfo({
   stock,
@@ -49,6 +50,11 @@ export default function ProductPriceInfo({
       ) : (
         ""
       )}
+      {variant ? (
+        <div>
+          <VariantValues variant={variant} />
+        </div>
+      ) : null}
     </div>
   ) : (
     "ناموجود"

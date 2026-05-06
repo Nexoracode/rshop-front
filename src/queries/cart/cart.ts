@@ -27,8 +27,8 @@ export const addCartItem = mutationOptions({
       showErrorToast: false,
     });
   },
-  onSuccess: async (data) => {
-    await queryClient.setQueryData(["get-cart"], data);
+  onSuccess: async () => {
+    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
   },
 });
 
@@ -40,8 +40,8 @@ export const updateCartItem = mutationOptions({
     const response = await apiFetch("/cards/update", { method: "PATCH", body });
     return response;
   },
-  onSuccess: async (data) => {
-    await queryClient.setQueryData(["get-cart"], data);
+  onSuccess: async () => {
+    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
   },
 });
 
@@ -50,7 +50,7 @@ export const deleteCartItem = mutationOptions({
     return await apiFetch("/cards/remove", { method: "PATCH", body });
   },
   onSuccess: async (data) => {
-    await queryClient.setQueryData(["get-cart"], data);
+    await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
   },
 });
 export const clearCart = mutationOptions({

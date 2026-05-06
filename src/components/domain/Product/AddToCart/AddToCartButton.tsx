@@ -132,11 +132,11 @@ export default function AddToCartButton({
       />
 
       <div
-        className={`hidden lg:flex w-full flex-col gap-4 rounded-md bg-[#fbfbfb] lg:p-4 ${productDetailBoxClass}`}
+        className={`flex w-full flex-col gap-4 rounded-md bg-[#fbfbfb]  p-2 lg:p-4 ${productDetailBoxClass}`}
       >
         <div className="flex flex-col gap-4">
           {!isOutOfStock ? (
-            <div className="hidden lg:flex items-center text-green-700 text-xs gap-2">
+            <div className="flex items-center text-green-700 text-xs gap-2">
               <StoreIcon className="size-4 text-green-700" />
               موجود در انبار آرشاب
             </div>
@@ -144,7 +144,7 @@ export default function AddToCartButton({
             ""
           )}
 
-          <div className="hidden lg:flex items-center text-sky-600 text-xs gap-2">
+          <div className="flex items-center text-sky-600 text-xs gap-2">
             <ZapIcon className="text-sky-600 size-4" />
             ارسال در سریع ترین زمان
           </div>
@@ -161,48 +161,50 @@ export default function AddToCartButton({
         />
       </div>
 
-      {children}
+      <div className="fixed bg-white lg:w-full flex lg:flex-col justify-between p-3 lg:p-0 border-t lg:border-t-0 lg:relative bottom-0 left-0 right-0 z-40">
+        {children}
 
-      {!isInCart ? (
-        <Button
-          size="md"
-          disabled={isAdding || isOutOfStock}
-          onClick={handleAddToCart}
-          className="lg:w-full"
-        >
-          {isAdding ? (
-            <span className="flex items-center">
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              در حال افزودن...
-            </span>
-          ) : isOutOfStock ? (
-            "ناموجود"
-          ) : (
-            "افزودن به سبد خرید"
-          )}
-        </Button>
-      ) : (
-        <div className="lg:w-full flex flex-col lg:flex-row items-center justify-between gap-4">
-          <QuantitySelect
-            qty={currentQuantity}
-            maxQty={maxQty}
-            onChange={handleQuantityChange}
-            loading={updatePending}
-          />
-
-          <Link
-            href="/cart"
-            className="text-primary hover:underline text-sm w-fit"
+        {!isInCart ? (
+          <Button
+            size="md"
+            disabled={isAdding || isOutOfStock}
+            onClick={handleAddToCart}
+            className="lg:w-full"
           >
-            <div className="flex flex-row items-center gap-1.5">
-              <span className="hidden lg:flex">مشاهده سبد خرید</span>
-              <span className="lg:hidden">سبد خرید</span>
+            {isAdding ? (
+              <span className="flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                در حال افزودن...
+              </span>
+            ) : isOutOfStock ? (
+              "ناموجود"
+            ) : (
+              "افزودن به سبد خرید"
+            )}
+          </Button>
+        ) : (
+          <div className="lg:w-full flex flex-col lg:flex-row items-center justify-between lg:gap-4">
+            <QuantitySelect
+              qty={currentQuantity}
+              maxQty={maxQty}
+              onChange={handleQuantityChange}
+              loading={updatePending}
+            />
 
-              <ArrowDownRight className="rotate-180 text-primary size-4.5" />
-            </div>
-          </Link>
-        </div>
-      )}
+            <Link
+              href="/cart"
+              className="text-primary hover:underline text-sm w-fit"
+            >
+              <div className="flex flex-row items-center gap-1.5">
+                <span className="hidden lg:flex">مشاهده سبد خرید</span>
+                <span className="lg:hidden">سبد خرید</span>
+
+                <ArrowDownRight className="rotate-180 text-primary size-4.5" />
+              </div>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

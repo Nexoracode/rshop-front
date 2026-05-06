@@ -1,19 +1,13 @@
 "use client";
-import ProductReviewItem from "./ProductReviewItem";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import SectionTitle from "../../../common/SectionTitle";
-import { ListLayout } from "../../../common/ListLayout";
-import { Review } from "@/types/user";
-import { Skeletons } from "../../../ui/skeleton";
-import { Button } from "../../../ui/button";
-import { ChevronDown } from "lucide-react";
-import Pagination from "../../../common/Pagination";
 import ProductRating from "./ProductRating";
 import SubmitReviewBtn from "./SubmitReviewBtn";
 import { getProductReviews } from "@/queries/products/product-reviews";
 import { useIsMobile } from "@/hooks/use-mobile";
-import ProductReviewsMobile from "./ProductReviewsMobile";
+import ProductReviewsMobile from "./ProductReviewsMobile/ProductReviewsMobile";
+import ProductReviewsList from "./ProductReviewsList";
 
 type Props = {
   product_id: number;
@@ -39,7 +33,17 @@ export default function ProductReviewsClient({ ...props }: Props) {
     page !== null || Number(currentPageMeta?.current_page) > 1;
 
   return isMobile ? (
-    <ProductReviewsMobile {...currentPage} />
+    <ProductReviewsMobile
+      reviews={data}
+      currentPageMeta={currentPageMeta}
+      displayPagination={displayPagination}
+      isFetching={isFetching}
+      isFetchingNextPage={isFetchingNextPage}
+      isLastPage={isLastPage}
+      onNextPage={fetchNextPage}
+      onSetPage={setPage}
+      product={props}
+    />
   ) : (
     <section id="reviews" className="space-y-8 py-1 scroll-target">
       <SectionTitle title="دیدگاه کاربران" />
@@ -66,40 +70,17 @@ export default function ProductReviewsClient({ ...props }: Props) {
 
           <SubmitReviewBtn {...props} />
         </div>
-        <div className="md:ps-6 flex-1">
-          <ListLayout<Review>
-            loading={isFetching}
-            className="space-y-3"
-            skeleton={<Skeletons count={3} />}
-            emptyDescription="هنوز دیدگاهی در مورد این محصول ثبت نشده است"
-            emptyTitle="اولین دیدگاه را در مورد این محصول ثبت کنید"
-            renderItem={(item) => (
-              <ProductReviewItem key={item.id} review={item} />
-            )}
-            items={data?.pages.map((p) => p.data).flat() ?? []}
-          />
 
-          {displayPagination && (
-            <Pagination
-              page={currentPageMeta?.current_page ?? 0}
-              totalPages={currentPageMeta?.total_pages ?? 0}
-              onChange={(p) => setPage(p)}
-            />
-          )}
-
-          {!displayPagination && !isLastPage && (
-            <Button
-              size={"sm"}
-              color="info"
-              variant={"text-nohover"}
-              isLoading={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-              endIcon={<ChevronDown className="size-4" />}
-            >
-              مشاهده دیدگاه های بیشتر
-            </Button>
-          )}
-        </div>
+        <ProductReviewsList
+          reviews={data}
+          currentPageMeta={currentPageMeta}
+          displayPagination={displayPagination}
+          isFetching={isFetching}
+          isFetchingNextPage={isFetchingNextPage}
+          isLastPage={isLastPage}
+          onNextPage={fetchNextPage}
+          onSetPage={setPage}
+        />
       </div>
     </section>
   );

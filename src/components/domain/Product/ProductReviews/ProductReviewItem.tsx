@@ -10,7 +10,7 @@ type Props = {
 export default function ProductReviewItem({ review }: Props) {
   const { comment, rating, user, created_at } = review;
   return (
-    <div className="space-y-3 w-full max-w-4xl shadow p-4 rounded-lg">
+    <div className="space-y-3 w-full max-w-4xl first:border-t-0 border-t md:border md:first:border-t p-4 md:rounded-lg">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <span className="bg-slate-100 flex items-center justify-center rounded-full size-10">

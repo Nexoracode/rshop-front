@@ -23,7 +23,7 @@ import RelatedProductsSkeleton from "@/components/domain/Product/RelatedProducts
 import ProductReviews from "@/components/domain/Product/ProductReviews/ProductReviews";
 import ProductInfoDialogClient from "@/components/domain/Product/ProductInfo/ProductInfoDialogClient";
 
-export const revalidate = 60; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
+export const revalidate = 600; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
 
 export async function generateMetadata({
   params,
@@ -130,7 +130,7 @@ export default async function ProductPage({
             <>
               <ProductAttributes attributes={product.specifications} />
 
-              <Separator />
+              <Separator className="mb-2" />
             </>
           ) : (
             ""

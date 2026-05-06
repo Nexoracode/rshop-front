@@ -13,6 +13,8 @@ export default async function HomePage() {
 
   const data = await queryClient.fetchQuery(getHomeSections);
 
+  if (!data) return <div>خطا در دریافت اطلاعات</div>;
+
   const featuredSection = data.sections.find(
     (s) => s.section_type === "promotion_based",
   );
