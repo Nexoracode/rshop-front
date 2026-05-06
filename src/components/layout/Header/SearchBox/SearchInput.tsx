@@ -19,6 +19,7 @@ const SearchInput = React.forwardRef<HTMLDivElement, Props>(
         <div className="w-full flex items-center gap-1">
           <Search className="size-5.5 text-slate-500" />
           <Input
+            autoFocus
             dir="rtl"
             placeholder="جستجو"
             value={search}
@@ -30,10 +31,7 @@ const SearchInput = React.forwardRef<HTMLDivElement, Props>(
           />
         </div>
         {search.length ? (
-          <button
-            onClick={() => setSearch("")}
-            className="text-gray-500"
-          >
+          <button onClick={() => setSearch("")} className="text-gray-500">
             <XIcon strokeWidth={3} size={16} />
           </button>
         ) : null}

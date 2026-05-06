@@ -14,6 +14,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import SearchTermLink from "./SearchTermLink";
+import { SearchResultsPanel } from "./SearchResultsPanel";
 
 type Props = {
   search: string;
@@ -44,8 +45,8 @@ export default function SearchSheet({
         <SheetTitle className="hidden"></SheetTitle>
         <div className="flex pt-3 items-center">
           <SheetClose asChild className="w-fit">
-            <Button size={"icon"} variant={"text-nohover"}>
-              <ArrowRight size={28} />
+            <Button size={"icon"} variant={"text-nohover"} className="text-slate-500 ml-3">
+              <ArrowRight className="size-5.5" />
             </Button>
           </SheetClose>
           <div className="relative flex-1">
@@ -57,32 +58,18 @@ export default function SearchSheet({
           </div>
         </div>
 
-        {debouncedSearch && (
-          <SearchTermLink debouncedSearch={debouncedSearch} />
-        )}
-
-        {debouncedSearch ? (
-          <ProductResultList
-            products={data?.products ?? []}
-            isPending={isFetching}
-          />
-        ) : (
+        {/* محتوای اصلی نتایج */}
+        {!debouncedSearch ? (
           <SearchPrompt />
+        ) : (
+          <SearchResultsPanel
+            debouncedSearch={debouncedSearch}
+            isPending={isFetching}
+            products={data?.products ?? []}
+            categories={data?.categories ?? []}
+            brands={data?.brands ?? []}
+          />
         )}
-
-        {data?.categories.length ? (
-          <div className="py-3">
-            <p className="text-sm font-medium">جستجو در دسته بندی های: </p>
-            <CategoryResultList categories={data.categories ?? []} />
-          </div>
-        ) : null}
-        {data?.brands.length ? (
-          <div className="py-3">
-            <p className="text-sm font-medium">جستجو در برندهای: </p>
-
-            <BrandResultList brands={data.brands ?? []} />
-          </div>
-        ) : null}
       </SheetContent>
     </Sheet>
   );
