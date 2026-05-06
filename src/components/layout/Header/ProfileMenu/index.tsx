@@ -48,14 +48,14 @@ export default function ProfileMenu() {
             <User2Icon size={24} className="text-slate-700" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="p-0" align="end">
+        <PopoverContent className="p-0 rounded-lg" align="end">
           <div className="p-4">
             <Link
               href="/profile"
               className="flex items-center justify-between gap-1.5 mb-4"
             >
               <div className="flex items-center gap-2">
-                <span className="!w-10 !h-10 rounded-full bg-slate-100 content-center">
+                <span className="!w-10 !h-10 rounded-lg bg-slate-100 content-center">
                   <UserIcon size={24} className="text-slate-600" />
                 </span>
                 <span className="w-42 truncate text-sm text-slate-800">
