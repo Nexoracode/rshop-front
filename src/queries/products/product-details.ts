@@ -24,3 +24,7 @@ export const fetchProductById = async (
   product_id: string,
 ): Promise<{ product: Product; seo: SeoInfo }> =>
   await apiFetch(`/product/site/${product_id}`);
+
+export const fetchProductsIds = async (): Promise<Array<number>> => {
+  return await apiFetch(`/product/ids`);
+};

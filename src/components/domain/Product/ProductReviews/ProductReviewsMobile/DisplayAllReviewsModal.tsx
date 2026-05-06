@@ -32,7 +32,6 @@ export default function DisplayAllReviewsModal({
   ...props
 }: Props) {
   const handleClose = (open: boolean) => {
-    console.log({ open });
     if (!open) onClose();
   };
   return (

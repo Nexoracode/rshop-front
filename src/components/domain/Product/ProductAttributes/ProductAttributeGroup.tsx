@@ -5,10 +5,13 @@ import ProductAttributesList from "./ProductAttributesList";
 export default function ProductAttributeGroup({
   name,
   attributes,
-}: ProductAttributeGroupType) {
+  hiddenGroupName,
+}: ProductAttributeGroupType & { hiddenGroupName?: boolean }) {
   return (
     <div className="flex flex-col items-start md:flex-row justify-between">
-      <p className="w-[200px] pt-2 text-muted text-sm font-medium">{name}</p>
+      {!hiddenGroupName ? (
+        <p className="w-[200px] pb-2 text-muted text-sm font-medium">{name}</p>
+      ) : null}
 
       <ProductAttributesList attributes={attributes} />
     </div>

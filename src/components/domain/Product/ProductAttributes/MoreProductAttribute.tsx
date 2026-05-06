@@ -13,6 +13,7 @@ export default function MoreProductAttribute() {
         variant={"fill"}
         color="neutral"
         size={"sm"}
+        className="text-xs h-9"
         onClick={() => openDialog("specifications")}
         endIcon={<ChevronLeft className="size-4" />}
       >

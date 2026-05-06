@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Separator } from "@/components/ui/separator";
 
-import { fetchProductById } from "@/queries/products/product-details";
+import {
+  fetchProductById,
+  fetchProductsIds,
+} from "@/queries/products/product-details";
 import { fetchCategoryBySlug } from "@/queries/products/category";
 import { SHOP_NAME, SHOP_URL, PRODUCT_PLACEHOLDER } from "@/data/assets";
 
@@ -24,6 +27,16 @@ import ProductReviews from "@/components/domain/Product/ProductReviews/ProductRe
 import ProductInfoDialogClient from "@/components/domain/Product/ProductInfo/ProductInfoDialogClient";
 
 export const revalidate = 600; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
+
+export async function generateStaticParams() {
+  // محصولات پرفروش یا محبوب را اینجا مشخص کنید
+  // می‌توانید از API خودتون لیست محصولات محبوب را بگیرید
+  const productIds = await fetchProductsIds(); // نمونه
+
+  return productIds.map((id) => ({
+    id: `rsp-${id}`,
+  }));
+}
 
 export async function generateMetadata({
   params,

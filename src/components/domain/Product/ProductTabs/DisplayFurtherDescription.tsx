@@ -13,6 +13,7 @@ export default function DisplayFurtherDescription() {
         variant={"fill"}
         color="neutral"
         size={"sm"}
+        className="text-xs h-9"
         onClick={() => openDialog("description")}
         endIcon={<ChevronLeft className="size-4" />}
       >

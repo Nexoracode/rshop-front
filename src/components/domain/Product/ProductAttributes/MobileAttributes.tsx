@@ -10,7 +10,11 @@ type Props = {
 export default function MobileAttributes({ attribute }: Props) {
   return (
     <section className="pb-5 -mt-4" id="specifications">
-      {attribute ? <ProductAttributeGroup {...attribute} /> : null}
+      <h4 className="pb-2">مشخصات محصول</h4>
+
+      {attribute ? (
+        <ProductAttributeGroup {...attribute} hiddenGroupName />
+      ) : null}
 
       <MoreProductAttribute />
     </section>

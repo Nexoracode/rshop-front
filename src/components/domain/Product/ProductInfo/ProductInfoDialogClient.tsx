@@ -12,7 +12,6 @@ type TabKey = "description" | "specifications" | "reviews";
 const tabs: { key: TabKey; label: string }[] = [
   { key: "description", label: "توضیحات" },
   { key: "specifications", label: "ویژگی‌ها" },
-  { key: "reviews", label: "دیدگاه‌ها" },
 ];
 
 export default function ProductInfoDialogClient({
