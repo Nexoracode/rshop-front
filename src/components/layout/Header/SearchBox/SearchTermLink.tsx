@@ -22,7 +22,7 @@ export default function SearchTermLink({ debouncedSearch }: Props) {
       </div>
       <div className="flex items-center gap-2 text-sm rounded-lg text-primary-600">
         <span>مشاهده نتایج</span>
-        <LucideArrowLeft className="size-4.5"/>
+        <LucideArrowLeft className="size-4.5" />
       </div>
     </Link>
   );

@@ -35,7 +35,7 @@ export default function AddTicketForm({ onBack, category }: Props) {
   };
 
   return isSuccess && ticket ? (
-    <TicketSubmitSuccess ticketId={ticket?.id} />
+    <TicketSubmitSuccess />
   ) : (
     <div className="space-y-6">
       <Label>

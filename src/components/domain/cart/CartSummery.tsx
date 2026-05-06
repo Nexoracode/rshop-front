@@ -1,6 +1,5 @@
 import PriceBox from "@/components/common/PriceBox";
 import { Button } from "@/components/ui/button";
-import { SHOP_NAME } from "@/data/assets";
 import useCart from "@/hooks/useCart";
 import useCheckout from "@/hooks/useCheckout";
 import React from "react";
@@ -8,7 +7,6 @@ import React from "react";
 export default function CartSummery({
   footer,
   className,
-  showRules = false,
   hasMobileNavigate = false,
 }: {
   footer?: React.ReactNode;

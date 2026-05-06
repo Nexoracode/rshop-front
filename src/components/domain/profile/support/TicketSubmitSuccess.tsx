@@ -6,7 +6,7 @@ type Props = {
   ticketId: number;
 };
 
-export default function TicketSubmitSuccess({ ticketId }: Props) {
+export default function TicketSubmitSuccess() {
   return (
     <div className="max-w-lg mx-auto text-center space-y-6 animate-in fade-in-50">
       <CheckCircle className="mx-auto text-green-600" size={64} />

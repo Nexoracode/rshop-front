@@ -49,7 +49,7 @@ export const deleteCartItem = mutationOptions({
   mutationFn: async (body: { itemId: number }) => {
     return await apiFetch("/cards/remove", { method: "PATCH", body });
   },
-  onSuccess: async (data) => {
+  onSuccess: async () => {
     await queryClient.invalidateQueries({ queryKey: ["get-cart"] });
   },
 });

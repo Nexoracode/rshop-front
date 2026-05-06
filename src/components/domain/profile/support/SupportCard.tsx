@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { ticketStatus } from "@/data/tickets";
 import { toPersianDateTime } from "@/lib/utils/date-time";

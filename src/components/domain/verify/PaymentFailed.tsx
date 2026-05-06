@@ -3,6 +3,7 @@ import { Payment, VerifyOrder } from "@/types/order";
 import {
   AlertCircle,
   ArrowLeftRight,
+  ArrowRight,
   Clock3,
   CreditCard,
 } from "lucide-react";
@@ -50,23 +51,9 @@ export default function PaymentFailed({ order, payment }: Props) {
 
             <p className="mt-2 text-sm text-muted-foreground">
               سفارش{" "}
-              <span className="font-medium text-foreground">
-                #{order?.id}
-              </span>{" "}
+              <span className="font-medium text-foreground">#{order?.id}</span>{" "}
               ثبت شد اما پرداخت انجام نشد
             </p>
-
-            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
-              <PaymentRetryBtn order_id={order.id} />
-
-              <Button
-                href={`/checkout/payment/${order.id}`}
-                variant="outline"
-                className="w-full"
-              >
-                تغییر روش پرداخت
-              </Button>
-            </div>
           </div>
         </Card>
 
@@ -94,9 +81,7 @@ export default function PaymentFailed({ order, payment }: Props) {
               <ArrowLeftRight className="w-4 h-4" />
               کد پیگیری
             </span>
-            <span className="font-mono text-xs sm:text-sm">
-              {authority}
-            </span>
+            <span className="font-mono text-xs sm:text-sm">{authority}</span>
           </div>
 
           <div className="flex items-center justify-between border-b pb-2">
@@ -105,6 +90,31 @@ export default function PaymentFailed({ order, payment }: Props) {
               تاریخ
             </span>
             <span>{paymentDate}</span>
+          </div>
+        </div>
+
+        <div>
+          <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
+            <PaymentRetryBtn order_id={order.id} />
+
+            <Button
+              href={`/checkout/payment/${order.id}`}
+              variant="outline"
+              className="w-full"
+            >
+              تغییر روش پرداخت
+            </Button>
+          </div>
+
+          <div className="flex mt-3 justify-center">
+            <Button
+              startIcon={<ArrowRight size={18} />}
+              fullWidth
+              variant={"text"}
+              href={"/"}
+            >
+              بازگشت به فروشگاه
+            </Button>
           </div>
         </div>
       </div>

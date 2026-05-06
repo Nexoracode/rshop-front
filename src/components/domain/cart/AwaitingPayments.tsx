@@ -7,7 +7,6 @@ import Link from "next/link";
 import { AlertCircle, ChevronLeft } from "lucide-react";
 import { getAwaitingOrders } from "@/queries/profile/order";
 import { Card } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { getRemainingSeconds } from "@/lib/utils/date-time";
 
 export default function AwaitingPayments() {

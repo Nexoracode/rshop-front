@@ -7,6 +7,8 @@ export function serializeFilterQuery(
 
   const filter = queryObj.filter;
 
+  const search = queryObj.search;
+
   // attributes → color:red,blue|size:XL,XXL
   const attributeParts: string[] = [];
   if (filter.attributes) {
@@ -42,10 +44,12 @@ export function serializeFilterQuery(
     ...booleanParts,
   ].filter(Boolean);
 
-  if (allParts.length === 0) return "";
+  if (allParts.length === 0 && !search) return "";
+  if (allParts.length === 0 && search) return `search=${search}`;
 
   const queryString = allParts.join("&");
-  return `query=${encodeURIComponent(queryString)}`;
+
+  return `query=${encodeURIComponent(queryString)}${search ? "&search=" + search : ""}`;
 }
 
 export const parseQueryParams = (query: string) => {
@@ -57,8 +61,6 @@ export const parseQueryParams = (query: string) => {
     price_min: "",
     booleanFilters: [],
   };
-
-  let search: string = "";
 
   queryParts.forEach((part) => {
     const [key, value] = part.split("=");
@@ -108,8 +110,8 @@ export const parseQueryParams = (query: string) => {
       });
     }
 
-    if (key === "search") search = String(value);
+    console.log({ key, value });
   });
 
-  return { filter, search };
+  return { filter };
 };

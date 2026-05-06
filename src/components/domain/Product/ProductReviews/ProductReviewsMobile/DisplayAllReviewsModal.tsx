@@ -7,7 +7,6 @@ import { Review } from "@/types/user";
 import { InfiniteData } from "@tanstack/react-query";
 import { useProductPage } from "@/queries/products/product-page";
 import { toFaDigits } from "@/lib/utils/price";
-import { StarIcon } from "lucide-react";
 import ProductRating from "../ProductRating";
 
 type Props = {

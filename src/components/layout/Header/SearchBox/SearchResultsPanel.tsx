@@ -7,13 +7,14 @@ import ProductResultList from "./ProductResultList";
 import CategoryResultList from "./CategoryResultList";
 import BrandResultList from "./BrandResultList";
 import SearchTermLink from "./SearchTermLink";
+import { SearchResult } from "@/types/product";
 
 interface SearchResultsPanelProps {
   debouncedSearch: string;
   isPending: boolean;
-  products: any[];
-  categories: any[];
-  brands: any[];
+  products: SearchResult["products"];
+  categories: SearchResult["categories"];
+  brands: SearchResult["brands"];
 }
 
 export function SearchResultsPanel({

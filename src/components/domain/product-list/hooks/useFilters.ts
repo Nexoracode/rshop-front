@@ -32,16 +32,21 @@ export default function useFilters() {
   const pathName = usePathname();
 
   const queryString = params.get("query") ?? "";
+  const search = params.get("search") ?? "";
 
   useEffect(() => {
-    setQuery(parseQueryParams(queryString));
+    setQuery({ ...parseQueryParams(queryString), search });
   }, []);
 
+  console.log({ query });
   function handleSetQuery<K extends keyof ProductFilterQuery>(
     key: K,
     value: ProductFilterQuery[K],
   ) {
+    console.log({ query });
     const newQuery = { ...query, [key]: value };
+
+    console.log({ newQuery });
 
     setQuery(newQuery);
 

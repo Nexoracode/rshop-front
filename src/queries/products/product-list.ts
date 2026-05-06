@@ -47,14 +47,13 @@ export const getProductsListInfinit = ({
     ],
     queryFn: ({ pageParam = 1 }) => {
       const url = search
-        ? ""
+        ? `/search/${search}`
         : type === "brand"
           ? `/brand/${slug}`
           : `/${slug}`;
 
       const queryParams = new URLSearchParams(query);
       if (sortBy) queryParams.append("sortBy", sortBy);
-      if (search) queryParams.append("search", search);
       if (pageParam) {
         queryParams.append("page", pageParam.toString());
       } else if (page) {

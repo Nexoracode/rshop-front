@@ -30,7 +30,7 @@ export default function PaymentRetryBtn({ order_id }: Props) {
 
   return (
     <React.Fragment>
-      <Button onClick={handlePayment} isLoading={isPending}>
+      <Button className="w-full" onClick={handlePayment} isLoading={isPending}>
         پرداخت دوباره
       </Button>
 

@@ -1,8 +1,5 @@
 import React from "react";
-import ProductResultList from "./ProductResultList";
 import SearchPrompt from "./SearchPrompt";
-import CategoryResultList from "./CategoryResultList";
-import BrandResultList from "./BrandResultList";
 import SearchInput from "./SearchInput";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,7 +10,6 @@ import {
   SheetContent,
   SheetTitle,
 } from "@/components/ui/sheet";
-import SearchTermLink from "./SearchTermLink";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 
 type Props = {
@@ -45,7 +41,11 @@ export default function SearchSheet({
         <SheetTitle className="hidden"></SheetTitle>
         <div className="flex pt-3 items-center">
           <SheetClose asChild className="w-fit">
-            <Button size={"icon"} variant={"text-nohover"} className="text-slate-500 ml-3">
+            <Button
+              size={"icon"}
+              variant={"text-nohover"}
+              className="text-slate-500 ml-3"
+            >
               <ArrowRight className="size-5.5" />
             </Button>
           </SheetClose>

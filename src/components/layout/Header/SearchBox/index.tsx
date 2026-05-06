@@ -6,14 +6,8 @@ import {
 } from "@/components/ui/popover";
 import { useDebounceSearch } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
-import { Separator } from "@/components/ui/separator";
 import SearchInput from "./SearchInput";
-import ProductResultList from "./ProductResultList";
-import CategoryResultList from "./CategoryResultList";
-import BrandResultList from "./BrandResultList";
 import { searchTerm } from "@/queries/products/search";
-import SearchTermLink from "./SearchTermLink";
-import { Circle, CircleAlert, CircleAlertIcon, SearchX } from "lucide-react";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 
 export default function SearchBox() {
@@ -21,13 +15,13 @@ export default function SearchBox() {
   const { isPending, data } = useQuery(searchTerm(debouncedSearch));
 
   // داده‌ها با مقدار پیش‌فرض خالی برای جلوگیری از undefined
-  const products = data?.products ?? [];
+  /*   const products = data?.products ?? [];
   const categories = data?.categories ?? [];
-  const brands = data?.brands ?? [];
+  const brands = data?.brands ?? []; */
 
-  const hasResults =
+  /*   const hasResults =
     !isPending &&
-    (products.length > 0 || categories.length > 0 || brands.length > 0);
+    (products.length > 0 || categories.length > 0 || brands.length > 0); */
 
   return (
     <div className="relative w-full max-w-xl">
