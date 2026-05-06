@@ -49,7 +49,6 @@ export default function ProductListContainer({
   const totalPages = data?.pages[0]?.meta?.total_pages ?? 1;
   const totalCount = data?.pages[0]?.meta?.total_items ?? 0;
   const filters = data?.pages[0]?.filters;
-
   return (
     <div className={cn("flex gap-5 mt-4")}>
       {/* فیلترها فقط در دسکتاپ */}
@@ -62,7 +61,7 @@ export default function ProductListContainer({
             alignSelf: "start",
           }}
         >
-          <SidebarFilters filters={filters} />
+          {filters && <SidebarFilters filters={filters} />}
         </aside>
       </Responsive>
 

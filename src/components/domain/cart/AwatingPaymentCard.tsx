@@ -14,7 +14,6 @@ export default function AwatingPaymentCard({
   return (
     <div>
       <div className="flex items-center justify-between bg-slate-50 rounded-lg p-4 mb-4">
-        <p className="animate-pulse text-sm">{`شما ${remaininigOrders} سفارش در انتظار پرداخت دارید`}</p>
         <div className="flex text-warning-600">
           <AlertCircle className="size-4" />
 

@@ -10,6 +10,6 @@ export default function useCurrentUser() {
   return {
     user: data || null,
     isLoading,
-    isPending: refreshToken ? isPending : false,
+    isPending,
   };
 }

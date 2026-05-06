@@ -41,13 +41,17 @@ export default function AwaitingPayments() {
           <ChevronLeft className="size-4" />
         </Link>
       ) : (
-        remaininigOrders.map((order) => (
-          <AwatingPaymentCard
-            key={order.id}
-            {...order}
-            remaininigOrders={+remaininigOrders.length}
-          />
-        ))
+        <>
+          <p className="animate-pulse text-sm">{`شما ${remaininigOrders.length} سفارش در انتظار پرداخت دارید`}</p>
+
+          {remaininigOrders.map((order) => (
+            <AwatingPaymentCard
+              key={order.id}
+              {...order}
+              remaininigOrders={+remaininigOrders.length}
+            />
+          ))}
+        </>
       )}
     </Card>
   ) : null;
