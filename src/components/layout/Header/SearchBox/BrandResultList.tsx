@@ -9,10 +9,10 @@ type Props = {
 const BrandResultList = React.forwardRef<HTMLDivElement, Props>(
   function ResultList({ brands }, ref) {
     return (
-      <div ref={ref} className="flex flex-wrap gap-2 mt-2">
+      <div ref={ref} className="flex flex-wrap gap-2">
         {brands.map((c) => (
           <Link
-            className="inline-block hover:text-secondary text-sm  bg-neutral-100 rounded-full p-1 px-2"
+            className="inline-block hover:text-sky-600 transition-all hover:bg-sky-50 text-sm  bg-neutral-100 rounded-full p-1 px-3"
             key={c.id}
             href={`/brand/${c.slug}`}
           >

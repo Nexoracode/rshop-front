@@ -9,11 +9,11 @@ type Props = {
 const CategoryResultList = React.forwardRef<HTMLDivElement, Props>(
   function ResultList({ categories }, ref) {
     return (
-      <div ref={ref} className="flex flex-wrap gap-2 mt-2">
+      <div ref={ref} className="flex flex-wrap gap-2">
         {categories.map((c) => (
           <Link
             key={c.id}
-            className="inline-block hover:text-secondary text-sm  bg-neutral-100 rounded-full p-1 px-2"
+            className="inline-block hover:text-orange-600 transition-all hover:bg-orange-50 text-sm  bg-neutral-100 rounded-full p-1 px-3"
             href={`/products/${c.slug}`}
           >
             {c.title}

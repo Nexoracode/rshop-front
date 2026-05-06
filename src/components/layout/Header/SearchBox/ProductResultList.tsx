@@ -1,31 +1,21 @@
 import { ProductSearchResult } from "@/types/product";
-
-import React from "react";
-import ProductSkeleton from "./ProductSkeleton";
-import EmptyState from "@/components/common/EmptyState";
 import ProductResultItem from "./ProductResultItem";
+import { PopoverClose } from "@/components/ui/popover";
 
-type Props = { isPending: boolean; products: Array<ProductSearchResult> };
+type Props = {
+  products?: ProductSearchResult[]; // اختیاری با مقدار پیش‌فرض
+};
 
-const ProductResultList = React.forwardRef<HTMLUListElement, Props>(
-  function ResultList({ isPending, products }, ref) {
-    return (
-      <ul
-        ref={ref}
-        style={{ direction: "rtl" }}
-        className="md:max-h-96 flex scrollbar-custom gap-y-3 md:gap-y-3 flex-wrap  overflow-auto py-2"
-      >
-        {isPending ? (
-          <ProductSkeleton count={4} />
-        ) : products.length === 0 ? (
-          <EmptyState />
-        ) : (
-          products.map((product) => (
-            <ProductResultItem {...product} key={product.id} />
-          ))
-        )}
-      </ul>
-    );
-  },
-);
-export default ProductResultList;
+export default function ProductResultList({ products = [] }: Props) {
+  if (products.length === 0) return null;
+
+  return (
+    <div className="grid grid-cols-4 gap-2 space-y-2">
+      {products.slice(0, 5).map((product) => (
+        <PopoverClose key={product.id} asChild>
+          <ProductResultItem {...product} />
+        </PopoverClose>
+      ))}
+    </div>
+  );
+}
