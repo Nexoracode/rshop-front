@@ -2,10 +2,6 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import React from "react";
 
-type Props = {
-  ticketId: number;
-};
-
 export default function TicketSubmitSuccess() {
   return (
     <div className="max-w-lg mx-auto text-center space-y-6 animate-in fade-in-50">

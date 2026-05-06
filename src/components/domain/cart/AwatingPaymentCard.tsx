@@ -9,7 +9,6 @@ export default function AwatingPaymentCard({
   id,
   total,
   remaining_seconds,
-  remaininigOrders,
 }: Order & { remaining_seconds: number; remaininigOrders: number }) {
   return (
     <div>

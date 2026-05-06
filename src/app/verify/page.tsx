@@ -88,9 +88,6 @@ export default function PaymentVerifyPage() {
                 بازگشت به خانه
               </Button>
             </div>
-            <Button variant={"text"} href={"/"}>
-              بازگشت به فروشگاه
-            </Button>
           </div>
         </div>
       </>

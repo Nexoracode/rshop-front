@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { notFound } from "next/navigation";
 import ProductListContainer from "@/components/domain/product-list/ProductListContainer";
 import {
+  fetchCategoriesSlugs,
   getCategoryBySlug,
   getCategorySeoDataBySlug,
 } from "@/queries/products/category";
@@ -15,7 +16,15 @@ import { queryParamToString } from "@/lib/utils/serialize-general";
 import ProductListSkelton from "@/components/domain/product-list/Skeleton/ProductListSkelton";
 import CategoryDescription from "@/components/domain/category/CategoryDescription";
 
-export const revalidate = 300;
+export const revalidate = 600; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
+
+export async function generateStaticParams() {
+  const slugs = await fetchCategoriesSlugs();
+
+  return slugs.map((slug) => ({
+    slug: slug.split("/"),
+  }));
+}
 
 export async function generateMetadata({
   params,

@@ -28,6 +28,12 @@ export const getCategorySeoDataBySlug = (slug: string) =>
     },
   });
 
+export const fetchCategoriesSlugs = async (): Promise<Array<string>> =>
+  await apiFetch(`/category/slugs`);
+
+export const fetchBrandsSlugs = async (): Promise<Array<string>> =>
+  await apiFetch(`/brand/slugs`);
+
 export const fetchCategoryBySlug = async (
   slug: string,
 ): Promise<{

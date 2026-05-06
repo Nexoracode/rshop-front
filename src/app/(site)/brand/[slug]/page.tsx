@@ -3,9 +3,19 @@ import ProductListContainer from "@/components/domain/product-list/ProductListCo
 import { getQueryClient } from "@/lib/utils/query-client";
 import { queryParamToString } from "@/lib/utils/serialize-general";
 import { getBrandBySlug } from "@/queries/products/brand";
+import { fetchBrandsSlugs } from "@/queries/products/category";
 import { notFound } from "next/navigation";
 import React from "react";
 
+export const revalidate = 600; // کوتاه‌تر برای محصولات (قیمت/موجودی حساس)
+
+export async function generateStaticParams() {
+  const slugs = await fetchBrandsSlugs();
+
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
+}
 export default async function BrandPage({
   params,
   searchParams,
