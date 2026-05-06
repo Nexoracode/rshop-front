@@ -46,17 +46,18 @@ export default function PromoSection({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 gap-2 md:gap-4",
-        layoutType === "side_by_side" ? "container-home md:grid-cols-2" : "",
+        "grid grid-cols-1 gap-4 sm:gap-2 md:gap-0",
+        layoutType === "side_by_side"
+          ? "mt-12 md:my-12 container-home md:grid-cols-2"
+          : "",
       )}
     >
       <div
         className={cn(
-          "fixed transition-all duration-500 left-0 right-0",
           isActive,
           layoutType === "side_by_side"
-            ? "rounded-xl h-[14rem] md:h-auto overflow-hidden"
-            : "mt-12 md:mt-0 h-[200px] lg:h-[300px] xl:h-[400px]",
+            ? "rounded-xl h-[14rem] md:h-auto overflow-hidden mx-2 md:mr-2"
+            : "fixed transition-all duration-300 left-0 right-0 mt-12 md:mt-0 h-[200px] lg:h-[300px] xl:h-[400px]",
         )}
       >
         <HeroSlider
@@ -66,21 +67,21 @@ export default function PromoSection({
         />
       </div>
 
-      <div className="bg-white !z-20 mt-[255px] md:mt-[210px] lg:mt-[310px] xl:mt-[410px] px-2 md:px-0">
+      <div
+        className={`!z-20 bg-white ${layoutType !== "side_by_side" ? `mt-[255px] md:mt-[210px] lg:mt-[310px] xl:mt-[400px]` : ""}`}
+      >
         {layoutType !== "side_by_side" ? (
-          <div className={`pt-4 ${!isVisibleNav.isVisible ? "pt-4" : "lg:pt-0"} transition-all duration-500`}>
-            {children}
-          </div>
+          <div className="pt-2">{children}</div>
         ) : (
           ""
         )}
 
         <div
           className={cn(
-            " grid grid-cols-2 md:gap-2 z-10",
+            "grid grid-cols-2 z-10",
             layoutType === "side_by_side"
-              ? "sm:grid-cols-2 !gap-4"
-              : "container-home md:grid-cols-4 mt-2 gap-2 md:!gap-4",
+              ? "sm:grid-cols-2 gap-2 lg:!gap-4 px-2 md:pl-2"
+              : "container-home md:grid-cols-4 mt-2 gap-2 lg:!gap-4 px-2",
           )}
         >
           <PromoBanners banners={sideBanners} />

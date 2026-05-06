@@ -10,7 +10,7 @@ export default function FeaturedSection({
   end_date,
 }: HomeSection & { end_date?: string }) {
   return (
-    <div className="container-home relative">
+    <div className="container-home relative px-2">
       <div className="bg-[rgb(214,45,78)] flex-col md:flex-row w-full overflow-hidden flex rounded-2xl p-3 md:p-5">
         <div className="md:w-[10rem]">
           <Promotion
