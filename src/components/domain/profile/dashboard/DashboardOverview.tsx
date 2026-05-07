@@ -1,13 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ShoppingBag, CheckCircle, Undo2, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Skeletons } from "@/components/ui/skeleton";
 import { getDetailedProfile } from "@/queries/profile/order";
-import { cn } from "@/lib/utils/classnames";
-import { toFaDigits } from "@/lib/utils/price";
 import { ProfileSidebar } from "../ProfileSidebar";
 import RecentViewedPage from "../recent/RecendViewedPage";
 import ProfileSectionBox from "../ProfileSectionBox";
@@ -56,10 +53,10 @@ export default function DashboardOverview() {
             </>
           )}
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden mt-6 pt-3 border-t-14 border-slate-100">
           <ProfileSidebar />
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden mt-3 pt-6 border-t-14 border-slate-100">
           <RecentViewedPage />
         </div>
       </ProfileSectionBox>
