@@ -14,6 +14,7 @@ import {
   Settings,
   EyeIcon,
   ChevronLeft,
+  LogOut,
 } from "lucide-react";
 import LogoutButton from "./LogoutButton";
 
@@ -60,7 +61,18 @@ export function ProfileSidebar() {
       </div>
       <hr className="hidden md:flex" />
       <div className="md:pr-2 md:-mt-2">
-        <LogoutButton />
+        <LogoutButton>
+          <div className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
+            <div className="flex items-center text-slate-700 w-full">
+              <div className="w-12 pl-5 pr-1">
+                <LogOut size={22} />
+              </div>
+              <div className="flex-1 py-3">
+                <span className="text-sm font-medium">خروج از حساب کاربری</span>
+              </div>
+            </div>
+          </div>
+        </LogoutButton>
       </div>
     </aside>
   );

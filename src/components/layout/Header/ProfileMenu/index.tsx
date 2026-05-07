@@ -14,10 +14,8 @@ import {
   MessageCircle,
   ShoppingBag,
   User2Icon,
-  Coins,
-  Plus,
-  LogOut,
   Eye,
+  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,6 +23,7 @@ import React from "react";
 import LogoutButton from "../../../domain/profile/LogoutButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import UserMenuItem from "./UserMenuItem"; // masire dorost ro vared kon
 
 export default function ProfileMenu() {
   const { user, isPending } = useCurrentUser();
@@ -43,9 +42,7 @@ export default function ProfileMenu() {
         className="text-black border h-[40px] rounded-md border-slate-300"
         size="sm"
         aria-label="ورود"
-        startIcon={
-          <LogInIcon className="-scale-x-100 text-gray-700" size={22} />
-        }
+        startIcon={<LogInIcon className="-scale-x-100 text-gray-700" size={22} />}
       >
         <span className="inline-block text-[13px]">ورود | ثبت نام</span>
       </Button>
@@ -73,11 +70,8 @@ export default function ProfileMenu() {
         className="p-0 rounded-lg shadow-xl w-[280px] overflow-hidden bg-white"
         align="end"
       >
-        {/* top profile link - mesle oon HTML */}
-        <Link
-          href="/profile"
-          className="block text-slate-700 border-b border-gray-100"
-        >
+        {/* top profile link */}
+        <Link href="/profile" className="block text-slate-700 border-b border-gray-100">
           <div className="flex justify-between items-center px-4 py-4">
             <span className="text-sm font-medium text-slate-800 truncate max-w-[200px]">
               {fullName}
@@ -87,81 +81,13 @@ export default function ProfileMenu() {
         </Link>
 
         <ul className="pb-2">
-          {/* Orders */}
-          <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <Link
-              href="/profile/orders"
-              className="flex items-center text-slate-700 w-full"
-            >
-              <div className="w-12 pl-5 pr-1">
-                <ShoppingBag size={22} />
-              </div>
-              <div className="flex-1 py-3 border-b border-gray-100">
-                <span className="text-sm font-medium">سفارش‌ها</span>
-              </div>
-            </Link>
-          </li>
+          <UserMenuItem Icon={<ShoppingBag size={22} />} label="سفارش‌ها" href="/profile/orders" />
+          <UserMenuItem Icon={<MapPin size={22} />} label="آدرس‌ها" href="/profile/address" />
+          <UserMenuItem Icon={<Heart size={22} />} label="لیست‌ها" href="/profile/wishlist" />
+          <UserMenuItem Icon={<MessageCircle size={22} />} label="دیدگاه‌ها و پرسش‌ها" href="/profile/reviews" />
+          <UserMenuItem Icon={<Eye size={22} />} label="بازدیدهای اخیر" href="/profile/recent" />
 
-          {/* Addresses */}
-          <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <Link
-              href="/profile/address"
-              className="flex items-center text-slate-700 w-full"
-            >
-              <div className="w-12 pl-5 pr-1">
-                <MapPin size={22} />
-              </div>
-              <div className="flex-1 py-3 border-b border-gray-100">
-                <span className="text-sm font-medium">آدرس‌ها</span>
-              </div>
-            </Link>
-          </li>
-
-          {/* Wishlist / Favorites */}
-          <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <Link
-              href="/profile/wishlist"
-              className="flex items-center text-slate-700 w-full"
-            >
-              <div className="w-12 pl-5 pr-1">
-                <Heart size={22} />
-              </div>
-              <div className="flex-1 py-3 border-b border-gray-100">
-                <span className="text-sm font-medium">لیست‌ها</span>
-              </div>
-            </Link>
-          </li>
-
-          {/* Comments */}
-          <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <Link
-              href="/profile/reviews"
-              className="flex items-center text-slate-700 w-full"
-            >
-              <div className="w-12 pl-5 pr-1">
-                <MessageCircle size={22} />
-              </div>
-              <div className="flex-1 py-3 border-b border-gray-100">
-                <span className="text-sm font-medium">دیدگاه‌ها و پرسش‌ها</span>
-              </div>
-            </Link>
-          </li>
-          
-          <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <Link
-              href="/profile/recent"
-              className="flex items-center text-slate-700 w-full"
-            >
-              <div className="w-12 pl-5 pr-1">
-                <Eye size={22} />
-              </div>
-              <div className="flex-1 py-3 border-b border-gray-100">
-                <span className="text-sm font-medium">بازدیدهای اخیر</span>
-              </div>
-            </Link>
-          </li>
-
-          {/* Logout */}
+          {/* Logout - az UserMenuItem estefade nemishe chon Link nist */}
           <LogoutButton>
             <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
               <div className="flex items-center text-slate-700 w-full">
