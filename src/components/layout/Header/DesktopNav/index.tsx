@@ -57,7 +57,10 @@ export default function MainNav() {
             : "translate-y-0 opacity-100 h-10",
         )}
       >
-        <div className="max-w-[1536px] w-full mx-auto flex items-center justify-between gap-6 py-2">
+        <div
+          onClick={() => setIsOpen(false)}
+          className="max-w-[1536px] w-full mx-auto flex items-center justify-between gap-6 py-2"
+        >
           <div className="flex items-center gap-6 font-medium text-sm">
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen} dir="rtl">
               <DropdownMenuTrigger asChild>

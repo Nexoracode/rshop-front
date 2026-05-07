@@ -50,11 +50,13 @@ export default function ProductPriceInfo({
       ) : (
         ""
       )}
-      {variant ? (
-        <div>
-          <VariantValues variant={variant} />
-        </div>
-      ) : null}
+      <div className="md:hidden">
+        {variant ? (
+          <div>
+            <VariantValues variant={variant} />
+          </div>
+        ) : null}
+      </div>
     </div>
   ) : (
     "ناموجود"
