@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { LogOutIcon } from "lucide-react";
 
 import { useMutation } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
 import BaseDialog from "@/components/common/BaseDialog";
 import { userLogout } from "@/queries/auth/auth";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,7 +14,11 @@ const protectedRoutes = [
   "/wishlist",
   "/compare",
 ];
-export default function LogoutButton() {
+export default function LogoutButton({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const { mutate, isPending, isSuccess } = useMutation(userLogout);
   const router = useRouter();
@@ -43,16 +46,7 @@ export default function LogoutButton() {
 
   return (
     <React.Fragment>
-      <Button
-        color="danger"
-        onClick={() => setOpen(true)}
-        startIcon={<LogOutIcon size={22} />}
-        size={"sm"}
-        className="p-0 mt-2.5"
-        variant={"text-nohover"}
-      >
-        <span className="text-[13px] pr-1">خروج از حساب کاربری</span>
-      </Button>
+      <div onClick={() => setOpen(true)}>{children}</div>
       <BaseDialog
         title="از حساب کاربری خارج می شوید؟"
         content={
