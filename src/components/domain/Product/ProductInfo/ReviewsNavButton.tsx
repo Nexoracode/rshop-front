@@ -33,7 +33,7 @@ export default function ReviewsNavButton({ reviews_count }: Props) {
       onClick={handleScrollTo}
       rounded={"full"}
       endIcon={<ChevronLeftIcon className="size-4" />}
-      className="px-1 h-6 text-xs leading-0"
+      className="px-2 pr-3 h-6 text-xs leading-0"
     >
       <span className="leading-0">{toFaDigits(reviews_count)} دیدگاه</span>
     </Button>
