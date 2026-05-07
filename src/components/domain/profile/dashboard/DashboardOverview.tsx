@@ -11,6 +11,7 @@ import { toFaDigits } from "@/lib/utils/price";
 import { ProfileSidebar } from "../ProfileSidebar";
 import RecentViewedPage from "../recent/RecendViewedPage";
 import ProfileSectionBox from "../ProfileSectionBox";
+import OrderStatCard from "./OrderStatCard";
 
 export default function DashboardOverview() {
   const { data, isFetching } = useQuery(getDetailedProfile);
@@ -38,19 +39,17 @@ export default function DashboardOverview() {
           ) : (
             <>
               <OrderStatCard
-                icon={<ShoppingBag className="size-7 md:size-10 text-info" />}
+                iconSrc="/status-processing.svg" // masire image shopping bag
                 label="در حال انجام"
                 value={data?.order_summary.processing}
               />
               <OrderStatCard
-                icon={
-                  <CheckCircle className="size-7 md:size-10 text-success" />
-                }
+                iconSrc="/status-delivered.svg" // masire image check circle
                 label="تکمیل شده"
                 value={data?.order_summary.completed}
               />
               <OrderStatCard
-                icon={<Undo2 className="size-7 md:size-10 text-warning" />}
+                iconSrc="/status-returned.svg" // masire image undo/return
                 label="مرجوعی"
                 value={data?.order_summary.returned}
               />
@@ -69,35 +68,5 @@ export default function DashboardOverview() {
         <RecentViewedPage />
       </div>
     </>
-  );
-}
-
-function OrderStatCard({
-  icon: Icon,
-  label,
-  value,
-  highlight,
-  action,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: number | undefined;
-  highlight?: boolean;
-  action?: React.ReactNode;
-}) {
-  return (
-    <Card
-      className={cn(
-        "p-3 md:p-4 flex items-center lg:flex-row relative justify-between gap-2 transition-all bg-white rounded-lg",
-        highlight && "flex-row justify-start",
-      )}
-    >
-      {Icon}
-      <p className="text-[13px] flex-1 text-slate-700">{label}</p>
-      <p className="md:text-xl text-base flex items-center justify-center leading-0 font-medium lg:relative absolute top-1 left-1 lg:left-auto lg:top-auto text-primary rounded-full w-6 h-6 lg:h-8 lg:w-8">
-        {toFaDigits(value ?? 0)}
-      </p>
-      {action}
-    </Card>
   );
 }
