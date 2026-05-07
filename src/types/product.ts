@@ -25,7 +25,7 @@ export type Category = {
   children?: Category[];
   media?: Media | null;
   parent_id: number;
-  icon: Record<string, string>
+  icon: Record<string, string>;
   parent: Partial<Category> | null;
 };
 
@@ -148,14 +148,16 @@ export type ProductAttribute = {
   values: Array<ProductAttributeValue>;
 };
 export type WishlistItemProduct = {
-  id: number;
-  name: string;
-  price: number;
   discount_amount: number;
   discount_percent: number;
   final_price: number;
+  id: number;
   image: string;
-  is_available: boolean;
+  is_active: true;
+  is_available: true;
+  name: string;
+  price: number;
+  stock: number;
 };
 export type WishlistItem = {
   id: number;

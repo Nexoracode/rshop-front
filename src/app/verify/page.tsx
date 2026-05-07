@@ -73,7 +73,7 @@ export default function PaymentVerifyPage() {
 
           {/* دکمه‌ها */}
           <div className="flex flex-col sm:flex-row gap-3 mt-6">
-            <div className="flex">
+            <div className="flex gap-2">
               <Button
                 onClick={() => router.push(`/profile/orders/${data.order.id}`)}
                 fullWidth

@@ -4,12 +4,19 @@ import Image from "next/image";
 import { RecentView } from "@/types/user";
 import Link from "next/link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import { Button } from "@/components/ui/button";
-import { EyeIcon } from "lucide-react";
+import { calcPrice } from "@/lib/utils/number";
+import { Badge } from "@/components/ui/badge";
+import PriceBox from "@/components/shared/product/PriceBox";
 
 export default function RecentViewedCard({
-  product: { id, image, name },
+  product: { id, image, name, price, discount_amount, discount_percent, stock },
 }: RecentView) {
+  const { compareAt, final, percent } = calcPrice(
+    price,
+    discount_amount,
+    discount_percent,
+  );
+
   return (
     <Link
       className={`flex flex-col bg-white !h-[254px] select-none`}
@@ -31,18 +38,28 @@ export default function RecentViewedCard({
         <h3 className="line-clamp-2 text-[13px] font-medium px-2 text-gray-600">
           {name}
         </h3>
-
-        <div className="flex items-center justify-center">
-          <Button
-            startIcon={<EyeIcon className="w-4 h-4 ml-1" />}
-            size="sm"
-            href={`/p/rsp-${id}`}
-            variant={"outline"}
-            className="text-[13px]"
-          >
-            مشاهده محصول
-          </Button>
-        </div>
+        {stock > 0 ? (
+          <div className="flex pb-2 mt-2 justify-between items-end gap-2 px-2">
+            {compareAt ? (
+              <Badge variant="danger">{percent}%</Badge>
+            ) : (
+              <div></div>
+            )}
+            <div className="flex items-end flex-col">
+              <PriceBox price={final} className="text-base font-bold" />
+              {compareAt ? (
+                <PriceBox
+                  price={compareAt}
+                  className="text-xs text-gray-400 line-through"
+                />
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="text-muted-light">ناموجود</div>
+        )}
       </div>
     </Link>
   );

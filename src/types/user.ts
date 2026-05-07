@@ -100,5 +100,6 @@ export type RecentView = {
     final_price: number;
     image: string;
     is_available: boolean;
+    stock: number;
   };
 };
