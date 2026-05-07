@@ -21,7 +21,7 @@ const CategoryResultList = React.forwardRef<HTMLDivElement, Props>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 export default CategoryResultList;

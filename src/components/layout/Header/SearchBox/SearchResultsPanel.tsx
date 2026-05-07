@@ -15,6 +15,7 @@ interface SearchResultsPanelProps {
   products: SearchResult["products"];
   categories: SearchResult["categories"];
   brands: SearchResult["brands"];
+  view?: "mobile" | "desktop";
 }
 
 export function SearchResultsPanel({
@@ -23,6 +24,7 @@ export function SearchResultsPanel({
   products,
   categories,
   brands,
+  view = "mobile",
 }: SearchResultsPanelProps) {
   const hasResults =
     !isPending &&
@@ -49,7 +51,9 @@ export function SearchResultsPanel({
       )}
 
       {/* محصولات */}
-      {products.length > 0 && <ProductResultList products={products} />}
+      {products.length > 0 && (
+        <ProductResultList view={view} products={products} />
+      )}
 
       {/* دسته‌بندی‌ها */}
       {categories.length > 0 && (

@@ -50,6 +50,7 @@ export default function SearchBox() {
             products={data?.products ?? []}
             categories={data?.categories ?? []}
             brands={data?.brands ?? []}
+            view="desktop"
           />
         </PopoverContent>
       </Popover>
