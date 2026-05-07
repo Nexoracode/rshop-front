@@ -8,6 +8,7 @@ import { RecentView } from "@/types/user";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 import ProfileSectionBox from "../ProfileSectionBox";
 import { EyeOff, ShoppingBag } from "lucide-react";
+import Link from "next/link";
 
 function EmptyRecentViews() {
   return (
@@ -22,13 +23,13 @@ function EmptyRecentViews() {
         با مشاهده محصولات، آن‌ها را اینجا خواهید دید. می‌توانید فروشگاه را مرور
         کنید.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
       >
         <ShoppingBag className="w-4 h-4" />
         شروع خرید
-      </a>
+      </Link>
     </div>
   );
 }

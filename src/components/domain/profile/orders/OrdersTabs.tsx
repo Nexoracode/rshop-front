@@ -21,7 +21,7 @@ export function OrdersTabs({ value, onChange, tabs }: Props) {
         onValueChange={(v) => onChange(v as ProfileOrderStatus)}
       >
         <TabsList className="sm:grid  flex justify-start flex-nowrap grid-cols-4 gap-4 md:gap-0 md:flex overflow-x-auto border-0 md:border-b mt-2 w-full">
-          {Object.keys(tabs).map((tab, index) => (
+          {Object.keys(tabs).map((tab) => (
             <TabsTrigger className="p-1" key={tab} value={tab} asChild>
               <span className={`cursor-pointer w-fit`}>
                 {tabs[tab as ProfileOrderStatus].label}

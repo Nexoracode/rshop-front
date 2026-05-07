@@ -6,7 +6,6 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { editProfile } from "@/queries/profile/profile";
 import { toast } from "sonner";
-import { Card } from "@/components/ui/card";
 import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function ProfileInfoPage() {

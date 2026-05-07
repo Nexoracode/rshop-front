@@ -12,7 +12,6 @@ import {
   MessageSquare,
   Star,
   Settings,
-  EyeIcon,
   LogOut,
 } from "lucide-react";
 import LogoutButton from "./LogoutButton";
@@ -24,8 +23,8 @@ const items = [
   { label: "نظرات من", href: "/profile/reviews", icon: Star },
   { label: "گفتگو با پشتیبانی", href: "/profile/support", icon: MessageSquare },
   { label: "علاقه‌مندی‌ها", href: "/profile/wishlist", icon: Heart },
-/*   { label: "بازدیدهای اخیر", href: "/profile/recent", icon: EyeIcon },
- */  { label: "اطلاعات حساب", href: "/profile/account", icon: Settings },
+  /*   { label: "بازدیدهای اخیر", href: "/profile/recent", icon: EyeIcon },
+   */ { label: "اطلاعات حساب", href: "/profile/account", icon: Settings },
 ];
 
 export function ProfileSidebar() {
