@@ -8,28 +8,30 @@ import { Skeletons } from "@/components/ui/skeleton";
 import { getDetailedProfile } from "@/queries/profile/order";
 import { cn } from "@/lib/utils/classnames";
 import { toFaDigits } from "@/lib/utils/price";
+import { ProfileSidebar } from "../ProfileSidebar";
+import RecentViewedPage from "../recent/RecendViewedPage";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function DashboardOverview() {
   const { data, isFetching } = useQuery(getDetailedProfile);
   return (
-    <div className="space-y-5">
-      {/* --- سفارش‌ها --- */}
-      <section className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="font-medium md:text-lg">سفارش‌های من</h2>
-
+    <>
+      <ProfileSectionBox
+        title="سفارش‌های من"
+        navigateElem={
           <Button
-            size={"sm"}
-            variant={"text"}
+            size={"md"}
+            variant={"text-nohover"}
             color="info"
             href="/profile/orders"
-            endIcon={<ChevronLeft className="size-4" />}
-            className="!pl-0"
+            endIcon={<ChevronLeft className="size-4.5" />}
+            className="!p-0 !text-[13px] md:!text-[13.5px]"
           >
             مشاهده همه
           </Button>
-        </div>
-
+        }
+        className="min-h-fit"
+      >
         <div className="grid grid-cols-3 gap-2 md:gap-4 mt-4">
           {isFetching ? (
             <Skeletons className="h-14" count={3} />
@@ -55,8 +57,18 @@ export default function DashboardOverview() {
             </>
           )}
         </div>
-      </section>
-    </div>
+        <div className="lg:hidden">
+          <ProfileSidebar />
+        </div>
+        <div className="lg:hidden">
+          <RecentViewedPage />
+        </div>
+      </ProfileSectionBox>
+
+      <div className="hidden lg:flex">
+        <RecentViewedPage />
+      </div>
+    </>
   );
 }
 

@@ -6,15 +6,16 @@ type UserMenuItemProps = {
   label: string;
   href: string;
 };
+
 export default function UserMenuItem({ Icon, label, href }: UserMenuItemProps) {
   return (
-    <Link
-      className="flex items-center hover:bg-slate-50 transition-colors px-2 rounded-md"
-      href={href}
-    >
-      <span className="ml-3">{Icon}</span>
-
-      <span className="inline-block flex-1 border-b py-3 text-sm text-slate-800">{label}</span>
-    </Link>
+    <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
+      <Link href={href} className="flex items-center text-slate-700 w-full">
+        <div className="w-12 pl-5 pr-1">{Icon}</div>
+        <div className="flex-1 py-3 border-b border-gray-100">
+          <span className="text-sm font-medium">{label}</span>
+        </div>
+      </Link>
+    </li>
   );
 }
