@@ -66,11 +66,13 @@ export default function UserAddressDialog({ addresses }: Props) {
         }
       />
 
-      <AddressForm
-        address={action?.item || null}
-        open={!!action}
-        onOpenChange={(open) => !open && setAction(null)}
-      />
+      {action ? (
+        <AddressForm
+          address={action?.item || null}
+          open={!!action}
+          onOpenChange={(open) => !open && setAction(null)}
+        />
+      ) : null}
     </React.Fragment>
   );
 }
