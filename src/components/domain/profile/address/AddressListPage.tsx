@@ -5,20 +5,21 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 
 import AddressDeleteModal from "./AddressDeleteModal";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
   deleteUserAddress,
-  getUserAddress,
   updateUserAddress,
+  useAddresses,
 } from "@/queries/profile/address";
 import AddressList from "./AddressList";
 import { UserAddress } from "@/types/user";
 import AddressForm from "../../users/AddressForm";
 import ProfileSectionBox from "../ProfileSectionBox";
 import EmptyState from "@/components/common/EmptyState";
+import { Skeletons } from "@/components/ui/skeleton";
 
 export default function AddressListPage() {
-  const { data: addresses, isPending } = useQuery(getUserAddress);
+  const { data: addresses, isPending } = useAddresses();
   const { mutate, isPending: deletePending } = useMutation(deleteUserAddress);
   const {
     mutate: setPrimary,
@@ -59,7 +60,8 @@ export default function AddressListPage() {
         </Button>
       }
     >
-      {!addresses?.length ? (
+      {isPending ? <Skeletons count={2} className="h-[20rem]" /> : null}
+      {!addresses?.length && !isPending ? (
         <EmptyState
           title="هیچ آدرسی ثبت نشده است"
           description="برای ثبت آدرس، روی دکمه «افزودن آدرس جدید» کلیک کنید."

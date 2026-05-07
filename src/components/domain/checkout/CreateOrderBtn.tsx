@@ -7,6 +7,8 @@ import { createOrder } from "@/queries/checkout/order";
 import { Button } from "@/components/ui/button";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { toast } from "sonner";
+import { useAddresses } from "@/queries/profile/address";
+import useScrollToSection from "@/hooks/useScrollToSection";
 
 export default function CreateOrderBtn() {
   const {
@@ -28,6 +30,10 @@ export default function CreateOrderBtn() {
   } = useMutation(createOrder);
   const { user } = useCurrentUser();
 
+  const { isPending: addressPending } = useAddresses();
+
+  const { handleScrollTo } = useScrollToSection();
+
   const isProfileComplete = () => {
     if (!user?.first_name) {
       toast.error("جهت ثبت شفارش تکمیل اطلاعات کاربری الزامی است.");
@@ -37,8 +43,17 @@ export default function CreateOrderBtn() {
     return true;
   };
 
+  const isAdderessSelect = () => {
+    if (!address) {
+      toast.error("جهت تکمیل سفارش ثبت آدرس الزامی است.");
+      handleScrollTo("order_address");
+      return false;
+    }
+    return true;
+  };
+
   const handleCreateOrder = () => {
-    if (isProfileComplete())
+    if (isProfileComplete() && isAdderessSelect())
       createOrderHandle({
         addressId: address?.id || 0,
         note,
@@ -59,6 +74,7 @@ export default function CreateOrderBtn() {
     <Button
       isLoading={isPending}
       onClick={handleCreateOrder}
+      disabled={addressPending}
       className="w-[194px] lg:w-full"
     >
       تکمیل سفارش

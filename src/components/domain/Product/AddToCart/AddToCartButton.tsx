@@ -41,7 +41,7 @@ export default function AddToCartButton({
   const { mutate: updateCart, isPending: updatePending } =
     useMutation(updateCartItem);
 
-  const { data: cart, isLoading: isCartLoading } = useCart();
+  const { data: cart, isPending: isCartLoading } = useCart();
 
   if (!mounted || isCartLoading) {
     // در زمان SSR و تا mount شدن کلاینت، فقط placeholder یا دکمه خام نشان بده

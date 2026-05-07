@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getUserAddress } from "@/queries/profile/address";
+import {  useAddresses } from "@/queries/profile/address";
 import AddressForm from "../../users/AddressForm";
 import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
@@ -11,7 +10,7 @@ import { LucidePlus } from "lucide-react";
 import EmptySectionCheckout from "../EmptySectionCheckout";
 
 export default function AddressSelector() {
-  const { data, isPending } = useQuery(getUserAddress);
+  const { data, isPending } = useAddresses();
   const [addressOpen, setAddressOpen] = React.useState(false);
 
   const {
@@ -47,7 +46,7 @@ export default function AddressSelector() {
   }
 
   return (
-    <div className="w-full px-2 py-6 sm:p-6 border-b sm:border sm:rounded-lg">
+    <div id="order_address" className="w-full px-2 py-6 sm:p-6 border-b sm:border sm:rounded-lg">
       <div className="gap-2 items-center">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>

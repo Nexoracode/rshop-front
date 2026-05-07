@@ -1,8 +1,9 @@
+import useCurrentUser from "@/hooks/useCurrentUser";
 import { apiFetch } from "@/lib/api-fetch";
 import { getQueryClient } from "@/lib/utils/query-client";
 import { City, Province } from "@/types";
 import { UserAddress } from "@/types/user";
-import { mutationOptions, queryOptions } from "@tanstack/react-query";
+import { mutationOptions, queryOptions, useQuery } from "@tanstack/react-query";
 
 const queryClient = getQueryClient();
 export const getProvinces = queryOptions({
@@ -28,11 +29,12 @@ export const addUserAddress = mutationOptions({
   },
 });
 
-export const getUserAddress = queryOptions({
+export const getUserAddress = (enabled : boolean) =>  queryOptions({
   queryKey: ["get-user-addresses"],
   queryFn: async (): Promise<Array<UserAddress>> => {
     return await apiFetch("/users/me/addresses");
   },
+  enabled
 });
 
 export const updateUserAddress = mutationOptions({
@@ -50,3 +52,8 @@ export const deleteUserAddress = mutationOptions({
     await queryClient.invalidateQueries({ queryKey: ["get-user-addresses"] });
   },
 });
+
+export function useAddresses(){
+   const {isPending} = useCurrentUser();
+   return useQuery(getUserAddress(!isPending))
+}
