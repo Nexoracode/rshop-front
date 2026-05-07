@@ -109,8 +109,6 @@ export const parseQueryParams = (query: string) => {
         value: Boolean(Number(value)),
       });
     }
-
-    console.log({ key, value });
   });
 
   return { filter };

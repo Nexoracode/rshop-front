@@ -8,5 +8,4 @@ export const searchTerm = (term: string) =>
     queryFn: async (): Promise<SearchResult> => {
       return await apiFetch(`/catalog/search`, { params: { term } });
     },
-    enabled: !!term,
   });

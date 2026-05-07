@@ -15,7 +15,6 @@ interface SearchResultsPanelProps {
   products: SearchResult["products"];
   categories: SearchResult["categories"];
   brands: SearchResult["brands"];
-  view?: "mobile" | "desktop";
 }
 
 export function SearchResultsPanel({
@@ -24,7 +23,6 @@ export function SearchResultsPanel({
   products,
   categories,
   brands,
-  view = "mobile",
 }: SearchResultsPanelProps) {
   const hasResults =
     !isPending &&
@@ -33,7 +31,7 @@ export function SearchResultsPanel({
   return (
     <div className="max-h-[75vh] overflow-y-auto scrollbar-thin p-3">
       {/* حالت لودینگ */}
-      {isPending && (
+      {isPending && !!debouncedSearch && (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <CircleAlertIcon className="size-20 text-gray-300 mb-2.5 animate-spin" />
           <p className="text-gray-500">درحال جستجو...</p>
@@ -51,9 +49,7 @@ export function SearchResultsPanel({
       )}
 
       {/* محصولات */}
-      {products.length > 0 && (
-        <ProductResultList view={view} products={products} />
-      )}
+      {products.length > 0 && <ProductResultList products={products} />}
 
       {/* دسته‌بندی‌ها */}
       {categories.length > 0 && (
