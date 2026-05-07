@@ -24,7 +24,6 @@ import UserMenuItem from "./UserMenuItem";
 import { Skeleton } from "@/components/ui/skeleton";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useCart from "@/hooks/useCart";
-import { Separator } from "@/components/ui/separator";
 
 const menuItems = [
   { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
@@ -38,7 +37,7 @@ export default function ProfileMenu() {
   const { isPending: cartPending } = useCart();
   const path = usePathname();
   return isPending || cartPending ? (
-    <Skeleton className="h-8 w-33" />
+    <Skeleton className="h-8 w-22" />
   ) : (
     <>
       {user ? (
@@ -104,7 +103,6 @@ export default function ProfileMenu() {
           <span className="inline-block text-[13px]">ورود | ثبت نام</span>
         </Button>
       )}
-      <Separator orientation="vertical" className="!h-[25px] ml-2" />
     </>
   );
 }

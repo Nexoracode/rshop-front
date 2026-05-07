@@ -4,6 +4,7 @@ import React from "react";
 import ProfileButton from "./ProfileMenu";
 import CartPopover from "./CartPopver";
 import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 export default function UserMenu() {
   const pathName = usePathname();
@@ -23,6 +24,8 @@ export default function UserMenu() {
           />
         ))} */}
       {!isProfilePage && <ProfileButton />}
+
+      <Separator orientation="vertical" className="!h-[25px] ml-2" />
 
       {!isCartPage && <CartPopover />}
     </div>

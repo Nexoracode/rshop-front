@@ -25,7 +25,7 @@ export default function CartPopover() {
       onMouseLeave={() => setOpen(false)}
     >
       {isPending ? (
-        <Skeleton className="h-8 w-16" />
+        <Skeleton className="h-8 w-8" />
       ) : (
         <LinkWithChip
           href="/cart"
