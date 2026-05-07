@@ -11,7 +11,8 @@ import { searchTerm } from "@/queries/products/search";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 
 export default function SearchBox() {
-  const { search, setSearch, debouncedSearch } = useDebounceSearch();
+  const { search, setSearch, debouncedSearch, setDebouncedSearch } =
+    useDebounceSearch();
   const { isPending, data } = useQuery(searchTerm(debouncedSearch));
 
   // داده‌ها با مقدار پیش‌فرض خالی برای جلوگیری از undefined
@@ -42,6 +43,7 @@ export default function SearchBox() {
         <PopoverContent
           align="start"
           sideOffset={8}
+          onClick={() => setDebouncedSearch("")}
           className="w-[min(36rem,90vw)] rounded-2xl border-0 shadow-lg !p-2 ring-1 ring-black/5 overflow-hidden"
         >
           <SearchResultsPanel
@@ -50,7 +52,6 @@ export default function SearchBox() {
             products={data?.products ?? []}
             categories={data?.categories ?? []}
             brands={data?.brands ?? []}
-            view="desktop"
           />
         </PopoverContent>
       </Popover>

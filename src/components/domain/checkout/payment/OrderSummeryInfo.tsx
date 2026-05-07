@@ -2,7 +2,6 @@
 import PriceBox from "@/components/common/PriceBox";
 import React from "react";
 import CreatePaymentBtn from "./CreatePaymentBtn";
-import { SHOP_NAME } from "@/data/assets";
 import { DiscountBreakdown, Promotion } from "@/types/order";
 
 type Props = {
@@ -27,7 +26,6 @@ export default function OrderSummeryInfo({
   gift_wrapping_cost,
   shipping_cost,
   className,
-  showRules = false,
   orderID,
   discount_breakdown,
   promotions,
@@ -105,11 +103,11 @@ export default function OrderSummeryInfo({
         <div>
           <CreatePaymentBtn order_id={orderID} />
 
-          {showRules && (
+          {/*  {showRules && (
             <p className="text-slate-500 text-xs mt-3">
               با خرید از {SHOP_NAME} قوانین را پذیرفته اید.
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>

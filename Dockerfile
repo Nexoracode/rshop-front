@@ -2,8 +2,6 @@
 FROM node:20-bookworm AS builder
 WORKDIR /app
 
-RUN npm config set registry https://package-mirror.liara.ir/repository/npm/
-
 COPY package*.json ./
 RUN npm ci
 

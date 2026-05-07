@@ -38,15 +38,11 @@ export default function useFilters() {
     setQuery({ ...parseQueryParams(queryString), search });
   }, []);
 
-  console.log({ query });
   function handleSetQuery<K extends keyof ProductFilterQuery>(
     key: K,
     value: ProductFilterQuery[K],
   ) {
-    console.log({ query });
     const newQuery = { ...query, [key]: value };
-
-    console.log({ newQuery });
 
     setQuery(newQuery);
 

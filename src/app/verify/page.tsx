@@ -11,7 +11,7 @@ import OrderSummerySection from "@/components/domain/verify/OrderSummerySection"
 import ProductsSection from "@/components/domain/verify/ProductsSection";
 import AddressSection from "@/components/domain/verify/AddressSection";
 import PaymentFailed from "@/components/domain/verify/PaymentFailed";
-import PageLoading from "@/components/shared/asset/PageLoading";
+import PageLoader from "@/components/common/PageLoader";
 
 export default function PaymentVerifyPage() {
   const params = useSearchParams();
@@ -34,7 +34,7 @@ export default function PaymentVerifyPage() {
       );
   }, [Authority, mutateAsync, Status, router]);
 
-  if (isPending || !data || data.code == 101) return <PageLoading />;
+  if (isPending || !data || data.code == 101) return <PageLoader />;
 
   if (data.success === false)
     return <PaymentFailed order={data.order} payment={data.payment} />;

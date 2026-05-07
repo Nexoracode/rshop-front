@@ -14,8 +14,6 @@ export default async function HomePage() {
 
   const data = await queryClient.fetchQuery(getHomeSections);
 
-  console.log(data);
-
   if (!data)
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
@@ -48,9 +46,7 @@ export default async function HomePage() {
               }
             </p>
 
-            <button
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
-            >
+            <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
               <RefreshCw className="w-4 h-4" />
               <span>تلاش مجدد</span>
             </button>

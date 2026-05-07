@@ -3,6 +3,16 @@ import { getQueryClient } from "@/lib/utils/query-client";
 import { getPageData } from "@/queries/home/home";
 import { Metadata } from "next";
 
+export const revalidate = 7200;
+
+export async function generateStaticParams() {
+  const slugs = ["about-us", "purchase-guide", "return-policy"];
+
+  return slugs.map((slug) => ({
+    slug,
+  }));
+}
+
 async function getData(slug: string) {
   const queryClient = getQueryClient();
 
