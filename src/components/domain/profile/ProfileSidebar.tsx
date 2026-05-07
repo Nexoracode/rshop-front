@@ -13,7 +13,6 @@ import {
   Star,
   Settings,
   EyeIcon,
-  ChevronLeft,
   LogOut,
 } from "lucide-react";
 import LogoutButton from "./LogoutButton";
@@ -33,8 +32,8 @@ export function ProfileSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-20 h-fit w-full md:border lg:border-0 rounded-lg p-3 md:p-6 lg:p-4 lg:w-[16rem] md:space-y-2">
-      <div className="grid md:grid-cols-4 gap-2 mb-4 lg:mb-0 lg:flex flex-col">
+    <aside className="h-fit w-full lg:w-[280px] bg-white rounded-lg lg:border overflow-hidden py-4">
+      <ul>
         {items.map((item) => {
           const active =
             item.href === "/profile"
@@ -42,38 +41,53 @@ export function ProfileSidebar() {
               : pathname.startsWith(item.href);
           const Icon = item.icon;
           return (
-            <Link
+            <li
               key={item.href}
-              href={item.href}
               className={cn(
-                "flex border-b border-slate-200 md:border-0 items-center gap-3 md:rounded-md md:px-3 py-3 md:py-2 text-sm font-medium transition-colors",
+                "px-4 cursor-pointer w-full transition-all py-3",
                 active
-                  ? "md:bg-primary/10 md:text-primary"
-                  : "hover:bg-slate-100 text-muted-foreground",
+                  ? "bg-primary-50 border-r-4 border-primary"
+                  : "hover:bg-gray-50  border-b border-gray-100",
               )}
             >
-              <Icon className="w-5 h-5" />
-              <p className="flex-1">{item.label}</p>
-              <ChevronLeft className="md:hidden text-muted/40 size-4" />
-            </Link>
+              <Link
+                href={item.href}
+                className="flex items-center text-slate-700 w-full"
+              >
+                <div className="w-12 pl-5 pr-1">
+                  <Icon
+                    size={22}
+                    className={cn(active ? "text-primary" : "text-slate-600")}
+                  />
+                </div>
+                <div className="flex-1">
+                  <span
+                    className={cn(
+                      "text-sm",
+                      active ? "text-primary font-semibold" : "font-medium",
+                    )}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              </Link>
+            </li>
           );
         })}
-      </div>
-      <hr className="hidden md:flex" />
-      <div className="md:pr-2 md:-mt-2">
-        <LogoutButton>
-          <div className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
-            <div className="flex items-center text-slate-700 w-full">
-              <div className="w-12 pl-5 pr-1">
-                <LogOut size={22} />
-              </div>
-              <div className="flex-1 py-3">
-                <span className="text-sm font-medium">خروج از حساب کاربری</span>
-              </div>
+      </ul>
+
+      <LogoutButton>
+        <div className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">
+          <div className="flex items-center text-slate-700 w-full">
+            <div className="w-12 pl-5 pr-1">
+              <LogOut size={22} />
+            </div>
+            <div className="flex-1 py-3">
+              <span className="text-sm font-medium">خروج از حساب کاربری</span>
             </div>
           </div>
-        </LogoutButton>
-      </div>
+        </div>
+      </LogoutButton>
     </aside>
   );
 }
