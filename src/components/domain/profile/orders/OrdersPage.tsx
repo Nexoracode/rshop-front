@@ -8,6 +8,7 @@ import { ListLayout } from "@/components/common/ListLayout";
 import { Skeletons } from "@/components/ui/skeleton";
 import { Order, ProfileOrderStatus } from "@/types/order";
 import { getOrders } from "@/queries/profile/order";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 const orderStatus: Record<ProfileOrderStatus, { label: string }> = {
   cancelled: {
@@ -25,14 +26,7 @@ export default function OrdersPage() {
   const { data, isFetching } = useQuery(getOrders(status));
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-lg font-medium mb-2">سفارش‌های من</h1>
-        <p className="text-sm text-muted-foreground">
-          در این بخش می‌توانید وضعیت سفارش‌های خود را مشاهده کنید.
-        </p>
-      </div>
-
+    <ProfileSectionBox title="تاریخچه سفارشات" className="min-h-fit" childrenClassName="space-y-6">
       <OrdersTabs tabs={orderStatus} value={status} onChange={setStatus} />
 
       <ListLayout<Order>
@@ -40,8 +34,9 @@ export default function OrdersPage() {
         renderItem={(order) => <OrderCard key={order.id} order={order} />}
         skeleton={<Skeletons className="h-24" count={3} />}
         loading={isFetching}
+        src="/order-empty.svg"
         className="flex flex-col gap-2"
       />
-    </div>
+    </ProfileSectionBox>
   );
 }

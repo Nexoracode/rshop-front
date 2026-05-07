@@ -20,8 +20,14 @@ export default function AddTicketButton() {
       }
       title="ثبت درخواست پشتیبانی جدید"
       trigger={
-        <Button variant={"text"} size={"md"} startIcon={<Plus size={18} />}>
-          ثبت درخواست
+        <Button
+          variant={"text-nohover"}
+          color="info"
+          size={"sm"}
+          startIcon={<Plus className="size-4.5" />}
+          className="!p-0 !text-[13px] md:!text-[13.5px]"
+        >
+          ثبت تیکت
         </Button>
       }
       hiddenFooter

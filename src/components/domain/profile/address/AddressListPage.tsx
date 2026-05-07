@@ -14,9 +14,11 @@ import {
 import AddressList from "./AddressList";
 import { UserAddress } from "@/types/user";
 import AddressForm from "../../users/AddressForm";
+import ProfileSectionBox from "../ProfileSectionBox";
+import EmptyState from "@/components/common/EmptyState";
 
 export default function AddressListPage() {
-  const { data: addresses, isFetching } = useQuery(getUserAddress);
+  const { data: addresses, isPending } = useQuery(getUserAddress);
   const { mutate, isPending: deletePending } = useMutation(deleteUserAddress);
   const {
     mutate: setPrimary,
@@ -40,29 +42,39 @@ export default function AddressListPage() {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between pb-6">
-        <h1 className="text-lg font-medium">آدرس‌ های من</h1>
+    <ProfileSectionBox
+      title="آدرس ها"
+      className="min-h-fit"
+      childrenClassName="space-y-6"
+      navigateElem={
         <Button
-          variant={"text"}
-          color="primary"
+          variant={"text-nohover"}
+          color="info"
           size={"sm"}
-          startIcon={<Plus size={18} />}
-          className="py-5"
+          startIcon={<Plus className="size-4.5" />}
+          className="!p-0 !text-[13px] md:!text-[13.5px]"
           onClick={() => setOpenForm({ action: "add", address: null })}
         >
-          افزودن آدرس جدید
+          آدرس جدید
         </Button>
-      </div>
-
-      <AddressList
-        addresses={addresses ?? []}
-        loading={isFetching || setPrimaryPending}
-        onDelete={(address) => setOpenForm({ action: "delete", address })}
-        onEdit={(address) => setOpenForm({ action: "edit", address })}
-        onSetPrimary={handleSetPrimary}
-        setPrimary={!!variables?.id}
-      />
+      }
+    >
+      {!addresses?.length ? (
+        <EmptyState
+          title="هیچ آدرسی ثبت نشده است"
+          description="برای ثبت آدرس، روی دکمه «افزودن آدرس جدید» کلیک کنید."
+          src="/address.svg"
+        />
+      ) : (
+        <AddressList
+          addresses={addresses ?? []}
+          loading={isPending || setPrimaryPending}
+          onDelete={(address) => setOpenForm({ action: "delete", address })}
+          onEdit={(address) => setOpenForm({ action: "edit", address })}
+          onSetPrimary={handleSetPrimary}
+          setPrimary={!!variables?.id}
+        />
+      )}
 
       {openForm && (
         <AddressForm
@@ -78,6 +90,6 @@ export default function AddressListPage() {
         onConfirm={handleDelete}
         loading={deletePending}
       />
-    </div>
+    </ProfileSectionBox>
   );
 }

@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default function ProfileDashboardPage() {
   return (
-    <div className="lg:mt-28 mb-20">
+    <div className="lg:mt-28 pb-20">
       <div className="hidden lg:flex">
         <Header showPromoBanner={false} />
       </div>

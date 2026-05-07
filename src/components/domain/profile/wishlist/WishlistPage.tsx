@@ -9,6 +9,7 @@ import {
 import ProductCardSkeleton from "@/components/shared/product/ProductCardSkeleton";
 import { ListLayout } from "@/components/common/ListLayout";
 import { WishlistItem } from "@/types/product";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function WishlistPage() {
   const { data: wishlist = [], isFetching } = useQuery(getWishlistList(true));
@@ -18,27 +19,23 @@ export default function WishlistPage() {
     mutate({ itemId });
   };
   return (
-    <div>
-      <div className="flex justify-between mb-8">
-        <h1 className="text-lg font-medium">علاقه‌مندی‌های من</h1>
-      </div>
-      <div className="border p-6 rounded-lg">
-        <ListLayout<WishlistItem>
-          items={wishlist}
-          loading={isFetching}
-          skeleton={<ProductCardSkeleton count={5} />}
-          className="grid grid-cols-1 md:grid-cols-2"
-          emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
-          renderItem={(item) => (
-            <WishlistCard
-              loading={isPending && variables.itemId === item.id}
-              onDelete={handleDelete}
-              key={item.id}
-              {...item}
-            />
-          )}
-        />
-      </div>
-    </div>
+    <ProfileSectionBox title="علاقه‌مندی‌ها" className="!min-h-fit">
+      <ListLayout<WishlistItem>
+        items={wishlist}
+        loading={isFetching}
+        skeleton={<ProductCardSkeleton count={5} />}
+        src="/favorites-list-empty.svg"
+        className="grid grid-cols-1 md:grid-cols-2"
+        emptyDescription="هنوز هیچ محصولی در لیست علاقه‌مندی‌ها اضافه نکرده‌اید."
+        renderItem={(item) => (
+          <WishlistCard
+            loading={isPending && variables.itemId === item.id}
+            onDelete={handleDelete}
+            key={item.id}
+            {...item}
+          />
+        )}
+      />
+    </ProfileSectionBox>
   );
 }

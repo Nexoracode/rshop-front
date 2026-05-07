@@ -12,6 +12,7 @@ export function ListLayout<T>({
   className,
   emptyDescription,
   emptyTitle,
+  src,
 }: {
   items: T[];
   loading?: boolean;
@@ -20,6 +21,7 @@ export function ListLayout<T>({
   className?: string;
   emptyDescription?: string;
   emptyTitle?: string;
+  src?: string;
 }) {
   if (loading) {
     return <div className={cn(className)}>{skeleton}</div>;
@@ -28,7 +30,13 @@ export function ListLayout<T>({
   if (!items || items.length === 0) {
     return (
       <div className={cn("mx-auto", className)}>
-        {<EmptyState description={emptyDescription} title={emptyTitle} />}
+        {
+          <EmptyState
+            src={src}
+            description={emptyDescription}
+            title={emptyTitle}
+          />
+        }
       </div>
     );
   }
