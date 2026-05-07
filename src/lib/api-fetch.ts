@@ -98,6 +98,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       ...restOptions,
     });
   } catch (_error) {
+    console.log({_error})
     return false;
   }
 
