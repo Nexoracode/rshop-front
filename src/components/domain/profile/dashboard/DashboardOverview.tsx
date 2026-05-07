@@ -9,54 +9,66 @@ import { getDetailedProfile } from "@/queries/profile/order";
 import { cn } from "@/lib/utils/classnames";
 import { toFaDigits } from "@/lib/utils/price";
 import { ProfileSidebar } from "../ProfileSidebar";
+import RecentViewedPage from "../recent/RecendViewedPage";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function DashboardOverview() {
   const { data, isFetching } = useQuery(getDetailedProfile);
   return (
-    <section className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="font-medium md:text-lg">سفارش‌های من</h2>
+    <>
+      <ProfileSectionBox
+        title="سفارش‌های من"
+        navigateElem={
+          <Button
+            size={"md"}
+            variant={"text-nohover"}
+            color="info"
+            href="/profile/orders"
+            endIcon={<ChevronLeft className="size-4.5" />}
+            className="!p-0 !text-[13px] md:!text-[13.5px]"
+          >
+            مشاهده همه
+          </Button>
+        }
+        className="min-h-fit"
+      >
+        <div className="grid grid-cols-3 gap-2 md:gap-4 mt-4">
+          {isFetching ? (
+            <Skeletons className="h-14" count={3} />
+          ) : (
+            <>
+              <OrderStatCard
+                icon={<ShoppingBag className="size-7 md:size-10 text-info" />}
+                label="در حال انجام"
+                value={data?.order_summary.processing}
+              />
+              <OrderStatCard
+                icon={
+                  <CheckCircle className="size-7 md:size-10 text-success" />
+                }
+                label="تکمیل شده"
+                value={data?.order_summary.completed}
+              />
+              <OrderStatCard
+                icon={<Undo2 className="size-7 md:size-10 text-warning" />}
+                label="مرجوعی"
+                value={data?.order_summary.returned}
+              />
+            </>
+          )}
+        </div>
+        <div className="lg:hidden">
+          <ProfileSidebar />
+        </div>
+        <div className="lg:hidden">
+          <RecentViewedPage />
+        </div>
+      </ProfileSectionBox>
 
-        <Button
-          size={"sm"}
-          variant={"text"}
-          color="info"
-          href="/profile/orders"
-          endIcon={<ChevronLeft className="size-4" />}
-          className="!pl-0"
-        >
-          مشاهده همه
-        </Button>
+      <div className="hidden lg:flex">
+        <RecentViewedPage />
       </div>
-
-      <div className="grid grid-cols-3 gap-2 md:gap-4 mt-4">
-        {isFetching ? (
-          <Skeletons className="h-14" count={3} />
-        ) : (
-          <>
-            <OrderStatCard
-              icon={<ShoppingBag className="size-7 md:size-10 text-info" />}
-              label="در حال انجام"
-              value={data?.order_summary.processing}
-            />
-            <OrderStatCard
-              icon={<CheckCircle className="size-7 md:size-10 text-success" />}
-              label="تکمیل شده"
-              value={data?.order_summary.completed}
-            />
-            <OrderStatCard
-              icon={<Undo2 className="size-7 md:size-10 text-warning" />}
-              label="مرجوعی"
-              value={data?.order_summary.returned}
-            />
-          </>
-        )}
-      </div>
-
-      <div className="lg:hidden">
-        <ProfileSidebar />
-      </div>
-    </section>
+    </>
   );
 }
 

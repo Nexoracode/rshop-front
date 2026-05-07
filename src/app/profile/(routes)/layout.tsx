@@ -17,13 +17,13 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
       <div className="flex lg:hidden">
         <ProfileHeader />
       </div>
-      <div className="max-w-[68rem] mx-auto mt-4 flex flex-col-reverse lg:px-2 lg:flex-row gap-6 lg:mt-14">
+      <div className="max-w-[68rem] mx-auto mt-4 flex flex-col-reverse lg:px-4 lg:flex-row gap-6 lg:mt-14">
         <div className="hidden lg:flex">
           <ProfileSidebar />
         </div>
         <main
           className={cn(
-            "flex-1 max-w-full space-y-6 lg:max-w-[calc(100%-17.5rem)] px-2 lg:px-0",
+            "flex-1 max-w-full space-y-6 lg:max-w-[calc(100%-17.5rem)] px-4 lg:px-0",
           )}
         >
           {children}
