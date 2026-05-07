@@ -2,7 +2,6 @@
 
 import React from "react";
 import ProfileButton from "./ProfileMenu";
-import { Separator } from "@/components/ui/separator";
 import CartPopover from "./CartPopver";
 import { usePathname } from "next/navigation";
 
@@ -23,12 +22,7 @@ export default function UserMenu() {
             count={data?.length ?? 0}
           />
         ))} */}
-      {!isProfilePage && (
-        <>
-          <ProfileButton />
-          <Separator orientation="vertical" className="!h-[25px] ml-2" />
-        </>
-      )}
+      {!isProfilePage && <ProfileButton />}
 
       {!isCartPage && <CartPopover />}
     </div>
