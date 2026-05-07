@@ -46,6 +46,7 @@ export default function ReviewsPage() {
             loading={pendingFetching}
             skeleton={<Skeletons count={4} className="h-32" />}
             className="grid gap-2 grid-cols-1 md:grid-cols-2"
+            src="/wish-list.svg"
             renderItem={(product) => (
               <ReviewPendingCard
                 key={product.id}
@@ -66,6 +67,7 @@ export default function ReviewsPage() {
             loading={isFetching}
             className="space-y-3"
             skeleton={<Skeletons count={3} className="h-24" />}
+            src="/wish-list.svg"
             renderItem={(review) => (
               <ReviewItemCard
                 key={review.id}

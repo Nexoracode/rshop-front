@@ -34,6 +34,7 @@ export default function OrdersPage() {
         renderItem={(order) => <OrderCard key={order.id} order={order} />}
         skeleton={<Skeletons className="h-24" count={3} />}
         loading={isFetching}
+        src="/order-empty.svg"
         className="flex flex-col gap-2"
       />
     </ProfileSectionBox>
