@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useCurrentUser from "./useCurrentUser";
 
 export default function useCart() {
-  const { isPending } = useCurrentUser();
-  const cart = useQuery(getCart(!isPending));
+  const { user, isPending } = useCurrentUser();
+  const cart = useQuery(getCart(!!user, !isPending));
   return { ...cart };
 }

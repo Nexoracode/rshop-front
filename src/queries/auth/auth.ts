@@ -23,15 +23,16 @@ export const verifyOtp = mutationOptions({
   },
 });
 
-export const getMe = (hasRefreshToken: boolean) =>
-  queryOptions({
-    queryKey: ["get-me"],
-    queryFn: async (): Promise<User | null> => {
-      return await apiFetch("/users/me");
-    },
-    retry: false,
-    enabled: hasRefreshToken,
-  });
+export const getMe = queryOptions({
+  queryKey: ["get-me"],
+  queryFn: async (): Promise<User | null> => {
+    const refresh_token = await queryClient.fetchQuery(refreshTokenQuery);
+
+    if (!refresh_token) return null;
+    return await apiFetch("/users/me");
+  },
+  retry: false,
+});
 
 export const userLogout = mutationOptions({
   mutationFn: async () => {

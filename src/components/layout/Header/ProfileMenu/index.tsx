@@ -93,11 +93,11 @@ export default function ProfileMenu() {
           href={{ pathname: "/users/login", query: { backUrl: path } }}
           variant={"outline"}
           color="neutral"
-          className="text-black border h-[40px] rounded-md border-slate-300"
+          className="text-black border h-[32px] rounded-md border-slate-300"
           size={"sm"}
           aria-label="ورود"
           startIcon={
-            <LogInIcon className="-scale-x-100 text-gray-700" size={22} />
+            <LogInIcon className="-scale-x-100 text-gray-700" size={18} />
           }
         >
           <span className="inline-block text-[13px]">ورود | ثبت نام</span>
