@@ -3,17 +3,19 @@ const ProfileSectionBox = ({
   className,
   children,
   navigateElem,
+  childrenClassName
 }: {
   title: string;
   className?: string;
   children: React.ReactNode;
   navigateElem?: React.ReactNode;
+  childrenClassName?: string;
 }) => {
   return (
     <div
       className={`min-w-full min-h-[348px] lg:border rounded-lg lg:p-5 ${className}`}
     >
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-8">
         <div className="relative flex items-center justify-between">
           <h1 className="text-base md:text-[17px] font-medium flex items-center gap-2">
             {title}
@@ -23,7 +25,7 @@ const ProfileSectionBox = ({
         {navigateElem}
       </div>
 
-      {children}
+      <div className={childrenClassName}>{children}</div>
     </div>
   );
 };

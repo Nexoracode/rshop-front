@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default function ProfileLayout({ children }: PropsWithChildren) {
   return (
-    <div className="mt-14 mb-20 lg:mt-28">
+    <div className="mt-14 pb-20 lg:mt-28">
       <div className="hidden lg:flex">
         <Header showPromoBanner={false} />
       </div>

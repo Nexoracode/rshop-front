@@ -14,6 +14,7 @@ import {
 import AddressList from "./AddressList";
 import { UserAddress } from "@/types/user";
 import AddressForm from "../../users/AddressForm";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function AddressListPage() {
   const { data: addresses, isFetching } = useQuery(getUserAddress);
@@ -40,21 +41,23 @@ export default function AddressListPage() {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between pb-6">
-        <h1 className="text-lg font-medium">آدرس‌ های من</h1>
+    <ProfileSectionBox
+      title="آدرس ها"
+      className="min-h-fit"
+      childrenClassName="space-y-6"
+      navigateElem={
         <Button
-          variant={"text"}
-          color="primary"
+          variant={"text-nohover"}
+          color="info"
           size={"sm"}
-          startIcon={<Plus size={18} />}
-          className="py-5"
+          startIcon={<Plus className="size-4.5" />}
+          className="!p-0 !text-[13px] md:!text-[13.5px]"
           onClick={() => setOpenForm({ action: "add", address: null })}
         >
-          افزودن آدرس جدید
+          آدرس جدید
         </Button>
-      </div>
-
+      }
+    >
       <AddressList
         addresses={addresses ?? []}
         loading={isFetching || setPrimaryPending}
@@ -78,6 +81,6 @@ export default function AddressListPage() {
         onConfirm={handleDelete}
         loading={deletePending}
       />
-    </div>
+    </ProfileSectionBox>
   );
 }

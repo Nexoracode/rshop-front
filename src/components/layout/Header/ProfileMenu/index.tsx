@@ -27,13 +27,6 @@ import UserMenuItem from "./UserMenuItem"; // masire dorost ro vared kon
 import useCart from "@/hooks/useCart";
 import LogoutButton from "@/components/domain/profile/LogoutButton";
 
-const menuItems = [
-  { label: "سفارش ها", Icon: ShoppingBag, href: "orders" },
-  { label: "آدرس ها", Icon: MapIcon, href: "address" },
-  { label: "علاقه مندی ها", Icon: Heart, href: "wishlist" },
-  { label: "دیدگاه ها", Icon: MessageCircle, href: "reviews" },
-];
-
 export default function ProfileMenu() {
   const { user, isPending } = useCurrentUser();
   const { isPending: cartPending } = useCart();
@@ -116,12 +109,6 @@ export default function ProfileMenu() {
             label="دیدگاه‌ها و پرسش‌ها"
             href="/profile/reviews"
           />
-          <UserMenuItem
-            Icon={<Eye size={22} />}
-            label="بازدیدهای اخیر"
-            href="/profile/recent"
-          />
-
           {/* Logout - az UserMenuItem estefade nemishe chon Link nist */}
           <LogoutButton>
             <li className="px-4 cursor-pointer w-full hover:bg-gray-50 transition-colors">

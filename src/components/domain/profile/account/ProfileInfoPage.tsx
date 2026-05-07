@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { editProfile } from "@/queries/profile/profile";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function ProfileInfoPage() {
   const user = useCurrentUser();
@@ -23,32 +24,25 @@ export default function ProfileInfoPage() {
   };
 
   return (
-    <div>
-      <h1 className="text-lg font-medium mb-8">اطلاعات حساب کاربری</h1>
-
-      <Card>
-        <FormProvider {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-2"
-          >
-            <ProfileInfoField
-              label="نام و نام خانوادگی"
-              fields={[
-                { label: "نام", name: "first_name" },
-                { label: "نام خانوادگی", name: "last_name" },
-              ]}
-              className="border-b-0"
-            />
-            <hr />
-            <ProfileInfoField
-              type="email"
-              label="ایمیل"
-              fields={[{ label: "آدرس ایمیل", name: "email" }]}
-            />
-          </form>
-        </FormProvider>
-      </Card>
-    </div>
+    <ProfileSectionBox title="اطلاعات حساب کاربری" className="!min-h-fit">
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-2">
+          <ProfileInfoField
+            label="نام و نام خانوادگی"
+            fields={[
+              { label: "نام", name: "first_name" },
+              { label: "نام خانوادگی", name: "last_name" },
+            ]}
+            className="border-b-0"
+          />
+          <hr />
+          <ProfileInfoField
+            type="email"
+            label="ایمیل"
+            fields={[{ label: "آدرس ایمیل", name: "email" }]}
+          />
+        </form>
+      </FormProvider>
+    </ProfileSectionBox>
   );
 }

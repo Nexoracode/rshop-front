@@ -5,18 +5,18 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import TicketCard from "./SupportCard";
 import { Skeletons } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
 import AddTicketButton from "./AddTicketButton";
 import { Ticket } from "@/types/user";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function SupportList() {
   const { data: tickets, isPending } = useQuery(getSupportTickets);
   return (
-    <Card>
-      <div className="flex justify-between items-center">
-        <h1 className="text-lg font-medium mb-4">تیکت‌های پشتیبانی</h1>
-        <AddTicketButton />
-      </div>
+    <ProfileSectionBox
+      title="تیکت‌های پشتیبانی"
+      navigateElem={<AddTicketButton />}
+      className="!min-h-fit"
+    >
       <ListLayout<Ticket>
         items={tickets || []}
         renderItem={(ticket) => <TicketCard key={ticket.id} {...ticket} />}
@@ -24,6 +24,6 @@ export default function SupportList() {
         className="flex flex-col space-y-3"
         loading={isPending}
       />
-    </Card>
+    </ProfileSectionBox>
   );
 }

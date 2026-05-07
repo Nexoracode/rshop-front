@@ -9,9 +9,9 @@ import ReviewDeleteModal from "./ReviewDeleteModal";
 import { useQuery } from "@tanstack/react-query";
 import { getMyReviews, getPendingReviews } from "@/queries/profile/reviews";
 import { Skeletons } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
 import { ListLayout } from "@/components/common/ListLayout";
 import { Review } from "@/types/user";
+import ProfileSectionBox from "../ProfileSectionBox";
 
 export default function ReviewsPage() {
   const { data, isFetching } = useQuery(getMyReviews);
@@ -26,19 +26,16 @@ export default function ReviewsPage() {
   const [product, setProduct] = useState<Review["product"]>();
 
   return (
-    <Card className="!p-0 bg-transparent border-none">
-      <div>
-        <h1 className="text-lg font-medium mb-2">دیدگاه‌های من</h1>
-        <p className="text-sm text-muted-foreground">
-          در این بخش می‌توانید دیدگاه‌های خود را مشاهده کنید.
-        </p>
-      </div>
-
+    <ProfileSectionBox title="دیدگاه‌ها">
       <Tabs dir="rtl" value={tab} onValueChange={setTab} className="w-full p-0">
         <TabsList className="w-full justify-start pb-0">
-          <div className="max-w-md flex-1 w-full h-full">
-            <TabsTrigger value="pending">در انتظار دیدگاه</TabsTrigger>
-            <TabsTrigger value="my-reviews">دیدگاه‌های من</TabsTrigger>
+          <div className="max-w-md flex !gap-6 h-full">
+            <TabsTrigger value="pending" className="w-fit">
+              در انتظار دیدگاه
+            </TabsTrigger>
+            <TabsTrigger value="my-reviews" className="w-fit">
+              دیدگاه‌های من
+            </TabsTrigger>
           </div>
         </TabsList>
 
@@ -104,6 +101,6 @@ export default function ReviewsPage() {
         open={openForm === "delete"}
         onClose={() => setOpenForm(null)}
       />
-    </Card>
+    </ProfileSectionBox>
   );
 }
