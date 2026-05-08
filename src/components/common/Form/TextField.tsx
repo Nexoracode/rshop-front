@@ -101,6 +101,7 @@ export default function TextField({
               error={error?.message}
             >
               <NumberInput
+                {...props}
                 error={!!error?.message}
                 value={value}
                 onChange={(v) => onChange(v)}

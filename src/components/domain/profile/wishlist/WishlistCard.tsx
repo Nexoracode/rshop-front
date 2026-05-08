@@ -32,7 +32,7 @@ export default function WishlistCard({
   return (
     <Link
       className="md:border-l flex flex-col border-b even:border-l-0 py-2 md:px-2"
-      href={`/rsp-${id}`}
+      href={`/p/rsp-${id}`}
     >
       <div className="flex flex-1 md:flex-col">
         <div className="aspect-square relative w-22 md:w-[14rem] md:mx-auto">
