@@ -10,7 +10,6 @@ import { getGiftWrappings } from "@/queries/checkout/order-meta";
 import { cn } from "@/lib/utils/classnames";
 import { formatToman } from "@/lib/utils/price";
 import { SelectedGiftWrapCard } from "./SelectedGiftWrapCard";
-import EmptySectionCheckout from "../EmptySectionCheckout";
 import { GiftWrapping } from "@/types/order";
 import { Badge } from "@/components/ui/badge";
 
@@ -116,7 +115,7 @@ export function GiftWrapModal() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 items-center">
+    <div className="w-full flex flex-col items-center">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">بسته بندی</div>
         <div className="flex items-center gap-4">
@@ -132,11 +131,11 @@ export function GiftWrapModal() {
       </div>
 
       {is_gift ? (
-        <SelectedGiftWrapCard />
-      ) : (
-        <div className="hidden md:block w-full">
-          <EmptySectionCheckout />
+        <div className="mt-4 sm:mt-2">
+          <SelectedGiftWrapCard />
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

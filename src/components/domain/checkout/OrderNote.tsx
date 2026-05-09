@@ -6,7 +6,6 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import useCheckout from "@/hooks/useCheckout";
 import TextField from "@/components/common/Form/TextField";
 import BaseDialog from "@/components/common/BaseDialog";
-import EmptySectionCheckout from "./EmptySectionCheckout";
 
 export default function OrderNote() {
   const {
@@ -73,7 +72,7 @@ export default function OrderNote() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
+    <div className="w-full flex flex-col border-b px-2 py-6 sm:p-6 md:mt-3 md:pb-8">
       <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">توضیحات سفارش</div>
         <div className="flex items-center gap-4">
@@ -92,13 +91,11 @@ export default function OrderNote() {
       </div>
 
       {note.length ? (
-        <div className="font-medium text-sm text-muted leading-8 max-h-[200px] scrollbar-custom pl-2 overflow-y-auto">
+        <div className="font-medium text-sm text-muted leading-8 scrollbar-custom pl-2 overflow-y-auto mt-4 sm:mt-2">
           {note}
         </div>
       ) : (
-        <div className="hidden md:block">
-          <EmptySectionCheckout />
-        </div>
+        ""
       )}
     </div>
   );

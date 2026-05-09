@@ -1,13 +1,12 @@
 "use client";
 
 import * as React from "react";
-import {  useAddresses } from "@/queries/profile/address";
+import { useAddresses } from "@/queries/profile/address";
 import AddressForm from "../../users/AddressForm";
 import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucidePlus } from "lucide-react";
-import EmptySectionCheckout from "../EmptySectionCheckout";
 
 export default function AddressSelector() {
   const { data, isPending } = useAddresses();
@@ -46,7 +45,10 @@ export default function AddressSelector() {
   }
 
   return (
-    <div id="order_address" className="w-full px-2 py-6 sm:p-6 border-b sm:border sm:rounded-lg">
+    <div
+      id="order_address"
+      className="w-full px-2 py-6 sm:p-6 border-b md:mt-3 md:pb-8"
+    >
       <div className="gap-2 items-center">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
@@ -64,15 +66,14 @@ export default function AddressSelector() {
           )}
         </div>
 
-        <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
-          {currentAddress ? (
-            `${currentAddress.province}، ${currentAddress.city}، ${currentAddress.address_line}`
-          ) : (
-            <div className="mt-4">
-              <EmptySectionCheckout />
-            </div>
-          )}
-        </div>
+        {currentAddress ? (
+          <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
+            `${currentAddress.province}، ${currentAddress.city}، $
+            {currentAddress.address_line}`
+          </div>
+        ) : (
+          ""
+        )}
       </div>
 
       {addressOpen && (
