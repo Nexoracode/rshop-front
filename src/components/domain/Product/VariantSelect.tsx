@@ -19,8 +19,9 @@ type Props = {
 
 export default function VariantSelect({ attribute, variants }: Props) {
   const { type, name, values, id } = attribute;
-  const { selectedVariant, selectAttributeValue } =
-    useProductVariantUrl(variants);
+  const { selectedVariant, selectAttributeValue } = useProductVariantUrl(
+    variants ?? [],
+  );
 
   const currentAttributeValue = useMemo(
     () => selectedVariant?.attributes.find((a) => a.id === id),
