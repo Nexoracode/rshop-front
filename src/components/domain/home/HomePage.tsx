@@ -17,7 +17,6 @@ export default async function HomePage() {
 
   const homeSections = data.sections ?? [];
 
-  console.log({ homePageData: data });
   const featuredSection = homeSections.find(
     (s) => s.section_type === "promotion_based",
   );
