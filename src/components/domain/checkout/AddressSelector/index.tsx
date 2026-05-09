@@ -7,7 +7,6 @@ import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucidePlus } from "lucide-react";
-import { setOrderMeta } from "@/queries/checkout/order-meta";
 
 export default function AddressSelector() {
   const { data, isPending } = useAddresses();
@@ -48,9 +47,9 @@ export default function AddressSelector() {
   return (
     <div
       id="order_address"
-      className="w-full px-2 py-6 sm:p-6 border-b md:mt-3 md:pb-8"
+      className="w-full px-2"
     >
-      <div className="gap-2 items-center">
+      <div className="gap-2 items-center border-b pt-4 pb-8">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
 

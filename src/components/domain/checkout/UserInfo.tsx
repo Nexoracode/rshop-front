@@ -19,37 +19,39 @@ export default function UserInfo() {
   }
 
   return (
-    <div className="flex w-full border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
-      {user?.first_name ? (
-        <div className="flex items-center flex-wrap gap-8">
-          <div className="gap-2 items-center">
-            <div className="text-[13px] text-muted-light mb-2">
-              نام و نام خانوادگی:
-            </div>
+    <div className="px-2">
+      <div className="w-full border-b pb-8">
+        {user?.first_name ? (
+          <div className="flex items-center flex-wrap gap-8">
+            <div className="gap-2 items-center">
+              <div className="text-[13px] text-muted-light mb-2">
+                نام و نام خانوادگی:
+              </div>
 
-            <div className="font-medium text-sm text-muted">
-              {user.first_name} {user.last_name}
+              <div className="font-medium text-sm text-muted">
+                {user.first_name} {user.last_name}
+              </div>
             </div>
-          </div>
-          <div className="gap-2 items-center">
-            <div className="text-[13px] text-muted-light mb-2">
-              شماره همراه:
-            </div>
+            <div className="gap-2 items-center">
+              <div className="text-[13px] text-muted-light mb-2">
+                شماره همراه:
+              </div>
 
-            <div className="font-medium text-sm text-muted">
-              {toFaDigits(user.phone)}
+              <div className="font-medium text-sm text-muted">
+                {toFaDigits(user.phone)}
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-between gap-8 w-full">
-          <div className="flex-1 flex items-center gap-2 font-medium text-danger text-sm">
-            <AlertCircleIcon className="size-4" />
-            جهت ثبت سفارش تکمیل اطلاعات کاربری الزامی است.
+        ) : (
+          <div className="flex items-center justify-between gap-8 w-full">
+            <div className="flex-1 flex items-center gap-2 font-medium text-danger text-sm">
+              <AlertCircleIcon className="size-4" />
+              جهت ثبت سفارش تکمیل اطلاعات کاربری الزامی است.
+            </div>
+            <UpdateUserInfoDialog />
           </div>
-          <UpdateUserInfoDialog />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
