@@ -1,15 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { useAddresses } from "@/queries/profile/address";
 import AddressForm from "../../users/AddressForm";
 import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucidePlus } from "lucide-react";
+import { UserAddress } from "@/types/user";
 
-export default function AddressSelector() {
-  const { data, isPending } = useAddresses();
+export default function AddressSelector({
+  isPending,
+  userAddress,
+}: {
+  userAddress: UserAddress[];
+  isPending: boolean;
+}) {
+  //const { data, isPending } = useAddresses();
   const [addressOpen, setAddressOpen] = React.useState(false);
 
   const {
@@ -19,10 +25,10 @@ export default function AddressSelector() {
 
   // ✅ normalize data (جلوگیری از crash)
   const addresses = React.useMemo(() => {
-    if (!data) return [];
-    if (Array.isArray(data)) return data;
+    if (!userAddress?.length) return [];
+    if (Array.isArray(userAddress)) return userAddress;
     return [];
-  }, [data]);
+  }, [userAddress]);
 
   const primaryAddress =
     addresses.find((a: { is_primary: boolean }) => a.is_primary) ||

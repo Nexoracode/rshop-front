@@ -1,15 +1,19 @@
 "use client";
 
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { AlertCircleIcon } from "lucide-react";
 import React from "react";
 import UpdateUserInfoDialog from "./UpdateUserInfoDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toFaDigits } from "@/lib/utils/price";
+import { User } from "@/types/user";
 
-export default function UserInfo() {
-  const { user, isPending } = useCurrentUser();
-
+export default function UserInfo({
+  isPending,
+  user,
+}: {
+  user: User | null;
+  isPending: boolean;
+}) {
   if (isPending || !user) {
     return (
       <div className="border-b h-[80px] pb-4">
