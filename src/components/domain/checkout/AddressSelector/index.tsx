@@ -38,18 +38,17 @@ export default function AddressSelector() {
 
   if (isPending) {
     return (
-      <div className="border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6 h-[110px]">
-        <Skeleton className="w-full h-full" />
+      <div className="border-b h-[100px] pb-4">
+        <Skeleton className="w-full flex items-center h-full p-6">
+          <p className="text-sm"> در حال دریافت آدرس...</p>
+        </Skeleton>
       </div>
     );
   }
 
   return (
-    <div
-      id="order_address"
-      className="w-full px-2"
-    >
-      <div className="gap-2 items-center border-b pt-4 pb-8">
+    <div id="order_address" className="w-full px-2">
+      <div className="gap-2 items-center border-b pt-2 pb-8">
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
 

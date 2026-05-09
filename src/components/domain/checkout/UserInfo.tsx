@@ -12,8 +12,10 @@ export default function UserInfo() {
 
   if (isPending || !user) {
     return (
-      <div className="h-[97.5px] border-b sm:border sm:rounded-lg px-2 py-6 sm:p-6">
-        <Skeleton className="w-full h-full" />
+      <div className="border-b h-[80px] pb-4">
+        <Skeleton className="w-full flex items-center h-full p-6">
+          <p className="text-sm"> در حال دریافت اطلاعات شما...</p>
+        </Skeleton>
       </div>
     );
   }

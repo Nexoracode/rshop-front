@@ -11,7 +11,7 @@ import { PackageSelector } from "./PackageSelector";
 export default function CheckoutForm() {
   return (
     <div className="space-y-5">
-      <div className="flex flex-col lg:flex-row md:items-start gap-16 md:gap-8 pb-24">
+      <div className="flex flex-col lg:flex-row md:items-start gap-16 md:gap-4 pb-24">
         <div className="w-full flex flex-col gap-4">
           <UserInfo />
           <AddressSelector />
