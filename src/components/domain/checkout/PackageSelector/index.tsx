@@ -12,7 +12,7 @@ export function PackageSelector() {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-6 px-2 py-6 sm:p-6 md:mt-3 md:pb-8">
+      <div className="w-full flex flex-col gap-6 px-2 pt-4">
         <GiftWrapModal />
       </div>
       {is_for_gift && <GiftMessageInput />}
