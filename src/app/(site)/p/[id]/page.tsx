@@ -45,6 +45,9 @@ export async function generateMetadata({
 }) {
   const { id } = await params;
   const productId = id.split("-").pop() ?? "";
+  if (isNaN(Number(productId))) {
+    return { title: "محصول یافت نشد", robots: { index: false } };
+  }
   const { seo } = await fetchProductById(productId);
 
   if (!seo) {
@@ -81,6 +84,8 @@ export default async function ProductPage({
 }) {
   const { id } = await params;
   const productId = id.split("-").pop() ?? "";
+
+  if (isNaN(Number(productId))) return <div>شناسه وارد شده معتبر نیست.</div>;
   const { product } = await fetchProductById(productId);
 
   if (!product) notFound();
