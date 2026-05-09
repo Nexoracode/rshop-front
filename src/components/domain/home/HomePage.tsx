@@ -15,8 +15,10 @@ export default async function HomePage() {
 
   if (!data) <div>خطا در دریافت اطلاعات</div>;
 
+  const homeSections = data.sections ?? [];
+
   console.log({ homePageData: data });
-  const featuredSection = data.sections.find(
+  const featuredSection = homeSections.find(
     (s) => s.section_type === "promotion_based",
   );
 
@@ -43,7 +45,7 @@ export default async function HomePage() {
 
         <CategoriesSection categories={data.categories} />
 
-        <HomeSections sections={data.sections} />
+        <HomeSections sections={homeSections} />
 
         <BrandsSection brands={data.brands} />
 

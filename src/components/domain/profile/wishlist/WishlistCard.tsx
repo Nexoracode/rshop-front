@@ -21,8 +21,7 @@ export default function WishlistCard({
   onDelete,
   loading,
 }: Props) {
-  const { id, image, name, price, discount_amount, discount_percent, stock } =
-    product;
+  const { id, image, name, price, discount_amount, discount_percent } = product;
   const { compareAt, final, percent } = calcPrice(
     price,
     discount_amount,

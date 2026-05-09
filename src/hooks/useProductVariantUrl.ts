@@ -9,7 +9,7 @@ export default function useProductVariantUrl(variants: ProductVariant[]) {
   const variantId = searchParams.get("variant_id");
 
   const selectedVariant = variantId
-    ? variants.find((i) => i.id === Number(variantId))
+    ? variants?.find((i) => i.id === Number(variantId))
     : variants[0];
 
   const setVariant = (variantId: number | null) => {
