@@ -1,21 +1,25 @@
+"use client";
 import React from "react";
 import BrandsSection from "./BrandsSection";
 import { getHomeSections } from "@/queries/home/home";
-import { getQueryClient } from "@/lib/utils/query-client";
 import HomeSections from "./HomeSections";
 import FeaturedSection from "./FeaturedSection";
 import CategoriesSection from "./CategoriesSection";
 import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
+import { useQuery } from "@tanstack/react-query";
 
-export default async function HomePage() {
-  const queryClient = getQueryClient();
+export default function HomePage() {
+  const { data, isPending } = useQuery(getHomeSections);
+  //const queryClient = getQueryClient();
 
-  const data = await queryClient.fetchQuery(getHomeSections);
+  // const data = await queryClient.fetchQuery(getHomeSections);
+
+  if (isPending) return <div>در حال دریافت دیتا</div>;
 
   if (!data) <div>خطا در دریافت اطلاعات</div>;
 
-  const homeSections = data.sections ?? [];
+  const homeSections = data?.sections ?? [];
 
   const featuredSection = homeSections.find(
     (s) => s.section_type === "promotion_based",

@@ -5,7 +5,8 @@ import { queryOptions } from "@tanstack/react-query";
 export const searchTerm = (term: string) =>
   queryOptions({
     queryKey: ["search-by-term", term],
-    queryFn: async (): Promise<SearchResult> => {
+    queryFn: async (): Promise<SearchResult | null> => {
+      if (!term) return null;
       return await apiFetch(`/catalog/search`, { params: { term } });
     },
   });
