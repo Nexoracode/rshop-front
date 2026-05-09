@@ -9,6 +9,7 @@ import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
 import { useQuery } from "@tanstack/react-query";
 import HomePageSkeleton from "./HomePageSkeleton";
+import LoaderDots from "@/components/common/LoaderDots";
 
 export default function HomePage() {
   const { data, isPending } = useQuery(getHomeSections);
@@ -16,7 +17,12 @@ export default function HomePage() {
 
   // const data = await queryClient.fetchQuery(getHomeSections);
 
-  if (isPending) return <HomePageSkeleton />;
+  if (isPending)
+    return (
+      <div className="w-full flex justify-center items-center h-[50rem]">
+        <LoaderDots className="text-primary" size={8} count={3} />
+      </div>
+    );
 
   if (!data) <div>خطا در دریافت اطلاعات</div>;
 

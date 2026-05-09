@@ -51,7 +51,7 @@ export async function generateMetadata({
     return { title: "محصول یافت نشد", robots: { index: false } };
   }
 
-  const url = `${SHOP_URL}/p/${id}`;
+  const url = `${SHOP_URL}/p/rsp-${id}`;
 
   return {
     title: seo.title,
