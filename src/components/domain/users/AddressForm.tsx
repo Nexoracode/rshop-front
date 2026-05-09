@@ -26,6 +26,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
     mutate: addAddress,
     isPending,
     isSuccess,
+    data: newAddress,
   } = useMutation(addUserAddress);
   const {
     mutate: updateAddress,
@@ -55,7 +56,14 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
 
   const handleNextStep = () => {
     form
-      .trigger(["province", "city", "address_line", "postal_code", "plaque"])
+      .trigger([
+        "province",
+        "city",
+        "address_line",
+        "postal_code",
+        "plaque",
+        "unit",
+      ])
       .then((v) => {
         if (v) setActiveStep(1);
       });
@@ -125,7 +133,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
       onOpenChange(false);
       form.reset();
     }
-  }, [isSuccess, updateSuccess, onOpenChange, form]);
+  }, [isSuccess, updateSuccess, onOpenChange, form, newAddress]);
 
   return (
     <BaseDialog
@@ -145,6 +153,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
       onCancell={() => (activeStep === 1 ? setActiveStep(0) : null)}
       cancellButton={activeStep === 1}
       actionLabel={activeStep === 0 ? "تایید و ادامه" : "ثبت آدرس"}
+      cancellLabel="مرحله قبل"
       loading={isPending || updatePending}
     />
   );

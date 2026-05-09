@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { toast } from "sonner";
 import { Check, ChevronLeft } from "lucide-react";
 import Image from "../../common/Image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { Button } from "../../ui/button";
+import { useRouter } from "next/navigation";
 
 type Props = {
   t: string | number;
@@ -16,6 +18,11 @@ export default function CartAddedToastContent({
   productImage,
   productName,
 }: Props) {
+  const router = useRouter();
+  const navigateToCart = () => {
+    toast.dismiss();
+    router.push("/cart");
+  };
   return (
     <div className="flex space-y-2 border shadow-2xl rounded-lg bg-card p-6 gap-2 flex-col justify-between ">
       <div className="flex text-sm text-success font-medium items-center gap-2">
@@ -50,7 +57,7 @@ export default function CartAddedToastContent({
           size={"sm"}
           fullWidth
           className="h-[40px]"
-          href={"/cart"}
+          onClick={navigateToCart}
           endIcon={<ChevronLeft className="size-4" />}
         >
           مشاهده سبد خرید

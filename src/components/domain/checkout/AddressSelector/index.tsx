@@ -7,6 +7,7 @@ import useCheckout from "@/hooks/useCheckout";
 import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucidePlus } from "lucide-react";
+import { setOrderMeta } from "@/queries/checkout/order-meta";
 
 export default function AddressSelector() {
   const { data, isPending } = useAddresses();
@@ -68,8 +69,8 @@ export default function AddressSelector() {
 
         {currentAddress ? (
           <div className="font-medium text-sm text-muted mt-4 sm:mt-2">
-            `${currentAddress.province}، ${currentAddress.city}، $
-            {currentAddress.address_line}`
+            {currentAddress.province}، {currentAddress.city}،
+            {currentAddress.address_line}
           </div>
         ) : (
           ""

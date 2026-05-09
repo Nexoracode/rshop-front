@@ -10,6 +10,8 @@ import {
   LucideMail,
   LucideUser,
   LucidePhone,
+  CheckSquare2,
+  CheckSquareIcon,
 } from "lucide-react";
 
 import { Menu, MenuItem } from "@/components/common/Menu";
@@ -26,6 +28,7 @@ type Props = {
   className?: string;
   infoRowClass?: string;
   showAddressName?: boolean;
+  isSelected?: boolean;
 };
 
 export default function AddressCard({
@@ -38,11 +41,12 @@ export default function AddressCard({
   infoRowClass,
   onSelect,
   showAddressName,
+  isSelected,
 }: Props) {
   return (
     <div
       onClick={onSelect}
-      className={`relative bg-white rounded-lg border border-slate-200 p-4 ${onSelect ? "cursor-pointer hover:bg-primary-50 transition-all" : ""} ${className}`}
+      className={`relative  rounded-lg border border-slate-200 p-4 ${onSelect && !isSelected ? "cursor-pointer hover:bg-primary-50 transition-all" : ""} ${className} ${isSelected ? "bg-primary-50" : "bg-white"}`}
     >
       {/* Header */}
       {showAddressName ? (
@@ -166,6 +170,12 @@ export default function AddressCard({
         />
       ) : (
         ""
+      )}
+
+      {isSelected && (
+        <div className="absolute left-3 bottom-3">
+          <CheckSquareIcon size={24} className="text-primary" />
+        </div>
       )}
     </div>
   );

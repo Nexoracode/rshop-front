@@ -113,13 +113,18 @@ export default function BaseDialog({
           <DialogFooter className="flex h-fit p-3 flex-row">
             {footer || (
               <>
-                {cancellButton && (
-                  <DialogClose asChild>
+                {cancellButton &&
+                  (onCancell ? (
                     <Button onClick={onCancell} fullWidth variant={"outline"}>
                       {cancellLabel}
                     </Button>
-                  </DialogClose>
-                )}
+                  ) : (
+                    <DialogClose asChild>
+                      <Button fullWidth variant={"outline"}>
+                        {cancellLabel}
+                      </Button>
+                    </DialogClose>
+                  ))}
 
                 <Button
                   onClick={onClick}

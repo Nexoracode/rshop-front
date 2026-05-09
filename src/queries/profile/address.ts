@@ -22,20 +22,21 @@ export const getCities = (province_id: number) =>
   });
 
 export const addUserAddress = mutationOptions({
-  mutationFn: async (body: Omit<UserAddress, "id">) =>
+  mutationFn: async (body: Omit<UserAddress, "id">): Promise<UserAddress> =>
     await apiFetch("/users/me/addresses", { method: "POST", body }),
   onSuccess: async () => {
     await queryClient.invalidateQueries({ queryKey: ["get-user-addresses"] });
   },
 });
 
-export const getUserAddress = (enabled : boolean) =>  queryOptions({
-  queryKey: ["get-user-addresses"],
-  queryFn: async (): Promise<Array<UserAddress>> => {
-    return await apiFetch("/users/me/addresses");
-  },
-  enabled
-});
+export const getUserAddress = (enabled: boolean) =>
+  queryOptions({
+    queryKey: ["get-user-addresses"],
+    queryFn: async (): Promise<Array<UserAddress>> => {
+      return await apiFetch("/users/me/addresses");
+    },
+    enabled,
+  });
 
 export const updateUserAddress = mutationOptions({
   mutationFn: async ({ id, ...body }: UserAddress) =>
@@ -53,7 +54,7 @@ export const deleteUserAddress = mutationOptions({
   },
 });
 
-export function useAddresses(){
-   const {isPending} = useCurrentUser();
-   return useQuery(getUserAddress(!isPending))
+export function useAddresses() {
+  const { isPending } = useCurrentUser();
+  return useQuery(getUserAddress(!isPending));
 }

@@ -36,21 +36,24 @@ export default function UserAddressDialog({ addresses }: Props) {
         }
         content={
           <div className="flex flex-col gap-4">
-            {addresses.map((address) => (
-              <DialogClose key={address.id} asChild>
-                <div>
-                  <AddressCard
-                    showAddressName={false}
-                    onSelect={() =>
-                      handleSetOrderMeta({ ...orderMeta, address })
-                    }
-                    address={address}
-                    onEdit={() => setAction({ act: "edit", item: address })}
-                    infoRowClass="!grid-cols-1"
-                  />
-                </div>
-              </DialogClose>
-            ))}
+            {addresses
+              .sort((a, b) => b.id - a.id)
+              .map((address) => (
+                <DialogClose key={address.id} asChild>
+                  <div>
+                    <AddressCard
+                      isSelected={orderMeta.address?.id === address.id}
+                      showAddressName={false}
+                      onSelect={() =>
+                        handleSetOrderMeta({ ...orderMeta, address })
+                      }
+                      address={address}
+                      onEdit={() => setAction({ act: "edit", item: address })}
+                      infoRowClass="!grid-cols-1"
+                    />
+                  </div>
+                </DialogClose>
+              ))}
           </div>
         }
         footer={

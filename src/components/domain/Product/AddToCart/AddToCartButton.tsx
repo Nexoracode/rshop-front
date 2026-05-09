@@ -93,7 +93,7 @@ export default function AddToCartButton({
                 t={t}
               />
             ),
-            { dismissible: false },
+            { dismissible: true },
           );
         },
         onError: (err) => {
