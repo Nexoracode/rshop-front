@@ -1,5 +1,6 @@
 export type User = {
   id: number;
+  addresses?: UserAddress[];
   avatar_url: string | null;
   first_name: string | null;
   last_name: string | null;

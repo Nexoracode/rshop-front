@@ -28,9 +28,7 @@ export default function CreateOrderBtn() {
     isSuccess,
     data: orderData,
   } = useMutation(createOrder);
-  const { user } = useCurrentUser();
-
-  const { isPending: addressPending } = useAddresses();
+  const { user, isPending: userPending } = useCurrentUser();
 
   const { handleScrollTo } = useScrollToSection();
 
@@ -74,7 +72,7 @@ export default function CreateOrderBtn() {
     <Button
       isLoading={isPending}
       onClick={handleCreateOrder}
-      disabled={addressPending}
+      disabled={userPending}
       className="w-[194px] lg:w-full"
     >
       تکمیل سفارش
