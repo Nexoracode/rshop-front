@@ -7,6 +7,8 @@ import UserAddressDialog from "./UserAddressDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucidePlus } from "lucide-react";
 import { UserAddress } from "@/types/user";
+import { useQuery } from "@tanstack/react-query";
+import { getUserAddress } from "@/queries/profile/address";
 
 export default function AddressSelector({
   isPending,
@@ -17,6 +19,12 @@ export default function AddressSelector({
 }) {
   //const { data, isPending } = useAddresses();
   const [addressOpen, setAddressOpen] = React.useState(false);
+  const [changeAddress, setChangeAddress] = React.useState(false);
+  const {
+    data: newAddresses = [],
+    refetch,
+    isFetched,
+  } = useQuery(getUserAddress(changeAddress));
 
   const {
     orderMeta: { address },
@@ -25,10 +33,11 @@ export default function AddressSelector({
 
   // ✅ normalize data (جلوگیری از crash)
   const addresses = React.useMemo(() => {
+    if (changeAddress) return newAddresses;
     if (!userAddress?.length) return [];
     if (Array.isArray(userAddress)) return userAddress;
     return [];
-  }, [userAddress]);
+  }, [userAddress, changeAddress, newAddresses]);
 
   const primaryAddress =
     addresses.find((a: { is_primary: boolean }) => a.is_primary) ||
@@ -38,7 +47,15 @@ export default function AddressSelector({
     if (!address && primaryAddress) {
       handleSetOrderMeta({ address: primaryAddress });
     }
-  }, [primaryAddress, address, handleSetOrderMeta]);
+  }, [primaryAddress, addresses, handleSetOrderMeta]);
+
+  React.useEffect(() => {
+    if (isFetched) {
+      handleSetOrderMeta({
+        address: newAddresses.find((i) => i.id === address?.id),
+      });
+    }
+  }, [isFetched, newAddresses]);
 
   const currentAddress = address || primaryAddress;
 
@@ -52,6 +69,11 @@ export default function AddressSelector({
     );
   }
 
+  const handleAddressChange = () => {
+    setChangeAddress(true);
+    refetch();
+  };
+
   return (
     <div id="order_address" className="w-full px-2">
       <div className="gap-2 items-center border-b pt-2 pb-8">
@@ -59,7 +81,10 @@ export default function AddressSelector({
           <div className="text-sm text-muted-light">آدرس ارسال:</div>
 
           {currentAddress ? (
-            <UserAddressDialog addresses={addresses} />
+            <UserAddressDialog
+              onAddressChange={handleAddressChange}
+              addresses={addresses}
+            />
           ) : (
             <div
               className="flex items-center gap-1 text-primary-500 cursor-pointer hover:text-primary-600 transition-all"
@@ -86,6 +111,7 @@ export default function AddressSelector({
           address={null}
           open={addressOpen}
           onOpenChange={setAddressOpen}
+          onSuccess={handleAddressChange}
         />
       )}
     </div>

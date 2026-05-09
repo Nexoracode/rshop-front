@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ChevronLeft, MapPinPlus } from "lucide-react";
 import AddressForm from "../../users/AddressForm";
@@ -6,53 +6,62 @@ import { UserAddress } from "@/types/user";
 import useCheckout from "@/hooks/useCheckout";
 import BaseDialog from "@/components/common/BaseDialog";
 import { Button } from "@/components/ui/button";
-import { DialogClose } from "@/components/ui/dialog";
 import AddressCard from "../../profile/address/AddressCard";
 
 type Props = {
   addresses: Array<UserAddress>;
+  onAddressChange: () => void;
 };
 
-export default function UserAddressDialog({ addresses }: Props) {
+export default function UserAddressDialog({
+  addresses,
+  onAddressChange,
+}: Props) {
+  const [changeAddress, setChangeAddress] = useState(false);
   const [action, setAction] = React.useState<{
-    act: "add" | "edit";
+    act: "add" | "edit" | "delete";
     item: UserAddress | null;
   } | null>(null);
   const { handleSetOrderMeta, orderMeta } = useCheckout();
+
+  const handleSelect = (address: UserAddress) => {
+    handleSetOrderMeta({ ...orderMeta, address });
+    setChangeAddress(false);
+  };
   return (
     <React.Fragment>
+      <Button
+        type="button"
+        variant="text-nohover"
+        onClick={() => setChangeAddress(true)}
+        size={"sm"}
+        className="!p-0"
+        endIcon={<ChevronLeft className="size-4" />}
+      >
+        تغییر آدرس
+      </Button>
       <BaseDialog
         title="انتخاب آدرس ارسال"
-        trigger={
-          <Button
-            type="button"
-            variant="text-nohover"
-            size={"sm"}
-            className="!p-0"
-            endIcon={<ChevronLeft className="size-4" />}
-          >
-            تغییر آدرس
-          </Button>
-        }
+        open={changeAddress}
+        onOpenChange={(open) => {
+          if (!open) {
+            setChangeAddress(false);
+          }
+        }}
         content={
           <div className="flex flex-col gap-4">
             {addresses
               .sort((a, b) => b.id - a.id)
               .map((address) => (
-                <DialogClose key={address.id} asChild>
-                  <div>
-                    <AddressCard
-                      isSelected={orderMeta.address?.id === address.id}
-                      showAddressName={false}
-                      onSelect={() =>
-                        handleSetOrderMeta({ ...orderMeta, address })
-                      }
-                      address={address}
-                      onEdit={() => setAction({ act: "edit", item: address })}
-                      infoRowClass="!grid-cols-1"
-                    />
-                  </div>
-                </DialogClose>
+                <AddressCard
+                  key={address.id}
+                  isSelected={orderMeta.address?.id === address.id}
+                  showAddressName={false}
+                  onSelect={() => handleSelect(address)}
+                  address={address}
+                  onEdit={() => setAction({ act: "edit", item: address })}
+                  infoRowClass="!grid-cols-1"
+                />
               ))}
           </div>
         }
@@ -74,6 +83,7 @@ export default function UserAddressDialog({ addresses }: Props) {
           address={action?.item || null}
           open={!!action}
           onOpenChange={(open) => !open && setAction(null)}
+          onSuccess={onAddressChange}
         />
       ) : null}
     </React.Fragment>

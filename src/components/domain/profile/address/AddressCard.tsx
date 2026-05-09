@@ -10,7 +10,6 @@ import {
   LucideMail,
   LucideUser,
   LucidePhone,
-  CheckSquare2,
   CheckSquareIcon,
 } from "lucide-react";
 
@@ -43,6 +42,37 @@ export default function AddressCard({
   showAddressName,
   isSelected,
 }: Props) {
+  const getMenuItems = () => {
+    const menuItems: MenuItem[] = [];
+    if (!address.is_primary) {
+      menuItems.push({
+        label: "تغییر به آدرس اصلی",
+        Icon: PinIcon,
+        onClick: () => onSetPrimary?.(address),
+        color: "primary",
+      });
+    }
+
+    if (typeof onEdit === "function") {
+      menuItems.push({
+        label: "ویرایش",
+        Icon: Edit,
+        onClick: () => onEdit?.(address),
+        color: "info",
+      });
+    }
+
+    if (typeof onDelete === "function") {
+      menuItems.push({
+        label: "حذف",
+        Icon: Trash2,
+        onClick: () => onDelete?.(address),
+        color: "danger",
+      });
+    }
+
+    return menuItems;
+  };
   return (
     <div
       onClick={onSelect}
@@ -141,33 +171,7 @@ export default function AddressCard({
       </div>
 
       {!disableAction ? (
-        <Menu
-          className="absolute top-2 left-2"
-          items={[
-            ...((!address.is_primary
-              ? [
-                  {
-                    label: "تغییر به آدرس اصلی",
-                    Icon: PinIcon,
-                    onClick: () => onSetPrimary?.(address),
-                    color: "primary",
-                  },
-                ]
-              : []) as MenuItem[]),
-            {
-              label: "ویرایش",
-              Icon: Edit,
-              onClick: () => onEdit?.(address),
-              color: "info",
-            },
-            {
-              label: "حذف",
-              Icon: Trash2,
-              onClick: () => onDelete?.(address),
-              color: "danger",
-            },
-          ]}
-        />
+        <Menu className="absolute top-2 left-2" items={getMenuItems()} />
       ) : (
         ""
       )}

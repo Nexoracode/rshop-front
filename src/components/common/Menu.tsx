@@ -32,7 +32,13 @@ export function Menu({ items, className = "" }: MenuProps) {
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
 
   return (
-    <div className={className}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+      className={className}
+    >
       {/* دسکتاپ */}
       <div className="hidden md:block">
         <DropdownMenu>

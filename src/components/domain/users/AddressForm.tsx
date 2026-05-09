@@ -17,9 +17,15 @@ type Props = {
   address: UserAddress | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onSuccess?: () => void;
 };
 
-export default function AddressForm({ address, open, onOpenChange }: Props) {
+export default function AddressForm({
+  address,
+  open,
+  onOpenChange,
+  onSuccess,
+}: Props) {
   const { data: provinces } = useQuery(getProvinces);
   const [activeStep, setActiveStep] = React.useState(0);
   const {
@@ -32,6 +38,7 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
     mutate: updateAddress,
     isPending: updatePending,
     isSuccess: updateSuccess,
+    data: updatedAddress,
   } = useMutation(updateUserAddress);
 
   const form = useForm({
@@ -128,12 +135,20 @@ export default function AddressForm({ address, open, onOpenChange }: Props) {
   };
 
   useEffect(() => {
-    if (isSuccess || updateSuccess) {
+    if ((isSuccess && newAddress) || (updateSuccess && updatedAddress)) {
       toast.success("ثبت آدرس با موفقیت انجام شد.");
+      onSuccess?.();
       onOpenChange(false);
       form.reset();
     }
-  }, [isSuccess, updateSuccess, onOpenChange, form, newAddress]);
+  }, [
+    isSuccess,
+    updateSuccess,
+    onOpenChange,
+    form,
+    newAddress,
+    updatedAddress,
+  ]);
 
   return (
     <BaseDialog

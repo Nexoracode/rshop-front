@@ -98,7 +98,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       ...restOptions,
     });
   } catch (_error) {
-    console.log({_error})
+    console.log({ _error });
     return false;
   }
 
@@ -141,5 +141,7 @@ function extractResponseData(res: any, errorLog = true) {
     toast.error(res.message);
   }
 
-  return res?.data ?? null;
+  if (res.data !== false) {
+    return res?.data ?? null;
+  }
 }

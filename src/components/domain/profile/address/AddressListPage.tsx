@@ -78,7 +78,7 @@ export default function AddressListPage() {
         />
       )}
 
-      {openForm && (
+      {(openForm?.action === "add" || openForm?.action === "edit") && (
         <AddressForm
           onOpenChange={(open) => !open && setOpenForm(null)}
           open={openForm?.action === "add" || openForm?.action === "edit"}

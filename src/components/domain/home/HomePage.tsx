@@ -8,7 +8,6 @@ import CategoriesSection from "./CategoriesSection";
 import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
 import { useQuery } from "@tanstack/react-query";
-import HomePageSkeleton from "./HomePageSkeleton";
 import LoaderDots from "@/components/common/LoaderDots";
 
 export default function HomePage() {

@@ -7,7 +7,6 @@ import { createOrder } from "@/queries/checkout/order";
 import { Button } from "@/components/ui/button";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { toast } from "sonner";
-import { useAddresses } from "@/queries/profile/address";
 import useScrollToSection from "@/hooks/useScrollToSection";
 
 export default function CreateOrderBtn() {

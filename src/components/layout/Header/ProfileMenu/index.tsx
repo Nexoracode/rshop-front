@@ -14,9 +14,7 @@ import {
   MessageCircle,
   ShoppingBag,
   User2Icon,
-  Eye,
   LogOut,
-  MapIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

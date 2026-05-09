@@ -16,7 +16,7 @@ type Props = {
   search: string;
   setSearch: (search: string) => void;
   debouncedSearch: string;
-  data: SearchResult | undefined;
+  data: SearchResult | undefined | null;
   isFetching: boolean;
   open: boolean;
   onOpenChange: (open: boolean) => void;
