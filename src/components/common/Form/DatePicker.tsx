@@ -36,7 +36,7 @@ export default function DateField({ name, required, label }: DatePickerProps) {
           required={required}
         >
           <DatePicker
-            value={new Date(value ? Date.parse(value) : Date.now())}
+            value={value ? new Date(Date.parse(value)) : undefined}
             onChange={(date) => onChange(date.toISOString().slice(0, 10))}
           />
         </FieldContainer>

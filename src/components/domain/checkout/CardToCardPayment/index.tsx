@@ -47,6 +47,7 @@ export default function CardToCardPayment({
         payment_id={payment_id}
         receipt_image={paymentInfo?.receipt_image ?? null}
         status={paymentInfo?.card_to_card_status ?? "pending"}
+        order_id={order_id}
       />
     ),
     later: <PaymentModeLater order_id={order_id} onSuccess={handleSuccess} />,
@@ -56,6 +57,7 @@ export default function CardToCardPayment({
         onSuccess={handleSuccess}
         payment_id={payment_id}
         values={paymentInfo}
+        order_id={order_id}
       />
     ),
   };

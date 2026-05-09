@@ -17,19 +17,22 @@ export default function PaymentModeNow({
   onClose,
   receipt_image,
   status,
+  order_id,
 }: {
   payment_id: number;
   onSuccess: () => void;
   onClose?: () => void;
   receipt_image: Media | null;
   status: Payment["card_to_card_status"];
+  order_id: number;
 }) {
   const form = useForm({ values: { file: receipt_image?.url } });
   const { mutateAsync, isPending } = useMutation(uploadReceipImage);
+  const selectedFile: unknown = form.watch("file");
   const handleSubmit = (values: FieldValues) => {
     const { file } = values;
     mutateAsync(
-      { has_receipt_image: true, files: [file], payment_id },
+      { has_receipt_image: true, files: [file], payment_id, order_id },
       {
         onSuccess: (data) => {
           if (!data) {
@@ -50,6 +53,19 @@ export default function PaymentModeNow({
             <form>
               <ImageUploadField required name="file" label="" />
             </form>
+            {selectedFile ? (
+              <Image
+                src={
+                  selectedFile instanceof Blob ||
+                  selectedFile instanceof MediaSource
+                    ? URL.createObjectURL(selectedFile)
+                    : PRODUCT_PLACEHOLDER
+                }
+                width={200}
+                height={200}
+                alt=""
+              />
+            ) : null}
           </FormProvider>
         </div>
       ) : (

@@ -17,11 +17,13 @@ export function PaymentModeInfo({
   onSuccess,
   onClose,
   values,
+  order_id,
 }: {
   payment_id: number;
   onSuccess: () => void;
   onClose?: () => void;
   values: CardToCardPaymentInfo | null;
+  order_id: number;
 }) {
   const form = useForm({
     values:
@@ -50,6 +52,7 @@ export function PaymentModeInfo({
         sender_card_number,
         tracking_code,
         deposit_date: `${deposit_date} ${deposit_time}`,
+        order_id,
       },
       {
         onSuccess: (data) => {

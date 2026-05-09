@@ -16,10 +16,9 @@ export const createCardToCardPayment = mutationOptions({
     status: string;
     shop_card_info: ShopCardInfo;
   }> => await apiFetch("/card-to-card/initiate", { method: "POST", body }),
-
-  onSuccess: async (data) => {
+  onSuccess: async (_data, variables) => {
     await queryClient.invalidateQueries({
-      queryKey: ["get-order-details", data.order_id],
+      queryKey: ["get-order-details", variables.order_id],
     });
   },
 });
@@ -30,6 +29,11 @@ export const cardTocardPaymentLater = mutationOptions({
       method: "POST",
       body,
     }),
+  onSuccess: async (_data, variables) => {
+    await queryClient.invalidateQueries({
+      queryKey: ["get-order-details", variables.order_id],
+    });
+  },
 });
 export const uploadReceipImage = mutationOptions({
   mutationFn: async ({
@@ -42,10 +46,17 @@ export const uploadReceipImage = mutationOptions({
     tracking_code?: string;
     deposit_date?: string;
     has_receipt_image: boolean;
+    order_id: number;
   }) =>
     await apiFetch(`/card-to-card/${payment_id}/upload-receipt`, {
       hasFile: Boolean(body.files),
       method: "POST",
       body,
     }),
+
+  onSuccess: async (_data, variables) => {
+    await queryClient.invalidateQueries({
+      queryKey: ["get-order-details", variables.order_id],
+    });
+  },
 });

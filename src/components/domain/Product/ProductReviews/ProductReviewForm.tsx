@@ -38,7 +38,7 @@ export default function ProductReviewForm({
   return isSuccess || updateSuccess ? (
     <SubmitSuccess />
   ) : (
-    <div className="h-full flex flex-col">
+    <div className="h-full space-y-3 flex flex-col">
       <p>به این محصول چه امتیازی می دهید</p>
       <div className="flex items-center justify-start">
         <Image

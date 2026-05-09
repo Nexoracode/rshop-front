@@ -9,9 +9,10 @@ import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
 import { useQuery } from "@tanstack/react-query";
 import LoaderDots from "@/components/common/LoaderDots";
+import { AlertCircle, RefreshCw } from "lucide-react";
 
 export default function HomePage() {
-  const { data, isPending } = useQuery(getHomeSections);
+  const { data, isPending, refetch } = useQuery(getHomeSections);
   //const queryClient = getQueryClient();
 
   // const data = await queryClient.fetchQuery(getHomeSections);
@@ -23,7 +24,31 @@ export default function HomePage() {
       </div>
     );
 
-  if (!data) <div>خطا در دریافت اطلاعات</div>;
+  if (!data)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+        <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+              <AlertCircle className="h-8 w-8 text-red-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              خطا در دریافت اطلاعات
+            </h3>
+            <p className="text-gray-500 text-sm mb-6">
+              {"لطفا مجددا تلاش نمایید"}
+            </p>
+            <button
+              onClick={() => refetch()}
+              className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <RefreshCw className="h-4 w-4" />
+              تلاش مجدد
+            </button>
+          </div>
+        </div>
+      </div>
+    );
 
   const homeSections = data?.sections ?? [];
 

@@ -35,13 +35,20 @@ export default function SubmitReviewBtn({ Trigger, ...props }: Props) {
         />
       ) : (
         <>
-          <Button
-            variant={"outline"}
-            onClick={() => setOpen(true)}
-            className="w-full"
-          >
-            ثبت دیدگاه
-          </Button>
+          {Trigger ? (
+            <div className="w-full" role="button">
+              {Trigger}
+            </div>
+          ) : (
+            <Button
+              variant={"outline"}
+              onClick={() => setOpen(true)}
+              className="w-full"
+            >
+              ثبت دیدگاه
+            </Button>
+          )}
+
           <LoginRequiredDialog
             usage="review"
             open={open}
