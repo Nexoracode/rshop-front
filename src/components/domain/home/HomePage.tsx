@@ -8,6 +8,7 @@ import CategoriesSection from "./CategoriesSection";
 import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
 import { useQuery } from "@tanstack/react-query";
+import HomePageSkeleton from "./HomePageSkeleton";
 
 export default function HomePage() {
   const { data, isPending } = useQuery(getHomeSections);
@@ -15,7 +16,7 @@ export default function HomePage() {
 
   // const data = await queryClient.fetchQuery(getHomeSections);
 
-  if (isPending) return <div>در حال دریافت دیتا</div>;
+  if (isPending) return <HomePageSkeleton />;
 
   if (!data) <div>خطا در دریافت اطلاعات</div>;
 
