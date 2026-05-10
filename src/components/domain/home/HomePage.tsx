@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import BrandsSection from "./BrandsSection";
 import { getHomeSections } from "@/queries/home/home";
@@ -7,24 +6,16 @@ import FeaturedSection from "./FeaturedSection";
 import CategoriesSection from "./CategoriesSection";
 import PromoSection from "./PromoSection";
 import PageLoading from "@/components/shared/asset/PageLoading";
-import { useQuery } from "@tanstack/react-query";
-import LoaderDots from "@/components/common/LoaderDots";
-import { AlertCircle, RefreshCw } from "lucide-react";
+import { getQueryClient } from "@/lib/utils/query-client";
 
-export default function HomePage() {
-  const { data, isPending, refetch } = useQuery(getHomeSections);
-  //const queryClient = getQueryClient();
+export default async function HomePage() {
+  const queryClient = getQueryClient();
 
-  // const data = await queryClient.fetchQuery(getHomeSections);
+  const data = await queryClient.fetchQuery(getHomeSections);
 
-  if (isPending)
-    return (
-      <div className="w-full flex justify-center items-center h-[50rem]">
-        <LoaderDots className="text-primary" size={8} count={3} />
-      </div>
-    );
+  if (!data) <div>خطا در دریافت اطلاعات</div>;
 
-  if (!data)
+  /*  if (!data)
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
         <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
@@ -48,7 +39,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    );
+    ); */
 
   const homeSections = data?.sections ?? [];
 

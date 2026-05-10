@@ -29,9 +29,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
 
   const isServer = typeof window === "undefined";
 
-  // -----------------------------
-  // 1) Query String
-  // -----------------------------
+  // ساخت query string (همان کد قبلی)
   let queryString = "";
   if (params) {
     const searchParams =
@@ -45,38 +43,22 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
                   {},
                 ),
           );
-
     const qs = searchParams.toString();
     if (qs) queryString = "?" + qs;
   }
 
-  // -----------------------------
-  // 2) Create full URL (SSR / CSR)
-  // -----------------------------
+  // ساخت URL
   const pathWithBase = isServer
     ? `${BASE_API_URL}${path}${queryString}`
     : `/api${path}${queryString}`;
 
-  // -----------------------------
-  // 3) toast filter
-  // -----------------------------
   const showErrorToast =
     showErrorToastParam && !isServer && !/\/me$/.test(path);
 
-  let res: Response;
-
-  // -----------------------------
-  // 4) Request + network catch
-  // -----------------------------
-  let finalBody = undefined;
-
-  let data: any = null;
-
+  // آماده‌سازی body
+  let finalBody: any = undefined;
   if (body) {
     if (hasFile) {
-      if (typeof body !== "object")
-        throw new Error("body must be an object when hasFile = true");
-
       const formData = new FormData();
       Object.entries(body).forEach(([k, v]) => {
         if (Array.isArray(v)) {
@@ -85,7 +67,6 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
           formData.append(k, v as any);
         }
       });
-
       finalBody = formData;
     } else {
       finalBody = JSON.stringify(body);
@@ -93,27 +74,33 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
   }
 
   const maxAttempts = 3;
-  let lastError: Error | null;
+  let lastError: Error | null = null;
+
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-      res = await fetch(pathWithBase, {
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+      const res = await fetch(pathWithBase, {
         credentials: "include",
         headers: hasFile ? {} : { "Content-Type": "application/json" },
         body: finalBody,
         ...restOptions,
       });
+
       clearTimeout(timeoutId);
 
       const raw = await res.text().catch(() => "");
+      let data: any = null;
+
       if (raw) {
         try {
           data = JSON.parse(raw);
         } catch {
-          data = raw; // non-JSON response
+          data = raw;
         }
       }
+
       if (!res.ok) {
         const message =
           (data && typeof data === "object" && data.message) ||
@@ -126,17 +113,46 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       return extractResponseData(data, showErrorToast);
     } catch (error) {
       lastError = error as any;
-      console.log({ error });
-      if (
+
+      // لاگ خطا در سمت سرور
+      if (isServer) {
+        console.error(
+          `[SSR API Error] ${path} (attempt ${attempt + 1}/${maxAttempts}):`,
+          {
+            message: (error as any).message,
+            code: (error as any).code,
+            url: pathWithBase,
+          },
+        );
+      } else {
+        console.log(`[Client API Error] ${path}:`, (error as any).message);
+      }
+
+      // تشخیص خطاهای قابل تلاش مجدد
+      const isRetryable =
         (error as any).code === "UND_ERR_CONNECT_TIMEOUT" ||
-        (error as any).name === "AbortError"
-      ) {
-        await new Promise((r) => setTimeout(r, attempt * 500));
+        (error as any).code === "ECONNRESET" ||
+        (error as any).code === "ETIMEDOUT" ||
+        (error as any).name === "AbortError" ||
+        (error as any).message?.includes("fetch failed") ||
+        (error as any).message?.includes("timeout");
+
+      if (isRetryable && attempt < maxAttempts - 1) {
+        const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
+        await new Promise((r) => setTimeout(r, delay));
         continue;
       }
+
+      // آخرین تلاش ناموفق - نمایش خطا به کاربر
+      if (showErrorToast) {
+        toast.error("مشکل در اتصال به سرور، لطفاً دوباره تلاش کنید");
+      }
+
       return false;
     }
   }
+
+  return false;
 }
 
 function extractResponseData(res: any, errorLog = true) {

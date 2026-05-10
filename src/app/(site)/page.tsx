@@ -11,3 +11,7 @@ export default function Home() {
     </Suspense>
   );
 }
+
+/*    <div className="w-full flex justify-center items-center h-[50rem]">
+        <LoaderDots className="text-primary" size={8} count={3} />
+      </div> */
