@@ -8,6 +8,7 @@ import CategoryResultList from "./CategoryResultList";
 import BrandResultList from "./BrandResultList";
 import SearchTermLink from "./SearchTermLink";
 import { SearchResult } from "@/types/product";
+import Image from "next/image";
 
 interface SearchResultsPanelProps {
   debouncedSearch: string;
@@ -42,8 +43,14 @@ export function SearchResultsPanel({
       {/* نتیجه خالی */}
       {!isPending && debouncedSearch && !hasResults && (
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <SearchX className="size-20 text-gray-300 mb-2.5" />
-          <p className="text-gray-500">نتیجه‌ای یافت نشد!</p>
+          <Image
+            src={"/search.svg"}
+            width={110}
+            height={200}
+            alt="image"
+            className="mx-auto"
+          />
+          <p className="text-gray-500 mt-2">نتیجه‌ای یافت نشد!</p>
           <p className="text-gray-400 text-sm mt-1">عبارت دیگری جستجو کنید.</p>
         </div>
       )}
