@@ -38,8 +38,7 @@ export const updateCartItem = mutationOptions({
     itemId: number;
     quantity: number;
   }): Promise<UserCart> => {
-    const response = await apiFetch("/cards/update", { method: "PATCH", body });
-    return response;
+    return await apiFetch("/cards/update", { method: "PATCH", body });
   },
   onSuccess: async () => {
     await queryClient.invalidateQueries({ queryKey: ["get-cart"] });

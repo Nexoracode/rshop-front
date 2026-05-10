@@ -68,70 +68,75 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
   // -----------------------------
   // 4) Request + network catch
   // -----------------------------
-  try {
-    let finalBody = undefined;
+  let finalBody = undefined;
 
-    if (body) {
-      if (hasFile) {
-        if (typeof body !== "object")
-          throw new Error("body must be an object when hasFile = true");
-
-        const formData = new FormData();
-        Object.entries(body).forEach(([k, v]) => {
-          if (Array.isArray(v)) {
-            v.forEach((item) => formData.append(k, item));
-          } else {
-            formData.append(k, v as any);
-          }
-        });
-
-        finalBody = formData;
-      } else {
-        finalBody = JSON.stringify(body);
-      }
-    }
-
-    res = await fetch(pathWithBase, {
-      credentials: "include",
-      headers: hasFile ? {} : { "Content-Type": "application/json" },
-      body: finalBody,
-      ...restOptions,
-    });
-  } catch (_error) {
-    console.log({ _error });
-    return false;
-  }
-
-  // -----------------------------
-  // 5) Safe JSON / text parsing
-  // -----------------------------
   let data: any = null;
 
-  const raw = await res.text().catch(() => "");
-  if (raw) {
-    try {
-      data = JSON.parse(raw);
-    } catch {
-      data = raw; // non-JSON response
+  if (body) {
+    if (hasFile) {
+      if (typeof body !== "object")
+        throw new Error("body must be an object when hasFile = true");
+
+      const formData = new FormData();
+      Object.entries(body).forEach(([k, v]) => {
+        if (Array.isArray(v)) {
+          v.forEach((item) => formData.append(k, item));
+        } else {
+          formData.append(k, v as any);
+        }
+      });
+
+      finalBody = formData;
+    } else {
+      finalBody = JSON.stringify(body);
     }
   }
 
-  // -----------------------------
-  // 6) HTTP error handling
-  // -----------------------------
-  if (!res.ok) {
-    const message =
-      (data && typeof data === "object" && data.message) ||
-      "خطا در برقراری ارتباط با سرور";
+  const maxAttempts = 3;
+  let lastError: Error | null;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      res = await fetch(pathWithBase, {
+        credentials: "include",
+        headers: hasFile ? {} : { "Content-Type": "application/json" },
+        body: finalBody,
+        ...restOptions,
+      });
+      clearTimeout(timeoutId);
 
-    if (showErrorToast) toast.error(message);
-    return false;
+      const raw = await res.text().catch(() => "");
+      if (raw) {
+        try {
+          data = JSON.parse(raw);
+        } catch {
+          data = raw; // non-JSON response
+        }
+      }
+      if (!res.ok) {
+        const message =
+          (data && typeof data === "object" && data.message) ||
+          "خطا در برقراری ارتباط با سرور";
+
+        if (showErrorToast) toast.error(message);
+        return false;
+      }
+
+      return extractResponseData(data, showErrorToast);
+    } catch (error) {
+      lastError = error as any;
+      if (
+        (error as any).code === "UND_ERR_CONNECT_TIMEOUT" ||
+        (error as any).name === "AbortError"
+      ) {
+        await new Promise((r) => setTimeout(r, attempt * 500));
+        continue;
+      }
+      console.log({ error });
+      return false;
+    }
   }
-
-  // -----------------------------
-  // 7) Success
-  // -----------------------------
-  return extractResponseData(data, showErrorToast);
 }
 
 function extractResponseData(res: any, errorLog = true) {
