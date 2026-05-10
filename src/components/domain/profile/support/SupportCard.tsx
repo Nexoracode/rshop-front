@@ -5,7 +5,7 @@ import { toPersianDateTime } from "@/lib/utils/date-time";
 import { Ticket } from "@/types/user";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 type Props = {} & Ticket;

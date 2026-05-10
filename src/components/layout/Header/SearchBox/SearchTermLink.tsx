@@ -1,5 +1,5 @@
 import { LucideArrowLeft, Search } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 type Props = { debouncedSearch: string };

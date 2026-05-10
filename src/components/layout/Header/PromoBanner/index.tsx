@@ -3,7 +3,7 @@
 import { getPromoBanners } from "@/queries/home/home";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React, { useEffect, useMemo, useState } from "react";
 import CustomBanner from "./CustomBanner";
 

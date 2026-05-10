@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Payment } from "@/types/order";
 import React from "react";
 
 type Props = {

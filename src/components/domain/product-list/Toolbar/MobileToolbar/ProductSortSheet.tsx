@@ -2,7 +2,7 @@
 
 import { sortItems } from "@/data/assets";
 import { ArrowDownWideNarrow, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import TriggerButton from "./TriggerButton";

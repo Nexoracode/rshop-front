@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils/classnames";
 import { SideBanners } from "@/types/home";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function PromoCard({
   badge_color,

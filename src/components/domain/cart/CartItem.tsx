@@ -9,7 +9,7 @@ import { deleteCartItem, updateCartItem } from "@/queries/cart/cart";
 import PriceBox from "@/components/shared/product/PriceBox";
 import CartItemVariant from "@/components/layout/Header/CartPopver/CartItemVariant";
 import maxQuantitySelector from "@/lib/utils/maxQuantitySelector";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function CartItem({
   id,

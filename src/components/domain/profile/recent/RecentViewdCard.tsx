@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { RecentView } from "@/types/user";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { calcPrice } from "@/lib/utils/number";
 import { Badge } from "@/components/ui/badge";

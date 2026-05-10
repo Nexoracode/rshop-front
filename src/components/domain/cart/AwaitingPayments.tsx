@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import AwatingPaymentCard from "./AwatingPaymentCard";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { AlertCircle, ChevronLeft } from "lucide-react";
 import { getAwaitingOrders } from "@/queries/profile/order";
 import { Card } from "@/components/ui/card";

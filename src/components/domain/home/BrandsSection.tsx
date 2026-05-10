@@ -8,7 +8,7 @@ import {
 } from "../../ui/carousel";
 import { Card } from "../../ui/card";
 import { Brand } from "@/types/product";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import Image from "../../common/Image";
 import { StarIcon } from "lucide-react";
 

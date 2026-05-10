@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { HomeSectionProduct } from "@/types/home";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { cn } from "@/lib/utils/classnames";

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MessageCircle } from "lucide-react";
 import { Review } from "@/types/user";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 type Props = {
   product: Review["product"];

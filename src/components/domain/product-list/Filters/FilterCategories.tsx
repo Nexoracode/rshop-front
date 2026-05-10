@@ -1,7 +1,7 @@
 "use client";
 
 import { CategoryFilter } from "@/types";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 import { usePathname } from "next/navigation";
@@ -31,7 +31,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
         </Link>
       );
     }
-    
+
     return (
       <Collapsible
         defaultOpen={pathName.includes(cat.slug)}
@@ -54,7 +54,9 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({ categories }) => {
   };
 
   return (
-    <div className={`relative overflow-y-auto scrollbar-custom ${categories.length >= 6 ? "pl-2 -ml-3" : ""} max-h-[20rem]`}>
+    <div
+      className={`relative overflow-y-auto scrollbar-custom ${categories.length >= 6 ? "pl-2 -ml-3" : ""} max-h-[20rem]`}
+    >
       {categories.map((cat) => (
         <div
           key={cat.id}

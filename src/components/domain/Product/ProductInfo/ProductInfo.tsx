@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Star } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { Product } from "@/types/product";
 import VariantSelect from "../VariantSelect";
 import ImportantAttributes from "./ImportantAttributes";

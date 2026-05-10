@@ -5,7 +5,7 @@ import { HeroSlider, LayoutType } from "@/types/home";
 import { cn } from "@/lib/utils/classnames";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 type Props = {
   layoutType: LayoutType;

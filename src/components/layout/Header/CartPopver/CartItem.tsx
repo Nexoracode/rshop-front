@@ -4,7 +4,7 @@ import QuantitySelect from "@/components/domain/Product/AddToCart/QuantitySelect
 import { PRODUCT_PLACEHOLDER, SHOP_NAME } from "@/data/assets";
 import { UserCartItem } from "@/types/cart";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 import CartItemVariant from "./CartItemVariant";
 import { TruckIcon } from "lucide-react";

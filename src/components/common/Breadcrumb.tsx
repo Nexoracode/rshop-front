@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { SHOP_NAME } from "@/data/assets";
 import { cn } from "@/lib/utils/classnames";
 
@@ -46,9 +46,7 @@ export default function Breadcrumb({ items, className, lastIsLink }: Props) {
                 <span>{item.label}</span>
               )}
 
-              {!isLast && (
-                <span className="px-2.5">/</span>
-              )}
+              {!isLast && <span className="px-2.5">/</span>}
             </div>
           );
         })}

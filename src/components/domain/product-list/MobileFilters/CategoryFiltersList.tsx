@@ -2,7 +2,7 @@ import { SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils/classnames";
 import { CategoryFilter } from "@/types";
 import { ChevronDownIcon, ChevronLeftIcon } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 type Props = {

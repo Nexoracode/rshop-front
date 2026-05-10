@@ -3,7 +3,7 @@ import useProductPrice from "@/hooks/product/useProductPrice";
 import { cn } from "@/lib/utils/classnames";
 import { Product } from "@/types/product";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 import PriceBox from "./PriceBox";
 import { Badge } from "@/components/ui/badge";

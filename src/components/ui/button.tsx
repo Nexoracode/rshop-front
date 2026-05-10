@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { cva, type VariantProps } from "class-variance-authority";
 import LoaderDots from "../common/LoaderDots";
 import { cn } from "@/lib/utils/classnames";

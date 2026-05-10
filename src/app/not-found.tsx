@@ -2,7 +2,7 @@
 import Image from "@/components/common/Image";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function NotFound() {
   return (

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SelectableFilter from "./SelectableFilter";
 import { ChevronLeftIcon, DotIcon, X } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { cn } from "@/lib/utils/classnames";
 import { Badge } from "@/components/ui/badge";
 
@@ -23,8 +23,8 @@ type Props = {
   onChange?: (value: Array<string>) => void;
   isSet?: boolean;
   text?: string;
-  activeSeprator?: boolean
-  className?: string
+  activeSeprator?: boolean;
+  className?: string;
 };
 
 export default function Collapsible({
@@ -39,7 +39,7 @@ export default function Collapsible({
   isSet = false,
   text = "",
   activeSeprator = true,
-  className
+  className,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -130,7 +130,10 @@ function SelectedItems({
   return (
     <div className="flex flex-wrap gap-2 my-2">
       {items.map((i) => (
-        <Badge key={i.value} className="flex items-center gap-3 bg-slate-100 p-1 px-2">
+        <Badge
+          key={i.value}
+          className="flex items-center gap-3 bg-slate-100 p-1 px-2"
+        >
           <span>{i.label}</span>
 
           <button onClick={() => handleDelete(i)}>

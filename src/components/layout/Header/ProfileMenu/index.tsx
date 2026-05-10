@@ -16,7 +16,7 @@ import {
   User2Icon,
   LogOut,
 } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";

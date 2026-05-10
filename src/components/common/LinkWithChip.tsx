@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils/classnames";
 import { toFaDigits } from "@/lib/utils/price";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {

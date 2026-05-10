@@ -8,7 +8,7 @@ import { RecentView } from "@/types/user";
 import { Skeleton, Skeletons } from "@/components/ui/skeleton";
 import ProfileSectionBox from "../ProfileSectionBox";
 import { EyeOff, ShoppingBag } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 function EmptyRecentViews() {
   return (

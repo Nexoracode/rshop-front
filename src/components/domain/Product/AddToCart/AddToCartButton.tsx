@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import QuantitySelect from "./QuantitySelect";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { useMutation } from "@tanstack/react-query";
 import { addCartItem, updateCartItem } from "@/queries/cart/cart";
 import { Product } from "@/types/product";

@@ -6,7 +6,7 @@ import { Menu } from "@/components/common/Menu";
 import { Badge } from "@/components/ui/badge";
 import { Review } from "@/types/user";
 import ProductRating from "@/components/domain/Product/ProductReviews/ProductRating";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { toPersianDate } from "@/lib/utils/date-time";
 
 type Props = {

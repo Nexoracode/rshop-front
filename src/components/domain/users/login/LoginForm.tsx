@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import UserMobileForm from "./UserMobileForm";
 import UserOtpForm from "./UserOtpForm";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function LoginForm() {
   const [phone, setPhone] = useState<string | null>(null);

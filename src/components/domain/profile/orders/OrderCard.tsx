@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { ChevronLeftIcon, NotepadTextDashed } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { statusColor, statusLabel } from "@/data/order";

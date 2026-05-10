@@ -1,7 +1,7 @@
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { ProductSearchResult } from "@/types/product";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 const ProductResultItem = React.forwardRef<

@@ -126,6 +126,7 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
       return extractResponseData(data, showErrorToast);
     } catch (error) {
       lastError = error as any;
+      console.log({ error });
       if (
         (error as any).code === "UND_ERR_CONNECT_TIMEOUT" ||
         (error as any).name === "AbortError"
@@ -133,7 +134,6 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
         await new Promise((r) => setTimeout(r, attempt * 500));
         continue;
       }
-      console.log({ error });
       return false;
     }
   }

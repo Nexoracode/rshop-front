@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 // lucide-react icons
 import { Home, Layers, ShoppingCart, Heart, User } from "lucide-react";

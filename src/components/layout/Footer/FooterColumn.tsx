@@ -2,7 +2,7 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils/classnames";
 import { ChevronDownIcon } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import { useState } from "react";
 
 type FooterLink = { label: string; href: string };

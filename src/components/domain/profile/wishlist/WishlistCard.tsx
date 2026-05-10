@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCartIcon, Trash2 } from "lucide-react";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { WishlistItem } from "@/types/product";
-import Link from "next/link";
 import { calcPrice } from "@/lib/utils/number";
 import { Badge } from "@/components/ui/badge";
 import PriceBox from "@/components/common/PriceBox";
 import Image from "@/components/common/Image";
+import Link from "@/components/shared/Link";
 
 type Props = {
   onDelete: (id: number) => void;

@@ -1,7 +1,7 @@
 import { Category } from "@/types/product";
 import SubCategoriesColumn from "./SubCategoriesColumn";
 import { ChevronLeftIcon } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 interface SubCategoriesGridProps {
   category: Category;

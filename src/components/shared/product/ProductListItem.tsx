@@ -8,7 +8,7 @@ import { Product } from "@/types/product";
 import useProductPrice from "@/hooks/product/useProductPrice";
 import PriceBox from "./PriceBox";
 import { cn } from "@/lib/utils/classnames";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function ProductListItem(props: Product) {
   const {
@@ -78,10 +78,7 @@ export default function ProductListItem(props: Product) {
 
           {/* price */}
           <div className="flex items-center justify-end gap-2">
-            <PriceBox
-              price={final}
-              className="text-sm font-medium"
-            />
+            <PriceBox price={final} className="text-sm font-medium" />
 
             {compareAt && (
               <PriceBox

@@ -1,7 +1,7 @@
 import Image from "@/components/common/Image";
 import { PRODUCT_PLACEHOLDER } from "@/data/assets";
 import { HomeCategory } from "@/types/home";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 
 export default function CategoryItem({ name, slug, image }: HomeCategory) {
   return (

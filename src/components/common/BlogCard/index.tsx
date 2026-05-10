@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Blog } from "@/types";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 export default function BlogCard({ date, image, tiny_desc, title }: Blog) {

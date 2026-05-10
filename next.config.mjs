@@ -10,19 +10,19 @@ const nextConfig = {
         search: "",
       },
     ],
-    unoptimized: true,
+    //  unoptimized: true,
   },
   async rewrites() {
     return [
-      {
+      /* {
         source: "/api/:path*",
         destination:
           "https://app-backend-rshop-nodejs.roohbakhshac.com/api/:path*",
-      },
-      /*   {
+      }, */
+      {
         source: "/api/:path*",
         destination: "http://172.18.100.42:3000/api/:path*",
-      }, */
+      },
       /* {
         source: "/api/:path*",
         destination: "http://192.168.0.182:3000/api/:path*",

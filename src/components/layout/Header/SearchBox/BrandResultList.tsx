@@ -1,5 +1,5 @@
 import { Brand } from "@/types/product";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 type Props = {
@@ -21,7 +21,7 @@ const BrandResultList = React.forwardRef<HTMLDivElement, Props>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 export default BrandResultList;

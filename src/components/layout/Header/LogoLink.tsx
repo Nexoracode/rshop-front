@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import Image from "@/components/common/Image";
-import Link from "next/link";
+import Link from "@/components/shared/Link";
 import React from "react";
 
 export default function LogoLink() {
