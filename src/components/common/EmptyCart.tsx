@@ -1,11 +1,17 @@
 import * as React from "react";
 import { Button } from "../ui/button";
-import { ShoppingBasket } from "lucide-react";
+import Image from "next/image";
 
 export function EmptyCard() {
   return (
     <div className="flex flex-col gap-4 items-center">
-      <ShoppingBasket width={180} height={180} className="text-neutral-200" />
+      <Image
+        src={"/empty-cart.svg"}
+        width={200}
+        height={200}
+        alt="image"
+        className="mx-auto"
+      />
 
       <p className="text-lg font-medium">سبد خرید شما خالی است</p>
 

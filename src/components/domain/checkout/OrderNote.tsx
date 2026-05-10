@@ -72,8 +72,8 @@ export default function OrderNote() {
   };
 
   return (
-    <div className="w-full flex flex-col px-2">
-      <div className="w-full flex items-center justify-between gap-8 border-b pt-4 pb-8">
+    <div className="w-full flex flex-col px-2 pt-4 pb-8 border-b">
+      <div className="w-full flex items-center justify-between gap-8">
         <div className="text-sm text-muted-light">توضیحات سفارش</div>
         <div className="flex items-center gap-4">
           {submitDescription()}
