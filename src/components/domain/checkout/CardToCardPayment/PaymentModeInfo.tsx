@@ -102,12 +102,16 @@ export function PaymentModeInfo({
           </FormProvider>
         </div>
       )}
-      <PaymentModalFooter
-        onClick={form.handleSubmit(handleSubmit)}
-        onClose={onClose}
-        isLoading={isPending}
-        disabled={isPending}
-      />
+      {values?.card_to_card_status === "pending" ? (
+        <PaymentModalFooter
+          onClick={form.handleSubmit(handleSubmit)}
+          onClose={onClose}
+          isLoading={isPending}
+          disabled={isPending}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

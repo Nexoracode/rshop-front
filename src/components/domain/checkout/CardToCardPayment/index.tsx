@@ -82,7 +82,9 @@ export default function CardToCardPayment({
           رسید آن را بارگذاری کنید.
         </p>
       </div>
-      <PaymentExpireAlert date={date} />
+      {paymentInfo?.card_to_card_status === "pending" && (
+        <PaymentExpireAlert date={date} />
+      )}
       <div className="lg:flex space-y-4 gap-4">
         <div className="lg:w-1/2 space-y-4 flex flex-col justify-between h-full m-0">
           <ShopCardInfo amount={Number(amount)} />

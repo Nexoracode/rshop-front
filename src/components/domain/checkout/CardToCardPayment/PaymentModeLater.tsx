@@ -27,10 +27,7 @@ export default function PaymentModeLater({
           کنید.
         </p>
       </div>
-      <PaymentModalFooter
-        isLoading={isPending}
-        onClick={handleSubmit}
-      />
+      <PaymentModalFooter isLoading={isPending} onClick={handleSubmit} />
     </div>
   );
 }

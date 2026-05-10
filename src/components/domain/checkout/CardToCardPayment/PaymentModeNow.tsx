@@ -91,12 +91,16 @@ export default function PaymentModeNow({
         </div>
       )}
 
-      <PaymentModalFooter
-        onClick={form.handleSubmit(handleSubmit)}
-        onClose={onClose}
-        isLoading={isPending}
-        disabled={isPending}
-      />
+      {status === "pending" ? (
+        <PaymentModalFooter
+          onClick={form.handleSubmit(handleSubmit)}
+          onClose={onClose}
+          isLoading={isPending}
+          disabled={isPending}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
